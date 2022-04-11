@@ -1,0 +1,1566 @@
+//===== rAthena Script =======================================
+//= Eden Tutorial
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= A series of quests introducing the major features of
+//= Ragnarok Online.
+//===== Additional Comments: =================================
+//= 1.0 First Version. [Euphy]
+//============================================================
+
+// Main Quest :: TutorialVer2
+//============================================================
+
+//Disable for now
+/*moc_para01,34,178,3	script	Tutorial Instructor	904,{
+	if (Class == Job_Novice) {
+		// Fall through
+	} else if (checkquest(9167) == -1) {
+	OnStartQuest:
+		if (@tutorial_restart) {
+			set .@tutorial_restart,1;
+			set @tutorial_restart,0;
+		}
+		mes "[Tutorial Instructor]";
+		mes "เมื่อเร็ว ๆ นี้มีการกล่าวว่า";
+		mes "พวกเขากำลังพัฒนาวิธีเพิ่มตัวเลือก";
+		mes "ใส่ในซ็อกเก็ตหรือเพิ่มสถานะ";
+		mes "บนอุปกรณ์ที่ปกติไม่มี";
+		mes "พวกเขาเรียกสิ่งนั้นว่า ^006400Enchant^000000.";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "หลังจากเห็นว่ามีการพัฒนา";
+		mes "ฉันได้รับแรงบันดาลใจจากมันมาก ";
+		mes "ที่ฉันทำงานอย่างหนักเพื่อค้นพบ ";
+		mes "วิธีที่จะทำและในที่สุดฉันก็ ";
+		mes "สร้างทางของตัวเองเพื่อ ^006400Enchant ^000000!";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "แต่เพื่อทำสิ่งนี้ ";
+		mes "ฉันต้องการวัสดุพิเศษ ";
+		mes "ถ้าคุณโอเคกับมัน ... ";
+		mes "คุณคิดว่าคุณทำได้ ";
+		mes "ช่วยฉันด้วยการรวบรวมพวกเขา?";
+		next;
+		switch(select("ได้เลยฉันช่วยได้!:ตอนนี้ฉันยุ่งนิดหน่อย...")) {
+		case 1:
+			mes "[Tutorial Instructor]";
+			mes "อย่างไรก็ตามมองไปที่คุณ";
+			mes "ในสถานะปัจจุบันของคุณทำให้ฉัน";
+			mes "สงสัยความสามารถในการรวบรวม";
+			mes "ของที่ฉันต้องการ ... ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "อืมฉันคิดว่าถ้าคุณจ้าง";
+			mes "^006400Mercenary ^000000 สำหรับสิ่งนี้";
+			mes "ถ้าอย่างนั้นฉันคิดว่าฉันสามารถมอบความไว้วางใจให้คุณได้";
+			mes "กับคำขอของฉัน ... ใช่ไหม";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "เพื่อจ้างทหารรับจ้าง";
+			mes "ไปหา ^006400Mercenary Guild ^000000";
+			mes "ซึ่งอยู่ข้างประตูหน้าของ ^8B4513Prontera ^000000";
+			mes "ไปที่ ^006400Information Agent ^000000";
+			mes "แล้วถามพวกเขาว่า ^006400Mercenary Guild Official ^000000";
+			mes "อยู่และพวกเขาจะแจ้งให้คุณทราบ";
+			next;
+			if (.@tutorial_restart) {
+				erasequest 9167;
+				erasequest 9168;
+				erasequest 9169;
+				erasequest 9170;
+				erasequest 9171;
+				erasequest 9172;
+				completequest 9173;
+				erasequest 9173;
+			}
+			mes "[Tutorial Instructor]";
+			mes "ตอนนี้ ... รีบจ้าง";
+			mes "^006400Mercenary ^000000 แล้วกลับมาหาฉัน!";
+			setquest 9167;
+			close;
+		case 2:
+			mes "[Tutorial Instructor]";
+			mes "ดีตั้งแต่คุณบอกว่าคุณไม่ว่าง";
+			mes "ช่วยไม่ได้ ... ";
+			mes "เมื่อเธอไม่ว่างมาหาฉันอีกนะ";
+			close;
+		}
+	} else if (checkquest(9167) == 0 || checkquest(9167) == 1) {
+		if (!getmercinfo(1)) {
+			mes "[Tutorial Instructor]";
+			mes "คุณยังไม่ได้เป็นทหารรับจ้างเลย ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "เพื่อจ้างทหารรับจ้าง";
+			mes "ไปหา ^006400Mercenary Guild ^000000";
+			mes "ซึ่งอยู่ข้างประตูหน้าของ ^8B4513Prontera ^000000";
+			mes "ไปที่ ^006400Information Agent ^000000";
+			mes "แล้วถามพวกเขาว่า ^006400Mercenary Guild Official ^000000";
+			mes "อยู่และพวกเขาจะแจ้งให้คุณทราบ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "ตอนนี้ ... รีบจ้าง ";
+			mes "a ^006400ทหารรับจ้าง^000000 แล้วกลับมาหาฉัน! ";
+			close;
+		}
+		mes "[Tutorial Instructor]";
+		mes "การได้พบคุณด้วย ^006400Mercenary ^000000 ทำให้ฉันเชื่อใจคุณมากขึ้น ";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "ถ้า 006400Mercenary ^000000 ให้เอฟเฟกต์โดยตรง";
+		mes "โดยการต่อสู้เพื่อคุณ";
+		mes "แล้ว a ^006400Pet ^000000 ช่วยคุณทางอ้อมด้วย";
+		mes "ความสามารถและรูปลักษณ์ที่หลากหลาย";
+		mes "และมันจับหัวใจของคุณ";
+		mes "ลองเพิ่ม ^006400Pet ^000000 ในอนาคตด้วย";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "ทีนี้มาดู ... เพื่อที่จะ";
+		mes "รับสิ่งนี้ ^006400Enchant ^000000 ให้สำเร็จ";
+		mes "คุณต้องไปหาวัสดุมาให้ฉัน ... ";
+		mes "สิ่งที่ฉันต้องการคือ ... ";
+		mes "..............";
+		next;
+		select("I don't think I heard you clearly...");
+		mes "[Tutorial Instructor]";
+		mes "ฉันไม่ชอบพูดซ้ำ ๆ .. ";
+		mes "ถ้าคุณถามฉันอีกครั้งแบบนั้น";
+		mes "มันทำให้ปากเหนื่อยหรือเปล่า";
+		mes "ในสถานการณ์เหล่านี้ให้เปิด ^006400Quest Window ^000000 ของคุณ";
+		mes "และคุณสามารถเห็นสิ่งที่คุณร้องขอ";
+		mes "และรายละเอียดคำขอของฉัน";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "ถ้าคุณมองไปทางซ้ายบน";
+		mes "ในพื้นที่ที่มีข้อมูล";
+		mes "มันบอกว่า ^006400QUEST ^000000";
+		mes "และถ้าคุณคลิก";
+		mes "มันจะแสดงข้อมูลทั้งหมด";
+		mes "ที่เกี่ยวข้องกับคำขอ";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "เมื่อคุณตรวจสอบว่ามีวัสดุอะไรบ้าง";
+		mes "ต้องไปรวบรวมจาก";
+		mes "the ^006400Quest Window ^000000,";
+		mes "มาหาแล้วคุยกับฉันใหม่นะ";
+		completequest 9167;
+		setquest 9168;
+		close;
+	} else if (checkquest(9168) == 0 || checkquest(9168) == 1) {
+		if (checkweight(607,1) == 0) {
+			if (MaxWeight - Weight < getiteminfo(607,6)) {
+				mes "[Tutorial Instructor]";
+				mes "ดูเหมือนคุณจะขี้เซากับของเยอะมาก";
+				mes "ในสินค้าคงคลังของคุณทำให้คุณหนัก ... ";
+				mes "มันยากที่จะทำตามคำขอของฉัน";
+				mes "เมื่อคุณหนักกับขยะทั้งหมด!";
+				mes "ไปทำให้สินค้าหมดแล้วกลับมาหาฉัน";
+				close;
+			} else {
+				mes "[Tutorial Instructor]";
+				mes "ดูเหมือนว่าคุณจะมี";
+				mes "หนึ่งรายการมากเกินไปสำหรับคุณ ... ";
+				mes "ถ้าคุณต้องการช่วยฉันออกไป";
+				mes "งั้นก็ต้องใส่บ้าง";
+				mes "ของไปแล้วค่อยกลับมา";
+				close;
+			}
+		}
+		mes "[Tutorial Instructor]";
+		mes "คุณเปิด ^006400Quest Window ^000000 ของคุณหรือไม่";
+		mes "เพื่อตรวจสอบวัสดุ";
+		next;
+		switch(select("Yup!:No...:Where is the Quest Window...")) {
+		case 1:
+			mes "[Tutorial Instructor]";
+			mes "โอ้ใช่แล้วฉันจะทดสอบให้คุณดู";
+			mes "ถ้าคุณตรวจสอบจริงๆ?";
+			mes "เขียนเนื้อหาที่ฉันขอให้คุณได้รับ";
+			next;
+			input .@inputstr$;
+			if (.@inputstr$ == "10 Jellopy") {
+				mes "[Tutorial Instructor]";
+				mes "ดีรู้ไหม";
+				mes "ตอนนี้คุณรู้สึกคุ้นเคยหรือไม่";
+				mes "เกี่ยวกับ ^006400Quest Window ^000000?";
+				mes "แต่มีปัญหา ... ";
+				mes "คุณรู้ว่าต้องเก็บวัสดุอะไร";
+				mes "แต่การรวบรวมนั้นไม่ง่าย";
+				next;
+				mes "[Tutorial Instructor]";
+				mes "นอกจากนี้ยังมีสิ่งหนึ่ง";
+				mes "ฉันคิดว่าคุณต้องลอง";
+				mes "และนั่นก็คือ ... ";
+				mes "the ^006400Universal Silver Catalog ^000000";
+				next;
+				mes "[Tutorial Instructor]";
+				mes "The ^006400Universal Silver Catalog ^000000";
+				mes "หาได้จาก";
+				mes "ตัวช่วยสร้าง ^0000FFCatalogue ^000000";
+				mes "ที่อยู่ในสำนักงานใหญ่ของ Eden Group";
+				next;
+				mes "[Tutorial Instructor]";
+				mes "ตอนนี้ไปรับ";
+				mes "a ^006400Universal Silver Catalog ^000000";
+				mes "แล้วกลับมาคุยกับฉันนะ";
+				completequest 9168;
+				setquest 9169;
+				close;
+			}
+			mes "[Tutorial Instructor]";
+			mes "คุณ ... ยังดูไม่เป็น";
+			mes "รู้มากเกี่ยวกับ";
+			mes "^006400Quest Window ^000000.";
+			mes "จะแจ้งให้ทราบอีกครั้ง";
+			next;
+			break;
+		case 2:
+			mes "[Tutorial Instructor]";
+			mes "รีบตรวจสอบดู";
+			mes "ต้องใช้วัสดุอะไรบ้าง";
+			mes "ของคุณ ^006400Quest Window ^000000";
+			close;
+		case 3:
+			break;
+		}
+		mes "[Tutorial Instructor]";
+		mes "ถ้าคุณมองไปทางซ้ายบน";
+		mes "ในพื้นที่ที่มีข้อมูล";
+		mes "มันบอกว่า ^006400QUEST ^000000";
+		mes "และถ้าคุณคลิก";
+		mes "มันจะแสดงข้อมูลทั้งหมด";
+		mes "ที่เกี่ยวข้องกับคำขอ";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "เมื่อคุณตรวจสอบว่ามีวัสดุอะไรบ้าง";
+		mes "ต้องไปรวบรวมจาก";
+		mes "the ^006400Quest Window ^000000,";
+		mes "มาหาแล้วคุยกับฉันใหม่นะ";
+		close;
+	} else if (checkquest(9169) == 0 || checkquest(9169) == 1) {
+		if (countitem(12580) == 0) {
+			mes "[Tutorial Instructor]";
+			mes "หืม? ฉันสังเกตว่า";
+			mes "คุณยังไม่ไปรับ";
+			mes "^006400Universal Silver Catalog ^000000 ยัง!";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "คุณจะได้รับ";
+			mes "^006400Universal Silver Catalog ^000000";
+			mes "จาก ^0000FFCatalogue Wizard ^000000";
+			mes "ซึ่งตั้งอยู่ในสำนักงานใหญ่ของ Eden Group";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "งั้นไปรับ";
+			mes "^006400Universal Silver Catalog ^000000";
+			mes "แล้วกลับมาหาฉัน";
+			close;
+		}
+		mes "[Tutorial Instructor]";
+		mes "โอ้! คุณจัดการได้";
+		mes "^006400Universal Silver Catalog ^000000!";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "สิ่งนี้ช่วยให้คุณสามารถเรียกดูและค้นหา";
+		mes "ผ่านร้านค้าต่างๆ";
+		mes "ที่อยู่บนแผนที่เดียวกันและ";
+		mes "เปิดจำหน่ายแล้ว";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "ราคาเพียง 200 zeny ต่อ 1 ใบ";
+		mes "จากสิ่งเหล่านี้และคุณสามารถทำได้";
+		mes "ค้นหาได้สูงสุด 10 ครั้ง";
+		mes "บอกได้เลยว่าจำเป็น";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "ไปยังพื้นที่ที่คุณต้องการ";
+		mes "และลองใช้ ^006400Universal Silver Catalog ^000000";
+		mes "แล้วมาหาฉัน";
+		mes "หลังจากทำเสร็จแล้ว";
+		completequest 9169;
+		setquest 9170;
+		close;
+	} else if (checkquest(9170) == 0 || checkquest(9170) == 1) {
+		if (countitem(12580)) {
+			mes "[Tutorial Instructor]";
+			mes "อืม ... ดูเหมือนว่าจะยังมี";
+			mes "the ^006400Universal Silver Catalog ^000000 ในคลังของคุณ";
+			mes "เพราะคุณบอกว่าคุณลืมวิธีใช้";
+			mes "ฉันจะอธิบายให้ฟังอีกครั้ง";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "คุณเห็น ... the ^006400Universal Silver Catalog ^000000";
+			mes "ให้คุณเรียกดูและค้นหา";
+			mes "ผ่านร้านค้าต่างๆ";
+			mes "ที่อยู่บนแผนที่เดียวกันและ";
+			mes "เปิดจำหน่ายแล้ว";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "ไปยังพื้นที่ที่คุณต้องการ";
+			mes "และลองใช้ ^006400Universal Silver Catalog ^000000";
+			mes "พวกเขามาหาฉัน";
+			mes "หลังจากทำเสร็จแล้ว";
+			close;
+		}
+		mes "[Tutorial Instructor]";
+		mes "คุณรู้สึกอย่างไรหลังจากได้ลองใช้";
+		mes "the ^006400Universal Silver Catalog ^000000?";
+		mes "รู้สึกง่ายกว่าเยอะ";
+		mes "ผ่านแต่ละคน";
+		mes "ผู้ขายและการค้นหาสินค้า";
+		mes "คุณต้องการใช่ไหม";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "ออกไปชุมนุมกันเถอะ";
+		mes "วัสดุที่ฉันต้องการและ";
+		mes "ฉันจะให้เธอแน่";
+		mes "สุดยอด ^006400enchant ^000000!";
+		mes "ฉันจะรอ!";
+		completequest 9170;
+		setquest 9171;
+		close;
+	} else if (checkquest(9171) == 0 || checkquest(9171) == 1) {
+		if (countitem(909) < 10) {
+			mes "[Tutorial Instructor]";
+			mes "ดูเหมือนว่าคุณไม่ได้พามา";
+			mes "วัสดุเพียงพอลืมไปหรือเปล่า";
+			mes "สิ่งที่คุณต้องรวบรวม?";
+			next;
+			switch(select("Yeah...:Nope!")) {
+			case 1:
+				mes "[Tutorial Instructor]";
+				mes "ฉันเคยบอกว่าถ้าคุณคลิก";
+				mes "สิ่งที่อยู่ด้านบนซ้ายที่เขียนว่า";
+				mes "^006400QUEST ^000000 มันจะแสดงให้คุณเห็นทั้งหมด";
+				mes "ข้อมูลที่คุณต้องการ";
+				mes "ที่เกี่ยวข้องกับคำขอของคุณ";
+				next;
+				mes "[Tutorial Instructor]";
+				mes "เมื่อคุณรวบรวมวัสดุทั้งหมดแล้ว";
+				mes "ที่อยู่ใน ^006400Quest Window ^000000 ของคุณ";
+				mes "มาคุยกับฉันสิ";
+				close;
+			case 2:
+				mes "[Tutorial Instructor]";
+				mes "เมื่อคุณรวบรวมสิ่งของ";
+				mes "มาหาฉันแล้วฉันจะแสดงให้คุณเห็น";
+				mes "สุดยอด ^006400ENCHANT ^000000.";
+				mes "ฉันจะรอ!";
+				close;
+			}
+		}
+		if (checkweight(607,6) == 0) {
+			if (MaxWeight - Weight < getiteminfo(607,6)) {
+				mes "[Tutorial Instructor]";
+				mes "สินค้าคงคลังของคุณดูเหมือนจะเต็มจริงๆ";
+				mes "กับของต่างๆ ... คุณคิดว่า";
+				mes "คุณสามารถทำอะไรก็ได้เมื่อคุณเป็นเช่นนั้น";
+				mes "หนักใจมั้ยไปเอาของไปทิ้ง";
+				mes "แล้วกลับมาหาฉัน";
+				close;
+			} else {
+				mes "[Tutorial Instructor]";
+				mes "ดูเหมือนจะมีของเยอะเกินไป";
+				mes "ในคลังของคุณ ... ไปใส่";
+				mes "ของไปแล้วกลับมาหาฉัน";
+				mes "เมื่อคุณมีความทุกข์น้อยลง";
+				close;
+			}
+		}
+		mes "[Tutorial Instructor]";
+		mes "คุณมีทุกอย่างที่ฉันขอ!";
+		mes "งั้น ~ เรามาเริ่มกันเลยดีกว่า";
+		mes "เสน่ห์ที่ฉันค้นพบและพัฒนา?";
+		next;
+		specialeffect EF_BASH3D2;
+		mes "[Tutorial Instructor]";
+		mes "เอาล่ะตอนนี้สำหรับสกิลแรก !!";
+		mes "เพื่อเพิ่มความสามารถใหม่ให้กับชุดเกราะของคุณ ... ";
+		mes "^006400 HIDDEN SOCKET ENCHANT ^000000 !!";
+		next;
+		specialeffect EF_BASH3D2;
+		mes "[Tutorial Instructor]";
+		mes "และสำหรับทักษะที่สอง !!";
+		mes "ในการเพิ่มซ็อกเก็ตใหม่ในของคุณ";
+		mes "อาวุธและโล่ ... ";
+		mes "^006400SOCKET ENCHANT^000000!!";
+		next;
+		mes "[Tutorial Instructor]";
+		mes "ที่นั่น Enchant เสร็จแล้ว คุณไม่เข้าใจกระบวนการเพียงแค่ดูฉันดังนั้นฉันจะให้คุณดูรายการนั้นเอง ";
+		delitem 909,10; //Jellopy
+		completequest 9171;
+		setquest 9172;
+		getitem2 15033,1,1,0,0,0,0,0,4702; //Tutorial_Mattle[Strength3]
+		getitem 15033,1; //Tutorial_Mattle
+		getitem 15034,1; //Tutorial_Mattle_
+		next;
+		mes "[Tutorial Instructor]";
+		mes "รายการเหล่านั้นไม่สามารถ";
+		mes "สวมใส่หรือซื้อขายก็อย่าแม้แต่";
+		mes "คิดจะหนีไปกับพวกเขา";
+		mes "เมื่อคุณดูเสร็จแล้ว";
+		mes "คืนให้ฉันที";
+		close;
+	} else if (checkquest(9172) == 0 || checkquest(9172) == 1) {
+		if (countitem(15033) == 0 || countitem(15034) == 0) {
+			mes "[Tutorial Instructor]";
+			mes "คุณทำอะไรกับ Enchanted";
+			mes "รายการที่ฉันให้คุณยืมไปดู";
+			mes "จนกว่าคุณจะนำผลไม้กลับคืนมา";
+			mes "งานของฉันฉันไม่อยากคุยกับคุณ";
+			mes "นับประสาอะไรกับเห็นหน้า";
+			close;
+		}
+		mes "[Tutorial Instructor]";
+		mes "ดูเสร็จแล้วหรือยัง";
+		mes "ไอเทมที่ฉันหลงเสน่ห์?";
+		next;
+		switch(select("Yes, thank you.:I haven't looked at them yet.")) {
+		case 1:
+			mes "[Tutorial Instructor]";
+			mes "คุณคิดอย่างไรหลังจากตรวจสอบแล้ว? ตอนนี้คุณได้ดูไอเท็ม Enchanted ที่แท้จริงแล้วคุณเข้าใจหรือยัง?";
+			// Item deletions moved below to prevent errors.
+			next;
+			mes "[Tutorial Instructor]";
+			mes "ขอบคุณที่ทำให้ฉันได้เห็นผลการวิจัยและการศึกษาที่ยอดเยี่ยมของฉัน ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "หากคุณมีคำถามเกี่ยวกับสิ่งที่ฉันพูดคุยกับคุณฉันจะบอกคุณทุกอย่าง! ขอบคุณสำหรับการทำงานหนักของคุณ! ";
+			delitem 15033,2;
+			delitem 15034,1;
+			completequest 9172;
+			setquest 9173;
+			getexp 5000,2500;
+			close;
+		case 2:
+			mes "[Tutorial Instructor]";
+			mes "หาเวลาดู";
+			mes "แล้วนำกลับมาให้ฉัน";
+			close;
+		}
+	} else if (checkquest(9173) == 0 || checkquest(9173) == 1) {
+		mes "[Tutorial Instructor]";
+		mes "คุณมีคำถามอะไรไหม ";
+		next;
+		switch(select("Can I do the same quest again?:About the Quest Window...:About ENCHANT...:About Searching Vends...:About Mercenary and Pets...:End Conversation.")) {
+		case 1:
+			if (checkquest(9173,PLAYTIME) == 0 || checkquest(9173,PLAYTIME) == 1) {
+				mes "[Tutorial Instructor]";
+				mes "วิธีการหนึ่งในการทำเควสเดิมซ้ำ ๆ คือการทำ ^006400Daily Quests ^000000 ";
+				next;
+				mes "[Tutorial Instructor]";
+				mes "เมื่อคุณทำ ^006400Daily Quest ^000000 สำเร็จและเปิดใช้งานให้รอประมาณหนึ่งวันจากนั้นกลับมารับคำขอและทำใหม่ทั้งหมด! ";
+				mes "[Tutorial Instructor]";
+				mes "หากคุณได้รับภารกิจประจำวันให้ดูที่ด้านล่างขวาของ ^006400Quest Window ^000000 มีส่วนที่เรียกว่า ^006400LIMITED ^000000 ในส่วนนั้นจะบอกคุณว่าต้องใช้เวลาเท่าไหร่ก่อนที่คุณจะสามารถรับภารกิจประจำวันอื่นได้ ";
+				next;
+				mes "[Tutorial Instructor]";
+				mes "ดูเหมือนว่าคุณยังมีเวลาเหลือให้รอหลังจากจบภารกิจของฉัน รออีกสักหน่อยแล้วมาหาฉันแล้วคุณจะได้รับเควสเดิมอีกครั้ง ";
+				close;
+			}
+			mes "[Tutorial Instructor]";
+			mes "ดูเหมือนว่าเวลาผ่านไปประมาณหนึ่งวันหลังจากที่คุณทำภารกิจของฉันเสร็จ ได้เลยเช่น ^006400Daily Quests ^000000 คุณสามารถรับภารกิจจากฉันได้ คุณต้องการดำเนินการต่อหรือไม่ ";
+			next;
+			switch(select("Yes:No")) {
+			case 1:
+				set @tutorial_restart,1;
+				goto OnStartQuest;
+			case 2:
+				mes "[Tutorial Instructor]";
+				mes "ตกลง. แต่ถ้าคุณเปลี่ยนใจและต้องการรับเควสก็มาหาฉันสิ ";
+				close;
+			}
+		case 2:
+			mes "[Tutorial Instructor]";
+			mes "พวกเขาบอกว่า ^006400Quest Window ^000000 ให้รายละเอียดทุกอย่างที่คุณจำเป็นต้องรู้เกี่ยวกับเควสของคุณ ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "ถ้าคุณมองไปทางซ้ายบน";
+			mes "ในพื้นที่ที่มีข้อมูล";
+			mes "มันบอกว่า ^006400QUEST ^000000";
+			mes "และถ้าคุณคลิก";
+			mes "มันจะแสดงข้อมูลทั้งหมด";
+			mes "ที่เกี่ยวข้องกับคำขอ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "การใช้ ^006400Quest Window ^000000 จะทำให้ชีวิตของคุณง่ายขึ้น มันจะบอกคุณว่าจะไปที่ไหนไอเท็มอะไรที่จะได้รับหรือใครจะหาและอื่น ๆ ";
+			close;
+		case 3:
+			mes "[Tutorial Instructor]";
+			mes "^006400ENCHANT^000000, โดยทั่วไปแบ่งออกเป็นสองส่วน: ^006400SOCKET ENCHANT^000000 และ ^006400ช่องเสียบที่ซ่อนอยู่^000000.";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "^006400SOCKET ENCHANT ^000000 ใช้เพื่อเพิ่มซ็อกเก็ตลงในอุปกรณ์และ ^006400 HIDDEN SOCKET ENCHANT ^000000 ใช้เพื่อใส่ค่าสถานะลงในซ็อกเก็ตของชุดเกราะ ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "แน่นอนว่าในการดำเนินการนี้เราต้องการวัสดุบางอย่างและมีโอกาสที่อาจจะล้มเหลว แต่นั่นคือความเสี่ยงที่คุณกำลังรับอยู่ ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "ผู้ที่ทำ ^006400SOCKET ENCHANT ^000000 สามารถพบได้ใน ^8B4513Prontera, Morocc, Payon, ^000000 ^8B4513Rhitalzen ^000000 อยู่ในโรงกลั่นและ ^0000FFSeiyablem ^000000 และ ^0000FFReiablem ^000000 อยู่ใกล้ทางเข้า ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "ผู้ที่ทำ ^006400 HIDDEN SOCKET ENCHANT ^000000 พบได้ที่ตำแหน่ง 6 นาฬิกาของ ^8B4513Prontera ^000000 มองหา ^0000FFCraftman Apprentice ^000000 ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "คุณคิดว่าคุณเข้าใจเรื่อง ^006400ENCHANT ^000000 มากขึ้นหรือไม่ ";
+			close;
+		case 4:
+			mes "[Tutorial Instructor]";
+			mes "^006400Vend Search ^000000 สามารถใช้โดยรายการ ^006400Universal Silver Catalog ^000000 เนื่องจากคุณค้นหาในรูปแบบ vends บนแผนที่นั้นจะช่วยให้คุณค้นหารายการที่ต้องการได้ง่ายขึ้น ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "The ^006400Universal Silver Catalog ^000000";
+			mes "หาได้จาก";
+			mes "ตัวช่วยสร้าง ^0000FFCatalogue ^000000";
+			mes "ที่อยู่ในสำนักงานใหญ่ของ Eden Group";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "ราคาเพียง 200 zeny ต่อ 1 ใบ";
+			mes "จากสิ่งเหล่านี้และคุณสามารถทำได้";
+			mes "ค้นหาได้สูงสุด 10 ครั้ง";
+			mes "บอกได้เลยว่าจำเป็น";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "คุณเริ่มคุ้นเคยกับ ^006400Vend Search ^000000 แล้วหรือยัง? อย่ามัว แต่ยืนฟังฉันอยู่ตรงนั้น ไปลองด้วยตัวคุณเอง! ";
+			close;
+		case 5:
+			mes "[Tutorial Instructor]";
+			mes "ขึ้นอยู่กับสิ่งที่คุณต้องการ ^006400Mercenary ^000000 และ ^006400Pet ^000000 สามารถใช้ได้หลายวิธี ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "ถ้า 006400Mercenary ^000000 ให้เอฟเฟกต์โดยตรง";
+			mes "โดยการต่อสู้เพื่อคุณ";
+			mes "แล้ว a ^006400Pet ^000000 ช่วยคุณทางอ้อมด้วย";
+			mes "ความสามารถและรูปลักษณ์ที่หลากหลาย";
+			mes "และมันจับหัวใจของคุณ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "เพื่อจ้างทหารรับจ้าง";
+			mes "ไปหา ^006400Mercenary Guild ^000000";
+			mes "ซึ่งอยู่ข้างประตูหน้าของ ^8B4513Prontera ^000000";
+			mes "ไปที่ ^006400Information Agent ^000000";
+			mes "แล้วถามพวกเขาว่า ^006400Mercenary Guild Official ^000000";
+			mes "อยู่และพวกเขาจะแจ้งให้คุณทราบ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "เพื่อรับ ^006400Pet ^000000 ในขณะที่ล่าสัตว์คุณจะได้รับไอเท็มที่ทำให้เชื่อง ใช้การทำให้เชื่องกับมอนสเตอร์ที่มีไว้เพื่อคุณจะได้รับสัตว์เลี้ยง ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "เนื่องจากมีโอกาสที่จะล้มเหลวโปรดใช้ไอเท็มที่ทำให้เชื่องด้วยความระมัดระวัง ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "นอกจากนี้ ... คุณจะได้รับ ^006400Mercenary ^000000 จาก Mercenary Guild และคุณจะได้รับ ^006400Pet ^000000 โดยการซื้อขายหรือซื้อจากผู้เล่นคนอื่น ";
+			next;
+			mes "[Tutorial Instructor]";
+			mes "ตอนนี้คุณเข้าใจมากขึ้นเล็กน้อยเกี่ยวกับการใช้ ^006400Mercenary ^000000 และ ^006400Pet ^000000 หรือไม่ ฉันหวังว่าคุณจะมีโอกาสได้ใช้มันในอนาคต ";
+			close;
+		case 6:
+			mes "[Tutorial Instructor]";
+			mes "หากมีข้อสงสัยโปรดมาหาฉันใหม่ ";
+			close;
+		}
+	}
+	mes "[Tutorial Instructor]";
+	mes "เมื่อเร็ว ๆ นี้มีการพูดกันว่า";
+	mes "พวกเขากำลังพัฒนาวิธีเพิ่มตัวเลือก";
+	mes "เพื่อใส่ในซ็อกเก็ตหรือเพิ่มสถานะ";
+	mes "บนอุปกรณ์ที่ปกติไม่มี";
+	close;
+}
+
+moc_para01,32,179,4	script	Tutorial Goal	895,{
+	if (checkweight(608,7) == 0) {
+		if (MaxWeight - Weight < getiteminfo(608,7)) {
+			mes "[เป้าหมายการสอน]";
+			mes "ดูเหมือนว่าคุณจะมีสินค้าน้ำหนักเกินไปเก็บของไว้แล้วค่อยกลับมา";
+			close;
+		} else {
+			mes "[Tutorial Goal]";
+			mes "คุณมีรายการมากเกินไป ไปเก็บของแล้วกลับมา ";
+			close;
+		}
+	}
+	if (checkquest(4161) == 0 || checkquest(4161) == 1) {
+		mes "[Tutorial Goal]";
+		mes "อืม ~ เราต้องไปท้าผู้เชี่ยวชาญใช่ไหม";
+		mes "เริ่มต้นด้วยการค้นหา ^006400Siege Expert ^000000!";
+		close;
+	} else if (checkquest(4162) == 0 || checkquest(4162) == 1) {
+		mes "[Tutorial Goal]";
+		mes "คุณผ่านการทดสอบของ ^006400Siege Expert ^000000 แล้ว! ยินดีด้วย!";
+		mes "ไปหา ^006400ผู้เชี่ยวชาญด้านการสรรหาพรรค ^000000!";
+		close;
+	} else if (checkquest(4163) == 0 || checkquest(4163) == 1) {
+		mes "[Tutorial Goal]";
+		mes "โอ้! คุณสอบผ่าน ^006400ผู้เชี่ยวชาญด้านการสรรหาพรรค ^000000 แล้ว! ยินดีด้วย!";
+		mes "ไปหา ^006400ผู้เชี่ยวชาญด้านสมรภูมิ ^000000!";
+		close;
+	} else if (checkquest(4164) == 0 || checkquest(4164) == 1) {
+		mes "[Tutorial Goal]";
+		mes "เย้! คุณผ่านการทดสอบจาก ^006400ผู้เชี่ยวชาญด้านสมรภูมิ แล้ว ^000000! ยินดีด้วย!";
+		mes "ต่อไปไปหา ^006400ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ ^000000!";
+		close;
+	} else if (checkquest(4165) == 0 || checkquest(4165) == 1) {
+		mes "[Tutorial Goal]";
+		mes "คุณผ่านการทดสอบจาก ^006400ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ ^000000 เยี่ยมมาก!";
+		mes "ลองค้นหา ^006400ผู้เชี่ยวชาญด้านแผนที่ ^000000!";
+		close;
+	} else if (checkquest(4166) == 0 || checkquest(4166) == 1) {
+		mes "[Tutorial Goal]";
+		mes "คุณผ่านการทดสอบของ ^006400ผู้เชี่ยวชาญด้านแผนที่ ^000000 แล้ว! ยินดีด้วย!";
+		mes "ดีใจจังที่คุณผ่านการทดสอบของผู้เชี่ยวชาญทั้งหมด! คุณดีกว่าที่ฉันคาดไว้ !!";
+		next;
+		mes "[Tutorial Goal]";
+		mes "ถึงแม้คุณจะเป็น ^006400Expert ^000000 !! ชื่อเล่นที่เหมาะกับคุณมาก!";
+		mes "ขอบคุณมากสำหรับการทำงานหนักของคุณตามสัญญานี่คือรางวัลเล็ก ๆ น้อย ๆ สำหรับคุณ";
+		next;
+		mes "[Tutorial Goal]";
+		mes "ฉันคิดว่ามันจะเป็นประโยชน์สำหรับคุณในระหว่างการผจญภัยของคุณ ขอให้คุณโชคดีกับการผจญภัยในอนาคต ~ ";
+		completequest 4166;
+		getitem 510,5; //Blue_Herb
+		getitem 511,5; //Green_Herb
+		getitem 504,5; //White_Potion
+		getitem 608,1; //Seed_Of_Yggdrasil
+		close;
+	} else if (checkquest(4166) == 2) {
+		mes "[Tutorial Goal]";
+		mes "ถึงแม้คุณจะเป็น ^006400Expert ^000000 !! ชื่อเล่นที่เหมาะกับคุณมาก!";
+		mes "ขอบคุณมากสำหรับการทำงานหนักของคุณ";
+		mes "ฉันหวังว่าการผจญภัยในอนาคตของคุณจะเต็มไปด้วยความโชคดี";
+		close;
+	}
+	if (Class == Job_Novice) {
+		mes "[Tutorial Goal]";
+		mes "ฉันสงสัยว่ามีนักผจญภัยคนไหนที่ฉลาดพอที่จะท้าทายผู้เชี่ยวชาญของเรา..";
+		close;
+	}
+	mes "[Tutorial Goal]";
+	mes "เฮ้คุณ! คุณดูเหมือนนักผจญภัย ... แม้ว่าคุณจะดูน่าเบื่อไปหน่อยก็ตาม ... ";
+	next;
+	if(select("What'd you say? I'm smart!:Yeah... I'm dull.")== 1) {
+		mes "[Tutorial Goal]";
+		mes "จริงจัง? แม้ว่าฉันไม่รู้ว่าฉันจะเชื่ออย่างนั้นได้ไหม ดูผู้เชี่ยวชาญที่อยู่ตรงหน้าฉันสิ! เขาใช้เวลาในการศึกษาเพียงเรื่องเดียวเป็นเวลา 16 ปีและตอนนี้เขาก็สง่างามอย่างที่เป็นไปได้! ";
+		next;
+		mes "[Tutorial Goal]";
+		mes "ถ้าคุณผ่านการทดสอบทั้งหมดได้ฉันจะเชื่อในความสามารถของคุณ";
+		next;
+		mes "[Tutorial Goal]";
+		mes "และฉันจะขอโทษที่เรียกคุณว่าน่าเบื่อ แล้วล่ะผู้เชี่ยวชาญที่น่าเบื่อ?! คุณต้องการที่จะท้าทายพวกเขาหรือไม่ ";
+		next;
+		if(select("Ch... Challenge!!:Um... I think I'll just give up now...") == 1) {
+			mes "[Tutorial Goal]";
+			mes "คุณกล้าหาญกว่าที่คุณมอง คุณไม่สามารถย้อนกลับไปได้แล้วที่คุณตัดสินใจที่จะท้าทาย! ";
+			next;
+			mes "[Tutorial Goal]";
+			mes "โอเค ~ เริ่มด้วยการคุยกับ ^006400Siege Expert ^000000 ที่อยู่ตรงหน้า ";
+			setquest 4161;
+			close;
+		}
+	}
+	mes "[Tutorial Goal]";
+	mes "อย่าเพิ่งท้อ ... ถ้าคุณเปลี่ยนใจและอยากทำสิ่งที่ท้าทายมาหาฉันสิ";
+	close;
+}
+
+moc_para01,24,175,4	script	Siege Master	734,{
+	set .@checkquest, checkquest(4161);
+	if (.@checkquest == 2) {
+		mes "[Siege Expert]";
+		mes "เมื่อคุณกลับมาอีกครั้งฉันคิดว่าคุณอยากรู้เกี่ยวกับ ^006400Siege ^000000?";
+		next;
+		switch(select("Listen about Siege.:End Conversation.")) {
+		case 1:
+			callsub L_Info;
+			mes "[Siege Expert]";
+			mes "ตอนนี้คุณได้ทำสิ่งเหล่านี้กับผู้เชี่ยวชาญแล้วไม่ใช่เรื่องง่ายที่จะเข้าใจ? ถ้าคุณอยากจะทำอะไรก็มาคุยกับฉันได้เลย ";
+			close;
+		case 2:
+			mes "[Siege Expert]";
+			mes "ถ้าคุณอยากจะทำอะไรก็แค่มาคุยกับฉัน";
+			close;
+		}
+	} else if (.@checkquest == 0 || .@checkquest == 1) {
+		mes "[Siege Expert]";
+		mes "ฉันเป็นคนที่เรียน War of Emperium มา 16 ปี! นั่นทำให้ฉันเป็นผู้เชี่ยวชาญ! เนื่องจากคุณมาหาฉันฉันคิดว่าคุณต้องการเรียนรู้เพิ่มเติมเกี่ยวกับ ^006400Siege ^000000 ";
+		next;
+		mes "[Siege Expert]";
+		mes "คุณมีความปรารถนาและความกระตือรือร้นอย่างมาก ในฐานะผู้เชี่ยวชาญของ ^006400Siege ^000000 คุณมีแรงจูงใจฉัน! ผู้เชี่ยวชาญคนอื่น ๆ กำลังรอคุณอยู่! ไป get'em! ";
+		next;
+		mes "[Siege Expert]";
+		mes "ถ้าฉันบอกคุณว่ามีรางวัลใหญ่สำหรับการผ่านการทดสอบทั้งหมดของผู้เชี่ยวชาญ ~ คุณจะไปท้าทาย?";
+		next;
+		mes "[Siege Expert]";
+		mes "ในฐานะผู้เชี่ยวชาญคนแรกฉันสามารถสอนคุณเกี่ยวกับ ^006400Siege ^000000 แล้วยังไงล่ะ? คุณต้องการเรียนรู้เกี่ยวกับ ^006400Siege ^000000s หรือไม่";
+		next;
+		switch(select("Listen about Siege.:End Conversation.")) {
+		case 1:
+			callsub L_Info;
+			mes "[Siege Expert]";
+			mes "ตอนนี้คุณได้ทำทุกอย่างกับผู้เชี่ยวชาญแล้วมันเข้าใจง่ายไม่ใช่เหรอ?";
+			mes "ตอนนี้ฉันจะให้คำถาม 3 ข้อ ~ ทำให้ถูกต้องและคุณผ่าน! คุณต้องการความท้าทายหรือไม่";
+			while(1) {
+				set .@correct,0;
+				next;
+				switch(select("Challenge me!:Listen Again:Quit")) {
+				case 1:
+					switch(rand(1,3)) {
+					case 1:
+						mes "[Siege Expert]";
+						mes "การปิดล้อมเสร็จสิ้นเพื่อยึด []";
+						mes "มันคือสงครามที่เกิดขึ้นระหว่าง [] กับอีก []";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Castle, User, Guild:Castle, Guild, Guild:Town, Guild, Guild:Town, User, User") == 2)
+							set .@correct, .@correct+10;
+						mes "[Siege Expert]";
+						mes "Siege time คืออะไร?";
+						next;
+						if(select("WoE 1 Tues 9-11:WoE 1 Sat 4-6:WoE 1 Thurs 8-10") == 3)
+							set .@correct, .@correct+10;
+						mes "[Siege Expert]";
+						mes "เมื่อคุณได้รับปราสาทคุณต้องเพิ่ม [] เพื่อที่จะได้รับผลประโยชน์ที่ดีขึ้น";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Commerce Development:Industrial Development:Guild Development:Town Development") == 1)
+							set .@correct, .@correct+10;
+						break;
+					case 2:
+						mes "[Siege Expert]";
+						mes "Siege มี 2 แบบ";
+						mes "มีสงครามจักรพรรดิเป็นปกติ";
+						mes "แล้วก็มี [].";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("War of Emperium MO:War of Emperium NE:War of Emperium SK:War of Emperium SE") == 4)
+							set .@correct, .@correct+10;
+						mes "[Siege Expert]";
+						mes "ในฐานะกิลด์ที่เป็นเจ้าของปราสาทคุณต้องปกป้อง []";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Emperial:Emperium:Emperiom:Imperial") == 2)
+							set .@correct, .@correct+10;
+						mes "[Siege Expert]";
+						mes "กิลด์จะได้รับประโยชน์อะไรจากการชนะ Siege ";
+						next;
+						if(select("30% off all items when purchasing:Increase experience gained by 20%:Access to Guild Dungeon:Getting Weapons everyday at midnight.") == 3)
+							set .@correct, .@correct+10;
+						break;
+					case 3:
+						mes "[Siege Expert]";
+						mes "กิลด์จะได้รับประโยชน์อะไรจากการชนะ Siege ";
+						next;
+						if(select("Increase experience gained by 20%:30% off all items when purchasing:Access to Guild Field:Treasure Box daily at midnight") == 4)
+							set .@correct, .@correct+10;
+						mes "[Siege Expert]";
+						mes "การล้อมใช้เวลากี่ชั่วโมง? ";
+						next;
+						if(select("1 Hour:2 Hours:3 Hours:4 Hours") == 2)
+							set .@correct, .@correct+10;
+						mes "[Siege Expert]";
+						mes "เมื่อคุณได้รับปราสาทคุณต้องเพิ่ม [] เพื่อที่จะได้รับผลประโยชน์ที่ดีขึ้น";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Town Development:Industry Development:Guild Development:Commerce Development") == 4)
+							set .@correct, .@correct+10;
+						break;
+					}
+					if (.@correct == 30) {
+						mes "[Siege Expert]";
+						mes "ว้าว! คุณตอบถูกทั้ง 3 ข้อ! คุณรู้สึกดีกับ ^006400Siege ^000000s หรือไม่? ขวา?";
+						next;
+						mes "[Siege Expert]";
+						mes "ถ้าคุณต้องการเรียนรู้เกี่ยวกับ ^006400Siege ^000000 มาหาฉัน ";
+						next;
+						mes "[Siege Expert]";
+						mes "ตอนนี้ไปหา ^0000FFผู้เชี่ยวชาญด้านการสรรหาพรรค ^000000 เขากำลังรอคุณอยู่ ";
+						completequest 4161;
+						setquest 4162;
+						getexp 2000,1000;
+						close;
+					}
+					mes "[Siege Expert]";
+					mes "มีคำถามเพียง 3 ข้อและคุณตอบไม่ถูกทั้งหมด! ในอัตรานี้คุณจะไม่ผ่านการทดสอบทั้งหมดของผู้เชี่ยวชาญ ";
+					next;
+					mes "[Siege Expert]";
+					mes "แต่เมื่อฉันมองคุณฉันรู้ว่าคุณมีศักยภาพ คุณอยากลองเล่นอีกครั้งไหม ";
+					break;
+				case 2:
+					callsub L_Info;
+					mes "[Siege Expert]";
+					mes "ตอนนี้คุณได้ทำทุกอย่างกับผู้เชี่ยวชาญแล้วมันเข้าใจง่ายไม่ใช่เหรอ?";
+					mes "ตอนนี้ฉันจะให้คำถาม 3 ข้อ ~ ทำให้ถูกต้องและคุณผ่าน! คุณต้องการความท้าทายหรือไม่";
+					break;
+				case 3:
+					mes "[Siege Expert]";
+					mes "บ๊ะ! คุณไม่สนุก ... คุณยอมแพ้ง่ายเกินไป! ถ้าคุณเปลี่ยนใจมาหาฉันสิ ";
+					close;
+				}
+			}
+			close;
+		case 2:
+			mes "[Siege Expert]";
+			mes "คุณจะยอมแพ้? ถ้าคุณเปลี่ยนใจมาหาฉันสิ ";
+			close;
+		}
+	}
+	mes "[Siege Expert]";
+	mes "หากคุณต้องการเรียนรู้บางสิ่งจากฉันให้พบ ^006400 เป้าหมายการสอน ^000000 ก่อน ";
+	close;
+
+L_Info:
+	mes "[Siege Expert]";
+	mes "A ^006400Siege ^000000 เป็น ^0000FFGuild vs. Guild ^000000 ทำสงครามเพื่อหวังยึดครองปราสาท! ";
+	next;
+	mes "[Siege Expert]";
+	mes "^006400Siege ^000000 มี 2 ประเภท";
+	mes "มีมาตรฐาน ^006400War ของ Emperium ^000000 และที่แตกต่างกันเล็กน้อยซึ่งเรียกว่า ^006400War of Emperium 2 ^000000";
+	next;
+	mes "[Siege Expert]";
+	mes "ช่วงนี้มีสงครามสองด้าน";
+	mes "^0000FFGuild That Owns a Castle ^000000 พยายามปกป้อง ^006400Emperium ^000000 และ ^0000FFGuild That Attacks a Castle ^000000 พยายามทำลาย ^006400Emperium ^000000";
+	next;
+	mes "[Siege Expert]";
+	mes "คุณสามารถค้นหา ^006400Siege ^000000 ครั้งบนเว็บไซต์ของเรา";
+	mes "และกิลด์ที่ชนะจะได้รับบางสิ่งบางอย่างพิเศษด้วย";
+	next;
+	mes "[Siege Expert]";
+	mes "กิลด์ที่ชนะระหว่างการปิดล้อม";
+	mes "เข้าถึง ^006400Guild Dungeon ^000000";
+	mes "และ Guild Master จะเปิด ^006400 กล่องสมบัติ ^000000es เวลา ^0000FF เที่ยงคืนทุกวัน ^000000";
+	mes "นั่นเป็นประโยชน์มากไม่ใช่เหรอ";
+	next;
+	mes "[Siege Expert]";
+	mes "อีกสิ่งที่คุณต้องทำเมื่อชนะปราสาทเรียกว่า ^006400Commerce Development ^000000 ยิ่งทำยิ่งได้ประโยชน์";
+	next;
+	return;
+}
+
+moc_para01,21,172,4	script	ผู้เชี่ยวชาญด้านการสรรหาพรรค	878,{
+	set .@checkquest, checkquest(4162);
+	if (.@checkquest == 2) {
+		mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+		mes "ตั้งแต่คุณมาและพบฉันดูเหมือนว่าคุณจะสงสัยเกี่ยวกับ ^006400Party Recruiting ^000000?";
+		next;
+		switch(select("Listen about Party Recruiting.:End Conversation.")) {
+		case 1:
+			callsub L_Info;
+			mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+			mes "คำอธิบายของผู้เชี่ยวชาญคนนี้ค่อนข้างดีใช่มั้ย? หากคุณต้องการการทบทวนโปรดมาหาฉันอีกครั้ง";
+			close;
+		case 2:
+			mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+			mes "ถ้าคุณมีคำถามใด ๆ มาหาฉัน ";
+			close;
+		}
+	} else if (.@checkquest == 0 || .@checkquest == 1) {
+		mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+		mes "ฉันเป็นผู้เชี่ยวชาญ ^006400Party Recruiting ^000000 เพราะฉันค้นคว้าเกี่ยวกับ Party Recruting มา 16 ปี! ดูเหมือนว่า ^006400Siege Expert ^000000 ส่งทางมาให้คุณตั้งแต่คุณผ่านการทดสอบของเขาหืม? ";
+		next;
+		mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+		mes "คุณอาจเคยได้ยินมาแล้ว แต่ถ้าคุณผ่านแบบทดสอบของผู้เชี่ยวชาญทั้งหมดคุณจะได้รับรางวัลสุดเจ๋ง! ";
+		next;
+		mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+		mes "ในฐานะผู้เชี่ยวชาญคนที่ 2 ฉันจะบอกคุณเกี่ยวกับ ^006400Party Recruiting ^000000! แล้วไง ";
+		next;
+		switch(select("Listen about Party Recruiting.:End Conversation.")) {
+		case 1:
+			callsub L_Info;
+			mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+			mes "ตอนนี้ ~ คำอธิบายของฉันราบรื่นยิ่งกว่าอาชญากรที่ราบรื่นใช่มั้ย? ตอนนี้ฉันจะตอบคำถาม 3 ข้อให้คุณ ทำให้ถูกต้องและคุณผ่าน ต้องการรับคำท้าหรือไม่ ";
+			while(1) {
+				set .@correct,0;
+				next;
+				switch(select("On to the quiz!:Explain again please?:Give up.")) {
+				case 1:
+					switch(rand(1,3)) {
+					case 1:
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "ใช้การสรรหาพรรคเพื่อช่วย";
+						mes "ผู้ใช้ที่กำลังมองหา []";
+						mes "และผู้ที่กำลังมองหา [].";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Guild, Guildmate:Club, Club Members:Paris, Party Members:Party, Party Members") == 4)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "หน้าต่างที่ใช้เพื่อช่วยให้ผู้ใช้ค้นหาและค้นหาปาร์ตี้เรียกว่า []";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Party List:Party Wanted List:Party Recruiting List:Costume Party List") == 3)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "ตัวเลือกใดที่ไม่อยู่ในรายการเป็นตัวเลือกที่จะเลือกเมื่อทำการแจ้งรับสมัครงานปาร์ตี้ ";
+						next;
+						if(select("LEVEL:SKILL:JOB:MAP") == 2)
+							set .@correct, .@correct+10;
+						break;
+					case 2:
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "การสรรหาพรรคมี 2 ประเภท";
+						mes "การลงทะเบียนการสรรหาพรรคเป็นหนึ่งเดียว";
+						mes "และอันที่ 2 คือ [].";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Search for Parties that are Recruiting:Parties that are starting to hunt:Party Recruit and Item Distribution:Party Stuff") == 1)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "ในการเริ่มการสรรหาปาร์ตี้คุณต้องคลิกปุ่ม [] ซึ่งอยู่ในส่วนข้อมูลทางด้านซ้ายมือบน";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("party:guild:booking:skill") == 3)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "ถ้าคุณต้องการทราบข้อมูลเพิ่มเติมเกี่ยวกับคำสั่งสำหรับ Party Recruiting คุณต้องกดปุ่ม [] บนหน้าต่าง Party Recruting List";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Basic Information:Help:Party:Confirm") == 2)
+							set .@correct, .@correct+10;
+						break;
+					case 3:
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "สำหรับการสรรหาพรรคเพื่อสร้าง";
+						mes "หน้าต่างการสรรหาปาร์ตี้ป๊อปอัพ";
+						mes "คุณพิมพ์คำสั่งนี้ [].";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("/Party Collection Window:/Party Collection:/Party Recruitment Window:/Party Recruitment") == 4)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "เมื่อรับสมัครปาร์ตี้คุณสามารถตั้งค่าพารามิเตอร์ 3 ตัวได้ 3 ตัวคือ";
+						mes "LEVEL, JOB และ [].";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("SKILL:GUILD:MAP:OPTION") == 3)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "ใช้การสรรหาพรรคเพื่อช่วย";
+						mes "ผู้ใช้ที่กำลังมองหา []";
+						mes "และผู้ที่กำลังมองหา [].";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Parry, Party Members:Club, Club Members:Party, Party Members:Guild, Guild Members") == 3)
+							set .@correct, .@correct+10;
+						break;
+					}
+					if (.@correct == 30) {
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "ดี! คุณถูกต้องทั้ง 3 ข้อ! ตอนนี้คุณรู้สึกมั่นใจมากขึ้นเกี่ยวกับ ^006400Party Recruiting ^000000?";
+						next;
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "ถ้าคุณต้องการทราบข้อมูลเพิ่มเติมเกี่ยวกับ ^006400Party Recruiting ^000000 มาหาฉันได้ทุกเมื่อ";
+						next;
+						mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+						mes "เอาล่ะไปที่ ^0000FFผู้เชี่ยวชาญด้านสมรภูมิ ^000000! เขาคงรอคุณอยู่ ";
+						completequest 4162;
+						setquest 4163;
+						getexp 2000,1000;
+						close;
+					}
+					mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+					mes "มีคำถามเพียง 3 ข้อและคุณตอบไม่ถูกทั้งหมด! ในอัตรานี้คุณจะไม่ผ่านการทดสอบทั้งหมดของผู้เชี่ยวชาญ";
+					next;
+					mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+					mes "แต่ถ้าคุณต้องการทำแบบทดสอบใหม่! ไปเลย! ฉันคิดว่าคุณมีศักยภาพ! ต้องการทำแบบทดสอบอีกครั้งหรือไม่?";
+					break;
+				case 2:
+					callsub L_Info;
+					mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+					mes "ตอนนี้ ~ คำอธิบายของฉันราบรื่นยิ่งกว่าอาชญากรที่ราบรื่นใช่มั้ย? ตอนนี้ฉันจะตอบคำถาม 3 ข้อให้คุณ ทำให้ถูกต้องและคุณผ่าน ต้องการรับคำท้าหรือไม่ ";
+					break;
+				case 3:
+					mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+					mes "อย่ายอมแพ้! คุณสามารถทำมันได้! ถ้าเปลี่ยนใจค่อยมาคุยกันใหม่นะ! ";
+					close;
+				}
+			}
+			close;
+		case 2:
+			mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+			mes "คุณจะยอมแพ้โดยไม่ฟังฉันเลยเหรอ? ถ้าเปลี่ยนใจค่อยมาคุยกันใหม่นะ! ";
+			close;
+		}
+	}
+	mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+	mes "หากคุณต้องการเรียนรู้บางสิ่งจากฉันโปรดคุยกับ ^006400Siege Master ^000000 ก่อน ";
+	close;
+
+L_Info:
+	mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+	mes "^006400Party Recruiting ^000000 ค่อนข้างอธิบายตัวเองได้ ช่วยให้ผู้คนค้นหาสมาชิกปาร์ตี้และช่วยให้ผู้คนพบปาร์ตี้ ";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+	mes "การสรรหาพรรคมี 2 ส่วน";
+	mes "ขั้นตอนที่ 1 คือ ^0000FFegistering Party Recruiting ^000000,";
+	mes "และขั้นตอนที่ 2 คือ ^0000FFParty Search ^000000";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+	mes "หากต้องการค้นหาการสรรหาพรรคในหน้าต่างข้อมูลทางด้านซ้ายบนให้คลิกปุ่มที่ระบุว่า ^006400booking ^000000 จากนั้น ^006400Party Recruiting List ^000000 จะปรากฏขึ้น ";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+	mes "^006400 หน้าต่างรายชื่อการสรรหาปาร์ตี้ ^000000 แสดงให้คุณเห็นฝ่ายที่กำลังมองหาสมาชิกที่มีรายชื่อโดยผู้ใช้รายอื่น คุณสามารถค้นหาได้";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+	mes "ในกรณีที่คุณไม่ต้องการเข้าร่วมปาร์ตี้ แต่ต้องการรับสมัครงานให้พิมพ์คำสั่ง ^0000FF / Party Recruit ^000000 จากนั้นในหน้าต่าง ^006400Party Recruiting ^000000 คุณสามารถทำการสรรหาได้! " ;
+	next;
+	mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+	mes "เมื่อคุณลงทะเบียนประกาศรับสมัครงานปาร์ตี้ของคุณในหน้าต่าง ^006400Party Recruiting ^000000 ผู้ใช้สามารถค้นหา ^006400Party Recruiting List ^000000 ";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+	mes "ใน ^006400Party Recruiting List ^000000 and";
+	mes "^006400Party Recruiting ^000000 คุณสามารถใส่ข้อมูลพื้นฐานของสิ่งที่คุณกำลังจะทำหรือสิ่งที่คุณกำลังมองหาเช่น";
+	mes "^006400LEVEL ^000000, ^006400MAP ^000000, ^006400JOB ^000000.";
+	mes "จากนั้นผู้ใช้สามารถค้นหาโดยใช้พารามิเตอร์เหล่านั้นและใช้ระบบ ^006400Party Recruitment ^000000";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านการสรรหาพรรค]";
+	mes "ถ้าคุณต้องการเรียนรู้คำสั่งเพิ่มเติมเกี่ยวกับ ^006400Party Recruiting ^000000 ให้คลิกที่ปุ่ม ^006400Help ^000000 ที่ด้านล่างขวาของ ^006400Party Recruiting list ^000000";
+	next;
+	return;
+}
+
+moc_para01,12,179,6	script	Battleground Master	419,{
+	set .@checkquest, checkquest(4163);
+	if (.@checkquest == 2) {
+		mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+		mes "เมื่อเห็นว่าคุณตามหาฉันฉันเดาว่าคุณต้องการเรียนรู้เกี่ยวกับ ^006400Battleground ^000000s ใช่ไหม ";
+		next;
+		switch(select("Learn about Battlegrounds.:End Conversation.")) {
+		case 1:
+			callsub L_Info;
+			mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+			mes "ไม่มีอะไรจะดีไปกว่าการได้ยินจากผู้เชี่ยวชาญโดยตรง! ถ้าคุณอยากจะกลับไปอีกก็แค่คุยกับฉัน ";
+			close;
+		case 2:
+			mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+			mes "ถ้าคุณต้องการที่จะไปมากกว่าสิ่งใดโปรดแจ้งให้เราทราบ ";
+			close;
+		}
+	} else if (.@checkquest == 0 || .@checkquest == 1) {
+		mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+		mes "เป็นเวลา 16 ปีที่ฉันได้สัมผัสกับความร้อนแรงของการต่อสู้บน ^006400Battleground ^000000s ... ฉันคือ ^006400Battleground ^000000 ผู้เชี่ยวชาญ!";
+		mes "ดูเหมือนว่า ^006400 ผู้เชี่ยวชาญด้านการบริหาร ^000000 ส่งคุณมาให้ฉันตั้งแต่คุณผ่านแบบทดสอบของเขา";
+		next;
+		mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+		mes "คุณอาจจะรู้แล้ว แต่ถ้าคุณผ่านแบบทดสอบทั้งหมดจากผู้เชี่ยวชาญคุณจะได้รับรางวัล! ";
+		next;
+		mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+		mes "ฉันจะบอกคุณเกี่ยวกับ ^006400Battleground ^000000s! ฉันจะบอกคุณทุกอย่างที่ฉันรู้! แล้วยังไงล่ะ? อยากได้ยินไหม ";
+		next;
+		switch(select("Learn about Battlegrounds.:End Conversation.")) {
+		case 1:
+			callsub L_Info;
+			mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+			mes "ไม่มีอะไรจะดีไปกว่าการได้ยินจากผู้เชี่ยวชาญโดยตรง! ตอนนี้คุณต้องการทำแบบทดสอบ 3 คำถามของฉันไหม คุณต้องตอบถูกทั้ง 3 ข้อจึงจะผ่าน! ";
+			while(1) {
+				set .@correct,0;
+				next;
+				switch(select("On to the quiz!:Explain again please?:Give up.")) {
+				case 1:
+					switch(rand(1,3)) {
+					case 1:
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "สำหรับการเริ่มต้นคุณต้องเลือกฝั่งของ [] แคมป์หรือ [] แคมป์เพื่อที่จะเข้าร่วมใน Battleground";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Guillaume, Tierra:Rachel, KVM:Guillaume, Croix:Maroll, KVM") == 3)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "[] สามารถทำได้ 10vs10 และคุณต้องโจมตีคริสตัลของฝ่ายตรงข้ามในขณะที่ปกป้องคุณ";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Tierra:Flavius:KVM:Maroll") == 2)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "เมื่อคุณเสร็จสิ้นการต่อสู้คุณอาจได้รับรางวัล! จากการต่อสู้ KVM คุณจะได้รับ []";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("KVM Badge:Valor Badge:Bravery Badge:Honor Badge") == 1)
+							set .@correct, .@correct+10;
+						break;
+					case 2:
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "สำหรับ [] มันคือ 10vs10 คุณต้องโจมตีคลังเสบียงของศัตรูในขณะที่ปกป้องของคุณเองด้วย";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Maroll:KVM:Flavius:Tierra") == 4)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "เพื่อที่จะเข้าไปในสมรภูมิคุณต้องหานายหน้าคนไหนไม่ใช่คน ";
+						next;
+						if(select("Maroll Mercenary Recruiter:KVM Mercenary Recruiter:Tierra Mercenary Recruiter:Flavius Mercenary Recruiter") == 1)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "คุณสามารถรับ [] จากการเข้าร่วมใน Battlegrounds of Tierra";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("KVM Badge:Valor Badge:Bravery Badge:Honor Badge") == 2)
+							set .@correct, .@correct+10;
+						break;
+					case 3:
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "ในทุกเมืองใหญ่คุณจะพบ [] เพื่อเข้าสู่สมรภูมิ";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Maroll Battleground Recruiter:Tierra Battleground Recruiter:Flavius Battleground Recruiter:KVM Battleground Recruiter") == 1)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "สำหรับ [] คุณเข้าไปใน 5vs5 ด้วยความตั้งใจที่จะพยายามลดจำนวนศัตรูที่อยู่ฝั่งตรงข้าม";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Maroll:Flavius:KVM:Tierra") == 3)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "เมื่อคุณเสร็จสิ้นการต่อสู้คุณจะได้รับรางวัลรางวัลจาก Flavius เรียกว่า []";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("KVM Badge:Valor Badge:Bravery Badge:Honor Badge") == 3)
+							set .@correct, .@correct+10;
+						break;
+					}
+					if (.@correct == 30) {
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "คุณถูกต้องทั้ง 3 ข้อ! ฉันคิดว่าคุณมีหัวที่ดีพอสมควร คุณรู้เรื่องเกี่ยวกับ ^006400Battleground ^000000s ";
+						next;
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "หากคุณต้องการที่จะทำอะไรเกี่ยวกับ ^006400Battleground ^000000s อย่าลังเลที่จะมาคุยกับฉัน! ";
+						next;
+						mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+						mes "ไปค้นหาและคุยกับ 0000FFผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ ^000000! ";
+						completequest 4163;
+						setquest 4164;
+						getexp 2000,1000;
+						close;
+					}
+					mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+					mes "มีคำถามเพียง 3 ข้อและคุณตอบไม่ถูกทั้งหมด! ในอัตรานี้คุณจะไม่ผ่านการทดสอบทั้งหมดของผู้เชี่ยวชาญ ";
+					next;
+					mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+					mes "แต่ถ้าจะเอาอีกก็ควรจะทำ ";
+					break;
+				case 2:
+					callsub L_Info;
+					mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+					mes "ไม่มีอะไรจะดีไปกว่าการได้ยินจากผู้เชี่ยวชาญโดยตรง! ตอนนี้คุณต้องการทำแบบทดสอบ 3 คำถามของฉันไหม คุณต้องตอบถูกทั้ง 3 ข้อจึงจะผ่าน! ";
+					break;
+				case 3:
+					mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+					mes "อย่าทำให้ฉันผิดหวังด้วยการยอมแพ้ ถ้าเธอเปลี่ยนใจค่อยมาหาฉันใหม่";
+					close;
+				}
+			}
+			close;
+		case 2:
+			mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+			mes "คุณเป็นคนขี้ขลาดถ้าคุณยอมแพ้ก่อนที่จะเริ่ม ถ้าคุณเปลี่ยนใจมาหาฉันใหม่ ";
+			close;
+		}
+		close;
+	}
+	mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+	mes "ถ้าคุณต้องการเรียนรู้บางสิ่งบางอย่างจากฉันไปรับทราบโดย ^006400 ผู้เชี่ยวชาญด้านการวิธีการ ^000000 ก่อน ";
+	close;
+
+L_Info:
+	mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+	mes "อธิบาย ^006400Battleground ^000000 อย่างง่ายๆ ... ";
+	mes "คุณเลือก Camp ^006400Guillaume ^000000 หรือ Camp ^006400Croix ^000000 แล้วคุณจะต่อสู้กันเอง";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+	mes "มี 3 ประเภทคือ ^006400Battleground ^000000s";
+	mes "อันดับแรกคือ ^006400KVM ^000000 เป็นการต่อสู้แบบ 5vs5 โดยมีเป้าหมายเพื่อลดจำนวนคนทั้งสองฝ่าย";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+	mes "อันที่สองคือ 10vs10 คุณโจมตีคลังเสบียงของฝ่ายตรงข้ามและในทางกลับกันคุณก็ปกป้องคลังเสบียงของคุณ เรียกว่า ^006400Tierra ^000000 ";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+	mes "ตัวที่สามและตัวสุดท้ายเรียกว่า ^006400Flavius ^000000 อันนี้เป็น 10vs10 ด้วย สำหรับอันนี้คุณโจมตีคริสตัลของฝ่ายตรงข้ามในขณะที่พยายามปกป้องของคุณเอง ";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+	mes "เพื่อไปยัง ^006400Battleground ^000000s ให้ค้นหา ^006400Maroll ผู้สรรหา ^000000 ที่สามารถพบได้ในเมืองใหญ่ ๆ ทั้งหมด ";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+	mes "หลังจากที่คุณเข้ามาแล้วให้เลือกว่าคุณต้องการเคียงข้าง Guillaume หรือ Croix จากนั้นเลือกข้างพวกเขา ... ";
+	mes "^006400KVM Mercenary Recruiter ^000000,";
+	mes "^006400Tierra Mercenary Recruiter ^000000 หรือ";
+	mes "^006400Flavius Mercenary Recruiter ^000000,";
+	mes "จากนั้นคุณสามารถเข้าร่วม ^006400Battleground ^000000s";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+	mes "ขึ้นอยู่กับผลลัพธ์ของ ^006400Battleground ^000000 คุณจะได้รับรางวัลด้วย";
+	mes "คุณได้รับ KVM Badges จาก ^006400KVM ^000000,";
+	mes "จาก ^006400Tierra ^000000 คุณจะได้รับ Bravery Badges และ";
+	mes "คุณได้รับ Valor Badges ^006400Flavius ^000000";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านสมรภูมิ]";
+	mes "ด้วยรางวัลจาก ^006400Battleground ^000000s คุณจะได้รับไอเทมที่หาไม่ได้จากที่อื่น";
+	mes "แต่ละ ^006400Battleground ^000000 รางวัลที่คุณได้รับนั้นแตกต่างกันดังนั้นคุณจะต้องตรวจสอบ";
+	next;
+	return;
+}
+
+moc_para01,28,167,3	script	ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ	868,{
+	set .@checkquest, checkquest(4164);
+	if (.@checkquest == 2) {
+		mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+		mes "เมื่อคุณมาที่นี่ดูเหมือนว่าคุณต้องการเรียนรู้เกี่ยวกับ ^006400Memorial Dungeon ^000000.";
+		next;
+		switch(select("Listen about Memorial Dungeon.:End Conversation.")) {
+		case 1:
+			callsub L_Info;
+			mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+			mes "ตอนนี้คุณได้ฟังผู้เชี่ยวชาญแล้วก็เข้าใจง่ายใช่ไหม? ถ้าคุณอยากฟังเรื่องนี้อีกให้มาหาฉัน ";
+			close;
+		case 2:
+			mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+			mes "ถ้าคุณอยากฟังเรื่องนี้อีกให้มาหาฉัน ";
+			close;
+		}
+	} else if (.@checkquest == 0 || .@checkquest == 1) {
+		mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+		mes "ฉันคือ ^006400Memorial Dungeon ^000000 Expert! ฉันศึกษา ^006400Memorial Dungeon ^000000 มา 16 ปี!";
+		mes "เนื่องจากคุณตามหาฉันฉันถือว่าคุณสอบผ่าน ^006400 ผู้เชี่ยวชาญด้านสมรภูมิ ^000000 แล้ว";
+		next;
+		mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+		mes "ดังที่คุณทราบแล้วหากคุณผ่านแบบทดสอบของผู้เชี่ยวชาญทั้งหมดคุณจะได้รับรางวัล ";
+		next;
+		mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+		mes "ในฐานะผู้เชี่ยวชาญคนที่ 4 ฉันจะอธิบายทุกอย่างเกี่ยวกับ ^006400Memorial Dungeon ^000000";
+		mes "อยากฟังเรื่อง ^006400Memorial Dungeon ^000000?";
+		next;
+		switch(select("Listen about Memorial Dungeon.:End Conversation.")) {
+		case 1:
+			callsub L_Info;
+			mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+			mes "ตอนนี้คุณได้ฟังผู้เชี่ยวชาญแล้วเข้าใจง่ายใช่ไหมถ้าคุณอยากฟังเรื่องนี้อีกให้มาหาฉัน";
+			mes "เอาล่ะตอนนี้ฉันจะตอบคำถามให้คุณคุณต้องตอบคำถามให้ถูกทั้งหมดถึงจะผ่านได้พร้อมหรือยัง";
+			while(1) {
+				set .@correct,0;
+				next;
+				switch(select("On to the quiz!:Explain again please?:Give up.")) {
+				case 1:
+					switch(rand(1,3)) {
+					case 1:
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "^006400Memorial Dungeon ^000000 ไม่ใช่ดันเจี้ยนที่เปิดให้ผู้ใช้ทุกคนใช้ได้เฉพาะคุณและ [] ของคุณเท่านั้น";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Party Members:Guildmates:Friends:Family") == 1)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "ถ้าคุณไปที่ [] และพบ [] เขาจะให้ข้อมูลเกี่ยวกับ Endless Tower- ซึ่งเป็นคุกใต้ดินขนาดใหญ่และสูง";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Prontera, Seiyablem:Alberta, Leyablem:Alberta, Captain Jansen:Prontera, Captin Jansen") == 3)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "ในการเข้าสู่ดันเจี้ยนแห่งความทรงจำต้องทำการสมัคร [] จากนั้นจึงจะเข้าสู่สถานะสแตนด์บายได้คุณจะต้องป้อนตามลำดับที่ใส่ใบสมัคร";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Guild Member:Guild Leader:Party Leader:Party Member") == 3)
+							set .@correct, .@correct+10;
+						break;
+					case 2:
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "เมื่อคุณใช้ [] เสร็จแล้วคุณจะไม่สามารถกลับเข้าไปในดันเจี้ยนเดิมได้อีกในช่วงเวลาหนึ่ง";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Buff:Ritual:Exploration:Inspection") == 3)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "ถ้าคุณไปที่ Orc Map ที่มีออร์คทั้งหมดอาศัยอยู่คุณจะสามารถหา [] ได้เขาอาจจะให้ข้อมูลเกี่ยวกับดันเจี้ยนแห่งความทรงจำของออร์คได้";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Insane Scientist:Crazy Scientist:Insane Alchemist:Crazy Alchemist") == 1)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "ในการเข้าสู่ดันเจี้ยนแห่งความทรงจำต้องใช้ [] - จากนั้นคุณจึงจะสามารถเข้าได้ตามลำดับเวลาที่ใบสมัครของคุณถูกส่งเข้ามา";
+						mes "คุณต้องยืนหยัดเพื่อสิ่งนี้";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Guild Leader:Guildmate:Party Member:Party Leader") == 4)
+							set .@correct, .@correct+10;
+						break;
+					case 3:
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "ถ้าคุณไปยังสถานที่ที่คุณสามารถเป็นพระได้คืออาราม Capitolina คุณสามารถพบกับ [] เขาจะบอกคุณเกี่ยวกับดันเจี้ยนที่มีบาโฟเมตปิดผนึก";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Agent Patrick:Patrolman Patrick:Drunken Patrick:Detective Patrick") == 4)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "เมื่อคุณใช้ [] เสร็จแล้วคุณจะไม่สามารถกลับเข้าไปในดันเจี้ยนเดิมได้อีกในช่วงเวลาหนึ่ง";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Exploration:Inspection:Buff:Ritual") == 1)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "^006400Memorial Dungeon ^000000 ไม่ได้เปิดให้กับผู้ใช้ทุกคนเท่านั้นมันเปิดให้คุณและ [] ของคุณ";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Friends:Family:Party Members:Guildmates") == 3)
+							set .@correct, .@correct+10;
+						break;
+					}
+					if (.@correct == 30) {
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "คุณสวยสดใส ~ เห็นว่าคุณถูกต้องทั้ง 3 ข้อ ตอนนี้คุณเข้าใจเกี่ยวกับ ^006400Memorial Dungeon ^000000 แล้วหรือยัง ";
+						next;
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "ถ้าคุณอยากจะไปดูเรื่อง ^006400Memorial Dungeon ^000000 มาคุยกับฉันได้ตลอดเวลา ";
+						next;
+						mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+						mes "ตอนนี้ให้คุณไปที่ ^0000FFผู้เชี่ยวชาญด้านแผนที่ ^000000! ";
+						completequest 4164;
+						setquest 4165;
+						getexp 2000,1000;
+						close;
+					}
+					mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+					mes "แบบทดสอบไม่ได้ยากขนาดนั้น ... ";
+					next;
+					mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+					mes "คุณดูเหมือนคุณมีศักยภาพ ... คุณควรลองอีกครั้ง ";
+					break;
+				case 2:
+					callsub L_Info;
+					mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+					mes "เข้าใจง่ายเพราะมาจากผู้เชี่ยวชาญอย่างฉัน ตอนนี้ถึงเวลาตอบคำถามแล้ว คุณต้องได้รับคำตอบทั้งหมดที่ถูกต้องจึงจะผ่าน คุณพร้อมไหม?";
+					break;
+				case 3:
+					mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+					mes "การยอมแพ้เป็นเรื่องง่อย ถ้าคุณเปลี่ยนใจมาคุยกับฉันสิ ";
+					close;
+				}
+			}
+			close;
+		case 2:
+			mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+			mes "การยอมแพ้โดยไม่ได้พยายามเป็นความอ่อนแอ ถ้าคุณเปลี่ยนใจมาคุยกับฉันสิ ";
+			close;
+		}
+		close;
+	}
+	mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+	mes "ถ้าคุณต้องการเรียนรู้อะไรจากฉันให้คุยกับ ^006400Battleground Master ^000000 ก่อนและรับทราบจากเขา ";
+	close;
+
+L_Info:
+	mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+	mes "^006400Memorial Dungeon ^000000 ไม่ใช่ดันเจี้ยนที่เปิดให้ทุกคน เปิดขึ้นสำหรับ ^0000FF คุณและสมาชิกปาร์ตี้ของคุณเท่านั้น ^000000 ";
+	next;
+	mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+	mes "ดังนั้นในการเข้าสู่ ^006400Memorial Dungeon ^000000 หัวหน้าปาร์ตี้จะต้องสมัครเพื่อเข้าสู่ เนื่องจากคุณป้อนตามลำดับที่คุณสมัครคุณจะต้องอยู่ในสถานะสแตนด์บายเพื่อเข้าสู่ ";
+	next;
+	mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+	mes "นอกจากนี้หลังจากคุณสำรวจ Memorial Dungeon แล้วคุณจะไม่สามารถเข้าสู่ ^006400Memorial Dungeon ^000000 เดิมซ้ำได้ในช่วงเวลาหนึ่ง ";
+	next;
+	mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+	mes "^006400Memorial Dungeon ^000000 มีอยู่มากมาย แต่เราจะให้คำแนะนำแก่คุณเพื่อช่วยคุณค้นหา Memorial Dungeon ในโลกของ Midgard ";
+	next;
+	mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+	mes "ขั้นแรกไปที่ ^8B4513Alberta ^000000 และค้นหา ^006400Captain Jansen ^000000";
+	mes "เขาจะให้ข้อมูลเกี่ยวกับคุกใต้ดินที่ใหญ่และสูงมากที่เรียกว่า ^006400Endless Tower ^000000";
+	next;
+	mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+	mes "ประการที่สองไปที่ ^8B4513Orc Map ^000000 ที่ซึ่งออร์คทั้งหมดอาศัยอยู่และค้นหา ^006400Insane Scientist ^000000";
+	mes "คุณอาจจะได้รับข้อมูลบางอย่างเกี่ยวกับดันเจี้ยนที่เกี่ยวข้องกับ ^006400Orc's Memory ^000000";
+	next;
+	mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+	mes "ประการที่สามและประการสุดท้ายจงหาสถานที่ที่คุณสามารถเป็นพระได้ซึ่งก็คือ ^8B4513Capitolina Monastery ^000000 และค้นหา ^006400 นักสืบแพทริค ^000000";
+	mes "เขาจะสามารถให้ข้อมูลเกี่ยวกับดันเจี้ยนกับ ^006400 ปิดผนึก Baphomet ^000000 +";
+	next;
+	mes "[ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ]";
+	mes "แน่นอนว่ายังมีสถานที่อื่น ๆ สำหรับ Memorial Dungeon แต่ควรเริ่มจากจุดที่คุณสามารถหาได้ง่าย";
+	mes "ในขณะที่คุณดำเนินการผจญภัยต่อไปคุณจะสามารถค้นหามันได้ง่ายขึ้น";
+	next;
+	return;
+}
+
+moc_para01,14,168,6	script	ผู้เชี่ยวชาญด้านแผนที่	743,{
+	set .@checkquest, checkquest(4165);
+	if (.@checkquest == 2) {
+		mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+		mes "เห็นว่าคุณมาหาฉันฉันคิดว่าคุณมีคำถามเกี่ยวกับ ^006400MAP ^000000s? ";
+		next;
+		switch(select("List about the Map.:End Conversation.")) {
+		case 1:
+			callsub L_Info;
+			mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+			mes "ถ้าคุณจบลงในพื้นที่เหล่านั้นในขณะที่คุณกำลังผจญภัยอย่าลืมบอกฉันทั้งหมดเกี่ยวกับเรื่องนี้!";
+			mes "และตอนนี้เมื่อคุณผ่านแบบทดสอบของผู้เชี่ยวชาญทั้งหมดแล้วให้ไปคุยกับ ^006400 เป้าหมายบทช่วยสอน ^000000";
+			close;
+		case 2:
+			mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+			mes "หากคุณมีคำถามเพิ่มเติมโปรดมาหาฉัน ";
+			close;
+		}
+	} else if (.@checkquest == 0 || .@checkquest == 1) {
+		mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+		mes "ฉันค้นคว้าและศึกษา ^006400MAP ^000000s มา 16 ปีแล้วและตอนนี้ฉันก็เป็น ^006400MAP ^000000 Expert!";
+		mes "ตั้งแต่คุณตามหาฉันดูเหมือนว่าคุณจะผ่านไปแล้ว ^006400 ผู้เชี่ยวชาญดันเจี้ยนแห่งความทรงจำ ^000000 แบบทดสอบ";
+		next;
+		mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+		mes "ดังที่คุณทราบแล้วหากคุณผ่านแบบทดสอบของผู้เชี่ยวชาญทั้งหมดคุณจะได้รับรางวัล ";
+		next;
+		mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+		mes "ในฐานะผู้เชี่ยวชาญคนสุดท้ายฉันจะพยายามอธิบายทุกอย่างเกี่ยวกับ ^006400MAP ^000000 เพื่อให้เป็นเรื่องง่ายสำหรับคุณ พร้อมที่จะเริ่ม?";
+		next;
+		switch(select("Listen about Maps.:End Conversation.")) {
+		case 1:
+			callsub L_Info;
+			mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+			mes "คำอธิบายของฉันเป็นอย่างไร ตอนนี้ฉันจะตอบคำถามสั้น ๆ ให้คุณ! คุณต้องได้รับคำตอบทั้งหมดที่ถูกต้องเพื่อที่จะผ่าน พร้อมหรือยัง ";
+			while(1) {
+				set .@correct,0;
+				next;
+				switch(select("On to the quiz!:Explain again please?:Give up.")) {
+				case 1:
+					switch(rand(1,3)) {
+					case 1:
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "คุณสามารถดูแผนที่ได้โดยคลิกที่ปุ่ม [] ที่อยู่ทางด้านซ้ายบน";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("SKILL:GUILD:MAP:BOOKING") == 3)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "เมื่อดูแผนที่แต่ละพื้นที่จะมีข้อมูล [] และ [] เกี่ยวกับมอนสเตอร์ซึ่งจะช่วยเดาว่าคุณควรไปล่าที่ไหน";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Name, Age:Attributes, Level:Attributes, Tribe:Name, Level") == 4)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "ถ้าคุณต้องการหยุดดูแผนที่ให้กดปุ่มลัดของ [] หรือ ESC แล้วแผนที่จะปิดให้คุณ";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("ALT + F4:CTRL + %:CTRL + M:ALT + ESC") == 2)
+							set .@correct, .@correct+10;
+						break;
+					case 2:
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "หลังจากที่คุณเปิดแผนที่ของคุณและคุณ";
+						mes "วางเมาส์เหนือพื้นที่เฉพาะ";
+						mes "คุณสามารถเห็น [] และ [] ของภูมิภาค";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Name, Area Details:Name, Monster Attributes:Specialties, Area Details:Specialties, Name") == 1)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "ถ้าคุณมองไปทางขวาล่างของแผนที่คุณจะเห็นภาพวาดของ [] คลิกที่ปุ่มนั้นหรือกดปุ่มทางลัด TAB แล้วคุณจะพบข้อมูลต่างๆ";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Desert Wolf:Mimic:Siroma:Poring") == 4)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "ในขณะที่ดูแผนที่เมื่อคุณกดปุ่มทางลัด TAB คุณจะสามารถค้นหาดันเจี้ยนต่างๆและตำแหน่งทางเข้าของพวกมันได้";
+						mes "คุณสามารถหา [] ของมอนสเตอร์ในบริเวณนั้นได้ด้วย";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Name:Level:Attribute:Size") == 2)
+							set .@correct, .@correct+10;
+						break;
+					case 3:
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "ถ้าคุณต้องการหยุดดูแผนที่สิ่งที่คุณต้องทำคือกด [] เพื่อกลับไปที่หน้าจอปกติของคุณ";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("O:X:EXIT:ALT") == 2)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "ในขณะที่ดูแผนที่เมื่อคุณกดปุ่มทางลัด TAB คุณจะสามารถค้นหาดันเจี้ยนต่างๆและตำแหน่งทางเข้าของพวกมันได้";
+						mes "คุณสามารถหา [] ของมอนสเตอร์ในบริเวณนั้นได้ด้วย";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("Level:Name:Size:Attribute") == 1)
+							set .@correct, .@correct+10;
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "คุณสามารถดูแผนที่ได้โดยคลิกที่ปุ่ม [] ที่อยู่ทางด้านซ้ายบน";
+						mes "มีคำอะไรอยู่ในช่องว่างของ []?";
+						next;
+						if(select("GUILD:SKILL:BOOKING:MAP") == 4)
+							set .@correct, .@correct+10;
+						break;
+					}
+					if (.@correct == 30) {
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "บิงโก! คุณตอบถูกทั้ง 3 ข้อ! ตอนนี้คุณรู้สึกว่าคุณเข้าใจสิ่งต่างๆเกี่ยวกับ ^006400MAP ^000000 มากขึ้นหรือไม่ ";
+						next;
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "ถ้าคุณเคยรู้สึกอยากเรียนรู้เพิ่มเติมเกี่ยวกับ ^006400MAP ^000000s มาคุยกับฉันได้ตลอดเวลา ";
+						next;
+						mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+						mes "ขอแสดงความยินดีที่สอบผ่านแบบทดสอบของผู้เชี่ยวชาญทั้งหมด! ตอนนี้ไปค้นหาและคุยกับ ^006400 เป้าหมายบทช่วยสอน ^000000! ";
+						completequest 4165;
+						setquest 4166;
+						getexp 2000,1000;
+						close;
+					}
+					mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+					mes "คำถาม 3 ข้อไม่น่าจะยากขนาดนั้น ... ";
+					next;
+					mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+					mes "ดูเหมือนคุณจะฉลาดมากทำไมไม่ลองทำแบบทดสอบอีกครั้ง ";
+					break;
+				case 2:
+					callsub L_Info;
+					mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+					mes "คำอธิบายของผู้เชี่ยวชาญนี้เป็นอย่างไร? ตอนนี้ฉันจะให้คุณตอบคำถามสั้น ๆ คุณต้องได้รับคำตอบทั้งหมดที่ถูกต้องจึงจะผ่าน อยากลองดูไหม";
+					break;
+				case 3:
+					mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+					mes "ฉันคือผู้เชี่ยวชาญคนสุดท้าย! อย่ายอมแพ้! มาหาฉันอีกครั้งเมื่อคุณพร้อม! ";
+					close;
+				}
+			}
+			close;
+		case 2:
+			mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+			mes "คุณจะยอมแพ้โดยไม่ได้พยายามเลยเหรอ แต่ฉันเป็นผู้เชี่ยวชาญคนสุดท้าย! อย่ายอมแพ้! มาหาฉันอีกครั้งเมื่อคุณพร้อม! ";
+			close;
+		}
+		close;
+	}
+	mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+	mes "ถ้าคุณต้องการเรียนรู้จากฉันไปรับทราบโดย ^006400Memorial Dungeon ^000000 ก่อน ";
+	close;
+
+L_Info:
+	mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+	mes "A ^006400MAP ^000000 แสดงสิ่งที่จำเป็นมากสำหรับการเดินทางรอบโลก เช่นการวางที่ดินเมืองใหญ่และทุ่งนาเป็นต้น เป็นเครื่องมือที่สำคัญมาก! ";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+	mes "ด้วยเหตุนี้จึงสำคัญกว่าสิ่งอื่น ๆ ที่คุณรู้เกี่ยวกับ ^006400MAP ^000000s ";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+	mes "คุณสามารถเข้าถึงแผนที่ได้โดยคลิกที่ปุ่ม ^006400MAP ^000000 ที่ด้านซ้ายบนของหน้าจอ ";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+	mes "เมื่อคุณคลิกที่ปุ่ม ^006400MAP ^000000 แผนที่ Midgard ขนาดเต็มจะปรากฏบนหน้าจอของคุณ";
+	mes "เมื่อคุณ ^0000FF วางเมาส์เหนือพื้นที่ที่ต้องการ ^000000 คุณจะพบสิ่งอื่น ๆ เช่น ^006400NAME ^000000 และรายละเอียดพื้นที่";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+	mes "ถ้าคุณมองไปทางด้านขวาล่างของแผนที่จะมี ^006400Poring drawing ^000000";
+	mes "ถ้าคุณคลิกหรือกดปุ่มทางลัด ^006400TAB ^000000 คุณจะสามารถดูข้อมูลต่างๆได้";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+	mes "ประการแรกคุณสามารถค้นหา ^006400NAME ^000000 และ ^006400LEVEL ^000000 ของมอนสเตอร์ในแต่ละพื้นที่ นั่นจะทำให้เดาได้มากว่าคุณอยากไปล่าที่ไหน ";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+	mes "ประการที่สองคุณสามารถค้นหา ^006400DUNGEON ^000000s และของพวกเขาต่างๆ";
+	mes "^006400 ตำแหน่งทางเข้า ^000000 นอกจากนี้ยังจะบอกสัตว์ประหลาดที่อาศัยอยู่ในพื้นที่นั้นด้วย";
+	mes "พร้อมกับ ^006400LEVEL ^000000 ซึ่งแสดงเป็นสีแดงเพื่อให้ค้นหาได้ง่าย";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+	mes "ถ้าคุณต้องการหยุดดูแผนที่มี 2 วิธีในการดำเนินการนี้";
+	mes "คุณสามารถกดปุ่มลัดซึ่ง ได้แก่ ^006400CTRL +% ^000000 หรือ ^006400ESC ^000000";
+	mes "หรือที่ด้านขวาบนของแผนที่จะมีปุ่ม ^006400X ^000000 คลิกที่ปุ่มนั้นและคุณจะกลับสู่หน้าจอเกมปกติของคุณ";
+	next;
+	mes "[ผู้เชี่ยวชาญด้านแผนที่]";
+	mes "ปัจจุบันเราไม่สามารถเห็นสถานที่ที่อยู่นอกเหนือจาก Midgard ได้ แต่มีการกล่าวกันว่ามีโลกที่ไม่รู้จักอีกมากมายที่อยู่ไกลออกไป";
+	next;
+	return;
+}*/

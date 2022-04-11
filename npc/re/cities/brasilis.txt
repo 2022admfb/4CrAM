@@ -1,0 +1,176 @@
+//===== rAthena Script ======================================= 
+//= Brasilis Town
+//===== By: ================================================== 
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.4
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= [Official Conversion]
+//= Brasilis Town Script
+//===== Additional Comments: ================================= 
+//= 1.0 First version. Transportation and Basic NPCs.
+//= 1.1 Fixed Zeny not being removed for payment. [Kisuka]
+//= 1.2 Updated dialog, added Ice Cream Maker. [L0ne_W0lf]
+//= 1.3 Moved Alberta NPC to pre-re/re paths. [Euphy]
+//= 1.4 Added VIP features. [Euphy]
+//============================================================ 
+
+// Brasilis Transportation :: brasilis_trans
+//============================================================
+/* Pre-Renewal coordinates: alberta,247,115,3 */
+alberta,246,82,3	script	Crewman#bra2	100,{
+	mes "[Crewman]";
+	mes "เฮ้คุณเคยได้ยินชื่อสถานที่ที่เรียกว่า Brasilis ไหม";
+	mes "มันเป็นเมืองร้อนที่ร้อนเหมือนทะเลทราย แต่ก็มีฝนตกด้วยเป็นสถานที่ลึกลับมาก";
+	next;
+	mes "[Crewman]";
+	mes "เมื่อเร็ว ๆ นี้เราพบเส้นทางเดินเรือใหม่เพื่อไปที่นั่นอย่างง่ายดาย";
+	if (VIP_SCRIPT) {
+		set .@cost, vip_status(VIP_STATUS_ACTIVE)?1000:10000;
+		mes "ค่าเดินทางไปกลับ 10,000 zeny และ 1,000 สำหรับ VIP! คุณอยากไปไหม"; //custom translation (VIP)
+	} else {
+		set .@cost,10000;
+		mes "ค่าเดินทางไปกลับแค่ 10,000 zeny คุณอยากไปไหม";
+	}
+	next;
+	switch(select("พาฉันไปบราซิลิส!:ฉันจะอยู่ที่นี่.")) {
+	case 1:
+		if (Zeny < .@cost) {
+			mes "[Crewman]";
+			mes "ฉันพูดว่า "+callfunc("F_InsertComma",.@cost)+" zeny.";
+			close;
+		}
+		else {
+			mes "[Crewman]";
+			mes "เจ๋ง ~ !! ไปกันเถอะ ~!";
+			set Zeny, Zeny-.@cost;
+			close2;
+			warp "brasilis",314,60;
+			end;
+		}
+	case 2:
+		mes "[Crewman]";
+		mes "ถ้าคุณเคยสนใจก็บอกฉันสิแล้วฉันจะพาคุณไปที่นั่นได้";
+		close;
+	}
+}
+
+brasilis,316,57,3	script	Crewman#bra1	100,{
+	mes "[Crewman]";
+	mes "เรือของฉันกำลังจะกลับไปที่อัลเบอร์ตาคุณต้องการร่วมกับเราไหม";
+	next;
+	switch(select("กลับไป Alberta.:ยกเลิก~.")) {
+	case 1:
+		mes "[Crewman]";
+		mes "คิดถึงบ้านแน่ ๆ ";
+		close2;
+		if (checkre(0))
+			warp "alberta",243,82;
+		else
+			warp "alberta",244,115;
+		end;
+	case 2:
+		mes "[Crewman]";
+		mes "โอเคเหมาะกับตัวเองแล้วเจอกันเมื่อไหร่ค่อยกลับ";
+		close;
+	}
+}
+
+// Generic Brasilis NPCs :: brazil_tre
+//============================================================
+brasilis,155,165,3	script	Signpost#bra1	858,{
+	mes ":: Art Museum ::";
+	close;
+}
+
+brasilis,191,239,3	script	Signpost#bra2	858,{
+	mes ":: Verass Monument ::";
+	close;
+}
+
+brasilis,240,247,3	script	Signpost#bra3	858,{
+	mes ":: Market ::";
+	mes " ";
+	mes "- สำหรับยาและอาวุธของคุณ -";
+	close;
+}
+
+brasilis,303,309,3	script	Signpost#bra4	858,{
+	mes ":: Jungle Cable ::";
+	mes "- ไม่ใช่สำหรับคนใจอ่อน -";
+	close;
+}
+
+brasilis,278,137,3	script	Signpost#bra5	858,{
+	mes ":: Brasilis Hotel ::";
+	close;
+}
+
+brasilis,137,77,5	script	Ice-Cream Maker	85,{
+	mes "[Ice Cream Maker]";
+	mes "มา ~ มา ~";
+	mes "ไอศกรีมเป็นของว่างที่เหมาะสำหรับวันที่อากาศร้อน ~";
+	mes "มันก็แค่ ^3355FF100 Zeny ^000000 ~";
+	mes "ไอติม ~";
+	//mes "Get 'yer Ice Cream!";
+	next;
+	switch(select("ให้ ฉัน 1 อัน!:Ice Cream?:ยกเลิก.")) {
+	case 1:
+		mes "[Ice Cream Maker]";
+		mes "เนื่องจากมีคนจำนวนมากต้องการไอศกรีมเย็น ๆ จึงสามารถสั่งได้ครั้งละ 5 ชิ้นเท่านั้น";
+		mes "อยากได้กี่ อัน";
+		next;
+		while(1) {
+			input .@input; //,1,5;
+			if (.@input == 0) {
+				mes "[Ice Cream Maker]";
+				mes "ไม่มี?";
+				mes "ดีออกไปข้างนอกฉันมีลูกค้าให้บริการ";
+				close;
+			}
+			else if ((.@input < 0) || (.@input > 5)) {
+				mes "[Ice Cream Maker]";
+				mes "ว้าว.";
+				mes "สั่งเยอะเกินไป";
+				mes "ถ้าคุณกินเกิน 5 ตัวคุณอาจต้องต่อสู้กับสัตว์ประหลาดในท้องของคุณใจเย็น ๆ เพื่อน";
+				next;
+			}
+			else
+				break;
+		}
+		set .@icecream_hap,.@input*100;
+		if (Zeny < .@icecream_hap) {
+			mes "[Ice Cream Maker]";
+			mes "คุณมีเงินไม่พอ";
+			mes "มันแค่ ^3355FF100 Zeny ^000000 ~จริงจัง!";
+			close;
+		}
+		if (!checkweight(536,.@input)) {
+			mes "[Ice Cream Maker]";
+			mes "ดูเหมือนคุณจะมีของเยอะเกินไป";
+			mes "แบ่งเบาชุดก่อนซื้อ";
+			close;
+		}
+		set Zeny, Zeny-.@icecream_hap;
+		getitem 536,.@input; //Ice_Cream
+		close;
+	case 2:
+		mes "[Ice Cream Maker]";
+		mes "'ไอศครีมคือ ... ";
+		mes "เดี๋ยวก่อนไม่รู้";
+		mes "ไอศครีมคืออะไร";
+		mes "คุณมีหินอะไร";
+		mes "อยู่ภายใต้?";
+		next;
+		mes "[Ice Cream Maker]";
+		mes "ฉันจะไม่เริ่มด้วยซ้ำว่าฟังดูแปลก ๆ ";
+		mes "ยังไงก็ไปซื้อ Ice Cream ที่นี่ตอนที่อากาศเย็นสบายดี";
+		close;
+	case 3:
+		mes "[Ice Cream Maker]";
+		mes "อย่าพลาดโอกาสที่จะได้กินไอศกรีมที่ยิ่งใหญ่ที่สุดในแผ่นดิน ~!";
+		close;
+	}
+}

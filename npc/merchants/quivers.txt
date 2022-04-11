@@ -1,0 +1,176 @@
+//===== rAthena Script =======================================
+//= Arrow Quiver Event
+//===== By:==================================================
+//= Muad_Dib (Prometheus Project); L0ne_W0lf
+//===== Current Version:=====================================
+//= 1.2
+//===== Compatible With:=====================================
+//= rAthena Project
+//===== Description:=========================================
+//= [Official Conversion]
+//= Turns arrows into Arrow Quivers.
+//= Breakdown of Subroutine "S_BuyQuiver"
+//= arg(0):Type of Arrow to be packaged (item ID).
+//= arg(1):How many of each 'getarg(0)' arrow per quiver.
+//= arg(2):The cost of making a 'getarg(0)' quiver.
+//= arg(3):The quiver given by the NPC (item ID).
+//===== Additional Comments:=================================
+//= 07/06/05 :Added 1st Version. [Muad_Dib]
+//= Converted to rAthena format by Dr.Evil
+//= added prize to quest - 500 Zeny
+//= Fixed a few spelling errors. [Nexon]
+//= 1.1 Added Holy Arrow Quivers [Playtester]
+//= 1.2 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//=     Removed "ลูกศรศักดิ์สิทธิ์" from the list.
+//============================================================
+
+payon_in01,5,134,5	script	Inventor Jaax	89,{
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
+		mes "[ Jaax ]";
+		mes "เฮ้คุณกำลังแบก";
+		mes "สิ่งที่มากเกินไป ทำไมคุณไม่เก็บมันไว้ใน Kafra Storage? เราคุยกันได้หลังจากที่คุณทำใช่ไหม?";
+		close;
+	}
+	mes "[ Jaax ]";
+	mes "ฉันชื่อ Jaxx";
+	mes "ถ้าไม่มีอัตตาฉันก็ทำได้";
+	mes "บอกว่าฉันอาจจะเป็น";
+	mes "^663300 นักประดิษฐ์ที่ยิ่งใหญ่ที่สุดในยุคของเรา ^000000";
+	next;
+	mes "[ Jaax ]";
+	mes "ครั้งนี้ฉัน";
+	mes "สร้างบางสิ่ง";
+	mes "พิเศษอย่างแท้จริง ฉันเรียกมันว่า ... ^663300 Magic Quivers ^000000 !! สิ่งนี้จะถูกจดจำในประวัติศาสตร์ในฐานะไฟล์";
+	mes "ลูกศรปฏิวัติ!";
+	emotion ET_BEST;
+	next;
+	mes "[ Jaax ]";
+	mes "ฉันเรียนเวทมนตร์และQuiverสะเทือนมาหลายปีทำงานทั้งกลางวันและกลางคืนจนในที่สุดฉันก็คิดวิธีควบแน่นลูกศรด้วยเวทมนตร์! ด้วยเวทQuiverสะเทือนคุณจะแบกลูกศรได้มากขึ้น แต่มีน้ำหนักน้อยลง!";
+	next;
+	mes "[ Jaax ]";
+	mes "คุณต้องการลองใช้ลูกศรของฉันไหม ฉันไม่สงสัยเลยว่าคนอย่างคุณจะชื่นชมความเป็นอัจฉริยะของฉัน!";
+	next;
+	switch(select("Quiver:Iron Arrow Quiver:Steel Arrow Quiver:Oridecon Arrow Quiver:Fire Arrow Quiver:Silver Arrow Quiver:Wind Arrow Quiver:Stone Arrow Quiver:Crystal Arrow Quiver:Shadow Arrow Quiver:Immaterial Arrow Quiver:Rusty Arrow Quiver")) {
+	case 1:callsub S_BuyQuiver,1750,500,500,12004;
+	case 2:callsub S_BuyQuiver,1770,500,500,12005;
+	case 3:callsub S_BuyQuiver,1753,500,500,12006;
+	case 4:callsub S_BuyQuiver,1765,500,500,12007;
+	case 5:callsub S_BuyQuiver,1752,500,500,12008;
+	case 6:callsub S_BuyQuiver,1751,500,500,12009;
+	case 7:callsub S_BuyQuiver,1755,500,500,12010;
+	case 8:callsub S_BuyQuiver,1756,500,500,12011;
+	case 9:callsub S_BuyQuiver,1754,500,500,12012;
+	case 10:callsub S_BuyQuiver,1767,500,500,12013;
+	case 11:callsub S_BuyQuiver,1757,500,500,12014;
+	case 12:callsub S_BuyQuiver,1762,500,500,12015;
+	}
+	//This doesn't seem to be accessable...
+	//mes "[ Jaax ]";
+	//mes "อยู่ที่นั่น";
+	//mes "อะไรก็ได้ที่คุณต้องการ?";
+	//close;
+
+S_BuyQuiver:
+	.@item_id = getarg(0);
+	.@amount = getarg(1);
+	.@zeny_req = getarg(2);
+
+	if (countitem(.@item_id) >= .@amount) {
+		mes "[ Jaax ]";
+		mes "ยอดเยี่ยม!";
+		mes "คุณถือลูกศรติดตัวหรือไม่? Quiver ที่สามารถพกพาได้ "+ .@amount +" ของ "+ getitemname(.@item_id) +"s เพียง ^FF3131"+ .@zeny_req +" Zeny ^000000";
+		next;
+		switch(select("ซื้อทั้งหมด:ซื้อ 1 ชิ้น:ยกเลิก")) {
+		case 1:
+			.@arrows = countitem(.@item_id);
+			set .@quiver,.@arrows / .@amount;
+			set .@arrows_used,.@quiver * .@amount;
+			.@arrow_zeny01 = .@quiver * .@zeny_req;
+			mes "จำนวน";
+			mes "ลูกศร:^3131FF"+.@arrows+" ^000000";
+			mes "จำนวนสูงสุด";
+			mes "ของที่ซื้อได้";
+			mes "Quiver:^3131FF"+.@quiver+" ^000000";
+			mes "Zeny จำเป็น:^3131FF"+.@arrow_zeny01+" Zeny ^000000";
+			next;
+			mes "[ Jaax ]";
+			mes "คุณต้องการที่จะ";
+			mes "ซื้อ Quivers ให้มากที่สุด";
+			mes "เท่าที่จะทำได้สำหรับ Arrows";
+			//mes "คุณกำลังแบก?";
+			next;
+			if (select("ใช่:ยกเลิก") == 1) {
+				if (.@arrow_zeny01 < Zeny) {
+					mes "[ Jaax ]";
+					mes "ไปเลย!";
+					mes "อย่าลืมว่า ^FF0000 คุณจะไม่สามารถใช้ Quiver ได้เมื่อน้ำหนักบรรทุกของคุณเท่ากับ 90% ของขีด จำกัด น้ำหนักสูงสุดของคุณ ^000000";
+					set Zeny, Zeny-.@arrow_zeny01;
+					delitem .@item_id,.@arrows_used;// Arrow
+					getitem getarg(3),.@quiver; //Quiver
+					next;
+					mes "[ Jaax ]";
+					mes "ดังนั้น...";
+					mes "เพียงแค่ติดตาม";
+					mes "คุณเท่าไหร่";
+					mes "ถือเป็นครั้งคราว";
+					mes "ถึงเวลาและคุณควร";
+					mes "ไม่เป็นไร";
+					close;
+				}
+				else {
+					mes "[ Jaax ]";
+					mes "ฉันขอโทษ แต่คุณมี Zeny ไม่เพียงพอ ฉันไม่สามารถให้สิ่งเหล่านี้ไปได้หลังจากทำงานมาหลายปี";
+					mes "เพื่อพัฒนาเทคโนโลยีแห่งการปฏิวัตินี้!";
+					close;
+				}
+			}
+			mes "[ Jaax ]";
+			mes "คุณเปลี่ยนใจ?";
+			mes "เมื่อความรุ่งเรืองของการเป็นเจ้าของ";
+			mes "Quiverอยู่ใกล้?";
+			close;
+		case 2:
+			if (Zeny > .@zeny_req) {
+				mes "[ Jaax ]";
+				mes "ไปเลย!";
+				mes "อย่าลืมว่า ^FF0000 คุณจะไม่สามารถใช้ Quiver ได้เมื่อน้ำหนักบรรทุกของคุณเท่ากับ 90% ของขีด จำกัด น้ำหนักสูงสุดของคุณ ^000000";
+				Zeny = Zeny -.@zeny_req;
+				delitem .@item_id,.@amount;// Arrow
+				getitem getarg(3),1; //Quiver
+				next;
+				mes "[ Jaax ]";
+				mes "ดังนั้น...";
+				mes "เพียงแค่ติดตาม";
+				mes "คุณเท่าไหร่";
+				mes "ถือเป็นครั้งคราว";
+				mes "ถึงเวลาและคุณควร";
+				mes "ไม่เป็นไร";
+				close;
+			}
+			else {
+				mes "[ Jaax ]";
+				mes "คุณไม่ได้";
+				mes "มี "+ .@zeny_req +" zeny?";
+				mes "ฉันขอโทษ. ฉันไม่มี";
+				mes "คิดว่าคุณเป็นอย่างนั้น ...";
+				mes "^333333 ชะตากรรม ^000000";
+				close;
+			}
+		case 3:
+			mes "[ Jaax ]";
+			mes "อะไร...?";
+			mes "คุณไม่เห็นหรือว่าสิ่งประดิษฐ์นี้สามารถเปลี่ยนวิธีการพกพาของ Arrows ไปตลอดกาล อนาคตอยู่แล้ว!";
+			close;
+		}
+	}
+	else {
+		mes "[ Jaax ]";
+		mes "คุณสามารถพกพาได้สูงสุด "+ .@amount +" ลูกศรภายใน Quiver นี้ มันถูกสร้างขึ้นโดยใช้วิธีการลับของฉัน";
+		mes "ดังนั้นน้ำหนักรวมของ Arrows และ Quiver จึงน้อยกว่าการถือ Arrows เพียงอย่างเดียว";
+		next;
+		mes "[ Jaax ]";
+		mes "ถ้าคุณนำมาอย่างน้อย "+ .@amount +" ลูกศรและ "+ .@zeny_req +" Zeny สำหรับ Quiver";
+		close;
+	}
+}
+

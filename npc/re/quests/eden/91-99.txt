@@ -1,0 +1,218 @@
+//===== rAthena Script =======================================
+//= Eden Group Quests - Mission [91 - 99]
+//===== By: ==================================================
+//= Chilly
+//===== Current Version: =====================================
+//= 1.5
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Repetable Quests for Players between Baselevel 91 - 99.
+//===== Additional Comments: =================================
+//= 1.0 First Version. [Chilly]
+//= 1.1 Some little improvements here and there. [Masao]
+//= 1.2 Optimized. [Euphy]
+//= 1.3 Updated to match the official script. [Euphy]
+//= 1.4 Added support to Para_Team_Mark_ in Eden Group. [Ragno]
+//= 1.5 Added use of F_HasEdenGroupMark function. [Ragno]
+//============================================================
+
+moc_para01,48,177,3	script	91-99 Mission Board	857,{
+	if (!callfunc("F_HasEdenGroupMark")) {
+		mes "เดี๋ยวก่อน!";
+		mes "-คุณต้องมีตรา-";
+		mes "-^4d4dff'Eden Group'^000000-";
+		mes "-เพื่อรับภารกิจเหล่านี้.-";
+		next;
+		switch(select("เพียงแค่เดินออกไป.:^0000FFEden Group^000000 ภารกิจ?:ฉันจะเป็นสมาชิกของ ^0000FFEden Group^000000อย่างไร?")) {
+		case 1:
+			close;
+		case 2:
+			mes "::ภารกิจของ Eden Group";
+			mes "::โดยทั่วไปเป็นภารกิจ";
+			mes "::การร้องขอจาก";
+			mes "::ผู้คนจากทั่วทุกมุมอาณาจักร.";
+			mes "::เราแค่จัดหมวดหมู่ให้.";
+			next;
+			mes "::ในกลุ่มอีเดน,";
+			mes "::เราจัดเรียงภารกิจ";
+			mes "::ตามระดับความยาก.";
+			mes "::ตามระดับนี้,";
+			mes "::คุณสามารถหา";
+			mes "::ภารกิจที่";
+			mes "::เหมาะกับคุณ.";
+			next;
+			mes "::เมื่อคุณทำเสร็จแล้ว,";
+			mes "::คุณสามารถกลับมา";
+			mes "::ไปยังคณะกรรมการภารกิจ.";
+			next;
+			mes "::แล้วคุณจะเป็น";
+			mes "::ได้รับรางวัล!!";
+			mes "::เรียบง่ายใช่ไหม!!";
+			mes "::ไม่ต้องมีค่าคอมมิชชั่น!!";
+			close;
+		case 3:
+			mes "::คุณสามารถเป็นสมาชิก";
+			mes "::ของ Eden Group";
+			mes "::to ^0000FFLaime Evenor^000000,";
+			mes "::ใครรออยู่ที่ชั้น 1.";
+			next;
+			mes "::หากคุณเป็นสมาชิก,";
+			mes "::คุณจะได้รับไฟล์";
+			mes "::\"^006400Eden Group^000000\".";
+			mes "::แล้วคุณจะสามารถ";
+			mes "::เพื่อดูกระดานภารกิจ.";
+			close;
+		}
+	}
+	if (BaseLevel < 91 || BaseLevel > 99) {
+		// Quest IDs: 4181-4196
+		// Quest cooldown IDs: 4212-4227
+		setarray .@names$[0],
+			"Solider","Freezer","Heater",
+			"Injustice","Rybio","Dark Priest",
+			"Stapo","Roween","Siroma",
+			"Shinobi","Evil Nymph",
+			"Deviruchi","Mineral","Kaho","Neraid","Disguise";
+		setarray .@exp[0],
+			90000,94000,114000,
+			96000,96000,146000,
+			96000,102000,110000,
+			102000,108000,
+			110000,138000,118000,96000,134000;
+		mes "คุณต้องอยู่ในระดับ 91-99 เพื่อรับภารกิจเหล่านี้.";
+		for(set .@quest,4181; .@quest<=4196; set .@quest,.@quest+1) {
+			set .@hunting, checkquest(.@quest,HUNTING);
+			if (.@hunting == 0 || .@hunting == 1) {
+				next;
+				mes ":: คุณไม่สามารถดำเนินการต่อได้";
+				mes ":: ^0000FF"+.@name$[.@quest-4181]+" การล่าสัตว์^000000.";
+				mes ":: การลงทะเบียนเพื่อปฏิบัติภารกิจ";
+				mes ":: ถูกยกเลิก.";
+				erasequest .@quest;
+				close;
+			} else if (.@hunting == 2) {
+				next;
+				mes ":: คุณได้เพิ่มข้อมูล";
+				mes ":: เกี่ยวกับภารกิจ";
+				mes ":: ^0000FF"+.@name$[.@quest-4181]+" การล่าสัตว์^000000";
+				mes ":: บนกระดานภารกิจ.";
+				mes ":: คุณมีไฟล์";
+				mes ":: ประสบการณ์ทักทาย.";
+				erasequest .@quest;
+				getexp .@exp[.@quest-4181],0;
+				close;
+			}
+		}
+		close;
+	}
+	mes "[91-99 บอร์ดภารกิจ]";
+	mes "มีคำขอมากมายในบอร์ดนี้.";
+	next;
+	switch(select("^8B4513Turtle Island^000000:^8B4513Glast Heim^000000:^8B4513Rachel / Veins^000000:^8B4513Expansion Cities^000000:^8B4513Other regions^000000")) {
+	case 1:
+		mes "^8B4513Turtle Island^000000.";
+		mes "คุณจะล่าสัตว์ประหลาดตัวไหน หรือ ล่าเสร็จแล้ว?";
+		next;
+		switch(select("^0000FFSolider^000000:^0000FFFreezer^000000:^0000FFHeater^000000")) {
+			case 1: callsub L_Quest,4181,"Solider",90000,"ผึธฎด๕ฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้เท่านั้น ^8B4513Turtle Island^000000.";
+			case 2: callsub L_Quest,4182,"Freezer",94000,"วมธฎภ๚ฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้เท่านั้น ^8B4513Turtle Island^000000.";
+			case 3: callsub L_Quest,4183,"Heater",114000,"ศ๗ลอฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้เท่านั้น ^8B4513Turtle Island^000000.";
+		}
+	case 2:
+		mes "^8B4513Glast Heim^000000.";
+		mes "คุณจะล่าสัตว์ประหลาดตัวไหน หรือ ล่าเสร็จแล้ว?";
+		next;
+		switch(select("^0000FFInjustice^000000:^0000FFRybio^000000:^0000FFDark Priest^000000")) {
+			case 1: callsub L_Quest,4184,"Injustice",96000,"ภฮภ๚ฝบฦผฝบฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Glast Heim prison^000000.";
+			case 2: callsub L_Quest,4185,"Rybio",96000,"ธฎบ๑ฟภฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Glast Heim prison^000000.";
+			case 3: callsub L_Quest,4186,"Dark Priest",146000,"ดูลฉวมธฎฝบฦฎฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Glast Heim prison^000000.";
+		}
+	case 3:
+		mes "^8B4513ราเชล / หลอดเลือดดำ^000000.";
+		mes "คุณจะล่าสัตว์ประหลาดตัวไหน หรือ ล่าเสร็จแล้ว?";
+		next;
+		switch(select("^0000FFStapo^000000:^0000FFRoween^000000:^0000FFSiroma^000000")) {
+			case 1: callsub L_Quest,4187,"Stapo",96000,"ฝบลยฦ๗ฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Veins^000000.";
+			case 2: callsub L_Quest,4188,"Roween",102000,"ทฮฟ์ภฉฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Rachel^000000.";
+			case 3: callsub L_Quest,4189,"Siroma",110000,"ฝรทฮธถฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Ice Dungeon^000000.";
+		}
+	case 4:
+		mes "^8B4513Expansion Cities^000000.";
+		mes "คุณจะล่าสัตว์ประหลาดตัวไหน หรือ ล่าเสร็จแล้ว?";
+		next;
+		switch(select("^0000FFShinobi^000000:^0000FFEvil Nymph^000000")) {
+			case 1: callsub L_Quest,4190,"Shinobi",102000,"ฝรณ๋บ๑ฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Amatsu Dungeon^000000.";
+			case 2: callsub L_Quest,4191,"Evil Nymph",108000,"ฟไผฑณเฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Kunlun Dungeon^000000.";
+		}
+	case 5:
+		mes "ภูมิภาคอื่น ๆ.";
+		mes "คุณจะล่าสัตว์ประหลาดตัวไหน หรือ ล่าเสร็จแล้ว?";
+		next;
+		switch(select("^0000FFDeviruchi^000000:^0000FFMineral^000000:^0000FFKaho^000000:^0000FFNeraid^000000:^0000FFDisguise^000000")) {
+			case 1: callsub L_Quest,4192,"Deviruchi",110000,"ตฅบ๑ท็ฤกฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Geffen Dungeon^000000.";
+			case 2: callsub L_Quest,4193,"Mineral",138000,"นฬณืถ๖","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Einbech Dungeon^000000.";
+			case 3: callsub L_Quest,4194,"Kaho",118000,"ฤซศฃฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Nogg Road Magma 1^000000.";
+			case 4: callsub L_Quest,4195,"Neraid",96000,"ณืทนภฬตๅฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Comodo Dungeon^000000.";
+			case 5: callsub L_Quest,4196,"Disguise",134000,"ต๐ฝบฐกภฬม๎ฤซตๅ","มีมอนสเตอร์ที่สามารถพบได้ใน ^8B4513Niflheim^000000.";
+		}
+	}
+	end;
+
+//callsub L_Quest,<quest ID>,"<monster name>",<reward EXP>,"<cutin image>","<description>"{,"s"};
+L_Quest:
+	set .@quest1, getarg(0);
+	set .@quest2, .@quest1+31;
+	.@cutin$ = getarg(3);
+	set .@playtime, checkquest(.@quest2,PLAYTIME);
+	if (.@playtime == 0 || .@playtime == 1) {
+		mes "[91-99 บอร์ดภารกิจ]";
+		mes "คุณต้องรอ 3 ชั่วโมงก่อนจึงจะสามารถทำภารกิจนี้ได้อีกครั้ง.";
+		close;
+	}
+	set .@hunting, checkquest(.@quest1,HUNTING);
+	if (.@hunting == 0 || .@hunting == 1) {
+		mes "[91-99 บอร์ดภารกิจ]";
+		mes "คุณล่าทั้ง 30 เสร็จแล้วหรือยัง "+getarg(1)+getarg(5,"")+" ได้ไหม?";
+		close;
+	} else if (.@hunting == 2) {
+		mes "[91-99 บอร์ดภารกิจ]";
+		mes "คุณเสร็จสิ้นการล่าสัตว์.";
+		mes "โปรดรับรางวัลนี้เป็นค่าตอบแทน.";
+		erasequest .@quest1;
+		if (.@playtime > -1) erasequest .@quest2;
+		setquest .@quest2;
+
+		// Job Experience calculation.
+		if (JobLevel > 50 && JobLevel < 56) set .@jexp,67000;
+		else if (JobLevel > 55 && JobLevel < 61) set .@jexp,94000;
+		else if (JobLevel > 60 && JobLevel < 66) set .@jexp,141000;
+		else if (JobLevel > 65 && JobLevel < 69) set .@jexp,212000;
+		else if (JobLevel == 69) set .@jexp,311000;
+
+		getexp getarg(2),.@jexp;
+		close;
+	}/* else if (.@hunting == 3) {
+//		recall_completequest .@quest1
+		erasequest .@quest1;
+		mes "[91-99 บอร์ดภารกิจ]";
+		mes "คุณได้ยอมรับไฟล์ "+getarg(1)+" ภารกิจล่าสัตว์.";
+		close;
+	}*/ else {
+		mes "[91-99 บอร์ดภารกิจ]";
+		mes getarg(4);
+		next;
+		if (.@cutin$ != "") cutin .@cutin$,3;
+		mes "[91-99 บอร์ดภารกิจ]";
+		mes "ล่า 30 "+getarg(1)+" มอนสเตอร์ที่นั่นและโพสต์ความสำเร็จของคุณบนกระดานนี้.";
+		next;
+		if (.@cutin$ != "") cutin .@cutin$,255;
+		if(select("ฉันจะตามล่าพวกมัน:ไม่ขอบคุณ.") == 1) {
+			mes "[91-99 บอร์ดภารกิจ]";
+			mes "เมื่อคุณทำภารกิจสำเร็จแล้วให้โพสต์บนกระดานนี้และรับรางวัลของคุณ.";
+			if (.@playtime > -1) erasequest .@quest2;
+			setquest .@quest1;
+		}
+		close;
+	}
+}

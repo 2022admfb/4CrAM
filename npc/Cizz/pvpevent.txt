@@ -1,0 +1,661 @@
+//===== eAthena Script =======================================
+//= eAthena PVP-Ladder
+//===== By: ==================================================
+//= Terces
+//===== Current Version: =====================================
+//= 1.7.2
+//===== Compatible With: =====================================
+//= Any Athena Version that has "for" implemented
+//===== Credits: =============================================
+//= The whole eAthena Board and the eAthena Chat
+//===== Notes: ===============================================
+//= Note 1:
+//= Experience gain works like this formula:
+//= ($@LadderLength-(<new position>-1))*$@LadderExp
+//= so if someone gets the first place he'll get
+//= $@LadderLength*$@LadderExp experience points.
+//============================================================
+//= Fixxed by Dante
+//= V1.7.2
+//= Hosted by Dant3 aka Dante
+// HAFE FUN! READ THE TOPIC! IT DONT WORKS MAYBE ON OLDER REV
+//
+//
+//  LAST UPDATE: 7th,October.2015
+//
+// Main Script - Terces (Main Thanks to Terces ^_^)
+// V1.7.0 - Dant3
+// v1.7.1 - AnnieRuRu
+// v1.7.2 - Dant3
+// v1.7.3 - Jezznar - Initial revamp
+// v1.7.4 - Jezznar - Fixed map-server error: waitingroom
+
+
+-	script	PVPLADDEROPTIONS	-1,{
+end;
+OnInit:
+// 0 = Disabled (NO)
+// 1 = Enable   (YES)
+set $@languageselect, 0;	//Enable/Disable language selection [English/German] (Default: 1)
+set $@LadderAnnounce, 1;	//Enable/Disable the announcement when a char reaches a new position in the ladder (Default: 1)
+
+set $@LadderLength, 10;		//Set the length of the Ladder [!Not higher than 128!] (Default: 30)
+set $@LadderSteps, 5;		//Set the views per page (Default: 10)
+
+set $@LadderExpGain, 100;		//Enable/Disable experience gain when reaching a new position in the ladder (*Note1)
+set $@LadderExp, 150;		//Set Experience gain value (*Note1)
+
+// Update v1.7.0
+set $@LadderZenyGain, 1;	//Enable/Disable zeny gain when reaching a new position in the ladder
+set $@LadderZeny, 10000;		//Set Zeny gain value 
+set $@LadderChatRoom, 1;	//Enable/Disable an Chat Room over the NPC with the message "PvP Ladder" (Users can not enter the Chat room) 
+
+// Update v1.7.1 (Thanks to AnnieRuRu)
+// Added GM PvP Ladder Reset Function
+
+// Update v1.7.2
+// Thanks to for the Feedback
+set $@LadderAskLogin, 1;	//Enable/Disable that the NPC asks about the Broadcast when a Player logins / or  with the Npc Chat (0 = Login Ask , 1 = Npc Chat) Related: 0
+
+// Update PVPStart = 0;
+//$PVPStart = 0;
+}
+
+-	script	PVPLADDERS	-1,{
+OnPCKillEvent:
+
+if (terces_PVP_resets != $terces_PVP_resets) {
+		dispbottom "กรุณา ล้อคอิน ใหม่ อีกครั้ง ! เพื่อที่จะได้รับ คะแนนการฆ่าที่ถูกต้องสำหรับคุณ ใน  PVP.";
+		dispbottom "เพราะ GM รีเซ็ต PVP.";
+		end;
+}
+if($pvpevent == 1){
+	#PVPPOINTS += 10 * $Cpoint;
+	dispbottom "[ System ] PVP Point "+#PVPPOINTS+"";
+	sleep2 500;
+    announce strcharinfo(0) +" สังหาร "+ rid2name(killedrid), 0;
+}
+	
+if ( killedrid == getcharid(3) ) {
+	set PVPDeaths, PVPDeaths +1;
+	set #PVPDeathsAccount, #PVPDeathsAccount +1;
+	set @PVPDeathstoday, @PVPDeathstoday +1;
+	end;
+}
+	
+set $@PVPcounter,$@PVPcounter+1;
+set getd("$@PVPKill"+$@PVPcounter),getcharid(3);	//getd to avoid errors when more than 1 people kill someone
+attachrid(killedrid);
+set PVPDeaths,PVPDeaths+1;
+set @PVPDeathstoday,@PVPDeathstoday+1;
+set #PVPDeathsAccount,#PVPDeathsAccount+1;
+set getd("$@PVPkilledplayer"+$@PVPcounter+"$"), strcharinfo(0);	//again, getd to avoid possible glitches
+detachrid;
+
+attachrid(getd("$@PVPKill"+$@PVPcounter));
+CountKills:
+	set PVPKills,PVPKills+1;
+	set @PVPKillstoday,@PVPKillstoday+1;
+	set #PVPKillsAccount,#PVPKillsAccount+1;
+	setarray @playerstats[0],@PVPKillstoday,@PVPDeathstoday,PVPKills,PVPDeaths,#PVPKillsAccount,#PVPDeathsAccount;
+
+l_ladder:
+	set @considerdeath,0;
+	for (set @PosinLadder, 0; @PosinLadder < $@LadderLength; set @PosinLadder, @PosinLadder + 1){
+		if (PVPKills >= $terces_PVP_kills[@PosinLadder]){	//Player deserves to be in the ladder
+			//Check if Death plays a role on the position
+			if ((PVPKills == $terces_PVP_kills[@PosinLadder]) && (PVPDeaths > $terces_PVP_deaths[@PosinLadder])) set @considerdeath,1; //Consider Deaths
+			//Check if the player only topped his own scores
+			if ($terces_PVP_names$[@PosinLadder] == strcharinfo(0)){
+				set $terces_PVP_kills[@PosinLadder],PVPKills;
+				set $terces_PVP_deaths[@PosinLadder],PVPDeaths;
+				end;
+			}
+			//Moves all characters in the Ladder
+			for (set @beginmoving, $@LadderLength; @beginmoving >= (@PosinLadder+@considerdeath); set @beginmoving, @beginmoving - 1){
+				if ($terces_PVP_names$[@beginmoving] == strcharinfo(0)){
+					//If the player already is in the Ladder it only has to move players between characters new position and characters old position
+					callsub L_LadderMove,0;
+					end;
+				}
+				else if (@beginmoving == (@PosinLadder+@considerdeath)){
+					//Player is not in the Ladder and therefor it has to move all players from characters new position downwards
+					callsub L_LadderMove,1;
+					end;
+				}
+			}
+			end;
+		}
+	}
+
+
+L_LadderMove:
+	if (getarg(0) == 0) set @length,@beginmoving;
+	if (getarg(0) == 1) set @length,$@LadderLength;
+	for (set @movecycle, @length; @movecycle > (@PosinLadder+@considerdeath);
+	 set @movecycle, @movecycle - 1){
+
+		set $terces_PVP_names$[@movecycle],$terces_PVP_names$[(@movecycle-1)];
+		set $terces_PVP_kills[@movecycle],$terces_PVP_kills[(@movecycle-1)];
+		set $terces_PVP_deaths[@movecycle],$terces_PVP_deaths[(@movecycle-1)];
+		set $terces_PVP_times[@movecycle],$terces_PVP_times[(@movecycle-1)];
+	}
+	//sets the character's stats in the new position
+	set $terces_PVP_names$[(@PosinLadder+@considerdeath)],strcharinfo(0);
+	set $terces_PVP_kills[(@PosinLadder+@considerdeath)],PVPKills;
+	set $terces_PVP_deaths[(@PosinLadder+@considerdeath)],PVPDeaths;
+	set $terces_PVP_times[(@PosinLadder+@considerdeath)],gettimetick(2);
+	//Experience Gain
+	if ($@LadderExpGain == 1){
+		set BaseExp,BaseExp+(($@LadderLength-((@PosinLadder+@considerdeath)-1))*$@LadderExp);
+		dispbottom "คุณเพิ่งได้รับรางวัล "+(($@LadderLength-((@PosinLadder+@considerdeath)-1))*$@LadderExp)+" คะแนนประสบการณ์พื้นฐาน";
+	}
+	//Zeny Gain
+	if ($@LadderZenyGain == 1){
+		set Zeny,Zeny+(($@LadderLength-((@PosinLadder+@considerdeath)-1))*$@LadderZeny);
+		dispbottom "คุณเพิ่งได้รับรางวัล "+(($@LadderLength-((@PosinLadder+@considerdeath)-1))*$@LadderZeny)+" Zeny";
+	}
+	//Announcement (Setting for Char)
+	if (pvpbroadcast == 2 && $pvpevent == 1){
+	announce strcharinfo(0)+" ได้รับ "+((@PosinLadder+@considerdeath)+1)+". ตำแหน่งในอันดับสูงสุด "+$@LadderLength+" หลังจากฆ่า "+getd("$@PVPkilledplayer"+$@PVPcounter+"$")+".",16;
+	}
+	//Announcement (Setting for Account)
+	if (#pvpbroadcast == 2 && $pvpevent == 1){
+	announce strcharinfo(0)+" ได้รับ "+((@PosinLadder+@considerdeath)+1)+". ตำแหน่งในอันดับสูงสุด "+$@LadderLength+" หลังจากฆ่า "+getd("$@PVPkilledplayer"+$@PVPcounter+"$")+".",16;
+	}
+	end;
+/*
+OnPCLoadMapEvent:
+	//if(.Participation) //Enable Participation?
+	if(@lastmap$!=strnpcinfo(2) && strcharinfo(3)==strnpcinfo(2)){
+		set @lastmap$,strcharinfo(3);
+		if(terces_PVP_resets != $terces_PVP_resets){
+			message strcharinfo(0),"รีเซ็ตตัวละคร เพื่อได้รับ คะแนน การฆ่าที่ถูกต้อง .";
+		}
+		else{
+		message strcharinfo(0),"เปิดใช้งานการได้รับคะแนน .";
+		addtimer 10000,strnpcinfo(0)+"::OnParticipates";
+		}
+	}
+end;*/
+
+/*OnParticipates:
+	set @lastmap$,strcharinfo(3);
+	if(@lastmap$==strnpcinfo(2) && getd("$@koe_"+strnpcinfo(2)+"_start")){
+		addtimer 10000,strnpcinfo(0)+"::OnParticipates";
+		set @KOEPOINTS,@KOEPOINTS+2;
+		.@arr = inarray(getd(".koe_part_n_"+strnpcinfo(2)),getcharid(3));
+		//if(.@arr >= 0)
+			//setd ".koe_part_t_"+strnpcinfo(2)+"["+.@arr+"]",getd(".koe_part_t_"+strnpcinfo(2)+"["+.@arr+"]")+1;
+		//else {
+			//setd ".koe_part_n_"+strnpcinfo(2)+"["+getarraysize(getd(".koe_part_n_"+strnpcinfo(2)))+"]",getcharid(3);
+			//setd ".koe_part_t_"+strnpcinfo(2)+"["+getarraysize(getd(".koe_part_n_"+strnpcinfo(2)))+"]",getd(".koe_part_n_"+strnpcinfo(2)+"["+getd(".koe_part_n_"+strnpcinfo(2))+"]")+1;
+		//}
+	} else
+		set @lastmap$,"";
+end;*/
+/*
+OnPCLogoutEvent:
+	set #PVPPOINTS,(#PVPPOINTS+@KOEPOINTS);
+end;*/
+
+
+OnPCLoginEvent:
+if (terces_PVP_resets != $terces_PVP_resets){
+		set PVPDeaths,0;
+		set @PVPDeathstoday,0;
+		set #PVPDeathsAccount,0;
+		set PVPKills,0;
+		set @PVPKillstoday,0;
+		set #PVPKillsAccount,0;
+		set terces_PVP_resets,$terces_PVP_resets;
+	}
+if ($@LadderAskLogin == 0){
+	if (#pvpbroadcast == 2) goto L_ignore;
+	if (pvpbroadcast == 2) goto L_ignore;
+	if (#pvpbroadcast == 1) goto L_ignore;
+	if (pvpbroadcast == 1) goto L_ignore;
+
+	if (pvpbroadcast == 0)
+	mes "สวัสดี, "+strcharinfo(0)+"";
+	mes "ฉันคือผู้บริหารระดับสูงของ PvP!";
+	mes "ให้ฉันถามคำถามหนึ่งข้อแล้วฉันจะปล่อยให้คุณเล่น!";
+	menu "ไว้ภายหลัง",L_close,"ตกลง",L_fine;
+
+	L_fine:
+	next;
+	mes "คุณต้องการอ่าน Broadcast Messages เมื่อผู้เล่นไปถึงตำแหน่งใหม่ในรายการ PvP Ranklist หรือไม่";
+	menu "ใช่ ทำไม่ ?",L_accept,"ไม่ขอบคุณ",L_accept_2,"Broadcast?",L_broadcast;
+
+	L_accept:
+	next;
+	mes "Yay, ขอบคุณ! ^_^";
+	mes "การตั้งค่านี้ จะใช้ได้ กับ ตัวละครทั้งหมดของคุณในบัญชี นี้ หรือ เฉพาะตัวละคร นี้เท่านั้น";
+	menu "Account ทั้งหมด",L_account,"เฉพาะตัวละคร",L_char;
+
+	L_account:
+	set #pvpbroadcast,2;
+	next;
+	mes "โอเค, "+strcharinfo(0)+"";
+	mes "ขอบคุณที่สละเวลามาสนุกกัน!";
+	close;
+
+	L_char:
+	set pvpbroadcast,2;
+	next;
+	mes "โอเค, "+strcharinfo(0)+"";
+	mes "ขอบคุณที่สละเวลามาสนุกกัน!";
+	goto access_eng;
+	close;
+	
+	L_accept_2:
+	next;
+	mes "Yay, ขอบคุณ! ^_^";
+	mes "การตั้งค่านี้ จะใช้ได้ กับ ตัวละครทั้งหมดของคุณในบัญชี นี้ หรือ เฉพาะตัวละคร นี้เท่านั้น";
+	menu "Account ทั้งหมด",L_account_2,"เฉพาะตัวละคร",L_char_2;
+
+	L_close:
+	close;
+
+	L_account_2:
+	set #pvpbroadcast,1;
+	next;
+	mes "โอเค, "+strcharinfo(0)+"";
+	mes "ขอบคุณที่สละเวลามาสนุกกัน!";
+	close;
+
+	L_char_2:
+	set pvpbroadcast,1;
+	next;
+	mes "โอเค, "+strcharinfo(0)+"";
+	mes "ขอบคุณที่สละเวลามาสนุกกัน!";
+	goto access_eng;
+	close;
+
+
+	L_broadcast:
+	mes "การออกอากาศเป็นข้อความสีเหลืองจาก GM";
+	goto L_fine;
+	}
+}
+//auction_03,26,50,4	script	Card Vendor Machine#pa08	562,{
+auction_03,27,55,1	script	PvP Ladder	10126,{
+
+	set @name$,"[^FF0000PVP Leader^000000]";
+	//Colour of:			Position	Name		Kills		Deaths		Time
+	setarray @colour$[0],	"^996600",	"^006699",	"^00AA00",	"^FF0000",	"^EE8800";
+	
+	//automatic registration of the whole account to the pvp ladder
+	set #pvpbroadcast,2;
+	if (#pvpbroadcast == 2) goto 	access_eng;
+	if (pvpbroadcast == 2) goto 	access_eng;
+	if (#pvpbroadcast == 1) goto 	access_eng;
+	if (pvpbroadcast == 1) goto 	access_eng;
+	if (pvpbroadcast == 0)
+	mes "สวัสดี, "+strcharinfo(0)+"";
+	mes "ฉันคือผู้บริหารระดับสูงของ PvP!";
+	mes "ให้ฉันถามคำถามหนึ่งข้อแล้วฉันจะปล่อยให้คุณเล่น!";
+	menu "ไว้ภายหลัง",L_close,"ตกลง",L_fine;
+
+	L_fine:
+	next;
+	mes "คุณต้องการอ่าน Broadcast Messages เมื่อผู้เล่นไปถึงตำแหน่งใหม่ในรายการ PvP Ranklist หรือไม่";
+	menu "ใช่ ทำไม่ ?",L_accept,"ไม่ขอบคุณ",L_accept_2,"Broadcast?",L_broadcast;
+
+	L_accept:
+	next;
+	mes "Yay, ขอบคุณ! ^_^";
+	mes "การตั้งค่านี้ จะใช้ได้ กับ ตัวละครทั้งหมดของคุณในบัญชี นี้ หรือ เฉพาะตัวละคร นี้เท่านั้น";
+	menu "Account ทั้งหมด",L_account,"เฉพาะตัวละคร",L_char;
+
+	L_account:
+	set #pvpbroadcast,2;
+	next;
+	mes "โอเค, "+strcharinfo(0)+"";
+	mes "ขอบคุณที่สละเวลามาสนุกกัน!";
+	close;
+
+	L_char:
+	set pvpbroadcast,2;
+	next;
+	mes "โอเค, "+strcharinfo(0)+"";
+	mes "ขอบคุณที่สละเวลามาสนุกกัน!";
+	goto access_eng;
+	close;
+	
+	L_accept_2:
+	next;
+	mes "Yay, ขอบคุณ! ^_^";
+	mes "การตั้งค่านี้ จะใช้ได้ กับ ตัวละครทั้งหมดของคุณในบัญชี นี้ หรือ เฉพาะตัวละคร นี้เท่านั้น";
+	menu "Account ทั้งหมด",L_account_2,"เฉพาะตัวละคร",L_char_2;
+
+	L_close:
+	close;
+
+	L_account_2:
+	set #pvpbroadcast,1;
+	next;
+	mes "โอเค, "+strcharinfo(0)+"";
+	mes "ขอบคุณที่สละเวลามาสนุกกัน!";
+	close;
+
+	L_char_2:
+	set pvpbroadcast,1;
+	next;
+	mes "โอเค, "+strcharinfo(0)+"";
+	mes "ขอบคุณที่สละเวลามาสนุกกัน!";
+	goto access_eng;
+	close;
+
+
+	L_broadcast:
+	mes "การออกอากาศเป็นข้อความสีเหลืองจาก GM";
+	goto L_fine;
+
+
+	access_eng:
+	mes @name$;
+	mes "สวัสดี "+strcharinfo(0)+"...";
+	mes "ตาราง การแข่งขัน [ เวลา 19.15 น. ] ของทุกวัน";
+	mes "^FF0000กรุณา ล้อคอินใหม่ เพื่อได้รับ คะแนนการฆ่าที่ถูกต้อง ก่อนเข้าร่วม!";
+	next;
+	M_selection_eng:
+	if ( getgmlevel () < 99 )
+		menu "เข้าร่วม",M_start,"แสดง PVP Ladder",M_Ladder_eng,"สถานะ PvP ตั้งแต่เข้าสู่ระบบ",M_seitLogin_eng,"สถานะ PvP ของตัวละคร",M_dieserChar_eng,"สถานะ ของ account",M_vomAccount_eng,"ยกเลิก",M_abbrechen_eng;
+	else
+		menu "เข้าร่วม",M_start,"แสดง PVP Ladder",M_Ladder_eng,"สถานะ PvP ตั้งแต่เข้าสู่ระบบ",M_seitLogin_eng,"สถานะ PvP ของตัวละคร",M_dieserChar_eng,"สถานะ ของ account",M_vomAccount_eng,"รีเซ็ต Ladder",OnReset,"ยกเลิก",M_abbrechen_eng;
+	
+	M_start:
+	set .@n$,"[^FF0000PVP Leader^000000]";
+    set .@charid,getcharid(0);
+	if($pvpevent == 0){
+		mes .@n$;
+		mes "ยังไม่ถึงเวลาเริ่มการแข่งขัน";
+		close;
+		end;
+	}
+	else if ($pvpevent == 1){
+	mes .@n$;
+    mes "คุณต้องการเข้าร่วม PVP Event ?";
+	next;
+	if(select("- ตกลง","- ยกเลิก")==2)
+	{
+		close;
+		end;
+	}
+	mes .@n$;
+    mes "ในสนามรบมีแต่ผู้กล้าหาญ";
+	mes "พยายามเข้าล่ะ";
+announce""+strcharinfo(0)+" เข้าร่วม PVP Event มาเข้าร่วมกันเถอะ !! ",bc_all;	
+	set .@x,rand(1,15);
+	L_warploop:
+	if (.@x < 16) {
+		if (.@x == 0)
+			{ warpchar "pvp_y_8-2",205,162; }
+		else if (.@x == 1)
+			{ warpchar "pvp_y_8-2",205,162; }
+		else if (.@x == 2)
+			{ warpchar "pvp_y_8-2",127,249; }
+		else if (.@x == 3)
+			{ warpchar "pvp_y_8-2",127,249; }
+		else if (.@x == 4)
+			{ warpchar "pvp_y_8-2",58,162; }
+		else if (.@x == 5)
+			{ warpchar "pvp_y_8-2",58,162; }
+		else if (.@x == 6)
+			{ warpchar "pvp_y_8-2",127,145; }
+		else if (.@x == 7)
+			{ warpchar "pvp_y_8-2",127,145; }
+		else if (.@x == 8)
+			{ warpchar "pvp_y_8-2",128,109; }
+		else if (.@x == 9)
+			{ warpchar "pvp_y_8-2",128,109; }
+		else if (.@x == 10)
+			{ warpchar "pvp_y_8-2",90,98; }
+		else if (.@x == 11)
+			{ warpchar "pvp_y_8-2",90,98; }
+		else if (.@x == 12)
+			{ warpchar "pvp_y_8-2",128,72; }
+		else if (.@x == 13)
+			{ warpchar "pvp_y_8-2",128,72; }
+		else if (.@x == 14)
+			{ warpchar "pvp_y_8-2",128,163; }
+		else if (.@x == 15)
+			{ warpchar "pvp_y_8-2",128,163; }
+	}
+		//goto L_warploop;
+		close;
+	}
+	
+	M_Ladder_eng:
+	mes "เอาล่ะ ฉันจะแสดง PVP TOP "+ $@LadderLength +" กับ "+$@LadderSteps+" หน้าต่อไป.";
+	mes "มันจะเป็นแบบนี้:";
+	mes @colour$[0]+"สถานที่^000000: "+@colour$[1]+"<name>^000000 :"+@colour$[2]+"<kills>^000000:"+@colour$[3]+"<deaths>^000000 "+@colour$[4]+"<time>";
+	next;
+	callsub L_Ladder;
+	goto M_selection_eng;
+
+	M_seitLogin_eng:
+	mes @name$;
+	mes "สถานะ PvP ตั้งแต่เข้าสู่ระบบ:";
+	mes @PVPKillstoday+"/"+@PVPDeathstoday+"(Kills/Deaths)";
+	next;
+	goto M_selection_eng;
+
+	M_dieserChar_eng:
+	mes @name$;
+	mes "สถานะ PvP ของตัวละคร:";
+	mes PVPKills+"/"+PVPDeaths+"(Kills/Deaths)";
+	next;
+	goto M_selection_eng;
+
+	M_vomAccount_eng:
+	mes @name$;
+	mes "Stats ของ account:";
+	mes #PVPKillsAccount+"/"+#PVPDeathsAccount+"(Kills/Deaths)";
+	next;
+	goto M_selection_eng;
+
+	M_abbrechen_eng:
+	mes @name$;
+	mes "ตกลง คุณสามารถกลับมาหาฉัน และ ดูสถิติ ของคุณ ได้ทุกเมื่อที่คุณต้องการ";
+	close;
+
+OnReset:
+	if (getgmlevel() < 99) end;
+	mes "คุณต้องการ รีเซ็ต ladder?";
+	if (select ("Yes","No") == 2) goto L_end;
+	mes "คุณแน่ใจจริงๆหรือว่าต้องการรีเซ็ต";
+	menu "ใช่, !!",-,"ไม่",L_end;
+	cleararray $terces_PVP_kills,0,128;
+	cleararray $terces_PVP_deaths,0,128;
+	cleararray $terces_PVP_names$,"",128;
+	cleararray $terces_PVP_times,0,128;	
+	 //deletearray $terces_PVP_kills,128;
+	 //deletearray $terces_PVP_deaths,128;
+	 //deletearray $terces_PVP_names$,128;
+	 //deletearray $terces_PVP_times,128;
+	 set $terces_PVP_resets,$terces_PVP_resets +1;
+
+	L_end:
+	mes "โอเค ไว้พบกัน";
+	close;
+	
+	L_Ladder:
+	for (set @y,0; @y < $@LadderLength; set @y,@y+$@LadderSteps){
+		for (set @x,@y; (@x < (@y+$@LadderSteps)) && (@x < ($@LadderLength)); set @x,@x+1){
+			if ($terces_PVP_names$[@x] != ""){
+				mes @colour$[0]+(@x+1)+"^000000: "+@colour$[1]+$terces_PVP_names$[@x]+"^000000 "+@colour$[2]+$terces_PVP_kills[@x]+"^000000:"+@colour$[3]+$terces_PVP_deaths[@x]+"^000000 ~ "+@colour$[4]+callfunc ("Gettime",$terces_PVP_times[@x])+"^000000";
+			} else {
+				mes "^DD0000"+(@x+1)+": ^006699None^000000 ";
+			}
+		}
+		next;
+	}
+return;
+
+OnGMStop:
+	delwaitingroom;
+	$EventPVP = 0;
+	for (set .@x,0; .@x < 3; set .@x,.@x+1){
+		if ($terces_PVP_names$[.@x] != ""){
+			announce "[ Event PvP ] ผู้แข่งขันอันดับต้น ๆ  #"+(.@x+1)+": "+$terces_PVP_names$[.@x],bc_all;
+			attachrid(getcharid(3,$terces_PVP_names$[.@x]));
+			getitem $pvpeventreward, (1-.@x);
+			set #CASHPOINTS, #CASHPOINTS + (3000 - (1000*.@x));
+			dispbottom "คุณได้รับ "+(3000 - (1000*.@x))+" CASHPOINTS!";
+			detachrid;
+		} else if (.@x != 0 && $terces_PVP_names$[.@x] == "" && .@x < 3) {
+			announce "[ Event PvP ] ผู้แข่งขันอันดับต้น ๆ #"+(.@x+1)+": None",bc_all;
+			
+		} else {
+			announce "[ Event PvP ] ดูเหมือนว่าจะไม่มีใครเข้าร่วมกิจกรรม.",bc_all;
+		}
+	}
+	end;
+OnGMStart:
+	if ($@LadderChatRoom == 1) {
+		waitingroom "กิจกรรมเริ่มแล้ว      "+$@LadderLength+"",0;   // Look on the configuration!
+	}
+	set $EventPVP,1;
+	cleararray $terces_PVP_kills,0,128;
+	cleararray $terces_PVP_deaths,0,128;
+	cleararray $terces_PVP_names$,"",128;
+	cleararray $terces_PVP_times,0,128;	
+	$Cpoint = 1;
+		/*set PVPDeaths,0;
+		set @PVPDeathstoday,0;
+		set #PVPDeathsAccount,0;
+		set PVPKills,0;
+		set @PVPKillstoday,0;
+		set #PVPKillsAccount,0;
+		set terces_PVP_resets,$terces_PVP_resets;*/
+	//deletearray $terces_PVP_kills,128;
+	//deletearray $terces_PVP_deaths,128;
+	//deletearray $terces_PVP_names$,128;
+	//deletearray $terces_PVP_times,128;
+	set $terces_PVP_resets,$terces_PVP_resets +1;
+	end;
+OnInit:
+	//hideonnpc "PvP Ladder";
+	end;
+
+}
+
+function	script	Gettime	{
+if (getarg(0)==0) return;
+
+set @difftimedays,(gettimetick(2) - getarg(0));
+set @difftimehours,@difftimedays%86400;
+set @difftimeminutes,@difftimehours%3600;
+set @difftimeseconds,@difftimeminutes%60;
+
+set @days,@difftimedays/86400;
+set @hours,@difftimehours/3600;
+set @minutes,@difftimeminutes/60;
+set @seconds,@difftimeseconds;
+set @result$,"";
+if(@days != 0) set @result$,@result$+@days+"d ";
+if(@hours != 0) set @result$,@result$+@hours+"h ";
+if(@minutes != 0) set @result$,@result$+@minutes+"m ";
+if(@seconds != 0) set @result$,@result$+@seconds+"s";
+
+return (@result$);
+}
+
+
+-	script	atpvp	-1,{
+OnInit:
+	set $pvpeventreward, 40015;
+	set $pvpevent,0;
+	bindatcmd "pvp",strnpcinfo(0)+"::OnPVP";
+	end;
+	
+	
+OnPVP:
+	if (.@atcmd_parameters$[0] == "on" && $pvpevent == 0){
+		initnpctimer;
+		announce "[ Event PvP ] กิจกรรม PVP เริ่มแล้ว! !",bc_all,0xFF8000;
+		announce "[ Event PvP ] สามารถเข้าร่วมได้ ใน NPC ใส่แว่นดำ [Item Cash Guild]",bc_all,0xFF8000;
+		announce "[ Event PvP ] กิจกรรม PVP เริ่มแล้ว! ออนไลน์ ในแผนที่ได้รับ - 300 Cash!",bc_all,0xFF8000;
+		announce "[ Event PvP ] กิจกรรม PVP เริ่มแล้ว! สังหาร ผู้เล่นได้รับ - 30 PVP POINT!",bc_all,0xFF8000;
+		announce "[ Event PvP ] กิจกรรม PVP เริ่มแล้ว! ครองห้องเดี๋ยวนี้! สิ้นสุดการแข่งขันอีก 30 นาที!",bc_all,0xFF8000;
+		announce "[ Event PvP ] กรุณา ล้อคอินใหม่ !!!!! เพื่อได้รับ คะแนนการฆ่าที่ถูกต้อง ก่อนเข้าร่วม!",bc_all,0xFF8000;
+		announce "[ Event PvP ] กรุณา ล้อคอินใหม่ !!!!! เพื่อได้รับ คะแนนการฆ่าที่ถูกต้อง ก่อนเข้าร่วม!",bc_all,0xFF8000;
+		donpcevent "PvP Ladder::OnGMStart";
+		//hideoffnpc "PvP Ladder";
+		set $pvpevent, 1;
+		callsub OnPVPAnnounce;
+		
+	} else if (.@atcmd_parameters$[0] == "off" && $pvpevent == 1) {
+		stopnpctimer;
+		announce "[ Event PvP ] กิจกรรม PVP สิ้นสุดลงแล้ว!",bc_all,0xFF8000;
+		announce "PvP Event: โปรดรอผลการแข่งขัน!",bc_all,0xFF8000;
+		set $pvpevent, 0;
+		//hideonnpc "PvP Ladder";
+		donpcevent "PvP Ladder::OnGMStop";
+		
+	}
+	end;
+	
+OnTimer60000:
+OnTimer300000:
+OnPVPAnnounce:
+	announce "[ Event PvP ] กิจกรรม PVP กำลังดำเนินอยู่! ครองห้องเดี๋ยวนี้!!",bc_all,0xFF8000;
+	announce "[ Event PvP ] ผู้เข้าแข่งขัน 3 อันดับแรกจะได้รับ 3000,2000,1000 CASH + 1x,0x,0x "+getitemname($pvpeventreward)+"!",bc_all;
+	end;
+OnTimer600000:
+	announce "[ Event PvP ] กิจกรรม PVP จะสิ้นสุดใน 5 นาที! ครองห้องเดี๋ยวนี้!!",bc_all,0xFF8000;
+	announce "[ Event PvP ] ผู้เข้าแข่งขัน 3 อันดับแรกจะได้รับ 3000/2000/1000 CASH + 1x,0x,0x "+getitemname($pvpeventreward)+"!",bc_all;
+	end;
+OnTimer900000:
+	stopnpctimer;
+	set $pvpevent, 0;
+	donpcevent "PvP Ladder::OnGMStop";
+	end;
+	
+OnSun1915:
+OnMon1915:
+OnTue1915:
+OnWed1915:
+OnThu1915:
+OnFri1915:
+OnSat1915:
+	
+	//waitingroom "Tet "+$@LadderLength+"",0;   // Look on the configuration!
+	cleararray $terces_PVP_kills,0,128;
+	cleararray $terces_PVP_deaths,0,128;
+	cleararray $terces_PVP_names$,"",128;
+	cleararray $terces_PVP_times,0,128;
+	announce "[ System ] : กิจกรรม PVP เปิดแล้ว ทุกคนสามารถเข้าร่วม ในตอนนี้!!",bc_all,0xFF8000;
+	useatcmd "@pvp on";
+	end;
+OnSun1920:
+OnMon1920:
+OnTue1920:
+OnWed1920:
+OnThu1920:
+OnFri1920:
+OnSat1920:
+if($Cpoint){
+$Cpoint = 2;
+}
+announce "[ Event PvP ] PvP Point x2 เริ่มขึ้นแล้ว !!",bc_all;
+end;
+
+	
+
+}
+//Point
+auction_03,29,55,1	script	PVP POINTS	10123,{
+	mes "[ PVP POINTS ]";
+	mes "คุณสามารถใช้คะแนน PVP ได้ที่นี่";
+	mes "^FFFFFF_^000000";
+	set #PVPPOINTS,(#PVPPOINTS+@PVPPOINTS);
+	set @PVPPOINTS,0;
+	mes "คะแนน ปัจจุบัน: ^0000FF"+#PVPPOINTS+"^000000";
+	callshop "PVPPOINTS",1;
+	end;
+}
+//ADD YOUR ITEMS HERE
+-	pointshop	PVPPOINTS	-1,#PVPPOINTS,40023:940,40024:940,40025:940,40026:940,40027:940,40028:940,40029:940,40030:940,40031:940,40032:940,40033:940,40034:940,40035:940,40036:940,40037:940,40038:940,40039:940,40040:940,40041:940,40042:940,40043:940,40044:940,40010:2590,40011:2590,14802:450,16770:1000,12208:50,14592:50,13585:450,12902:500,16260:2300,16261:2300,16396:2300,16394:2300,12501:20,12502:20,12503:20,12504:20,12505:20,12506:20,25464:40

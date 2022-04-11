@@ -1,0 +1,39 @@
+	izlude,145,182,4	script	ExchangePointsNew	562,{
+    mes "^FF0000[กิจกรรม]";
+	mes "สามารถนำไอเท็มกิจกรรม มาแลกเปลี่ยน";
+	mes "เป็น Event Coin";
+	mes "ไอเท็มจาก ocp ปัจจุบัน สามารถนำมาแลกได้";
+	mes "โปรดอ่านรายละเอียดให้ครบถ้วน";
+	next;
+for(.@i=0;.@i<getarraysize(.Exchange);.@i+=4){
+	mes "^FF0000[รายการแลกเปลี่ยน]";
+	mes (++.@x)+". "+.Exchange[.@i+1]+"x "+getitemname(.Exchange[.@i])+" = "+.Exchange[.@i+3]+"x "+getitemname(.Exchange[.@i+2]);
+	set .@menu$,.@menu$+getitemname(.Exchange[.@i])+":";
+}
+
+set .@choice,select(.@menu$)-1;
+next;
+if(countitem(.Exchange[.@choice*4])<.Exchange[.@choice*4+1]){
+	mes "ไม่มีวัสดุในการแลกเปลี่ยน";
+	end;
+}
+	mes "แลกเปลี่ยน Event Coin สำเร็จ";
+	delitem .Exchange[.@choice*4],.Exchange[.@choice*4+1];
+	getitem .Exchange[.@choice*4+2],.Exchange[.@choice*4+3];
+end;
+
+OnInit:
+	//<arg 1: Material;>, <arg 2: Material Amount;>, <arg 3:Prize;>, <arg 4: Prize amount;>,{Repeat}
+	setarray .Exchange[0],31249,1,32693,5,
+	                      31472,1,32693,5,
+						  20348,1,32693,5,
+						  20249,1,32693,5,
+						  19934,1,32693,5,
+						  20195,1,32693,5,
+						  19594,1,32693,5;
+						  
+end;
+
+}
+	
+	

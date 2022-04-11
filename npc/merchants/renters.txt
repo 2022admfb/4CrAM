@@ -1,0 +1,233 @@
+//===== rAthena Script ======================================= 
+//= Renters
+//===== By:================================================== 
+//= kobra_k88, mod by Lupus
+//===== Current Version:===================================== 
+//= 2.2
+//===== Compatible With:===================================== 
+//= rAthena Project
+//===== Description:========================================= 
+//= Knight and Crusader Peco Peco Breeders, Falcon Breeder scripts
+//===== Additional Comments:================================= 
+//= Fully working
+//= Added another Falcon Master into the Hunters Guild [Lupus]
+//= 1.2:replaced checkoption(x) with checkriding,checkfalcon [Lupus]
+//= 1.3:Added support Adv Classes + Baby Class [Lupus]
+//= 1.4:Added different prices for normal, advanced and baby classes
+//= but you could set them to the same [Lupus]
+//= 1.5:Fixed spelling mistakes [Nexon]
+//= 1.5a:Small fix (Falcon Taming -> Falcon Mastery) [Komurka]
+//= 1.6:Moved the Falcon Master to Hugel [Poki#3]
+//= 1.7 Updated to Aegis 10.3 standards. [L0ne_W0lf]
+//= 1.8 Added 3rd Job creature NPCs (Dragon/Gryphon) [L0ne_W0lf]
+//= 1.9 Enabled Gryphon Renter NPC and added Mado Gear NPC. [Masao]
+//= 2.0 Fixed problems with third classes and new mounts. [Euphy]
+//= 2.1 Moved some renters to a separate renewal file. [Daegaladh]
+//= 2.2 Added warg checks. [Euphy]
+//============================================================ 
+
+// PecoPeco Breeder (for Knights) ::breeder
+//============================================================
+prontera,55,350,5	script	Peco Peco Breeder#knt	105,{
+	if(Upper==0) set .@price,2500; //Normal Peco - default price
+	if(Upper==1) set .@price,2500; //Armored Peco
+	if(Upper==2) set .@price,2500; //Baby Peco
+
+	mes "[ PecoPeco  Breeder ]";
+	if (BaseJob == Job_Knight && Class < Job_Rune_Knight) {
+		mes "ยินดีต้อนรับ.";
+		mes "อัศวินผู้มีเกียรติ";
+		mes "คุณต้องการเช่า";
+		mes "Peco Peco?";
+		mes "ค่าธรรมเนียมคือ "+.@price+" Zeny";
+		next;
+		switch(select("เช่า Peco Peco:ยกเลิก")) {
+		case 1:
+			if (Zeny < .@price) {
+				mes "[ PecoPeco  Breeder ]";
+				mes "ไม่สามารถทำได้";
+				mes "มี zeny เพียงพอ";
+				mes "คุณ ...";
+				//mes "ล้มละลาย?";
+				close;
+			}
+			else if(getskilllv("KN_RIDING") == 0) {
+				mes "[ PecoPeco  Breeder ]";
+				mes "ฉันขอโทษ แต่คุณ";
+				mes "ไม่มีสิทธิ์ได้รับสิ่งนี้";
+				mes "กรุณาไปเรียนรู้";
+				mes "ทักษะ Peco Peco Ride ก่อน";
+				close;
+			}
+			else if(checkriding()) {
+				mes "[ PecoPeco  Breeder ]";
+				mes "คุณมีอยู่แล้ว";
+				//mes "ติดตั้งบน";
+				mes "Peco Peco.";
+				close;
+			}
+			else if(ismounting()) {
+				mes "[ PecoPeco  Breeder ]";
+				mes "กรุณาลบเงินสดของคุณ";
+				close;
+			}
+			set Zeny, Zeny-.@price;
+			setriding;
+			close;
+		case 2:
+			mes "[ PecoPeco  Breeder ]";
+			mes "เข้าใจละ.";
+			mes "ดีละถ้าอย่างนั้น,";
+			mes "โชคดี.";
+			close;
+		}
+	} else {
+		mes "ฉันขอโทษ แต่สิ่งเหล่านี้";
+		mes "Peco Pecos เท่านั้น";
+		mes "มีให้สำหรับ Knights";
+		mes "และ Lord Knight";
+		close;
+	}
+}
+
+// Grand PecoPeco Breeder (for Crusaders)
+//============================================================
+prontera,232,318,3	script	Peco Peco Breeder#cru	105,{
+	if(Upper==0) set .@price,3500; //Normal Peco - default price
+	if(Upper==1) set .@price,3500; //Armored Peco
+	if(Upper==2) set .@price,3500; //Baby Peco
+
+	mes "[ PecoPeco  Breeder ]";
+	if (BaseJob == Job_Crusader && Class < Job_Rune_Knight) {
+		if(Upper != 1 ) mes "ยินดีต้อนรับ Crusader";
+		else mes "ยินดีต้อนรับ Paladin";
+		//mes "เรามีความพิเศษ";
+		mes "เตรียม Peco Peco";
+		mes "สำหรับคุณ. ให้เช่า";
+		mes "จะเสียค่าใช้จ่าย "+.@price+" Zeny";
+		next;
+		switch(select("เช่า PecoPeco:ออก")) {
+		case 1:
+			if (Zeny < .@price) {
+				mes "[ PecoPeco  Breeder ]";
+				mes "ไม่สามารถทำได้";
+				mes "มี zeny เพียงพอ";
+				mes "ถ้าคุณชอบ";
+				mes "Peco Peco";
+				mes "นำ "+.@price+" zeny ...";
+				close;
+			}
+			else if(getskilllv("KN_RIDING") == 0) {
+				mes "[ PecoPeco  Breeder ]";
+				mes "ก่อนอื่นคุณต้องเรียนรู้";
+				mes "เพื่อขี่ PecoPeco มาก่อน";
+				//mes "ฉันสามารถเช่าให้คุณได้";
+				close;
+			}
+			else if(checkriding()) {
+				mes "[ PecoPeco  Breeder ]";
+				mes "มีอยู่แล้ว";
+				mes "Peco Peco";
+				close;
+			}
+			else if(ismounting()) {
+				mes "[ PecoPeco  Breeder ]";
+				mes "กรุณาลบเงินสดของคุณ";
+				close;
+			}
+			set Zeny, Zeny-.@price;
+			setriding;
+			close;
+		case 2:
+			mes "[ PecoPeco  Breeder ]";
+			mes "เจอกันรอบหน้า.";
+			close;
+		}
+	} else {
+		mes "ฉันจะทำอะไรให้คุณได้บ้าง?";
+		mes "โปรดทราบว่า";
+		mes "เช่า Peco Peco นี้";
+		mes "บริการอย่างเคร่งครัดสำหรับ";
+		mes "Crusederและ Paladins";
+		close;
+	}
+}
+
+// Falcon Master ::breeder
+//============================================================
+hu_in01,381,304,5	script	Falcon Breeder#hnt	105,{
+	if(Upper==0) set .@price,2500; //Normal Falcon - default price
+	if(Upper==1) set .@price,2500; //Scarf Falcon
+	if(Upper==2) set .@price,2500; //Baby Falcon
+
+	mes "[ Falcon Breeder ]";
+	if (BaseJob == Job_Hunter) {
+		if (checkwug()) {
+			mes "อืม ...";
+			mes "คุณไม่สามารถเช่าเหยี่ยวได้";
+			mes "จนกว่าคุณจะยกเลิก warg ของคุณก่อน!";
+			close;
+		}
+		mes "คุณต้องการเหยี่ยวหรือไม่?";
+		//mes "คุณสามารถเช่าของคุณเอง";
+		mes "นกล่าเหยื่อคู่ใจ";
+		mes "ค่าธรรมเนียมเพียง "+.@price+" zeny ~";
+		next;
+		switch(select("เช่า Falcon:ยกเลิก")) {
+		case 1:
+			if (checkwug()) {
+				mes "[ Falcon Breeder ]";
+				mes "อืม ...";
+				mes "คุณไม่สามารถเช่าเหยี่ยวได้";
+				mes "จนกว่าคุณจะยกเลิก warg ของคุณก่อน!";
+				close;
+			}
+			if (Zeny < .@price) {
+				mes "[ Falcon Breeder ]";
+				mes "นี่คืออะไร?";
+				mes "คุณไม่มี";
+				mes "zeny พอแล้ว?!";
+				mes "คุณควรเริ่มต้นใหม่";
+				mes "ล่าเงิน";
+				mes "แทนที่จะเป็นสัตว์ประหลาด ~";
+				close;
+			}
+			else if(getskilllv("HT_FALCON") == 0) {
+				mes "[ Falcon Breeder ]";
+				//mes "เอ้ย ~";
+				mes "ไปเรียนรู้วิธีการ";
+				mes "ใช้ เหยี่ยว ก่อน";
+				//mes "อันดับแรก! ฉันไม่สามารถเช่าได้";
+				//mes "ให้คุณถ้าคุณทำไม่ได้";
+				//mes "จัดการมันคุณก็รู้";
+				close;
+			}
+			else if(checkfalcon()) {
+				mes "[ Falcon Breeder ]";
+				mes "อืม ...";
+				mes "คุณมีอยู่แล้ว";
+				mes "เหยี่ยว";
+				//mes "ที่นั่นคุณไม่เห็นหรือ?";
+				close;
+			}
+			set Zeny, Zeny-.@price;
+			setfalcon;
+			close;
+		case 2:
+			mes "[ Falcon Breeder ]";
+			mes "มาได้ ทุกเมื่อ ถ้าคุณ ต้องการ";
+			//mes "คุณจะไป? เหล่านี้";
+			//mes "ฟอลคอนเป็นอันดับต้น ๆ";
+			//mes "รับรองเลย! โอ้โห ~";
+			close;
+		}
+	} else {
+		//mes "ยัยโง่!";
+		//mes "ฟอลคอนทำได้เท่านั้น";
+		mes "Falcon สามารถใช้โดย Hunters";
+		mes "และ Snipers?";
+		mes "... หึหึอิจฉา?";
+		close;
+	}
+}
+

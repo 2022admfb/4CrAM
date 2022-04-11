@@ -1,0 +1,4611 @@
+//===== rAthena Script =======================================
+//= Nightmarish Jitterbug
+//===== Description: =========================================
+//= [Walkthrough Conversion]
+//= Nightmarish Jitterbug Instance
+//===== Changelogs: ==========================================
+//= 1.0 First version. [Capuche]
+//= 1.0.1 Fix Cutin Aigu. [mazvi]
+//============================================================
+
+moc_para01,26,95,5	script	Roel#sara	4_M_ROEL,{
+	cutin "roel01",0;
+	if (BaseLevel < 120) {
+		mes "[Roel]";
+		mes "เรากำลังมองหานักผจญภัยที่สามารถเข้าร่วมการผจญภัยครั้งใหม่กับเราได้หากคุณอยู่ในระดับที่จะยอมรับเควสของ IGU ได้แสดงว่าคุณมีคุณสมบัติแล้ว";
+		close3;
+	}
+	switch( isbegin_quest(13183) ) {// Nightmarish Jitterbug: Completed
+	case 0:
+		switch( isbegin_quest(13181) ) {// Nightmarish Jitterbug
+		case 0:
+			mes "[Roel]";
+			mes "ฉันชื่อโรเอลสมาชิกใหม่ของกิลด์ปีกสีขาวโรเทอร์ให้ฉันค้นหานิวออซทุกที่และฉันก็พบเบาะแสบางอย่างเกี่ยวกับที่อยู่ของเขา";
+			next;
+			mes "[Roel]";
+			mes "รับสมัครผู้มีโอกาสเป็นกิลด์! เข้าร่วมกับเราในการค้นหานิวออซอดีตมาสเตอร์ของเรา! คุณสนใจไหม";
+			next;
+			if (select( "Yes.", "No." ) == 1) {
+				cutin "roel02",0;
+				mes "[Roel]";
+				mes "ช่างเป็นงานที่ยากจริงๆฉันค้นหาจากจุดจบนี้ไปยังจุดสิ้นสุดของโลกและไม่พบทั้งที่ซ่อนหรือเส้นผมของเขา";
+				next;
+				cutin "roel01",0;
+				mes "[Roel]";
+				mes "ฉันพยายามตามรอยเขา แต่ก็ไม่มีประโยชน์";
+				next;
+				mes "[Roel]";
+				mes "นิวออซเป็นนักผจญภัยตัวยงที่ไม่เคยอยู่ที่เดียวนานพอผู้คนมากมายอ้างว่าเห็นเขา แต่ไม่มีใครจำได้ว่าเขาไปที่ไหน";
+				next;
+				mes "[Roel]";
+				mes "หลังจากนั้นไม่นานฉันต้องยอมแพ้กับการตามหาเขาฉันเสียเวลาเปล่า ๆ ";
+				next;
+				mes "[Roel]";
+				mes "ฉันหันไปมองโลกอื่นและที่นั่นฉันได้พบกับผู้เห็นเหตุการณ์บางคนพวกเขาพาฉันไปยังสถานที่สุดท้ายที่ Newoz เคยเห็น";
+				next;
+				mes "[Roel]";
+				mes "กระบวนการทั้งหมดมันเจ็บปวดถ้าไม่ใช่เพราะ Runane เราคงไม่สามารถจดจำตำแหน่งสุดท้ายของเขาหรือออกไปจากมันได้";
+				next;
+				mes "[Roel]";
+				mes "หากคุณสนใจที่จะเข้าร่วมกับเราโปรดพูดคุยกับ Runane เรามีการผจญภัยที่น่าตื่นเต้นรออยู่ข้างหน้า";
+				setquest 13181;// Nightmarish Jitterbug
+			}
+			close3;
+		case 1:
+			mes "[Roel]";
+			mes "หากคุณสนใจที่จะร่วมงานกับเราโปรดพูดคุยกับ Runane";
+			close3;
+		case 2:
+			cutin "roel03",0;
+			mes "[Roel]";
+			mes "เป็นการผจญภัยครั้งแรกของฉันในฐานะสมาชิกของ White Wings ฉันแทบรอไม่ไหวแล้ว!";
+			erasequest 13181;
+			setquest 13183;// Nightmarish Jitterbug: Completed
+			completequest 13183;
+			getexp 1500000,500000;
+			close3;
+		}
+		end;
+	case 1:
+	case 2:
+		switch( isbegin_quest(13181) ) {
+		case 0:
+			mes "[Roel]";
+			mes "ตอนนี้คุณคิดว่าชาโลชิอยู่ที่ไหนพื้นที่ที่เราพบกับชาโลชิติดอยู่ในห้วงเวลาซ้ำแล้วซ้ำเล่า";
+			next;
+			mes "[Roel]";
+			mes "Mingmin คิดว่าปรากฏการณ์นี้มีส่วนเกี่ยวข้องกับรอยแตกมิติและความสามารถของชาโลชิ";
+			next;
+			mes "[Roel]";
+			mes "ฉันไม่ค่อยเข้าใจเธอ แต่ Runane บอกว่าพอร์ทัลไปยังสถานที่ที่เธอจดจำนั้นขึ้นอยู่กับเวลาแทนที่จะเป็นช่องว่าง";
+			next;
+			mes "[Roel]";
+			mes "ถ้าคุณต้องการคุณสามารถย้อนเวลากลับไปและสัมผัสกับเหตุการณ์เดิม ๆ ได้คุณต้องการเริ่มการผจญภัยอีกครั้งหรือไม่";
+			next;
+			if (select( "Yes.", "No." ) == 1) {
+				mes "[Roel]";
+				mes "ครั้งนี้คุณอาจมีประสบการณ์ที่แตกต่างออกไปในสถานที่แห่งนี้ซึ่งเต็มไปด้วยความลึกลับที่ไม่อาจหยั่งรู้ได้โปรดขอให้ Runane เปิดประตูให้คุณ";
+				next;
+				mes "[Roel]";
+				mes "คราวนี้อาจจะไม่ต้องออกจากชาโลชิก็ได้";
+				setquest 13181;// Nightmarish Jitterbug
+			}
+			close3;
+		case 1:
+			mes "[Roel]";
+			mes "คุณพร้อมหรือยังคุณสามารถยอมแพ้ได้ถ้าคุณไม่มั่นใจ";
+			next;
+			if (select( "ไม่ "," ยอมแพ้" ) == 1) {
+				mes "[Roel]";
+				mes "นั่นคือวิญญาณ!";
+				close3;
+			}
+			erasequest 13181;
+			close3;
+		case 2:
+			cutin "roel03",0;
+			mes "[Roel]";
+			mes "การผจญภัยสนุกเสมอเป็นนักผจญภัยที่ยอดเยี่ยมโอเคไหม";
+			erasequest 13181;
+			getexp 1500000,500000;
+			close3;
+		}
+	}
+}
+
+moc_para01,29,95,5	script	Runane#sara	4_F_RUNAIN,{
+	cutin "lunain01",0;
+	if (BaseLevel < 120) {
+		mes "[Runane]";
+		mes "^ff0000You must be Level 120.^000000";
+		close3;
+	}
+	if (isbegin_quest(13181) != 1) {
+		mes "[Runane]";
+		mes "^ ff0000 หากคุณต้องการใช้พอร์ทัลมิติของฉันคุณต้องคุยกับ Roel ก่อนพอร์ทัลไม่เปิดสำหรับทุกคน ^ 000000";
+		close3;
+	}
+	.@party_id = getcharid(1);
+	.@md_name$ = "Nightmarish Jitterbug";
+	if (.@party_id < 1) {
+		mes "[Runane]";
+		mes "^ ff0000 ก่อนอื่นคุณต้องจัดตั้ง / เข้าร่วมปาร์ตี้อย่างน้อย 1 คนเพื่อเข้าสู่ดันเจี้ยนนี้ ^ 000000";
+		close3;
+	}
+	switch( checkquest(13182,PLAYTIME) ) {
+	case -1:
+		break;
+	case 0:
+	case 1:
+		mes "[Runane]";
+		mes "^ ff0000 พอร์ทัลมิตินี้ไม่สามารถเข้าถึงได้เป็นเวลา 20 ชั่วโมงหลังจากการเข้าถึงครั้งสุดท้ายของคุณ ^ 000000";
+		close3;
+	case 2:
+		mes "[Runane]";
+		mes "ตอนนี้พอร์ทัลพร้อมใช้งานแล้ว";
+		erasequest 13182;// Nightmarish Jitterbug: Waiting
+		close3;
+	}
+	if (is_party_leader() == true)
+		.@menu$ = "Open the dimensional portal.";
+	switch( select( .@menu$, "Enter " + .@md_name$ + ".", "Cancel." ) ) {
+	case 1:
+		if (instance_create(.@md_name$) < 0) {
+			mes "Party Name: " + getpartyname( getcharid(1) );
+			mes "Party Leader: " + strcharinfo(0);
+			mes "^0000ff" + .@md_name$ + " ^000000- Reservation Failed!";
+			close3;
+		}
+		mes "[Runane]";
+		mes "^ ff0000 การเตรียมพอร์ทัลมิติ ... ^ 000000";
+		mes "^ ff0000 กรุณารอสักครู่ ^ 000000";
+		close3;
+	case 2:
+		switch( instance_enter(.@md_name$) ) {
+		case IE_NOMEMBER:
+			close3;
+		case IE_NOINSTANCE:
+			if (is_party_leader() == false) {
+				mes "[Runane]";
+				mes "Teleporting...";
+				next;
+				mes "[Runane]";
+				mes "^ ff0000 โปรดทราบว่าพอร์ทัลนี้ไม่สามารถเข้าถึงได้เป็นเวลา 23 ชั่วโมงหลังจากการเข้าถึงครั้งสุดท้ายของคุณ ^ 000000";
+				next;
+			}
+			mes "[Runane]";
+			mes "^ ff0000 หัวหน้าปาร์ตี้ของคุณยังไม่ได้สร้าง Time Crack ^ 000000";
+			close3;
+		case IE_OTHER:
+			mes "เกิดข้อผิดพลาดที่ไม่รู้จัก";
+			close3;
+		case IE_OK:
+			setquest 13182;// Nightmarish Jitterbug: Waiting
+			mapannounce "moc_para01", "" + strcharinfo(0) + " of the party, " + getpartyname( getcharid(1) ) + ", is entering the " + .@md_name$ + ".", bc_map, 0xFF99;
+			specialeffect2 EF_READYPORTAL2;
+			specialeffect2 EF_PORTAL2;
+			// warp "1@jtb",16,17;
+			end;
+		}
+	case 3:
+		cutin "",255;
+		end;
+	}
+}
+
+// Warps
+1@jtb,45,47,0	warp	1 Door 1	3,3,1@jtb,100,14
+1@jtb,135,17,0	warp	2 Door 1	3,3,1@jtb,184,17
+1@jtb,220,23,0	warp	3 Door 1	3,3,1@jtb,270,13
+1@jtb,306,47,0	warp	4 Door 1	3,3,1@jtb,11,102
+
+1@jtb,39,133,0	warp	6 Door 1	3,3,1@jtb,96,100
+1@jtb,133,106,0	warp	7 Door 1	3,3,1@jtb,183,128
+1@jtb,209,133,0	warp	8 Door 1	3,3,1@jtb,277,95
+1@jtb,307,122,0	warp	9 Door 1	3,3,1@jtb,359,97
+1@jtb,386,133,0	warp	10 Door 1	3,3,1@jtb,13,214
+1@jtb,49,196,0	warp	11 Door 1	3,3,1@jtb,95,201
+1@jtb,133,197,0	warp	12 Door 1	3,3,1@jtb,181,198
+1@jtb,218,203,0	warp	13 Door 1	3,3,1@jtb,269,206
+1@jtb,307,195,0	warp	14 Door 1	3,3,1@jtb,355,214
+1@jtb,388,182,0	warp	15 Door 1	3,3,1@jtb,13,274
+1@jtb,47,302,0	warp	16 Door 1	3,3,1@jtb,99,298
+1@jtb,134,275,0	warp	17 Door 1	3,3,1@jtb,200,271
+1@jtb,199,305,0	warp	18 Door 1	3,3,1@jtb,13,384
+1@jtb,49,365,0	warp	19 Door 1	3,3,1@jtb,107,389
+1@jtb,111,352,0	warp	20 Door 1	3,3,1@jtb,184,385
+1@jtb,220,359,0	warp	21 Door 1	3,3,1@jtb,287,355
+1@jtb,311,358,0	warp	22 Door 1	3,3,1@jtb,335,320
+1@jtb,325,325,0	warp	23 Door 1	10,10,1@jtb,360,23
+
+1@jtb,391,30,0	script	24 Door 1	WARPNPC,3,3,{
+	end;
+OnTouch_:
+	if (isbegin_quest(13181) == 1)
+		completequest 13181;
+	warp "moc_para01",30,88;
+	end;
+}
+
+
+// Room 1 : Entrance
+1@jtb,28,30,5	script	Newoz#01	4_M_NEWOZ,{
+	if ('room != 1 || is_party_leader() == false) {
+		cutin "nines02",0;
+		mes "[Newoz]";
+		mes "Our adventure hasn't started yet, and I'm already hungry.";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2) {
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+		if ('room == 1 && is_party_leader() == true) {
+			if ('additionnal_option) {// officially not disabled when choose hurry
+				disablenpc instance_npcname("Roel#01");
+				disablenpc instance_npcname("Melody-Jack#01");
+				disablenpc instance_npcname("Arang#01");
+				disablenpc instance_npcname("Lagi#01");
+				disablenpc instance_npcname("Aigu#01");
+				disablenpc instance_npcname("Mingmin#01");
+				disablenpc instance_npcname("Runane#01");
+				disablenpc instance_npcname("Gelka#01");
+				disablenpc instance_npcname("Roter#01");
+				disablenpc instance_npcname("Newoz#01");
+			}
+			donpcevent 'jitterbug_main$ + "::OnNextIs2";
+		}
+		close;
+	}
+	.@roel$ = instance_npcname("Roel#01");
+	.@melody$ = instance_npcname("Melody-Jack#01");
+	.@arang$ = instance_npcname("Arang#01");
+	.@lagi$ = instance_npcname("Lagi#01");
+	.@aigu$ = instance_npcname("Aigu#01");
+	.@mingmin$ = instance_npcname("Mingmin#01");
+	.@runane$ = instance_npcname("Runane#01");
+	.@gelka$ = instance_npcname("Gelka#01");
+	.@roter$ = instance_npcname("Roter#01");
+
+	cutin "nines02",0;
+	mes "[Newoz]";
+	mes "ดูเหมือนทุกคนจะอยู่ที่นี่";
+	npctalk "Newoz: It seems everyone's here.";
+	emotion ET_DELIGHT;
+	next;
+	cutin "rote03",0;
+	mes "[Roter]";
+	mes "ฉันบอกคุณแล้ว Newoz เราปล่อยเรื่องนี้ไปไม่ได้";
+	npctalk "Roter: I told you, Newoz. We can't just let this go.", .@roter$;
+	emotion ET_FRET, getnpcid(0,.@roter$);
+	next;
+	if ('room == 1 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs2";
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "เมื่อพิจารณาถึงเวลาและเงินที่เราเสียไปกับคุณคุณสมควรได้รับอาหารในตะกร้าที่เต็มไปด้วยเห็ดพิษ";
+	npctalk "Mingmin: Considering the time and money we wasted on you, you deserve to be fed a basket full of poisonous mushrooms.", .@mingmin$;
+	next;
+	cutin "nines04",0;
+	emotion ET_DELIGHT;
+	mes "[Newoz]";
+	mes "ฉันจะอธิบายทุกอย่างและพอกับเห็ดพิษฉันกินเห็ดไม่ได้เลย";
+	npctalk "Newoz: I'll explain everything. And enough with the poisonous mushrooms. I can't eat mushrooms at all.";
+	next;
+	cutin "igu05",2;
+	mes "[Aigu]";
+	mes "นิวออซคุณกินอะไรไม่ได้เลยนอกจากเนื้อเฮ้อดีใจที่คุณปลอดภัย";
+	npctalk "Aigu: Newoz, you can't eat anything but meat. Sigh, I'm glad you're safe.", .@aigu$;
+	next;
+	cutin "gelca03",0;
+	mes "[Gelka]";
+	mes "คุณคือ Newoz ที่มีชื่อเสียงยินดีที่ได้รู้จักเจ้านายของฉันบอกฉันหลายสิ่งที่ดี ... ";
+	npctalk "Gelka: You're the famous Newoz! Nice to meet you. My master told me many great things...", .@gelka$;
+	next;
+	cutin "rote03",0;
+	mes "[Roter]";
+	mes "พอแล้วเขาเป็นแค่คนงี่เง่าไร้ทิศทาง";
+	npctalk "Roter: Enough. He's just an idiot with no sense of direction.", .@roter$;
+	next;
+	cutin "arang02",2;
+	mes "[Arang]";
+	mes "ว้าว Newoz ตาคุณดูพองกว่าเดิม";
+	npctalk "Arang: Wow, Newoz! Your eyes look puffier than ever.", .@arang$;
+	next;
+	cutin "nines02",0;
+	mes "[Newoz]";
+	mes "สวัสดีอารังอารีรังเป็นไงบ้างฮ้าพาคุณมาที่นี่";
+	npctalk "Newoz: Hello, Arang. How's Arirang? Heh. What brings you here?";
+	next;
+	cutin "rote03",0;
+	mes "[Roter]";
+	mes "Newoz คุณรู้ไหมว่าคุณหายไปนานแค่ไหนเรายังคัดเลือกกิลด์ใหม่เพื่อค้นหาคุณและ ... ";
+	npctalk "Roter: Newoz, do you know how long you've been missing? We even recruited new guildsmen to find you, and...", .@roter$;
+	next;
+	cutin "lunain01",0;
+	mes "[Runane]";
+	mes "สวัสดียินดีที่ได้รู้จักฉันรู้สึกเป็นเกียรติที่ได้พบกับนิวออซผู้โด่งดังด้วยตนเอง";
+	npctalk "Runane: Hi, nice to meet you. I'm honored to meet the famous Newoz in person.", .@runane$;
+	next;
+	cutin "roel01",2;
+	mes "[Roel]";
+	mes " สวัสดีฉันชื่อโรเอล Runane และฉันได้เข้าร่วมกิลด์ด้วยกัน";
+	npctalk "Roel: H-hello, my name is Roel. Runane and I've joined the guild together. Nice to meet you.", .@roel$;
+	next;
+	cutin "rote02",0;
+	mes "[Roter]";
+	mes "ตามนโยบายกิลด์ข้อ 8 ตอนนี้ฉันเป็นนายของกิลด์นี้และคุณเป็นแค่สมาชิก";
+	npctalk "Roter: In accordance with the Guild Policy, Article 8, I'm now the master of this guild, and you're just a member.", .@roter$;
+	next;
+	cutin "nines02",0;
+	mes "[Newoz]";
+	mes "ขอแสดงความยินดีด้วยครับอาจารย์";
+	npctalk "Newoz: Oh, congratulations, Master.";
+	next;
+	cutin "rote01",0;
+	emotion ET_THINK, getnpcid(0,.@roter$);
+	mes "[Roter]";
+	mes "... นั่นไม่ใช่สิ่งที่ฉันคาดหวังคุณไม่เสียใจเลยเหรอ";
+	npctalk "Roter: ...That wasn't what I expected. Aren't you upset at all?", .@roter$;
+	next;
+	cutin "",255;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "คุณคาดหวังอะไรทั้งหมดที่เขาคิดคือการผจญภัยสัตว์ประหลาดและสมบัติ";
+	npctalk "Melody-Jack: What did you expect? All he thinks about is adventure, monsters, and treasure.", .@melody$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "อ๊ะมีผีไหมหรือฉันได้ยินเสียงอะไร";
+	npctalk "Newoz: Argh, is there a ghost? Or am I hearing things?";
+	next;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	cutin "",255;
+	mes "[Melody-Jack]";
+	mes "...";
+	npctalk "Melody-Jack: ...", .@melody$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "ต๊ายเป็นคุณแจ็คนานแล้วไม่เจอกันทุกคน";
+	npctalk "Newoz: Whew, it's you Jack. Long time, no see, everyone.";
+	next;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	cutin "",255;
+	mes "[Melody-Jack]";
+	mes "นี่ไม่ใช่เวลาที่ดีสำหรับการแชทฉันสัมผัสได้ถึงบางสิ่งจากพื้นที่คุณยืนอยู่และที่ฉันซ่อนตัวอยู่";
+	npctalk "Melody-Jack: This isn't a good time for chit-chat. I'm sensing something from the very floor where you're standing and where I'm hiding.", .@melody$;
+	next;
+	cutin "arang03",2;
+	mes "[Arang]";
+	mes "แจ็คทำไมคุณถึงซ่อนตัวเหมือนคนขี้ขลาด";
+	npctalk "Arang: Jack, is that why you're hiding like a coward?", .@arang$;
+	next;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	cutin "",255;
+	mes "[Melody-Jack]";
+	mes "มันเป็นเรื่องธรรมดาที่หัวขโมยรุ่นเก๋าอย่างฉันจะซ่อนตัวอยู่ในดินแดนของศัตรู";
+	npctalk "Melody-Jack: It comes natural for veteran thieves like me to hide themselves in potential enemy territories.", .@melody$;
+	next;
+	mes "[Melody-Jack]";
+	mes "ฉันไม่ได้ซ่อนตัวเพราะสไปรท์ของฉันยังไม่พร้อม!";
+	npctalk "Melody-Jack: I'm not hiding because my sprite is not yet ready!", .@melody$;
+	next;
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "ฉันเห็นด้วยกับแจ็คทุกอย่างเกี่ยวกับสถานที่นี้ - จากอากาศสู่ดิน - กรีดร้องอย่างผิดธรรมชาติ";
+	npctalk "Mingmin: I agree with Jack. Everything about this place--from the air to the soil--screams unnatural.", .@mingmin$;
+	next;
+	cutin "ragi01",2;
+	mes "[Lagi]";
+	mes "มันอาจจะเหนือธรรมชาติ?";
+	npctalk "Lagi: Could it be supernatural?", .@lagi$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "หรือทางโลก";
+	npctalk "Newoz: Or otherworldly.";
+	next;
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "...";
+	npctalk "Mingmin: ...", .@mingmin$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "คุณคือ Lagi ใช่ไหมฉันชอบวิธีที่คุณคิดฉันชอบที่จะทำงานร่วมกับคุณในบางครั้ง";
+	npctalk "Newoz: You're Lagi, right? I like the way you think. I'd love to work with you sometime.";
+	next;
+	cutin "lunain02",0;
+	mes "[Runane]";
+	mes "ฉันเข้าร่วมกิลด์นี้เพื่อพบคุณนิวออซคุณมีแฟนหรือยัง";
+	npctalk "Runane: I've joined this guild to meet you, Newoz. Do you have a girlfriend?", .@runane$;
+	next;
+	cutin "igu05",2;
+	mes "[Aigu]";
+	mes "คุณไม่กล้า - ฉันเรียกเขาว่า dib ก่อน!";
+	npctalk "Aigu: Don't you dare--I called dibs on him first!", .@aigu$;
+	next;
+	cutin "lunain03",0;
+	mes "[Runane]";
+	mes "ฉันไม่คิดว่าเขาจะรู้นะนิวออซ?";
+	npctalk "Runane: I don't think he knows that. Do you, Newoz?", .@runane$;
+	next;
+	cutin "igu04",2;
+	mes "[Aigu]";
+	mes "ฉันไม่ได้ ... ";
+	npctalk "Aigu: Well, I didn't...", .@aigu$;
+	next;
+	cutin "lunain01",0;
+	mes "[Runane]";
+	mes "* Snort * ถ้าอย่างนั้นเขาก็เป็นเกมที่ยุติธรรม!";
+	npctalk "Runane: *Snort* Then he's fair game!", .@runane$;
+	next;
+	cutin "gelca02",0;
+	mes "[Gelka]";
+	mes "อืมบทสนทนาดูเหมือนจะหายไป ... ";
+	npctalk "Gelka: Um, the conversation seems to have gone...", .@gelka$;
+	next;
+	cutin "ragi03",2;
+	mes "[Lagi]";
+	mes "เธอสามารถเปลี่ยนวิชาได้เร็วเกินกว่าที่ Arclouse จะร่ายเพิ่ม AGI ได้";
+	npctalk "Lagi: She can change subjects more quickly than an Arclouse can cast Increase AGI.", .@lagi$;
+	next;
+	cutin "arang02",0;
+	mes "[Arang]";
+	mes "พวกเขาแข่งกับ Newoz หรือเปล่าฉันก็อยากได้เหมือนกัน!";
+	npctalk "Arang: Are they competing over Newoz? I want in, too!", .@arang$;
+	next;
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "... ขอโทษที่รบกวนพวกคุณ แต่ฉันคิดว่ามีอะไรบางอย่างอยู่ตรงนั้น";
+	npctalk "Mingmin: ...Sorry to bother you guys, but I think something's over there.", .@mingmin$;
+	next;
+	cutin "roel01",2;
+	mes "[Roel]";
+	mes "บางทีมันอาจจะเป็นสัตว์ประหลาดคุณอยากให้ไปตรวจไหม";
+	npctalk "Roel: Perhaps it's monsters. Do you want me to go check?", .@roel$;
+	next;
+	cutin "lunain04",0;
+	mes "[Runane]";
+	mes "คุณอยู่ที่นี่คิดโดฉันจะไป";
+	npctalk "Runane: You stay here, kiddo. I'll go.", .@runane$;
+	next;
+	cutin "igu05",2;
+	mes "[Aigu]";
+	mes "เดี๋ยวก่อนเรายังไม่เสร็จ!";
+	npctalk "Aigu: Wait, we're not finished here!", .@aigu$;
+	next;
+	cutin "ragi01",0;
+	mes "[Lagi]";
+	mes "โอ้ทั้งคู่จากไปแล้ว";
+	npctalk "Lagi: Oh, both of them left.", .@lagi$;
+	next;
+	disablenpc .@aigu$;
+	disablenpc .@runane$;
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "นิวออซเธอเป็นเหมือนแม่เหล็กที่บ้าคลั่ง";
+	npctalk "Roter: Newoz, you're like a magnet for crazy.", .@roter$;
+	next;
+	cutin "gelca02",0;
+	mes "[Gelka]";
+	mes "ฉันเห็นว่าอะไรทำให้คุณหงุดหงิดได้ขนาดนี้อาจารย์";
+	npctalk "Gelka: I can see what has made you become so irritable, Master.", .@gelka$;
+	next;
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "เขาเกิดมาขี้หงุดหงิด";
+	npctalk "Mingmin: He's born irritable.", .@mingmin$;
+	next;
+	cutin "arang01",0;
+	mes "[Arang]";
+	mes "ตกลงเขารุนแรงสกปรก ... ";
+	npctalk "Arang: Agreed. He's violent, dirty...", .@arang$;
+	next;
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "โอ้ปิดมันทั้งสองคน!";
+	npctalk "Roter: Oh, shut it, both of you!", .@roter$;
+	next;
+	cutin "nines03",0;
+	mes "[Newoz]";
+	mes "นั่นทำให้ฉันนึกถึงตอนที่ Rot ยังเด็ก ... ";
+	npctalk "Newoz: That reminds me, when Rot was younger...";
+	next;
+	cutin "gelca04",0;
+	mes "[Gelka]";
+	mes "เน่าเหรอชื่อสัตว์เลี้ยงของคุณอาจารย์เป็นเพื่อนกันสองคนหรือเปล่า";
+	npctalk "Gelka: Rot? Is that your pet name, Master? Are you two friends?", .@gelka$;
+	next;
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "นั่นไงฉันจะไปแล้ว!";
+	npctalk "Roter: That does it! I'm leaving!", .@roter$;
+	next;
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "สิ่งที่แตกนั้นหรือทางเข้าที่คุณอาจเรียกว่ามันหายไปแล้วถ้าคุณอยากออกจริงๆก็ไปตามไอจี";
+	npctalk "Mingmin: That Crack thing, or the entrance as you might call it, has vanished. If you really want to leave, then follow Aigu.", .@mingmin$;
+	next;
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "หยุดแสร้งทำเป็นว่าคุณเป็นห่วงฉันฉันดูแลตัวเองได้!";
+	npctalk "Roter: Stop pretending you care about me! I can take care of myself!", .@roter$;
+	next;
+	cutin "gelca04",0;
+	mes "[Gelka]";
+	mes "อาจารย์มากับฉัน!";
+	npctalk "Gelka: Master, come with me!", .@gelka$;
+	next;
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "โอ้เรามีสมาชิกใหม่แล้วใช่ไหมเยี่ยมมากฉันมีเห็ดสองสามตัวที่ฉันอยากจะลอง ... ";
+	npctalk "Mingmin: Oh, we've got new members, huh? Great, I have a few mushrooms that I've wanted to sample...", .@mingmin$;
+	next;
+	disablenpc .@roter$;
+	disablenpc .@gelka$;
+	cutin "ragi02",2;
+	mes "[Lagi]";
+	mes "โรเอลฉันคิดว่าเราควรย้ายเหมือนกัน";
+	npctalk "Lagi: Roel, I think we should move too.", .@lagi$;
+	next;
+	cutin "roel01",2;
+	mes "[Roel]";
+	mes "Let's go.";
+	npctalk "Roel: Let's go.", .@roel$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "อารังไปกันเถอะได้เวลาผจญภัยแล้ว!";
+	npctalk "Newoz: Arang, let's go. It's time for an adventure!";
+	next;
+	disablenpc .@lagi$;
+	disablenpc .@roel$;
+	cutin "arang02",0;
+	mes "[Arang]";
+	mes "เอาล่ะ!";
+	npctalk "Arang: All righty!", .@arang$;
+	next;
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "ฉันหวังว่าจะมีอะไรให้ศึกษาอีกมากมาย";
+	npctalk "Mingmin: I hope there are lots of things to study.", .@mingmin$;
+	next;
+	cutin "",255;
+	disablenpc instance_npcname("Newoz#01");
+	mes "[" + strcharinfo(0) + "]";
+	mes "...";
+	next;
+	disablenpc .@arang$;
+	disablenpc .@mingmin$;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "...";
+	npctalk "Melody-Jack: ...", .@melody$;
+	next;
+	mes "[" + strcharinfo(0) + "]";
+	mes "...";
+	next;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "...";
+	npctalk "Melody-Jack: ...", .@melody$;
+	next;
+	mes "[Melody-Jack]";
+	mes "ไปก่อนที่พวกเขาจะลืมพวกเรา";
+	npctalk "Melody-Jack: Let's move before they forget about us.", .@melody$;
+	close3;
+}
+
+1@jtb,34,22,4	script	Roel#01	4_M_ROEL,{
+	cutin "roel01",0;
+	mes "[Roel]";
+	mes "ฉันโรเอลกิลด์ใหม่ยินดีที่ได้รู้จัก";
+	close3;
+}
+
+1@jtb,28,21,5	script	Melody-Jack#01	CLEAR_NPC,{
+	mes "[Melody-Jack]";
+	mes "Stop bothering me. Can't you see I'm hiding?!";
+	close;
+}
+
+1@jtb,31,24,4	script	Arang#01	4_F_TAEKWON,{
+	cutin "arang01",2;
+	mes "[Arang]";
+	mes "Heya!";
+	close3;
+}
+
+1@jtb,33,26,4	script	Lagi#01	4_M_RAGI,{
+	cutin "ragi01",2;
+	mes "[Lagi]";
+	mes "ฉันติดตามไอจีมาตลอดที่นี่";
+	close3;
+}
+
+1@jtb,31,28,4	script	Aigu#01	4_F_IU,{
+	cutin "igu04",2;
+	mes "[Aigu]";
+	mes "คุณดูใหม่ที่นี่ยินดีที่ได้รู้จัก!";
+	close3;
+}
+
+1@jtb,25,24,5	script	Mingmin#01	4_F_GENETIC,{
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "เขาเป็นข่าวร้ายมีปัญหาตามเขาไปทุกที่";
+	close3;
+}
+
+1@jtb,23,22,5	script	Runane#01	4_F_RUNAIN,{
+	mes "[Runane]";
+	mes "โอ้เขาเป็น Newoz ที่มีชื่อเสียงหรือไม่";
+	close;
+}
+
+1@jtb,23,26,5	script	Gelka#01	4_F_GELKA,{
+	cutin "gelca01",0;
+	mes "[Gelka]";
+	mes "ที่นี่ให้ฮีบี้ - จีบีส์แก่ฉัน";
+	close3;
+}
+
+1@jtb,25,28,5	script	Roter#01	4_M_ROTERT,{
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "... ในที่สุดเราก็ได้พบกัน Newoz!";
+	close3;
+}
+
+
+// Room 2
+1@jtb,123,45,4	script	Runane#02	4_F_RUNAIN,{
+	if ('room != 2 || is_party_leader() == false) {
+		cutin "lunain01",2;
+		mes "[Runane]";
+		mes "ได้โปรดอย่าให้มีเรื่องประหลาดใจอีกต่อไป";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2) {
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+		if ('room == 2 && is_party_leader() == true) {
+			if ('additionnal_option) {
+				disablenpc instance_npcname("Runane#02");
+				disablenpc instance_npcname("Aigu#02");
+			}
+			donpcevent 'jitterbug_main$ + "::OnNextIs3";
+		}
+		end;
+	}
+	.@shaloshi$ = instance_npcname("???#02");
+	.@aigu$ = instance_npcname("Aigu#02");
+
+	cutin "lunain01",2;
+	mes "[Runane]";
+	mes "อืมฉันรู้สึกว่ามีบางอย่างผุดขึ้นมาจากที่ใดเพื่อโจมตีเรา";
+	npctalk "Runane: Um, I have a feeling something might spring out of nowhere to attack us.";
+	next;
+	if ('room == 2 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs3";
+	cutin "shaloshi01",0;
+	mes "[???]";
+	mes "มันคืออะไร";
+	npctalk "???: What is it?", .@shaloshi$;
+	next;
+	enablenpc .@shaloshi$;
+	cutin "lunain04",2;
+	mes "[Runane]";
+	mes "*Shriek*";
+	npctalk "Runane: *Shriek*";
+	emotion ET_HUK;
+	next;
+	cutin "igu03",0;
+	mes "[Aigu]";
+	mes "MONSTER-! ... อืมก็แค่ผู้หญิง";
+	npctalk "Aigu: MONSTER-! ...Um, it's just a woman.", .@aigu$;
+	emotion ET_HUK, getnpcid(0,.@aigu$);
+	next;
+	cutin "lunain04",0;
+	mes "[Runane]";
+	mes "มีบางอย่าง! บางสิ่งบางอย่าง!";
+	npctalk "Runane: There's something! SOMETHING!";
+	next;
+	cutin "igu01",0;
+	mes "[Aigu]";
+	mes "ใจเย็น ๆ เป็นแค่ผู้หญิง";
+	npctalk "Aigu: Calm down. It's just a woman.", .@aigu$;
+	next;
+	cutin "shaloshi01",0;
+	mes "[???]";
+	mes "เสียงผู้หญิง ... ";
+	npctalk "???: Voice of a man...", .@shaloshi$;
+	emotion ET_QUESTION, getnpcid(0,.@shaloshi$);
+	next;
+	cutin "igu01",0;
+	mes "[Aigu]";
+	mes "เราเข้าไปได้ยังไงถามหน่อย";
+	npctalk "Aigu: How did we get in, you asked?", .@aigu$;
+	next;
+	cutin "shaloshi01",0;
+	mes "[???]";
+	mes "ไม่รู้เธอเข้ามาได้ยังไง";
+	npctalk "???: No idea. How did you get in?", .@shaloshi$;
+	next;
+	cutin "lunain03",2;
+	mes "[Runane]";
+	mes "เราหลงทางและตอนนี้เราอยู่ในห้วงแห่งกาลอวกาศมันเกิดขึ้นได้อย่างไร";
+	npctalk "Runane: We got lost and now we're in a rift in spacetime. How did this happen?";
+	next;
+	cutin "igu04",0;
+	mes "[Aigu]";
+	mes "เราไม่จำเป็นต้องอยู่ที่นี่ถ้าไม่ใช่เพื่อใครบางคน";
+	npctalk "Aigu: We didn't have to be here if it weren't for someone.", .@aigu$;
+	emotion ET_PROFUSELY_SWAT, getnpcid(0,.@aigu$);
+	next;
+	cutin "shaloshi01",0;
+	mes "[???]";
+	mes "คนที่ร้องเพลง";
+	npctalk "???: The one who sings.", .@shaloshi$;
+	next;
+	cutin "lunain01",2;
+	mes "[Runane]";
+	mes "รู้จักนิวออซช่วยพาเขาออกไปจากที่นี่กันเถอะ";
+	npctalk "Runane: Do you know Newoz? Let's take him out of here.";
+	next;
+	cutin "igu03",0;
+	mes "[Aigu]";
+	mes "โอเคจับมือฉัน";
+	npctalk "Aigu: Okay. Take my hand.", .@aigu$;
+	next;
+	cutin "shaloshi01",0;
+	mes "[???]";
+	mes "โอเคจับมือฉัน";
+	npctalk "???: Your hand is... warm.", .@shaloshi$;
+	next;
+	cutin "igu02",0;
+	mes "[Aigu]";
+	mes "มันใจแข็งเพราะฉันเต้นฮิฮิ";
+	npctalk "Aigu: It's calloused because I dance. Heh heh.", .@aigu$;
+	next;
+	cutin "shaloshi01",0;
+	mes "[???]";
+	mes "รำ ... ";
+	npctalk "???: Dance...", .@shaloshi$;
+	next;
+	cutin "lunain01",2;
+	mes "[Runane]";
+	mes "ทุกคนหายไปไหนกันหมดไปทางนั้นกันเถอะ";
+	npctalk "Runane: Where's everyone? Have they gone somewhere else? Let's go in that direction.";
+	close2;
+	cutin "",255;
+	disablenpc instance_npcname("Runane#02");
+	disablenpc .@aigu$;
+	disablenpc .@shaloshi$;
+	end;
+}
+
+1@jtb,121,47,4	script	???#02	4_F_SHALOSH,{ end; }
+
+1@jtb,118,45,5	script	Aigu#02	4_F_IU,{
+	cutin "igu03",0;
+	mes "[Aigu]";
+	mes "สถานที่ที่เต็มไปด้วยความลึกลับ";
+	close3;
+}
+
+
+// Room 3
+1@jtb,198,31,5	script	Roter#03	4_M_ROTERT,{
+	if ('room != 3 || is_party_leader() == false) {
+		cutin "rote01",0;
+		mes "[Roter]";
+		mes "สัตว์ประหลาดพวกนี้น่าเบื่อ";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2)
+		mes "Try to jog your memory while hurrying.";
+	else {
+		.@gelka$ = instance_npcname("Gelka#03");
+		cutin "gelca01",2;
+		mes "[Gelka]";
+		mes "ฉันกำลังตรวจจับคลื่นแม่เหล็กไฟฟ้าอยู่ข้างหน้าอย่างน้อยก็มอนสเตอร์เกรด E";
+		npctalk "Gelka: I'm detecting electromagnetic waves up ahead. At least Grade E monsters.", .@gelka$;
+		next;
+		emotion ET_SWEAT;
+		cutin "rote01",0;
+		mes "[Roter]";
+		mes "เฮ้วันนี้คุณอ่านอะไรไปบ้าง";
+		npctalk "Roter: Hey, what have you been reading these days?";
+		next;
+		cutin "gelca03",2;
+		mes "[Gelka]";
+		mes "เฮ้นักวิทย์มีเครื่องมือกลที่ใช้งานได้ ... ";
+		npctalk "Gelka: Heh, Sci-Fi. There's a mechanical tool that works...", .@gelka$;
+		next;
+		emotion ET_OHNO;
+		cutin "rote01",0;
+		mes "[Roter]";
+		mes "หยุดพูดและเตรียมพร้อมฝึกฝนทักษะพิเศษของคุณ";
+		npctalk "Roter: Stop talking and get ready to practice your special skills.";
+		next;
+		cutin "gelca03",2;
+		mes "[Gelka]";
+		mes "โอนี่จะเหมือนกับการเปิดฉากใหม่จากหนังสือที่สัตว์ประหลาดออกอาละวาด";
+		npctalk "Gelka: Ooh, this will be like reenacting a scene from the book, where monsters are rampaging.", .@gelka$;
+		next;
+		cutin "rote01",0;
+		mes "[Roter]";
+		mes "Gelka, Ultra Special Skill No. 8: Wild Dance!";
+		npctalk "Roter: Gelka, Ultra Special Skill No. 8: Wild Dance!";
+		next;
+		emotion ET_SURPRISE, getnpcid(0,.@gelka$);
+		cutin "gelca01",2;
+		mes "[Gelka]";
+		mes "!!";
+		npctalk "Gelka: !!", .@gelka$;
+		next;
+		mes "[Gelka]";
+		mes "ไปเลย!";
+		npctalk "Gelka: Here we go!", .@gelka$;
+		next;
+		cutin "rote01",0;
+		mes "[Roter]";
+		mes "Delicate Flashlight, Lumiere Dupleix!";
+		npctalk "Roter: Delicate Flashlight, Lumiere Dupleix!";
+		specialeffect EF_LEXAETERNA;
+		specialeffect EF_POTION_BERSERK;
+		specialeffect EF_SIGNUM;
+		next;
+		cutin "gelca01",2;
+		mes "[Gelka]";
+		mes "Ruinous Twelve Heaven's Nets!";
+		npctalk "Gelka: Ruinous Twelve Heaven's Nets!";
+		specialeffect EF_HITLINE,AREA, .@gelka$;
+		specialeffect EF_BASH3D2,AREA, .@gelka$;
+		specialeffect EF_GUMGANG,AREA, .@gelka$;
+		next;
+		emotion ET_SPARK;
+		emotion ET_SPARK, getnpcid(0,.@gelka$);
+		mes "[Gelka/Roter]";
+		mes "CROSS!!!";
+		npctalk "Roter: CROSS!!!";
+		npctalk "Gelka: CROSS!!!", .@gelka$;
+		specialeffect EF_GRANDCROSS;
+		specialeffect EF_GRANDCROSS,AREA, .@gelka$;
+		next;
+		cutin "rote01",0;
+		mes "[Gelka/Roter]";
+		mes "Scatter--Thousand Flashlights!";
+		npctalk "Gelka: Scatter--Thousand Flashlights!", .@gelka$;
+		npctalk "Roter: Scatter--Thousand Flashlights!";
+		specialeffect EF_LEXAETERNA;
+		specialeffect EF_LEXAETERNA,AREA, .@gelka$;
+		sleep2 300;
+		specialeffect EF_LORD;
+		specialeffect EF_LORD,AREA, .@gelka$;
+		specialeffect EF_LORD;
+		specialeffect EF_LORD,AREA, .@gelka$;
+		sleep2 300;
+		specialeffect EF_SUI_EXPLOSION;
+		specialeffect EF_SUI_EXPLOSION,AREA, .@gelka$;
+		specialeffect EF_BEGINASURA;
+		specialeffect EF_BEGINASURA,AREA, .@gelka$;
+		next;
+		cutin "gelca01",2;
+		mes "[Gelka]";
+		mes "... ต๊าย.";
+		npctalk "Gelka: ...Whew.", .@gelka$;
+		next;
+		cutin "rote01",0;
+		mes "[Roter]";
+		mes "หืมไม่ดีพอ Gelka อย่าปล่อยให้ธุรกิจกิลด์กวนใจคุณจากการฝึกฝน";
+		npctalk "Roter: Hm, not good enough, Gelka. Don't let the guild business distract you from practice.";
+		next;
+		cutin "gelca03",2;
+		mes "[Gelka]";
+		mes "ครับอาจารย์!";
+		npctalk "Gelka: Yes, Master!", .@gelka$;
+		next;
+		cutin "rote01",0;
+		mes "[Roter]";
+		mes "ที่อื่น ๆ อยู่ที่ไหนนี่ไม่ใช่ถ้ำที่วิ่งได้อย่างแน่นอน";
+		npctalk "Roter: Where are the others? This is definitely not a run-of-the-mill cave.";
+	}
+	if ('room == 3 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs4";
+	close3;
+}
+
+1@jtb,205,31,4	script	Gelka#03	4_F_GELKA,{
+	cutin "gelca04",2;
+	mes "[Gelka]";
+	mes "บางสิ่งบางอย่างอาจทำให้เราสะดุด!";
+	close3;
+}
+
+
+// Room 4
+1@jtb,292,22,4	script	???#04	4_F_SHALOSH,{
+	if ('room != 4 || is_party_leader() == false) {
+		cutin "shaloshi01",2;
+		mes "[???]";
+		mes "...";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2)
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+	else {
+		cutin "shaloshi01",2;
+		mes "[???]";
+		mes "...";
+		npctalk "???: ......";
+		next;
+		select("หลงตัวเองอีกแล้วเหรอ?");
+		mes "[???]";
+		mes "I'm not alone.";
+		npctalk "???: I'm not alone.";
+		next;
+		mes "[???]";
+		mes "ไอกูกับรันเน่ดี";
+		npctalk "???: Aigu and Runane are good.";
+		next;
+		mes "[???]";
+		mes "ถามหลายคำถาม";
+		npctalk "???: Ask many questions.";
+		next;
+		mes "[???]";
+		mes "ตอบไม่ได้";
+		npctalk "???: Can't answer.";
+		next;
+		mes "[???]";
+		mes "จำไม่ได้สักอย่าง";
+		npctalk "???: Can't remember a thing.";
+		next;
+		mes "[???]";
+		mes "แต่ฉันไม่ได้อยู่คนเดียว";
+		npctalk "???: But I'm not alone.";
+		next;
+		if (select( "ทิ้งเขาไปเถอะ "," มันอันตรายเกินไปเพราะฉะนั้นพาเขาไปด้วย." ) == 1) {
+			mes "[???]";
+			mes "ไม่เป็นไรไม่ใช่ครั้งแรก";
+			npctalk "???: I'm okay. Not the first time.";
+		}
+		else {
+			mes "[???]";
+			mes "ใจดี";
+			npctalk "???: Kind.";
+		}
+		cutin "shaloshi03",2;
+		next;
+		mes "[???]";
+		mes "...";
+		npctalk "???: ...";
+	}
+	if ('room == 4 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs6";
+	close3;
+}
+
+// Room 5 (final room)
+
+// Room 6
+1@jtb,20,108,5	script	Newoz#06	4_M_NEWOZ,{
+	if ('room != 6 || is_party_leader() == false) {
+		cutin "nines01",0;
+		mes "[Newoz]";
+		mes "ฉันจะร้องเพลงอีกครั้งในภายหลัง";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2)
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+	else {
+		.@aigu$ = instance_npcname("Aigu#06");
+		.@arang$ = instance_npcname("Arang#06");
+		.@shaloshi$ = instance_npcname("Shaloshi#06");
+
+		cutin "igu05",2;
+		mes "[Aigu]";
+		mes "Newoz! Where did you go this time?";
+		npctalk "Aigu: Newoz! Where did you go this time?", .@aigu$;
+		next;
+		cutin "nines04",0;
+		mes "[Newoz]";
+		mes "Sorry.";
+		mes "สถานที่แห่งนี้เป็นเหมือนเขาวงกตมีการเลือกซื้อสินค้าและการหักบัญชีมากมายจนนับไม่ถ้วน";
+		npctalk "Newoz: Sorry. This place is like a maze. There are so many offshoots and clearings that I've lost count.";
+		next;
+		cutin "arang01",2;
+		mes "[Arang]";
+		mes "* Snort * คุณพูดแบบเดียวกันกับ Prontera Culvert";
+		npctalk "Arang: *Snort* You said the same thing about the Prontera Culvert.", .@arang$;
+		next;
+		cutin "igu04",2;
+		mes "[Aigu]";
+		mes "คุณกำลังพูดถึงอะไรทำไมคุณไม่สามารถติดตามพวกเราได้รันเนะอยู่ที่ไหนฉันเห็นเธออยู่ข้างๆฉันเมื่อสักครู่";
+		npctalk "Aigu: What are you talking about? Why can't you just follow us? Where's Runane? I saw her next to me a moment ago.", .@aigu$;
+		next;
+		cutin "shaloshi01",2;
+		mes "[???]";
+		mes "ผู้ชายที่มีเสียงร้องเพลง";
+		npctalk "???: Man with the singing voice.", .@shaloshi$;
+		next;
+		cutin "nines02",0;
+		mes "[Newoz]";
+		mes "โอ้สวัสดีฉันขอถามว่าเธอเป็นใคร?";
+		npctalk "Newoz: Oh, hello. May I ask who you are, little lady?";
+		next;
+		cutin "shaloshi01",2;
+		mes "[Shaloshi]";
+		mes "ฉันคือชาโลชิร้องเพลงให้ฉัน";
+		npctalk "Shaloshi: I'm Shaloshi. Sing for me.", .@shaloshi$;
+		next;
+		cutin "nines03",0;
+		mes "[Newoz]";
+		mes "ฮ่าฮ่าเธอน่ารักฉันจะร้องเพลงให้เธอฟังทีหลัง";
+		npctalk "Newoz: Hah hah, you're cute. I'll sing for you later.";
+		next;
+		cutin "shaloshi01",2;
+		mes "[Shaloshi]";
+		mes "คุณสัญญาคุณใจดี";
+		npctalk "Shaloshi: You promised. You're kind.", .@shaloshi$;
+		next;
+		cutin "igu03",2;
+		mes "[Aigu]";
+		mes "สัตว์ประหลาดเริ่มปรากฏตัวและจำนวนของมันก็เพิ่มขึ้นอย่างรวดเร็ว";
+		npctalk "Aigu: Monsters started appearing, and their number is growing quickly.", .@aigu$;
+		next;
+		cutin "arang02",2;
+		mes "[Arang]";
+		mes "คุณจะไม่เป็นไรไอกูตราบใดที่คุณยังอยู่กับเรา ... อืมทุกคนอยู่ไหน";
+		npctalk "Arang: You'll be okay, Aigu, so long as you stick with us... Um, where's everyone?", .@arang$;
+		next;
+		cutin "nines01",0;
+		mes "[Newoz]";
+		mes "ฮะฮะไม่ต้องกังวลผู้หญิงน้อยฉันจะปกป้องคุณ";
+		npctalk "Newoz: Hah hah, don't worry, little ladies. I'll protect you.";
+		next;
+		cutin "arang03",2;
+		mes "[Arang]";
+		mes "นิวออซฉันรักเธอ!";
+		npctalk "Arang: Newoz, I love you!", .@arang$;
+		next;
+		cutin "shaloshi01",2;
+		mes "[Shaloshi]";
+		mes "คุณปกป้องฉันคุณใจดี";
+		npctalk "Shaloshi: You protect me. You're kind.", .@shaloshi$;
+		next;
+		cutin "igu05",2;
+		mes "[Aigu]";
+		mes "คุณจะวิ่งไปก่อนคนอื่น ๆ ที่นี่เราอยู่ที่นี่ไม่ได้แล้วไปต่อกันเถอะ";
+		npctalk "Aigu: You'd run before everyone else in here. Well, we can't stay here. Let's move on.", .@aigu$;
+	}
+	if ('room == 6 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs7";
+	close3;
+}
+
+1@jtb,25,110,4	script	Aigu#06	4_F_IU,{
+	cutin "igu01",0;
+	mes "[Aigu]";
+	mes "สัตว์ประหลาดเริ่มปรากฏตัวและจำนวนของมันก็เพิ่มขึ้นอย่างรวดเร็ว";
+	close3;
+}
+
+1@jtb,27,108,4	script	Shaloshi#06	4_F_SHALOSH,{
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "...";
+	close3;
+}
+
+1@jtb,25,104,4	script	Arang#06	4_F_TAEKWON,{
+	cutin "arang03",0;
+	mes "[Arang]";
+	mes "ไม่กลัว!";
+	close3;
+}
+
+
+// Room 7
+1@jtb,111,115,5	script	Roel#07	4_M_ROEL,{
+	if ('room != 7 || is_party_leader() == false) {
+		cutin "roel01",0;
+		mes "[Roel]";
+		mes "เป็นอะไรไปหัวใจจะไม่หยุดเต้น";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2)
+		mes "Try to jog your memory while hurrying.";
+	else {
+		.@aigu$ = instance_npcname("Aigu#07");
+		.@runane$ = instance_npcname("Runane#07");
+
+		cutin "lunain01",2;
+		mes "[Runane]";
+		mes "หมอกลงจัด";
+		npctalk "Runane: The fog cleared up.", .@runane$;
+		next;
+		cutin "roel01",0;
+		mes "[Roel]";
+		mes "แต่มันก็นานพอที่เราจะสูญเสียกันและกัน";
+		npctalk "Roel: But it stayed long enough for us to lose each other.";
+		next;
+		cutin "igu05",2;
+		mes "[Aigu]";
+		mes "ครู่หนึ่งฉันมีมือของชาโลชิอยู่ในมือและต่อไปเธอก็จากไป";
+		npctalk "Aigu: One moment, I had Shaloshi's hand in my hand, and the next, she's gone.", .@aigu$;
+		next;
+		cutin "lunain01",2;
+		mes "[Runane]";
+		mes "เธอชื่อชาโลชิฉันถามเธอหลายครั้งแล้วเธอก็ไม่บอกฉัน";
+		npctalk "Runane: Her name is Shaloshi? I asked her several times, and she didn't tell me.", .@runane$;
+		next;
+		cutin "igu01",2;
+		mes "[Aigu]";
+		mes "มันแปลกมากเธอบอกนิวออซตั้งแต่แรก";
+		npctalk "Aigu: That's strange. She told Newoz straight from the start.", .@aigu$;
+		next;
+		cutin "lunain04",2;
+		mes "[Runane]";
+		mes "Hmpf ฉันเกลียดผู้หญิงฉันรู้สึกว่าเราจะได้เห็นสัตว์ประหลาดมากกว่านี้";
+		npctalk "Runane: Hmpf, I hate girls. I get the feeling we'll be seeing even more monsters.", .@runane$;
+		next;
+		cutin "roel01",0;
+		mes "[Roel]";
+		mes "ไม่ต้องกังวล - ฉันจะปกป้องคุณ!";
+		npctalk "Roel: Worry not--I'll protect you!";
+		next;
+		cutin "igu04",2;
+		mes "[Aigu]";
+		mes "คุณน่าจะไว้ใจได้มากกว่าคนที่ฉันรู้จัก";
+		npctalk "Aigu: You'd better be more reliable than someone I know.", .@aigu$;
+		next;
+		cutin "lunain03",2;
+		mes "[Runane]";
+		mes "อย่าเชื่อเด็กคนนี้มากเกินไปฉันควรไปหา Newoz ดีกว่า";
+		npctalk "Runane: Don't put too much faith in this kid. I'd better go look for Newoz.", .@runane$;
+		next;
+		cutin "roel01",0;
+		mes "[Roel]";
+		mes "...";
+		npctalk "Roel: ...";
+		next;
+		cutin "roel03",0;
+		mes "[Roel]";
+		mes "(เธอเป็นแค่ประเภทของฉัน!)";
+		npctalk "Roel: (She's just my type!)";
+	}
+	if ('room == 7 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs8";
+	close3;
+}
+
+1@jtb,116,117,4	script	Runane#07	4_F_RUNAIN,{
+	cutin "lunain01",2;
+	mes "[Runane]";
+	mes "คุณคิดว่าเวลานี้ Newoz อยู่ที่ไหน";
+	close3;
+}
+
+1@jtb,115,113,4	script	Aigu#07	4_F_IU,{
+	cutin "igu01",0;
+	mes "[Aigu]";
+	mes "ฉันรู้สึกดีมาก - นี่เป็นการผจญภัยครั้งแรกของฉันในระยะเวลาอันยาวนานนับตั้งแต่ฉันถูกตั้งข้อหาดูแลนักผจญภัยคนอื่น ๆ และฉันได้พบกับนิวออซฮีโร่ของฉัน!";
+	close3;
+}
+
+
+// Room 8
+1@jtb,206,107,5	script	Mingmin#08	4_F_GENETIC,{
+	if ('room != 8 || is_party_leader() == false) {
+		mes "[Mingmin]";
+		mes "ทุกอย่างเกี่ยวกับเสียงกรีดร้องของเธอน่าสงสัย";
+		close;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2) {
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+		if ('room == 8 && is_party_leader() == true) {
+			if ('additionnal_option) {
+				disablenpc instance_npcname("Newoz#08");
+				disablenpc instance_npcname("Shaloshi#08");
+				disablenpc instance_npcname("Mingmin#08");
+			}
+			donpcevent 'jitterbug_main$ + "::OnNextIs9";
+		}
+		end;
+	}
+	.@shaloshi$ = instance_npcname("Shaloshi#08");
+	.@newoz$ = instance_npcname("Newoz#08");
+
+	cutin "min02",2;
+	mes "[Mingmin]";
+	mes "Newoz!";
+	npctalk "Mingmin: Newoz!";
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "ใช่ว่าไง";
+	npctalk "Newoz: Yeah, what's up?", .@newoz$;
+	next;
+	if ('room == 8 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs9";
+	cutin "min03",2;
+	emotion ET_HUK;
+	mes "[Mingmin]";
+	mes "ต้องถามจริงๆหรอผู้หญิงคนนั้นเธอเป็นของเธอ";
+	npctalk "Mingmin: Do you really have to ask? Who's that girl? Is she yours?";
+	next;
+	cutin "nines04",0;
+	emotion ET_HUK, getnpcid(0,.@newoz$);
+	mes "[Newoz]";
+	mes "W-whazza ... ?! อย่าไร้สาระฉันเพิ่งเจอเธอแล้ว";
+	npctalk "Newoz: W-whazza...?! Don't be ridiculous. I just found her now.", .@newoz$;
+	next;
+	cutin "min02",2;
+	mes "[Mingmin]";
+	mes "เด็กผู้หญิงตัวเล็ก ๆ ในสถานที่แปลก ๆ แบบนี้เองหืมฟังดูแปลก ๆ สำหรับคุณไม่ใช่เหรอ";
+	npctalk "Mingmin: A little girl in this strange place, by herself? Hm, doesn't it sound strange to you?";
+	next;
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "You're strange.";
+	npctalk "Shaloshi: You're strange.", .@shaloshi$;
+	next;
+	emotion ET_STARE;
+	cutin "min01",2;
+	mes "[Mingmin]";
+	mes "ไม่ฉันไม่! คุณไม่อยากให้ฉันโกรธคุณสาว";
+	npctalk "Mingmin: No, I'm not! You don't want me to get angry at you, girl.";
+	emotion ET_FRET;
+	next;
+	emotion ET_THINK, getnpcid(0,.@shaloshi$);
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "พวกเขามาแล้ว ... ";
+	npctalk "Shaloshi: Here they come...", .@shaloshi$;
+	next;
+	cutin "nines04",0;
+	mes "[Newoz]";
+	mes "สัตว์ประหลาดพวกนี้ไม่หยุดมา แต่ตัวใหญ่หายากและสวยงามไปไหน";
+	npctalk "Newoz: These monsters don't stop coming. But where are all the big, rare, beautiful ones?", .@newoz$;
+	next;
+	cutin "min02",2;
+	mes "[Mingmin]";
+	mes "ฉันต้องเรียนเธอทีหลัง";
+	npctalk "Mingmin: I'll have to study you later, girl.";
+	next;
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "...";
+	npctalk "Shaloshi: ...", .@shaloshi$;
+	close2;
+	cutin "",255;
+	disablenpc .@newoz$;
+	disablenpc .@shaloshi$;
+	disablenpc instance_npcname("Mingmin#08");
+	end;
+}
+
+1@jtb,206,114,5	script	Shaloshi#08	4_F_SHALOSH,{
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "Newoz's มือ ... ร้อน.";
+	close3;
+}
+
+1@jtb,203,112,5	script	Newoz#08	4_M_NEWOZ,{
+	cutin "nines03",0;
+	mes "[Newoz]";
+	mes "ฉันสงสัยว่าจะมีอะไรรอเราอยู่ในตอนท้ายของข้อความนี้ความคาดหมายกำลังฆ่าฉัน!";
+	close3;
+}
+
+
+// Room 9 (menu affects the boss encounter in the next room)
+1@jtb,285,114,5	script	Newoz#09	4_M_NEWOZ,{
+	if ('room != 9 || is_party_leader() == false) {
+		cutin "nines01",0;
+		mes "[Newoz]";
+		mes "ฉันรักการร้องเพลงเสมอ";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2) {
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+		if ('room == 9 && is_party_leader() == true) {
+			donpcevent 'jitterbug_main$ + "::OnNextIs10";
+			if (jitterbug_options & 1)
+				areamonster 'map_jtb$,351,131,389,96, "--ja--", 3108,1;	// no label
+			disablenpc instance_npcname("Newoz#09");
+			disablenpc instance_npcname("Shaloshi#09");
+			disablenpc instance_npcname("Lagi#09");
+		}
+		close3;
+	}
+	.@shaloshi$ = instance_npcname("Shaloshi#09");
+	.@lagi$ = instance_npcname("Lagi#09");
+
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "ฉันเสียคนอื่นไปเรื่อย ๆ พวกเขาอยู่ตรงหน้าฉัน";
+	npctalk "Newoz: I keep losing the others. They were right in front of me.";
+	next;
+	cutin "ragi01",0;
+	mes "[Lagi]";
+	mes "เจอกันอีกแล้ว";
+	npctalk "Lagi: We've met again.", .@lagi$;
+	next;
+	cutin "nines03",0;
+	mes "[Newoz]";
+	mes "คุณมีรสนิยมดีแค่นี้ก็มาถึงความคิดของฉันฟัง";
+	npctalk "Newoz: You have good taste. This just came to my mind. Listen.";
+	next;
+	if ('room == 9 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs10";
+	cutin "nines02",0;
+	emotion ET_DELIGHT;
+	mes "[Newoz]";
+	mes "ฤดูกาลกำลังจะเปลี่ยนไปอีกแล้ว ~ แต่ยังไม่มีโอกาสได้ย้อมเล็บด้วยยาหม่องในสวนเลย ~";
+	npctalk "Newoz: The seasons are changing once again~ yet I haven't had a chance to dye my nails with garden balsam~";
+	next;
+	cutin "ragi02",0;
+	emotion ET_DELIGHT, getnpcid(0,.@lagi$);
+	mes "[Lagi]";
+	mes "รอหิมะ ~";
+	npctalk "Lagi: Waiting for snow~", .@lagi$;
+	next;
+	cutin "nines01",0;
+	emotion ET_BEST;
+	mes "[Newoz]";
+	mes "เก่งมากคุณจะสร้าง Gypsy และ Minstrel ที่ยอดเยี่ยม";
+	npctalk "Newoz: You're good. You'll make great a Gypsy and Minstrel.";
+	next;
+	cutin "ragi01",0;
+	mes "[Lagi]";
+	mes "อยากอยู่เป็นกวีสักพัก";
+	npctalk "Lagi: I want to stay as a Bard for a while.", .@lagi$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "ฉันคิดว่างานไม่สำคัญหรอกตราบใดที่คุณยังร้องเพลงและเล่นได้นะ";
+	npctalk "Newoz: I guess jobs don't matter so long as you can sing and play, huh?";
+	next;
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "รักเพลงของคุณ";
+	npctalk "Shaloshi: Love your song.", .@shaloshi$;
+	next;
+	cutin "nines02",0;
+	mes "[Newoz]";
+	mes "ชาโลชิคุณมีเพลงโปรดไหม";
+	npctalk "Newoz: Shaloshi, do you have a favorite song?";
+	next;
+	cutin "shaloshi01",0;
+	emotion ET_DELIGHT, getnpcid(0,.@shaloshi$);
+	mes "[Shaloshi]";
+	mes "Runane ร้องดีด้วยซ้ำ";
+	npctalk "Shaloshi: Runane sings even whistles good, too.", .@shaloshi$;
+	next;
+	cutin "",255;
+	mes "- ชาโลชิเม้มริมฝีปากเพื่อเป่านกหวีด แต่ไม่สำเร็จ -";
+	next;
+	cutin "ragi01",0;
+	mes "[Lagi]";
+	mes "อืมคุณพยายามเป่านกหวีดหรือเปล่า";
+	npctalk "Lagi: Um, are you trying to whistle?", .@lagi$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "ฮะฮะฉันจะสอนวิธีทำทีหลัง Shaloshi";
+	npctalk "Newoz: Hah hah, I'll teach you how to do it later, Shaloshi.";
+	next;
+	mes "[Newoz]";
+	mes "" + strcharinfo(0) + ", do you have a favorite song?";
+	npctalk "Newoz: " + strcharinfo(0) + ", do you have a favorite song?";
+	next;
+	switch( select("เพลงเปิดตัวของไอกู - Lost Poring "," ซิงเกิ้ลของไอกู - Only I Don't Know about the Card Album "," Newoz's Red Potion (feat. Muka) "," เพลงประกอบเองของ Laggi - Accidental Moonlight " ) ) {
+	case 1:
+		jitterbug_options &= ~1;
+		unittalk getcharid(3), "" + strcharinfo(0) + " : I like Aigu's debut song, Lost Poring.";
+		mes "[Newoz]";
+		mes "คุณรู้จักเพลงเปิดตัวของเธอคุณเป็นแฟนเพลงของเธอใช่ไหม";
+		npctalk "Newoz: You know her debut song. You're a fan of her, huh?";
+		break;
+	case 2:
+		jitterbug_options &= ~1;
+		unittalk getcharid(3), "" + strcharinfo(0) + " : I like Aigu's single, Only I Didn't Know about the Card Album.";
+		mes "[Newoz]";
+		mes "ไอกูคือนักร้องที่ฮอตที่สุดของรูน - มิดการ์ทในขณะนี้!";
+		npctalk "Newoz: Aigu is the Rune-Midgarts' hottest singer at this moment!";
+		break;
+	case 3:
+		jitterbug_options |= 1;
+		areamonster 'map_jtb$,351,131,389,96, "--ja--", 3108,1;	// no label
+		unittalk getcharid(3), "" + strcharinfo(0) + " : I like your Red Potion (feat. Muka).";
+		mes "[Newoz]";
+		mes "นี่มันน่าอายจัง แต่ขอบคุณนะ";
+		npctalk "Newoz: Hah hah, this is embarassing, but thank you.";
+		break;
+	case 4:
+		jitterbug_options &= ~1;
+		unittalk getcharid(3), "" + strcharinfo(0) + " : I like your Laggi's self-composed song, Accidental Moonlight.";
+		mes "[Lagi]";
+		mes "แต่ยังไง ... ?! มันยังไม่เปิดตัว";
+		npctalk "Lagi: But how...?! It's not released yet.";
+		break;
+	}
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "หืมแต่ละคนเอง";
+	npctalk "Newoz: Hm, to each his own.";
+	next;
+	cutin "ragi01",0;
+	emotion ET_SURPRISE, getnpcid(0,.@lagi$);
+	mes "[Lagi]";
+	mes "มีอย่างอื่นปรากฏขึ้น";
+	npctalk "Lagi: Something else is showing up.", .@lagi$;
+	next;
+	cutin "nines04",0;
+	mes "[Newoz]";
+	mes "อ่าฉันเริ่มหิวแล้วพวกมอนสเตอร์กรูกันเองชาโลชิไปกันเถอะ!";
+	npctalk "Newoz: Ah, I'm getting hungry. The monsters can screw themselves. Shaloshi, let's go!";
+	next;
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "โอเค";
+	npctalk "Shaloshi: Okay.", .@shaloshi$;
+	next;
+	cutin "ragi01",0;
+	mes "[Lagi]";
+	mes "เฮ้มากับฉัน!";
+	npctalk "Lagi: Hey, come with me!", .@lagi$;
+	sleep2 1000;
+	disablenpc instance_npcname("Newoz#09");
+	disablenpc .@shaloshi$;
+	disablenpc .@lagi$;
+	close3;
+}
+
+1@jtb,290,114,4	script	Lagi#09	4_M_RAGI,{
+	cutin "ragi01",0;
+	mes "[Lagi]";
+	mes "ฉันไม่มีประสบการณ์ในการผจญภัย แต่มันก็สนุกดีนะ";
+	close3;
+}
+
+1@jtb,286,117,5	script	Shaloshi#09	4_F_SHALOSH,{
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "(พยายามเป่านกหวีด) ฉันทำไม่ได้";
+	close3;
+}
+
+// Room 10
+1@jtb,375,117,4	script	Newoz#10	4_M_NEWOZ,{
+	if ('room != 10 || is_party_leader() == false) {
+		cutin "nines01",2;
+		mes "[Newoz]";
+		mes "พวกนี้แตกต่างกันดูเหมือนจะเข้าใจดนตรี ... หรืออาจจะไม่";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2)
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+	else {
+		.@runane$ = instance_npcname("Runane#10");
+		.@shaloshi$ = instance_npcname("Shaloshi#10");
+		.@roel$ = instance_npcname("Roel#10");
+
+		emotion ET_DELIGHT;
+		cutin "nines01",2;
+		mes "[Newoz]";
+		mes "คุณดูแลพวกเขาแล้วหรือยังฉันอยากมีส่วนร่วมด้วย!";
+		npctalk "Newoz: Did you take care of them already? I wanted to take part in it!";
+		next;
+		cutin "roel01",0;
+		mes "[Roel]";
+		mes "พวกมันดูน่ารัก แต่ก็ดุร้าย";
+		npctalk "Roel: They look cute, but they're ferocious.", .@roel$;
+		next;
+		cutin "shaloshi01",2;
+		mes "[Shaloshi]";
+		mes "เพื่อนตัวเล็กตามเราไม่น่ารักเลย";
+		npctalk "Shaloshi: Small friends follow us. Not cute.", .@shaloshi$;
+		next;
+		cutin "lunain01",0;
+		mes "[Runane]";
+		mes "พวกมันเป็นสัตว์ประหลาดไม่ใช่เพื่อนของคุณระวังตัวด้วย";
+		npctalk "Runane: They're monsters, not your friends. Be careful.", .@runane$;
+		next;
+		cutin "shaloshi01",2;
+		mes "[Shaloshi]";
+		mes "สัตว์ประหลาด ... ";
+		npctalk "Shaloshi: Monsters...", .@shaloshi$;
+		next;
+		cutin "roel01",0;
+		mes "[Roel]";
+		mes "เธอจะสูญเสียความทรงจำไปหรือเปล่าดูเหมือนเธอจะไม่เข้าใจอันตรายดูเหมือนว่า";
+		npctalk "Roel: Could she have lost her memory? It seems she doesn't understand danger, it seems.", .@roel$;
+		next;
+		cutin "shaloshi01",2;
+		mes "[Shaloshi]";
+		mes "อันตรายไม่นะ";
+		npctalk "Shaloshi: Danger, no.", .@shaloshi$;
+		next;
+		cutin "lunain02",0;
+		mes "[Runane]";
+		mes "ฉันคิดว่าเธอมี";
+		npctalk "Runane: I think she has.", .@runane$;
+		next;
+		cutin "shaloshi01",2;
+		mes "[Shaloshi]";
+		mes "...";
+		npctalk "Shaloshi: ...", .@shaloshi$;
+	}
+	if ('room == 10 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs11";
+	close3;
+}
+
+1@jtb,374,110,4	script	Shaloshi#10	4_F_SHALOSH,{
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "ไม่อันตรายไม่ต้องห่วง";
+	close3;
+}
+
+1@jtb,369,117,5	script	Roel#10	4_M_ROEL,{
+	cutin "roel01",0;
+	mes "[Roel]";
+	mes "ฉันฝึกฝนมามากพอแล้วฉันจะมีประโยชน์";
+	close3;
+}
+
+1@jtb,368,111,5	script	Runane#10	4_F_RUNAIN,{
+	cutin "lunain01",0;
+	mes "[Runane]";
+	mes "อย่าปล่อยยามลงขณะสำรวจมิฉะนั้นคุณอาจได้รับบาดเจ็บ";
+	close3;
+}
+
+
+// Room 11
+1@jtb,26,201,5	script	Runane#11	4_F_RUNAIN,{
+	if ('room != 11 || is_party_leader() == false) {
+		cutin "lunain04",0;
+		mes "[Runane]";
+		mes "อารังทำไมไม่ดื่มล่ะ";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2) {
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+		if ('room == 11 && 'additionnal_option && is_party_leader() == true)
+			disablenpc instance_npcname("Roel#11");
+	}
+	else {
+		.@roel$ = instance_npcname("Roel#11");
+		.@aigu$ = instance_npcname("Aigu#11");
+		.@arang$ = instance_npcname("Arang#11");
+		.@mingmin$ = instance_npcname("Mingmin#11");
+
+		cutin "lunain01",0;
+		emotion ET_DELIGHT;
+		mes "[Runane]";
+		mes "ผลักดัน ~";
+		npctalk "Runane: Push, push~";
+		next;
+		cutin "min01",0;
+		emotion ET_DELIGHT, getnpcid(0,.@mingmin$);
+		mes "[Mingmin]";
+		mes "ผลักดัน ~";
+		npctalk "Mingmin: Push, push~", .@mingmin$;
+		next;
+		cutin "igu02",0;
+		emotion ET_DELIGHT, getnpcid(0,.@aigu$);
+		mes "[Aigu]";
+		mes "ต้องปาดไหล่อีกนานแค่ไหน ~";
+		npctalk "Aigu: How long do I have to shimmy my shoulders~", .@aigu$;
+		next;
+		cutin "lunain01",0;
+		mes "[Runane]";
+		mes "แพมแพมแพม ~";
+		npctalk "Runane: Pam, pam, pam~";
+		next;
+		cutin "min02",0;
+		mes "[Mingmin]";
+		mes "สาวเอ๋ย ~";
+		npctalk "Mingmin: Chica, chica~", .@mingmin$;
+		next;
+		cutin "igu02",0;
+		mes "[Aigu]";
+		mes "Pam, pam, pam, pam~";
+		npctalk "Aigu: Pam, pam, pam, pam~", .@aigu$;
+		next;
+		cutin "lunain01",0;
+		mes "[Runane]";
+		mes "*Blow*";
+		npctalk "Runane: *Blow*";
+		next;
+		cutin "arang01",2;
+		mes "[Arang]";
+		mes "ฮึฉันไม่อยากดื่มนี่!";
+		npctalk "Arang: Ugh, I don't want to drink this!", .@arang$;
+		next;
+		cutin "min03",0;
+		mes "[Mingmin]";
+		mes "แค่เชื่อใจฉันและดื่มมัน!";
+		npctalk "Mingmin: Just trust me and drink it!", .@mingmin$;
+		next;
+		cutin "roel01",2;
+		emotion ET_SURPRISE, getnpcid(0,.@roel$);
+		mes "[Roel]";
+		mes "คุณกำลังพยายามเลี้ยงเด็กคนนี้อะไรอยู่ในขวดสีเขียวนี้คืออะไร ... ไม่ ... ";
+		npctalk "Roel: What are you trying to feed this child? What's in this green bottle? ...No...", .@roel$;
+		next;
+		cutin "min02",0;
+		mes "[Mingmin]";
+		mes "น้ำยาเขียว";
+		npctalk "Mingmin: Green Potion", .@mingmin$;
+		next;
+		cutin "roel01",2;
+		mes "[Roel]";
+		mes "Green Potion ช่างขมเหลือเกิน ...?";
+		npctalk "Roel: Green Potion is such a bitter... Um, Green Potion you said?", .@roel$;
+		next;
+		cutin "igu03",0;
+		mes "[Aigu]";
+		mes "ยาเขียว!";
+		npctalk "Aigu: Green Potion!", .@aigu$;
+		next;
+		cutin "roel01",2;
+		mes "[Roel]";
+		mes "น้ำยาเขียว?";
+		npctalk "Roel: Green Potion?", .@roel$;
+		next;
+		cutin "lunain04",0;
+		mes "[Runane]";
+		mes "ฉันพูด Green Potion!";
+		npctalk "Runane: I said Green Potion!";
+		next;
+		cutin "roel01",2;
+		mes "[Roel]";
+		mes "แต่คุณกำลังร้องเพลงแปลก ๆ และ ... Green Potion?";
+		npctalk "Roel: But you're singing a strange song, and... Green Potion?", .@roel$;
+		next;
+		cutin "igu03",0;
+		mes "[Aigu]";
+		mes "ฉันมี Green Potion ที่ใกล้จะหมดอายุแล้วพวกเราเลยตัดสินใจเล่นเป่ายิ้งฉุบและให้อาหารแก่ผู้แพ้";
+		npctalk "Aigu: I had an almost expired Green Potion, so we decided to play Rock-paper-scissors and feed it to the loser.", .@aigu$;
+		next;
+		cutin "min02",0;
+		mes "[Mingmin]";
+		mes "มันไม่ได้ทำอะไรเมื่อคุณไม่ได้รับพิษเราแค่ไม่อยากเสียยาดีๆ";
+		npctalk "Mingmin: It doesn't do anything when you're not poisoned. We just didn't want to waste a good potion.", .@mingmin$;
+		next;
+		cutin "arang01",0;
+		mes "[Arang]";
+		mes "แต่มันขมมาก";
+		npctalk "Arang: But it's awfully bitter.", .@arang$;
+		next;
+		cutin "lunain04",0;
+		mes "[Runane]";
+		mes "คุณดื่มหรือยัง";
+		npctalk "Runane: Are you drinking it yet?";
+		next;
+		cutin "igu02",0;
+		mes "[Aigu]";
+		mes "DRINK! DRINK!";
+		npctalk "Aigu: DRINK! DRINK!", .@aigu$;
+		next;
+		cutin "min01",0;
+		mes "[Mingmin]";
+		mes "DRINK! DRINK!";
+		npctalk "Mingmin: DRINK! DRINK!", .@mingmin$;
+		next;
+		cutin "arang02",2;
+		mes "[Arang]";
+		mes "โรเอลดื่มให้พี่สาวไม่ได้เหรอ";
+		npctalk "Arang: Roel, can't you drink it for your sister?", .@arang$;
+		next;
+		cutin "roel01",2;
+		mes "[Roel]";
+		mes "ให้ฉันไปค้นหาภัยคุกคามที่เป็นไปได้";
+		npctalk "Roel: Let me go look for possible threats.", .@roel$;
+		disablenpc instance_npcname("Roel#11");
+	}
+	if ('room == 11 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs12";
+	close3;
+}
+
+1@jtb,32,198,4	script	Roel#11	4_M_ROEL,{
+	cutin "roel01",2;
+	mes "[Roel]";
+	mes "ธารน้ำเริ่มไหลแล้ว";
+	close3;
+}
+
+1@jtb,28,197,4	script	Arang#11	4_F_TAEKWON,{
+	cutin "arang01",2;
+	mes "[Arang]";
+	mes "เกลียดยาเขียว ~";
+	close3;
+}
+
+1@jtb,25,196,5	script	Aigu#11	4_F_IU,{
+	cutin "igu01",0;
+	mes "[Aigu]";
+	mes "ต้องปาดไหล่อีกนานแค่ไหน ~";
+	close3;
+}
+
+1@jtb,23,200,5	script	Mingmin#11	4_F_GENETIC,{
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "หืมเริ่มอึดอัดแล้วนี่";
+	close3;
+}
+
+
+// Room 12
+1@jtb,106,198,5	script	Mingmin#12	4_F_GENETIC,{
+	if (is_party_leader() == false) {
+		mes "[Mingmin]";
+		mes "นักวิชาการบางคนพิสูจน์แล้วว่าอัตราการลดลงของไพ่ Poring คือ .. เปอร์เซ็นต์";
+		close;
+	}
+	if ('room != 12) {
+		cutin "min02",0;
+		mes "[Mingmin]";
+		mes "ดีใจที่เห็ดไม่มีพิษ";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2)
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+	else {
+		cutin "min02",0;
+		mes "[Mingmin]";
+		mes "ภายในดูเหมือนป่าแล้วเปลี่ยนเป็นถ้ำแปลกจัง";
+		npctalk "Mingmin: Its interior looked like that of a forest, then changed to that of a cave. How strange.";
+		next;
+		mes "[Mingmin]";
+		mes "ต้นไม้แปลก ๆ ที่เติบโตบนภูมิประเทศของคนแปลกหน้าทุกอย่างดูไม่เหมือนใคร";
+		npctalk "Mingmin: Strange plants growing on stranger terrains. Everything looks out of place.";
+		next;
+		mes "[Mingmin]";
+		mes "ฉันเก็บเห็ดมาสองสามอย่างเพื่อลิ้มรส";
+		npctalk "Mingmin: I've harvested a few mushrooms to taste.";
+		next;
+		cutin "min01",0;
+		mes "[Mingmin]";
+		mes "เห็ดนี้มีพิษ แต่ไม่เป็นอันตรายถึงชีวิตคุณอยากกัดไหม";
+		npctalk "Mingmin: This mushroom is poisonous, but not life threatening. Do you want to have a bite?";
+		next;
+		if (select( "Decline.", "Have a bite." ) == 1) {
+			cutin "min03",0;
+			mes "[Mingmin]";
+			mes "ฉันจะไม่ตอบ!";
+			npctalk "Mingmin: I won't take no for an answer!";
+			next;
+			mes "- Mingmin shoves a mushroom into your mouth. -";
+			next;
+			cutin "min02",0;
+			mes "[Mingmin]";
+			mes "Hm?";
+			npctalk "Mingmin: Hm?";
+			next;
+			mes "[Mingmin]";
+			mes "คุณไม่ได้ทำปฏิกิริยาอะไรเลยบางทีเห็ดอาจจะไม่มีพิษก็ได้ฉันควรจะลองสักอัน ... ";
+			npctalk "Mingmin: You're not reacting. Maybe the mushroom is not poisonous after all. Maybe I should try one...";
+			next;
+			mes "[Mingmin]";
+			mes "Hm...";
+			npctalk "Mingmin: Hm...";
+			next;
+			mes "[Mingmin]";
+			mes "แทบไม่มีรสชาติเลย";
+			npctalk "Mingmin: It has almost no taste.";
+			next;
+			mes "[Mingmin]";
+			mes "Sheesh นี่เสียเวลาไปก่อนนะมีอีกอย่างที่อยากดู";
+			npctalk "Mingmin: Sheesh, this was a waste of time. You should go first. There's one more thing I want to look at.";
+		}
+		else {
+			mes "[Mingmin]";
+			mes "คุณกล้ากว่าที่คิด";
+			npctalk "Mingmin: You're braver than I thought.";
+			next;
+			mes "- คุณรู้สึกดีอาจจะเป็นผลข้างเคียงของการกินเห็ดก็ได้ -";
+			next;
+			mes "[Mingmin]";
+			mes "น่าจะลองดูนะ";
+			npctalk "Mingmin: I should try one.";
+			next;
+			mes "[Mingmin]";
+			mes "Hm...";
+			npctalk "Mingmin: Hm...";
+			next;
+			mes "[Mingmin]";
+			mes "แทบไม่มีรสชาติเลย";
+			npctalk "Mingmin: It has almost no taste.";
+			next;
+			mes "[Mingmin]";
+			mes "Sheesh นี่เสียเวลาไปก่อนนะมีอีกอย่างที่อยากดู";
+			npctalk "Mingmin: Sheesh, this was a waste of time. You should go first. There's one more thing I want to look at.";
+		}
+	}
+	if ('room == 12 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs13";
+	close3;
+}
+
+// Room 13
+1@jtb,195,206,4	script	Newoz#13	4_M_NEWOZ,{
+	if (is_party_leader() == false) {
+		cutin "nines01",2;
+		mes "[Newoz]";
+		mes "ทันใดนั้นฉันก็อยากกินเนื้อฉันควรเอาภาชนะที่เต็มไปด้วย!";
+		close3;
+	}
+	if ('room != 13) {
+		cutin "nines01",2;
+		mes "[Newoz]";
+		mes "ทันใดนั้นฉันก็อยากกินเนื้อฉันควรเอาภาชนะที่เต็มไปด้วย!";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2) {
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+		if ('room == 13 && is_party_leader() == true)
+			donpcevent 'jitterbug_main$ + "::OnNextIs14";
+		close3;
+	}
+	.@melody$ = instance_npcname("Melody-Jack#13");
+	cutin "nines04",2;
+	mes "[Newoz]";
+	mes "อืมฉันทำยังไงให้แพ้คนอื่นอีก";
+	npctalk "Newoz: Um, how did I manage to lose the others again?";
+	next;
+	cutin "",255;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "Newoz.";
+	npctalk "Melody-Jack: Newoz.", .@melody$;
+	next;
+	cutin "nines01",2;
+	mes "[Newoz]";
+	mes "Wah! Jeez!";
+	npctalk "Newoz: Wah! Jeez!";
+	next;
+	cutin "",255;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "และฉันคิดว่าคุณคงเคยชินกับการมีฉันล่องหน";
+	npctalk "Melody-Jack: And I thought you'd have gotten used to having me around invisible.", .@melody$;
+	next;
+	cutin "nines01",2;
+	mes "[Newoz]";
+	mes "เรายังตกอยู่ในอันตรายหรือไม่";
+	npctalk "Newoz: Are we still in danger?";
+	next;
+	cutin "",255;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "เดาสิเราวนไปวนมาอยู่ที่เดิมข้างทาง";
+	npctalk "Melody-Jack: Guess so. We've been circling around the same place, by the way.", .@melody$;
+	next;
+	cutin "nines04",2;
+	mes "[Newoz]";
+	mes "ฉันพูดถูกแล้วว่าที่นี่เหมือนเขาวงกตฮึฉันเริ่มหิวอีกแล้ว";
+	npctalk "Newoz: So I was right about this place being maze-like. Ugh, I'm getting hungry again.";
+	next;
+	cutin "",255;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "ฉันรอเธอเพราะอยากคุย";
+	npctalk "Melody-Jack: I've waited for you because I wanted to talk.", .@melody$;
+	next;
+	mes "[Melody-Jack]";
+	mes "Newoz สัญญาของคุณหมดเวลาที่คุณกลับไปที่กิลด์";
+	npctalk "Melody-Jack: Newoz, your contract has expired at the time you returned to the guild.", .@melody$;
+	next;
+	cutin "nines01",2;
+	mes "[Newoz]";
+	mes "โอ้ถูกต้องเนื่องจากฉันไม่ใช่นายอีกต่อไปสัญญาของฉันจึงหมดลงตามธรรมชาติ";
+	npctalk "Newoz: Oh, that's right. Since I'm no longer the master, my contract has expired naturally.";
+	next;
+	cutin "",255;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "แต่ในสถานการณ์นี้สัญญาของฉันกับคุณยังคงมีอยู่";
+	npctalk "Melody-Jack: But given the situation, my promise to you still stands.", .@melody$;
+	next;
+	cutin "nines01",2;
+	mes "[Newoz]";
+	mes "ขอบคุณฉันดีใจที่แผนฉุกเฉินของฉันยังอยู่ในสถานที่";
+	npctalk "Newoz: Thanks. I'm glad my contingency plan is still in place.";
+	next;
+	cutin "",255;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "อืมมมแค่รู้ว่าฉันรักษาสัญญาที่มีให้กับคุณก็เพราะคุณมีสิ่งที่ฉันต้องการเท่านั้น";
+	npctalk "Melody-Jack: Hmpf, just know I'm keeping my promise to you only because you've got what I want.", .@melody$;
+	next;
+	cutin "nines02",2;
+	mes "[Newoz]";
+	mes "โอ้คุณหมายถึงอูคูเลเล่ตัวนี้หรือเปล่า";
+	npctalk "Newoz: Oh, do you mean this ukulele?";
+	next;
+	cutin "",255;
+	emotion ET_MERONG, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "คุณปัญญาอ่อนไม่มีค่าอะไรเลยสัญญาของคุณหมดลง แต่สัญญาก็คือสัญญาและฉันตั้งใจจะรักษามันไว้";
+	npctalk "Melody-Jack: You moron, that's worth nothing. Your contract has expired, but a promise is a promise and I intend to keep it.", .@melody$;
+	next;
+	cutin "nines01",2;
+	mes "[Newoz]";
+	mes "ขอบคุณ";
+	npctalk "Newoz: Thanks.";
+	close2;
+	cutin "",255;
+	if ('room == 13 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs14";
+	end;
+}
+
+1@jtb,191,206,5	script	Melody-Jack#13	CLEAR_NPC,{
+	mes "[Melody-Jack]";
+	mes "ได้โปรดอย่าพูดกับฉัน - ฉันกำลังซ่อนตัวด้วยเหตุผล";
+	close;
+}
+
+
+// Room 14 (menu affects the boss encounter in the next room)
+1@jtb,282,194,5	script	Newoz#14	4_M_NEWOZ,{
+	if ('room != 14 || is_party_leader() == false) {
+		cutin "nines01",0;
+		mes "[Newoz]";
+		mes "เป็นไปได้ว่าอาจมีคนอื่นอยู่ที่นี่";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2) {
+		mes "Try to jog your memory while hurrying.";
+		if ('room == 14 && is_party_leader() == true) {
+			donpcevent 'jitterbug_main$ + "::OnNextIs15";
+			if (jitterbug_options & 2)
+				areamonster 'map_jtb$,358,212,388,182, "--ja--", 3108,1;	// no label
+		}
+		close3;
+	}
+	.@lagi$ = instance_npcname("Lagi#14");
+	.@aigu$ = instance_npcname("Aigu#14");
+	.@shaloshi$ = instance_npcname("Shaloshi#14");
+	.@mingmin$ = instance_npcname("Mingmin#14");
+	.@roel$ = instance_npcname("Roel#14");
+
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "ฉันจำได้ไม่กี่อย่าง";
+	npctalk "Shaloshi: I remembered a few things.", .@shaloshi$;
+	next;
+	cutin "igu04",2;
+	mes "[Aigu]";
+	mes "Did you?";
+	npctalk "Aigu: Did you?", .@aigu$;
+	next;
+	cutin "ragi03",2;
+	emotion ET_DELIGHT, getnpcid(0,.@lagi$);
+	mes "[Lagi]";
+	mes "เธอบอกว่าเธอทำ";
+	npctalk "Lagi: She said she did.", .@lagi$;
+	next;
+	cutin "nines03",0;
+	emotion ET_DELIGHT;
+	mes "[Newoz]";
+	mes "ใช่แล้วนั่นคือสิ่งที่เธอพูด";
+	npctalk "Newoz: Right, that's what she said.";
+	next;
+	cutin "ragi01",2;
+	emotion ET_SURPRISE;
+	emotion ET_SURPRISE, getnpcid(0,.@lagi$);
+	mes "[Lagi & Newoz]";
+	mes "!!!";
+	npctalk "Newoz: !!!";
+	npctalk "Lagi: !!!", .@lagi$;
+	next;
+	cutin "nines01",0;
+	mes "[Lagi & Newoz]";
+	mes "อ้างห้า!";
+	npctalk "Newoz: Gimmie five!";
+	npctalk "Lagi: Gimmie five!", .@lagi$;
+	next;
+	cutin "",255;
+	mes "- *Slap* -";
+	next;
+	emotion ET_KEK;
+	emotion ET_KEK, getnpcid(0,.@lagi$);
+	emotion ET_HNG, getnpcid(0,.@aigu$);
+	emotion ET_HNG, getnpcid(0,.@mingmin$);
+	specialeffect EF_HIT5;
+	specialeffect EF_HIT5,AREA, .@lagi$;
+	mes "- ก่อนที่ทั้งสองจะให้ไฮไฟว์ซึ่งกันและกันไอกูและหมิงมินตบหลังพวกเขา -";
+	next;
+	cutin "igu03",2;
+	mes "[Aigu]";
+	mes "Stop goofing around. Shaloshi, talk to us.";
+	npctalk "Aigu: Stop goofing around. Shaloshi, talk to us.", .@aigu$;
+	next;
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "ในความมืดมิดฉันได้ยินเสียงมันเบา แต่มันดังชั่วขณะ";
+	npctalk "Shaloshi: In the pitch darkness, I heard a voice. It was low, but it was ringing for a while.", .@shaloshi$;
+	next;
+	mes "[Shaloshi]";
+	mes "ต่อมาฉันได้ยินนิวออซร้องเพลงระหว่างรอเพื่อน ๆ ของเขาเสียงของเขาทำให้ฉันอบอุ่น";
+	npctalk "Shaloshi: Later I heard Newoz singing while waiting for his friends. His voice warmed me.", .@shaloshi$;
+	next;
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "ตอนนี้คุณพูดเหมือนโตแล้วทุกอย่างราบรื่นและชัดเจน";
+	npctalk "Mingmin: You speak like a grown-up now, all smooth and clear.", .@mingmin$;
+	next;
+	cutin "roel01",2;
+	mes "[Roel]";
+	mes "เธอน่ากลัวมาก";
+	npctalk "Roel: She could have been terrified.", .@roel$;
+	next;
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "ฉันไม่รู้ว่าเพื่อนหมายถึงอะไร แต่ฟังดูดีฉันอยากได้";
+	npctalk "Shaloshi: I didn't know what friends meant, but it sounded good. I wanted it.", .@shaloshi$;
+	next;
+	mes "[Shaloshi]";
+	mes "Aigu and Runane showed up.";
+	npctalk "Shaloshi: Aigu and Runane showed up.", .@shaloshi$;
+	next;
+	mes "[Shaloshi]";
+	mes "ฉันคิดว่ามีคนทำให้ความปรารถนาของฉันเป็นจริง";
+	npctalk "Shaloshi: I thought someone made my wish come true.", .@shaloshi$;
+	next;
+	cutin "nines01",0;
+	emotion ET_QUESTION;
+	mes "[Newoz]";
+	mes "ความมืดมิด ... คุณจำอะไรไม่ได้อีกเหรอ?";
+	npctalk "Newoz: The pitch darkness... Don't you remember anything else?";
+	next;
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "No.";
+	npctalk "Shaloshi: No.", .@shaloshi$;
+	next;
+	cutin "roel01",2;
+	mes "[Roel]";
+	mes "เธออาจจะปิดตาก็ได้บางทีเธออาจจะหลับ";
+	npctalk "Roel: She could have had her eyes closed. Perhaps she's sleeping.", .@roel$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "ความมืดมิด ... ถ้ำสว่างไปทั่วนอกจากหมอกแล้ว";
+	npctalk "Newoz: The pitch darkness... The cave is bright throughout, aside from the fog.";
+	next;
+	if ('room == 14 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs15";
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "ความฝันเสียงเบา ๆ ในความฝันความฝันแบบไหน";
+	npctalk "Mingmin: A dream. A low voice in a dream. What kind of dream?", .@mingmin$;
+	next;
+	if (select( "She heard her own thoughts.", "She was talking with someone." ) == 1) {
+		jitterbug_options &= ~2;
+		unittalk getcharid(3), "" + strcharinfo(0) + " : Maybe she heard her own thoughts.";
+	}
+	else {
+		jitterbug_options |= 2;
+		areamonster 'map_jtb$,358,212,388,182, "--ja--", 3108,1;	// no label
+		unittalk getcharid(3), "" + strcharinfo(0) + " : Maybe she was talking with someone.";
+	}
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "...";
+	npctalk "Shaloshi: ... ", .@shaloshi$;
+	next;
+	cutin "igu04",0;
+	mes "[Aigu]";
+	mes "เธออาจจะจำไม่ได้ทุกอย่าง แต่นี่คือการปรับปรุงรอจนกว่าเธอจะพร้อมที่จะพูดมากกว่านี้";
+	npctalk "Aigu: She may have not remembered everything, but this is an improvement. Let's wait until she's ready to talk more.", .@aigu$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "เสียงก่อนที่ฉันจะร้องเพลงเป็นไปได้ว่าอาจมีคนอื่นอยู่ที่นี่";
+	npctalk "Newoz: A voice before my singing. It's possible someone else might be in here.";
+	next;
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "อีกไม่นานก็พอ";
+	npctalk "Mingmin: We'll know soon enough.", .@mingmin$;
+	close3;
+}
+
+1@jtb,285,191,1	script	Shaloshi#14	4_F_SHALOSH,{
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "ฉันคิดว่ามีคนทำให้ความปรารถนาของฉันเป็นจริง";
+	close3;
+}
+
+1@jtb,285,195,4	script	Lagi#14	4_M_RAGI,{
+	cutin "ragi02",0;
+	mes "[Lagi]";
+	mes "ถ้าคุณคิดว่าเรื่องตลกของฉันมันตลกอย่าพยายามซ่อนมันแค่หัวเราะ";
+	close3;
+}
+
+1@jtb,287,194,4	script	Aigu#14	4_F_IU,{
+	cutin "igu04",0;
+	mes "[Aigu]";
+	mes "อย่าไปฟังเขาเลยเขาไม่ต้องการกำลังใจสำหรับเรื่องตลกร้ายของเขา";
+	close3;
+}
+
+1@jtb,289,191,4	script	Roel#14	4_M_ROEL,{
+	cutin "roel01",2;
+	mes "[Roel]";
+	mes "ฉันหวังว่าชาโลชิจะฟื้นความทรงจำในไม่ช้า";
+	close3;
+}
+
+1@jtb,280,191,8	script	Mingmin#14	4_F_GENETIC,{
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "ฮึฉันเหนื่อยการมองหาสมาชิกใหม่เหล่านี้ทั้งวันก็เป็นการทำงานไปในตัว";
+	close3;
+}
+
+
+// Room 15
+1@jtb,380,219,5	script	Newoz#15	4_M_NEWOZ,{
+	if (is_party_leader() == false) {
+		cutin "nines02",0;
+		mes "[Newoz]";
+		mes "ฉันคิดถึงการผสมผสานระหว่างเนื้อวัวกับลูกโอ๊กที่เรียกว่า Bifrost Roast Beef";
+		close3;
+	}
+	if ('room != 15) {
+		cutin "nines02",0;
+		mes "[Newoz]";
+		mes "ไม่ต้องกังวลเด็ก ๆ เติบโตด้วยการต่อสู้";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2)
+		mes "Try to jog your memory while hurrying.";
+	else {
+		.@roel$ = instance_npcname("Roel#15");
+		.@runane$ = instance_npcname("Runane#15");
+		.@shaloshi$ = instance_npcname("Shaloshi#15");
+		.@roter$ = instance_npcname("Roter#15");
+		.@gelka$ = instance_npcname("Gelka#15");
+		.@mingmin$ = instance_npcname("Mingmin#15");
+		.@arang$ = instance_npcname("Arang#15");
+
+		cutin "nines01",0;
+		mes "[Newoz]";
+		mes "Arang! Shaloshi!";
+		npctalk "Newoz: Arang! Shaloshi!";
+		next;
+		cutin "arang01",2;
+		mes "[Arang]";
+		mes "อะไร";
+		npctalk "Arang: What?", .@arang$;
+		next;
+		cutin "nines01",0;
+		mes "[Newoz]";
+		mes "คุณไม่ตกอยู่ในอันตรายหรอ";
+		npctalk "Newoz: Weren't you in danger?";
+		next;
+		cutin "arang02",2;
+		mes "[Arang]";
+		mes "หายไปไหนมาเรามีสัตว์ประหลาดที่น่ากลัวอยู่ที่นี่!";
+		npctalk "Arang: Where have you been? We just had an awesome monster here!", .@arang$;
+		next;
+		cutin "nines02",0;
+		mes "[Newoz]";
+		mes "หึสัญชาตญาณของฉันบอกให้ฉันช้าลงเพราะอันตรายอยู่ข้างหน้า";
+		npctalk "Newoz: Heh, my instincts told me to slow down because danger was ahead.";
+		next;
+		cutin "gelca01",0;
+		mes "[Gelka]";
+		mes "โอ้สัญชาตญาณของนักผจญภัยผู้ยิ่งใหญ่!";
+		npctalk "Gelka: Oh, the instincts of a great adventurer!", .@gelka$;
+		next;
+		cutin "arang01",2;
+		mes "[Arang]";
+		mes "ไม่สัญชาตญาณนักผจญภัยของเขาเริ่มขึ้นสนิมแล้ว";
+		npctalk "Arang: No, his adventurer instincts have gotten rusty.", .@arang$;
+		next;
+		cutin "rote01",0;
+		mes "[Roter]";
+		mes "เขาขี้เกียจไม่ได้อ่อนแอขนาดนี้";
+		npctalk "Roter: He's just being lazy. He's not so weak.", .@roter$;
+		next;
+		cutin "shaloshi01",2;
+		mes "[Shaloshi]";
+		mes "สัญชาตญาณของฉันบอกว่านิวออซไม่แข็งแรง";
+		npctalk "Shaloshi: My instincts just told me Newoz is not strong.", .@shaloshi$;
+		next;
+		mes "[Shaloshi]";
+		mes "นิวออซคุณคิดว่าทุกคนยกเว้นร็อตเป็นคนธรรมดาหรือเปล่า";
+		npctalk "Shaloshi: Newoz, did you just think everyone except Rot is mediocre?", .@shaloshi$;
+		next;
+		cutin "min02",2;
+		mes "[Mingmin]";
+		mes "พูดได้และได้ยินความคิดของคนอื่นเก่ง";
+		npctalk "Mingmin: You can talk and you can hear other people's thoughts. Brilliant.", .@mingmin$;
+		next;
+		cutin "lunain04",2;
+		mes "[Runane]";
+		mes "พอแล้ว! เลิกดูหมิ่นนิวออซ!";
+		npctalk "Runane: Enough! Stop being disrespectful to Newoz!", .@runane$;
+		next;
+		cutin "roel01",0;
+		mes "[Roel]";
+		mes "สหายไม่ควรทะเลาะกัน";
+		npctalk "Roel: Comrades should not fight with each other.", .@roel$;
+		next;
+		cutin "shaloshi01",2;
+		mes "[Shaloshi]";
+		mes "สหายไม่ควรทะเลาะกันเข้าใจแล้ว";
+		npctalk "Shaloshi: Comrades should not fight with each other. Got it.", .@shaloshi$;
+		next;
+		cutin "lunain03",2;
+		mes "[Runane]";
+		mes "สหายใครพวกเราก็แค่กลุ่มคนแปลกหน้าที่ยอมช่วยหญิงสาวที่หลงทาง!";
+		npctalk "Runane: Comrades, who? We're just a bunch of strangers hell-bent on saving a lost girl!", .@runane$;
+		next;
+		cutin "roel03",0;
+		mes "[Roel]";
+		mes "(เธออ้ำอึ้งเมื่อเธอโกรธ!)";
+		npctalk "Roel: (She's hawt when she's angry!)", .@roel$;
+		next;
+		emotion ET_FRET, getnpcid(0,.@mingmin$);
+		cutin "min02",0;
+		mes "[Mingmin]";
+		mes "เราจะคุยกันอีกครั้งเมื่อเราออกจากที่นี่";
+		npctalk "Mingmin: We'll talk again the moment we're out of here.", .@mingmin$;
+	}
+	if ('room == 15 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs16";
+	close3;
+}
+
+1@jtb,382,211,4	script	Mingmin#15	4_F_GENETIC,{
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "ไม่สน";
+	close3;
+}
+
+1@jtb,378,211,5	script	Gelka#15	4_F_GELKA,{
+	cutin "gelca01",0;
+	mes "[Gelka]";
+	mes "ฉันไม่เคยเหนื่อยกับการฝึกเลย";
+	close3;
+}
+
+1@jtb,385,214,4	script	Shaloshi#15	4_F_SHALOSH,{
+	cutin "shaloshi02",2;
+	mes "[Shaloshi]";
+	mes "คุณไม่ได้ยินว่าคนอื่นคิดอย่างไร";
+	close3;
+}
+
+1@jtb,383,216,5	script	Arang#15	4_F_TAEKWON,{
+	cutin "arang01",0;
+	mes "[Arang]";
+	mes "Yap! Yap!";
+	close3;
+}
+
+1@jtb,384,218,4	script	Runane#15	4_F_RUNAIN,{
+	cutin "lunain02",2;
+	mes "[Runane]";
+	mes "ฉันอบและถักในเวลาว่างฉันอยู่บ้านมากโฮโฮโฮ!";
+	close3;
+}
+
+1@jtb,375,214,5	script	Roter#15	4_M_ROTERT,{
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "เป็นเรื่องจริงที่ฉันแข็งแกร่งที่สุด";
+	close3;
+}
+
+1@jtb,376,218,5	script	Roel#15	4_M_ROEL,{
+	cutin "roel01",0;
+	mes "[Roel]";
+	mes "สหายควรเป็นเพื่อนที่ดีที่สุด!";
+	close3;
+}
+
+
+// Room 16
+1@jtb,25,280,5	script	Newoz#16	4_M_NEWOZ,{
+	if ('room != 16 || is_party_leader() == false) {
+		cutin "nines01",0;
+		mes "[Newoz]";
+		mes "เดี๋ยวก่อนฉันเก็บใบไม้ร่วงและบลูการ์ดไปให้เพื่อนคนอื่น ๆ เป็นที่ระลึกได้ที่ไหน";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2)
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+	else {
+		.@mingmin$ = instance_npcname("Mingmin#16");
+		.@roter$ = instance_npcname("Roter#16");
+
+		cutin "nines02",0;
+		emotion ET_DELIGHT;
+		mes "[Newoz]";
+		mes "การมีคุณสองคนกับฉันทำให้ความทรงจำกลับคืนมามากมาย";
+		npctalk "Newoz: Having you two with me brings back a lot of memories.";
+		next;
+		cutin "rote01",2;
+		mes "[Roter]";
+		mes "ฉันดื้อเหมือนล่อและแกล้งทำเหมือนรู้ว่ากำลังทำอะไรอยู่";
+		npctalk "Roter: I was as stubborn as a mule and busy pretending like I knew what I was doing.", .@roter$;
+		next;
+		cutin "min01",0;
+		emotion ET_QUESTION, getnpcid(0,.@mingmin$);
+		mes "[Mingmin]";
+		mes "คุณจำได้ไหมตอนที่คุณสองคนต่อสู้กับสาวขายดอกไม้คนนั้นที่ประตูทางใต้ของ Prontera หรือตอนที่พ่อค้าตุ๊กตาที่ประตูทางทิศตะวันออกหลอกคุณเพราะทะเลาะกัน";
+		npctalk "Mingmin: Do you remember when you two fought over that florist girl at the southern gate of Prontera? Or when the doll merchant at the eastern gate whupped you for bickering and driving his customers away?", .@mingmin$;
+		next;
+		cutin "rote01",2;
+		mes "[Roter]";
+		mes "คุณไม่มีความทรงจำดีๆเกี่ยวกับเราเลยหรือ";
+		npctalk "Roter: Do you not have any good memories of us?", .@roter$;
+		next;
+		cutin "nines03",0;
+		emotion ET_DELIGHT;
+		mes "[Newoz]";
+		mes "โอ้ฉันจำได้อ่าเวลาดี!";
+		npctalk "Newoz: Oh, I remember! Ah, good times!";
+		next;
+		cutin "rote01",0;
+		emotion ET_THINK, getnpcid(0,.@roter$);
+		mes "[Roter]";
+		mes "ฉันคนเดียวที่ไม่พอใจกับบทสนทนานี้หรือเปล่า";
+		npctalk "Roter: Am I the only one not happy about this conversation?", .@roter$;
+		next;
+		cutin "min03",2;
+		emotion ET_MERONG, getnpcid(0,.@mingmin$);
+		mes "[Mingmin]";
+		mes "แล้วตอนที่คุณเล่นกับ Dead Branch ให้ตายล่ะหรือตอนที่คุณกับเพื่อนจอมเวทฆ่าตัวตายเล่น Hocus Pocus";
+		npctalk "Mingmin: How about when you played with Dead Branch to death? Or when you and your Sorcerer buddies killed yourselves playing Hocus Pocus?", .@mingmin$;
+		next;
+		cutin "rote01",0;
+		emotion ET_OHNO, getnpcid(0,.@roter$);
+		mes "[Roter]";
+		mes "คิดถึงความทรงจำดีๆไม่ได้เหรอ";
+		npctalk "Roter: Can't you think of a nice memory?", .@roter$;
+		next;
+		cutin "nines02",2;
+		emotion ET_OK;
+		mes "[Newoz]";
+		mes "ฉันทำได้! Mingmin ดื่ม Poison Bottle ที่ฉันพบบนถนนและเสียชีวิตฉันบอกคุณว่ามันแพงและฉันก็ไม่ได้พูดอะไรเกี่ยวกับมันที่ดีต่อสุขภาพของคุณ";
+		npctalk "Newoz: I can! Mingmin drank the Poison Bottle I found on the street and died; I told you it was expensive, and I didn't say anything about it being good for your health.";
+		next;
+		cutin "min03",0;
+		emotion ET_SMILE, getnpcid(0,.@mingmin$);
+		mes "[Mingmin]";
+		mes "โอ้ฉันจำได้! มันตลกมาก!";
+		npctalk "Mingmin: Oh, I remember! That was funny!", .@mingmin$;
+		next;
+		emotion ET_KEK, getnpcid(0,.@roter$);
+		cutin "rote01",2;
+		mes "[Roter]";
+		mes "Argh!";
+		npctalk "Roter: Argh!", .@roter$;
+	}
+	if ('room == 16 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs17";
+	close3;
+}
+
+1@jtb,30,279,4	script	Mingmin#16	4_F_GENETIC,{
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "Tsk, tsk ฉันเลี้ยงดูทุกคนมาที่นี่แล้วและตอนนี้พวกเขาก็อยู่ในตำแหน่งหัวหน้ากิลด์ของกันและกัน";
+	close3;
+}
+
+1@jtb,30,284,4	script	Roter#16	4_M_ROTERT,{
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "อย่าปล่อยให้ตัวเองหลงไปกับข่าวลือข้าคือ Stag of the Southern Gate บิชอปผู้ทรงอิทธิพลที่สุดในประวัติศาสตร์ผู้ขับไล่!";
+	close3;
+}
+
+
+// Room 17 (menu affects the boss encounter in the next room)
+1@jtb,110,281,5	script	Shaloshi#17	4_F_SHALOSH,{
+	if ('room != 17 || is_party_leader() == false) {
+		cutin "shaloshi01",2;
+		mes "[Shaloshi]";
+		mes "เพื่อน ... คู่แข่ง ... สหาย ... ";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2) {
+		mes "Try to jog your memory while hurrying.";
+		if ('room == 17 && is_party_leader() == true) {
+			donpcevent 'jitterbug_main$ + "::OnNextIs18";
+			if (jitterbug_options & 4)
+				areamonster 'map_jtb$,183,301,220,272, "--ja--", 3108,1;	// no label
+		}
+		close3;
+	}
+	.@runane$ = instance_npcname("Runane#17");
+	.@aigu$ = instance_npcname("Aigu#17");
+
+	cutin "lunain02",2;
+	mes "[Runane]";
+	mes "บางที Newoz ไม่สนใจที่จะออกเดท";
+	npctalk "Runane: Maybe Newoz is not interested in dating.", .@runane$;
+	next;
+	cutin "igu05",0;
+	mes "[Aigu]";
+	mes "บอกฉันในสิ่งที่ฉันไม่รู้";
+	npctalk "Aigu: Tell me something I don't know.", .@aigu$;
+	next;
+	cutin "lunain01",2;
+	mes "[Runane]";
+	mes "แต่คุณยังไม่ได้ลองคุยกับเขาฉันหมายถึงจริงจังใช่ไหม";
+	npctalk "Runane: But you haven't tried to talk to him. I mean seriously, have you?", .@runane$;
+	next;
+	cutin "igu04",0;
+	mes "[Aigu]";
+	mes "วันนี้คุณเจอเขาแล้ว แต่คุณควรรู้เว้นแต่คุณจะโง่";
+	npctalk "Aigu: You've met him today, but you should know unless you're stupid.", .@aigu$;
+	next;
+	cutin "lunain02",2;
+	mes "[Runane]";
+	mes "ฉันรู้ - เขาจะบอกว่าไม่ถ้าฉันถามเขา";
+	npctalk "Runane: I know--he'll say no if I ask him out.", .@runane$;
+	next;
+	cutin "igu05",0;
+	mes "[Aigu]";
+	mes "ดิวิทนั้นสนใจ แต่การผจญภัย";
+	npctalk "Aigu: That dimwit is only interested in adventuring.", .@aigu$;
+	next;
+	cutin "lunain04",2;
+	mes "[Runane]";
+	mes "อย่าเรียกฮีโร่ของฉันว่า! ... แต่ฉันเห็นด้วยกับคุณ";
+	npctalk "Runane: Don't call my hero that! ...But I agree with you.", .@runane$;
+	next;
+	cutin "igu03",0;
+	mes "[Aigu]";
+	mes "ดูเหมือนคุณจะชอบโรเอล";
+	npctalk "Aigu: You seem to be fond of Roel.", .@aigu$;
+	next;
+	cutin "lunain03",2;
+	mes "[Runane]";
+	mes "ฉันไม่สนใจเด็กคนนั้น";
+	npctalk "Runane: I'm not interested in that kid.", .@runane$;
+	next;
+	if ('room == 17 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs18";
+	cutin "igu03",0;
+	mes "[Aigu]";
+	mes "แล้วคุณล่ะนักผจญภัยเป็นอย่างไรบ้างกับคนสำคัญของคุณ";
+	npctalk "Aigu: How about you, Adventurer? How are things with your significant other?", .@aigu$;
+	next;
+	switch( select( "You don't even know if I have one.", "My love is unrequited.", "We're happy." ) ) {
+	case 1:
+		jitterbug_options &= ~4;
+		unittalk getcharid(3), "" + strcharinfo(0) + " : You don't even know if I have one.";
+		cutin "igu05",0;
+		mes "[Aigu]";
+		mes "โอ้ฉันขอโทษ แต่ฉันเกือบจะน้ำตาไหลแล้ว";
+		npctalk "Aigu: Oh, I'm sorry, but I'm on the verge of bursting into tears.", .@aigu$;
+		break;
+	case 2:
+		jitterbug_options &= ~4;
+		unittalk getcharid(3), "" + strcharinfo(0) + " : My love is unrequited.";
+		cutin "igu01",0;
+		mes "[Aigu]";
+		mes "ความรักที่ไม่สมหวังนั้นเจ็บปวดคุณควรปล่อยมันไปก่อนที่มันจะพัง";
+		npctalk "Aigu: Unrequited love is painful. You'd better let it go before it breaks you.", .@aigu$;
+		break;
+	case 3:
+		jitterbug_options |= 4;
+		areamonster 'map_jtb$,183,301,220,272, "--ja--", 3108,1;	// no label
+		unittalk getcharid(3), "" + strcharinfo(0) + " : We're happy.";
+		mes "[Aigu]";
+		mes "เอาจริงเหรอถึงคนอย่างเธอได้พบรักแล้วฉันล่ะ?!";
+		npctalk "Aigu: Are you serious? Even people like you have found their love. What about me?!", .@aigu$;
+		break;
+	}
+	next;
+	cutin "igu01",0;
+	mes "[Aigu]";
+	mes "ฉันไม่รังเกียจการแข่งขันที่ดีต่อสุขภาพ แต่ฉันชอบความเป็นเพื่อนอย่างไรก็ตามมันคงอยู่นาน";
+	npctalk "Aigu: I don't mind healthy rivalry, but I prefer friendship, however long it lasts.", .@aigu$;
+	next;
+	cutin "",255;
+	mes "[Runane]";
+	mes "ตอนนี้เรามาพักรบกันเถอะ แต่อย่าทำผิด - Newoz เป็นของฉันเมื่อฉันพบว่าเขาอ่อนแอ";
+	npctalk "Runane: Let's make a truce for now. But make no mistake--Newoz is mine the moment I find him vulnerable.", .@runane$;
+	next;
+	cutin "shaloshi03",0;
+	mes "[Shaloshi]";
+	mes "(เพื่อน ... คู่แข่ง ... )";
+	npctalk "Shaloshi: (Friends... Rivalry...)";
+	next;
+	cutin "igu01",0;
+	mes "[Aigu]";
+	mes "เหนือศพของฉัน!";
+	npctalk "Aigu: Over my dead body!", .@aigu$;
+	close3;
+}
+
+1@jtb,113,285,4	script	Runane#17	4_F_RUNAIN,{
+	cutin "lunain01",2;
+	mes "[Runane]";
+	mes "ตอนนี้เรามาพักรบกันเถอะ แต่อย่าทำผิด - Newoz เป็นของฉันเมื่อฉันพบว่าเขาอ่อนแอ";
+	close3;
+}
+
+1@jtb,108,285,5	script	Aigu#17	4_F_IU,{
+	cutin "igu03",0;
+	mes "[Aigu]";
+	mes "ฉันไม่รังเกียจการแข่งขันที่ดีต่อสุขภาพ แต่ฉันชอบความเป็นเพื่อนอย่างไรก็ตามมันคงอยู่นาน";
+	close3;
+}
+
+
+// Room 18
+1@jtb,198,282,5	script	Shaloshi#18	4_F_SHALOSH,{
+	if ('room != 18 || is_party_leader() == false) {
+		cutin "shaloshi01",0;
+		mes "[Shaloshi]";
+		mes "เฟอเรสอย่ากัดฉัน";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2)
+		mes "พยายามเขย่าความทรงจำของคุณในขณะที่กำลังรีบ";
+	else {
+		.@runane$ = instance_npcname("Runane#18");
+		.@roel$ = instance_npcname("Roel#18");
+
+		emotion ET_THINK;
+		cutin "shaloshi01",0;
+		mes "[Shaloshi]";
+		mes "โรเอลกับรูนาเน่เจ็บ";
+		npctalk "Shaloshi: Roel and Runane are hurt.";
+		next;
+		cutin "lunain04",2;
+		mes "[Runane]";
+		mes "ฉันสบายดีฉันบอกให้ระวังเด็ก!";
+		npctalk "Runane: I'm fine. I told you to be careful, kiddo!", .@runane$;
+		next;
+		cutin "roel04",0;
+		emotion ET_SORRY, getnpcid(0,.@roel$);
+		mes "[Roel]";
+		mes "ขอโทษนะฉันจะไม่ทำให้คุณผิดหวังอีก";
+		npctalk "Roel: Sorry. I won't disappoint you again.", .@roel$;
+		next;
+		cutin "shaloshi01",0;
+		mes "[Shaloshi]";
+		mes "เธอไม่พอใจเขา แต่เธอก็ยังปฏิบัติกับเขาดีมาก";
+		npctalk "Shaloshi: She's not happy with him, but she still treats him really well.";
+		next;
+		emotion ET_THROB, getnpcid(0,.@roel$);
+		cutin "roel03",0;
+		mes "[Roel]";
+		mes "(She's kind!)";
+		npctalk "Roel: (She's kind!)", .@roel$;
+		next;
+		cutin "lunain02",2;
+		mes "[Runane]";
+		mes "อย่าเข้าใจผิดว่ามันคืออะไร - พี่เลี้ยงเด็ก!";
+		npctalk "Runane: Don't mistake this for anything more than what it is--babysitting!", .@runane$;
+		next;
+		emotion ET_THINK;
+		cutin "shaloshi01",0;
+		mes "[Shaloshi]";
+		mes "เธอหน้าแดง";
+		npctalk "Shaloshi: She's blushing.";
+		next;
+		cutin "lunain01",2;
+		mes "[Runane]";
+		mes "ไม่มีอะไรเกี่ยวกับคุณที่ฉันชอบ";
+		npctalk "Runane: There's nothing about you I like.", .@runane$;
+		next;
+		cutin "shaloshi01",0;
+		mes "[Shaloshi]";
+		mes "ก่อนไอกูกับรันเนอะ";
+		npctalk "Shaloshi: Before Aigu and Runane,";
+		next;
+		mes "[Shaloshi]";
+		mes "เฟอร์เรสปรากฏตัวครั้งแรก";
+		npctalk "Shaloshi: The Ferres showed up first.";
+		next;
+		cutin "roel01",0;
+		mes "[Roel]";
+		mes "Ferre?";
+		npctalk "Roel: Ferre?", .@roel$;
+		next;
+		cutin "shaloshi01",0;
+		mes "[Shaloshi]";
+		mes "พวกมันส่งเสียง 'ferre, ferre' ดังนั้นผมจึงเรียกมันว่า Ferres";
+		npctalk "Shaloshi: They emit 'ferre, ferre,' so I call them Ferres.";
+		next;
+		mes "[Shaloshi]";
+		mes "พวกเขาไม่ได้ทำอะไรเลยนอกจากเกรียน";
+		npctalk "Shaloshi: They did nothing but croaked.";
+		next;
+		mes "[Shaloshi]";
+		mes "พวกเขาเป็นเพื่อนของฉันพวกเขาไม่กัดหรือทำร้ายฉัน";
+		npctalk "Shaloshi: They're my friends. They don't bite or hurt me.";
+		next;
+		cutin "roel01",0;
+		mes "[Roel]";
+		mes "But now...";
+		npctalk "Roel: But now...", .@roel$;
+		next;
+		cutin "lunain04",2;
+		emotion ET_HNG, getnpcid(0,.@runane$);
+		mes "[Runane]";
+		mes "ฟังนะมนุษย์กับสัตว์ประหลาดเป็นเพื่อนกันไม่ได้อย่างน้อยก็เป็นอย่างที่ฉันคิด";
+		npctalk "Runane: Listen, humans and monsters can't be friends. At least that's what I think.", .@runane$;
+		next;
+		cutin "shaloshi01",0;
+		mes "[Shaloshi]";
+		mes "เป็นเพื่อนกันไม่ได้";
+		npctalk "Shaloshi: Can't be friends.";
+		next;
+		cutin "lunain03",2;
+		mes "[Runane]";
+		mes "ถูกต้องฉันชอบคุณมากกว่าเมื่อคุณฟังฉัน";
+		npctalk "Runane: That's right. I like you better when you listen to me.", .@runane$;
+		next;
+		cutin "roel03",0;
+		mes "[Roel]";
+		mes "แล้วฉันจะเป็นเพื่อนเธอได้ยังไง";
+		npctalk "Roel: How about I be your friend?", .@roel$;
+		next;
+		emotion ET_SCRATCH, getnpcid(0,.@runane$);
+		cutin "lunain02",2;
+		mes "[Runane]";
+		mes "หยุดทำเรื่องน่าอึดอัด! เราอายุเท่ากันเราก็เป็นเพื่อนกันแล้ว";
+		npctalk "Runane: Stop making things awkward! We're about the same age, so we're friends already.", .@runane$;
+		next;
+		cutin "shaloshi03",0;
+		mes "[Shaloshi]";
+		mes "(เป็นเพื่อนกันไม่ได้)";
+		npctalk "Shaloshi: (Can't be friends.)";
+	}
+	if ('room == 18 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs19";
+	close3;
+}
+
+1@jtb,203,281,4	script	Runane#18	4_F_RUNAIN,{
+	cutin "lunain02",2;
+	mes "[Runane]";
+	mes "เพื่อนแท้ไม่จำเป็นต้องประกาศความเป็นเพื่อน แต่กลายเป็นเพื่อนโดยไม่รู้ตัว";
+	close3;
+}
+
+1@jtb,199,278,8	script	Roel#18	4_M_ROEL,{
+	cutin "roel03",0;
+	mes "[Roel]";
+	mes "ฉันไม่เป็นไรอย่างน้อยฉันก็สามารถปกป้องชาโลชิได้การปกป้องใครสักคนก็เป็นเรื่องดี";
+	close3;
+}
+
+
+// Room 19
+1@jtb,28,377,5	script	Newoz#19	4_M_NEWOZ,{
+	if ('room != 19 || is_party_leader() == false) {
+		cutin "nines01",0;
+		mes "[Newoz]";
+		mes "เราควรตามหาเธอ";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2)
+		mes "Try to jog your memory while hurrying.";
+	else {
+		.@aigu$ = instance_npcname("Aigu#19");
+		.@mingmin$ = instance_npcname("Mingmin#19");
+		.@roter$ = instance_npcname("Roter#19");
+		.@melody$ = instance_npcname("Melody-Jack#19");
+		.@arang$ = instance_npcname("Arang#19");
+
+		cutin "nines01",0;
+		emotion ET_THINK;
+		mes "[Newoz]";
+		mes "แปลก ... บรรยากาศเปลี่ยนไป";
+		npctalk "Newoz: Strange... The atmosphere has changed.";
+		next;
+		cutin "min02",0;
+		mes "[Mingmin]";
+		mes "อากาศมีกลิ่นที่แตกต่างกันและสิ่งต่างๆดูน้อยลง ... รับรู้ได้";
+		npctalk "Mingmin: The air smells different, and things look less perceptible.", .@mingmin$;
+		next;
+		cutin "rote01",2;
+		mes "[Roter]";
+		mes "ดูเหมือนว่าเราอยู่ใต้น้ำ แต่ฉันไม่รู้สึกถึงมัน";
+		npctalk "Roter: It seems as though we're underwater, yet I don't feel it.", .@roter$;
+		next;
+		emotion ET_HUM, getnpcid(0,.@melody$);
+		cutin "",255;
+		mes "[Melody-Jack]";
+		mes "ฉันจะบอกคุณว่าเราวนเวียนอยู่ที่เดิม";
+		npctalk "Melody-Jack: I'm telling you, we've been circling around the same place.", .@melody$;
+		next;
+		cutin "min02",0;
+		mes "[Mingmin]";
+		mes "ฉันเห็นด้วยและการหักบัญชีนี้ไม่ได้มีขนาดกะทัดรัดหรือกว้างขวาง";
+		npctalk "Mingmin: I agree. And this clearing is neither compact nor spacious.", .@mingmin$;
+		next;
+		cutin "nines01",0;
+		mes "[Newoz]";
+		mes "คุณคิดว่ามันไม่มีความหมายสำหรับเราที่จะลงลึก";
+		npctalk "Newoz: Do you think it's meaningless for us to go deeper?";
+		next;
+		cutin "min02",0;
+		mes "[Mingmin]";
+		mes "ไม่ฉันแค่บอกว่าการเปลี่ยนแปลงของสิ่งแวดล้อมรุนแรงเกินไปเกือบจะเหมือนอารมณ์แปรปรวนของคนเป็นไบโพลาร์";
+		npctalk "Mingmin: No. I'm just saying the environmental changes are too drastic, almost like the mood swings of a bipolar person.", .@mingmin$;
+		next;
+		mes "[Mingmin]";
+		mes "ฉันไม่รู้ว่าทำไม แต่สิ่งต่างๆกำลังสูญเสียรูปร่างราวกับว่ามันกำลังจะเลือนหายไป";
+		npctalk "Mingmin: I don't know why, but things are losing their shape as if they're fading away.", .@mingmin$;
+		next;
+		emotion ET_THINK, getnpcid(0,.@melody$);
+		cutin "",255;
+		mes "[Melody-Jack]";
+		mes "ตลอดเวลาพลังงานแปลกปลอมที่ฉันรับรู้ได้เพิ่มขึ้นเรื่อย ๆ มันไม่ดี";
+		npctalk "Melody-Jack: All the while, the foreign energy I've been sensing is growing stronger. This is bad.", .@melody$;
+		next;
+		cutin "min02",0;
+		mes "[Mingmin]";
+		mes "ฉันรู้สึกเหมือนมีบางอย่างปรากฏขึ้นต่อหน้าต่อตาพวกเราพร้อมกับเสียงดังป๊อป";
+		npctalk "Mingmin: I feel like something's going to appear in front of our eyes with a loud pop.", .@mingmin$;
+		next;
+		cutin "arang02",0;
+		mes "[Arang]";
+		mes "ฉันหวังว่ามันจะเป็นสัตว์ประหลาดที่น่ากลัวนะ!";
+		npctalk "Arang: I hope it's a formidable monster!", .@arang$;
+		next;
+		emotion ET_X, getnpcid(0,.@aigu$);
+		cutin "igu01",0;
+		mes "[Aigu]";
+		mes "ฉันหวังว่าคุณจะคิดผิด";
+		npctalk "Aigu: I hope you're wrong.", .@aigu$;
+		next;
+		cutin "ragi02",2;
+		mes "[Lagi]";
+		mes "ฉันจะปล่อยพวกคุณไป ... ";
+		npctalk "Lagi: I'm just going to leave you guys to...", instance_npcname("Lagi#19");
+		next;
+		cutin "nines02",0;
+		mes "[Newoz]";
+		mes "สัตว์ประหลาด?";
+		npctalk "Newoz: The monster?";
+		next;
+		cutin "rote01",2;
+		mes "[Roter]";
+		mes "ฉันจะฆ่าคุณทั้งคู่ต่อหน้าสัตว์ประหลาด";
+		npctalk "Roter: I'll kill you both before the monster.", .@roter$;
+		next;
+		cutin "gelca04",2;
+		mes "[Gelka]";
+		mes "อาจารย์โปรด!";
+		npctalk "Gelka: Master, please!", instance_npcname("Gelka#19");
+		next;
+		cutin "arang02",0;
+		mes "[Arang]";
+		mes "คุณเคยเห็นชาโลชิไหมเธออยู่ที่ไหน";
+		npctalk "Arang: Have you seen Shaloshi? Where is she?", .@arang$;
+		next;
+		cutin "igu04",0;
+		mes "[Aigu]";
+		mes "โอ้ถูก!";
+		npctalk "Aigu: Oh, you're right!", .@aigu$;
+		next;
+		cutin "min02",0;
+		mes "[Mingmin]";
+		mes "...";
+		npctalk "Mingmin: ...", .@mingmin$;
+		next;
+		emotion ET_THINK, getnpcid(0,.@melody$);
+		cutin "",255;
+		mes "[Melody-Jack]";
+		mes "...";
+		npctalk "Melody-Jack: ...", .@melody$;
+		next;
+		cutin "nines03",0;
+		mes "[Newoz]";
+		mes "เราควรตามหาเธอ";
+		npctalk "Newoz: We should find her.";
+	}
+	if ('room == 19 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs20";
+	close3;
+}
+
+1@jtb,30,377,5	script	Melody-Jack#19	CLEAR_NPC,{
+	mes "[Melody-Jack]";
+	mes "นิวออซไม่เคยรู้จักกาลเทศะ";
+	close;
+}
+
+1@jtb,30,373,4	script	Roter#19	4_M_ROTERT,{
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "ฉันรู้สึกว่า Newoz ไม่ดีเลย";
+	close3;
+}
+
+1@jtb,25,373,5	script	Mingmin#19	4_F_GENETIC,{
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "เราควรมองหาทางออกก่อนที่สิ่งต่างๆจะบ้าคลั่งเกินไป";
+	close3;
+}
+
+1@jtb,24,376,5	script	Aigu#19	4_F_IU,{
+	cutin "igu05",0;
+	mes "[Aigu]";
+	mes "ความกระตือรือร้นในการผจญภัยของนิวออซลงน้ำอีกครั้งฉันไม่สามารถพูดได้ว่าฉันเกลียดเรื่องนั้นเกี่ยวกับเขา";
+	close3;
+}
+
+1@jtb,26,380,5	script	Arang#19	4_F_TAEKWON,{
+	cutin "arang03",0;
+	mes "[Arang]";
+	mes "ฉันหวังว่าสัตว์ประหลาดเหล่านี้จะน่ารักและทำอะไรไม่ถูกเหมือน Porings สำหรับภารกิจ Taekwon";
+	close3;
+}
+
+1@jtb,31,380,4	script	Lagi#19	4_M_RAGI,{
+	cutin "ragi01",0;
+	mes "[Lagi]";
+	mes "พวกเขาทะเลาะกันตลอดเวลา แต่ดูเหมือนเพื่อนที่ดีไม่ใช่เหรอ";
+	close3;
+}
+
+1@jtb,33,376,4	script	Gelka#19	4_F_GELKA,{
+	cutin "gelca01",0;
+	mes "[Gelka]";
+	mes "ฉันฝึกฝนอย่างหนักเพื่อที่ฉันจะได้ส่องแสงในช่วงเวลาแห่งอันตราย";
+	close3;
+}
+
+
+// Room 20 (menu affects the boss encounter in the next room)
+1@jtb,105,377,5	script	Roel#20	4_M_ROEL,{
+	if ('room != 20 || is_party_leader() == false) {
+		cutin "roel01",0;
+		mes "[Roel]";
+		mes "เพื่อนของฉันคนหนึ่งเคยนัดฉันนัดบอดที่ Izlude";
+		next;
+		mes "[Roel]";
+		mes "เธอกับฉันแลกเปลี่ยนจดหมายกันสองฉบับครั้งแรกเพื่อแนะนำกันและกันและครั้งที่สองเพื่อนัดเดท";
+		next;
+		cutin "roel04",0;
+		mes "[Roel]";
+		mes "เธอไม่ตอบจดหมายฉบับที่สองของฉันฉันคิดไม่ออกว่าทำไม";
+		close3;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2) {
+		mes "Try to jog your memory while hurrying.";
+		if ('room == 20 && is_party_leader() == true) {
+			donpcevent 'jitterbug_main$ + "::OnNextIs21";
+			if (jitterbug_options & 8)
+				areamonster 'map_jtb$,182,387,219,354, "--ja--", 3108,1;	// no label
+		}
+		close3;
+	}
+	.@gelka$ = instance_npcname("Gelka#20");
+	cutin "gelca01",2;
+	mes "[Gelka]";
+	mes "ฉากที่ 8: เหล่าฮีโร่ถูกล้อมรอบด้วยศัตรูจำนวนมากโรเอลมาออกแบบท่าเต้นของสิ่งที่พวกเราฝึกซ้อมในวันนี้กันดีกว่า";
+	npctalk "Gelka: Scene 8: Heroes are surrounded by a horde of enemies. Roel, let's choreograph what we've practiced today, shall we?", .@gelka$;
+	next;
+	cutin "roel01",0;
+	emotion ET_SURPRISE;
+	mes "[Roel]";
+	mes "เจลก้าเตรียมตัวให้พร้อม!";
+	npctalk "Roel: Gelka, get ready!";
+	next;
+	emotion ET_COMEON, getnpcid(0,.@gelka$);
+	cutin "gelca01",2;
+	mes "[Gelka]";
+	mes "ความแข็งแกร่งของจิตแบบเจลก้า! ร่างกายเหล็ก!";
+	npctalk "Gelka: Gelka-style Mental Strength! Iron Physique!", .@gelka$;
+	specialeffect EF_GUMGANG,AREA, .@gelka$;
+	next;
+	emotion ET_COMEON;
+	cutin "roel02",0;
+	mes "[Roel]";
+	mes "การป้องกันที่ไม่อาจยอมรับได้! Roel-style Guard!";
+	npctalk "Roel: Impenetrable defense! Roel-style Guard!";
+	specialeffect EF_KEEPING;
+	next;
+	cutin "gelca01",2;
+	mes "[Roel & Gelka]";
+	mes "CROSS!!!";
+	npctalk "Gelka: CROSS!!!", .@gelka$;
+	npctalk "Roel: CROSS!!!";
+	specialeffect EF_POTION_BERSERK;
+	specialeffect EF_POTION_BERSERK,AREA, .@gelka$;
+	next;
+	cutin "roel03",0;
+	mes "[Roel & Gelka]";
+	mes "ป้อมปราการสุดท้าย!";
+	npctalk "Roel: Last bastion!";
+	npctalk "Gelka: Last bastion!", .@gelka$;
+	specialeffect EF_SHIELDBOOMERANG;
+	specialeffect EF_BOTTOM_BASILICA,AREA, .@gelka$;
+	specialeffect EF_SHIELDCHARGE;
+	specialeffect EF_GLASSWALL,AREA, .@gelka$;
+	specialeffect EF_GLASSWALL;
+	specialeffect EF_GUARD;
+	specialeffect EF_ANGELUS,AREA, .@gelka$;
+	specialeffect EF_ANGELUS;
+	next;
+	cutin "roel03",0;
+	mes "[Roel]";
+	mes "ขอแสดงความนับถือเจลก้าเธอสุดยอดมาก!";
+	npctalk "Roel: By the gods, Gelka, you're awesome!";
+	if ('room == 20 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs21";
+	next;
+	cutin "gelca01",2;
+	if (select( "Awesome, indeed!", "You just made up those words to look cool!" ) == 1) {
+		jitterbug_options &= ~8;
+		unittalk getcharid(3), "" + strcharinfo(0) + " : Awesome, indeed!";
+		cutin "gelca03",2;
+		mes "[Gelka]";
+		mes "ฉันได้เรียนรู้จากสิ่งที่ดีที่สุด";
+		npctalk "Gelka: I've learned from the best.", .@gelka$;
+		next;
+		cutin "roel02",0;
+		mes "[Roel]";
+		mes "ฉันหวังว่าเธอจะสอนฉันด้วยนะโรเทอร์";
+		npctalk "Roel: I hope you'll teach me too, Roter.";
+		next;
+		cutin "gelca01",2;
+		mes "[Gelka]";
+		mes "ทักษะพิเศษล้วนเกี่ยวกับชื่อของพวกเขาการตะโกนชื่อที่น่าประทับใจก็เพียงพอที่จะข่มขู่ศัตรูของคุณ";
+		npctalk "Gelka: Special skills are all about their names. Shouting impressive names is enough to intimidate your enemies.", .@gelka$;
+	}
+	else {
+		jitterbug_options |= 8;
+		areamonster 'map_jtb$,182,387,219,354, "--ja--", 3108,1;	// no label
+		unittalk getcharid(3), "" + strcharinfo(0) + " : You just made up those words to look cool!";
+		cutin "gelca02",2;
+		mes "[Gelka]";
+		mes "คุณเป็นสปอยล์สปอร์ตรู้ไหม";
+		npctalk "Gelka: You're a spoilsport, you know that?", .@gelka$;
+		next;
+		cutin "roel04",0;
+		mes "[Roel]";
+		mes "เราซ้อมหนักมาก";
+		npctalk "Roel: We've practiced hard.";
+		next;
+	}
+	next;
+	cutin "",255;
+	mes "- พวกเขาหมกมุ่นอยู่กับการพูดคุยเกี่ยวกับทักษะพิเศษใหม่ของพวกเขา -";
+	close3;
+}
+
+1@jtb,110,377,4	script	Gelka#20	4_F_GELKA,{
+	cutin "gelca01",0;
+	mes "[Gelka]";
+	mes "การต่อสู้เป็นสิ่งสำคัญในการฝึกฝนนักผจญภัยแบ่งและพิชิต!";
+	close3;
+}
+
+
+// Room 21 (menu affects the boss encounter in the next room)
+1@jtb,198,369,5	script	Newoz#21	4_M_NEWOZ,{
+	if ('room != 21 || is_party_leader() == false) {
+		mes "[Newoz]";
+		mes "Shaloshi...";
+		close;
+	}
+	if (select( "Talk.", "Hurry." ) == 2 && isbegin_quest(13183) == 2) {
+		mes "Try to jog your memory while hurrying.";
+		if ('room == 21 && is_party_leader() == true) {
+			disablenpc instance_npcname("Shaloshi#21");
+			disablenpc instance_npcname("Aigu#21");
+			disablenpc instance_npcname("Newoz#21");
+			donpcevent 'jitterbug_main$ + "::OnNextIs22";
+		}
+		close3;
+	}
+	.@aigu$ = instance_npcname("Aigu#21");
+	.@mingmin$ = instance_npcname("Mingmin#21");
+	.@roter$ = instance_npcname("Roter#21");
+	.@runane$ = instance_npcname("Runane#21");
+	.@shaloshi$ = instance_npcname("Shaloshi#21");
+	.@melody$ = instance_npcname("Melody-Jack#21");
+
+	cutin "shaloshi03",0;
+	mes "[Shaloshi]";
+	mes "...";
+	npctalk "Shaloshi: ...", .@shaloshi$;
+	next;
+	cutin "",255;
+	mes "[Melody-Jack]";
+	mes "ฉันกลัวว่าที่นี่จะถล่มลงมารอบตัวเรา";
+	npctalk "Melody-Jack: I'm afraid this place is falling down around us.", .@melody$;
+	next;
+	cutin "shaloshi03",0;
+	mes "[Shaloshi]";
+	mes "เฟอเรสโกรธ";
+	npctalk "Shaloshi: The Ferres are angry.", .@shaloshi$;
+	next;
+	cutin "min02",2;
+	mes "[Mingmin]";
+	mes "ว้าวคุณยังได้ยินว่าสัตว์ประหลาดคิดยังไง";
+	npctalk "Mingmin: Wow, you can even hear what monsters think?", .@mingmin$;
+	next;
+	if ('room == 21 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs22";
+	cutin "shaloshi03",0;
+	mes "[Shaloshi]";
+	mes "พวกเขาเป็นเพื่อนของฉัน";
+	npctalk "Shaloshi: They're my friends.", .@shaloshi$;
+	next;
+	cutin "lunain04",0;
+	mes "[Runane]";
+	mes "ไม่เป็นเพื่อนกันอย่าทำร้ายกัน!";
+	npctalk "Runane: No, they're not. Friends don't attack each other!", .@runane$;
+	next;
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "พวกเขาแค่พยายามปกป้องฉัน";
+	npctalk "Shaloshi: They're just trying to protect me.", .@shaloshi$;
+	next;
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "ปกป้องคุณจากอะไร";
+	npctalk "Roter: Protect you from what?", .@roter$;
+	next;
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "จากสิ่งที่ Rot กำลังคิดอยู่";
+	npctalk "Shaloshi: From what Rot is thinking.", .@shaloshi$;
+	next;
+	cutin "",255;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "...";
+	npctalk "Melody-Jack: ...", .@melody$;
+	next;
+	cutin "shaloshi01",0;
+	mes "[Shaloshi]";
+	mes "Ferre?";
+	npctalk "Shaloshi: Ferre?", .@shaloshi$;
+	next;
+	enablenpc instance_npcname("Ferre#21");
+	enablenpc instance_npcname("Ferre#22");
+	cutin "",255;
+	emotion ET_FRET, getnpcid(0,instance_npcname("Ferre#21"));
+	mes "[Ferre]";
+	mes "Ferre, ferre!";
+	npctalk "Ferre: Ferre, ferre!", instance_npcname("Ferre#21");
+	next;
+	emotion ET_FRET, getnpcid(0,instance_npcname("Ferre#22"));
+	mes "[Ferre]";
+	mes "Ferre, ferre, ferre!";
+	npctalk "Ferre: Ferre, ferre, ferre!", instance_npcname("Ferre#21");
+	specialeffect EF_READYPORTAL2,AREA, .@shaloshi$;
+	specialeffect EF_PORTAL2,AREA, .@shaloshi$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "!!!";
+	npctalk "Newoz: !!!";
+	next;
+	disablenpc .@shaloshi$;
+	disablenpc instance_npcname("Ferre#21");
+	disablenpc instance_npcname("Ferre#22");
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "พวกเราจะถูกฝังที่นี่หาทางออกกันเถอะ";
+	npctalk "Roter: We're going to be buried in here. Let's find an exit.", .@roter$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "เราต้องหาชาโลชิ!";
+	npctalk "Newoz: We have to find Shaloshi!";
+	next;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	cutin "",255;
+	mes "[Melody-Jack]";
+	mes "Newoz ฉันรู้ว่าเธอแปลก ๆ ในหัว แต่เธอ ... ";
+	npctalk "Melody-Jack: Newoz, I've known you're weird in the head, but she's...", .@melody$;
+	next;
+	cutin "nines04",0;
+	mes "[Newoz]";
+	mes "ฉันรู้เธอไม่ต้องเตือนฉัน";
+	npctalk "Newoz: I know. You don't have to remind me.";
+	next;
+	cutin "min02",2;
+	mes "[Mingmin]";
+	mes "ถ้าอย่างนั้นเราออกไปจากที่นี่กันเถอะตอนนี้เรากำลังตกอยู่ในอันตรายร้ายแรง";
+	npctalk "Mingmin: Then let's get out of here. We're in serious danger right now.", .@mingmin$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "ฉันต้องไปหาเธอฉันต้องคุยกับเธอ";
+	npctalk "Newoz: I have to find her. I have to talk to her.";
+	next;
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "NEWOZ!";
+	npctalk "Roter: NEWOZ!", .@roter$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "ฉันไม่ใช่เจ้านายของคุณอีกต่อไปคุณไม่ต้องตามฉันมา";
+	npctalk "Newoz: I'm not your master anymore. You don't have to follow me.";
+	next;
+	cutin "lunain01",0;
+	mes "[Runane]";
+	mes "!!!";
+	npctalk "Runane: !!!", .@runane$;
+	next;
+	disablenpc instance_npcname("Newoz#21");
+	cutin "igu05",0;
+	mes "[Aigu]";
+	mes "Newoz ฉันมากับคุณ!";
+	npctalk "Aigu: Newoz, I'm coming with you!", .@aigu$;
+	next;
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "เป็นสายของคุณนายใหม่";
+	npctalk "Mingmin: It's your call, new master.", .@mingmin$;
+	next;
+	disablenpc .@aigu$;
+	cutin "gelca04",2;
+	mes "[Gelka]";
+	mes "Master!";
+	npctalk "Gelka: Master!", instance_npcname("Gelka#21");
+	next;
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "...";
+	npctalk "Roter: ...", .@roter$;
+	next;
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "เราจะพบ Newoz และ Shaloshi และเมื่อเราพบฉันจะฆ่าทั้งสองคน";
+	npctalk "Roter: We'll find Newoz and Shaloshi. And when we do, I'm going to kill both of them.", .@roter$;
+	next;
+	cutin "roel04",0;
+	mes "[Roel]";
+	mes "นิวออซคุณรู้ไหมว่าจะเกิดเหตุการณ์นี้ขึ้นคุณโชคดีที่มีเพื่อนที่ดีแบบนี้";
+	npctalk "Roel: Newoz, did you know this would happen? You're lucky to have such good friends.", instance_npcname("Roel#21");
+	next;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	cutin "",255;
+	mes "[Melody-Jack]";
+	mes "เขาไม่รู้เพราะเขาคิดไม่ถึงเลยทีเดียว";
+	npctalk "Melody-Jack: He didn't know because he doesn't think, ever.", .@melody$;
+	next;
+	cutin "arang01",2;
+	mes "[Arang]";
+	mes "Yippee! ไปกันเถอะ!";
+	npctalk "Arang: Yippee! Let's go!", instance_npcname("Arang#21");
+	next;
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "เราจะแบ่งออกเป็นสองทีมระวังอย่าหลงทางในการรุกแบบเขาวงกต";
+	npctalk "Roter: We'll split into two teams. Be careful not to lose your way in the maze-like offshoots.", .@roter$;
+	next;
+	if (select( "Follow Roter and Gelka.", "Search alone." ) == 1)
+		jitterbug_options &= ~16;
+	else
+		jitterbug_options |= 16;
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "เราพร้อมหรือยังไปกันเถอะ!";
+	npctalk "Mingmin: Are we ready? Let's go!", .@mingmin$;
+	close3;
+}
+
+1@jtb,202,367,5	script	Melody-Jack#21	CLEAR_NPC,{
+	mes "[Melody-Jack]";
+	mes "ฉันรู้ว่าสิ่งนี้จะเกิดขึ้นและไอกูก็ไม่ฟังฉัน!";
+	close;
+}
+
+1@jtb,204,366,4	script	Arang#21	4_F_TAEKWON,{
+	cutin "arang01",0;
+	mes "[Arang]";
+	mes "Haap!";
+	close3;
+}
+
+1@jtb,201,365,4	script	Gelka#21	4_F_GELKA,{
+	cutin "gelca04",2;
+	mes "[Gelka]";
+	mes "ฉันเชื่อในตัวคุณอาจารย์!";
+	close3;
+}
+
+1@jtb,202,363,4	script	Mingmin#21	4_F_GENETIC,{
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "* ฮึดฮัด * ทำไมตัวเองถึงยุ่งขนาดนี้";
+	close3;
+}
+
+1@jtb,195,365,5	script	Runane#21	4_F_RUNAIN,{
+	cutin "lunain01",0;
+	mes "[Runane]";
+	mes "เราควรหา Newoz และ Shaloshi ก่อน";
+	close3;
+}
+
+1@jtb,194,363,5	script	Roel#21	4_M_ROEL,{
+	cutin "roel01",0;
+	mes "[Roel]";
+	mes "ฉันจะตามพวกคุณไปจนถึงจุดจบของโลก";
+	close3;
+}
+
+1@jtb,194,367,5	script	Lagi#21	4_M_RAGI,{
+	cutin "ragi02",0;
+	mes "[Lagi]";
+	mes "ฉันหวังว่าวันนี้จะไม่ใช่วันสุดท้ายที่ฉันเล่นเครื่องดนตรีของฉัน ... ";
+	close3;
+}
+
+1@jtb,195,368,5	script	Aigu#21	4_F_IU,{
+	cutin "igu05",0;
+	mes "[Aigu]";
+	mes "ฉันกำลังติดตาม Newoz";
+	close3;
+}
+
+1@jtb,201,369,4	script	Roter#21	4_M_ROTERT,{
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "ฉันจะแสดงความเป็นผู้นำที่มีเสน่ห์ของฉันในฐานะหัวหน้ากิลด์!";
+	close3;
+}
+
+1@jtb,197,363,5	duplicate(???#02)	Ferre#21	4_F_PERE01
+1@jtb,198,363,5	duplicate(???#02)	Shaloshi#21	4_F_SHALOSH
+1@jtb,199,363,5	duplicate(???#02)	Ferre#22	4_F_PERE01
+
+
+// Room 22
+// 1@jtb,318,358,5	duplicate(???#02)	Newoz#22	4_M_NEWOZ
+
+
+// Room 23 (Boss Room entrance)
+1@jtb,320,323,5	script	Newoz#23	4_M_NEWOZ,{
+	if ('room != 23 || is_party_leader() == false) {
+		cutin "nines01",0;
+		mes "[Newoz]";
+		mes "* Pant Pant * ดีใจที่คุณไม่ได้ทำมันไกลเกินไป";
+		close3;
+	}
+	.@shaloshi$ = instance_npcname("Shaloshi#23");
+	.@ferre_23$ = instance_npcname("Ferre#23");
+	.@ferre_24$ = instance_npcname("Ferre#24");
+	cutin "nines04",0;
+	mes "[Newoz]";
+	mes "* Pant Pant * ฉันพบคุณแล้ว Shaloshi";
+	npctalk "Newoz: *Pant Pant* I've found you, Shaloshi.";
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "Newoz...";
+	npctalk "Shaloshi: Newoz...", .@shaloshi$;
+	next;
+	cutin "nines04",0;
+	mes "[Newoz]";
+	mes "* Pant Pant * ดีใจที่คุณไม่ได้ทำมันไกลเกินไป";
+	npctalk "Newoz: *Pant Pant* I'm glad you didn't make it too far.";
+	next;
+	cutin "",255;
+	mes "[Ferre]";
+	mes "Ferre, ferre, fe-!";
+	npctalk "Ferre: Ferre, ferre, fe-!", .@ferre_23$;
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "Ferre is angry.";
+	npctalk "Shaloshi: Ferre is angry.", .@shaloshi$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "คุณไม่ต้องเสียใจฉันไม่ได้มาที่นี่เพื่อพาเพื่อนของคุณไปฉันแค่อยาก ... ";
+	npctalk "Newoz: You don't have to get upset. I'm not here to take your friend away. I just want...";
+	next;
+	cutin "",255;
+	mes "[Ferre]";
+	mes "Ferre, ferre, ferre!";
+	npctalk "Ferre: Ferre, ferre, ferre!", .@ferre_23$;
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "Ferre is really angry.";
+	npctalk "Shaloshi: Ferre is really angry.", .@shaloshi$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "ใช่ไม่ต้องบอกฉันก็ได้";
+	npctalk "Newoz: Yeah, you don't have to tell me that.";
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "อย่างนี้ไม่ดีเฟ้ย ... ";
+	npctalk "Shaloshi: This is not good. Ferre...", .@shaloshi$;
+	next;
+	mes "[Shaloshi]";
+	mes "No, no!";
+	npctalk "Shaloshi: No, no!", .@shaloshi$;
+	next;
+	cutin "",255;
+	mes "[Ferre]";
+	mes "Ferre, ferre, ferre, ferre-!";
+	npctalk "Ferre: Ferre, ferre, ferre, ferre-!", .@ferre_23$;
+	next;
+	sleep2 400;
+	disablenpc .@ferre_23$;
+	enablenpc .@ferre_24$;
+	disablenpc .@ferre_24$;
+	enablenpc .@ferre_23$;
+	sleep2 800;
+	disablenpc .@ferre_23$;
+	enablenpc .@ferre_24$;
+	disablenpc .@ferre_24$;
+	enablenpc .@ferre_23$;
+	disablenpc .@ferre_23$;
+	enablenpc .@ferre_24$;
+	disablenpc .@ferre_24$;
+	enablenpc .@ferre_23$;
+	disablenpc .@ferre_23$;
+	enablenpc .@ferre_24$;
+	sleep2 700;
+	specialeffect EF_LORD,AREA, .@ferre_24$;
+	specialeffect EF_SUI_EXPLOSION,AREA, .@ferre_24$;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "เฟร์กลายร่างเป็นจริงแล้ว!";
+	npctalk "Shaloshi: Ferre has transformed into its true form!", .@shaloshi$;
+	next;
+	cutin "",255;
+	mes "^FF0000A formidable enemy has appeared!^000000";
+	next;
+	mes "[Ferre]";
+	mes "FERRE- FERRE- FERRE- FERRE-!!";
+	npctalk "Ferre: FERRE- FERRE- FERRE- FERRE-!!", .@ferre_24$;
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "เฟร์เธอไม่ต้องทำแบบนี้!";
+	npctalk "Shaloshi: Ferre, you don't have to do this!", .@shaloshi$;
+	next;
+	cutin "nines03",0;
+	mes "[Newoz]";
+	mes "ถ้าฉันไม่สามารถพูดเขาออกไปได้เราจะต้องไล่มันออกไป";
+	npctalk "Newoz: Well, if I can't talk him out of this, then we'll have to duke it out.";
+	next;
+	mes "[Newoz]";
+	mes "คนอื่นอยู่ไหนเฮ้คนใหม่ช่วยฉันทีนี่ Ferre ดูเหมือนว่าเขาจะเก็บหมัดได้";
+	npctalk "Newoz: Where are the others? Hey new guys, help me out here. That Ferre looks like he can pack a punch.";
+	next;
+	cutin "",255;
+	mes "[Ferre]";
+	mes "FERRE, FERRE, FERRE-!";
+	npctalk "Ferre: FERRE, FERRE, FERRE-!", .@ferre_24$;
+	next;
+	cutin "nines02",0;
+	mes "[Newoz]";
+	mes "มาเริ่มกันเลย!";
+	npctalk "Newoz: Let's begin!";
+	close2;
+	cutin "",255;
+	if ('room == 23 && is_party_leader() == true) {
+		'party_id = getcharid(1);
+		donpcevent 'jitterbug_main$ + "::OnNextIs23";
+		if (jitterbug_options & 16)
+			monster 'map_jtb$,327,331, "--ja--", 3108,2;	// JITTERBUG1 - no label
+	}
+	end;
+}
+
+1@jtb,324,327,4	duplicate(???#02)	Ferre#23	4_F_PERE01
+1@jtb,324,327,4	duplicate(???#02)	Ferre#24	4_JITTERBUG
+1@jtb,326,329,4	duplicate(???#02)	Shaloshi#23	4_F_SHALOSH
+
+// 1@jtb,323,337,5	script	Boss#23	HIDDEN_WARP_NPC
+
+1@jtb,320,323,5	script	Newoz#boss	4_M_NEWOZ,{
+	end;
+OnStart:
+	enablenpc instance_npcname("Newoz#boss");
+	npctalk "Newoz: Don't worry. I'll help you!";
+	initnpctimer;
+	end;
+OnTimer30000:
+	.@r = rand(5);
+	if (.@r == 0)
+		npctalk "Newoz: What does a nosy pepper do? Gets jalapeno business!";
+	else if (.@r == 1)
+		npctalk "Newoz: Why do bananas wear suntan lotion? Because they peel!";
+	else if (.@r == 2)
+		npctalk "What do you call a fish musician? A piano tuna.";
+	else if (.@r == 3)
+		npctalk "Um, hold on. One of the ukulele strings snapped. How about I sing instead?";
+	else
+		npctalk "Newoz: What did the farmer say to the green pumpkin? Why orange you orange?";
+	emotion ET_DELIGHT;
+	initnpctimer;
+	if ('boss_id) {
+		getunitdata 'boss_id, .@data;
+		npcskilleffect "WZ_STORMGUST",1,.@data[UMOB_X],.@data[UMOB_Y];
+		unittalk 'boss_id, "FERRE! FERRE!";
+
+		getpartymember 'party_id, 1, .@char_id;
+		getpartymember 'party_id, 2, .@account_id;
+		for ( .@i = 0; .@i < $@partymembercount; .@i++ ) {
+			if (isloggedin(.@account_id[.@i],.@char_id[.@i]) == true) {
+				getmapxy .@map$,.@x,.@y, BL_PC, .@account_id[.@i];
+				if (.@map$ == 'map_jtb$ && distance(.@x,.@y,323,324) < 10)
+					sc_start SC_FREEZE,15000,0,10000,0, .@account_id[.@i];
+			}
+		}
+	}
+	end;
+OnStop:
+	stopnpctimer;
+	disablenpc instance_npcname("Newoz#boss");
+	end;
+}
+
+// Room 23 - After Boss dead
+1@jtb,320,323,5	script	Newoz#24	4_M_NEWOZ,{
+	if ('room != 24 || is_party_leader() == false) {
+		cutin "nines01",0;
+		mes "[Newoz]";
+		mes "Shaloshi..";
+		close3;
+	}
+	.@aigu$ = instance_npcname("Aigu#24");
+	.@roel$ = instance_npcname("Roel#24");
+	.@ferre$ = instance_npcname("Ferre#25");
+	.@arang$ = instance_npcname("Arang#24");
+	.@runane$ = instance_npcname("Runane#24");
+	.@roter$ = instance_npcname("Roter#24");
+	.@melody$ = instance_npcname("Melody-Jack#24");
+	.@mingmin$ = instance_npcname("Mingmin#24");
+	.@shaloshi$ = instance_npcname("Shaloshi#24");
+
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "ฉันชอบจิตวิญญาณของเขาแม้ว่าฉันจะเห็นว่าเขาเหนื่อยล้า";
+	npctalk "Newoz: I like his spirit, though I can see he's getting exhausted.";
+	next;
+	cutin "",255;
+	mes "[Ferre]";
+	mes "Ferre...";
+	npctalk "Ferre: Ferre...", .@ferre$;
+	next;
+	enablenpc .@roter$;
+	enablenpc instance_npcname("Gelka#24");
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "Newoz, you're alive! Good, because I'm going to kill...";
+	npctalk "Roter: Newoz, you're alive! Good, because I'm going to kill...", .@roter$;
+	next;
+	enablenpc .@aigu$;
+	enablenpc instance_npcname("Lagi#24");
+	cutin "igu05",0;
+	mes "[Aigu]";
+	mes "นิวออซสบายดีไหม";
+	npctalk "Aigu: Newoz, are you all right?", .@aigu$;
+	next;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "ฉันไม่เป็นไรร็อตเธอเป็นห่วงฉันไหม";
+	npctalk "Newoz: I'm all right. Rot, were you worried about me?";
+	next;
+	enablenpc .@melody$;
+	enablenpc .@mingmin$;
+	enablenpc .@arang$;
+	enablenpc .@runane$;
+	enablenpc .@roel$;
+	sleep2 500;
+	emotion ET_FRET, getnpcid(0,.@roter$);
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	cutin "",255;
+	mes "[Melody-Jack]";
+	mes "ว้าวสถานที่นี้คงอยู่ไม่นาน - ดูสิว่าพื้นสั่นสะเทือนรุนแรงแค่ไหนเราต้องออกไปให้ได้เหมือนเมื่อวานนะนิวออซ";
+	npctalk "Melody-Jack: Wow, this place is not going to last long--look how violently the ground is shaking! We really need to get out like yesterday, Newoz.", .@melody$;
+	next;
+	mes "[Ferre]";
+	mes "Ferre...";
+	npctalk "Ferre: Ferre...", .@ferre$;
+	next;
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "เขายังไม่ตายพวกผมเข้าใจว่าคุณยังใหม่ แต่คุณทำผิดแบบนี้ไม่ได้";
+	npctalk "Roter: He's not dead. Guys, I understand you're new, but you can't make mistakes like this.", .@roter$;
+	next;
+	cutin "",255;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "กำจัดเขาเร็ว ๆ ดีกว่า";
+	npctalk "Melody-Jack: Better get rid of him quickly.", .@melody$;
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "NO! He's my friend!";
+	npctalk "Shaloshi: NO! He's my friend!", .@shaloshi$;
+	next;
+	mes "[Shaloshi]";
+	mes "Ferre สร้างพื้นที่นี้ในรอยแตกให้ฉันถ้าเขาสูญเสียความคิดหรือพินาศพื้นที่นี้จะหายไปพร้อมกับทุกสิ่งที่อยู่ในนั้น";
+	npctalk "Shaloshi: Ferre created this space in the Crack for me. If he loses his mind or perishes, this space will disappear with everything in it.", .@shaloshi$;
+	next;
+	cutin "min02",2;
+	mes "[Mingmin]";
+	mes "ยกเว้นคุณคุณหมายถึง";
+	npctalk "Mingmin: Except you, you mean.", .@mingmin$;
+	next;
+	emotion ET_DELIGHT, getnpcid(0,instance_npcname("Newoz#24"));
+	npctalk "Newoz: What did the farmer say to the green pumpkin? Why orange you orange?", instance_npcname("Newoz#24");
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "...";
+	npctalk "Shaloshi: ...", .@shaloshi$;
+	next;
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "ฉันควรมีเวลาเหลือเฟือก่อนที่จะกำจัดคุณฉันจะแสดงให้คุณเห็นว่าทำไมฉันถึงถูกเรียกว่าเด็กเลวแห่งโลกหมอผี";
+	npctalk "Roter: I should have plenty of time before that to get rid of you. I'll show you why I'm called the Bad Boy of the Exorcist World.", .@roter$;
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "ถ้าพา Ferre ไปต่างพื้นที่ก็จะมีทางออกจำนวนหนึ่งปรากฏขึ้นในรอยแยกที่คลายออกในกาลอวกาศ";
+	npctalk "Shaloshi: If I take Ferre with me to a different space, then a number of exits will appear in the loosened rift in spacetime.", .@shaloshi$;
+	next;
+	cutin "",255;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	mes "[Melody-Jack]";
+	mes "คุณฉลาดและมีความสามารถในการเทเลพอร์ตโรเตอร์เราปล่อยเธอไปไม่ได้";
+	npctalk "Melody-Jack: You're smart and capable of teleportation. Roter, we can't let her go.", .@melody$;
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "ฉันไม่ควรพาคุณมาที่นี่ แต่ฉันต้องการเพื่อนจริงๆ";
+	npctalk "Shaloshi: I shouldn't have led you here, but I really wanted some friends.", .@shaloshi$;
+	next;
+	cutin "nines03",0;
+	mes "[Newoz]";
+	mes "และคุณมีพวกเขาพวกเรา";
+	npctalk "Newoz: And you have them. Us.";
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "... ขอบคุณครับ";
+	npctalk "Shaloshi: ...Thank you.", .@shaloshi$;
+	next;
+	mes "[Shaloshi]";
+	mes "ตอนนี้ฉันควรจะซื่อสัตย์กับคุณฉันจำทุกอย่างได้แล้วให้ฉันแนะนำตัวอีกครั้ง";
+	npctalk "Shaloshi: Now I should be honest with you. I remember everything now. Let me introduce myself again.", .@shaloshi$;
+	next;
+	mes "[Shaloshi]";
+	mes "ฉันคือชาโลชินักอ่านใจปีศาจและเป็นตัวแทนคนที่สามของโมรอคโค";
+	npctalk "Shaloshi: I'm Shaloshi, a demon mind reader and the third agent of Morocc's.", .@shaloshi$;
+	next;
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "MOROCC?!";
+	npctalk "Roter: MOROCC?!", .@roter$;
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "... ตอนนี้ฉันเป็นอิสระ แต่นั่นไม่ได้เปลี่ยนว่าฉันเป็นใคร: ปีศาจ";
+	npctalk "Shaloshi: ...I'm free now, but that doesn't change who I am: a demon.", .@shaloshi$;
+	next;
+	mes "[Shaloshi]";
+	mes "ฉันมีความสุขกับ บริษัท ของคุณถ้าเราได้พบกันอีก ... เราจะเป็นศัตรูกันไหม?";
+	npctalk "Shaloshi: I enjoyed your company. If we meet again... Will we be enemies?", .@shaloshi$;
+	next;
+	cutin "nines03",0;
+	mes "[Newoz]";
+	mes "ไม่ชาโลชิ ณ วันนี้คุณเป็นสมาชิกใหม่ของกิลด์ปีกสีขาวของนิวออซ";
+	npctalk "Newoz: No, Shaloshi. As of today, you're a new member of Newoz's White Wings Guild.";
+	next;
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "ใครบอกว่าเชิญเธอได้ฉันไม่ได้อยู่ในปีศาจ!";
+	npctalk "Roter: Who says you can invite her? I'm not taking in a demon!", .@roter$;
+	next;
+	cutin "arang02",2;
+	mes "[Arang]";
+	mes "Guildsmen ทะเลาะกันได้ แต่พวกเขายังเป็นครอบครัวเดียวกัน";
+	npctalk "Arang: Guildsmen can bicker with each other, but they're still family.", .@arang$;
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "... ขอบคุณนะ Adventurer Newoz ถ้าฉันพบสถานที่ที่น่าสนใจฉันจะเชิญคุณไปได้ไหม";
+	npctalk "Shaloshi: ...Thank you, Adventurer Newoz. If I find some interesting place, can I invite you over?", .@shaloshi$;
+	next;
+	mes "[Shaloshi]";
+	mes "ฉันคิดว่าฉันมีความสามารถที่จะพาคนอื่นไปด้วยไม่ว่าฉันจะไปไหนหรือเธอคงไม่ได้ติดตามฉันไปไกลขนาดนี้";
+	npctalk "Shaloshi: I think I have the ability to take people with me, wherever I go. Or you wouldn't have followed me this far.", .@shaloshi$;
+	next;
+	cutin "lunain04",0;
+	mes "[Runane]";
+	mes "คุณไม่กล้าเอา Newoz ของฉันไป!";
+	npctalk "Runane: Don't you dare take away my Newoz!", .@runane$;
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "คุณแค่คิดว่า 'พาฉันไปด้วย!'";
+	npctalk "Shaloshi: You just thought, 'take me, too!'", .@shaloshi$;
+	next;
+	cutin "igu03",0;
+	mes "[Aigu]";
+	mes "อ่า Runane เธอน่ารัก!";
+	npctalk "Aigu: Aww, Runane. You're cute!", .@aigu$;
+	next;
+	cutin "roel04",2;
+	mes "[Roel]";
+	mes "ชาโลชิฉันไม่สนว่าคุณเป็นใครคุณเป็นเพื่อนของฉันและฉันเป็นของคุณ";
+	npctalk "Roel: Shaloshi, I don't care who you are. You're my friend, and I'm yours.", .@roel$;
+	next;
+	cutin "shaloshi01",2;
+	mes "[Shaloshi]";
+	mes "ขอบคุณถ้าเพียงฉันรู้วิธีแสดงความรู้สึก ... ";
+	npctalk "Shaloshi: Thank you. If only I knew how to express my feelings...", .@shaloshi$;
+	next;
+	cutin "igu05",0;
+	mes "[Aigu]";
+	mes "ง่ายๆแค่ยิ้ม";
+	npctalk "Aigu: It's easy. Just smile.", .@aigu$;
+	next;
+	cutin "shaloshi04",2;
+	mes "[Shaloshi]";
+	mes "บายครับเพื่อน ๆ ผมหวังว่าเราจะได้พบกันอีกเร็ว ๆ นี้";
+	npctalk "Shaloshi: Bye, friends. I hope we'll meet again soon.", .@shaloshi$;
+	next;
+	specialeffect EF_PORTAL2,AREA, .@shaloshi$;
+	specialeffect EF_PORTAL2,AREA, .@ferre$;
+	disablenpc .@shaloshi$;
+	disablenpc .@ferre$;
+	cutin "nines01",0;
+	mes "[Newoz]";
+	mes "Bye.";
+	npctalk "Newoz: Bye.";
+	next;
+	cutin "rote01",2;
+	mes "[Roter]";
+	mes "อย่ามองฉันนั่นคือทางออก?";
+	npctalk "Roter: Don't look at me. Is that an exit?", .@roter$;
+	close2;
+	cutin "",255;
+	if ('room == 24 && is_party_leader() == true)
+		donpcevent 'jitterbug_main$ + "::OnNextIs5";
+	end;
+}
+
+1@jtb,326,329,4	duplicate(???#02)	Shaloshi#24	4_F_SHALOSH
+1@jtb,324,327,4	duplicate(???#02)	Ferre#25	4_F_PERE01
+
+1@jtb,328,326,4	duplicate(???#02)	Roter#24	4_M_ROTERT
+1@jtb,330,328,4	duplicate(???#02)	Gelka#24	4_F_GELKA
+1@jtb,328,324,4	duplicate(???#02)	Mingmin#24	4_F_GENETIC
+1@jtb,317,325,5	duplicate(???#02)	Aigu#24	4_F_IU
+1@jtb,316,322,5	duplicate(???#02)	Lagi#24	4_M_RAGI
+1@jtb,319,320,5	duplicate(???#02)	Arang#24	4_F_TAEKWON
+1@jtb,321,318,4	duplicate(???#02)	Runane#24	4_F_RUNAIN
+1@jtb,326,319,4	duplicate(???#02)	Roel#24	4_M_ROEL
+1@jtb,325,322,4	duplicate(???#02)	Melody-Jack#24	CLEAR_NPC
+
+
+// Room 5 (Exit)
+1@jtb,379,31,4	script	Newoz#05	4_M_NEWOZ,{
+	if ('room != 25 || is_party_leader() == false) {
+		cutin "nines01",2;
+		mes "[Newoz]";
+		mes "It's been a while since I had so much fun.";
+		if ('room >= 25 && isbegin_quest(13181) == 1)	// officially, complete the quest for members
+			completequest 13181;
+		close3;
+	}
+	.@aigu$ = instance_npcname("Aigu#05");
+	.@roter$ = instance_npcname("Roter#05");
+	.@runane$ = instance_npcname("Runane#05");
+	.@melody$ = instance_npcname("Melody-Jack#05");
+	.@mingmin$ = instance_npcname("Mingmin#05");
+
+	cutin "nines02",2;
+	emotion ET_DELIGHT;
+	mes "[Newoz]";
+	mes "นี่เป็นการผจญภัยครั้งแรกของฉันกับเพื่อนเก่าในระยะเวลาอันยาวนานฉันหวังว่าเราจะทำได้อีกครั้งในเร็ว ๆ นี้";
+	npctalk "Newoz: This was my first adventure with my old friends in a long time. I hope we can do this again soon.";
+	next;
+	cutin "rote01",0;
+	emotion ET_STARE, getnpcid(0,.@roter$);
+	mes "[Roter]";
+	mes "Newoz ฉันต้องเตือนคุณว่ากิลด์นี้ไม่ได้เรียกว่าปีกสีขาวของนิวออซอีกต่อไป";
+	npctalk "Roter: Newoz. Need I remind you this guild is no longer called Newoz's White Wings?", .@roter$;
+	next;
+	cutin "nines04",2;
+	mes "[Newoz]";
+	mes "อะไรนะคุณเปลี่ยนชื่อกิลด์หรือเปล่า";
+	npctalk "Newoz: What? Did you change the guild name?";
+	next;
+	cutin "rote01",0;
+	emotion ET_HNG, getnpcid(0,.@roter$);
+	mes "[Roter]";
+	mes "แน่นอน! ตอนนี้เรียกว่า ... อืม ... ";
+	npctalk "Roter: Of course! Now it's called... Um...", .@roter$;
+	next;
+	emotion ET_OHNO, getnpcid(0,.@mingmin$);
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "หยุดคิดแล้วเอาแต่ชื่อเก่า";
+	npctalk "Mingmin: Stop thinking and just keep the old name.", .@mingmin$;
+	emotion ET_SCRATCH, getnpcid(0,.@mingmin$);
+	next;
+	emotion ET_SPARK, getnpcid(0,.@roter$);
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "ไม่ฉันจะเรียกมันว่า Super Critical Guild ของ Roter!";
+	npctalk "Roter: Nope, I'm going to call it Roter's Super Critical Guild!", .@roter$;
+	emotion ET_SHY, getnpcid(0,.@roter$);
+	next;
+	emotion ET_OTL, getnpcid(0,.@aigu$);
+	cutin "igu05",2;
+	mes "[Aigu]";
+	mes "...";
+	npctalk "Aigu: ...", .@aigu$;
+	next;
+	mes "[Aigu]";
+	mes "ฟังดูง่อย";
+	npctalk "Aigu: That sounds lame.", .@aigu$;
+	next;
+	cutin "roel04",2;
+	mes "[Roel]";
+	mes "ฉันไม่ใช่แฟนของมัน";
+	npctalk "Roel: I'm not a fan of it.", instance_npcname("Roel#05");
+	next;
+	cutin "lunain04",0;
+	mes "[Runane]";
+	mes "Dorky.";
+	npctalk "Runane: Dorky.", .@runane$;
+	next;
+	cutin "rote01",0;
+	emotion ET_STARE, getnpcid(0,.@roter$);
+	mes "[Roter]";
+	mes "ฉันคือหัวหน้ากิลด์! ฉันตั้งชื่ออะไรก็ได้!";
+	npctalk "Roter: I'm the guild master! I name it whatever I want!", .@roter$;
+	next;
+	cutin "arang01",2;
+	mes "[Arang]";
+	mes "ไม่เท่";
+	npctalk "Arang: Not cool.", instance_npcname("Arang#05");
+	next;
+	emotion ET_KIK, getnpcid(0,.@mingmin$);
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "เก็บชื่อฉันออกไป";
+	npctalk "Mingmin: Keep the name. I'm out.", .@mingmin$;
+	next;
+	emotion ET_HUK, getnpcid(0,.@roter$);
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "ทำอย่างนั้นไม่ได้!";
+	npctalk "Roter: You can't do that!", .@roter$;
+	next;
+	cutin "",255;
+	mes "[Melody-Jack]";
+	mes "ฉันไม่ได้เป็นสมาชิก แต่ถ้าคุณถามฉันชื่อนั้น ... ";
+	npctalk "Melody-Jack: I'm not a member, but if you ask me, that name...", .@melody$;
+	emotion ET_THINK, getnpcid(0,.@melody$);
+	next;
+	cutin "ragi01",0;
+	mes "[Lagi]";
+	mes "ฉันจะพูดชื่อนั้นไม่ได้ไอกูแน่ใจหรอว่าอยากติดพวกนี้";
+	npctalk "Lagi: I'll never be able to speak that name. Aigu, are you sure you want to stick with these guys?", instance_npcname("Lagi#05");
+	next;
+	cutin "igu02",2;
+	mes "[Aigu]";
+	mes "ฉันไม่สนฉันอยู่กับนิวออซ";
+	npctalk "Aigu: I don't care. I'm staying with Newoz.", .@aigu$;
+	emotion ET_BIGTHROB, getnpcid(0,.@aigu$);
+	next;
+	cutin "lunain04",0;
+	mes "[Runane]";
+	mes "ฉันไม่ชอบชื่อนี้";
+	npctalk "Runane: I just don't like the name.", .@runane$;
+	next;
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "จุ๊ ๆ ! เรามีเวลามากพอสำหรับหนึ่งวันพวกคุณทุกคนถูกไล่ออก! นี่เป็นการสรุปการผจญภัยของกิลด์คริติคอลของ Roter!";
+	npctalk "Roter: Shush! We've had enough for a day. You all are dismissed! This concludes the adventure of Roter's Super Critical Guild!", .@roter$;
+	completequest 13181;
+	if ('room == 25) {
+		'room = 26;
+		enablenpc instance_npcname("24 Door 1");
+	}
+	close3;
+}
+
+1@jtb,363,11,5	script	Melody-Jack#05	CLEAR_NPC,{
+	mes "[Melody-Jack]";
+	mes "ข้อตกลงของเราเสร็จสิ้นแล้วให้ฉันคิดว่าฉันต้องการอะไรตอบแทน ... ";
+	close;
+}
+
+1@jtb,358,25,5	script	Gelka#05	4_F_GELKA,{
+	cutin "gelca01",0;
+	mes "[Gelka]";
+	mes "ฉันจะ! ฉันจะซ้อมให้หนักขึ้นด้วย!";
+	close3;
+}
+
+1@jtb,385,20,5	script	Runane#05	4_F_RUNAIN,{
+	cutin "lunain03",0;
+	mes "[Runane]";
+	mes "ฉันอยากกลับบ้านฉันอยากอาบน้ำกินขนมปังจริงๆ";
+	close3;
+}
+
+1@jtb,375,31,5	script	Roter#05	4_M_ROTERT,{
+	cutin "rote01",0;
+	mes "[Roter]";
+	mes "คุณเป็นผู้มีโอกาสเป็นลูกค้าในตอนนี้ทำงานหนักเพื่อกิลด์และวันหนึ่งฉันจะเลื่อนตำแหน่งให้คุณ";
+	close3;
+}
+
+1@jtb,380,28,4	script	Aigu#05	4_F_IU,{
+	cutin "igu03",2;
+	mes "[Aigu]";
+	mes "ฉันจะไม่ปล่อยคุณไปอีกแล้ว Newoz!";
+	close3;
+}
+
+1@jtb,359,43,5	script	Lagi#05	4_M_RAGI,{
+	cutin "ragi01",0;
+	mes "[Lagi]";
+	mes "ฉันได้พบกับแรงบันดาลใจมากมายจากการผจญภัยครั้งนี้ฉันหวังว่าฉันจะสามารถเขียนเพลงดีๆได้บ้าง";
+	close3;
+}
+
+1@jtb,378,47,5	script	Arang#05	4_F_TAEKWON,{
+	cutin "arang03",0;
+	mes "[Arang]";
+	mes "ตอนนี้โรเอลกับฉันเป็นเพื่อนกันแล้วนะหึ";
+	close3;
+}
+
+1@jtb,381,47,4	script	Roel#05	4_M_ROEL,{
+	cutin "roel03",2;
+	mes "[Roel]";
+	mes "ฉันอยากเต้นเหมือนกันกับไอกู";
+	close3;
+}
+
+// Exchange npc
+1@jtb,375,28,5	script	Mingmin#05	4_F_GENETIC,{
+	disable_items;
+	if (!checkweight(18122,1) || (MaxWeight - Weight) < 1000) {// custom - officially no check of the weight
+		mes "- เดี๋ยวก่อน !! -";
+		mes "- ตอนนี้คุณกำลังแบก -";
+		mes "- มีของกับคุณมากเกินไป -";
+		mes "- โปรดลองอีกครั้ง -";
+		mes "- หลังจากที่คุณลดน้ำหนักลง -";
+		close;
+	}
+	cutin "min02",0;
+	mes "[Mingmin]";
+	mes "ฉันขโมยผมไปไม่กี่เส้นจากชาโลชิคิดว่ามันน่าจะมีประโยชน์สักวันฉันอยากจะวิเคราะห์มันแม้ว่าฉันจะรู้ผลแล้วก็ตาม";
+	next;
+	switch( select( "Strange Pendant", "Jitterbug Tooth", "Quit." ) ) {
+	case 1:
+		mes "[Mingmin]";
+		mes "คุณเคยเห็นจี้นี้ไหม";
+		next;
+		mes "[Mingmin]";
+		mes "ฉันคิดว่าฉันสามารถใส่จี้แห่งความสามัคคีและจี้แห่งความโกลาหลเข้าด้วยกันได้";
+		next;
+		mes "[Mingmin]";
+		mes "และถ้าฉันทำผลลัพธ์จะน่าเหลือเชื่อ!";
+		next;
+		mes "[Mingmin]";
+		mes "ATK +6%. MATK +6%. All stats +1.";
+		mes "เวทย์โจมตีจากศัตรูร่ายเวทย์อัตโนมัติเลเวล 1 Maelstrom";
+		mes "DEF: 0 Weight: 10 Required Level: 130";
+		mes "Slot: 1";
+		next;
+		mes "[Mingmin]";
+		mes "ถ้าคำอธิบายของฉันเกี่ยวกับผลลัพธ์ของชุดค่าผสมนั้นคุ้นเคยกับคุณอย่างแปลก ๆ ฉันก็ไม่รู้ แต่นั่นคือวิธีที่ฉันนึกภาพผลลัพธ์ถ้าคุณพบจี้ทั้งสองชิ้นให้นำมาให้ฉันใช่ไหม";
+		next;
+		if ((countitem(2990) - isequippedcnt(2990)) > 0 && (countitem(2991) - isequippedcnt(2991)) > 0) {
+			mes "[Mingmin]";
+			mes "โอ๊ะคุณมีจี้สวย ๆ อยากจะรวมไหมมันกันไม่ได้ฉันรับประกัน";
+			next;
+			if (select( "Quit.", "Combine." ) == 2) {
+				mes "[Mingmin]";
+				mes "ขั้นตอนการรวมนั้นง่ายมากฉันแค่วางจี้แห่งความสามัคคีลงบนพื้นจากนั้นโยนจี้แห่งความโกลาหล ... แบบนี้!";
+				next;
+				specialeffect EF_PHARMACY_FAIL;
+				mes "[Mingmin]";
+				mes "โอ้ฉันล้มเหลวหรือเปล่า";
+				next;
+				mes "[Mingmin]";
+				mes "* หัวเราะเบา ๆ * ฉันยุ่งกับคุณ - มันได้ผล!";
+				delitem	2990,1;// Pendant_Of_Harmony
+				delitem	2991,1;// Pendant_Of_Chaos
+				getitem 2992,1;// Pendant_Of_Maelstorm
+				next;
+				mes "[Mingmin]";
+				mes "อ่ารวมไอเทมสนุกดี";
+				next;
+			}
+		}
+		break;
+	case 2:
+		mes "[Mingmin]";
+		mes "คุณมีฟัน Jitterbug ไหม";
+		next;
+		mes "[Mingmin]";
+		mes "ฉันยังบอกคุณไม่ได้ แต่มันมีประโยชน์กับฉันเอามาให้ฉันแล้วฉันจะให้ของโจรที่นิวออซสะสมไว้เป็นการตอบแทน";
+		next;
+		mes "[Mingmin]";
+		mes "ฉันกำลังเสนออะไรกันแน่ธนูมหึมา, Storm Bow และ ^ FF0000 ของมีค่าอื่น ๆ ที่พบในพื้นที่นี้ ^ 000000 ถ้าคุณต้องการให้นำฟัน Jitterbug มาให้ฉันอย่างน้อย 50 ชิ้น";
+		next;
+		mes "[Mingmin]";
+		mes "ฉันจะแลกเปลี่ยน Jitterbug Teeth 50 ชิ้นกับ ^ FF0000a ไอเทมแบบสุ่ม ^ 000000";
+		next;
+		if (select( "Quit.", "Exchange 50." ) == 2) {
+			if (countitem(6719) < 50) {// Tooth_Of_Jitterbug
+				mes "[Mingmin]";
+				mes "ฉันจะไม่ยอมรับสิ่งที่น้อยกว่า 50 Jitterbug Teeth";
+			}
+			else {
+				mes "[Mingmin]";
+				mes "เอาล่ะ! ขอฉันคิดว่าฉันอยากจะให้อะไรเธอ ... ";
+				next;
+				delitem 6719,50;// Tooth_Of_Jitterbug
+				.@item_id = F_Rand(
+					616,	// Old_Card_Album
+					1935,	// Ukulele_Of_Newoz
+					1990,	// Floral_Mic_Of_Igu
+					2988,	// Winged_Ring_Of_Newoz
+					2989,	// Floral_Bracelet_Of_Igu
+					2990,	// Pendant_Of_Harmony
+					2991,	// Pendant_Of_Chaos
+					12246,	// Magic_Card_Album
+					15100,	// Frozen_Breastplate
+					15101,	// Harden_Breastplate
+					18122,	// Gigantic_Bow
+					18123	// Bow_Of_Storm
+				 );
+				getitem .@item_id,1;
+				mes "[Mingmin]";
+				mes "ขอให้สนุกกับไอเทมของคุณนำ Jitterbug Teeth มาให้มากขึ้นหากคุณต้องการไอเท็มเพิ่มเติม";
+			}
+			next;
+		}
+		break;
+	case 3:
+		break;
+	}
+	mes "[Mingmin]";
+	mes "ที่นี่ยังเต็มไปด้วยสิ่งที่น่าศึกษา";
+	close3;
+}
+
+
+1@jtb,1,1,0	script	#jitterbug_main	-1,{
+	end;
+OnNextIs2:
+	'room = 2;
+	enablenpc instance_npcname("1 Door 1");
+	areamonster 'map_jtb$,100,13,133,46, "--ja--", 3069,10, 'jitterbug_main$ + "::OnMobDead2";// PERE1
+	end;
+OnMobDead2:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead2") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Aigu#02");
+		enablenpc instance_npcname("Runane#02");
+	}
+	end;
+
+OnNextIs3:
+	'room = 3;
+	enablenpc instance_npcname("2 Door 1");
+	areamonster 'map_jtb$,180,12,220,46, "--ja--", 3069,10, 'jitterbug_main$ + "::OnMobDead3";// PERE1
+	end;
+OnMobDead3:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead3") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Roter#03");
+		enablenpc instance_npcname("Gelka#03");
+	}
+	end;
+
+OnNextIs4:
+	'room = 4;
+	enablenpc instance_npcname("3 Door 1");
+	areamonster 'map_jtb$,268,14,305,46, "--ja--", 3069,20, 'jitterbug_main$ + "::OnMobDead4";// PERE1
+	end;
+OnMobDead4:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead4") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("???#04");
+	}
+	end;
+
+OnNextIs6:
+	'room = 6;
+	enablenpc instance_npcname("4 Door 1");
+	areamonster 'map_jtb$,11,97,47,130, "--ja--", 3069,20, 'jitterbug_main$ + "::OnMobDead6";// PERE1
+	end;
+OnMobDead6:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead6") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Newoz#06");
+		enablenpc instance_npcname("Aigu#06");
+		enablenpc instance_npcname("Shaloshi#06");
+		enablenpc instance_npcname("Arang#06");
+	}
+	end;
+
+OnNextIs7:
+	'room = 7;
+	enablenpc instance_npcname("6 Door 1");
+	areamonster 'map_jtb$,94,96,131,131, "--ja--", 3069,10, 'jitterbug_main$ + "::OnMobDead7";// PERE1
+	areamonster 'map_jtb$,94,96,131,131, "--ja--", 3070,5,  'jitterbug_main$ + "::OnMobDead7";// PERE2
+	end;
+OnMobDead7:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead7") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Roel#07");
+		enablenpc instance_npcname("Runane#07");
+		enablenpc instance_npcname("Aigu#07");
+	}
+	end;
+
+OnNextIs8:
+	'room = 8;
+	enablenpc instance_npcname("7 Door 1");
+	areamonster 'map_jtb$,182,95,219,131, "--ja--", 3069,15, 'jitterbug_main$ + "::OnMobDead8";// PERE1
+	areamonster 'map_jtb$,182,95,219,131, "--ja--", 3070,5,  'jitterbug_main$ + "::OnMobDead8";// PERE2
+	end;
+OnMobDead8:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead8") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Mingmin#08");
+		enablenpc instance_npcname("Shaloshi#08");
+		enablenpc instance_npcname("Newoz#08");
+	}
+	end;
+
+OnNextIs9:
+	'room = 9;
+	enablenpc instance_npcname("8 Door 1");
+	areamonster 'map_jtb$,268,131,306,95, "--ja--", 3069,22, 'jitterbug_main$ + "::OnMobDead9";// PERE1
+	areamonster 'map_jtb$,268,131,306,95, "--ja--", 3070,5,  'jitterbug_main$ + "::OnMobDead9";// PERE2
+	end;
+OnMobDead9:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead9") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Newoz#09");
+		enablenpc instance_npcname("Lagi#09");
+		enablenpc instance_npcname("Shaloshi#09");
+	}
+	end;
+
+OnNextIs10:
+	'room = 10;
+	enablenpc instance_npcname("9 Door 1");
+	.@label$ = 'jitterbug_main$ + "::OnMobDead10";
+	areamonster 'map_jtb$,351,131,389,96, "--ja--", 3069,10, .@label$;// PERE1
+	areamonster 'map_jtb$,351,131,389,96, "--ja--", 3071,5,  .@label$;// PERE3
+	areamonster 'map_jtb$,351,131,389,96, "--ja--", 3108,1,  .@label$;// JITTERBUG1
+	end;
+OnMobDead10:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead10") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Newoz#10");
+		enablenpc instance_npcname("Shaloshi#10");
+		enablenpc instance_npcname("Roel#10");
+		enablenpc instance_npcname("Runane#10");
+	}
+	end;
+
+OnNextIs11:
+	'room = 11;
+	enablenpc instance_npcname("10 Door 1");
+	areamonster 'map_jtb$,11,218,48,182, "--ja--", 3069,10, 'jitterbug_main$ + "::OnMobDead11";// PERE1
+	areamonster 'map_jtb$,11,218,48,182, "--ja--", 3070,5,  'jitterbug_main$ + "::OnMobDead11";// PERE2
+	end;
+OnMobDead11:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead11") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Runane#11");
+		enablenpc instance_npcname("Roel#11");
+		enablenpc instance_npcname("Arang#11");
+		enablenpc instance_npcname("Aigu#11");
+		enablenpc instance_npcname("Mingmin#11");
+	}
+	end;
+
+OnNextIs12:
+	'room = 12;
+	enablenpc instance_npcname("11 Door 1");
+	areamonster 'map_jtb$,94,218,132,182, "--ja--", 3069,10, 'jitterbug_main$ + "::OnMobDead12";// PERE1
+	end;
+OnMobDead12:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead12") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Mingmin#12");
+	}
+	end;
+
+OnNextIs13:
+	'room = 13;
+	enablenpc instance_npcname("12 Door 1");
+	areamonster 'map_jtb$,180,217,218,182, "--ja--", 3069,15, 'jitterbug_main$ + "::OnMobDead13";// PERE1
+	areamonster 'map_jtb$,180,217,218,182, "--ja--", 3070,5,  'jitterbug_main$ + "::OnMobDead13";// PERE2
+	end;
+OnMobDead13:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead13") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Newoz#13");
+		enablenpc instance_npcname("Melody-Jack#13");
+	}
+	end;
+
+OnNextIs14:
+	'room = 14;
+	disablenpc instance_npcname("Melody-Jack#13");
+	enablenpc instance_npcname("13 Door 1");
+	.@label$ = 'jitterbug_main$ + "::OnMobDead14";
+	areamonster 'map_jtb$,268,216,305,181, "--ja--", 3069,15, .@label$;// PERE1
+	areamonster 'map_jtb$,268,216,305,181, "--ja--", 3070,5,  .@label$;// PERE2
+	areamonster 'map_jtb$,268,216,305,181, "--ja--", 3071,5,  .@label$;// PERE3
+	end;
+OnMobDead14:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead14") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Newoz#14");
+		enablenpc instance_npcname("Shaloshi#14");
+		enablenpc instance_npcname("Lagi#14");
+		enablenpc instance_npcname("Aigu#14");
+		enablenpc instance_npcname("Roel#14");
+		enablenpc instance_npcname("Mingmin#14");
+	}
+	end;
+
+OnNextIs15:
+	'room = 15;
+	enablenpc instance_npcname("14 Door 1");
+	.@label$ = 'jitterbug_main$ + "::OnMobDead15";
+	areamonster 'map_jtb$,358,212,388,182, "--ja--", 3069,20, .@label$;// PERE1
+	areamonster 'map_jtb$,358,212,388,182, "--ja--", 3070,10, .@label$;// PERE2
+	areamonster 'map_jtb$,358,212,388,182, "--ja--", 3109,1,  .@label$;// JITTERBUG2
+	end;
+OnMobDead15:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead15") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Newoz#15");
+		enablenpc instance_npcname("Mingmin#15");
+		enablenpc instance_npcname("Gelka#15");
+		enablenpc instance_npcname("Shaloshi#15");
+		enablenpc instance_npcname("Arang#15");
+		enablenpc instance_npcname("Runane#15");
+		enablenpc instance_npcname("Roter#15");
+		enablenpc instance_npcname("Roel#15");
+	}
+	end;
+
+OnNextIs16:
+	'room = 16;
+	enablenpc instance_npcname("15 Door 1");
+	.@label$ = 'jitterbug_main$ + "::OnMobDead16";
+	areamonster 'map_jtb$,13,300,47,267, "--ja--", 3069,10, .@label$;// PERE1
+	areamonster 'map_jtb$,13,300,47,267, "--ja--", 3070,10, .@label$;// PERE2
+	areamonster 'map_jtb$,13,300,47,267, "--ja--", 3071,10, .@label$;// PERE3
+	areamonster 'map_jtb$,13,300,47,267, "--ja--", 3072,5,  .@label$;// PERE4
+	end;
+OnMobDead16:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead16") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Newoz#16");
+		enablenpc instance_npcname("Mingmin#16");
+		enablenpc instance_npcname("Roter#16");
+	}
+	end;
+
+OnNextIs17:
+	'room = 17;
+	enablenpc instance_npcname("16 Door 1");
+	.@label$ = 'jitterbug_main$ + "::OnMobDead17";
+	areamonster 'map_jtb$,104,297,132,268, "--ja--", 3069,8, .@label$;// PERE1
+	areamonster 'map_jtb$,104,297,132,268, "--ja--", 3070,10,.@label$;// PERE2
+	areamonster 'map_jtb$,104,297,132,268, "--ja--", 3071,5, .@label$;// PERE3
+	areamonster 'map_jtb$,104,297,132,268, "--ja--", 3072,7, .@label$;// PERE4
+	end;
+OnMobDead17:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead17") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Shaloshi#17");
+		enablenpc instance_npcname("Runane#17");
+		enablenpc instance_npcname("Aigu#17");
+	}
+	end;
+
+OnNextIs18:
+	'room = 18;
+	enablenpc instance_npcname("17 Door 1");
+	.@label$ = 'jitterbug_main$ + "::OnMobDead18";
+	monster 'map_jtb$, 210, 272, "--ja--", 3069,1, .@label$;// PERE1
+	monster 'map_jtb$, 211, 273, "--ja--", 3071,1, .@label$;// PERE3
+	monster 'map_jtb$, 212, 272, "--ja--", 3072,1, .@label$;// PERE4
+	monster 'map_jtb$, 209, 273, "--ja--", 3072,1, .@label$;
+	monster 'map_jtb$, 213, 273, "--ja--", 3070,1, .@label$;// PERE2
+	monster 'map_jtb$, 211, 274, "--ja--", 3070,1, .@label$;
+	monster 'map_jtb$, 212, 275, "--ja--", 3070,1, .@label$;
+	monster 'map_jtb$, 213, 275, "--ja--", 3070,1, .@label$;
+	monster 'map_jtb$, 213, 276, "--ja--", 3070,1, .@label$;
+
+	areamonster 'map_jtb$,183,301,220,272, "--ja--", 3069,5, .@label$;// PERE1
+	areamonster 'map_jtb$,183,301,220,272, "--ja--", 3070,8, .@label$;// PERE2
+	areamonster 'map_jtb$,183,301,220,272, "--ja--", 3071,5, .@label$;// PERE3
+	areamonster 'map_jtb$,183,301,220,272, "--ja--", 3072,5, .@label$;// PERE4
+	areamonster 'map_jtb$,183,301,220,272, "--ja--", 3108,1, .@label$;// JITTERBUG1
+	end;
+OnMobDead18:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead18") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Shaloshi#18");
+		enablenpc instance_npcname("Runane#18");
+		enablenpc instance_npcname("Roel#18");
+	}
+	end;
+
+OnNextIs19:
+	'room = 19;
+	enablenpc instance_npcname("18 Door 1");
+	.@label$ = 'jitterbug_main$ + "::OnMobDead19";
+	areamonster 'map_jtb$,13,389,45,355, "--ja--", 3069,5, .@label$;// PERE1
+	areamonster 'map_jtb$,13,389,45,355, "--ja--", 3070,9, .@label$;// PERE2
+	areamonster 'map_jtb$,13,389,45,355, "--ja--", 3071,9, .@label$;// PERE3
+	areamonster 'map_jtb$,13,389,45,355, "--ja--", 3072,9, .@label$;// PERE4
+	end;
+OnMobDead19:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead19") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Newoz#19");
+		enablenpc instance_npcname("Melody-Jack#19");
+		enablenpc instance_npcname("Roter#19");
+		enablenpc instance_npcname("Mingmin#19");
+		enablenpc instance_npcname("Aigu#19");
+		enablenpc instance_npcname("Arang#19");
+		enablenpc instance_npcname("Lagi#19");
+		enablenpc instance_npcname("Gelka#19");
+	}
+	end;
+
+OnNextIs20:
+	'room = 20;
+	enablenpc instance_npcname("19 Door 1");
+	.@label$ = 'jitterbug_main$ + "::OnMobDead20";
+	areamonster 'map_jtb$,95,387,133,352, "--ja--", 3069,3, .@label$;// PERE1
+	areamonster 'map_jtb$,95,387,133,352, "--ja--", 3070,10, .@label$;// PERE2
+	areamonster 'map_jtb$,95,387,133,352, "--ja--", 3072,6, .@label$;// PERE4
+	end;
+OnMobDead20:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead20") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Roel#20");
+		enablenpc instance_npcname("Gelka#20");
+	}
+	end;
+
+OnNextIs21:
+	'room = 21;
+	enablenpc instance_npcname("20 Door 1");
+	.@label$ = 'jitterbug_main$ + "::OnMobDead21";
+	areamonster 'map_jtb$,182,387,219,354, "--ja--", 3069,10, .@label$;// PERE1
+	areamonster 'map_jtb$,182,387,219,354, "--ja--", 3070,10, .@label$;// PERE2
+	areamonster 'map_jtb$,182,387,219,354, "--ja--", 3071,10, .@label$;// PERE3
+	areamonster 'map_jtb$,182,387,219,354, "--ja--", 3072,10, .@label$;// PERE4
+	areamonster 'map_jtb$,182,387,219,354, "--ja--", 3109,1,  .@label$;// JITTERBUG2
+	end;
+OnMobDead21:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead21") == 0) {
+		sleep 1500;
+		enablenpc instance_npcname("Newoz#21");
+		enablenpc instance_npcname("Melody-Jack#21");
+		enablenpc instance_npcname("Arang#21");
+		enablenpc instance_npcname("Gelka#21");
+		enablenpc instance_npcname("Mingmin#21");
+		enablenpc instance_npcname("Runane#21");
+		enablenpc instance_npcname("Roel#21");
+		enablenpc instance_npcname("Lagi#21");
+		enablenpc instance_npcname("Aigu#21");
+		enablenpc instance_npcname("Roter#21");
+		enablenpc instance_npcname("Shaloshi#21");
+	}
+	end;
+
+OnNextIs22:
+	'room = 22;
+	enablenpc instance_npcname("21 Door 1");
+	.@label$ = 'jitterbug_main$ + "::OnMobDead22";
+	monster 'map_jtb$, 288, 339, "--ja--", 3069,1, .@label$;// PERE1
+	monster 'map_jtb$, 288, 319, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 288, 309, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 287, 296, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 299, 295, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 310, 294, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 323, 295, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 334, 295, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 344, 295, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 353, 294, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 357, 300, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 357, 307, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 358, 317, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 358, 325, "--ja--", 3069,1, .@label$;
+	monster 'map_jtb$, 358, 338, "--ja--", 3069,1, .@label$;
+	end;
+OnMobDead22:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead22") == 0) {
+		sleep 1500;
+		if ('room == 22) {
+			'room = 23;
+			enablenpc instance_npcname("22 Door 1");
+			enablenpc instance_npcname("Ferre#23");
+			enablenpc instance_npcname("Shaloshi#23");
+			enablenpc instance_npcname("Newoz#23");
+		}
+	}
+	end;
+
+OnNextIs23:
+	'room = 24;
+	disablenpc instance_npcname("22 Door 1");	// can't enter in the boss room anymore
+	disablenpc instance_npcname("Ferre#24");
+	disablenpc instance_npcname("Newoz#23");
+	disablenpc instance_npcname("Shaloshi#23");
+	donpcevent instance_npcname("Newoz#boss") + "::OnStart";
+
+	.@label$ = 'jitterbug_main$ + "::OnMobDead23";
+	for ( .@id = 3069; .@id < 3072; .@id++ ) {
+		monster 'map_jtb$,323,315, "--ja--", .@id, 1;// no label
+		monster 'map_jtb$,331,324, "--ja--", .@id, 1;
+		monster 'map_jtb$,322,338, "--ja--", .@id, 1;
+		monster 'map_jtb$,314,325, "--ja--", .@id, 1;
+	}
+	monster 'map_jtb$,322,335, "Awakened Ferre", 3073,1, .@label$;	// GRAND_PERE
+	'boss_id = $@mobid[0];
+	end;
+OnMobDead23:
+	if (mobcount('map_jtb$, 'jitterbug_main$ + "::OnMobDead23") == 0) {
+		sleep 1500;
+		donpcevent instance_npcname("Newoz#boss") + "::OnStop";
+		enablenpc instance_npcname("Newoz#24");
+		enablenpc instance_npcname("Shaloshi#24");
+		enablenpc instance_npcname("Ferre#25");
+		'boss_id = 0;
+	}
+	end;
+
+OnNextIs5:
+	'room = 25;
+	enablenpc instance_npcname("23 Door 1");// note: dead players are not warped
+	enablenpc instance_npcname("Newoz#05");
+	enablenpc instance_npcname("Melody-Jack#05");
+	enablenpc instance_npcname("Gelka#05");
+	enablenpc instance_npcname("Runane#05");
+	enablenpc instance_npcname("Roter#05");
+	enablenpc instance_npcname("Aigu#05");
+	enablenpc instance_npcname("Lagi#05");
+	enablenpc instance_npcname("Arang#05");
+	enablenpc instance_npcname("Roel#05");
+	enablenpc instance_npcname("Mingmin#05");
+	end;
+
+
+OnInstanceInit:
+	// false: some npcs are not disabled when choosing 'Hurry' (official)
+	// true: disable the npcs
+	'additionnal_option = false;
+
+	'room = 1;
+	'boss_id = 0;
+	'map_jtb$ = instance_mapname("1@jtb");
+	'jitterbug_main$ = instance_npcname("#jitterbug_main");
+
+	// warps
+	disablenpc instance_npcname("1 Door 1");
+	disablenpc instance_npcname("2 Door 1");
+	disablenpc instance_npcname("3 Door 1");
+	disablenpc instance_npcname("4 Door 1");
+	disablenpc instance_npcname("6 Door 1");
+	disablenpc instance_npcname("7 Door 1");
+	disablenpc instance_npcname("8 Door 1");
+	disablenpc instance_npcname("9 Door 1");
+	disablenpc instance_npcname("10 Door 1");
+	disablenpc instance_npcname("11 Door 1");
+	disablenpc instance_npcname("12 Door 1");
+	disablenpc instance_npcname("13 Door 1");
+	disablenpc instance_npcname("14 Door 1");
+	disablenpc instance_npcname("15 Door 1");
+	disablenpc instance_npcname("16 Door 1");
+	disablenpc instance_npcname("17 Door 1");
+	disablenpc instance_npcname("18 Door 1");
+	disablenpc instance_npcname("19 Door 1");
+	disablenpc instance_npcname("20 Door 1");
+	disablenpc instance_npcname("21 Door 1");
+	disablenpc instance_npcname("22 Door 1");
+	disablenpc instance_npcname("23 Door 1");
+	disablenpc instance_npcname("24 Door 1");
+
+	// Room 2
+	disablenpc instance_npcname("Aigu#02");
+	disablenpc instance_npcname("???#02");
+	disablenpc instance_npcname("Runane#02");
+
+	// Room 3
+	disablenpc instance_npcname("Roter#03");
+	disablenpc instance_npcname("Gelka#03");
+
+	// Room 4
+	disablenpc instance_npcname("???#04");
+
+	// Room 6
+	disablenpc instance_npcname("Newoz#06");
+	disablenpc instance_npcname("Aigu#06");
+	disablenpc instance_npcname("Shaloshi#06");
+	disablenpc instance_npcname("Arang#06");
+
+	// Room 7
+	disablenpc instance_npcname("Roel#07");
+	disablenpc instance_npcname("Runane#07");
+	disablenpc instance_npcname("Aigu#07");
+
+	// Room 8
+	disablenpc instance_npcname("Mingmin#08");
+	disablenpc instance_npcname("Shaloshi#08");
+	disablenpc instance_npcname("Newoz#08");
+
+	// Room 9 (menu affects the boss encounter in the next room)
+	disablenpc instance_npcname("Newoz#09");
+	disablenpc instance_npcname("Lagi#09");
+	disablenpc instance_npcname("Shaloshi#09");
+
+	// Room 10
+	disablenpc instance_npcname("Newoz#10");
+	disablenpc instance_npcname("Shaloshi#10");
+	disablenpc instance_npcname("Roel#10");
+	disablenpc instance_npcname("Runane#10");
+
+	// Room 11
+	disablenpc instance_npcname("Runane#11");
+	disablenpc instance_npcname("Roel#11");
+	disablenpc instance_npcname("Arang#11");
+	disablenpc instance_npcname("Aigu#11");
+	disablenpc instance_npcname("Mingmin#11");
+
+	// Room 12
+	disablenpc instance_npcname("Mingmin#12");
+
+	// Room 13
+	disablenpc instance_npcname("Newoz#13");
+	disablenpc instance_npcname("Melody-Jack#13");
+
+	// Room 14 (menu affects the boss encounter in the next room)
+	disablenpc instance_npcname("Newoz#14");
+	disablenpc instance_npcname("Shaloshi#14");
+	disablenpc instance_npcname("Lagi#14");
+	disablenpc instance_npcname("Aigu#14");
+	disablenpc instance_npcname("Roel#14");
+	disablenpc instance_npcname("Mingmin#14");
+
+	// Room 15
+	disablenpc instance_npcname("Newoz#15");
+	disablenpc instance_npcname("Mingmin#15");
+	disablenpc instance_npcname("Gelka#15");
+	disablenpc instance_npcname("Shaloshi#15");
+	disablenpc instance_npcname("Arang#15");
+	disablenpc instance_npcname("Runane#15");
+	disablenpc instance_npcname("Roter#15");
+	disablenpc instance_npcname("Roel#15");
+
+	// Room 16
+	disablenpc instance_npcname("Newoz#16");
+	disablenpc instance_npcname("Mingmin#16");
+	disablenpc instance_npcname("Roter#16");
+
+	// Room 17 (menu affects the boss encounter in the next room)
+	disablenpc instance_npcname("Shaloshi#17");
+	disablenpc instance_npcname("Runane#17");
+	disablenpc instance_npcname("Aigu#17");
+
+	// Room 18
+	disablenpc instance_npcname("Shaloshi#18");
+	disablenpc instance_npcname("Runane#18");
+	disablenpc instance_npcname("Roel#18");
+
+	// Room 19
+	disablenpc instance_npcname("Newoz#19");
+	disablenpc instance_npcname("Melody-Jack#19");
+	disablenpc instance_npcname("Roter#19");
+	disablenpc instance_npcname("Mingmin#19");
+	disablenpc instance_npcname("Aigu#19");
+	disablenpc instance_npcname("Arang#19");
+	disablenpc instance_npcname("Lagi#19");
+	disablenpc instance_npcname("Gelka#19");
+
+	// Room 20 (menu affects the boss encounter in the next room)
+	disablenpc instance_npcname("Roel#20");
+	disablenpc instance_npcname("Gelka#20");
+
+	// Room 21 (menu affects the boss encounter in the boss room)
+	disablenpc instance_npcname("Newoz#21");
+	disablenpc instance_npcname("Melody-Jack#21");
+	disablenpc instance_npcname("Arang#21");
+	disablenpc instance_npcname("Gelka#21");
+	disablenpc instance_npcname("Mingmin#21");
+	disablenpc instance_npcname("Runane#21");
+	disablenpc instance_npcname("Roel#21");
+	disablenpc instance_npcname("Lagi#21");
+	disablenpc instance_npcname("Aigu#21");
+	disablenpc instance_npcname("Roter#21");
+	disablenpc instance_npcname("Shaloshi#21");
+	disablenpc instance_npcname("Ferre#21");
+	disablenpc instance_npcname("Ferre#22");
+
+	// Boss room entrance
+	disablenpc instance_npcname("Ferre#23");
+	disablenpc instance_npcname("Ferre#24");
+	disablenpc instance_npcname("Shaloshi#23");
+	disablenpc instance_npcname("Newoz#23");
+	disablenpc instance_npcname("Newoz#boss");
+
+	// Boss room - boss dead
+	disablenpc instance_npcname("Newoz#24");
+	disablenpc instance_npcname("Shaloshi#24");
+	disablenpc instance_npcname("Roter#24");
+	disablenpc instance_npcname("Gelka#24");
+	disablenpc instance_npcname("Mingmin#24");
+	disablenpc instance_npcname("Aigu#24");
+	disablenpc instance_npcname("Lagi#24");
+	disablenpc instance_npcname("Arang#24");
+	disablenpc instance_npcname("Runane#24");
+	disablenpc instance_npcname("Roel#24");
+	disablenpc instance_npcname("Melody-Jack#24");
+	disablenpc instance_npcname("Ferre#25");
+
+	// Exit
+	disablenpc instance_npcname("Newoz#05");
+	disablenpc instance_npcname("Melody-Jack#05");
+	disablenpc instance_npcname("Gelka#05");
+	disablenpc instance_npcname("Runane#05");
+	disablenpc instance_npcname("Roter#05");
+	disablenpc instance_npcname("Aigu#05");
+	disablenpc instance_npcname("Lagi#05");
+	disablenpc instance_npcname("Arang#05");
+	disablenpc instance_npcname("Roel#05");
+	disablenpc instance_npcname("Mingmin#05");
+	end;
+}

@@ -1,0 +1,355 @@
+-	shop	merchant_bell_shop	-1,1750:-1,1751:-1,1752:-1,611:-1,501:-1,502:-1,503:-1,504:-1,506:-1,645:-1,656:-1,601:-1,602:-1,1065:-1//,2239:-1
+
+-	script	bell_command	-1,{
+OnInit://เมื่อโหลดสคริป หรือเริ่มเซิฟ เหมือน beginplay
+ 
+ //คำสั่งนี้จะผูกป้ายกำกับเหตุการณ์ NPC กับ atcommand เมื่อดำเนินการตามไฟล์
+ //ตามคำสั่งผู้ใช้จะเรียกใช้ป้ายกำกับเหตุการณ์ NPC แต่ละ atcommand ได้รับอนุญาตเท่านั้น
+ //หนึ่งผูกพัน หากคุณย้อนกลับจะเป็นการลบล้างการผูกเดิม
+ //หมายเหตุ: ระดับดีฟอลต์สำหรับ atcommand คือ 0 ในขณะที่ระดับดีฟอลต์สำหรับ charcommand คือ 100
+ //* bindatcmd "<command>", "<ชื่อวัตถุ NPC> :: <event label>" {, <atcommand level>, <charcommand level>};
+	bindatcmd "KafraBell",strnpcinfo(3)+"::OnKafraBell",99,99;
+	bindatcmd "MerchantBell",strnpcinfo(3)+"::OnMerchantBell",99,99;
+	$A_npcmax = 100;	// ตั้งค่าจำนวน npc ที่ทั้งเซิฟเรียกได้
+	for(.@i = 1; .@i <= $A_npcmax; ++.@i){
+		setd "$A_MERCHANT_BELL"+.@i , 0;
+		setd "$A_Kafra_Bell"+.@i , 0;
+	}
+	end;
+
+OnMerchantBell:
+	.@npc = 1;
+	while(getd("$A_MERCHANT_BELL"+.@npc) && .@npc < ($A_npcmax+1)){
+		.@npc++;
+	}
+	if(.@npc == ($A_npcmax+1)){
+		dispbottom "GM กำหนดให้ใช้พร้อมกัน "+$A_npcmax+" คน ตอนนี้ไม่ว่าง รอสักครู่";
+		end;
+	}
+	getmapxy .@map$,.@x,.@y,BL_PC;
+	.@xr=rand(1,2);
+	.@yr=rand(1,2);
+	if(.@xr>1){ .@x=.@x-rand(1,3); } else { .@x=.@x+rand(1,3); }
+	if(.@yr>1){ .@y=.@y-rand(1,3); } else { .@y=.@y+rand(1,3); }
+	unitwarp getnpcid(0,("Wanderer Merchant#mb"+.@npc)),.@map$,.@x,.@y;
+	movenpc ("Wanderer Merchant#mb"+.@npc),.@x,.@y;
+	classchange 4_M_HUMERCHANT, ("Wanderer Merchant#mb"+.@npc), bc_self;
+	initnpctimer ("Wanderer Merchant#mb"+.@npc);
+	setd "$A_MERCHANT_BELL"+.@npc , 1;
+	end;
+
+OnKafraBell:
+	.@npc = 1;
+	while(getd("$A_Kafra_Bell"+.@npc) && .@npc < ($A_npcmax+1)){
+		.@npc++;
+	}
+	if(.@npc == ($A_npcmax+1)){
+		dispbottom "GM กำหนดให้ใช้พร้อมกัน "+$A_npcmax+" คน ตอนนี้ไม่ว่าง รอสักครู่";
+		end;
+	}
+	getmapxy .@map$,.@x,.@y,BL_PC;
+	.@xr=rand(1,2);
+	.@yr=rand(1,2);
+	if(.@xr>1){ .@x=.@x-rand(1,3); } else { .@x=.@x+rand(1,3); }
+	if(.@yr>1){ .@y=.@y-rand(1,3); } else { .@y=.@y+rand(1,3); }
+	unitwarp getnpcid(0,("Kafra Employee#kf"+.@npc)),.@map$,.@x,.@y;
+	movenpc ("Kafra Employee#kf"+.@npc),.@x,.@y;
+	classchange 4_F_KAFRA5, ("Kafra Employee#kf"+.@npc), bc_self;
+	initnpctimer ("Kafra Employee#kf"+.@npc);
+	setd "$A_Kafra_Bell"+.@npc , 1;
+	end;
+}
+
+function	script	mb_item	{
+	.@npc = 1;
+	while(getd("$A_MERCHANT_BELL"+.@npc) && .@npc < ($A_npcmax+1)){
+		.@npc++;
+	}
+	if(.@npc == ($A_npcmax+1)){
+		dispbottom "GM กำหนดให้ใช้พร้อมกัน "+$A_npcmax+" คน ตอนนี้ไม่ว่าง รอสักครู่";
+		end;
+	}
+	getmapxy .@map$,.@x,.@y,BL_PC;
+	.@xr=rand(1,2);
+	.@yr=rand(1,2);
+	if(.@xr>1){ .@x=.@x-rand(1,3); } else { .@x=.@x+rand(1,3); }
+	if(.@yr>1){ .@y=.@y-rand(1,3); } else { .@y=.@y+rand(1,3); }
+	unitwarp getnpcid(0,("Wanderer Merchant#mb"+.@npc)),.@map$,.@x,.@y;
+	movenpc ("Wanderer Merchant#mb"+.@npc),.@x,.@y;
+	classchange 4_M_HUMERCHANT, ("Wanderer Merchant#mb"+.@npc), bc_self;
+	initnpctimer ("Wanderer Merchant#mb"+.@npc);
+	setd "$A_MERCHANT_BELL"+.@npc , 1;
+	end;
+}
+
+prontera,0,0,4	script	merchant_bell	HIDDEN_WARP_NPC,{
+	mes "[Wanderer Merchant]";
+	mes "ยินดีต้อนรับ!";
+	mes "ต้องการขายของที่มีอยู่หรอกรึ?";
+	mes "หรือว่าต้องการจะซื้อไอเท็ม?";
+	switch(select("ซื้อไอเท็มใช้แล้วหมดไป:ขายของ:ไม่มีอะไร")){
+		case 1:
+			close2;
+			callshop "merchant_bell_shop",1;
+			end;
+		case 2:
+			close2;
+			callshop "merchant_bell_shop",2;
+			end;
+		case 3:
+			end;
+	}
+	close;
+OnTimer60000:	// ตั้งค่าเวลาnpcที่เรียกมา หน่วย 1000 = 1วินาที
+	sscanf( strnpcinfo(0), "Wanderer Merchant#mb%d", .@num );
+	stopnpctimer;
+	unitwarp getnpcid(0,("Wanderer Merchant#mb"+.@num)),"prontera",0,0;
+	setd "$A_MERCHANT_BELL"+.@num , 0;
+	end;
+}
+
+function	script	kf_item	{
+	.@npc = 1;
+	while(getd("$A_Kafra_Bell"+.@npc) && .@npc < ($A_npcmax+1)){
+		.@npc++;
+	}
+	if(.@npc == ($A_npcmax+1)){
+		dispbottom "GM กำหนดให้ใช้พร้อมกัน "+$A_npcmax+" คน ตอนนี้ไม่ว่าง รอสักครู่";
+		end;
+	}
+	getmapxy .@map$,.@x,.@y,BL_PC;
+	.@xr=rand(1,2);
+	.@yr=rand(1,2);
+	if(.@xr>1){ .@x=.@x-rand(1,3); } else { .@x=.@x+rand(1,3); }
+	if(.@yr>1){ .@y=.@y-rand(1,3); } else { .@y=.@y+rand(1,3); }
+	unitwarp getnpcid(0,("Kafra Employee#kf"+.@npc)),.@map$,.@x,.@y;
+	movenpc ("Kafra Employee#kf"+.@npc),.@x,.@y;
+	classchange 4_F_KAFRA5, ("Kafra Employee#kf"+.@npc), bc_self;
+	initnpctimer ("Kafra Employee#kf"+.@npc);
+	setd "$A_Kafra_Bell"+.@npc , 1;
+	end;
+}
+
+prontera,0,0,4	script	kafra_bell	HIDDEN_WARP_NPC,{
+	cutin "kafra_05",2;
+	mes "[Kafra Employee]";
+	mes "สวัสดีค่ะ บริการเรียกใช้งาน Kafra ค่ะ";
+	if(select("เปิดคลัง:ไม่มีอะไร")==2){
+		close2;
+		cutin "", 255;
+		end;
+	}
+	mes "จะทำการเปิดคลังให้ตามที่ขอนะคะ";
+	close2;
+	openstorage;
+	cutin "", 255;
+	end;
+OnTimer60000:	// ตั้งค่าเวลาnpcที่เรียกมา หน่วย 1000 = 1วินาที
+	sscanf( strnpcinfo(0), "Kafra Employee#kf%d", .@num );
+	stopnpctimer;
+	unitwarp getnpcid(0,("Kafra Employee#kf"+.@num)),"prontera",0,0;
+	setd "$A_Kafra_Bell"+.@num , 0;
+	end;
+}
+
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb1	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb2	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb3	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb4	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb5	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb6	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb7	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb8	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb9	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb10	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb11	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb12	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb13	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb14	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb15	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb16	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb17	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb18	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb19	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb20	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb21	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb22	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb23	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb24	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb25	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb26	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb27	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb28	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb29	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb30	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb31	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb32	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb33	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb34	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb35	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb36	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb37	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb38	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb39	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb40	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb41	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb42	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb43	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb44	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb45	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb46	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb47	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb48	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb49	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb50	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb51	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb52	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb53	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb54	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb55	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb56	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb57	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb58	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb59	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb60	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb61	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb62	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb63	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb64	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb65	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb66	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb67	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb68	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb69	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb70	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb71	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb72	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb73	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb74	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb75	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb76	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb77	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb78	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb79	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb80	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb81	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb82	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb83	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb84	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb85	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb86	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb87	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb88	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb89	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb90	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb91	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb92	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb93	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb94	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb95	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb96	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb97	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb98	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb99	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(merchant_bell)	Wanderer Merchant#mb100	HIDDEN_WARP_NPC
+
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf1	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf2	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf3	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf4	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf5	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf6	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf7	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf8	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf9	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf10	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf11	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf12	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf13	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf14	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf15	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf16	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf17	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf18	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf19	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf20	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf21	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf22	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf23	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf24	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf25	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf26	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf27	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf28	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf29	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf30	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf31	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf32	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf33	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf34	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf35	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf36	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf37	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf38	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf39	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf40	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf41	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf42	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf43	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf44	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf45	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf46	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf47	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf48	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf49	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf50	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf51	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf52	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf53	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf54	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf55	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf56	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf57	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf58	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf59	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf60	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf61	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf62	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf63	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf64	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf65	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf66	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf67	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf68	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf69	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf70	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf71	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf72	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf73	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf74	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf75	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf76	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf77	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf78	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf79	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf80	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf81	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf82	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf83	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf84	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf85	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf86	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf87	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf88	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf89	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf90	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf91	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf92	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf93	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf94	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf95	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf96	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf97	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf98	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf99	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(kafra_bell)	Kafra Employee#kf100	HIDDEN_WARP_NPC

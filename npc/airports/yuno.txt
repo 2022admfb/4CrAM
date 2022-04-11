@@ -1,0 +1,161 @@
+//===== rAthena Script ======================================= 
+//= Juno Airport Staff
+//===== By: ================================================== 
+//= L0ne_W0lf, Muad_Dib
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Juno Airport Staff
+//===== Additional Comments: ================================= 
+//= 1.0 First version.
+//============================================================ 
+
+y_airport,143,43,5	script	Airport Staff#y_air1a::y_airport1	90,{
+	mes "[Airport Staff]";
+	mes "ยินดีต้อนรับสู่สนามบิน Juno ที่เราให้บริการเที่ยวบินภายในประเทศไปยัง Einbroch, Lighthalzen และ Hugel";
+	mes "และเที่ยวบินระหว่างประเทศไปยัง Izlude และ Rachel";
+	mes "ฉันจะรับราชการได้อย่างไร";
+	next;
+	if (select("ขึ้นเรือเหาะ:ยกเลิก.") == 1) {
+		mes "[Airport Staff]";
+		mes "ค่ากินนอนสำหรับทุกคน";
+		mes "เที่ยวบิน 1,200 zeny ถ้าคุณ";
+		mes "ใช้ตั๋วเรือเหาะฟรี";
+		mes "ยกเว้นค่าธรรมเนียมการขึ้นเครื่อง แล้วคุณต้องการออกเดินทางหรือไม่";
+		next;
+		if (select("ตกลง:ยกเลิก") == 1) {
+			if (countitem(7311) > 0) {
+				delitem 7311,1; //Free_Flying_Ship_Ticket
+				warp "y_airport",148,51;
+				end;
+			}
+			if (Zeny >= 1200) {
+				set Zeny, Zeny - 1200;
+				warp "y_airport",148,51;
+				end;
+			}
+			mes "[Airport Staff]";
+			mes "ฉันขอโทษ แต่คุณ";
+			mes "ต้องจ่าย 1,200 zeny";
+			mes "สำหรับค่าขึ้นเครื่อง";
+			close;
+		}
+	}
+	mes "[Airport Staff]";
+	mes "ขอบคุณและ";
+	mes "มีวันที่ดี";
+	close;
+}
+
+y_airport,158,43,5	duplicate(y_airport1)	Airport Staff#y_air1b	90
+y_airport,126,43,5	duplicate(y_airport1)	Airport Staff#y_air1c	90
+
+y_airport,143,49,3	script	Arrival Staff#y_air2a::y_airport2	90,{
+	mes "[Airport Staff]";
+	mes "ยินดีต้อนรับสู่สนามบินจูโนถ้าคุณเพิ่งมาจากคุณ";
+	mes "เที่ยวบินให้ฉันนำทางคุณไปยังอาคารผู้โดยสารหลักมิฉะนั้นโปรด";
+	mes "ขึ้นเรือเหาะที่กำลังจะไปเพื่อไปให้ถึงจุดหมายที่คุณตั้งใจไว้";
+	next;
+	if (select("ออกไปยังอาคารผู้โดยสารหลัก:ยกเลิก") == 1) {
+		mes "[Airport Staff]";
+		mes "เมื่อคุณอยู่ในอาคารผู้โดยสารหลักคุณต้องชำระค่าธรรมเนียมอีกครั้ง";
+		mes "เพื่อขึ้นเรือเหาะที่กำลังจะออกไปคุณควรออกก็ต่อเมื่อคุณตั้งใจ";
+		mes "ปลายทางคือ Juno ไปที่";
+		mes "ออกไปยังอาคารผู้โดยสารหลัก?";
+		next;
+		if (select("ตกลง:ยกเลิก") == 1) {
+			warp "y_airport",142,40;
+			end;
+		}
+	}
+	mes "[Airport Staff]";
+	mes "ได้เลยขอบคุณ";
+	mes "เพื่อการอุปถัมภ์ของคุณ";
+	mes "และฉันหวังว่าคุณจะมี";
+	mes "เที่ยวบินสบาย ๆ ~";
+	close;
+}
+
+y_airport,126,51,3	duplicate(y_airport2)	Arrival Staff#y_air2b	90
+y_airport,158,50,3	duplicate(y_airport2)	Arrival Staff#y_air2c	90
+
+y_airport,145,63,5	script	Domestic Boarding	91,{
+	mes "[Boarding Staff]";
+	mes "คุณต้องการขึ้นเครื่อง";
+	mes "เรือเหาะที่บินไปไอน์โบรช";
+	mes "Lighthalzen กับ Hugel ถ้าเป็นเช่นนั้น";
+	mes "โปรดให้ฉันช่วยชี้แนะคุณด้วย";
+	mes "พื้นที่ขึ้นเรือเหาะ";
+	next;
+	if (select("ตกลง:ยกเลิก") == 1) {
+		warp "yuno",59,244;
+		end;
+	}
+	mes "[Boarding Staff]";
+	mes "ดีแล้ว.";
+	mes "ขอบคุณสำหรับของคุณ";
+	mes "อุปถัมภ์และฉันหวังว่า";
+	mes "คุณสนุกกับการเดินทางของคุณ ~";
+	close;
+}
+
+y_airport,140,63,5	script	International Boarding	91,{
+	mes "[Boarding Staff]";
+	mes "คุณอยากขึ้นเครื่องไหม";
+	mes "เรือเหาะที่บินไป";
+	mes "Juno, Izlude และ Rachel?";
+	mes "ถ้าเป็นเช่นนั้นให้ฉันแนะนำ";
+	mes "คุณไปที่บริเวณขึ้นเครื่อง";
+	next;
+	if (select("ตกลง:ยกเลิก") == 1) {
+		warp "yuno",47,244;
+		end;
+	}
+	mes "[Boarding Staff]";
+	mes "ได้เลย";
+	mes "ขอบคุณที่บิน";
+	mes "กับเราและฉันหวังว่าคุณ";
+	mes "เพลิดเพลินไปกับการเดินทางของเรา";
+	mes "เรือเหาะสุดล้ำ";
+	close;
+}
+
+yuno,14,262,5	script	Airship Staff#yuno01	91,{
+	mes "[Airship Staff]";
+	mes "ยินดีต้อนรับสู่สนามบินจูโน";
+	mes "กรุณาใช้ประตูนี้เพื่อ";
+	mes "ขึ้นเรือเหาะที่จะ";
+	mes "บินไปอิซลูด";
+	mes "ในอาณาจักรรูน - มิดการ์ท";
+	mes "และถึง Rachel ใน Arunafeltz";
+	mes "สาธารณรัฐ";
+	next;
+	mes "[Airship Staff]";
+	mes "ไม่งั้นถ้าเป็น Juno";
+	mes "ปลายทางที่คุณตั้งใจ";
+	mes "โปรดลงบันได";
+	mes "และขอให้พนักงานต้อนรับนำ";
+	mes "ถึงอาคารผู้โดยสารหลักแล้วขอบคุณ";
+	mes "คุณและสนุกกับการเดินทางของคุณ";
+	close;
+}
+
+yuno,88,263,3	script	Airship Staff#yuno02	91,{
+	mes "[Airship Staff]";
+	mes "ยินดีต้อนรับสู่สนามบินจูโน";
+	mes "กรุณาใช้ประตูนี้เพื่อ";
+	mes "ขึ้นเรือเหาะที่หยุด";
+	mes "เหนือ Einbroch, Lighthalzen และ";
+	mes "Hugel ในสาธารณรัฐชวาร์ซวัลด์";
+	next;
+	mes "[Airship Staff]";
+	mes "ไม่งั้นถ้าเป็น Juno";
+	mes "ปลายทางที่คุณตั้งใจ";
+	mes "โปรดลงบันได";
+	mes "และขอให้พนักงานต้อนรับนำ";
+	mes "ถึงอาคารผู้โดยสารหลักแล้วขอบคุณ";
+	mes "คุณและสนุกกับการเดินทางของคุณ";
+	close;
+}

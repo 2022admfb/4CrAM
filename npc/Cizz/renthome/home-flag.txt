@@ -1,0 +1,89 @@
+guildhall1,86,38,5	script	บ้านเช่าที่ 1	722,{
+OnReOwner1:
+	flagemblem $renter_id1;
+	end;
+}
+
+guildhall2,86,38,5	script	บ้านเช่าที่ 2	722,{
+OnReOwner2:
+	flagemblem $renter_id2;
+	end;
+}
+
+guildhall3,86,38,5	script	บ้านเช่าที่ 3	722,{
+OnReOwner3:
+	flagemblem $renter_id3;
+	end;
+}
+
+guildhall4,86,38,5	script	บ้านเช่าที่ 4	722,{
+OnReOwner4:
+	flagemblem $renter_id4;
+	end;
+}
+
+guildhall5,86,38,5	script	บ้านเช่าที่ 5	722,{
+OnReOwner5:
+	flagemblem $renter_id5;
+	end;
+}
+
+guildhall6,86,38,5	script	บ้านเช่าที่ 6	722,{
+OnReOwner6:
+	flagemblem $renter_id6;
+	end;
+}
+
+guildhall7,86,38,5	script	บ้านเช่าที่ 7	722,{
+OnReOwner7:
+	flagemblem $renter_id7;
+	end;
+}
+
+guildhall8,86,38,5	script	บ้านเช่าที่ 8	722,{
+OnReOwner8:
+	flagemblem $renter_id8;
+	end;
+}
+
+guildhall9,86,38,5	script	บ้านเช่าที่ 9	722,{
+OnReOwner9:
+	flagemblem $renter_id9;
+	end;
+}
+
+guildhall10,86,38,5	script	บ้านเช่าที่ 10	722,{
+OnReOwner10:
+	flagemblem $renter_id10;
+	end;
+}
+
+guildhall11,86,38,5	script	บ้านเช่าที่ 11	722,{
+OnReOwner11:
+	flagemblem $renter_id11;
+	end;
+}
+
+guildhall12,86,38,5	script	บ้านเช่าที่ 12	722,{
+OnReOwner12:
+	flagemblem $renter_id12;
+	end;
+}
+
+guildhall13,86,38,5	script	บ้านเช่าที่ 13	722,{
+OnReOwner13:
+	flagemblem $renter_id13;
+	end;
+}
+
+guildhall14,86,38,5	script	บ้านเช่าที่ 14	722,{
+OnReOwner14:
+	flagemblem $renter_id14;
+	end;
+}
+
+guildhall15,86,38,5	script	บ้านเช่าที่ 15	722,{
+OnReOwner15:
+	flagemblem $renter_id15;
+	end;
+}

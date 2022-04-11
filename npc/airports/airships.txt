@@ -1,0 +1,1485 @@
+//===== rAthena Script ======================================= 
+//= The Airship System Script
+//===== By: ================================================== 
+//= rAthena Dev Team
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= The Airship System used in the official servers.
+//===== Additional Comments: ================================= 
+//= 1.0 First version.
+//============================================================ 
+
+//============================================================ 
+//= Domestic Airship Route
+//= ... -> Juno -> Einbroch -> Lighthalzen -> Einbroch
+//= -> Juno -> Hugel -> ...
+//============================================================ 
+
+airplane,243,73,0	script	#AirshipWarp-1	45,1,1,{
+	end;
+
+OnInit:
+OnHide:
+	specialeffect EF_BASH;
+	disablenpc strnpcinfo(0);
+	end;
+
+OnUnhide:
+	enablenpc strnpcinfo(0);
+	specialeffect EF_SUMMONSLAVE;
+	end;
+
+OnTouch_:
+	switch ($@airplanelocation) {
+	case 0: warp "yuno",92,260; end;
+	case 1: warp "einbroch",92,278; end;
+	case 2: warp "lighthalzen",302,75; end;
+	case 3: warp "hugel",181,146; end;
+	}
+}
+
+airplane,243,29,0	duplicate(#AirshipWarp-1)	#AirshipWarp-2	45,1,1
+
+airplane,1,1,0	script	Domestic_Airship	-1,{
+	end;
+OnInit:
+	initnpctimer;
+	end;
+OnTimer20000:
+	mapannounce "airplane","เรากำลังมุ่งหน้าสู่ Einbroch.",bc_map,"0x00ff00";
+	end;
+OnTimer50000:
+	mapannounce "airplane","เราจะมาถึง Einbroch ในไม่ช้า.",bc_map,"0x00ff00";
+	end;
+OnTimer60000:
+	set $@airplanelocation,1;
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";
+	mapannounce "airplane","ยินดีต้อนรับสู่ Einbroch ขอให้เดินทางปลอดภัย.",bc_map,"0x00ff00";
+	end;
+OnTimer70000:
+	mapannounce "airplane","ขณะนี้เราอยู่ใน Einbroch เรือเหาะจะบินขึ้นในไม่ช้า.",bc_map,"0x00ff00";
+	end;
+OnTimer80000:
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	mapannounce "airplane","เรือเหาะกำลังบินขึ้นจุดหมายต่อไปของเราคือ Lighthalzen.",bc_map,"0x70dbdb";
+	end;
+OnTimer100000:
+	mapannounce "airplane","เรากำลังมุ่งหน้าสู่ Lighthalzen.",bc_map,"0x70dbdb";
+	end;
+OnTimer130000:
+	mapannounce "airplane","เราจะมาถึง Lighthalzen ในไม่ช้า.",bc_map,"0x70dbdb";
+	end;
+OnTimer140000:
+	set $@airplanelocation,2;
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";
+	mapannounce "airplane","ยินดีต้อนรับสู่ Lighthalzen ขอให้เดินทางปลอดภัย.",bc_map,"0x70dbdb";
+	end;
+OnTimer150000:
+	mapannounce "airplane","ขณะนี้เราอยู่ใน Lighthalzen เรือเหาะจะออกเดินทางในไม่ช้า.",bc_map,"0x70dbdb";
+	end;
+OnTimer160000:
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	mapannounce "airplane","เรือเหาะกำลังออกจากพื้นดินจุดหมายต่อไปของเราคือ Einbroch.",bc_map,"0x00ff00";
+	end;
+OnTimer180000:
+	mapannounce "airplane","เรากำลังมุ่งหน้าสู่ Einbroch",bc_map,"0x00ff00";
+	end;
+OnTimer210000:
+	mapannounce "airplane","เราจะมาถึง Einbroch ในไม่ช้า.",bc_map,"0x00FF00";
+	end;
+OnTimer220000:
+	set $@airplanelocation,1;
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";
+	mapannounce "airplane","ยินดีต้อนรับสู่ Einbroch ขอให้เดินทางปลอดภัย.",bc_map,"0x00ff00";
+	end;
+OnTimer230000:
+	mapannounce "airplane","ขณะนี้เราอยู่ใน Einbroch เรือเหาะจะบินขึ้นในไม่ช้า.",bc_map,"0x00ff00";
+	end;
+OnTimer240000:
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	mapannounce "airplane","เรือเหาะกำลังบินขึ้นจุดหมายต่อไปของเราคือ Juno.",bc_map,"0xff8200";
+	end;
+OnTimer260000:
+	mapannounce "airplane","เรากำลังมุ่งหน้าสู่ Juno.",bc_map,"0xff8200";
+	end;
+OnTimer290000:
+	mapannounce "airplane","เราจะมาถึง Juno ในไม่ช้า.",bc_map,"0xff8200";
+	end;
+OnTimer300000:
+	set $@airplanelocation,0;
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";
+	mapannounce "airplane","ยินดีต้อนรับสู่ Juno ขอให้เดินทางปลอดภัย.",bc_map,"0xff8200";
+	end;
+OnTimer310000:
+	mapannounce "airplane","ขณะนี้เราอยู่ที่ Juno เรือเหาะจะออกเดินทางในไม่ช้า.",bc_map,"0xff8200";
+	end;
+OnTimer320000:
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	mapannounce "airplane","เรือเหาะกำลังออกจากพื้นดินจุดหมายต่อไปของเราคือ Hugel.",bc_map,"0xca4bf3";
+	end;
+OnTimer340000:
+	mapannounce "airplane","เรากำลังมุ่งหน้าสู่ Hugel.",bc_map,"0xca4bf3";
+	end;
+OnTimer370000:
+	mapannounce "airplane","เราจะมาถึง Hugel ในไม่ช้า.",bc_map,"0xca4bf3";
+	end;
+OnTimer380000:
+	set $@airplanelocation,3;
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";
+	mapannounce "airplane","ยินดีต้อนรับสู่ Hugel ขอให้เดินทางปลอดภัย",bc_map,"0xca4bf3";
+	end;
+OnTimer390000:
+	mapannounce "airplane","ขณะนี้เราอยู่ใน Hugel เรือเหาะจะออกเดินทางในไม่ช้า.",bc_map,"0xca4bf3";
+	end;
+OnTimer400000:
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	mapannounce "airplane","เรือเหาะกำลังออกจากพื้นดินจุดหมายต่อไปของเราคือ Juno.",bc_map,"0xff8200";
+	end;
+OnTimer420000:
+	mapannounce "airplane","เรากำลังมุ่งหน้าสู่ Juno.",bc_map,"0xff8200";
+	end;
+OnTimer450000:
+	mapannounce "airplane","เราจะมาถึง Juno ในไม่ช้า",bc_map,"0xff8200";
+	end;
+OnTimer460000:
+	set $@airplanelocation,0;
+	donpcevent "#AirshipWarp-1::OnUnhide";
+	donpcevent "#AirshipWarp-2::OnUnhide";
+	mapannounce "airplane","ยินดีต้อนรับสู่ Juno ขอให้เดินทางปลอดภัย.",bc_map,"0xff8200";
+	end;
+OnTimer470000:
+	mapannounce "airplane","ขณะนี้เราอยู่ที่ Juno เรือเหาะจะออกเดินทางในไม่ช้า.",bc_map,"0xff8200";
+	end;
+OnTimer480000:
+	donpcevent "#AirshipWarp-1::OnHide";
+	donpcevent "#AirshipWarp-2::OnHide";
+	mapannounce "airplane","เรือเหาะกำลังออกจากพื้นดินจุดหมายต่อไปของเราคือ Einbroch.",bc_map,"0x00ff00";
+	stopnpctimer;
+	initnpctimer;
+}
+
+airplane,240,64,5	script	Exit#airplane1a::ExitAirplane	857,{
+	end;
+}
+airplane,247,64,5	duplicate(ExitAirplane)	Exit#airplane1b	857
+airplane,240,40,1	duplicate(ExitAirplane)	Exit#airplane2a	857
+airplane,247,40,1	duplicate(ExitAirplane)	Exit#airplane2b	857
+
+airplane,100,69,3	script	Airship Crew#ein-1	852,{
+	mes "[Airship Crew]";
+	mes "ถ้าเรามาถึงที่";
+	mes "ปลายทางของคุณและ";
+	mes "คุณต้องการออกจาก";
+	mes "เรือเหาะโปรดใช้เครื่องหมาย";
+	mes "บันไดข้างหน้าขอบคุณ";
+	mes "คุณสำหรับการอุปถัมภ์ของคุณ";
+	close;
+}
+
+airplane,64,94,1	script	Umbala Kid#ein_p	787,{
+	emotion ET_PROFUSELY_SWEAT;
+	mes "[Kid]";
+	if (event_umbala >= 3) {
+		mes "ว้าวแม่!";
+		mes "ดูนี่สิ!";
+		mes "เรากำลังบิน! เรา ... ";
+		mes "เรากำลังอยู่บนท้องฟ้าของประหลาด!";
+	}
+	else {
+		mes "โอ้ววว!";
+		//mes "Saampa joojimbo";
+		//mes "kaku na jedi Solo.";
+		//mes "Bwahahahahahahaah!";
+	}
+	close;
+}
+
+airplane,66,93,3	script	Umbala Lady#ein_p	783,{
+	emotion ET_THINK;
+	mes "[Lady]";
+	if (event_umbala >= 3) {
+		mes "จุ๊ ๆ ... ";
+		mes "ที่รักทำตัว ~";
+		mes "อย่าตื่นเต้นมาก";
+		mes "เมื่อเราออกไปข้างนอก";
+		mes "ที่สาธารณะแบบนี้!";
+	}
+	else {
+		mes "ตื่นเต้น!";
+		//mes "Sacraup matii!";
+		//mes "Shaka gurftalfi";
+		//mes "huntiki manjoo!";
+	}
+	close;
+}
+
+airplane,71,91,7	script	Umbala Man#ein_p	789,{
+	if (event_umbala >= 3) {
+		mes "[Chrmlim]";
+		mes "นี่ไง ~";
+		mes "จากที่ดู";
+		mes "ใบหน้าของคุณฉันเห็นสิ่งนั้น";
+		mes "เข้าใจได้";
+		//mes "me. ^333333*Whew...!*^000000";
+		next;
+		emotion ET_HNG;
+		mes "[Chrmlim]";
+		mes "ฉันได้ช่วย";
+		mes "กิจการเรือเหาะโดย";
+		mes "มีลูกเรือเรือเหาะ";
+		mes "ฝึกในอุมบาลาเพื่อเอาชนะ";
+		mes "โรคกลัวความสูงใด ๆ ที่พวกเขาอาจมีจากการกระโดดบันจี้จัมพ์เรียบร้อยเอ๊ะ?";
+		next;
+		mes "[Chrmlim]";
+		mes "แต่ ... ";
+		mes "บางคนทำไม่ได้";
+		mes "เอาชนะความกลัว";
+		mes "ความสูง. และแม้แต่น้อย";
+		mes "จบลงแล้วอืม ^333333ใน Niflheim ^000000";
+	}
+	else {
+		//mes "[Chrmlim]";
+		//mes "Bajoo ga";
+		//mes "nukta Airship.";
+		//next;
+		mes "[Chrmlim]";
+		mes "...";
+		mes "......";
+		next;
+		emotion ET_HNG;
+		mes "[Chrmlim]";
+		mes "อืม ";
+		//mes "Airship kulaha googoona ";
+		//mes "salu. Dama, kookoo na nu";
+		//mes "yukuta. Um, fashuku na ret!";
+	}
+	close;
+}
+
+airplane,250,58,2	script	Airship Staff#airplane	67,{
+	// Hugel quest addition
+	if (hg_ma1 == 3) {
+		mes "[Airship Staff]";
+		mes "ยินดีต้อนรับ";
+		mes "ไปที่เรือเหาะ";
+		mes "มีอะไรให้ช่วยไหม";
+		next;
+		select("คุณมีผู้โดยสารชื่อ Thierry หรือไม่?");
+		mes "[Airship Staff]";
+		mes "ฉันขอโทษ แต่ฉันไม่คิดว่าจะมีผู้โดยสารชื่อนั้น";
+		close;
+	}
+	// Hugel quest end
+	mes "[Airship Staff]";
+	mes "ยินดีต้อนรับ";
+	//mes "ที่เรือเหาะ";
+	mes "มีอะไรให้ช่วยไหม";
+	next;
+	switch (select("การใช้เรือเหาะ:ห้องโดยสารของกัปตัน:สิ่งอำนวยความสะดวก:ยกเลิก")) {
+	case 1:
+		mes "[Airship Staff]";
+		mes "เมื่อคุณเห็นการออกอากาศ";
+		mes "ประกาศว่าเรามี";
+		mes "ถึงที่หมายแล้ว";
+		mes "โปรดใช้หนึ่งในทางออก";
+		mes "ตั้งอยู่ทางทิศเหนือและ";
+		mes "ทางใต้สุดของเรือเหาะ";
+		next;
+		mes "[Airship Staff]";
+		mes "ถ้าคุณพลาด";
+		mes "หยุดไม่ต้องกังวล";
+		mes "เรือเหาะเป็นนิจ";
+		mes "ระหว่างทางแล้วคุณจะได้รับ";
+		mes "โอกาสอีกครั้งที่จะมาถึง";
+		mes "ไปยังจุดหมายที่คุณตั้งใจ";
+		close;
+	case 2:
+		mes "[Airship Staff]";
+		mes "กระท่อมของกัปตัน";
+		mes "อยู่ด้านหน้า";
+		mes "ของเรือเหาะมีคุณ";
+		mes "เจอกัปตันได้และ";
+		mes "นักบินของเรือเหาะ";
+		close;
+	case 3:
+		mes "[Airship Staff]";
+		mes "เรือเหาะจัดให้";
+		mes "มินิเกมต่างๆสำหรับ";
+		mes "ความบันเทิงของทุกคน";
+		mes "ผู้โดยสารของเราขอเชิญ";
+		mes "ลองโชคและทักษะของคุณ";
+		mes "ในมินิเกมของเรือเหาะ ~";
+		close;
+	case 4:
+		mes "[Airship Staff]";
+		mes "ดีฉันหวังว่าคุณ";
+		mes "เที่ยวบินของคุณบนเรือ";
+		mes "เรือบินของเราขอบคุณ";
+		mes "คุณและมีวันที่ดี";
+		close;
+	}
+}
+
+airplane,80,71,2	script	Zerta#01airplane	834,{
+	mes "[Zerta]";
+	mes "สวัสดีนักผจญภัย";
+	mes "ฉันกำลังอยู่ใน";
+	mes "เดินทางศักดิ์สิทธิ์ถวาย";
+	mes "คำอธิษฐานเพื่อประโยชน์ของ";
+	mes "ทวีปมิดการ์ด";
+	close;
+}
+
+airplane,65,63,4	script	Maelin#01airplane	714,{
+	mes "[Maelin]";
+	mes "อืมเรือเหาะลำนี้คือ";
+	mes "ถึง Lutie ไม่ใช่เหรอฉัน";
+	mes "รอนานจัง";
+	mes "แต่ฉันไม่ได้ยิน";
+	mes "ออกอากาศเกี่ยวกับลูตี้";
+	close;
+}
+
+airplane,72,34,6	script	Aanos#01airplane	702,{
+	mes "[Aanos]";
+	mes "โอ้วววว ~";
+	mes "ท้องฟ้าดูดี";
+	mes "แตกต่างกันมากและ";
+	mes "สวยจากตรงนั้น!";
+	close;
+}
+
+airplane,221,158,2	script	Pilot#airplane	852,{
+	// Hugel quest addition
+	if (hg_ma1 == 3) {
+		mes "[Pilot]";
+		mes "อยากดื่มเบียร์เย็น ๆ สักแก้ว";
+		mes "การดื่มคือเป้าหมายในชีวิตของฉันการดื่มทำให้ฉันมีพลังงาน";
+		mes "ฉันไม่มีอะไรเลยถ้าไม่มีเครื่องดื่ม";
+		next;
+		mes "[Pilot]";
+		mes "แต่! การขับรถภายใต้อิทธิพลนั้นไม่ดี";
+		mes "แต่! นั่นทำให้ฉันอยากดื่มมากขึ้นเรื่อย ๆ !";
+		emotion ET_CRY;
+		next;
+		select("คุณรู้จักผู้โดยสารชื่อ Thierry หรือไม่?");
+		mes "[Pilot]";
+		mes "เครื่องแบบนี้คือ";
+		mes "ช่างน่ารักจริงๆ แต่";
+		mes "มันหนาเกินไป";
+		mes "สวมรอบเรือเหาะ";
+		next;
+		mes "[Pilot]";
+		mes "...";
+		mes "......";
+		mes "ไม่เคยมีใครจริงๆ";
+		mes "เข้ามาในห้องนี้";
+		mes "และกัปตันก็คือกวางเรนเดียร์ฉันสามารถเปลื้องผ้าใส่บ็อกเซอร์ของฉันได้";
+		next;
+		emotion ET_HUK;
+		mes "[Pilot]";
+		mes "ว้า!? ใครวะ!";
+		next;
+		mes "- ... เขาไม่ได้ฟังคุณเลย -";
+		close;
+	}
+	// Hugel quest end
+	switch (rand(1,4)) {
+	case 1:
+		mes "[Pilot]";
+		mes "มันช่างดีเหลือเกิน";
+		mes "นานมากแล้ว";
+		mes "มีความสุขดีเย็น";
+		mes "เหล้าชง แต่เครื่อง";
+		mes "งานต้องการให้ฉันเป็น";
+		mes "หัวใสที่สุด!";
+		next;
+		mes "[Pilot]";
+		mes "ดื่มด้วยความรับผิดชอบเสมอ!";
+		mes "ยังจำไม่ได้";
+		mes "ครั้งสุดท้ายที่ฉันได้พักร้อนจริงๆ";
+		mes "หรือแม้กระทั่งวันหยุดงาน Yeap, some";
+		mes "เหล้าบ้างชิปบ้างทีวีบ้าง";
+		mes "และ R&R ที่จริงจังเป็นไปตามลำดับ";
+		emotion ET_CRY;
+		close;
+	case 2:
+		mes "[Pilot]";
+		mes "มนุษย์อากาศ";
+		mes "วันนี้อากาศดีมาก";
+		mes "ท้องฟ้าเปิดสว่างไสว";
+		mes "เพื่อการมองเห็นที่ดี";
+		mes "และปลอดภัยไร้กังวลบิน";
+		close;
+	case 3:
+		mes "[Pilot]";
+		mes "รู้ไหมกัปตันของเราเป็น";
+		mes "ผู้ชายที่น่าเคารพเขาและ";
+		mes "พี่ชายของเขาสบายดี";
+		mes "เป็นที่รู้จักในอุตสาหกรรมอากาศยาน";
+		mes "ใครจะไปรู้ว่ากวางเรนเดียร์ทำ";
+		mes "แม่ทัพที่ดีขนาดนี้?";
+		next;
+		mes "[Pilot]";
+		mes "ระหว่างเธอ";
+		mes "และฉันฉันต้องบอก";
+		mes "คุณนั่นคือซานต้าเข้ามา";
+		mes "บางสิ่งบางอย่างรับกวางเรนเดียร์";
+		mes "และเอลฟ์จะทำงานให้เขา";
+		mes "ผู้ชายคนนั้นต้องเป็นอัจฉริยะ!";
+		close;
+	default:
+		mes "[Pilot]";
+		mes "คุณก็รู้ทั้งหมดนี้";
+		mes "สิ่งที่กำลังขับอยู่ในอากาศ";
+		mes "มันค่อนข้างใหม่นะรู้ไหม";
+		mes "ใช่พวกเขามีเรือเหาะลำนี้";
+		mes "รีบดำเนินการ";
+		next;
+		emotion ET_HUK;
+		mes "[Pilot]";
+		mes "ยังคงเป็นจริง";
+		mes "จริงจังคิดจริงๆ";
+		mes "ข้างหน้าฉันหมายถึงพวกเขามีเรา";
+		mes "การฝึกในขณะที่เรือเหาะ";
+		mes "ยังคงถูกประดิษฐ์ขึ้น";
+		mes "มันบ้าไปแล้วไม่ใช่เหรอ!";
+		close;
+	}
+}
+
+airplane,50,66,5	script	Apple Merchant#airplane	86,{
+	mes "[Fruitz]";
+	mes "ยินดีต้อนรับสู่ Fruitz's";
+	mes "ช็อปที่ไหนก็ได้";
+	mes "ซื้อแอปเปิ้ลหรือบด";
+	mes "เอาไว้ทำน้ำแอปเปิ้ล";
+	next;
+	switch (select("ซื้อ Apples.:ทำ Apple Juice.:ทำไมคุณถึงมาที่นี่?:ยกเลิก.")) {
+	case 1:
+		mes "[Fruitz]";
+		mes "กรุณาใส่จำนวนเงิน";
+		mes "ของแอปเปิ้ลที่คุณต้องการ";
+		mes "ซื้อแอปเปิ้ลละ 15 เซน";
+		mes "และคุณสามารถซื้อได้สูงสุด";
+		mes "ครั้งละ 500 โปรดป้อน";
+		mes "'0' เพื่อยกเลิกคำสั่งซื้อของคุณ";
+		next;
+		while (1) {
+			input .@input;
+			set .@pay, .@input * 15;
+			if (.@input == 0) {
+				mes "[Fruitz]";
+				mes "ขอบคุณที่หยุด";
+				mes "โดยร้านของฉันอำลา!";
+				mes "มาได้ทุกเมื่อเมื่อไหร่";
+				mes "คุณรู้สึกเหมือนมี";
+				mes "Apple~";
+				close;
+			}
+			else if (.@input < 1 || .@input > 500) {
+				mes "[Fruitz]";
+				mes "คุณได้ป้อนตัวเลข";
+				mes "สูงกว่าค่าสูงสุด";
+				mes "มูลค่า 500 กรุณาใส่";
+				mes "จำนวนแอปเปิ้ลคุณ";
+				mes "ต้องการซื้ออีกครั้ง";
+				next;
+			}
+			else {
+				mes "[Fruitz]";
+				mes "รวม ^FF0000" + .@input + "^000000 Apples";
+				mes "จะเสียค่า ^FF0000" + .@pay + "^000000 zeny.";
+				mes "คุณต้องการดำเนินการต่อหรือไม่?";
+				next;
+				if (select("ใช่:ไม่") == 2) {
+					mes "[Fruitz]";
+					mes "ขอบคุณที่หยุด";
+					mes "โดยร้านของฉันอำลา!";
+					mes "มาได้ทุกเมื่อเมื่อไหร่";
+					mes "คุณรู้สึกเหมือนมี";
+					mes "Apple~";
+					close;
+				}
+				break;
+			}
+		}
+		if (Zeny < .@pay) {
+			mes "[Fruitz]";
+			mes "ฉันขอโทษ แต่คุณ";
+			mes "มีเงินไม่เพียงพอ";
+			mes "ซื้อแอปเปิ้ลจำนวนมาก";
+			mes "โปรดตรวจสอบ zeny ของคุณหรือ";
+			mes "ซื้อแอปเปิ้ลน้อยลง";
+			close;
+		}
+		else if (checkweight(512,.@input) == 0) {
+			mes "[Fruitz]";
+			mes "อืมฉันไม่คิดว่า";
+			mes "คุณมีที่ว่างเพียงพอใน";
+			mes "สินค้าคงคลังของคุณที่จะดำเนินการนี้";
+			mes "แอปเปิ้ลจำนวนมากทำไมคุณไม่เพิ่มพื้นที่ในคลังของคุณบ้าง";
+			close;
+		}
+		else {
+			set Zeny, Zeny - .@pay;
+			getitem 512,.@input; //Apple
+			mes "[Fruitz]";
+			mes "ขอบคุณ";
+			mes "ร้านของฉันฉันหวังว่าคุณจะสนุก";
+			mes "รสชาติของแอปเปิ้ลเหล่านี้ ~!";
+			close;
+		}
+	case 2:
+		mes "[Fruitz]";
+		mes "โอเคฉันต้องการ";
+		mes "^FF00003 แอปเปิ้ลและขวดเปล่า 1 ขวด ^000000";
+		mes "ทำน้ำแอปเปิ้ลให้คุณ 1 แก้ว";
+		mes "คุณต้องการดำเนินการต่อหรือไม่";
+		next;
+		switch (select("ใช่:ยกเลิก")) {
+		case 1:
+			if (countitem(512) < 3 || countitem(713) < 1) {
+				mes "[Fruitz]";
+				mes "ฉันขอโทษ แต่คุณไม่ทำ";
+				mes "มีวัสดุเพียงพอสำหรับ";
+				mes "สร้างขวดน้ำแอปเปิ้ล";
+				mes "จำไว้ว่าฉันต้องการ 3 แอปเปิ้ล";
+				mes "และ 1 ขวดเปล่าสำหรับทำ";
+				close;
+			}
+			else {
+				mes "[Fruitz]";
+				mes "ขอบคุณครับ";
+				mes "กรุณารอสักครู่";
+				mes "เดี๋ยวนะ";
+				next;
+				mes "^3355FF*Grind grind*";
+				mes "*Grind grind*";
+				mes "*เสียงดัง..!*^000000";
+				next;
+				delitem 512,3; //Apple
+				delitem 713,1; //Empty_Bottle
+				getitem 531,1; //Apple_Juice
+				mes "[Fruitz]";
+				mes "เอาล่ะ ~";
+				mes "ฉันหวังว่าคุณจะสนุก!";
+				mes "โปรดอย่าลังเลที่จะ";
+				mes "แวะมาหา Apple ของคุณ";
+				mes "และความต้องการน้ำแอปเปิ้ล";
+				mes "ได้ตลอดเวลานักผจญภัย ~";
+				close;
+			}
+		case 2:
+			mes "[Fruitz]";
+			mes "ขอบคุณที่หยุด";
+			mes "โดยร้านของฉันอำลา!";
+			mes "มาได้ทุกเมื่อเมื่อไหร่";
+			mes "คุณรู้สึกเหมือนมี";
+			mes "Apple~";
+			close;
+		}
+	case 3:
+		mes "[Fruitz]";
+		mes "ฉันเคยเป็นคนเร่ร่อน";
+		mes "พเนจรเมื่อวันหนึ่ง";
+		mes "ฉันงีบอะไรสักอย่าง";
+		mes "หลงหัวฉันแล้วตื่น";
+		mes "ฉันจากการนอนหลับพักผ่อน";
+		next;
+		mes "[Fruitz]";
+		mes "ปรากฎว่าฉันเป็น";
+		mes "นอนใต้แอปเปิ้ล";
+		mes "ต้นไม้และแอปเปิ้ลล้ม";
+		mes "แล้วตีหัวฉัน";
+		mes "ฉันกำลังจะตายเพราะความหิวโหยและ";
+		mes "กำลังจะกินแอปเปิ้ลนั่น ... ";
+		next;
+		mes "[Fruitz]";
+		mes "แต่ทันใดนั้น Kain ฉันแก่แล้ว";
+		mes "เพื่อนจากเหมืองแร่";
+		mes "ขอให้ฉันช่วยเขา";
+		mes "บนเรือเหาะฉันก็เลยและ";
+		mes "มันอยู่ที่นั่นที่ฉันพบ";
+		mes "คนเล่นเกมลูกเต๋า";
+		next;
+		mes "[Fruitz]";
+		mes "เบื่อและอยากรู้อยากเห็น";
+		mes "และจบลงด้วยการพนันที่";
+		mes "แอปเปิ้ลเดียวในเกม";
+		mes "ลูกเต๋า แต่ด้วยเหตุผลบางอย่าง";
+		mes "ฉันโชคดีอย่างเหลือเชื่อ";
+		mes "ริ้ว. หนึ่งแอปเปิ้ลกลายเป็นสอง ... ";
+		next;
+		mes "[Fruitz]";
+		mes "สองกลายเป็นสี่และ";
+		mes "ก่อนที่ฉันจะรู้ว่าฉันมี";
+		mes "มุมตลาด Apple!";
+		mes "ฉันชนะแอปเปิ้ลมากมายฉันแค่";
+		mes "เริ่มต้นธุรกิจของตัวเองที่นี่";
+		mes "บนเรือเหาะแปลกแฮะ";
+		next;
+		mes "[Fruitz]";
+		mes "แอปเปิ้ลก็ดี";
+		mes "สำหรับคุณพวกเขาคือ";
+		mes "ดีมาก";
+		mes "กับฉันฮ่า ๆ ๆ ๆ ~!";
+		close;
+	case 4:
+		mes "[Fruitz]";
+		mes "ขอบคุณสำหรับ";
+		mes "ใช้ร้านของฉัน";
+		mes "อำลา ~";
+		close;
+	}
+}
+
+//============================================================ 
+//= International Airship Route
+//= ... -> Izlude -> Juno -> Rachel -> ...
+//============================================================ 
+
+airplane_01,243,73,0	script	#AirshipWarp-3	45,1,1,{
+	end;
+	
+OnTouch_:
+	switch ($@airplanelocation2) {
+	case 0: warp "ra_fild12",292,204; end;
+	case 1: 
+		if(checkre(0))
+			warp "izlude",200,73;
+		else
+			warp "izlude",200,56;
+		end;
+	case 2: warp "yuno",12,261; end;
+	}
+
+OnInit:
+OnHide:
+	specialeffect EF_BASH;
+	disablenpc strnpcinfo(0);
+	end;
+	
+OnUnhide:
+	enablenpc strnpcinfo(0);
+	specialeffect EF_SUMMONSLAVE;
+	end;
+}
+
+airplane_01,243,29,0	duplicate(#AirshipWarp-3)	#AirshipWarp-4	45,1,1
+
+airplane_01,1,1,0	script	International_Airship	-1,{
+	end;
+OnInit:
+OnEnable:
+	initnpctimer;
+	end;
+OnTimer25000:
+	mapannounce "airplane_01","เรากำลังมุ่งหน้าสู่ Izlude.",bc_map,"0x00ff00";
+	end;
+OnTimer50000:
+	mapannounce "airplane_01","เราจะมาถึง Izlude ในไม่ช้า",bc_map,"0x00ff00";
+	end;
+OnTimer60000:
+	set $@airplanelocation2,1;
+	donpcevent "#AirshipWarp-3::OnUnhide";
+	donpcevent "#AirshipWarp-4::OnUnhide";
+	mapannounce "airplane_01","ยินดีต้อนรับสู่ Izlude. ขอให้เดินทางปลอดภัย.",bc_map,"0x00ff00";
+	end;
+OnTimer70000:
+	mapannounce "airplane_01","เราอยู่ใน Izlude. เรือเหาะจะบินขึ้น ในไม่ช้า",bc_map,"0x00ff00";
+	end;
+OnTimer80000:
+	donpcevent "#AirshipWarp-3::OnHide";
+	donpcevent "#AirshipWarp-4::OnHide";
+	mapannounce "airplane_01","เรือเหาะกำลังบินขึ้นจุดหมายต่อไปของเราคือ Juno.",bc_map,"0x70dbdb";
+	end;
+OnTimer105000:
+	mapannounce "airplane_01","เรากำลังมุ่งหน้าสู่ Juno.",bc_map,"0x70dbdb";
+	end;
+OnTimer130000:
+	mapannounce "airplane_01","เราจะมาถึง Juno ในไม่ช้า",bc_map,"0x70dbdb";
+	end;
+OnTimer140000:
+	set $@airplanelocation2,2;
+	donpcevent "#AirshipWarp-3::OnUnhide";
+	donpcevent "#AirshipWarp-4::OnUnhide";
+	mapannounce "airplane_01","ยินดีต้อนรับสู่ Juno. ขอให้เดินทางปลอดภัย.",bc_map,"0x70dbdb";
+	end;
+OnTimer150000:
+	mapannounce "airplane_01","เราอยู่ใน Juno. เรือเหาะจะออกเดินทาง ในไม่ช้า",bc_map,"0x70dbdb";
+	end;
+OnTimer160000:
+	donpcevent "#AirshipWarp-3::OnHide";
+	donpcevent "#AirshipWarp-4::OnHide";
+	mapannounce "airplane_01","เรือเหาะกำลังออกจากพื้นจุดหมายต่อไปของเราคือ Rachel.",bc_map,"0xFF8200";
+	end;
+OnTimer185000:
+	mapannounce "airplane_01","เรากำลังมุ่งหน้าสู่ Rachel.",bc_map,"0xFF8200";
+	end;
+OnTimer210000:
+	mapannounce "airplane_01","เราจะมาถึง Rachel ในไม่ช้า",bc_map,"0xFF8200";
+	end;
+OnTimer220000:
+	set $@airplanelocation2,0;
+	donpcevent "#AirshipWarp-3::OnUnhide";
+	donpcevent "#AirshipWarp-4::OnUnhide";
+	mapannounce "airplane_01","ยินดีต้อนรับสู่ Rachel. ขอให้เดินทางปลอดภัย.",bc_map,"0xFF8200";
+	end;
+OnTimer230000:
+	mapannounce "airplane_01","เราอยู่ใน Rachel. เรือเหาะจะบินขึ้น ในไม่ช้า",bc_map,"0xFF8200";
+	end;
+OnTimer240000:
+	donpcevent "#AirshipWarp-3::OnHide";
+	donpcevent "#AirshipWarp-4::OnHide";
+	mapannounce "airplane_01","เรือเหาะกำลังบินขึ้นจุดหมายต่อไปของเราคือ Izlude.",bc_map,"0x00ff00";
+	stopnpctimer;
+	set .moninv, .moninv + 1;
+	if (.moninv == 7) {
+		if (rand(1,3) == 3) {
+			donpcevent "Airship#airplane02::OnEnable";
+			end;
+		}
+		set .moninv, 0;
+	}
+	initnpctimer;
+	end;
+}
+
+airplane_01,240,64,5	script	Exit#airplane_011a::ExitAirplane01	857,{
+	end;
+}
+airplane_01,247,64,5	duplicate(ExitAirplane01)	Exit#airplane_011b	857
+airplane_01,240,40,1	duplicate(ExitAirplane01)	Exit#airplane_012a	857
+airplane_01,247,40,1	duplicate(ExitAirplane01)	Exit#airplane_012b	857
+
+airplane_01,250,58,2	script	Airship Staff#airplane01	67,{
+	mes "[Airship Staff]";
+	mes "ยินดีต้อนรับ";
+	mes "ไปที่เรือเหาะ";
+	mes "มีอะไรให้ช่วยไหม";
+	next;
+	switch (select("การใช้เรือเหาะ:ห้องโดยสารของกัปตัน:สิ่งอำนวยความสะดวก:ยกเลิก")) {
+	case 1:
+		mes "[Airship Staff]";
+		mes "เมื่อคุณเห็นการออกอากาศ";
+		mes "ประกาศว่าเรามี";
+		mes "ถึงที่หมายแล้ว";
+		mes "โปรดใช้หนึ่งในทางออก";
+		mes "ตั้งอยู่ทางทิศเหนือและ";
+		mes "ทางใต้สุดของเรือเหาะ";
+		next;
+		mes "[Airship Staff]";
+		mes "ถ้าคุณพลาด";
+		mes "หยุดไม่ต้องกังวล";
+		mes "เรือเหาะเป็นนิจ";
+		mes "ระหว่างทางแล้วคุณจะได้รับ";
+		mes "โอกาสอีกครั้งที่จะมาถึง";
+		mes "ไปยังจุดหมายที่คุณตั้งใจ";
+		close;
+	case 2:
+		mes "[Airship Staff]";
+		mes "กระท่อมของกัปตัน";
+		mes "อยู่ด้านหน้า";
+		mes "ของเรือเหาะมีคุณ";
+		mes "เจอกัปตันได้และ";
+		mes "นักบินของเรือเหาะ";
+		close;
+	case 3:
+		mes "[Airship Staff]";
+		mes "เรือเหาะจัดให้";
+		mes "มินิเกมต่างๆสำหรับ";
+		mes "ความบันเทิงของทุกคน";
+		mes "ผู้โดยสารของเราขอเชิญ";
+		mes "ลองโชคและทักษะของคุณ";
+		mes "ในมินิเกมของเรือเหาะ ~";
+		close;
+	case 4:
+		mes "[Airship Staff]";
+		mes "ดีฉันหวังว่าคุณ";
+		mes "เที่ยวบินของคุณบนเรือ";
+		mes "เรือบินของเราขอบคุณ";
+		mes "คุณและมีวันที่ดี";
+		close;
+	}
+}
+
+airplane_01,50,66,5	script	Apple Merchant#air01	86,{
+	if (checkweight(1201,1) == 0) {
+		mes "- เดี๋ยวก่อน !! -";
+		mes "- ตอนนี้คุณกำลังแบก -";
+		mes "- มีของกับคุณมากเกินไป -";
+		mes "- โปรดลองอีกครั้ง -";
+		mes "- หลังจากที่คุณลดน้ำหนักลง -";
+		close;
+	}
+	mes "[Meltz]";
+	mes "ยินดีต้อนรับสู่ Meltz's";
+	mes "ช็อปที่ไหนก็ได้";
+	mes "ซื้อแอปเปิ้ลหรือบด";
+	mes "เอาไว้ทำน้ำแอปเปิ้ล";
+	next;
+	switch (select("ซื้อ Apples.:ทำ Apple Juice.:ยกเลิก.")) {
+	case 1:
+		mes "[Meltz]";
+		mes "กรุณาใส่จำนวนเงิน";
+		mes "ของแอปเปิ้ลที่คุณต้องการ";
+		mes "ซื้อแอปเปิ้ลละ 15 zeny";
+		mes "และคุณสามารถซื้อได้สูงสุด";
+		mes "ครั้งละ 500 โปรดป้อน";
+		mes "'0' เพื่อยกเลิกคำสั่งซื้อของคุณ";
+		next;
+		while (1) {
+			input .@input;
+			set .@pay, .@input * 15;
+			if (.@input == 0) {
+				mes "[Meltz]";
+				mes "ขอบคุณที่หยุด";
+				mes "โดยร้านของฉันอำลา!";
+				mes "มาได้ทุกเมื่อเมื่อไหร่";
+				mes "คุณรู้สึกเหมือนมี";
+				mes "Apple~";
+				close;
+			}
+			else if (.@input < 1 || .@input > 500) {
+				mes "[Meltz]";
+				mes "คุณได้ป้อนตัวเลข";
+				mes "สูงกว่าค่าสูงสุด";
+				mes "มูลค่า 500 กรุณาใส่";
+				mes "จำนวนแอปเปิ้ลคุณ";
+				mes "ต้องการซื้ออีกครั้ง";
+				next;
+			}
+			else {
+				mes "[Meltz]";
+				mes "รวม ^FF0000" + .@input + "^000000 Apples";
+				mes "จะเสียค่า ^FF0000" + .@pay + "^000000 zeny.";
+				mes "คุณต้องการดำเนินการต่อหรือไม่";
+				next;
+				if (select("ตกลง:ยกเลิก") == 2) {
+					mes "[Meltz]";
+					mes "ขอบคุณที่หยุด";
+					mes "โดยร้านของฉันอำลา!";
+					mes "มาได้ทุกเมื่อเมื่อไหร่";
+					mes "คุณรู้สึกเหมือนมี";
+					mes "Apple to snack on ~";
+					close;
+				}
+				break;
+			}
+		}
+		if (Zeny < .@pay) {
+			mes "[Meltz]";
+			mes "ฉันขอโทษคุณไม่มี";
+			mes "เงินพอกับคุณ";
+			mes "กรุณาตรวจสอบเงินของคุณหรือ";
+			mes "ซื้อแอปเปิ้ลน้อยลง";
+			close;
+		}
+		else if (checkweight(512,.@input) == 0) {
+			mes "[Meltz]";
+			mes "อืมฉันไม่คิดว่าคุณ";
+			mes "มีที่ว่างเพียงพอสำหรับพกพา";
+			mes "แอปเปิ้ลมากมายขนาดนี้คุณอาจจะ";
+			mes "ต้องการเพิ่มพื้นที่โฆษณาของคุณ";
+			mes "ช่องว่าง";
+			close;
+		}
+		else {
+			set Zeny, Zeny - .@pay;
+			getitem 512,.@input; //Apple
+			mes "[Meltz]";
+			mes "ขอบคุณที่หยุด";
+			mes "ร้านของฉันฉันหวังว่าคุณจะสนุก";
+			mes "รสชาติของแอปเปิ้ลเหล่านี้ ~!";
+			close;
+		}
+	case 2:
+		mes "[Meltz]";
+		mes "โอเคฉันต้องการ";
+		mes "^FF00003 Apples และ 1 Empty Bottle^000000";
+		mes "ทำน้ำแอปเปิ้ลให้คุณ 1 แก้ว";
+		mes "คุณต้องการดำเนินการต่อหรือไม่";
+		next;
+		switch (select("Yes:No")) {
+		case 1:
+			if (countitem(512) < 3 || countitem(713) < 1) {
+				mes "[Meltz]";
+				mes "ฉันขอโทษ แต่คุณไม่ทำ";
+				mes "มีวัสดุเพียงพอสำหรับ";
+				mes "สร้างขวดน้ำแอปเปิ้ล";
+				mes "จำไว้ว่าฉันต้องการ 3 แอปเปิ้ล";
+				mes "และ 1 ขวดเปล่าสำหรับทำ";
+				close;
+			}
+			else {
+				mes "[Meltz]";
+				mes "ขอบคุณกรุณารอสักครู่";
+				next;
+				//mes "^3355FF*Grind* *Grind*";
+				//mes "*Grind* *Grind*";
+				//mes "*Clang...!*^000000";
+				//next;
+				delitem 512,3; //Apple
+				delitem 713,1; //Empty_Bottle
+				getitem 531,1; //Apple_Juice
+				mes "[Meltz]";
+				mes "เอาล่ะ ~";
+				mes "โปรดกลับมาอีกครั้ง";
+				close;
+			}
+		case 2:
+			mes "[Meltz]";
+			mes "ขอบคุณที่หยุด";
+			mes "โดยร้านของฉันอำลา!";
+			mes "มาได้ทุกเมื่อเมื่อไหร่";
+			mes "คุณรู้สึกเหมือนมี";
+			mes "Apple~";
+			close;
+		}
+	case 3:
+		mes "[Meltz]";
+		mes "ขอบคุณที่หยุด";
+		mes "โดยร้านของฉันอำลา!";
+		mes "มาได้ทุกเมื่อเมื่อไหร่";
+		mes "คุณรู้สึกเหมือนมี";
+		mes "Apple~";
+		close;
+	}
+}
+
+airplane_01,221,158,2	script	Pilot#airplane_01	852,{
+	switch (rand(1,4)) {
+	case 1:
+		mes "[Pilot]";
+		mes "ลองจิจูด 131 องศาตะวันออก";
+		mes "ละติจูด 37 องศาเหนือ";
+		mes "เรามาถูกทางแล้วกัปตัน";
+		close;
+	case 2:
+		mes "[Pilot]";
+		mes "ดูเหมือนจริงๆ";
+		mes "วันที่มีเมฆมากยากเสมอ";
+		mes "เพื่อนำทางเมื่อท้องฟ้า";
+		mes "ไม่ชัดเจนเดาว่าเราจะ";
+		mes "ต้องแอมป์เรดาร์";
+		close;
+	case 3:
+		mes "[Pilot]";
+		mes "กัปตันเก่งจัง";
+		mes "ผู้ชายและฉันคิดไม่ออก";
+		mes "คนดีกว่าจะสั่ง";
+		mes "เรือลำนี้ยังเขาสวย";
+		mes "ยากนักขับทาสตัวจริง";
+		next;
+		mes "[^ff0000Tarlock^000000]";
+		mes "^ff0000Hey...!^000000";
+		//mes "^ff0000Less chit-chat^000000";
+		//mes "^ff0000and more piloting!^000000";
+		//next;
+		//mes "[Pilot]";
+		//mes "R-right away, sir!";
+		//mes "(See what I mean?)";
+		close;
+	default:
+		mes "[Pilot]";
+		mes "เครื่องแบบนี้คือ";
+		mes "ช่างน่ารักจริงๆ แต่";
+		mes "มันหนาเกินไป";
+		mes "สวมรอบเรือเหาะ";
+		next;
+		mes "[Pilot]";
+		mes "...";
+		mes "......";
+		mes "ไม่เคยมีใครจริงๆ";
+		mes "เข้ามาในห้องนี้";
+		mes "และกัปตันก็คือกวางเรนเดียร์";
+		mes "ฉันแค่ถอดเสื้อใส่บ็อกเซอร์ก็ได้";
+		next;
+		emotion ET_HUK;
+		mes "[Pilot]";
+		mes "โอ้ ... ! สวัสดี!";
+		mes "เอ๋ - สนุกกับการบินของคุณ?!";
+		close;
+	}
+}
+
+airplane_01,83,61,2	script	Dianne#01airplane_01	72,2,2,{
+	mes "[Dianne]";
+	mes "มันแปลกมาก!";
+	mes "ฉันไปเยี่ยม";
+	mes "กัปตันเรือเหาะและ";
+	mes "ทั้งหมดที่ฉันเห็นคือสิ่งนี้";
+	mes "กวางเรนเดียร์ประหลาดโอ้!";
+	mes "คุณคิดว่า ... ";
+	close;
+
+OnTouch_:
+	emotion ET_CRY;
+	end;
+}
+
+airplane_01,69,63,2	script	Mendel#01airplane_01	55,{
+	mes "[Mendel]";
+	mes "ตามที่ฉันคาดไว้";
+	mes "อาหารบนเครื่องบินคือ";
+	mes "คุณภาพระดับสามดาว";
+	mes "* Harrrumph * ฉันควรจะ";
+	mes "เอาพ่อครัวมาให้";
+	mes "ฉันสามารถเพลิดเพลินกับอาหารจริงๆ";
+	close;
+}
+
+airplane_01,71,31,2	script	Swordsman Shimizu#air_01	106,{
+	mes "[Swordsman Shimizu]";
+	mes "ในที่สุดห้าทุ่ม";
+	mes "ปีแห่งการรอคอย ... ";
+	mes "ฉันจะแก้แค้นให้ได้!";
+	next;
+	mes "[นักดาบชิมิสึ]";
+	mes "ฉันแค่ ... ";
+	mes "ต้องแน่ใจว่า";
+	mes "ฉันไม่คิดถึงฉันเลย";
+	mes "หยุด แต่เร็ว ๆ นี้เร็ว ๆ นี้";
+	mes "การแก้แค้นจะเป็นของฉัน!";
+	close;
+}
+
+//============================================================ 
+//= Typing Challenge
+//============================================================ 
+airplane_01,32,61,4	script	Nils#ein	49,1,1,{
+	mes "[Nils]";
+	mes "ยินดีต้อนรับสู่";
+	mes "^ff0000RO Typing Challenge^000000.";
+	mes "คุณอยากเล่นไหม";
+	//mes "a quick typing game?";
+	next;
+	switch (select("เล่น ^ff0000RO Typing Challenge^000000:ข้อมูล:ดูบันทึกสูงสุด:ยกเลิก")) {
+	case 1:
+		mes "[Nils]";
+		mes "โอเคเรามี";
+		mes "ผู้ท้าชิงคนใหม่!";
+		mes "ป้อนข้อมูลต่อไปนี้";
+		mes "ข้อความเร็วเท่าคุณ";
+		mes "ทำได้โดยไม่ต้องทำอะไรเลย";
+		mes "ผิดพลาด! มาเริ่มกันเลย ~!";
+		setarray .@line1_1$[0],	"^3cbcbccallipygian salacius lascivious^000000",
+					"^3cbcbcBy the power of^000000",
+					"^0000ffthkelfkskeldmsiejdlslehfndkelsheidl^000000",
+					"^3cbcbcburrdingdingdingdilidingdingdingphoohudaamb^000000",
+					"^3cbcbcCoboman no chikara-yumei na^000000",
+					"^3cbcbcI'm the king of All Weirdos! Now^000000",
+					"^3cbcbcYou give me no choice. I guess it's^000000";
+		setarray .@line1_2$[0],	"^3cbcbclicentious prurient concupiscent^000000",
+					"^3cbcbcp-po-poi-po-poi-poin-poing^000000",
+					"^3cbcbcskemd^000000",
+					"^3cbcbcandoorabambarambambambambamburanbamding^000000",
+					"^3cbcbcchikara-daiookii na chikara da ze!^000000",
+					"^3cbcbcyou know of my true power. Obey~!^000000",
+					"^3cbcbctime for me to reveal my secret...^000000";
+		setarray .@line1_3$[0],	"",
+					"^3cbcbcGOD-POING. I NEVER LOSE!^000000",
+					"",
+					"",
+					"^3cbcbcCOBO ON^000000",
+					"",
+					"";
+		setarray .@word1$[0],	"callipygian salacius lascivious licentious prurient concupiscent",
+					"By the power of p-po-poi-po-poi-poin-poing GOD-POING. I NEVER LOSE!",
+					"thkelfkskeldmsiejdlslehfndkelsheidlskemd",
+					"burrdingdingdingdilidingdingdingphoohudaambandoorabambarambambambambamburanbamding",
+					"Coboman no chikara-yumei na chikara-daiookii na chikara da ze! COBO ON",
+					"I'm the king of All Weirdos! Now you know of my true power. Obey~!",
+					"You give me no choice. I guess it's time for me to reveal my secret...";
+		setarray .@line2_1$[0],	"^3cbcbcuNflAPPaBLe LoVaBLe SeCreTs AnD^000000",
+					"^ff1493LiGhTsPeEd RiGhT SPEed LeFT TURn^000000",
+					"^ff1493hfjdkeldjsieldjshfjdjeiskdlefvbd^000000",
+					"^ff1493burapaphuralanderamduanbatuhiwooi^000000",
+					"^ff1493belief love luck grimace sweat rush^000000",
+					"^800080opeN, Open!op3n.openOpen0p3nOpEn0pen^000000",
+					"^3cbcbcfReeDoM ecstAcy JoUrnaliSm ArMplt^000000";
+		setarray .@line2_2$[0],	"^3cbcbcboWLIiNg aGaINST tHe KarMA of YoUtH^000000",
+					"^ff1493RiGhT BuRn OrIGInAL GaNgSteR SmACk^000000",
+					"",
+					"^ff1493kabamturubamdingding^000000",
+					"^ff1493folktale rodimus optimus bumblebee^000000",
+					"^800080`open'0Pen open? open!111OPENSESAME^000000",
+					"^3cbcbcDisCoverY hEaDaChE MoonbeAmS jUsTiCE^000000";
+		setarray .@word2$[0],	"uNflAPPaBLe LoVaBLe SeCreTs AnD boWLIiNg aGaINST tHe KarMA of YoUtH",
+					"LiGhTsPeEd RiGhT SPEed LeFT TURn RiGhT BuRn OrIGInAL GaNgSteR SmACk",
+					"hfjdkeldjsieldjshfjdjeiskdlefvbd",
+					"burapaphuralanderamduanbatuhiwooikabamturubamdingding",
+					"belief love luck grimace sweat rush folktale rodimus optimus bumblebee",
+					"opeN, Open!op3n.openOpen0p3nOpEn0pen`open'0Pen open? open!111OPENSESAME",
+					"fReeDoM ecstAcy JoUrnaliSm ArMplt DisCoverY hEaDaChE MoonbeAmS jUsTiCE";
+		setarray .@letters[0],	1300,
+					1250,
+					1180,
+					1380,
+					1740,
+					1440,
+					1450;
+		set .@wordtest, rand(7);
+		next;
+		mes "[Nils]";
+		mes .@line1_1$[.@wordtest];
+		mes .@line1_2$[.@wordtest];
+		mes .@line1_3$[.@wordtest];
+		set .@start_time, gettimetick(1);
+		next;
+		input .@save1$;
+		set .@end_time, gettimetick(1);
+		set .@total_time, .@end_time - .@start_time;
+		mes "[Nils]";
+		mes .@line2_1$[.@wordtest];
+		mes .@line2_2$[.@wordtest];
+		set .@start_time, gettimetick(1);
+		next;
+		input .@save2$;
+		set .@end_time, gettimetick(1);
+		set .@total_time, .@total_time + (.@start_time - .@end_time);
+		set .@tasoo, (.@letters[.@wordtest] / .@total_time) * 6;
+		if ((.@save1$ == .@word1$[.@wordtest]) && (.@save2$ == .@word2$[.@wordtest])) {
+			mes "[Nils]";
+			mes "บันทึกของคุณคือ ^ff0000" + .@total_time + " seconds^000000 และ";
+			mes "ตัวอักษรทั้งหมดคือ " + .@tasoo + ".";
+			next;
+			if (.@tasoo >= 1300) {
+				mes "[Nils]";
+				mes "อืมบันทึกนี้ไม่ใช่";
+				mes "มนุษย์เป็นไปได้เว้นแต่คุณ";
+				mes "คัดลอกและวางทั้งหมด";
+				mes "ประโยคโปรดเล่นอย่างยุติธรรม";
+				mes "ครั้งต่อไป.";
+				close;
+			}
+			if (.@tasoo >= $050320_ein_typing) {
+				mes "[Nils]";
+				mes "สถิติสูงสุดก่อนหน้านี้คือ";
+				mes "ทำโดย ^0000ff" + $050320_minus1_typing$ + "^000000";
+				mes "รวม  ^0000ff" + $050320_ein_typing + "^000000 ตัวอักษร.";
+				mes "อย่างไรก็ตาม, ^ff0000" + strcharinfo(0) + "^000000,";
+				mes "คุณทำสถิติสูงสุดใหม่";
+				mes "คราวนี้ยินดีด้วย!";
+				set $050320_minus1_typing$, strcharinfo(0);
+				set $050320_ein_typing, .@tasoo;
+				close;
+			}
+			else {
+				mes "[Nils]";
+				mes "^0000ff" + $050320_minus1_typing$ + "^000000";
+				mes "คือปัจจุบัน";
+				mes "เจ้าของบันทึกด้วย";
+				mes "ตัวอักษรรวมเป็น ^0000ff" + $050320_ein_typing + "^000000";
+				mes "ตัวละครพยายามเอาชนะ";
+				mes "บันทึกนั้นไว้คราวหน้า ~";
+				close;
+			}
+		}
+		else {
+			mes "[Nils]";
+			mes "โอ๊ะ ... ";
+			mes "ฉันขอโทษ แต่";
+			mes "คุณป้อน";
+			mes "ข้อความไม่ถูกต้อง ... ";
+			close;
+		}
+	case 2:
+		mes "[Nils]";
+		mes "The ^ff0000RO Typing Challenge^000000";
+		mes "เป็นเกมที่คุณเข้า";
+		mes "ข้อความที่ระบุให้เร็วที่สุดเท่าที่คุณจะทำได้";
+		mes "ได้. ชื่อยอดผู้เล่น";
+		mes "ถูกบันทึกไว้สำหรับลูกหลานถ้าคุณ";
+		mes "อยากมีชื่อเสียงนี่เป็นโอกาสของคุณ!";
+		next;
+		mes "[Nils]";
+		mes "ฉันแค่อยากจะปล่อย";
+		mes "คุณรู้ว่าคุณพิมพ์";
+		mes "ข้อความทั้งหมดที่คุณเห็น";
+		mes "ในบรรทัดอินพุตเดียวที่";
+		mes "คุณได้รับดังนั้นอย่ากด";
+		mes "ปุ่ม enter เพียงแค่คลิก OK ";
+		close;
+	case 3:
+		mes "[Nils]";
+		mes "^0000ff" + $050320_minus1_typing$ + "^000000";
+		mes "คือปัจจุบัน";
+		mes "เจ้าของบันทึกด้วย";
+		mes "ตัวอักษรรวมเป็น ^0000ff" + $050320_ein_typing + "^000000";
+		mes "ตัวละครพยายามเอาชนะ";
+		mes "บันทึกนั้นไว้คราวหน้า ~";
+		close;
+	case 4:
+		mes "[Nils]";
+		mes "อย่าลังเลที่จะรับ";
+		mes "^ff0000RO Typing Challenge^000000";
+		mes "ได้ตลอดเวลาฉันจะอยู่ที่นี่ ~";
+		close;
+	}
+}
+
+//============================================================ 
+//= Apple Gambling
+//============================================================ 
+airplane_01,33,68,4	script	Clarice	74,{
+	mes "[Clarice]";
+	mes "สวัสดีฉันชื่อคลาริซ ~";
+	mes "อยากได้";
+	mes "เพื่อเดิมพันแอปเปิ้ล";
+	mes "ในเกมลูกเต๋ากระชับมิตร?";
+	next;
+	callfunc "applegamble","Clarice";
+	end;
+}
+
+function	script	applegamble	{
+	.@npc_name$ = getarg(0);
+	switch (select("เล่นเกมลูกเต๋า:เรียนรู้กฎของเกมลูกเต๋า:ยกเลิก")) {
+	case 3:
+		mes "["+ .@npc_name$ +"]";
+		mes "ฉันพร้อมสำหรับเกม";
+		mes "ลูกเต๋าเมื่อใดก็ตามที่คุณรู้สึก";
+		mes "ชอบแค่คุยกับฉันถ้า";
+		mes "คุณเคยโดน";
+		mes "อยากเล่นการพนันกะทันหัน?";
+		close;
+	case 2:
+		mes "["+ .@npc_name$ +"]";
+		mes "กฎสำหรับเกมลูกเต๋า";
+		mes "ค่อนข้างเรียบง่ายอย่างแรกคุณ";
+		mes "วางเดิมพันโดยการพนันแอปเปิ้ล";
+		mes "คุณสามารถเดิมพันได้สูงสุด 50";
+		mes "ครั้งละแอปเปิ้ลเพื่อเก็บของ";
+		mes "กฎหมายฉันยอมรับได้เฉพาะแอปเปิ้ล";
+		next;
+		mes "["+ .@npc_name$ +"]";
+		mes "แต่เดี๋ยวก่อนถ้าทั้งหมดนั้น zeny";
+		mes "กำลังลุกเป็นไฟ";
+		mes "กระเป๋าตรงไปที่ Fruitz";
+		mes "และคุณสามารถซื้อได้มาก";
+		mes "แอปเปิ้ลตามที่คุณต้องการ playah ~";
+		next;
+		mes "["+ .@npc_name$ +"]";
+		mes "ตอนนี้เราเริ่มต้นกับฉัน";
+		mes "ทอยลูกเต๋า 6 เหลี่ยม 2 ลูก";
+		mes "เมื่อถึงตาคุณก็จะ";
+		mes "ทอยลูกเต๋า 6 เหลี่ยม 2 ลูก After";
+		mes "นั่นเราทั้งคู่จะมี";
+		mes "ตัวเลือกของการตายครั้งที่สาม";
+		next;
+		mes "["+ .@npc_name$ +"]";
+		mes "นี่คือสิ่งสำคัญ";
+		mes "สิ่งถ้ายอดรวมของคุณสูงกว่า";
+		mes "มากกว่า 12 คุณจะหน้าอกหมายถึง";
+		mes "ที่คุณแพ้มิฉะนั้น";
+		mes "คนที่มียอดรวมสูงกว่า";
+		mes "เป็นผู้ชนะเข้าใจแล้ว?";
+		next;
+		mes "["+ .@npc_name$ +"]";
+		mes "ตอนนี้คุณจะเป็นคนแรก";
+		mes "ตัดสินใจหรือไม่";
+		mes "คุณจะกลิ้งตายที่สามจากนั้น";
+		mes "ขึ้นอยู่กับผลลัพธ์ของคุณฉันจะ";
+		mes "ตายครั้งที่สาม ... หรืออาจจะไม่";
+		next;
+		mes "["+ .@npc_name$ +"]";
+		mes "เมื่อคุณชนะคุณจะ";
+		mes "รับสองเท่า";
+		mes "แอปเปิ้ลที่คุณเดิมพัน";
+		mes "แต่ถ้าเราผูกกันคุณ";
+		mes "รับแอปเปิ้ลที่คุณเดิมพัน";
+		mes "คืนให้คุณยุติธรรมใช่มั้ย";
+		close;
+	case 1:
+		break;
+	}
+	mes "["+ .@npc_name$ +"]";
+	mes "โอ๊ะงั้นจะเล่นด้วย";
+	mes "ฉันเยี่ยมมากกี่คน";
+	mes "แอปเปิ้ลอยากพนันไหม";
+	mes "จำไว้ว่าคุณสามารถเดิมพันได้";
+	mes "มากถึง 50 แอปเปิ้ลถ้าคุณต้องการ";
+	mes "หากต้องการยกเลิกโปรดป้อน 0 .";
+	next;
+	while(1) {
+		input .@amount;
+		if (.@amount == 0) {
+			mes "["+ .@npc_name$ +"]";
+			mes "เปลี่ยนใจไหม";
+			mes "เข้าใจแล้ว";
+			mes "ฉันหวังว่าเราจะได้เล่นกันบ้างนะ";
+			close;
+		}
+		else if (.@amount < 1 || .@amount > 50) {
+			mes "["+ .@npc_name$ +"]";
+			mes "แทงเกินไม่ได้";
+			mes "50 แอปเปิ้ลจำไว้เรา";
+			mes "ต้องรักษาเงินเดิมพันเหล่านี้ไว้";
+			mes "เหมาะสมกรุณาใส่";
+			mes "ค่าไม่เกิน 50";
+			next;
+			continue;
+		}
+		mes "["+ .@npc_name$ +"]";
+		mes "แล้วคุณจะเป็น";
+		mes "เดิมพัน ^FF0000"+.@amount+"^000000 Apples.";
+		mes "ใช่มั้ย";
+		next;
+		if (select("ตกลง:ยกเลิก") == 2) {
+			mes "["+ .@npc_name$ +"]";
+			mes "มมทำผิด?";
+			mes "ได้เลยโปรดป้อน";
+			mes "จำนวนแอปเปิ้ลคุณ";
+			mes "ต้องการวางเดิมพันนี้";
+			next;
+			continue;
+		}
+		if (countitem(512) <.@amount) {
+			mes "ฉันขอโทษ แต่คุณ";
+			mes "ดูเหมือนจะไม่มี";
+			mes "แอปเปิ้ลเพียงพอสำหรับสิ่งนี้";
+			mes "พนัน ... เล่นพนันไม่ได้";
+			mes "ถ้าเล่นไม่ได้ก็รู้";
+			next;
+			continue;
+		}
+		delitem 512,.@amount;
+		mes "["+ .@npc_name$ +"]";
+		mes "ดี!";
+		mes "เราเริ่มได้แล้ว";
+		mes "เกมนี้ฉันจะเล่นก่อน ~";
+		break;
+	}
+	mes "^3355FF*กลิ้งและดังก้อง*^000000";
+	next;
+	set .@giveapple, .@amount*2;
+	set .@table1, rand(1,6);
+	set .@table2, rand(1,6);
+	set .@tablesub, .@table1 + .@table2;
+	set .@tabletotal, .@tablesub;
+	mes "["+ .@npc_name$ +"]";
+	mes "ฉันได้ ^0000FF" + .@table1 + "^000000 และ  ^0000FF" + .@table2 + "^000000.";
+	mes "นั่นคือผลรวมของ ^0000FF" + .@tablesub + "^000000.";
+	mes "^FF0000" + strcharinfo(0) + "^000000, ถึงตาคุณแล้ว.";
+	next;
+	select("โยนลูกเต๋า.");
+	mes "^3355FF*กลิ้งและดังก้อง*^000000";
+	set .@player1, rand(1,6);
+	set .@player2, rand(1,6);
+	set .@playersub, .@player1 + .@player2;
+	if (.@playersub > 9 && .@amount > 39) {
+		set .@player1, rand(1,6);
+		set .@player2, rand(1,6);
+		set .@playersub, .@player1 + .@player2;
+	}
+	set .@playertotal, .@playersub;
+	next;
+	mes "["+ .@npc_name$ +"]";
+	mes "^FF0000" + strcharinfo(0) + "^000000, คุณมี ^FF0000" + .@player1 + "^000000 และ ^FF0000" + .@player2 + "^000000. รวม ^FF0000" + .@playersub + "^000000 .";
+	next;
+	mes "["+ .@npc_name$ +"]";
+	if(.@playersub == .@tablesub) {
+		mes "ขณะนี้ยอดรวมของฉันคือ ^0000FF" + .@tablesub + "^000000 และ ^FF0000" + strcharinfo(0) + "^000000, รวม ^FF0000" + .@playersub + "^000000. We are making an even game. Would you like to cast dice again?";
+	} else if (.@playersub > .@tablesub) {
+		mes "ขณะนี้ยอดรวมของฉันคือ ^0000FF" + .@tablesub + "^000000 และ ^FF0000" + strcharinfo(0) + "^000000, รวม ^FF0000" + .@playersub + "^000000. ^FF0000" + strcharinfo(0) + "^000000, you are currently winning this game. Would you like to cast dice again?";
+	} else if(.@tablesub > .@playersub) {
+		mes "ขณะนี้ยอดรวมของฉันคือ ^0000FF" + .@tablesub + "^000000 และ ^FF0000" + strcharinfo(0) + "^000000, รวม ^FF0000" + .@playersub + "^000000. I am winning this game. Would you like to cast dice again?";
+	}
+	next;
+	switch (select("ทอยเต๋า.:ยกเลิก.")) {
+	case 1:
+		mes "^3355FF* กลิ้งและดังก้อง*^000000";
+		set .@player3, rand(1,6);
+		set .@playertotal, .@playertotal + .@player3;
+		next;
+		mes "["+ .@npc_name$ +"]";
+		if (.@playertotal > 12) {
+			mes "^FF0000" + strcharinfo(0) + "^000000, คุณได้รับ ^FF0000" + .@player3 + "^000000 และรวมเป็น ^FF0000" + .@playertotal + "^000000. คุณแพ้เกมนี้ ขออภัย แต่โปรดลองอีกครั้ง.";
+			close;
+		}
+		else if (.@playertotal < .@tablesub) {
+			mes "^FF0000" + strcharinfo(0) + "^000000, คุณได้รับ ^FF0000" + .@player3 + "^000000 และรวมเป็น ^FF0000" + .@playertotal + "^000000. แม้ว่าคุณจะโยนลูกเต๋า อีกครั้งยอดรวมของคุณยังน้อยกว่าของฉันคุณแพ้เกมขอโทษและโปรดลองอีกครั้ง.";
+			close;
+		}
+		else if (.@playertotal == .@tablesub) {
+			if (.@tablesub > 8) {
+				mes "^FF0000" + strcharinfo(0) + "^000000, คุณได้รับ ^FF0000" + .@player3 + "^000000 และรวมเป็น ^FF0000" + .@playertotal + "^000000. ฉันไม่ต้องการ จะเสี่ยงยังไงก็มาจบเกมนี้ด้วยผลเสมอมาเล่นกันใหม่อีกครั้ง~";
+				close2;
+				getitem 512,.@amount; //Apple
+				end;
+			}
+			mes "ได้เลย";
+			mes "ให้ฉันโยนลูกเต๋าอีกครั้ง";
+		}
+		else {
+			mes "^FF0000" + strcharinfo(0) + "^000000, คุณได้ ^FF0000" + .@player3 + "^000000 และรวมเป็น ^FF0000" + .@playertotal + "^000000. ตอนนี้ถึงตาฉันแล้ว.";
+		}
+		break;
+	case 2:
+		mes "["+ .@npc_name$ +"]";
+		if (.@playersub > .@tablesub) {
+			mes "ฉันเข้าใจแล้วคุณไม่อยากเสี่ยงกับการแพ้เกมโอเคให้ฉันโยนลูกเต๋าอีกครั้ง.";
+		}
+		else if (.@playersub == .@tablesub) {
+			if (.@tablesub > 8) {
+				mes "ฉันเข้าใจแล้วเธอคงไม่อยากเสี่ยงที่จะแพ้เกมนี้ฉันก็ไม่ต้องจบเกมนี้ด้วยการเสมอกันมาเล่นกันใหม่นะ~";
+				close2;
+				getitem 512,.@amount; //Apple
+				end;
+			}
+			mes "ได้เลย";
+			mes "ให้ฉันโยนลูกเต๋าอีกครั้ง";
+		}
+		else {
+			mes "ไม่เจ็บหรอกที่จะลอง";
+			mes "คราวนี้ฉันชนะแล้ว";
+			mes "ขอโทษนะลองเล่นดู";
+			mes "อีกครั้ง";
+			close;
+		}
+		break;
+	}
+	next;
+	mes "^3355FF*กลิ้งและดังก้อง*^000000";
+	set .@table3, rand(1,6);
+	set .@tabletotal, .@tabletotal + .@table3;
+	next;
+	mes "["+ .@npc_name$ +"]";
+	if (.@tabletotal > 12) {
+		mes "ฉันได้ ^0000FF" + .@table3 + "^000000 และรวมเป็น ^0000FF" + .@tabletotal + "^000000. ฉันแพ้เกมนี้เนื่องจากยอดรวมเกิน 12 ขอฉันให้แอปเปิ้ลแก่คุณขอแสดงความยินดี นั่นเป็นเกมที่ยอดเยี่ยม.";
+		close2;
+		getitem 512,.@giveapple; //Apple
+		end;
+	}
+	else if (.@playertotal > .@tabletotal) {
+		mes "ฉันได้ ^0000FF" + .@table3 + "^000000 และรวมเป็น ^0000FF" + .@tabletotal + "^000000. รวม ^FF0000" + .@playertotal + "^000000 คุณชนะเกมนี้, ^FF0000" + strcharinfo(0) + "^000000. ขอฉันให้แอปเปิ้ลแก่คุณมันเป็นเกมที่ยอดเยี่ยมและฉันหวังว่าเราจะเล่นกันอีกครั้ง.";
+		close2;
+		getitem 512,.@giveapple; //Apple
+		end;
+	}
+	else if (.@playertotal == .@tabletotal) {
+		mes "ฉันได้ ^0000FF" + .@table3 + "^000000 และรวมเป็น ^0000FF" + .@tabletotal + "^000000. รวม ^FF0000" + .@playertotal + "^000000 เกมนี้ออกมาด้วยเสมอ, ^FF0000" + strcharinfo(0) + "^000000. ฉันคืนแอปเปิ้ลให้คุณมันเป็นเกมที่ยอดเยี่ยมและฉันหวังว่าเราจะได้เล่นกันอีกครั้ง.";
+		close2;
+		getitem 512,.@amount; //Apple
+		end;
+	}
+	else if (.@playertotal < .@tabletotal) {
+		mes "ฉันได้ ^0000FF" + .@table3 + "^000000 และรวมเป็น ^0000FF" + .@tabletotal + "^000000. รวม ^FF0000" + .@playertotal + "^000000 คุณแพ้เกมนี้, ^FF0000" + strcharinfo(0) + "^000000. ขอโทษ แต่โปรดลองอีกครั้ง .";
+		close;
+	}
+}

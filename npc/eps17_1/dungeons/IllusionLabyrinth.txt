@@ -1,0 +1,911 @@
+// Custom Illusion of Labyrinth
+// by @laziem - M. Ongki Firdaus
+
+// warp point :prt_fild01,136,364
+
+// Signboard
+prt_fild01,139,369,5	script	Signboard#illusionlabyrinth	837,{
+	mes "เขาวงกตนี้คือ Baphomet และ Chaotic Baphomet lairs คุณสามารถหลงทางได้อย่างง่ายดายในเขาวงกตนี้";
+	close;
+}
+
+prt_maze01,97,26,5	script	Erene#illusionlabyrinth	10337,12,12,{
+	switch(illusionlabyrinth){
+		case 1 :
+			mes "[Erene]";
+			mes "ตอนนี้โปรดรีบหา ^ff0000Licheniyes ^000000 เธออยู่ที่ ^33CC33Prontera ^000000 ใกล้ Chruch";
+			mes "ฉันชื่อ ^ff0000Erene ^000000";
+			close;
+		case 2 :
+			mes "[Erene]";
+			mes "คุณนำ Licheniyes มาที่นี่! พูดคุยกับเธออย่างรวดเร็ว";
+			close;
+		case 4 :
+			mes "[Erene]";
+			mes "ขอขอบคุณสำหรับความช่วยเหลือของคุณ "+strcharinfo(0)+".";
+			next;
+			mes "[Erene]";
+			mes "ตอนนี้เพื่อน ๆ ของฉันรู้แล้วว่าเราไม่ควรเข้าไปในเขาวงกตอีกแล้ว";
+			next;
+			mes "[Erene]";
+			mes "และตอนนี้คุณจะต้อง";
+			mes "Level ถึง 160";
+			//mes "10 ชิ้นของ ^000000 <ITEM>" +getitemname(7539)+ "<INFO>" +7539+"</INFO> </ITEM> เข้าไปข้างในเขาวงกตอีกครั้ง";
+			getitem 25271, 1;
+			illusionlabyrinth = 5;
+			next;
+			mes "[Erene]";
+			mes "และอีกสิ่งหนึ่งที่คุณควรรู้พูดคุยกับเพื่อนของฉัน";
+			mes "พวกเขาจะให้คุณล่าสัตว์ประหลาดในเขาวงกตเพื่อชิงรางวัล";
+			next;
+			mes "[Erene]";
+			mes "และพยายามคุยกับผู้พิทักษ์ของเรา ^0000ffLicheniyes ^000000 นอกเขาวงกตนี้เธอสามารถประดิษฐ์อุปกรณ์พิเศษให้คุณได้";
+			close;
+		case 5 :
+			mes "[Erene]";
+			mes "และตอนนี้คุณจะต้อง";
+			mes "Level ถึง 160";
+			//mes "10 ชิ้นของ ^000000 <ITEM>" +getitemname(7539)+ "<INFO>" +7539+"</INFO> </ITEM> เข้าไปข้างในเขาวงกตอีกครั้ง";
+			next;
+			mes "[Erene]";
+			mes "และอีกสิ่งหนึ่งที่คุณควรรู้พูดคุยกับเพื่อนของฉัน";
+			mes "พวกเขาจะให้คุณล่าสัตว์ประหลาดในเขาวงกตเพื่อชิงรางวัล";
+			next;
+			mes "[Erene]";
+			mes "และพยายามคุยกับผู้พิทักษ์ของเรา ^0000ffLicheniyes ^000000 นอกเขาวงกตนี้เธอสามารถประดิษฐ์อุปกรณ์พิเศษให้คุณได้";
+			close;
+		default :
+			mes "[Erene]";
+			mes "สวัสดี...";
+			mes "ฉันต้องการความช่วยเหลือจากคุณทันที";
+			next;
+			mes "[Erene]";
+			mes "เพื่อนของฉันหลงทางใน ^33CC33Illusion Labyrinth ^000000 และพวกเขาได้รับบาดเจ็บสาหัส";
+			next;
+			mes "[Erene]";
+			mes "ฉันต้องอยู่ที่นี่เพื่อปกป้องพอร์ทัลคุณช่วยพา ^ff0000Licheniyes ^000000 มาที่นี่ได้ไหม";
+			next;
+			mes "[Erene]";
+			mes "เราต้องการความสามารถของเธอเพื่อฮีลเพื่อน ๆ ทั้งหมดที่อยู่ข้างใน";
+			next;
+			switch(select("ฉันขอโทษ แต่ทำไม่ได้  :แน่นอนว่าฉันจะช่วย")){
+				case 1 :
+					mes "[Erene]";
+					mes "โปรดหาคนที่จะช่วยฉัน";
+					close;
+				case 2 :
+					break;
+			}
+			illusionlabyrinth = 1;
+			showevent QTYPE_NONE, 0;
+			mes "[Erene]";
+			mes "ขอขอบคุณ. ตอนนี้โปรดรีบหา ^ff0000Licheniyes ^000000 เธออยู่ที่ ^33CC33Prontera ^000000 ใกล้ Chruch";
+			mes "ฉันชื่อ ^ff0000Erene ^000000";
+			close;
+	}
+	
+	OnInit :
+		end;
+		
+	OnTouch :
+		OnPCLoadMapEvent :
+			if(strcharinfo(3) == strnpcinfo(4)){
+				specialeffect 687,AREA,"Ice#illusionlabyrinth";
+				specialeffect 74,AREA,"Ice#illusionlabyrinth";
+				if(illusionlabyrinth < 2){
+					showevent 1, 1;
+				}
+				if(illusionlabyrinth == 2){
+					classchange( 4_geffen_09, "Licheniyes#illusionlabyrinth_1", bc_self );
+					showevent QTYPE_NONE, 0;
+				}
+				
+				if(illusionlabyrinth == 3){
+					classchange( HIDDEN_WARP_NPC, "Erene#illusionlabyrinth", bc_self );
+					classchange( 4_geffen_09, "Licheniyes#illusionlabyrinth_1", bc_self );
+					showevent QTYPE_NONE, 0;
+				}
+				
+				if(illusionlabyrinth >= 4){
+					showevent QTYPE_NONE, 1;
+					classchange( 10337, "Erene#illusionlabyrinth", bc_self );
+					classchange( 10310, "Andrea#illusionlabyrinth", bc_self );
+					classchange( 10316, "Cecilia#illusionlabyrinth", bc_self );
+					classchange( 10314, "Silvano#illusionlabyrinth", bc_self );
+				}
+			}
+			end;
+}
+
+prt_maze01,97,20,5	script	Andrea#illusionlabyrinth	HIDDEN_WARP_NPC,{
+mes "[Andrea]";
+mes "เลือกภารกิจล่าสัตว์ที่คุณต้องการทำ";
+mes "แต่ละเควสที่สำเร็จจะได้รับรางวัลเป็น ^ff0000Illusion Stone ^000000 1 ชิ้น";
+next;
+switch(select("Chaotic Side Winder :Chaotic Hunter Fly :Chaotic Mantis :Chaotic Poporing :Chaotic Stem Worm")){
+	case 1 :
+		if(checkquest(95034,PLAYTIME) == 0 || checkquest(95034,PLAYTIME) == 1){
+			mes "[Andrea]";
+			mes "คุณต้องรอก่อนจึงจะสามารถทำภารกิจนี้ได้";
+			close;
+		}
+		erasequest 95034;
+		setquest 95034;
+		mes "[Andrea]";
+		mes "เยี่ยมมาก!";
+		mes "ตอนนี้ล่า 30 ^ff0000Chaotic Side Winder ^000000";
+		mes "รายงาน Cecilia เมื่อคุณล่าสัตว์เสร็จแล้ว";
+		close;
+	case 2 :
+		if(checkquest(95035,PLAYTIME) == 0 || checkquest(95035,PLAYTIME) == 1){
+			mes "[Andrea]";
+			mes "คุณต้องรอก่อนจึงจะสามารถทำภารกิจนี้ได้";
+			close;
+		}
+		erasequest 95035;
+		setquest 95035;
+		mes "[Andrea]";
+		mes "เยี่ยมมาก!";
+		mes "ตอนนี้ล่า 30 ^ff0000Chaotic Hunter Fly ^000000";
+		mes "รายงาน Cecilia เมื่อคุณล่าสัตว์เสร็จแล้ว";
+		close;
+	case 3 :
+		if(checkquest(95036,PLAYTIME) == 0 || checkquest(95036,PLAYTIME) == 1){
+			mes "[Andrea]";
+			mes "คุณต้องรอก่อนจึงจะสามารถทำภารกิจนี้ได้";
+			close;
+		}
+		erasequest 95036;
+		setquest 95036;
+		mes "[Andrea]";
+		mes "เยี่ยมมาก!";
+		mes "ตอนนี้ล่า 30 ^ff0000Chaotic Mantis ^000000";
+		mes "รายงาน Cecilia เมื่อคุณล่าสัตว์เสร็จแล้ว";
+		close;
+	case 4 :
+		if(checkquest(95037,PLAYTIME) == 0 || checkquest(95037,PLAYTIME) == 1){
+			mes "[Andrea]";
+			mes "คุณต้องรอก่อนจึงจะสามารถทำภารกิจนี้ได้";
+			close;
+		}
+		erasequest 95037;
+		setquest 95037;
+		mes "[Andrea]";
+		mes "เยี่ยมมาก!";
+		mes "ตอนนี้ล่า 30 ^ff0000Chaotic Poporing ^000000";
+		mes "รายงาน Cecilia เมื่อคุณล่าสัตว์เสร็จแล้ว";
+		close;
+	case 5 :
+		if(checkquest(95038,PLAYTIME) == 0 || checkquest(95038,PLAYTIME) == 1){
+			mes "[Andrea]";
+			mes "คุณต้องรอก่อนจึงจะสามารถทำภารกิจนี้ได้";
+			close;
+		}
+		erasequest 95038;
+		setquest 95038;
+		mes "[Andrea]";
+		mes "เยี่ยมมาก!";
+		mes "ตอนนี้ล่า 30 ^ff0000Chaotic Stem Worm ^000000";
+		mes "รายงาน Cecilia เมื่อคุณล่าสัตว์เสร็จแล้ว";
+		close;
+}
+close;
+}
+
+prt_maze01,101,20,1	script	Cecilia#illusionlabyrinth	HIDDEN_WARP_NPC,{
+mes "[Cecilia]";
+mes "คุณต้องการส่งภารกิจล่าสัตว์ใด";
+next;
+switch(select("Chaotic Side Winder :Chaotic Hunter Fly :Chaotic Mantis :Chaotic Poporing :Chaotic Stem Worm")){
+	case 1 :
+		if(checkquest(95034,HUNTING) < 2){
+			mes "[Cecilia]";
+			mes "คุณยังทำภารกิจล่าสัตว์ไม่สำเร็จ";
+			close;
+		}
+		mes "[Cecilia]";
+		mes "เก่งมาก!";
+		mes "โปรดรับ ^ff0000Illusion Stone ^000000 1 ชิ้นนี้เป็นรางวัล";
+		getitem 25271, 1;
+		completequest 95034;
+		close;
+	case 2 :
+		if(checkquest(95035,HUNTING) < 2){
+			mes "[Cecilia]";
+			mes "คุณยังทำภารกิจล่าสัตว์ไม่สำเร็จ";
+			close;
+		}
+		mes "[Cecilia]";
+		mes "เก่งมาก!";
+		mes "โปรดรับ ^ff0000Illusion Stone ^000000 1 ชิ้นนี้เป็นรางวัล";
+		getitem 25271, 1;
+		completequest 95035;
+		close;
+	case 3 :
+		if(checkquest(95036,HUNTING) < 2){
+			mes "[Cecilia]";
+			mes "คุณยังทำภารกิจล่าสัตว์ไม่สำเร็จ";
+			close;
+		}
+		mes "[Cecilia]";
+		mes "เก่งมาก!";
+		mes "โปรดรับ ^ff0000Illusion Stone ^000000 1 ชิ้นนี้เป็นรางวัล";
+		getitem 25271, 1;
+		completequest 95036;
+		close;
+	case 4 :
+		if(checkquest(95037,HUNTING) < 2){
+			mes "[Cecilia]";
+			mes "คุณยังทำภารกิจล่าสัตว์ไม่สำเร็จ";
+			close;
+		}
+		mes "[Cecilia]";
+		mes "เก่งมาก!";
+		mes "โปรดรับ ^ff0000Illusion Stone ^000000 1 ชิ้นนี้เป็นรางวัล";
+		getitem 25271, 1;
+		completequest 95037;
+		close;
+	case 5 :
+		if(checkquest(95038,HUNTING) < 2){
+			mes "[Cecilia]";
+			mes "คุณยังทำภารกิจล่าสัตว์ไม่สำเร็จ";
+			close;
+		}
+		mes "[Cecilia]";
+		mes "เก่งมาก!";
+		mes "โปรดรับ ^ff0000Illusion Stone ^000000 1 ชิ้นนี้เป็นรางวัล";
+		getitem 25271, 1;
+		completequest 95038;
+		close;
+}
+close;
+}
+
+prt_maze01,101,26,3	script	Silvano#illusionlabyrinth	HIDDEN_WARP_NPC,{
+	mes "[Silvano]";
+	mes "ลองคุยกับเพื่อนของฉันที่นั่นเขามีบางอย่างสำหรับคุณ";
+	close;
+}
+
+prt_maze01,99,23,5	script	Ice#illusionlabyrinth	111,{
+	switch(illusionlabyrinth){
+		case 3 :
+			mes "ผลึกน้ำแข็งนี้พร้อมเทเลพอร์ตคุณเข้าสู่วงกต Illusion Labyrinth";
+			mes "^ff0000ทุกครั้งที่เทเลพอร์ต ต้องการ";
+			mes "Level มากกว่า 160";
+			//mes "25 ชิ้นของ ^000000 <ITEM>" +getitemname(7539)+ "<INFO>" +7539+"</INFO> </ITEM>";
+			next;
+			switch(select("อยู่ที่นี่ :เข้าไปข้างในเขาวงกต")){
+				case 1 :
+					mes "คุณเลือกที่จะอยู่";
+					close;
+				case 2 :
+					break;
+			}
+			if(baselevel < 159){
+				 mes "^ff0000 คุณไม่สามารถเข้าไปในเขาวงกตได้ต้องการ  Level มากกว่า 160";
+			//if(countitem(7539) < 25){
+				//mes "^ff0000 คุณไม่สามารถเข้าไปในเขาวงกตได้ต้องใช้ ^000000 <ITEM> 25 ชิ้น" +getitemname(7539)+ "<INFO>" +7539+"</INFO> </ITEM>";
+				close;
+			}
+			//delitem 7539, 25;
+			sleep2 500;
+			warp "prt_mz03_i",99,31;
+			close;
+		case 4 :
+		case 5 :
+			mes "ผลึกน้ำแข็งนี้พร้อมเทเลพอร์ตคุณเข้าสู่วงกต Illusion Labyrinth";
+			mes "^ff0000ทุกครั้งที่เทเลพอร์ต ต้องการ";
+			mes "Level มากกว่า 160";
+			//mes "10 ชิ้นของ ^000000 <ITEM>" +getitemname(7539)+ "<INFO>" +7539+"</INFO> </ITEM>";
+			next;
+			switch(select("อยู่ที่นี่ :เข้าไปข้างในเขาวงกต")){
+				case 1 :
+					mes "คุณเลือกที่จะอยู่";
+					close;
+				case 2 :
+					break;
+			}
+			if(baselevel <= 159){
+				mes "^ff0000 คุณไม่สามารถเข้าไปในเขาวงกตได้คุณต้องมี Level 160 ขึ้นไป ";
+			//if(countitem(7539) < 10){
+				//mes "^ff0000 คุณไม่สามารถเข้าไปในเขาวงกตได้คุณต้องมี ^000000 <ITEM> 10 ชิ้น" +getitemname(7539)+ "<INFO>" +7539+"</INFO> </ITEM>";
+				close;
+			}
+			//delitem 7539, 10;
+			sleep2 500;
+			warp "prt_mz03_i",99,31;
+			close;
+		default :
+			mes "คริสตัลน้ำแข็ง";
+			close;
+	}
+	close;
+}
+
+//viewpoint
+prt_mz03_i,99,28,0	script	Guide#illusionlabyrinth	HIDDEN_WARP_NPC,9,9,{
+	close;
+	
+	OnInit :
+		end;
+		
+	OnTouch :
+		OnPCLoadMapEvent :
+			if(strcharinfo(3) == strnpcinfo(4)){
+				if(illusionlabyrinth_cecilia == 0){
+					viewpoint 1,182,25,1,0xFFFF00;
+				}
+				if(illusionlabyrinth_andrea == 0){
+					viewpoint 1,135,68,2,0xFFFF00;
+				}
+				if(illusionlabyrinth_anes == 0){
+					viewpoint 1,12,20,3,0xFFFF00;
+				}
+				if(illusionlabyrinth_silvano == 0){
+					viewpoint 1,106,103,4,0xFFFF00;
+				}
+			}
+			end;
+}
+
+prontera,156,191,0	script	Guide#illusionlabyrinth_1	HIDDEN_WARP_NPC,3,3,{
+		close;
+	
+	OnInit :
+		end;
+		
+	OnTouch :
+		OnPCLoadMapEvent :
+			if(strcharinfo(3) == strnpcinfo(4)){
+				if(illusionlabyrinth == 1){
+					viewpoint 1,214,323,1,0xFFFF00;
+				}
+			}
+			end;
+}
+
+prt_maze01,101,26,3	script	Licheniyes#illusionlabyrinth_1	HIDDEN_WARP_NPC,{
+	switch(illusionlabyrinth){
+		case 2 :
+			mes "[Licheniyes]";
+			mes "คุณใช้เวลานานขนาดนี้? เราต้องรีบ";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "ขอโทษนะฉันจะพยายามมาให้เร็วที่สุด";
+			next;
+			mes "[Licheniyes]";
+			mes "ไม่เป็นไรไม่ต้องกังวล แต่เราต้องเร็ว";
+			next;
+			mes "[Licheniyes]";
+			mes "ตอนนี้ตั้งใจฟัง!";
+			mes "ฉันจะมอบคาถาที่ช่วยให้คุณสามารถรักษาเพื่อนของ Erene ทั้งหมดที่อยู่ในเขาวงกตได้";
+			next;
+			mes "[Licheniyes]";
+			mes "คุณเพียงแค่ต้องหาพวกมันทีละคนแล้วคุยกับพวกเขาจากนั้นร่ายมนตร์โดยไม่มีการหยุดชะงักใด ๆ";
+			next;
+			switch(select("ฟังดูไม่ยาก")){
+				case 1 :
+					break;
+			}
+			mes "[Licheniyes]";
+			mes "อย่าพูดอย่างนั้นคุณต้องระวังในขณะที่อยู่ในเขาวงกต";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "คุณพูดถูก";
+			next;
+			mes "[Licheniyes]";
+			mes "ตอนนี้เตรียมตัวให้พร้อมแล้วลองสัมผัสน้ำแข็งมันจะเทเลพอร์ตคุณเข้าไปในวงกตภาพลวงตา";
+			next;
+			illusionlabyrinth = 3;
+			mes "[Licheniyes]";
+			mes "และอีกสิ่งหนึ่งที่คุณต้องการ";
+			mes "25pc ของ <ITEM>" +getitemname(7539)+ "<INFO>" +7539+"</INFO> </ITEM>";
+			mes "ทุกครั้งที่คุณไม่อยากเข้าไปข้างใน แต่หลังจากที่คุณนำเพื่อน ^ff0000Erene ^000000 กลับมาทั้งหมดฉันสามารถช่วยคุณลดจำนวนได้ ระวัง!";
+			close;
+		case 3 :
+			if(illusionlabyrinth_saved > 3){
+				mes "[Licheniyes]";
+				mes "คุณทำได้แล้ว! คุณช่วยพวกเขาทั้งหมด!";
+				next;
+				mes "[Licheniyes]";
+				mes "ฉันจะส่งคุณกลับไปข้างนอกในขณะที่ฉันปล่อยให้เอรีนและเพื่อน ๆ ช่วยดูแลพอร์ทัลผลึกน้ำแข็งนี้";
+				next;
+				illusionlabyrinth = 4;
+				warp "prt_fild01",136,364;
+				close;
+			}
+			mes "[Licheniyes]";
+			mes "ตอนนี้รักษาเพื่อนทั้งสี่ของ ^ff0000Erene ^000000 เพื่อนที่อยู่ในเขาวงกต";
+			mes "โปรดระวัง. ฉันจะรออยู่ที่นี่";
+			close;
+		default :
+			mes "[Licheniyes]";
+			close;
+	}
+	close;
+}	
+
+// Illusion Labyrinth
+prt_mz03_i,182,25,5	script	Cecilia#illusionlabyrinth_1	10317,14,14,{
+	switch(illusionlabyrinth){
+		case 3 :
+			mes "คุณพบศพนอนอยู่ที่พื้น";
+			next;
+			switch(select("ละเว้น :ชุบชีวิต")){
+				case 1 :
+					mes "^0000ff คุณเพิกเฉยต่อร่างกาย ^000000";
+					close;
+				case 2 :
+					break;
+			}
+			progressbar "ffff00", 5;
+			illusionlabyrinth_cecilia = 1;
+			illusionlabyrinth_saved += 1;
+			classchange( HIDDEN_WARP_NPC, "Cecilia#illusionlabyrinth_1", bc_self );
+			specialeffect 371,AREA,"Cecilia#illusionlabyrinth_1";
+			showevent QTYPE_NONE, 0;
+			mes "[Cecilia]";
+			mes "^33CC33 ขอบคุณสำหรับการช่วยเหลือฉัน ^000000";
+			close;
+		default :
+			mes "[Cecilia]";
+			close;
+	}
+	
+	OnInit :
+		end;
+		
+	OnTouch :
+		OnPCLoadMapEvent :
+			if(strcharinfo(3) == strnpcinfo(4)){
+				if(illusionlabyrinth_cecilia < 1){
+					showevent 1, 1;
+				}
+				if(illusionlabyrinth_cecilia == 1){
+					classchange( HIDDEN_WARP_NPC, "Cecilia#illusionlabyrinth_1", bc_self );
+					showevent QTYPE_NONE, 0;
+				}
+			}
+			end;
+}
+
+prt_mz03_i,106,103,5	script	Silvano#illusionlabyrinth_1	10315,14,14,{
+	switch(illusionlabyrinth){
+		case 3 :
+			mes "คุณพบศพนอนอยู่ที่พื้น";
+			next;
+			switch(select("ละเว้น :ชุบชีวิต")){
+				case 1 :
+					mes "^0000ff คุณเพิกเฉยต่อร่างกาย ^000000";
+					close;
+				case 2 :
+					break;
+			}
+			progressbar "ffff00", 5;
+			illusionlabyrinth_silvano = 1;
+			illusionlabyrinth_saved += 1;
+			classchange( HIDDEN_WARP_NPC, "Silvano#illusionlabyrinth_1", bc_self );
+			specialeffect 371,AREA,"Silvano#illusionlabyrinth_1";
+			showevent QTYPE_NONE, 0;
+			mes "[Anes]";
+			mes "^33CC33 ขอบคุณสำหรับการช่วยเหลือฉัน ^000000";
+			close;
+		default :
+			mes "[Anes]";
+			close;
+	}
+	
+	OnInit :
+		end;
+		
+	OnTouch :
+		OnPCLoadMapEvent :
+			if(strcharinfo(3) == strnpcinfo(4)){
+				if(illusionlabyrinth_silvano < 1){
+					showevent 1, 1;
+				}
+				if(illusionlabyrinth_silvano == 1){
+					classchange( HIDDEN_WARP_NPC, "Silvano#illusionlabyrinth_1", bc_self );
+					showevent QTYPE_NONE, 0;
+				}
+			}
+			end;
+}
+
+prt_mz03_i,12,20,3	script	Anes#illusionlabyrinth	10313,14,14,{
+	switch(illusionlabyrinth){
+		case 3 :
+			mes "คุณพบศพนอนอยู่ที่พื้น";
+			next;
+			switch(select("ละเว้น :ชุบชีวิต")){
+				case 1 :
+					mes "^0000ff คุณเพิกเฉยต่อร่างกาย ^000000";
+					close;
+				case 2 :
+					break;
+			}
+			progressbar "ffff00", 5;
+			illusionlabyrinth_anes = 1;
+			illusionlabyrinth_saved += 1;
+			classchange( HIDDEN_WARP_NPC, "Anes#illusionlabyrinth", bc_self );
+			specialeffect 371,AREA,"Anes#illusionlabyrinth";
+			showevent QTYPE_NONE, 0;
+			mes "[Anes]";
+			mes "^33CC33 ขอบคุณสำหรับการช่วยเหลือฉัน ^000000";
+			close;
+		default :
+			mes "[Anes]";
+			close;
+	}
+	
+	OnInit :
+		end;
+		
+	OnTouch :
+		OnPCLoadMapEvent :
+			if(strcharinfo(3) == strnpcinfo(4)){
+				if(illusionlabyrinth_anes < 1){
+					showevent 1, 1;
+				}
+				if(illusionlabyrinth_anes == 1){
+					classchange( HIDDEN_WARP_NPC, "Anes#illusionlabyrinth", bc_self );
+					showevent QTYPE_NONE, 0;
+				}
+			}
+			end;
+}
+
+prt_mz03_i,135,68,3	script	Andrea#illusionlabyrinth_1	10311,14,14,{
+	switch(illusionlabyrinth){
+		case 3 :
+			mes "คุณพบศพนอนอยู่ที่พื้น";
+			next;
+			switch(select("ละเว้น :ชุบชีวิต")){
+				case 1 :
+					mes "^0000ff คุณเพิกเฉยต่อร่างกาย ^000000";
+					close;
+				case 2 :
+					break;
+			}
+			progressbar "ffff00", 5;
+			illusionlabyrinth_andrea = 1;
+			illusionlabyrinth_saved += 1;
+			classchange( HIDDEN_WARP_NPC, "Andrea#illusionlabyrinth_1", bc_self );
+			specialeffect 371,AREA,"Andrea#illusionlabyrinth_1";
+			showevent QTYPE_NONE, 0;
+			mes "[Cecilia]";
+			mes "^33CC33 ขอบคุณสำหรับการช่วยเหลือฉัน ^000000";
+			close;
+		default :
+			mes "[Cecilia]";
+			close;
+	}
+	
+	OnInit :
+		end;
+		
+	OnTouch :
+		OnPCLoadMapEvent :
+			if(strcharinfo(3) == strnpcinfo(4)){
+				if(illusionlabyrinth_andrea < 1){
+					showevent 1, 1;
+				}
+				if(illusionlabyrinth_andrea == 1){
+					classchange( HIDDEN_WARP_NPC, "Andrea#illusionlabyrinth_1", bc_self );
+					showevent QTYPE_NONE, 0;
+				}
+				end;
+			}
+			end;
+}
+
+prontera,212,323,3	script	Licheniyes#illusionlabyrinth	HIDDEN_WARP_NPC,12,12,{
+	switch(illusionlabyrinth){
+		case 1 :
+			mes "["+strcharinfo(0)+"]";
+			mes "สวัสดี Licheniyes ฉันชื่อ "+strcharinfo(0)+", เอรีนส่งฉันมาที่นี่";
+			next;
+			mes "[Licheniyes]";
+			mes "อ๊ะฉันสงสัยว่าทำไมเธอถึงไม่กลับมาตั้งแต่เมื่อคืน";
+			next;
+			switch(select("เธอกำลังมีปัญหาและต้องการความช่วยเหลือจากคุณ")){
+				case 1 :
+					break;
+			}
+			mes "[Licheniyes]";
+			mes "โอ้พระเจ้าของฉัน!";
+			mes "อาจเกิดอะไรขึ้นกับเธอ?";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "เพื่อนของเธอได้รับบาดเจ็บใน ^33CC33Illusion Labyrinth ^000000";
+			next;
+			illusionlabyrinth = 2;
+			mes "[Licheniyes]";
+			mes "พระเจ้าที่รัก! ไม่พูดอีกแล้วไปดูกันเลย ...";
+			showevent QTYPE_NONE, 0;
+			classchange( HIDDEN_WARP_NPC, "Licheniyes#illusionlabyrinth", bc_self );
+			close;
+		case 2 :
+			mes "[Licheniyes]";
+			mes "พระเจ้าที่รัก! ไม่พูดอะไรมากไปที่ ^ff0000Erene ^000000";
+			classchange( HIDDEN_WARP_NPC, "Licheniyes#illusionlabyrinth", bc_self );
+			close;
+		default :
+			mes "[Licheniyes]";
+			mes "เก็บงานดีๆ!";
+			close;
+	}
+	
+	OnInit :
+		end;
+		
+	OnTouch :
+		OnPCLoadMapEvent :
+			if(strcharinfo(3) == strnpcinfo(4)){
+				if(illusionlabyrinth == 1){
+					showevent 1, 1;
+					classchange( 4_geffen_09, "Licheniyes#illusionlabyrinth", bc_self );
+				}
+				if(illusionlabyrinth > 1){
+					showevent QTYPE_NONE, 0;
+				}
+				end;
+			}
+	end;			
+}
+
+prt_fild01,141,367,3	script	Licheniyes#illusionlabyrinth_2	HIDDEN_WARP_NPC,14,14,{
+	switch(illusionlabyrinth){
+		case 4 :
+			mes "[Licheniyes]";
+			mes "คุณควรเข้าไปข้างใน";
+			close;
+		case 5 :
+			disable_items;
+			mes "[Licheniyes]";
+			mes "ขอบคุณสำหรับการแสดงความกล้าหาญของคุณก่อนหน้านี้";
+			mes "ฉันมี colletion หายากเพียงไม่กี่ชิ้นที่สามารถใช้ประโยชน์ได้ดียิ่งขึ้น";
+			next;
+			mes "[Licheniyes]";
+			mes "ไอเท็มส่วนใหญ่ต้องการทุกอย่างที่หลุดจากในเขาวงกต";
+			next;
+			switch(select("รายการอุปกรณ์ :สร้างอุปกรณ์")){
+				case 1 :
+					mes "[Licheniyes]";
+					mes "^000000 <ITEM>" +getitemname(19428)+ "<INFO>" +19428+"</INFO> </ITEM>";
+					mes "^000000 <ITEM>" +getitemname(20948)+ "<INFO>" +20948+"</INFO> </ITEM>";
+					mes "^000000 <ITEM>" +getitemname(32238)+ "<INFO>" +32238+"</INFO> </ITEM>";
+					mes "^000000 <ITEM>" +getitemname(32239)+ "<INFO>" +32239+"</INFO> </ITEM>";
+					mes "^000000 <ITEM>" +getitemname(28762)+ "<INFO>" +28762+"</INFO> </ITEM>";
+					mes "^000000 <ITEM>" +getitemname(21050)+ "<INFO>" +21050+"</INFO> </ITEM>";
+					mes "^000000 <ITEM>" +getitemname(32301)+ "<INFO>" +32301+"</INFO> </ITEM>";
+					mes "^000000 <ITEM>" +getitemname(28254)+ "<INFO>" +28254+"</INFO> </ITEM>";
+					close;
+				case 2 :
+					break;
+			}
+			next;
+			mes "[Licheniyes]";
+			mes "คุณต้องการสร้างอุปกรณ์ชิ้นไหน";
+			next;
+			switch(select("Illusion Morpheus's Hood[1]","Illusion Morpheus's Shawl[1]","Illusion Morpheus's Ring[1]","Illusion Morpheus's Bracelet[1]","Illusion Butcher[2]","Illusion Tae Goo Lyeon[2]","Illusion Gold Lux[2]","Illusion Bazerald[2]","ไม่มีอะไร")){
+				case 1 :
+					set .@location, EQI_HEAD_TOP;
+					.@refine = getequiprefinerycnt(.@location);
+					.@equip_id = getequipid(.@location);
+					.@equip_id_req = 5126;
+					.@req_item_1 = 25271;
+					.@req_item_2 = 25775;
+					.@req_item_3 = 25783;
+					.@amount_req_item_1 = 100;
+					.@amount_req_item_2 = 100;
+					.@amount_req_item_3 = 100;
+					.@req_item_4 = 0;
+					.@reward = 19428;
+					goto craft;
+				case 2 :
+					set .@location, EQI_GARMENT;
+					.@refine = getequiprefinerycnt(.@location);
+					.@equip_id = getequipid(.@location);
+					.@equip_id_req = 2518;
+					.@req_item_1 = 25271;
+					.@req_item_2 = 25778;
+					.@req_item_3 = 25782;
+					.@req_item_4 = 0;
+					.@amount_req_item_1 = 100;
+					.@amount_req_item_2 = 100;
+					.@amount_req_item_3 = 50;
+					.@reward = 20948;
+					goto craft;
+				case 3 :
+					set .@location, EQI_ACC_R;
+					.@refine = getequiprefinerycnt(.@location);
+					.@equip_id = getequipid(.@location);
+					.@equip_id_req = 2648;
+					.@req_item_1 = 25271;
+					.@req_item_2 = 25776;
+					.@req_item_3 = 25781;
+					.@req_item_4 = 25780;
+					.@amount_req_item_1 = 100;
+					.@amount_req_item_2 = 100;
+					.@amount_req_item_3 = 50;
+					.@amount_req_item_4 = 15;
+					.@reward = 32238;
+					goto craft;
+				case 4 :
+					set .@location, EQI_ACC_R;
+					.@refine = getequiprefinerycnt(.@location);
+					.@equip_id = getequipid(.@location);
+					.@equip_id_req = 2649;
+					.@req_item_1 = 25271;
+					.@req_item_2 = 25777;
+					.@req_item_3 = 25784;
+					.@req_item_4 = 25780;
+					.@amount_req_item_1 = 100;
+					.@amount_req_item_2 = 100;
+					.@amount_req_item_3 = 50;
+					.@amount_req_item_4 = 15;
+					.@reward = 32239;
+					goto craft;
+				case 5 :
+					set .@location, EQI_HAND_R;
+					.@refine = getequiprefinerycnt(.@location);
+					.@equip_id = getequipid(.@location);
+					.@equip_id_req = 13159;
+					.@req_item_1 = 25271;
+					.@req_item_2 = 25772;
+					.@req_item_3 = 0;
+					.@req_item_4 = 0;
+					.@amount_req_item_1 = 120;
+					.@amount_req_item_2 = 150;
+					.@reward = 28254;
+					goto craft;
+				case 6 :
+					set .@location, EQI_HAND_R;
+					.@refine = getequiprefinerycnt(.@location);
+					.@equip_id = getequipid(.@location);
+					.@equip_id_req = 1181;
+					.@req_item_1 = 25271;
+					.@req_item_2 = 25779;
+					.@req_item_3 = 0;
+					.@req_item_4 = 0;
+					.@amount_req_item_1 = 120;
+					.@amount_req_item_2 = 150;
+					.@reward = 21050;
+					goto craft;
+				case 7 :
+					set .@location, EQI_HAND_R;
+					.@refine = getequiprefinerycnt(.@location);
+					.@equip_id = getequipid(.@location);
+					.@equip_id_req = 13106;
+					.@req_item_1 = 25271;
+					.@req_item_2 = 25773;
+					.@req_item_3 = 0;
+					.@req_item_4 = 0;
+					.@amount_req_item_1 = 120;
+					.@amount_req_item_2 = 150;
+					.@reward = 32301;
+					goto craft;
+				case 8 :
+					set .@location, EQI_HAND_R;
+					.@refine = getequiprefinerycnt(.@location);
+					.@equip_id = getequipid(.@location);
+					.@equip_id_req = 1231;
+					.@req_item_1 = 25271;
+					.@req_item_2 = 25774;
+					.@req_item_3 = 0;
+					.@req_item_4 = 0;
+					.@amount_req_item_1 = 120;
+					.@amount_req_item_2 = 150;
+					.@reward = 28762;
+					goto craft;
+				case 9 :
+					emotion ET_HUK;
+					mes "[Licheniyes]";
+					mes "อะไร?";
+					mes "ไม่มีอะไร?";
+					mes "ไม่มีอะไร - ???";
+					close;
+			}
+			craft :
+				mes "[Licheniyes]";
+				mes "หากคุณต้องการ <ITEM>" +getitemname(.@reward)+ "<INFO>" +.@reward+"</INFO> </ITEM>";
+				mes "ถ้าอย่างนั้นคุณต้องเอาของตอบแทนมาให้ฉัน";
+				mes "ไม่มีอะไรฟรีในโลกนี้ฮ่าฮ่าฮ่า";
+				next;
+				mes "[Licheniyes]";
+				mes "นำทั้งหมดนี้มาให้ฉัน :";
+				mes " ";
+				mes "(^009900"+.@equip_id_req+"^000000) ^ff0000 + 9 ^000000 "+getitemname(.@equip_id_req)+"";
+				mes "(^009900"+.@req_item_1+"^000000) "+.@amount_req_item_1+" ชิ้นของ "+getitemname(.@req_item_1)+"";
+				mes "(^009900"+.@req_item_2+"^000000) "+.@amount_req_item_2+" ชิ้นของ "+getitemname(.@req_item_2)+"";
+				if(.@req_item_3 > 0){
+					mes "(^009900"+.@req_item_3+"^000000) "+.@amount_req_item_3+" ชิ้นของ "+getitemname(.@req_item_3)+"";
+				}
+				if(.@req_item_4 > 0){
+					mes "(^009900"+.@req_item_4+"^000000) "+.@amount_req_item_4+" ชิ้นของ "+getitemname(.@req_item_4)+"";
+				}
+				next;
+				mes "[Licheniyes]";
+				mes "คุณสามารถรับไอเทมบางอย่างจากดันเจี้ยนนี้";
+				mes "และดูเหมือนว่าคุณจะเตรียมพร้อมแล้ว";
+				mes "อย่าลืมว่าคุณต้องสวมอุปกรณ์ที่คุณต้องการแลกเปลี่ยน";
+				next;
+				switch(select("มาซื้อขายกัน!","ฉันยังไม่ได้เตรียมตัว")){
+					case 1 :
+						break;
+					case 2 :
+						mes "[Licheniyes]";
+						mes "โอ๊ย ... เศร้าแค่ไหน.";
+						mes "โปรดกลับมาเมื่อคุณพร้อม!";
+						close;
+				}
+				.@refine = getequiprefinerycnt(.@location);
+				.@equip_id = getequipid(.@location);
+				if(.@equip_id_req != .@equip_id || .@refine < 9){
+					mes "[Licheniyes]";
+					mes "ฉันต้องการ ^ff0000 + 9 ^000000 "+getitemname(.@equip_id_req)+".";
+					mes "ฉันจะไม่ยอมรับคนอื่น ๆ";
+					close;
+				}
+				if(.@req_item_4 == 0){
+					if(countitem(.@req_item_1) < .@amount_req_item_1 || countitem(.@req_item_2) < .@amount_req_item_2 || countitem(.@req_item_3) < .@amount_req_item_3 ){
+						mes "[Licheniyes]";
+						mes "ฮ่า ๆ ๆ ๆ ...";
+						mes "คุณนำสิ่งของไม่เพียงพอ";
+						mes "ไปหาฉันบ้าง!";
+						close;
+					}
+				}
+				if(.@req_item_3 == 0){
+					if(countitem(.@req_item_1) < .@amount_req_item_1 || countitem(.@req_item_2) < .@amount_req_item_2){
+						mes "[Licheniyes]";
+						mes "ฮ่า ๆ ๆ ๆ ...";
+						mes "คุณนำสิ่งของไม่เพียงพอ";
+						mes "ไปหาฉันบ้าง!";
+						close;
+					}
+				}
+				if(countitem(.@req_item_1) < .@amount_req_item_1 || countitem(.@req_item_2) < .@amount_req_item_2 || countitem(.@req_item_3) < .@amount_req_item_3 || countitem(.@req_item_4) < .@amount_req_item_4){
+						mes "[Licheniyes]";
+						mes "ฮ่า ๆ ๆ ๆ ...";
+						mes "คุณนำสิ่งของไม่เพียงพอ";
+						mes "ไปหาฉันบ้าง!";
+						close;
+					}
+				emotion ET_SMILE;
+				specialeffect2 EF_PHARMACY_OK;
+				delequip .@location;
+				delitem .@req_item_1, .@amount_req_item_1;
+				delitem .@req_item_2, .@amount_req_item_2;
+				if(.@req_item_3 > 0){
+					delitem .@req_item_3, .@amount_req_item_3;
+				}
+				if(.@req_item_4 > 0){
+					delitem .@req_item_4, .@amount_req_item_4;
+				}
+				getitem .@reward, 1;
+				mes "[Licheniyes]";
+				mes "ตกลงนั่นคือสิ่งที่คุณมาที่นี่!";
+				mes "สนุกกับของเล่นใหม่ของคุณ!";
+				mes "ดูแลมันให้ดี";
+				close;
+		default :
+			mes "[Licheniyes]";
+			close;
+	}
+	
+	OnInit :
+		end;
+		
+	OnTouch :
+		OnPCLoadMapEvent :
+			if(strcharinfo(3) == strnpcinfo(4)){
+				if(illusionlabyrinth >= 4){
+					showevent QTYPE_QUEST, 0;
+					classchange( 4_geffen_09, "Licheniyes#illusionlabyrinth_2", bc_self );
+				}
+			}
+			end;
+}

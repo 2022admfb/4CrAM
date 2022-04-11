@@ -1,0 +1,89 @@
+-	script	SysSpin4	-1,{
+	end;
+
+OnInit:
+	setarray $@SSPIN_Rate4[0],	// Number , X , Rate
+		1,32527,95,
+		2,20239,91,
+		3,32421,89,
+		4,31369,86,
+		5,20463,83,
+		6,32652,81,
+		7,32513,79,
+		8,20130,76,
+		9,20517,73,
+		10,31715,70,
+		11,31178,65,
+		12,32628,60,
+		13,20034,55,
+		14,32662,50,
+		15,31121,45,
+		16,32412,40,
+		17,20174,35,
+		18,31685,30,
+		19,20274,25, 
+		20,20237,20,
+		21,32535,15,
+		22,31573,10,
+		23,32630,5,
+		24,31798,1;
+
+
+
+	setarray $@SSPIN_cutin4$[0],"S1","S2","S3","S4","S5","S6","S7","S8","S9","S10",
+	"S11","S12","S13","S14","S15","S16","S17","S18","S19","S20","S21","S22","S23","S24";
+
+	set $@SSPIN_cutin_max4,getarraysize($@SSPIN_cutin4$);
+	end;
+}
+
+function	script	SSPIN_Rate4	{
+	for (set .@i,getarraysize($@SSPIN_Rate4)-1; .@i >= 0; set .@i,.@i-3) {
+		if (getarg(0) == $@SSPIN_Rate4[.@i-2]) return $@SSPIN_Rate4[.@i-1];
+	}
+}
+
+
+function	script	SSPIN_GetCutin4	{
+	for (set .@i,getarraysize($@SSPIN_Rate4)-1; .@i >= 0; set .@i,.@i-3) {
+		if ($@SSPIN_Rate4[.@i] > getarg(0)) return ($@SSPIN_Rate4[.@i-2]-1);
+	}
+	return $@SSPIN_cutin_max4-1;
+}
+
+function	script	boxspin4	{
+	cutin "S25",1;
+	mes "[ ^0000FFBox Spin^000000 ]";
+	mes "สวัสดี "+strcharinfo(0)+" ";
+	mes "มาลุ้นกันว่าวันนี้จะได้รับอะไร";
+	next;
+	mes "[ ^0000FFBox Spin^000000 ]";
+	mes "กำลังสุ่มไอเทม";
+	mes "กรุณารอสักครู่...";
+	set .@rate,rand(100);
+	set .@start,rand($@SSPIN_cutin_max4);
+	set .@end,callfunc("SSPIN_GetCutin4",.@rate);
+	for (set .@i,0; .@i < 50; set .@i,.@i+1) {
+		cutin $@SSPIN_cutin4$[.@start],4;
+		set .@start,(.@start == ($@SSPIN_cutin_max4-1)) ? 0 : (.@start+1);
+		sleep2 100;
+	}
+	while (.@start != .@end) {
+		cutin $@SSPIN_cutin4$[.@start],4;
+		set .@start,(.@start == ($@SSPIN_cutin_max4-1)) ? 0 : (.@start+1);
+		sleep2 600;
+	}
+	cutin $@SSPIN_cutin4$[.@start],4;
+	mes "================";
+		set .@xrate,callfunc("SSPIN_Rate4",(.@end+1));
+		mes "ยินดีด้วยคุณได้รับ "+getitemname(.@xrate)+"";
+		getitem .@xrate,1;
+		set #lastTimeSpin,gettimetick(2);
+		next;
+		mes "ไว้มาลุ้นใหม่นะ";
+		//mes ""+.@end+"";
+		//mes ""+.@rate+"";
+		close2;
+		cutin "",255;
+	}
+	

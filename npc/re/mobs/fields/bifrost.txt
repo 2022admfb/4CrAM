@@ -1,0 +1,56 @@
+//===== rAthena Script =======================================
+//= Bifrost Field Monster Spawn Script
+//===== By: ==================================================
+//= Chilly
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Official kRO monster spawns
+//===== Additional Comments: =================================
+//= 1.0 First Release
+//= 1.1 Renewal spawn update. [Euphy]
+//============================================================
+
+//==================================================
+// bif_fild01 - Bifrost South
+//==================================================
+bif_fild01,0,0	monster	Luciola Vespa	1994,29,5000
+bif_fild01,0,0	monster	Cornus	1992,17,5000
+bif_fild01,0,0	monster	Miming	2137,58,5000
+bif_fild01,0,0	monster	Little Fatum	2136,34,5000
+bif_fild01,0,0	monster	Angra Mantis	2133,5,5000
+bif_fild01,0,0	monster	Pom Spider	2132,5,5000
+
+//==================================================
+// bif_fild02 - Bifrost North
+//==================================================
+bif_fild02,0,0	monster	Luciola Vespa	1994,27,5000
+bif_fild02,0,0	monster	Cornus	1992,16,5000
+bif_fild02,0,0	monster	Miming	2137,33,5000
+bif_fild02,0,0	monster	Little Fatum	2136,55,5000
+bif_fild02,0,0	monster	Angra Mantis	2133,5,5000
+bif_fild02,0,0	monster	Pom Spider	2132,5,5000
+
+//new
+
+//Monster TI	
+//==================================================
+// 70 ~ 100
+//==================================================
+new_1,0,0	monster	Uzhas	1883,120,5000
+new_1,0,0	monster	Teddy Bear	1622,120,5000
+
+//==================================================
+// 101 ~ 125
+//==================================================
+new_2,0,0	monster	Vanberk	1771,120,5000
+new_2,0,0,0	monster	Raydric	1163,120,5000
+
+//==================================================
+// 126 ~ 150
+//==================================================
+//new_3,0,0	monster	Acidus	1716,120,5000
+new_3,0,0	monster	Acidus	1713,120,5000
+new_3,0,0	monster	Kavac	1656,120,5000

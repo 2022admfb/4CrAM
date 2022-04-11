@@ -1,0 +1,177 @@
+izlude,127,162,4	script	Cash Coin	721,{
+	
+	
+ setarray .@valuecoin, 50, 100, 500, 1000;
+ setarray .@valuecash, 500, 1000, 5000, 10000;
+  mes "[ Nemo ]";
+  mes "สวัสดี วันนี้คุณมีอะไรให้เราช่วย";
+  mes "ฉันคิดว่า เป็นเรื่องของ Cash Coin แน่ๆ ";
+  mes "=======================";
+  mes "Cash Coin ^0000FF1 ^000000ชิ้น";
+  mes "เท่ากับ ^0000FF 10 ^000000Cash";
+  mes "=======================";
+  next;
+  mes "[ Nemo ]";
+  mes "ลูกค้า ฉัน เยอะ มากๆ";
+  mes "ยังไง ก็รีบ หน่อยแล้วกัน ";
+  next;
+  set .@t,(select("[แลก50เหรียญ]:[แลก100เหรียญ]:[แลก500เหรียญ]:[แลก1000เหรียญ]:[จบการสนทนา]"));
+  if (.@t == 5) {
+	  mes "[ Nemo ]";
+	  mes "ถ้าต้องการแลกเปลี่ยน";
+	  mes "^FF0000Cash Coin";
+	  mes "ก็มาได้ทุกเมื่อนะค่ะ ลาก่อน";
+      close;
+	  end;
+  }
+  // 50 เหรียญ 500 แคลช
+  if (.@t == 1) {
+  if (countitem(7539)>=.@valuecoin[0]) {
+	
+    mes "[ Nemo ]";
+	mes "คุณแน่ใจใช่ไหม";
+	mes " จะแลกเปลี่ยน "+.@valuecoin[0]+" เหรียญ คุณจะได้รับ "+.@valuecash[0]+" Cash";
+	next;
+   
+    
+	        if (select("ตกลง:ไม่ดีกว่า")==1){
+		    mes "[ Nemo ]";
+	        mes "แลกเปลี่ยนสำเร็จ";
+	        mes "ขอบคุณที่ใช้บริการ ค่ะ";
+			delitem 7539,.@valuecoin[0];
+			#CASHPOINTS += .@valuecash[0];
+			dispbottom "ได้รับ "+.@valuecash[0]+" Cash (ยอดคงเหลือปัจจุบัน "+#CASHPOINTS+"Cash)";
+			close;
+			end;
+		
+	          }
+			mes "[ Nemo ]";
+	        mes "ไม่เป็นอะไรค่ะ ";
+	        mes "ถ้าตัดสินใจดีแล้วก็มาได้ทุกเมื่อนะค่ะ";
+			mes "^FF0000ขอบคุณที่แวะมาทักทาย";
+		    close;
+			end;
+		   }
+	        mes "[ Nemo ]";
+	        mes "โอ้ยยย ";
+	        mes "มันเสียเวลาของดิฉันนะค่ะ = =";
+			mes "^FF0000คุณไม่มี 50 Cash Coin";
+		    close;
+			end;
+           
+  }
+           
+  // 100 เหรียญ 1000 แคลช
+  if (.@t == 2) {
+  if (countitem(7539)>=.@valuecoin[1]) {
+    mes "[ Nemo ]";
+	mes "คุณแน่ใจใช่ไหม";
+	mes " จะแลกเปลี่ยน "+.@valuecoin[1]+" เหรียญ คุณจะได้รับ "+.@valuecash[1]+" Cash";
+	next;
+  
+    
+	if (select("ตกลง:ไม่ดีกว่า")==1){
+		    mes "[ Nemo ]";
+	        mes "แลกเปลี่ยนสำเร็จ";
+	        mes "ขอบคุณที่ใช้บริการ ค่ะ";
+			delitem 7539,.@valuecoin[1];
+			#CASHPOINTS += .@valuecash[1];
+			dispbottom "ได้รับ "+.@valuecash[1]+" Cash (ยอดคงเหลือปัจจุบัน "+#CASHPOINTS+"Cash)";
+			close;
+			end;
+	       }
+	        mes "[ Nemo ]";
+	        mes "ไม่เป็นอะไรค่ะ ";
+	        mes "ถ้าตัดสินใจดีแล้วก็มาได้ทุกเมื่อนะค่ะ";
+			mes "^FF0000ขอบคุณที่แวะมาทักทาย";
+		    close;
+			end;
+            }
+            mes "[ Nemo ]";
+	        mes "โอ้ยยย ";
+	        mes "มันเสียเวลาของดิฉันนะค่ะ = =";
+			mes "^FF0000คุณไม่มี 100 Cash Coin";
+		    close;
+			end;
+  }
+		// 500 เหรียญ 5000 แคลช	
+  if (.@t == 3) {
+  if (countitem(7539)>=.@valuecoin[2]) {
+    mes "[ Nemo ]";
+	mes "คุณแน่ใจใช่ไหม";
+	mes " จะแลกเปลี่ยน "+.@valuecoin[2]+" เหรียญ คุณจะได้รับ "+.@valuecash[2]+" Cash";
+	next;
+	
+	if (select("ตกลง:ไม่ดีกว่า")==1){
+		    mes "[ Nemo ]";
+	        mes "แลกเปลี่ยนสำเร็จ";
+	        mes "ขอบคุณที่ใช้บริการ ค่ะ";
+			delitem 7539,.@valuecoin[2];
+			#CASHPOINTS += .@valuecash[2];
+			dispbottom "ได้รับ "+.@valuecash[2]+" Cash (ยอดคงเหลือปัจจุบัน "+#CASHPOINTS+"Cash)";
+			close;
+			end;
+		
+	     }
+	        mes "[ Nemo ]";
+	        mes "ไม่เป็นอะไรค่ะ ";
+	        mes "ถ้าตัดสินใจดีแล้วก็มาได้ทุกเมื่อนะค่ะ";
+			mes "^FF0000ขอบคุณที่แวะมาทักทาย";
+		    close;
+			end;
+      }
+	        mes "[ Nemo ]";
+	        mes "โอ้ยยย ";
+	        mes "มันเสียเวลาของดิฉันนะค่ะ = =";
+			mes "^FF0000คุณไม่มี 500 Cash Coin";
+		    close;
+			end;
+  }
+  // 1000 เหรียญ 10000 แคลช	
+  if (.@t == 4) {
+  if (countitem(7539)>=.@valuecoin[3]) {
+    mes "[ Nemo ]";
+	mes "คุณแน่ใจใช่ไหม";
+	mes " จะแลกเปลี่ยน "+.@valuecoin[3]+" เหรียญ คุณจะได้รับ "+.@valuecash[3]+" Cash";
+	next;
+	
+	if (select("ตกลง:ไม่ดีกว่า")==1){
+		    mes "[ Nemo ]";
+	        mes "แลกเปลี่ยนสำเร็จ";
+	        mes "ขอบคุณที่ใช้บริการ ค่ะ";
+			delitem 7539,.@valuecoin[3];
+			#CASHPOINTS += .@valuecash[3];
+			dispbottom "ได้รับ "+.@valuecash[3]+" Cash (ยอดคงเหลือปัจจุบัน "+#CASHPOINTS+"Cash)";
+			close;
+			end;
+		
+	     }
+	        mes "[ Nemo ]";
+	        mes "ไม่เป็นอะไรค่ะ ";
+	        mes "ถ้าตัดสินใจดีแล้วก็มาได้ทุกเมื่อนะค่ะ";
+			mes "^FF0000ขอบคุณที่แวะมาทักทาย";
+		    close;
+			end;
+      }
+	        mes "[ Nemo ]";
+	        mes "โอ้ยยย ";
+	        mes "มันเสียเวลาของดิฉันนะค่ะ = =";
+			mes "^FF0000คุณไม่มี 1000 Cash Coin";
+		    close;
+			end;
+  }
+	
+}
+
+    /*OnPCLoginEvent:
+	{
+	announce "=========================",bc_yellow|bc_all;
+	announce "      ยินดีต้อนรับสู่ Ragnarok Origin",bc_yellow|bc_all;
+	
+	announce "         [ Exp Rate ]  300%",bc_yellow|bc_all;
+	
+	announce "         [ Job Rate ]  300%",bc_yellow|bc_all;
+	announce "=========================",bc_yellow|bc_all;
+	end;
+	}*/
+  

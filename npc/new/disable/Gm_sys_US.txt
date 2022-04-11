@@ -1,0 +1,27 @@
+-	script	GM_Login	-1,{
+
+//INFO:
+//Before setting the GM level, put the gm level and its settings in conf / groups.conf to avoid errors. (The levels placed here are examples so the need to add.)
+
+OnPcLoginEvent:
+
+	//configure the gm level here
+	//set .@level_cm,1;
+	//set .@level_gm,2;
+	set .@level_adm,99;
+
+	sleep2 2000;
+		
+		//if(getgroupid() == .@level_cm){
+			//hateffect 136,true;
+		//}
+		//if(getgroupid() == .@level_gm){
+			//hateffect 137,true;
+		//}
+		if(getgroupid() == .@level_adm){
+			hateffect 137,true;
+			dispbottom "คุ?มีสถาน?เป็น GameMaster";
+			
+		}
+end;
+}

@@ -1,0 +1,110 @@
+//===== rAthena Script =======================================
+//= NPCs related to Aldebaran Clock Tower (Nightmare)
+//===== By:==================================================
+//= Ridley8819
+//===== Current Version:=====================================
+//= 1.0
+//===== Compatible With:=====================================
+//= rAthena Project
+//===== Additional Comments:=================================
+//= 1.0 Initial release [Ridley8819]
+//= 1.1 Dialogue cleanup [Aleos]
+//============================================================
+
+c_tower1,232,222,5	script	Belljamin Button#ct	968,{
+	mes "[Belljamin Button]";
+	mes "มอนสเตอร์ที่นี่สามารถควบคุมเวลาได้";
+	if( BaseLevel < 150 ){
+		mes "กลับมาเมื่อคุณไปถึง ^0000FF ระดับ 150 ^000000";
+		close;
+	}
+	mes "เวลาความทรงจำสภาพแวดล้อม ... ทั้งหมดสามารถแปรปรวนได้ที่นี่";
+	next;
+	mes "[Belljamin Button]";
+	mes "ฉันขอร้องไม่ให้คุณถามมากไปกว่านี้ มันอาจทำให้ชีวิตคุณตกอยู่ในอันตราย";
+	next;
+	.@menu = select("อย่าถาม:ไปที่ชั้น 2 ของหอคอยวิปริต:ไปที่ชั้น 3 ของหอคอยวาร์ป");
+	switch(.@menu){
+		case 1:
+			break;
+		case 2:
+		case 3:
+			if( .@menu == 2 ){
+				.@map$ = "c_tower2_";
+				.@x = 268;
+				.@y = 26;
+			}else{
+				.@map$ = "c_tower3_";
+				.@x = 65;
+				.@y = 147;
+			}
+			mes "[Belljamin Button]";
+			mes "ระมัดระวังกับทางเลือกของคุณ";
+			next;
+			mes "[Belljamin Button]";
+			mes "ฉันต้องการ ^0000FF 10,000z ^000000 เพื่อให้คุณเข้าไปมันเป็นสถานที่ที่ค่อนข้างอันตราย";
+			next;
+			switch( select( "ยกเลิก:จ่าย 10,000z:ทำไมต้องใช้เงิน?" ) ){
+				case 1:
+					break;
+				case 2:
+					if( Zeny < 10000 ){
+						mes "[Belljamin Button]";
+						mes "จริงๆ? คุณไม่มีเงินและขอให้ฉันพาคุณไปที่นั่น?";
+						close;
+					}
+					Zeny -= 10000;
+					mes "[Belljamin Button]";
+					mes "ฉันไม่แน่ใจว่าคุณจะติดตามเวลาที่นั่นได้อย่างไร แต่ต้องระวังให้มากที่สุด";
+					close2;
+					warp .@map$,.@x,.@y;
+					end;
+				case 3:
+					mes "[Belljamin Button]";
+					mes "ฉันอยู่ที่นี่ทั้งวันเพื่อความปลอดภัยของนักผจญภัย ฉันมักจะแจ้งเตือนพวกเขาเกี่ยวกับอันตราย นั่นเป็นเหตุผลที่ฉันต้องการรูปแบบการชำระเงินบางรูปแบบ";
+					emotion ET_SWEAT;
+					close;
+			}
+			break;
+	}
+	mes "[Belljamin Button]";
+	mes "ว้าว ... คุณเลือกได้ดี สถานที่แห่งนี้โหดร้ายดังนั้นคุณควรกลับไปยังพื้นที่ปลอดภัย";
+	close;
+}
+
+c_tower2_,274,26,3	script	Belljamin Button#nct1	962,{
+	mes "[Belljamin Button]";
+	mes "บางทีคุณอาจเคยเห็นฉันมาก่อน?";
+	next;
+	mes "[Belljamin Button]";
+	mes "คุณเห็นฉันในที่อื่นด้วยรูปลักษณ์ที่แตกต่างออกไป";
+	next;
+	if( select( "คุณเป็นใคร:พาฉันออกไปจากที่นี่!" ) == 1 ){
+		mes "[Belljamin Button]";
+		mes "คุณช่วยอธิบายให้ฉันฟังได้ไหมว่าคุณเห็นอะไรคุณทำอะไรลงไป?";
+		next;
+		mes "[Belljamin Button]";
+		mes "ฉันด้วย. คุณอาจเป็นคนที่หายไป ไม่รู้ตัวโดยไม่มีจุดประสงค์หรือความคิด";
+		next;
+		mes "[Belljamin Button]";
+		mes "ถึงเวลาเดินทางกลับ กรุณาถนอมเวลาของคุณให้มากขึ้น";
+		next;
+		if( select( "อยู่ต่ออีกหน่อย:โปรดพาฉันกลับไป" ) == 1 ){
+			mes "[Belljamin Button]";
+			mes "คุณต้องชอบที่นี่มาก ทำทุกอย่างที่คุณต้องการ";
+			close;
+		}
+	}else{
+		mes "[Belljamin Button]";
+		mes "ได้เวลาไปต่อแล้ว. คุณมีเครื่องดื่มที่ชอบไหม?";
+		next;
+	}
+	mes "[Belljamin Button]";
+	mes "ลองนึกถึงเครื่องดื่มในถ้วย ค่อยๆคนถ้วยด้วยช้อนแล้วคนให้เข้ากันเมื่อเครื่องดื่มเปลี่ยนสี";
+	close2;
+	warp "c_tower1",235,223;
+	end;
+}
+
+c_tower3_,59,148,5	duplicate(Belljamin Button#nct1)	Belljamin Button#nct2	574
+

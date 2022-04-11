@@ -1,0 +1,161 @@
+//===== rAthena Script ======================================= 
+//= Elemental Stone Trader
+//===== By:================================================== 
+//= rAthena Team & MasterOfMuppets
+//===== Current Version:===================================== 
+//= 1.1
+//===== Compatible With:===================================== 
+//= rAthena Project
+//===== Description:========================================= 
+//= [Official Conversion]
+//= Trade impure types of elemental stones for pure ones.
+//===== Additional Comments:================================= 
+//= 1.0 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//= 1.1 Optimized. [Euphy]
+//============================================================ 
+
+ama_in02,61,27,7	script	Alchemist#ama	749,{
+	mes "[Laspuchin Gregory]";
+	mes "KeekeekeeKeheheh.";
+	mes "มันอัศจรรย์มาก!";
+	mes "ผลลัพธ์ไม่ธรรมดา !!";
+	next;
+	mes "[Laspuchin Gregory]";
+	mes "ใช้ทักษะของฉันในระยะไกลนี้";
+	mes "ที่ดินไม่คาดคิด ...";
+	mes "Keheheh ... เจ้าแห่งวัง";
+	mes "ค่อนข้างให้การต้อนรับ";
+	next;
+	mes "[Laspuchin Gregory]";
+	mes "อ๊ะฉันควรระวัง ...";
+	mes "หากกิลด์พบไฟล์";
+	mes "ตำแหน่ง Myster โง่จะ";
+	mes "โกรธฉัน เคเฮเฮเก้ ...";
+	next;
+	mes "[Laspuchin Gregory]";
+	mes "อะไร? อยากพูดอะไรไหม?";
+	mes "หากคุณมาที่นี่เพื่อการท่องเที่ยว";
+	mes "สนุกกับวันหยุดแล้วกลับไปบ้านเกิดของคุณ";
+	mes "Keekeekee ... หรืออื่น ๆ";
+	mes "ฉันจะให้เธอชิมขวดกรดของฉัน ... !";
+	next;
+	if (select("ได้โปรดขอโทษ:คุณต้องการความช่วยเหลือหรือไม่?") == 1) {
+		mes "[Laspuchin Gregory]";
+		mes "Keheheh ... คุณได้ยินไหม";
+		mes "ฉันพูดอะไร? มันจะเป็น";
+		mes "ลืมไปเลยดีกว่า ...";
+		mes "กีกี้กีกี้กี้ ...";
+		close;
+	}
+	mes "[Laspuchin Gregory]";
+	mes "ช่วยด้วยใช่ไหม ...";
+	mes "ตอนนี้ฉันคิดเกี่ยวกับมัน ...";
+	mes "ฉันต้องการของบางอย่างในตอนนี้ ...";
+	mes "กีฮี่ฮี่ฮี่ฮี่ ...";
+	next;
+	mes "[Laspuchin Gregory]";
+	mes "ท่าน Laspuchin ต้องการบางอย่าง";
+	mes "หินเสริมเสน่ห์สำหรับการทดลอง";
+	mes "ฉันจะใช้มันอย่างมีประสิทธิภาพ ...";
+	mes "ตอนนี้คุณมีหรือยัง?";
+	next;
+	if (select("ไม่มีปัญหา:ฉันมีบ้าง") == 1) {
+		mes "[Laspuchin Gregory]";
+		mes "จากนั้นค้นหา 8 หินชนิดเดียว";
+		mes "หากคุณนำ 8 ชนิดของ";
+		mes "หินเสน่ห์ฉันจะเปลี่ยนมัน";
+		mes "ไปสู่สิ่งที่ดีกว่า ...";
+		next;
+		mes "[Laspuchin Gregory]";
+		mes "จากนั้นค้นหา 8 หินชนิดเดียว";
+		mes "ไม่ใช่อัญมณีทรงกลม แต่เป็น";
+		mes "หินเสน่ห์";
+		mes "ถ้าคุณนำหินผิด";
+		mes "ฉันจะขว้างขวดเปลวไฟ!";
+		next;
+		mes "[Laspuchin Gregory]";
+		mes "เอาหินมาให้ฉันทาส ~ !!";
+		mes "และรักษาสัญญา! เคเฮเฮเก้เก้ ...";
+		close;
+	}
+	mes "[Laspuchin Gregory]";
+	mes "เอ่อคุณเอาอะไรมา?";
+	next;
+	setarray .@Items[1],995,997,994,996;
+	set .@i, .@Items[select("Mystic Frozen:Great Nature:Flame Heart:Rough Wind")];
+	mes "[Laspuchin Gregory]";
+	if (countitem(.@i) > 7) {
+		mes "ฉันจะเอา 8 ชิ้นและ";
+		mes "ให้เป็นหินที่น่าหลงใหล";
+		mes "เสียงนั้นเป็นอย่างไร?";
+		mes "เคะเฮ .....";
+		next;
+		mes "[Laspuchin Gregory]";
+		mes "ฮิฮิคุณต้องการอะไร เลือกหนี่งอย่าง!";
+		next;
+		set .@menu$, "";
+		for(set .@j,1; .@j<5; set .@j,.@j+1) {
+			if (.@Items[.@j] != .@i) set .@menu$, .@menu$+getitemname(.@Items[.@j]);
+			set .@menu$, .@menu$+":";
+		}
+		set .@menu$, .@menu$+"ยกเลิกการซื้อขาย";
+		set .@j, select(.@menu$);
+		mes "[Laspuchin Gregory]";
+		if (.@j == 5) {
+			mes "โอ้ดี";
+			mes "อย่าบอกใครเกี่ยวกับตำแหน่งของฉัน ...";
+			mes "Keheheh ... หลังจากนั้นคุณก็สัญญา ~";
+			close;
+		}
+		else if (.@j == 4) {
+			if (countitem(.@i) > 11) {
+				delitem .@i,12;
+				getitem 996,1;
+				mes "Kehhehheh คุณรู้อะไรไหม?";
+				mes "ฉันมีไม่มากนัก";
+				mes "งั้นฉันจะเอา ^0000FF12 ^000000 ของเธอโอเค?";
+				mes "แน่นอนว่าไม่เป็นไร";
+				mes "เป็นเกียรติที่ได้ช่วยเหลือ Laspuchin!";
+				close;
+			}
+			mes "Keheheh คุณรู้อะไรบางอย่าง";
+			mes "ฉันไม่มีสิ่งเหล่านี้มากนัก";
+			mes "ฉันไม่สามารถรับ 8 ของคุณได้";
+			mes "หากคุณต้องการเปลี่ยนเป็น Rough Wind";
+			mes "เอาหินมาให้ฉันอีก 4 ก้อน 8 + 4 = 12 ...";
+			mes "ต้องใช้ ^0000FF12 ^000000 หิน";
+			next;
+			mes "[Laspuchin Gregory]";
+			mes "เอาหินมาให้ฉันทาส ~ !!";
+			mes "และรักษาสัญญา! เคะเฮเฮเฮเฮ ...";
+			close;
+		}
+		else {
+			delitem .@i,8;
+			getitem .@Items[.@j],1;
+			mes "เคเฮเฮ! คุณได้เลือกสิ่งที่ดี!";
+			mes "ใช้ให้คุ้ม ...";
+			mes "นำหินก้อนอื่นมาให้ฉันถ้าคุณมี!";
+			close;
+		}
+	} else if (countitem(.@i)) {
+		mes "คุณไม่สามารถช่วย Laspuchin กับคู่สามีภรรยาได้";
+		mes "ของหินเสน่ห์ ... ฉันพูด 8!";
+		mes "เอาหินมาให้ฉันแค่ 8 ก้อน!";
+		mes "เคะเฮ .....";
+		next;
+		mes "[Laspuchin Gregory]";
+		mes "เอาหินมาให้ฉันทาส ~ !!";
+		mes "และรักษาสัญญา! เคเฮเฮเฮ ...";
+		close;
+	}
+	mes "Keheheh ~ ตรวจสอบกระเป๋าของคุณ";
+	mes "ก่อนที่คุณจะบอกฉัน";
+	mes "เจ้าโง่แค่ไหน .....";
+	next;
+	mes "[Laspuchin Gregory]";
+	mes "เอาหินมาให้ฉัน! คุณบอกว่าจะช่วยฉัน!";
+	mes "รักษาสัญญา! เคเฮเฮเก้เก้ ...";
+	close;
+}
+

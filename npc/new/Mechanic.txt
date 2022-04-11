@@ -1,0 +1,33 @@
+//===== rAthena Script =======================================
+//= Poring Server
+//===== By: ==================================================
+//= The Ex0ample
+//===== Description: =========================================
+//= v0.1.1
+//============================================================
+// 0.1.0 Test script
+
+moc_para01,24,22,6	script	Mado Guild Npc	4_M_ATEIL,{
+    .@type = -1;
+    mes "[Mado Guild Npc]";
+    mes " > Select style";
+    switch (select("Mado Suit:Mado Robot:Reset")) {
+        case 1:
+            .@type = MADO_SUIT;
+            break;
+        case 2:
+            .@type = MADO_ROBOT;
+            break;
+        default:
+            setmadogear 0, 0;
+            break;
+    }
+    if (.@type != -1)
+        setmadogear 1, .@type;
+    
+    end;
+	
+	OnInit:
+	waitingroom "Mado Suit",0;
+	end;
+}

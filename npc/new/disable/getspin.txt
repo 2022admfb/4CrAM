@@ -1,0 +1,274 @@
+-	shop	Event_coins	-1,32690:15,32691:30,32692:30,32706:30
+
+izlude,151,176,4	script	กิจกรรมพิเศษ	657,{
+
+
+   
+	function showmsg1;
+	function check_pos1;
+	function show_requirement1;
+	function check_requirement1;
+	function make_trade1;
+	
+	set .@accid, getcharid(3);
+    
+	cleararray @katoo$[0] , 0, getarraysize(@katoo$);
+	cleararray .@point[0] , 0, getarraysize(.@point);
+	query_sql "SELECT `eventpoints` FROM `login` WHERE `account_id` = " + .@accid + " LIMIT 1", .@point;
+	if( .@point[0] > 0 )
+  {
+			set #Eventpoint, #Eventpoint + .@point[0];
+			query_sql "UPDATE `login` SET `eventpoints`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+  }
+
+	cleararray @quest[ 0 ] , 0 , getarraysize(  @quest ) ;
+	mes "^FF0000[Alice]";
+	mes "สวัสดี คุณ "+ strcharinfo(0) +"";
+	mes "ปัจจุบันท่านมี แต้ม กิจกรรม : ^0000FF"+ #Eventpoint +"^000000 แต้ม";
+	close2;
+
+	set @s, 1;
+	callshop "Event_coins", 1;
+	npcshopattach "Event_coins";
+	//showmsg1("คุณเหลือแต้ม EventPoints : " + #Eventpoint);
+	end;
+
+L_cancel:
+    mes "^FF0000[Alice]";
+	mes " วันหลังโปรดใช้บริการใหม่นะคะ";
+	close;
+
+OnBuyItem:
+    
+	for( set @i, 0; @i < getarraysize(@bought_nameid); set @i, @i + 1 )
+	{
+		if( @bought_quantity[@i] <= 0 )
+		{
+			showmsg1("เกิดข้อผิดพลาด โปรดลองอีกครั้ง!!");
+			break;
+		}
+		
+		set @j, check_pos1( @bought_nameid[ @i ], @s );
+		if( @j == 0 )
+		{
+			showmsg1("ไม่พบของที่ท่านต้องการ โปรดลองใหม่อีกครั้ง!!");
+			break;
+		}
+		cleararray @quest[ 0 ], 0, getarraysize(@quest);
+		copyarray @quest[ 0 ] , getd( ".quest" + @s + "_" + @j + "[ 0 ]" ) , getarraysize( getd( ".quest" + @s + "_" + @j ) ) ;
+		if( !check_requirement1(@bought_quantity[@i]) )
+			make_trade1(@bought_quantity[@i]) ;
+		else
+		{
+			showmsg1("=====================================");
+			showmsg1("( คะแนน ) ที่ใช้ในการแลกเปลี่ยน " + getitemname(@bought_nameid[ @i ]) + " ไม่เพียงพอ");
+			show_requirement1();
+			npctalk "คุณ "+ strcharinfo(0) +" มีคะแนนไม่เพียงพอ";
+		}
+	}
+
+	deletearray @bought_quantity, getarraysize(@bought_quantity);
+	deletearray @bought_nameid, getarraysize(@bought_nameid);
+	end;
+
+
+/*---- FUNCTIONS ! -------------------------------------------------------------------------
+--- Edit at your own risk ------------------------------------------------------------------
+------------------------------------------------------------------------------------------*/
+
+	function	showmsg1
+	{
+		dispbottom getarg(0);
+	}
+
+	function	check_pos1
+	{
+		if( getarg(1) < 1 || getarg(1) > 9 )
+			return 0;
+
+		for( set .@i, 1; .@i <= 100; set .@i, .@i+1 )
+			if( getd(".quest" + getarg(1) + "_" + .@i + "[ 0 ]") == getarg(0) )
+				return .@i;
+		return 0;
+	}
+
+//-- Function who show the requirement
+	function	show_requirement1	{
+	
+		// Show items need
+		for ( set @j , 2 ; @j < getarraysize( @quest ) ; set @j , @j + 2 )
+		{
+			set @slot$, "";
+			set @k, getiteminfo(@quest[ @j ], 10);
+			if( @k > 0 )
+				set @slot$, "[" + @k + "]";
+			// showmsg1(" -  " + getitemname( @quest[ @j ] ) +  @slot$ + " - " + @quest[ @j + 1 ] + " ea.");
+			showmsg1(" EventPoints :  " + @quest[ @j + 1 ] + " แต้ม");
+		}
+
+		return ;
+	}
+
+//-- Check if the player has all requirement.
+	function	check_requirement1	{
+
+		set @l , 0 ;
+
+// Look if player has all items
+		for ( set @j , 2 ; @j < getarraysize( @quest ) ; set @j , @j + 2 )
+		{
+			if ( #Eventpoint < @quest[ @j + 1 ] * getarg(0) )
+			{
+				set @l , 1 ;
+			}
+		}
+		return @l ;
+	}
+
+//-- Make The trade (delete requirements/give item)
+	function	make_trade1	{
+
+	// Remove items
+		for ( set @j , 2 ; @j < getarraysize( @quest ) ; set @j , @j + 2 )
+		{
+			set #Eventpoint, #Eventpoint - (@quest[ @j + 1 ] * getarg(0)) ;
+		}
+
+	// Give item.
+		getitem @quest[ 0 ] , getarg(0);
+		
+		showmsg1("คุณเหลือแต้ม EventPoints : " + #Eventpoint);
+		npctalk "คุณ "+ strcharinfo(0) +" ทำการแลกเปลี่ยนสำเร็จ";
+		return ;
+	}
+
+	function	digadditem2	{
+
+		set .lastpos[getarg(0)], .lastpos[getarg(0)] + 1;
+
+		set .@i, 1;
+		while( getarg(.@i,-1) != -1 )
+		{
+			setd ".quest" + getarg(0) + "_" + .lastpos[getarg(0)] +"[ " + (.@i-1) + " ]",getarg(.@i);
+			set .@i, .@i + 1;
+		}
+		npcshopadditem( "Event_coins" + getarg(0), getd(".quest" + getarg(0) + "_" + .lastpos[getarg(0)] + "[ 0 ]"), getd(".quest" + getarg(0) + "_" + .lastpos[getarg(0)] + "[ 3 ]")  );
+
+		return;
+		end;
+	}
+
+OnInit:
+	setarray .lastpos[1],0,0,0,0;
+	
+	npcshopdelitem( "", 501 );
+	//waitingroom "แลกไอเท็มกิจกรรม", 0;
+	
+	if( .inited != 1 )
+		set .inited, 1;
+	else
+		end;
+
+	//digadditem(1,501,0,512,5); // Redpotion ใช้ 5p
+	
+digadditem2( 1, 32690, 0, 512, 15 );//JRO
+digadditem2( 1, 32691, 0, 512, 30 );//oldhat
+digadditem2( 1, 32692, 0, 512, 30 );//bag
+digadditem2( 1, 32706, 0, 512, 30 );//bag
+//showmsg1("คุณเหลือแต้ม EventPoints : " + #Eventpoint);
+
+
+
+	
+	end;
+}
+
+/*izlude,149,178,4	script	แลกของกิจกรรม	562,{
+	//setarray .@details[0],0,1,1,1,1,0;
+	setarray .@itemdb[0],18603,20238,31215,5674,19669,31786,31785,19337,31394,31717,31714,31733,31734;//2
+	//setarray .@item[0],details;
+	//setarray .@item[0],.@details[0];
+	set .@npcname,Merlin;
+	mes "[Merlin]";
+	mes " สวัสดี "+.@item[0]+""; 
+	
+	close2;
+	if( getitemname( 18603 )==18603){
+	
+	
+		CallShop "Event_coins",2;
+		dispbottom "OK";
+		
+		
+	}else{
+		dispbottom "NOt";
+		
+	}
+	
+	
+	OnSellItem :
+	
+	
+	if( getitemname( 18603 )){
+	
+	
+		
+		dispbottom "OK";
+		
+		
+	}
+	else{
+	
+	dispbottom "NOt";
+	}
+}*/
+	
+	
+	
+	
+	
+	
+	izlude,148,179,4	script	ExchangePoints	562,{
+    mes "^FF0000[กิจกรรม]";
+	mes "สามารถนำไอเท็มกิจกรรม มาแลกเปลี่ยน";
+	mes "เป็น Event Coin";
+	mes "ไอเท็มจาก ocp ปัจจุบัน สามารถนำมาแลกได้";
+	mes "โปรดอ่านรายละเอียดให้ครบถ้วน";
+	next;
+for(.@i=0;.@i<getarraysize(.Exchange);.@i+=4){
+	mes "^FF0000[รายการแลกเปลี่ยน]";
+	mes (++.@x)+". "+.Exchange[.@i+1]+"x "+getitemname(.Exchange[.@i])+" = "+.Exchange[.@i+3]+"x "+getitemname(.Exchange[.@i+2]);
+	set .@menu$,.@menu$+getitemname(.Exchange[.@i])+":";
+}
+
+set .@choice,select(.@menu$)-1;
+next;
+if(countitem(.Exchange[.@choice*4])<.Exchange[.@choice*4+1]){
+	mes "ไม่มีวัสดุในการแลกเปลี่ยน";
+	end;
+}
+	mes "แลกเปลี่ยน Event Coin สำเร็จ";
+	delitem .Exchange[.@choice*4],.Exchange[.@choice*4+1];
+	getitem .Exchange[.@choice*4+2],.Exchange[.@choice*4+3];
+end;
+
+OnInit:
+	//<arg 1: Material;>, <arg 2: Material Amount;>, <arg 3:Prize;>, <arg 4: Prize amount;>,{Repeat}
+	setarray .Exchange[0],18603,5,32693,5,
+	                      20238,5,32693,5,
+						  31215,5,32693,5,
+						  5674,5,32693,5,
+						  19669,5,32693,5,
+						  31786,5,32693,5,
+						  31785,5,32693,5,
+						  19337,5,32693,5,
+						  31394,5,32693,5,
+						  31717,5,32693,5,
+						  31714,5,32693,5,
+						  31733,5,32693,5,
+						  31734,5,32693,5;
+end;
+
+}
+	
+	

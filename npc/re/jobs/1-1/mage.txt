@@ -1,0 +1,130 @@
+//===== rAthena Script ======================================= 
+//= Renewal Mage Job Quest
+//===== By: ================================================== 
+//= Kisuka
+//===== Current Version: ===================================== 
+//= 1.1
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Job Change to Mage Class
+//===== Additional Comments: ================================= 
+//= 1.0 First Version. [Kisuka]
+//= 1.1 Added support for Baby classes. [Euphy]
+//============================================================ 
+geffen_in,164,124,4	script	Mage Guildsman#mage	123,{
+	if (Upper == 1) {
+		if (ADVJOB == Job_High_Wizard || ADVJOB == Job_Professor) {
+			if (Class == Job_Novice_High) {
+				mes "[Mage Guildsman]";
+				mes "โอ้โหไม่ได้เจอกันตั้งนาน! แต่นายควรจะตายไม่ใช่เหรอ?";
+				next;
+				mes "[Mage Guildsman]";
+				mes "อ๊ะคุณต้องได้เกิดใหม่ดีฉันดีใจ ที่ได้คุณกลับมา";
+				next;
+				if (!callfunc("F_CanChangeJob")) {
+					mes "[Mage Guildsman]";
+					mes "ฉันขอโทษ แต่ฉันคิดว่าคุณ ยังไม่พร้อมที่จะเรียนรู้เวทมนตร์ ทำไมคุณไม่เรียนทักษะพื้นฐานให้จบก่อน";
+					next;
+					mes "[Mage Guildsman]";
+					mes "ใช้เวลาของ คุณยิ่ง คุณเรียนรู้มากเท่าไหร่ คุณก็จะพร้อมที่จะเรียนรู้เวทมนตร์อีกครั้ง";
+					close;
+				}
+				mes "[Mage Guildsman]";
+				mes "อืมเนื่องจาก คุณผ่านการทดสอบ Mage มาแล้วครั้ง หนึ่งฉันจะไม่ถาม คุณสมบัติของคุณ คุณต้องการที่จะมีทักษะเวทมนตร์ของคุณกลับคืนมาทันทีใช่ไหม";
+				next;
+				skill "NV_TRICKDEAD",0,SKILL_PERM;
+				jobchange Job_Mage_High;
+				skill "MG_ENERGYCOAT",1,SKILL_PERM;
+				mes "[Mage Guildsman]";
+				mes "ว้าวด้วยเหตุผล บางอย่าง คุณดูดีกว่าเมื่อก่อน ยังไงก็ตามฉันเชื่อว่าคุณจะทำงานได้ดีกว่าการเป็น Mage เช่นกัน";
+				close;
+			}else{
+				mes "[Mage Guildsman]";
+				mes "มีอะไรให้เราช่วยอีกไหม ถ้าไม่ลองไปทดสอบฝีมือดูสิ โลกกำลังรอคุณอยู่ ~!";
+				close;
+			}
+		}else{
+			mes "[Mage Guildsman]";
+			mes "อะไรคุณสนใจกิลด์ Mage ฉันไม่อยากบอกคุณเรื่องนี้ แต่คุณไม่ได้อยู่ที่นี่";
+			next;
+			mes "[Mage Guildsman]";
+			mes "ฉันไม่แน่ใจว่าทำไม คุณถึงยังยืนอยู่ตรงหน้าฉัน แต่ฉันบอกได้ว่า คุณไม่ได้ตั้งใจจะเป็น Mage";
+			close;
+		}
+	}
+	mes "[Mage Guildsman]";
+	if(BaseJob != Job_Novice) {
+		if(BaseJob == Job_Mage) {
+			mes "เฮ้ คุณยังไม่เข้าใจเหรอ คุณเป็นผู้วิเศษ แล้ว!";
+			mes "สักวันหนึ่งคุณ จะตระหนักถึงพลังภายใน ตัวคุณเมื่อคุณสามารถสร้างไฟด้วยความคิดของคุณ!";
+		} else
+			mes "คุณไม่สามารถเป็น Mage ได้เพราะคุณมีงานอื่นอยู่แล้ว";
+		close;
+	}else{
+		mes "ยินดีที่ได้พบ ?";
+		next;
+		switch(select("ฉันอยากเป็น Mage:อะไรสำคัญ ในการเป็น Mage:ไม่มีอะไรขอบคุณ")) {
+		case 1:
+			mes "[Mage Guildsman]";
+			mes "อยากเป็น Mage เหรอเอ๊ะ ... ";
+			next;
+			mes "[Mage Guildsman]";
+			if (Sex == SEX_MALE) {
+				mes "เฮ้ดูสิ! คุณน่ารักจัง ~! ไม่ใช่ประเภทของฉันนะ ... ";
+			}else{
+				mes "โอววววววววววว ~!";
+				mes "ฉันชอบผู้หญิงแบบเธอ ~";
+			}
+			mes "ใช่แล้วที่คุณบอกว่าอยากเป็น Mage?";
+			next;
+			if(select("ฉันอยากเป็นนักเวทย์:ไม่มีอะไรขอบคุณ.") == 2) {
+				mes "[Mage Guildsman]";
+				mes "ทันทีที่คุณบอกฉันว่าคุณอยากเป็น Mage คุณก็เปลี่ยนใจ?! มีความเด็ดขาดอีกนิด!";
+				close;
+			}
+			mes "[Mage Guildsman]";
+			if (!callfunc("F_CanChangeJob")) {
+				mes "โอ้ ระดับทักษะพื้นฐานของคุณไม่ถึงพอ ที่จะเป็นนักเวทย์";
+				mes "กลับไปเพิ่มระดับทักษะพื้นฐาน ของคุณ";
+				close;
+			}
+			mes "ได้เลย .. ลงชื่อในใบสมัคร .... ว้าว ~ คุณลายมือ ดี อ่าโอเคพอแล้ว";
+			mes "คุณคือ ... " + strcharinfo (0) + ".";
+			next;
+			mes "[Mage Guildsman]";
+			mes "อืมฉันเห็นว่าคุณพยายามอย่างหนัก ในแบบของคุณ แม้ว่ามันจะดูเงอะงะไปหน่อย แต่ฉันคิดว่ามันโอเค!";
+			mes "ดี! การยึดติดกับพื้นฐาน เสมอเป็นสิ่งที่ดีที่สุด ฉันจะเปลี่ยนคุณทันที";
+			next;
+			mes "[Mage Guildsman]";
+			mes "ฮะฮะ .. ! ตอนนี้คุณเป็น Mage แล้วเพื่อนร่วมงานคนหนึ่งของเรา!";
+			mes "ขอต้อนรับคุณเข้าสู่ Mage Guild เพื่อนใหม่ของเรา!";
+			next;
+			mes "[Mage Guildsman]";
+			mes "'ยินดีต้อนรับสู่ Mage Guild ~'";
+			mes "ขอแสดงความยินดีที่ได้เป็นสมาชิกของ Mage Guild!!";
+			callfunc "Job_Change",Job_Mage;
+			getitem 1639,1;	// N_Rod
+			close;
+		case 2:
+			mes "[Mage Guildsman]";
+			mes "อยากเป็น Mage ใช่มั้ย";
+			mes "ฉันยินดีที่จะอธิบาย ข้อกำหนด !";
+			next;
+			mes "[Mage Guildsman]";
+			mes "ก่อนอื่นคุณต้องไปถึง Novice Job Level 10 และเรียนรู้ทักษะพื้นฐานทั้งหมด";
+			next;
+			mes "[Mage Guildsman]";
+			mes "ในอดีตมีการทดสอบ การปรุงยา ที่ซับซ้อนด้วยเหตุนี้ ";
+			mes "ดังนั้นเราจึงตัดสินใจที่จะยอมรับข้อกำหนดขั้นพื้นฐาน";
+			next;
+			mes "[Mage Guildsman]";
+			mes "อย่ารีรอจงเป็นผู้วิเศษ!";
+			close;
+		case 3:
+			mes "[Mage Guildsman]";
+			mes "ไม่มีอะไร ... ?";
+			close;
+		}
+	}
+}

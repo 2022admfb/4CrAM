@@ -1,0 +1,194 @@
+// --------------------------------------------------------------
+// -                      RO - STORE                    -
+//	-					www.ro-store.in.th				-
+// --------------------------------------------------------------
+
+// ============= HOME RENT ================
+function	script	Rentshome	{
+
+Main:
+	mes "[ ผู้ดูแลบ้านเช่า ]";
+	mes "บริการวาร์ปไปสู่บ้านเช่า";
+	mes "โปรดเลือกบ้านเช่าที่เจ้าต้องการ";
+	next;
+	menu 	"บ้านเช่าหลังที่ 1-20",Rentss20,
+		"บ้านเช่าหลังที่ 21-40",Rentss40,
+		"บ้านเช่าหลังที่ 41-60",Rentss60,
+		"• ข้ายังไม่มีบ้าน..!!!",k2;
+
+k2:
+	close;
+	
+Rentss20:
+mes "[ ผู้ดูแลบ้านเช่า ]";
+mes "เลือกบ้านเช่าของเจ้าได้เลย";
+next;
+menu 	"บ้านเช่าหลังที่ 1",rent01,
+	"บ้านเช่าหลังที่ 2",rent02,
+	"บ้านเช่าหลังที่ 3",rent03,
+	"บ้านเช่าหลังที่ 4",rent04,
+	"บ้านเช่าหลังที่ 5",rent05,
+	"บ้านเช่าหลังที่ 6",rent06,
+	"บ้านเช่าหลังที่ 7",rent07,
+	"บ้านเช่าหลังที่ 8",rent08,
+	"บ้านเช่าหลังที่ 9",rent09,
+	"บ้านเช่าหลังที่ 10",rent10,
+	"บ้านเช่าหลังที่ 11",rent11,
+	"บ้านเช่าหลังที่ 12",rent12,
+	"บ้านเช่าหลังที่ 13",rent13,
+	"บ้านเช่าหลังที่ 14",rent14,
+	"บ้านเช่าหลังที่ 15",rent15,
+	"บ้านเช่าหลังที่ 16",rent16,
+	"บ้านเช่าหลังที่ 17",rent17,
+	"บ้านเช่าหลังที่ 18",rent18,
+	"บ้านเช่าหลังที่ 19",rent19,
+	"บ้านเช่าหลังที่ 20",rent20;
+
+Rentss40:
+mes "[ ผู้ดูแลบ้านเช่า ]";
+mes "เลือกบ้านเช่าของเจ้าได้เลย";
+next;
+menu 	"บ้านเช่าหลังที่ 21",rent21,
+	"บ้านเช่าหลังที่ 22",rent22,
+	"บ้านเช่าหลังที่ 23",rent23,
+	"บ้านเช่าหลังที่ 24",rent24,
+	"บ้านเช่าหลังที่ 25",rent25,
+	"บ้านเช่าหลังที่ 26",rent26,
+	"บ้านเช่าหลังที่ 27",rent27,
+	"บ้านเช่าหลังที่ 28",rent28,
+	"บ้านเช่าหลังที่ 29",rent29,
+	"บ้านเช่าหลังที่ 30",rent30,
+	"บ้านเช่าหลังที่ 31",rent31,
+	"บ้านเช่าหลังที่ 32",rent32,
+	"บ้านเช่าหลังที่ 33",rent33,
+	"บ้านเช่าหลังที่ 34",rent34,
+	"บ้านเช่าหลังที่ 35",rent35,
+	"บ้านเช่าหลังที่ 36",rent36,
+	"บ้านเช่าหลังที่ 37",rent37,
+	"บ้านเช่าหลังที่ 38",rent38,
+	"บ้านเช่าหลังที่ 39",rent39,
+	"บ้านเช่าหลังที่ 40",rent40;
+	
+Rentss60:
+mes "[ ผู้ดูแลบ้านเช่า ]";
+mes "เลือกบ้านเช่าของเจ้าได้เลย";
+next;
+menu 	"บ้านเช่าหลังที่ 41",rent41,
+	"บ้านเช่าหลังที่ 42",rent42,
+	"บ้านเช่าหลังที่ 43",rent43,
+	"บ้านเช่าหลังที่ 44",rent44,
+	"บ้านเช่าหลังที่ 45",rent45,
+	"บ้านเช่าหลังที่ 46",rent46,
+	"บ้านเช่าหลังที่ 47",rent47,
+	"บ้านเช่าหลังที่ 48",rent48,
+	"บ้านเช่าหลังที่ 49",rent49,
+	"บ้านเช่าหลังที่ 50",rent50,
+	"บ้านเช่าหลังที่ 51",rent51,
+	"บ้านเช่าหลังที่ 52",rent52,
+	"บ้านเช่าหลังที่ 53",rent53,
+	"บ้านเช่าหลังที่ 54",rent54,
+	"บ้านเช่าหลังที่ 55",rent55,
+	"บ้านเช่าหลังที่ 56",rent56,
+	"บ้านเช่าหลังที่ 57",rent57,
+	"บ้านเช่าหลังที่ 58",rent58,
+	"บ้านเช่าหลังที่ 59",rent59,
+	"บ้านเช่าหลังที่ 60",rent60;
+
+///============================= Dupication
+
+rent01: if($home_Guildid1==0)	goto nohome;	if(getcharid(2)==$home_Guildid1){		warp "guildhall1",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid1);	close;}end;
+rent02: if($home_Guildid2==0)	goto nohome;	if(getcharid(2)==$home_Guildid2){		warp "home02",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid2);	close;}end;
+rent03: if($home_Guildid3==0)	goto nohome;	if(getcharid(2)==$home_Guildid3){		warp "home03",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid3);	close;}end;
+rent04: if($home_Guildid4==0)	goto nohome;	if(getcharid(2)==$home_Guildid4){		warp "home04",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid4);	close;}end;
+rent05: if($home_Guildid5==0)	goto nohome;	if(getcharid(2)==$home_Guildid5){		warp "home05",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid5);	close;}end;
+rent06: if($home_Guildid6==0)	goto nohome;	if(getcharid(2)==$home_Guildid6){		warp "home06",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid6);	close;}end;
+rent07: if($home_Guildid7==0)	goto nohome;	if(getcharid(2)==$home_Guildid7){		warp "home07",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid7);	close;}end;
+rent08: if($home_Guildid8==0)	goto nohome;	if(getcharid(2)==$home_Guildid8){		warp "home08",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid8);	close;}end;
+rent09: if($home_Guildid9==0)	goto nohome;	if(getcharid(2)==$home_Guildid9){		warp "home09",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid9);	close;}end;
+rent10: if($home_Guildid10==0)	goto nohome;	if(getcharid(2)==$home_Guildid10){		warp "home10",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid10);	close;}end;
+rent11: if($home_Guildid11==0)	goto nohome;	if(getcharid(2)==$home_Guildid11){		warp "home11",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid11);	close;}end;
+rent12: if($home_Guildid12==0)	goto nohome;	if(getcharid(2)==$home_Guildid12){		warp "home12",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid12);	close;}end;
+rent13: if($home_Guildid13==0)	goto nohome;	if(getcharid(2)==$home_Guildid13){		warp "home13",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid13);	close;}end;
+rent14: if($home_Guildid14==0)	goto nohome;	if(getcharid(2)==$home_Guildid14){		warp "home14",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid14);	close;}end;
+rent15: if($home_Guildid15==0)	goto nohome;	if(getcharid(2)==$home_Guildid15){		warp "home15",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid15);	close;}end;
+rent16: if($home_Guildid16==0)	goto nohome;	if(getcharid(2)==$home_Guildid16){		warp "home16",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid16);	close;}end;
+rent17: if($home_Guildid17==0)	goto nohome;	if(getcharid(2)==$home_Guildid17){		warp "home17",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid17);	close;}end;
+rent18: if($home_Guildid18==0)	goto nohome;	if(getcharid(2)==$home_Guildid18){		warp "home18",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid18);	close;}end;
+rent19: if($home_Guildid19==0)	goto nohome;	if(getcharid(2)==$home_Guildid19){		warp "home19",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid19);	close;}end;
+rent20: if($home_Guildid20==0)	goto nohome;	if(getcharid(2)==$home_Guildid20){		warp "home20",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid20);	close;}end;
+rent21: if($home_Guildid21==0)	goto nohome;	if(getcharid(2)==$home_Guildid21){		warp "home21",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid21);	close;}end;
+rent22: if($home_Guildid22==0)	goto nohome;	if(getcharid(2)==$home_Guildid22){		warp "home22",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid22);	close;}end;
+rent23: if($home_Guildid23==0)	goto nohome;	if(getcharid(2)==$home_Guildid23){		warp "home23",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid23);	close;}end;
+rent24: if($home_Guildid24==0)	goto nohome;	if(getcharid(2)==$home_Guildid24){		warp "home24",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid24);	close;}end;
+rent25: if($home_Guildid25==0)	goto nohome;	if(getcharid(2)==$home_Guildid25){		warp "home25",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid25);	close;}end;
+rent26: if($home_Guildid26==0)	goto nohome;	if(getcharid(2)==$home_Guildid26){		warp "home26",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid26);	close;}end;
+rent27: if($home_Guildid27==0)	goto nohome;	if(getcharid(2)==$home_Guildid27){		warp "home27",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid27);	close;}end;
+rent28: if($home_Guildid28==0)	goto nohome;	if(getcharid(2)==$home_Guildid28){		warp "home28",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid28);	close;}end;
+rent29: if($home_Guildid29==0)	goto nohome;	if(getcharid(2)==$home_Guildid29){		warp "home29",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid29);	close;}end;
+rent30: if($home_Guildid30==0)	goto nohome;	if(getcharid(2)==$home_Guildid30){		warp "home30",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid30);	close;}end;
+rent31: if($home_Guildid31==0)	goto nohome;	if(getcharid(2)==$home_Guildid31){		warp "home31",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid31);	close;}end;
+rent32: if($home_Guildid32==0)	goto nohome;	if(getcharid(2)==$home_Guildid32){		warp "home32",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid32);	close;}end;
+rent33: if($home_Guildid33==0)	goto nohome;	if(getcharid(2)==$home_Guildid33){		warp "home33",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid33);	close;}end;
+rent34: if($home_Guildid34==0)	goto nohome;	if(getcharid(2)==$home_Guildid34){		warp "home34",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid34);	close;}end;
+rent35: if($home_Guildid35==0)	goto nohome;	if(getcharid(2)==$home_Guildid35){		warp "home35",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid35);	close;}end;
+rent36: if($home_Guildid36==0)	goto nohome;	if(getcharid(2)==$home_Guildid36){		warp "home36",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid36);	close;}end;
+rent37: if($home_Guildid37==0)	goto nohome;	if(getcharid(2)==$home_Guildid37){		warp "home37",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid37);	close;}end;
+rent38: if($home_Guildid38==0)	goto nohome;	if(getcharid(2)==$home_Guildid38){		warp "home38",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid38);	close;}end;
+rent39: if($home_Guildid39==0)	goto nohome;	if(getcharid(2)==$home_Guildid39){		warp "home39",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid39);	close;}end;
+rent40: if($home_Guildid40==0)	goto nohome;	if(getcharid(2)==$home_Guildid40){		warp "home40",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid40);	close;}end;
+rent41: if($home_Guildid41==0)	goto nohome;	if(getcharid(2)==$home_Guildid41){		warp "home41",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid41);	close;}end;
+rent42: if($home_Guildid42==0)	goto nohome;	if(getcharid(2)==$home_Guildid42){		warp "home42",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid42);	close;}end;
+rent43: if($home_Guildid43==0)	goto nohome;	if(getcharid(2)==$home_Guildid43){		warp "home43",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid43);	close;}end;
+rent44: if($home_Guildid44==0)	goto nohome;	if(getcharid(2)==$home_Guildid44){		warp "home44",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid44);	close;}end;
+rent45: if($home_Guildid45==0)	goto nohome;	if(getcharid(2)==$home_Guildid45){		warp "home45",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid45);	close;}end;
+rent46: if($home_Guildid46==0)	goto nohome;	if(getcharid(2)==$home_Guildid46){		warp "home46",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid46);	close;}end;
+rent47: if($home_Guildid47==0)	goto nohome;	if(getcharid(2)==$home_Guildid47){		warp "home47",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid47);	close;}end;
+rent48: if($home_Guildid48==0)	goto nohome;	if(getcharid(2)==$home_Guildid48){		warp "home48",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid48);	close;}end;
+rent49: if($home_Guildid49==0)	goto nohome;	if(getcharid(2)==$home_Guildid49){		warp "home49",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid49);	close;}end;
+rent50: if($home_Guildid50==0)	goto nohome;	if(getcharid(2)==$home_Guildid50){		warp "home50",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid50);	close;}end;
+rent51: if($home_Guildid51==0)	goto nohome;	if(getcharid(2)==$home_Guildid51){		warp "home51",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid51);	close;}end;
+rent52: if($home_Guildid52==0)	goto nohome;	if(getcharid(2)==$home_Guildid52){		warp "home52",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid52);	close;}end;
+rent53: if($home_Guildid53==0)	goto nohome;	if(getcharid(2)==$home_Guildid53){		warp "home53",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid53);	close;}end;
+rent54: if($home_Guildid54==0)	goto nohome;	if(getcharid(2)==$home_Guildid54){		warp "home54",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid54);	close;}end;
+rent55: if($home_Guildid55==0)	goto nohome;	if(getcharid(2)==$home_Guildid55){		warp "home55",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid55);	close;}end;
+rent56: if($home_Guildid56==0)	goto nohome;	if(getcharid(2)==$home_Guildid56){		warp "home56",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid56);	close;}end;
+rent57: if($home_Guildid57==0)	goto nohome;	if(getcharid(2)==$home_Guildid57){		warp "home57",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid57);	close;}end;
+rent58: if($home_Guildid58==0)	goto nohome;	if(getcharid(2)==$home_Guildid58){		warp "home58",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid58);	close;}end;
+rent59: if($home_Guildid59==0)	goto nohome;	if(getcharid(2)==$home_Guildid59){		warp "home59",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid59);	close;}end;
+rent60: if($home_Guildid60==0)	goto nohome;	if(getcharid(2)==$home_Guildid60){		warp "home60",52,55;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid60);	close;}end;
+
+
+nohome:
+	mes "[ ผู้ดูแลบ้านเช่า ]";
+	mes "บ้านเช่าหลังนี้ยังไม่มีผู้ครอบครอง";
+	close;
+	
+end;
+}
+//============================== Warp Main =================================
+-	script	guardhouse	-1,{
+	mes "[ ผู้ดูแลบ้านเช่า ]";
+	mes "สวัสดี ข้ามีหน้าที่ดูแลบ้านเช่า";
+	mes "ป้องกันไม่ให้คนนอกเข้าไปยัง";
+	mes "สถานที่ที่เป็นส่วนตัวที่สุดด้วย";
+	mes "บริการเช่าของเราแห่งนี้ที่เดียว";
+	mes "เจ้าต้องการทำสิ่งใดหล่ะ";
+	next;
+	specialeffect2 561;
+			menu	
+				"• เข้าสู่บ้านเช่า [Rent Home]",Rents,
+				"• ไม่ไปดีกว่า ",cancal;
+	
+Rents:
+	callfunc	"Rentshome";
+	end;
+
+cancal:
+	mes "[ ผู้ดูแลบ้านเช่า ]";
+	mes "นั้นมันก็เรื่องของเจ้า";
+	mes "ถ้าคิดจะไปไหนอย่าลืมมาหาข้า";
+	close;
+	end;
+}
+
+ra_temple,114,174,4	duplicate(guardhouse)	ผู้แลบ้านเช่า#rowarp-01	8_M_TWSOLDIER

@@ -1,0 +1,3427 @@
+//===== rAthena Script ======================================= 
+//= God Item Quest - Megingjard Seal
+//===== By:================================================== 
+//= SinSloth
+//===== Current Version:===================================== 
+//= 2.2
+//===== Compatible With:===================================== 
+//= rAthena Project
+//===== Description:========================================= 
+//= Quest for breaking the seal of Megingjard.
+//===== Additional Comments:=================================
+//= 1.0 First version. Thanks to SinSloth for scripting it. [MasterOfMuppets]
+//= 1.1 fixed exploit [Lupus]
+//= 1.2 Fixed experience gains to match upcoming rate adjustments. [SinSloth]
+//= 1.3 Updated several aspects of the script. [L0ne_W0lf]
+//= 1.4 Minor Touchups to quest. [L0ne_W0lf]
+//= 1.5 Fixed missing close2 in Rebarev Doug. [L0ne_w0lf]
+//= 1.6 Corrected mismatched variables. [L0ne_W0lf]
+//= 1.7 Replaced effect numerics with constants. [Samuray22]
+//= 1.8 Corrected how exp reward is applied. [L0ne_W0lf]
+//= 1.9 Fixed some input checks and variable types. [brianluau]
+//= 2.0 Updated RE/Pre-RE EXP. [Euphy]
+//= 2.1 Fixed minor bug with the Librarian Jekan
+//= 2.2 Renewal script update. [Euphy]
+//= 2.3 Renewal script update for ep16.1 [Capuche]
+//============================================================
+
+-	script	Rebarev Doug_	-1,{
+	if (checkweight(1301,3) == 0) {
+		mes "- You are carrying too many items! -";
+		close;
+	}
+	cutin "god_rebeireb",2;
+	if ((countitem(7080) > 3) && (countitem(7081) > 4) && (countitem(7082) > 3) && (countitem(7084) > 2) && (countitem(7085) > 2)) {
+		mes "[Rebarev Doug]";
+		mes "นี่คืออะไร";
+		mes "คุณ ... ! คุณมี";
+		mes "ทุกสิ่งที่ฉันต้องการ";
+		mes "สร้าง Gleipnir!";
+		next;
+		switch(select("ทำให้ Gleipnir.:ยกเลิก.")) {
+		case 1:
+			mes "[Rebarev Doug]";
+			mes "ฉันเป็นมนุษย์คนเดียวบนโลก";
+			mes "มีความสุขกับความสามารถในการสร้าง Gleipnir นอกจากคนแคระแล้วฉันเป็นคนเดียวที่สามารถสร้างไอเทมนี้ได้!";
+			next;
+			delitem 7080,4;  //Foot_Step_Of_Cat
+			delitem 7081,5;  //Beard_Of_Women
+			delitem 7082,4;  //Root_Of_Stone
+			delitem 7084,3;  //Saliva_Of_Bird
+			delitem 7085,3;  //Tendon_Of_Bear
+			getitem 7058,1; // Gullraifnir
+			mes "[Rebarev Doug]";
+			mes "There you go!";
+			next;
+			mes "[Rebarev Doug]";
+			mes "กล่าวกันว่า Gleipnir แข็งแกร่งมากจนแม้แต่ Fenrir Wolf ก็ไม่สามารถทำลายมันได้ฉันภูมิใจมากที่สามารถสร้างสิ่งนี้ขึ้นมาได้!";
+			break;
+		case 2:
+			break;
+		}
+	}
+	if ($God1 < $@god_check1) {
+		mes "[Rebarev Doug]";
+		mes "พวกเราคือพวกครูเสดที่มี";
+		mes "ได้รับการฝึกเตรียมความพร้อม";
+		mes "สำหรับสงครามศักดิ์สิทธิ์ที่กำลังจะมาถึง";
+		next;
+		mes "[Rebarev Doug]";
+		mes "ตามที่บรรพบุรุษของเรามี";
+		mes "เมื่อพันปีก่อนเราจะเอาชนะฝูงปีศาจเมื่อวันนั้นมาถึง";
+		next;
+		mes "[Rebarev Doug]";
+		mes "หากคุณมีคำถามเกี่ยวกับสงครามครูเสดโปรดถามฉันได้ตามต้องการ";
+		mes "ฉันอาจจะแก่เกินไปและอ่อนแอเกินไปสำหรับการต่อสู้ แต่ฉันจะเผยแพร่ข่าวสารของเราให้มากที่สุดเท่าที่จะทำได้";
+		next;
+		switch(select("Holy Cross คืออะไร:Grand Cross คืออะไร:Sacrifice คืออะไร:Gleipnir คืออะไร?")) {
+		case 1:
+			mes "[Rebarev Doug]";
+			mes "Holy Cross เป็นการแสดงออกครั้งแรกของศรัทธาของครูเซเดอร์โดยการทำสัญลักษณ์ของไม้กางเขนครูเซเดอร์สามารถโจมตีศัตรูของพวกเขาได้";
+			next;
+			mes "[Rebarev Doug]";
+			mes "สัตว์ประหลาดที่อ่อนแอต่อความศักดิ์สิทธิ์โดยเฉพาะ Undead จะถูกแสงของ Holy Cross ทำให้ตาบอดสิ่งที่ทำได้คือรอการพิพากษาอันศักดิ์สิทธิ์";
+			next;
+			mes "[Rebarev Doug]";
+			mes "จากการวิจัยล่าสุดของเรา";
+			mes "Holy Cross สามารถสร้างความเสียหายได้มากกว่าการโจมตีปกติ 4.5 เท่าเมื่อเชี่ยวชาญ";
+			break;
+		case 2:
+			mes "[Rebarev Doug]";
+			mes "แกรนด์ครอส ... !";
+			mes "พระพิโรธอันชอบธรรมของพระเจ้าคือ";
+			mes "ได้รับจากทักษะการทำลายล้างนี้";
+			next;
+			mes "[Rebarev Doug]";
+			mes "พระเจ้าประทานพลังของพระองค์ให้แก่เรา";
+			mes "เราอาจลงโทษพลังแห่งความชั่วร้ายและความโกรธของคน ๆ หนึ่งก็รวมอยู่ในไม้กางเขนอันทรงพลังขนาดยักษ์";
+			next;
+			mes "[Rebarev Doug]";
+			mes "พลังของไม้กางเขนแห่งแสงสามารถสร้างความเสียหายให้กับศัตรูได้สามครั้งการโจมตีแต่ละครั้งจะมีความแรงกว่าการโจมตีปกติของคุณห้าเท่า";
+			next;
+			mes "[Rebarev Doug]";
+			mes "อย่างไรก็ตามเมื่อพวกครูเสดใช้แกรนด์ครอสพวกเขาต้องใช้ความระมัดระวังอย่างยิ่งร่างกายมนุษย์อ่อนแอเกินกว่าจะยอมรับพระประสงค์ของพระเจ้าได้อย่างเต็มที่";
+			next;
+			mes "[Rebarev Doug]";
+			mes "ดังนั้นการใช้ทักษะนี้จะทำให้ Crusader ได้รับความเสียหายอย่างไรก็ตามความเสียหายนี้สามารถ";
+			mes "ลดลงเหลือครึ่งหนึ่งด้วยศรัทธา";
+			break;
+		case 3:
+			mes "[Rebarev Doug]";
+			mes "ในการฝึกฝนสิ่งที่เราสั่งสอนพวกครูเสดเลือกที่จะปกป้อง";
+			mes "คนอื่นโดยแบกรับความทุกข์ของเพื่อนมนุษย์";
+			next;
+			mes "[Rebarev Doug]";
+			mes "ทักษะการบูชายัญทำให้พวกครูเสดสามารถปกป้องเพื่อนร่วมทีมของพวกเขาให้ปลอดภัยจากอันตรายโดยได้รับความเสียหายที่ตั้งใจไว้สำหรับพวกเขา";
+			next;
+			mes "[Rebarev Doug]";
+			mes "เป็นการแสดงความศรัทธาที่ยิ่งใหญ่ที่สุด";
+			mes "เช่นเดียวกับความรักที่มีต่อสหายของคุณทัศนคติเช่นนี้จำเป็นสำหรับผู้รับใช้ของพระเจ้า!";
+			next;
+			mes "[Rebarev Doug]";
+			mes "อย่างไรก็ตามหากคนที่คุณต้องการปกป้องหลงไปจากคุณคุณจะไม่สามารถใช้ทักษะการเสียสละเพื่อพวกเขาได้เว้นแต่พวกเขาจะอยู่ใกล้คุณอีกครั้ง";
+			next;
+			mes "[Rebarev Doug]";
+			mes "เมื่อคุณเห็นภาพความทุกข์ทรมานของคนที่คุณต้องการปกป้องคุณจะไม่ลังเลที่จะเสียสละตัวเอง";
+			next;
+			mes "[Rebarev Doug]";
+			mes "ขอบคุณพระเจ้าที่ประทานพลังในการปกป้องประชาชนของฉัน";
+			break;
+		case 4:
+			mes "[Rebarev Doug]";
+			mes "กลีพเนียร์คือแก่นแท้ของเมจิงจาร์ดที่ฉันค้นคว้ามา";
+			next;
+			mes "[Rebarev Doug]";
+			mes "มันเป็นสิ่งเดียวที่แข็งแกร่งพอที่จะทำให้มนุษย์สวม Megingjard รอบเอวได้";
+			next;
+			mes "[Rebarev Doug]";
+			mes "แม้ว่าฉันจะไม่สามารถต่อสู้ได้อีกต่อไป แต่ฉันได้ศึกษาวิธีสร้าง Gleipnir มาหลายปีแล้วฉันยินดีที่จะสร้างมันขึ้นมาเพื่อคุณถ้าคุณสามารถนำฉันมา ... ";
+			next;
+			mes "[Rebarev Doug]";
+			mes "^0000FF4 Cat Tread^000000,";
+			mes "^0000FF5 Woman's Moustache^000000,";
+			mes "^0000FF4 Root of Stone^000000,";
+			mes "^0000FF3 Sputum of Bird^000000 and";
+			mes "^0000FF3 Sinew of Bear^000000.";
+			break;
+		}
+	}
+	else if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (BaseLevel > 59) {
+			if (god_eremes == 0) {
+				mes "[Rebarev Doug]";
+				mes "...";
+				next;
+				mes "[Rebarev Doug]";
+				mes "ทำไมคุณถึงหลง";
+				mes "รอบ ๆ สถานที่ศักดิ์สิทธิ์นี้?";
+				mes "คุณไม่เข้าใจว่า";
+				mes "เราต้องเตรียมตัวสำหรับ";
+				mes "สงครามศักดิ์สิทธิ์?";
+				next;
+				mes "[Rebarev Doug]";
+				mes "ไม่ว่าฉันจะอธิบายมากแค่ไหนคนไม่รู้ก็ไม่เคยเข้าใจความสำคัญของงานของเราอย่างเต็มที่ดุลอำนาจจะเปลี่ยนไปเมื่อเราคาดหวังน้อยที่สุด!";
+				next;
+				mes "[Rebarev Doug]";
+				mes "ฉันอยากกลับไป";
+				mes "ถึงเวลาที่ฉันจะทำ";
+				mes "ฝึกครูเสดมากกว่า";
+				mes "สั่งสอนคนงมงาย";
+				next;
+				mes "[Rebarev Doug]";
+				mes "ฉันคิดถึงพวกครูเสดของฉันที่";
+				mes "กระตือรือร้นที่จะฟังสิ่งที่ฉันจะพูดและปฏิบัติตามคำสั่งของพวกเขาด้วยความภักดี";
+				next;
+				mes "[Rebarev Doug]";
+				mes "ฉันสงสัย";
+				mes "ที่ที่มี";
+				mes "ไปหมดแล้ว ... ";
+				next;
+				mes "[Rebarev Doug]";
+				mes "...";
+				mes "......";
+				mes ".........";
+				next;
+				mes "[Rebarev Doug]";
+				mes "นักผจญภัยถ้าคุณมีเวลาฟังฉันพูดกับตัวเองทำไมคุณไม่ทำงานให้ฉัน";
+				next;
+				mes "[Rebarev Doug]";
+				mes "มันอาจจะเพิ่มคุณค่า";
+				mes "ประสบการณ์สำหรับคุณเป็นไปได้ว่าคุณจะรู้สึกขอบคุณครูเซดมากขึ้นด้วยซ้ำ";
+				next;
+				switch(select("มันคืออะไร:ฉันเบื่อและเบื่อกับการทำ 'โปรดปราน")) {
+				case 1:
+					mes "[Rebarev Doug]";
+					mes "ฉันต้องการให้คุณพบสมาชิกของหน่วยที่ 1 ในหมวดที่ 3 ของกองร้อยที่ 3 หากคุณบังเอิญพบพวกเขาในการเดินทางของคุณโปรดถามพวกเขาว่าพวกเขาเป็นอย่างไรบ้าง";
+					next;
+					mes "[Rebarev Doug]";
+					mes "มันไม่น่าจะยากที่จะทำและจะไม่เสียเวลาถ้าคุณวางแผนไว้แล้ว";
+					mes "สำรวจโลก";
+					next;
+					switch(select("แน่นอน, ทำไม.:ฉันขอโทษ.")) {
+					case 1:
+						mes "[Rebarev Doug]";
+						mes "สุดยอด!";
+						mes "ทั้งหมดที่ฉันต้องการให้คุณทำคือค้นหาสหายเก่าของฉันและแจ้งให้ฉันทราบว่า";
+						mes "กำลังทำอยู่";
+						next;
+						mes "[Rebarev Doug]";
+						mes "อย่างไรก็ตาม ... ";
+						mes "มีปัญหาอย่างหนึ่ง";
+						mes "ฉันไม่ได้อยู่ที่ไหน";
+						next;
+						mes "[Rebarev Doug]";
+						mes "คุณสามารถลองค้นหาบันทึกการเปลี่ยนแปลงถิ่นที่อยู่ของพลเมืองของอาณาจักรรูน - มิดการ์ทได้ใน";
+						mes "ห้องสมุด Prontera ... ";
+						next;
+						mes "[Rebarev Doug]";
+						mes "อย่างไรก็ตามบันทึกของ";
+						mes "บุคลากรของครูเซเดอร์ถือเป็นความลับดังนั้นฉันไม่แน่ใจว่าคุณสามารถดูได้หรือไม่";
+						next;
+						mes "[Rebarev Doug]";
+						mes "คุณต้องเข้าใจตำแหน่งของฉันต้องการให้ฉันอยู่ในพื้นที่นี้ 24 ชั่วโมง 7 วันต่อสัปดาห์ฉันไม่สามารถออกไปโดยไม่ได้รับความยินยอมจากลำดับชั้นบน";
+						next;
+						mes "[Rebarev Doug]";
+						mes "อย่างไรก็ตามฉันรู้ว่าคุณมีอิสระและมีเวลาที่จะไปทุกที่ที่คุณต้องการฉันจะขอบคุณถ้าคุณจะทำสิ่งนี้ให้ฉัน";
+						next;
+						mes "[Rebarev Doug]";
+						mes "สหายเก่าของฉันในอ้อมแขน";
+						mes "ไม่รู้เท่าไหร่";
+						mes "ฉันคิดถึงพวกเขา ... ";
+						set god_eremes,1;
+						break;
+					case 2:
+						mes "[Rebarev Doug]";
+						mes "^333333*Sigh...*^000000";
+						mes "โปรดเข้าใจว่า";
+						mes "ฉันจะไม่ถามเรื่องนี้";
+						mes "ของคุณถ้ามันไม่ใช่สำหรับ";
+						mes "พันธนาการของ";
+						mes "ตำแหน่งของฉัน";
+						next;
+						mes "[Rebarev Doug]";
+						mes "ฉันมีภาระผูกพันต่อราชอาณาจักรนี้ที่จะต้องรักษาตำแหน่งของฉันไว้และ";
+						mes "แจ้งนักผจญภัยเกี่ยวกับ";
+						mes "คลาสครูเซเดอร์เพราะเหตุนี้";
+						mes "ความรับผิดชอบที่ยอดเยี่ยมฉันต้อง";
+						mes "อยู่ที่นี่เฝ้าระวังเสมอ";
+						next;
+						mes "[Rebarev Doug]";
+						mes "ถ้าคุณไม่เข้าใจคุณก็ต้องสละอิสรภาพของคุณเพื่อรับ ... ";
+						break;
+					}
+					break;
+				case 2:
+					mes "[Rebarev Doug]";
+					mes "ถ้าคุณไม่เข้าใจคุณก็ต้องสละของคุณเพื่อรับ ... ";
+					next;
+					mes "[Rebarev Doug]";
+					mes "ไม่เหมือนเธอฉันรู้ความหมาย";
+					mes "ความรับผิดชอบฉันอยู่ที่นี่ช่วยนักผจญภัยที่อยากรู้อยากเห็นเพื่อกษัตริย์และประเทศ";
+					next;
+					mes "[Rebarev Doug]";
+					mes "ยัง ... ";
+					mes "รู้อย่างนี้";
+					mes "แม้ว่าผลลัพธ์อาจจะไม่เกิดขึ้นในทันที แต่คุณจะได้รับรางวัลเสมอเมื่อคุณช่วยเหลือผู้อื่น";
+					next;
+					mes "[Rebarev Doug]";
+					mes "โปรดพิจารณาใหม่";
+					mes "เมื่อคุณมีโอกาส";
+					break;
+				}
+			}
+			else if (god_eremes > 0 && god_eremes < 4) {
+				if (rand(1,10) > 6 && god_eremes == 2) {
+					mes "[Rebarev Doug]";
+					mes "ฉันสงสัยว่าฉันอายุเท่าไหร่";
+					mes "สหายกำลังทำอยู่";
+					mes "จำไม่ได้ด้วยซ้ำ";
+					mes "ครั้งสุดท้ายที่ฉันเห็นพวกเขา ... ";
+					next;
+					mes "[Rebarev Doug]";
+					mes "Hmm...?";
+					mes "Haven't you left";
+					mes "to search for them yet?";
+					next;
+					switch(select("Where should I go?:I am about to leave.:What do you mean by final mission?")) {
+					case 1:
+						mes "[Rebarev Doug]";
+						mes "อืม ... ";
+						mes "น่าจะทำได้";
+						mes "พบเงื่อนงำบางอย่าง";
+						mes "จะหาได้จากที่ไหน";
+						mes "^0000FFThe Platoon Records ^000000 in";
+						mes "ห้องสมุด Prontera";
+						break;
+					case 2:
+						mes "[Rebarev Doug]";
+						mes "โอ้คุณคือ ... ";
+						mes "ฉันสงสัยว่าอะไร";
+						mes "ตั้งแต่ทำมา";
+						mes "^0000FF ภารกิจสุดท้ายของเรา ^000000 ... ";
+						break;
+					case 3:
+						mes "[Rebarev Doug]";
+						mes "ภารกิจสุดท้าย ... ?";
+						mes "ฉันจำไม่ได้";
+						mes "ทุกอย่างในขณะนี้";
+						mes "แต่มันเป็นเหตุผลว่าทำไม";
+						mes "ทีมเราแตก";
+						next;
+						mes "[Rebarev Doug]";
+						mes "พวกเราเป็นทีมที่ยอดเยี่ยม";
+						mes "แต่ในระบบทหาร";
+						mes "ต้องทำตามคำสั่ง";
+						mes "ของผู้บังคับบัญชาของคุณ ... ";
+						next;
+						mes "[Rebarev Doug]";
+						mes "ถ้าแค่ ... ";
+						mes "^660000 เขา ^000000 ไม่ได้รบกวน ... ";
+						next;
+						mes "[Rebarev Doug]";
+						mes "...";
+						next;
+						mes "[Rebarev Doug]";
+						mes "...";
+						mes "......";
+						next;
+						mes "[Rebarev Doug]";
+						mes "ไม่ต้องพูดถึงเรื่องนั้นมีอะไรสำคัญที่ทีมของเราถูกยุบเพราะเราล้มเหลวในภารกิจสุดท้ายตอนนี้คุณช่วยไปหา ^0000FF The 3rd Platoon Records ^000000 ในห้องสมุด Prontera ให้ฉันได้ไหม";
+						set god_eremes,3;
+						next;
+						mes "[Rebarev Doug]";
+						mes "โปรดจำไว้ว่าการขอไฟล์พร้อมบันทึกจาก ^660000 ภารกิจสุดท้ายของทีมที่ 1 ^000000";
+						break;
+					}
+				}
+				else {
+					mes "[Rebarev Doug]";
+					mes "ฉันสงสัยว่าฉันอายุเท่าไหร่";
+					mes "สหายกำลังทำอยู่";
+					mes "จำไม่ได้ด้วยซ้ำ";
+					mes "ครั้งสุดท้ายที่ฉันเห็นพวกเขา ... ";
+					next;
+					mes "[Rebarev Doug]";
+					mes "หืม ... ?";
+					mes "คุณยังไม่จากไป";
+					mes "จะค้นหาหรือยัง";
+					next;
+					switch(select("ฉันควรจะไปที่ไหน:ฉันกำลังจะออกไป.")) {
+					case 1:
+						mes "[Rebarev Doug]";
+						mes "อืม ... ";
+						mes "น่าจะทำได้";
+						mes "พบเงื่อนงำบางอย่าง";
+						mes "จะหาได้จากที่ไหน";
+						mes "^0000FFThe 3rd Platoon Records ^000000 in";
+						mes "ห้องสมุด Prontera";
+						break;
+					case 2:
+						mes "[Rebarev Doug]";
+						mes "โอ้คุณคือ ... ";
+						mes "ฉันสงสัยว่าอะไร";
+						mes "ตั้งแต่ทำมา";
+						mes "^0000FF ภารกิจสุดท้ายของเรา ^000000 ... ";
+						set god_eremes,2;
+						break;
+					}
+				}
+			}
+			else if (god_eremes > 3 && god_eremes < 18) {
+				mes "[Rebarev Doug]";
+				mes "หือ ... ?";
+				mes "บรรณารักษ์";
+				mes "ไม่ยอมให้คุณ";
+				mes "อ่านบันทึก?";
+				next;
+				mes "[Rebarev Doug]";
+				mes "เขาอาจมีความรับผิดชอบ";
+				mes "แต่ในตอนท้ายของวันเขาก็เหมือนกับคุณกับฉันคุณสามารถหาวิธีโน้มน้าวให้เขาช่วยคุณได้ฉันแน่ใจ";
+				next;
+				mes "[Rebarev Doug]";
+				mes "ได้โปรดฉันขอร้อง";
+				mes "คุณจะรู้";
+				mes "เกิดอะไรขึ้นกับ";
+				mes "ที่เหลือของหน่วยที่ 1?";
+				next;
+				mes "[Rebarev Doug]";
+				mes "โอ้ ... ";
+				mes "มันอาจจะช่วยได้ถ้ารู้ว่าเราเป็น ^660000Crusader Third Company, Third Platoon, First Squad ^000000";
+			}
+			else if (god_eremes > 17 && god_eremes < 20) {
+				if (god_megin_1 > 0 || god_megin_2 > 0 || god_megin_3 > 0 || god_megin_4 > 0 || god_megin_5 > 0 || god_megin_6 > 0) {
+					mes "[Rebarev Doug]";
+					mes "โอ้ ... ";
+					mes "คุณเจอพวกเขาแล้วเหรอ?";
+					mes "ทุกคนโอเคไหม";
+					next;
+					mes "^3355FF คุณบอก Rebarev Doug";
+					mes "แม้ว่าจะเป็น";
+					mes "ปวดไมเกรน";
+					mes "และความจำเสื่อมส่วนที่เหลือ";
+					mes "ของหน่วยที่ 1 สบายดี";
+				}
+				else {
+					mes "^3355FF คุณบอก Rebarev Doug";
+					mes "ที่คุณได้อ่าน";
+					mes "บันทึกหมวดที่ 3 และ";
+					mes "อธิบายสิ่งที่คุณมี";
+					mes "จัดการเรียนรู้. ^000000";
+					next;
+					mes "[Rebarev Doug]";
+					mes "โอ้ฉันดีใจที่ได้ยิน";
+					mes "คุณสามารถอ่าน";
+					mes "บันทึก! แต่ฉันไม่ไว้ใจ";
+					mes "สิ่งที่เขียนบนกระดาษ";
+					mes "ท้ายที่สุดมันอาจจะเป็น";
+					mes "ล้าสมัย ... ";
+					next;
+					mes "[Rebarev Doug]";
+					mes "ถ้าเป็นไปได้ฉันหวังว่าคุณจะได้พบกับทีมที่ 1 ตัวต่อตัวดังนั้นฉันจะได้รู้แน่ ๆ ว่าพวกเขาไม่เป็นไร";
+					next;
+					mes "[Rebarev Doug]";
+					mes "ชีวิตของผู้ชายก็เกินไป";
+					mes "สั้นและผองเพื่อน";
+					mes "น้อยเกินไปโปรดค้นหา";
+					mes "ว่าสหายเก่าของฉัน";
+					mes "กำลังทำเพื่อฉัน";
+				}
+			}
+			else if (god_eremes > 19 && god_eremes < 23) {
+				mes "[Rebarev Doug]";
+				mes "ยินดีต้อนรับกลับ ~";
+				mes "ฉันเจอคุณครั้งสุดท้ายนานแล้วนะเจอคนที่เหลือ";
+				mes "ของ 1 Squad?";
+				next;
+				mes "[Rebarev Doug]";
+				mes "หืม ... ?";
+				mes "นั่นคืออะไร";
+				mes "ดูแปลก ๆ สำหรับ?";
+				next;
+				switch(select("เผชิญหน้ากับ Rebarev Doug:กระทำการที่ไม่น่าสงสัย.")) {
+				case 1:
+					mes "^3355FF คุณเผชิญหน้ากับ Rebarev Doug เกี่ยวกับปัญหาความจำและไมเกรนของหน่วยที่ 1 ... ^000000";
+					next;
+					mes "^3355FFT เมื่อนึกถึงเรื่องราวของ Royal Myst และการพูดถึงของ Egnigem ก็เริ่มสับสนในความคิดของคุณ ... ^000000";
+					next;
+					mes "[Rebarev Doug]";
+					mes "คุณกำลังพูดถึงอะไรฉันไม่เข้าใจคุณกำลังพูดถึงสิ่งต่างๆมากมายพร้อมกัน!";
+					next;
+					mes "[Rebarev Doug]";
+					mes "อย่ามองฉันแบบนั้นถ้าพูดเสร็จแล้วได้โปรด";
+					mes "ขอโทษนะและบอกข่าวของคุณอีกครั้ง";
+					next;
+					mes "[Rebarev Doug]";
+					mes "ฉันซาบซึ้งที่คุณส่งข่าวเรื่องสหายเก่าของฉันมาให้ฉัน";
+					mes "ตอนนี้ข้าต้องค้นคว้าต่อภายใต้พระบัญชาของพระองค์";
+					set god_eremes,21;
+					break;
+				case 2:
+					mes "^3355FF คุณเก็บความสงสัยไว้กับตัวเองและบอก Rebarev Doug เกี่ยวกับสมาชิกของ";
+					mes "หน่วยที่ 1 ^000000";
+					next;
+					mes "^3355FF แน่นอนคุณเก็บรายละเอียดบางอย่างไว้และบอกเฉพาะสิ่งที่เขาอยากได้ยินเท่านั้น ^000000";
+					next;
+					mes "[Rebarev Doug]";
+					mes "สุดยอด!";
+					mes "ฉันดีใจที่ได้ยิน";
+					mes "ทำได้ดีมาก!";
+					mes "ฮ่าฮ่าฮ่าฮ่าฮ่าฮ่าฮ่า!";
+					next;
+					mes "[Rebarev Doug]";
+					mes "ฉันซาบซึ้งที่คุณส่งข่าวเรื่องสหายเก่าของฉันมาให้ฉัน";
+					mes "ตอนนี้ข้าต้องค้นคว้าต่อภายใต้พระบัญชาของพระองค์ขอขอบคุณอีกครั้งสำหรับความช่วยเหลือ";
+					set god_eremes,22;
+					break;
+				}
+			}
+			else if (god_eremes > 22 && god_eremes < 25) {
+				mes "^3355FF คุณเผชิญหน้า";
+				mes "Rebarev Doug กับ";
+				mes "ข้อมูลที่คุณเรียนรู้";
+				mes "จาก Egnigem. ^000000";
+				next;
+				mes "^3355FF อย่างไรก็ตามเขาไม่ได้";
+				mes "ดูไม่ค่อยกระวนกระวายใจเลยจริงๆแล้วเขาแสดงออกถึงความสงบที่ทำให้คุณรู้สึกกังวล ^000000";
+				next;
+				mes "[Rebarev Doug]";
+				mes "มันสายเกินไปที่จะพูดถึงเรื่องนี้แม้ว่าฉันจะรู้สึกเสียใจสำหรับคุณที่รู้มากเกินไป ณ ตอนนี้ไม่มีอะไรที่คุณสามารถพิสูจน์ได้";
+				next;
+				mes "[Rebarev Doug]";
+				mes "ไม่เข้าใจเหรอ";
+				mes "ชนชั้นสูงและมีอำนาจปกครองโลกนี้ฉันไม่สามารถแตะต้องได้! และคนที่อ่อนแอและต่ำต้อยสามารถเน่าเปื่อยในนรกได้เฮ้เฮ้!";
+				next;
+				mes "[Rebarev Doug]";
+				mes "คุณเกลียดฉันไหม";
+				mes "คุณเกลียดฉันจริงๆหรือ";
+				mes "ดูหน้านี้สิ";
+				next;
+				mes "[Rebarev Doug]";
+				mes "นี่คือ";
+				mes "ใบหน้าของผู้มีอำนาจ!";
+				mes "ไปรายงานฉันต่อผู้พิพากษาที่รับผิดชอบอาชญากรรมทางทหารทั้งหมด! เขาอยู่ข้างหลังฉัน!";
+				next;
+				mes "[Rebarev Doug]";
+				mes "ถ้าอย่างน้อย 100 คนรายงานการกระทำผิดในลักษณะเดียวกันเขาอาจจะกักขัง";
+				mes "การพิจารณาคดี แต่คุณต้องการเปิดเผยเรื่องนี้ต่อสาธารณะหรือไม่";
+			}
+			else if (god_eremes > 23 && god_eremes < 26) {
+				mes "[Rebarev Doug]";
+				mes "ฉันไม่ได้คิด";
+				mes "คุณจะทำจริง";
+				mes "แต่จะเสียใจภายหลัง ... ";
+			}
+			else {
+				mes "[Rebarev Doug]";
+				mes "ไม่เข้าใจเหรอ";
+				mes "ชนชั้นสูงและมีอำนาจปกครองโลกนี้ฉันไม่สามารถแตะต้องได้! และคนที่อ่อนแอและต่ำต้อยสามารถเน่าเปื่อยในนรกได้เฮ้เฮ้!";
+			}
+		}
+		else {
+			mes "[Rebarev Doug]";
+			mes "ไม่พอดี";
+			mes "พูดกับฉันด้วยซ้ำ";
+			mes "แม้ว่าคุณจะเป็นนักผจญภัย ... ";
+		}
+	}
+	else {
+		mes "[Rebarev Doug]";
+		mes "พวกเราคือพวกครูเสดที่มี";
+		mes "ได้รับการฝึกเตรียมความพร้อม";
+		mes "สำหรับสงครามศักดิ์สิทธิ์ที่กำลังจะมาถึง";
+		next;
+		mes "[Rebarev Doug]";
+		mes "ตามที่บรรพบุรุษของเรามี";
+		mes "เมื่อพันปีก่อนเราจะเอาชนะฝูงปีศาจเมื่อวันนั้นมาถึง";
+	}
+	close2;
+	cutin "god_rebeireb",255;
+	end;
+}
+
+-	script	Crusader#God_	-1,{
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes > 22 && god_eremes < 25) {
+			mes "[Max Von Shedough]";
+			mes "ยินดีต้อนรับเพื่อน!";
+			mes "ที่นี่ในปราสาท Prontera พวกเราชาวครูเสดกำลังยุ่งอยู่กับการเตรียมตัวสำหรับสงครามศักดิ์สิทธิ์ที่กำลังจะมาถึง";
+			next;
+			mes "[Max Von Shedough]";
+			mes "ขอแนะนำตัว";
+			mes "ฉันชื่อ Max Von Shedough ผู้พิพากษาทหาร! คุณมีธุระอะไรกับฉันหรือเปล่า";
+			next;
+			mes "^3355FF คุณส่ง";
+			mes "แม็กซ์ฟอนเชโดฟ";
+			mes "คำร้องของคุณต่อ";
+			mes "เรบาเรฟดั๊กอิง";
+			mes "การสอบสวนของคุณ";
+			mes "กับ Egnigem. ^000000";
+			next;
+			mes "[Max Von Shedough]";
+			mes "หืม? นี่มันจริงจังนะ";
+			mes "ได้เลยฉันจะตรวจสอบการอ้างสิทธิ์ของคุณอย่างสุดความสามารถ";
+			next;
+			mes "[Max Von Shedough]";
+			mes "อย่างไรก็ตาม ณ ตอนนี้คำร้องที่คุณให้ฉันถือว่าเป็นข้อมูลลับโปรดเก็บเป็นความลับทางทหาร";
+			set $God2,$God2+1;
+			if ($God2 == $@god_check1) {
+				announce "The 2nd seal of [Megingjard] has appeared.",bc_all;
+			}
+			else if ($God2 == $@god_check2) {
+				if ($God1 == $@god_check2 && $God2 == $@god_check2 && $God3 == $@god_check2 && $God4 == $@god_check2)
+					announce "Four seals have been released at the same time with the seal of [Megingjard].",bc_all;
+				else
+					announce "The 2nd seal of [Megingjard] has been released.",bc_all;
+			}
+			if (god_eremes == 23) {
+				set god_eremes,25;
+			}
+			else if (god_eremes == 24) {
+				set god_eremes,26;
+			}
+			close;
+		}
+		else if (god_eremes > 26) {
+			mes "[Max Von Shedough]";
+			mes "น่าเสียดายฉันไม่แน่ใจว่าจะสามารถพิจารณาคดีกับ Rebarev Doug ได้หรือไม่";
+			next;
+			mes "[Max Von Shedough]";
+			mes "น่าเสียใจที่ดูเหมือนว่าเขายังคงมีอิทธิพลมากเกินไป แต่ยังไงก็ขอให้มั่นใจว่าจะทำทุกอย่างที่ทำได้ ... ";
+			next;
+			mes "[Max Von Shedough]";
+			mes "แต่เชื่อฉันเถอะ";
+			mes "ฉันจะทำของฉัน";
+			mes "ดีที่สุดที่จะเอาผิดเขา";
+			close;
+		}
+		else {
+			mes "[Max Von Shedough]";
+			mes "ยินดีต้อนรับเพื่อน!";
+			mes "ที่นี่ในปราสาท Prontera พวกเราชาวครูเสดกำลังยุ่งอยู่กับการเตรียมตัวสำหรับสงครามศักดิ์สิทธิ์ที่กำลังจะมาถึง";
+			next;
+			mes "[Max Von Shedough]";
+			mes "ขอแนะนำตัว";
+			mes "ฉันชื่อ Max Von Shedough ผู้พิพากษาทหารน่าเศร้าที่แม้แต่พวกเราชาวครูเสดก็ยังไม่มีภูมิคุ้มกันต่อการทุจริต ... ";
+			close;
+		}
+	}
+	else {
+		mes "[Max Von Shedough]";
+		mes "ยินดีต้อนรับเพื่อน!";
+		mes "ที่นี่ในปราสาท Prontera พวกเราชาวครูเสดกำลังยุ่งอยู่กับการเตรียมตัวสำหรับสงครามศักดิ์สิทธิ์ที่กำลังจะมาถึง";
+		next;
+		mes "[Max Von Shedough]";
+		mes "ขอแนะนำตัว";
+		mes "ฉันชื่อ Max Von Shedough";
+		mes "ผู้พิพากษาทหาร! น่าเศร้าที่แม้แต่พวกเราชาวครูเสดก็ไม่มีภูมิคุ้มกันต่อการทุจริต ... ";
+		close;
+	}
+}
+
+prt_in,172,109,0	script	A File#megin1	111,{
+	if (god_eremes == 12) {
+		mes "^3355FF คุณพบ";
+		mes "^660000 The 3rd Platoon Records ^3355FF! ^000000";
+		close;
+	}
+	else if (god_eremes > 6 && god_eremes < 12) {
+		if (rand(1,10) > 6 && god_eremes > 6) {
+			mes "^3355FF คุณเห็นชั้นวางที่เต็มไปด้วยไฟล์จำนวนมากคุณเริ่มค้นหาทีละไฟล์ ^000000";
+			set god_eremes,god_eremes+1;
+			close;
+		}
+		else {
+			mes "^3355FF คุณเห็นชั้นวางที่เต็มไปด้วยไฟล์มากมายคุณเริ่มค้นหาทีละไฟล์ ^000000";
+			close2;
+		}
+	}
+	else if (god_eremes < 7) {
+		mes "[Librarian Jekan]";
+		mes "ฉันขอโทษ + ((เพศ == SEX_MALE)? sir:ma'am) + ,";
+		mes "แต่จำเป็นต้องได้รับอนุญาตพิเศษเพื่อเรียกดูส่วนนั้นมิฉะนั้นจะอยู่นอกขีด จำกัด ";
+		close;
+	}
+	else {
+		mes "[Librarian Jekan]";
+		mes "รอ ... !";
+		mes "ส่วนนั้น";
+		mes "เกินขีด จำกัด !";
+		close;
+	}
+}
+
+prt_in,170,109,0	script	A File#megin2	111,{
+	if (god_eremes == 12) {
+		mes "เจอแล้ว ^0000FFThe 3rd Platoon Records ^000000!";
+		close;
+	}
+	else if (god_eremes > 6 && god_eremes < 12) {
+		if (rand(1,10) > 6 && god_eremes > 6) {
+			mes "^3355FF คุณเห็นชั้นวางที่เต็มไปด้วยไฟล์จำนวนมากคุณเริ่มค้นหาทีละไฟล์ ^000000";
+			set god_eremes,god_eremes+1;
+			close;
+		}
+		else {
+			mes "^3355FF คุณเห็นชั้นวางที่เต็มไปด้วยไฟล์มากมายคุณเริ่มค้นหาทีละไฟล์ ^000000";
+			close;
+		}
+	}
+	else if (god_eremes < 7) {
+		mes "[Librarian Jekan]";
+		mes "รอ ... !";
+		mes "ส่วนนั้น";
+		mes "เกินขีด จำกัด !";
+		close;
+	}
+	else {
+		mes "[Librarian Jekan]";
+		mes "รอ ... !";
+		mes "ส่วนนั้น";
+		mes "เกินขีด จำกัด !";
+		close;
+	}
+}
+
+prt_in,168,109,0	script	A File#megin3	111,{
+	if (god_eremes == 12) {
+		mes "เจอแล้ว";
+		mes "^0000FFThe 3rd Platoon Records^000000!";
+		close;
+	}
+	else if (god_eremes > 6 && god_eremes < 12) {
+		if (rand(1,10) > 6 && god_eremes > 6) {
+			mes "^3355FF คุณเห็นชั้นวางที่เต็มไปด้วยไฟล์จำนวนมากคุณเริ่มค้นหาทีละไฟล์ ^000000";
+			set god_eremes,god_eremes+1;
+			close;
+		}
+		else {
+			mes "^3355FF คุณเห็นชั้นวางที่เต็มไปด้วยไฟล์มากมายคุณเริ่มค้นหาทีละไฟล์ ^000000";
+			close;
+		}
+	}
+	else if (god_eremes < 7) {
+		mes "[Librarian Jekan]";
+		mes "รอ ... !";
+		mes "ส่วนนั้น";
+		mes "เกินขีด จำกัด !";
+		close;
+	}
+	else {
+		mes "[Librarian Jekan]";
+		mes "รอ ... !";
+		mes "ส่วนนั้น";
+		mes "เกินขีด จำกัด !";
+		close;
+	}
+}
+
+prt_in,169,109,0	script	A File#megin4	111,{
+	if (god_eremes == 12) {
+		mes "เจอแล้ว ^0000FFThe 3rd Platoon Records ^000000!";
+		close;
+	}
+	else if (god_eremes > 6 && god_eremes < 12) {
+		if (rand(1,10) > 6 && god_eremes > 6) {
+			mes "^3355FF คุณเห็นชั้นวางที่เต็มไปด้วยไฟล์มากมายคุณเริ่มค้นหาทีละไฟล์ ^000000";
+			set god_eremes,god_eremes+1;
+			close;
+		}
+		else {
+			mes "^3355FF คุณเห็นชั้นวางที่เต็มไปด้วยไฟล์จำนวนมากคุณเริ่มค้นหาทีละไฟล์ ^000000";
+			close;
+		}
+	}
+	else if (god_eremes < 7) {
+		mes "[Librarian Jekan]";
+		mes "รอ ... !";
+		mes "ส่วนนั้น";
+		mes "เกินขีด จำกัด !";
+		close;
+	}
+	else {
+		mes "[Librarian Jekan]";
+		mes "รอ ... !";
+		mes "ส่วนนั้น";
+		mes "เกินขีด จำกัด !";
+		close;
+	}
+}
+
+prt_in,166,109,0	script	A File#megin5	111,{
+	if (god_eremes == 12) {
+		mes "เจอแล้ว";
+		mes "^0000FF The 3rd Platoon Records ^000000!";
+		close;
+	}
+	else if (god_eremes > 6 && god_eremes < 12) {
+		if (rand(1,10) > 6 && god_eremes > 6) {
+			mes "^3355FF คุณเห็นชั้นวางที่เต็มไปด้วยไฟล์จำนวนมากคุณเริ่มค้นหาทีละไฟล์ ^000000";
+			set god_eremes,god_eremes+1;
+			close;
+		}
+		else {
+			mes "^3355FF คุณเห็นชั้นวางที่เต็มไปด้วยไฟล์มากมายคุณเริ่มค้นหาทีละไฟล์ ^000000";
+			close;
+		}
+	}
+	else if (god_eremes < 7) {
+		mes "[Librarian Jekan]";
+		mes "รอ ... !";
+		mes "ส่วนนั้น";
+		mes "เกินขีด จำกัด !";
+		close;
+	}
+	else {
+		mes "[Librarian Jekan]";
+		mes "รอ ... !";
+		mes "ส่วนนั้น";
+		mes "เกินขีด จำกัด !";
+		close;
+	}
+}
+
+prt_in,172,106,0	script	Librarian#megin	833,{
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes > 2 && god_eremes < 7) {
+			mes "[Librarian Jekan]";
+			mes "อาได้โปรดทำ";
+			mes "ไม่สัมผัสไฟล์";
+			mes "ในส่วนนี้";
+			next;
+			mes "[Librarian Jekan]";
+			mes "ข้อมูลบางส่วน";
+			mes "ที่นี่ถูกจัดประเภทดังนั้นจึงห้ามมิให้ทหาร Prontera เรียกดู";
+			mes "ผ่านพวกเขา";
+			next;
+			mes "[Librarian Jekan]";
+			mes "ฉันกำลังอยู่ในขั้นตอนการค้นหาไฟล์ที่ถูกจัดประเภทในส่วนนั้นเพื่อที่ฉันจะได้แยกมันออกจากข้อมูลที่เป็นสาธารณสมบัติ";
+			next;
+			mes "[Librarian Jekan]";
+			mes "ฉันอยากมาก";
+			mes "ขอบคุณค่ะ";
+			mes "ถ้าคุณ ^660000did ไม่ ^000000";
+			mes "รบกวนการทำงานของฉัน";
+			next;
+			mes "[Librarian Jekan]";
+			mes "ยี้ ... !";
+			mes "ฉันอ่านอะไรไม่ออกเมื่อแสงมันสลัวขนาดนี้ตาแย่พอแล้ว ... ";
+			while(1) {
+				next;
+				switch(select("คุณตาไม่ดี?:ฉันต้องการอ่านเอกสาร:ให้ฉันช่วยคุณหาไฟล์เหล่านั้น ... :คุณกำลังมองหาไฟล์ประเภทใด?")) {
+				case 1:
+					mes "[Librarian Jekan]";
+					mes "ฉันทำงานแล้ว";
+					mes "ภายใต้แสงสลัว";
+					mes "นานแล้วนะตาฉันมี";
+					mes "หายดีแล้วพวกเขาควรจะพาฉันไป ^0000FFa ใหม่แสง ^000000 ไม่งั้นฉันจะตาบอดไม่ช้าก็เร็ว ... ";
+					if (god_eremes == 5 && (countitem(2203) > 0 || countitem(1041) > 0)) {
+						next;
+						mes "[Librarian Jekan]";
+						mes "เฮ้นั่นเป็นของที่มีประโยชน์มาก ๆ ที่คุณมีอยู่ช่วยให้ฉันยืมสักพักได้ไหมมันจะช่วยฉันในการค้นหาไฟล์เหล่านั้น ... ";
+						next;
+						switch(select("ใช่ฉันคิด!:ไม่ฉันไม่รังเกียจ")) {
+						case 1:
+							mes "[Librarian Jekan]";
+							mes "^333333*Sniff*^000000";
+							mes " ไม่เป็นไร ... ";
+							close;
+						case 2:
+							mes "[Librarian Jekan]";
+							mes "โอ้คุณใจดีจัง!";
+							mes "คุณต้องการอะไรมาก";
+							mes "ช่วยฉันหน่อยไม่ใช่เหรอ";
+							if (countitem(2203) && countitem(1041)) {
+								delitem 1041,countitem(1041); //Lantern
+								delitem 2203,1; //Spectacles
+							}
+							else if (countitem(2203)) {
+								delitem 2203,1;
+							}
+							else if (countitem(1041)) {
+								delitem 1041,countitem(1041);
+							}
+							set god_eremes,6;
+							next;
+							mes "[Librarian Jekan]";
+							mes "ขอบคุณ ... ";
+							mes "ตอนนี้ฉันไม่ต้องทำ";
+							mes "กังวลมาก";
+							mes "ค้นหาไฟล์นั้น";
+							next;
+							mes "[Librarian Jekan]";
+							mes "ถ้าไม่เป็นไร";
+							mes "คุณจะช่วยฉันได้ไหม";
+							mes "หามัน ... ?";
+							close;
+						}
+					}
+					else if (god_eremes > 5) {
+						next;
+						mes "[Librarian Jekan]";
+						mes "ขอบคุณ ... ";
+						mes "ของที่คุณปล่อย";
+						mes "ฉันจะยืมจริงๆ";
+						mes "ช่วยฉันตามหา";
+						mes "ไฟล์ทั้งหมดนั้น ... ";
+					}
+					break;
+				case 2:
+					if (god_eremes == 6) {
+						mes "[Librarian Jekan]";
+						mes "อ่านเอกสารบ้างไหม";
+						mes "คุณมาที่นี่แล้ว";
+						mes "ไปที่ห้องสมุดนั่นคือ";
+						mes "การเริ่มต้นที่ดี";
+						next;
+						mes "[Librarian Jekan]";
+						mes "ดีตราบเท่าที่";
+						mes "รู้แบบไหน";
+						mes "ของเอกสารคุณ";
+						mes "กำลังมองหาคุณอาจจะ";
+						mes "หามันเจอ";
+						next;
+						mes "[Librarian Jekin]";
+						mes "ฉันต้องพบสิ่งนั้น";
+						mes "ไฟล์จัดประเภทโดยเร็ว";
+						mes "เท่าที่จะทำได้!";
+						close2;
+						set god_eremes,7;
+						end;
+					}
+					else {
+						mes "[Librarian Jekan]";
+						mes "หืม ... ?";
+						mes "เฮ้ยังไม่ได้";
+						mes "บอกแล้ว?";
+						next;
+						mes "[Librarian Jekan]";
+						mes "บุคคลทั่วไปถูกห้ามไม่ให้เรียกดูไฟล์ในส่วนนี้! ฉันต้องทำซ้ำกี่ครั้ง?";
+						close;
+					}
+				case 3:
+					if (god_eremes == 4) {
+						mes "[Librarian Jekan]";
+						mes "ยินดีรับคุณ";
+						mes "ช่วยถ้าไม่ใช่เพราะฉันไม่สามารถอนุญาตให้เผยแพร่ข้อมูลลับสู่สาธารณะได้";
+						next;
+						mes "[Librarian Jekan]";
+						mes "ฉันไม่รู้ว่าบางสิ่งบางอย่างที่สำคัญมากถูกสับลงในไฟล์ที่นี่ใน Prontera Library แต่เราไม่สามารถอนุญาตให้บุคคลทั่วไปเข้าถึงได้";
+						next;
+						mes "[Librarian Jekan]";
+						mes "ถึงกระนั้นไฟล์นั้นดูเหมือนจะไม่สำคัญเท่าไหร่ แต่ฉันก็ยังต้องเสียเวลาค้นหามัน ... ";
+						next;
+						mes "[Librarian Jekan]";
+						mes "ให้ตายเถอะตาฉันเจ็บ";
+						mes "การทำงานในฐานะเจ้าหน้าที่ของรัฐเป็นเรื่องง่ายยกเว้นบางครั้งที่ผู้มีอำนาจสั่งให้คุณทำเรื่องแบบนี้";
+						set god_eremes,5;
+					}
+					else if (god_eremes > 4) {
+						mes "[Librarian Jekan]";
+						mes "ฉันคิดว่าจะไป";
+						mes "บ้าหาไฟล์นี้ ... !";
+						next;
+						mes "[Librarian Jekan]";
+						mes "หือ ... ?";
+						mes "คุณเพิ่งพูด";
+						mes "ที่คุณต้องการ";
+						mes "ช่วยฉันได้ไหมฉันจะขอบคุณ";
+					}
+					else {
+						mes "[Librarian Jekan]";
+						mes "อืมคุณยังไม่ถึง";
+						mes "ควรจะรู้อะไร";
+						mes "ชนิดของไฟล์ที่ฉันกำลังมองหาแม้ว่าคุณจะทำฉันไม่อนุญาตให้แสดงว่ามีอะไรอยู่ข้างใน!";
+						close;
+					}
+					break;
+				case 4:
+					mes "[Librarian Jekan]";
+					mes "อืมฉันไม่ได้รับอนุญาตให้เปิดเผยข้อมูลใด ๆ ที่เกี่ยวข้องกับไฟล์นั้นจริงๆขอโทษด้วยนะ";
+					next;
+					mes "[" + strcharinfo(0) + "]";
+					mes "แต่ไม่ใช่";
+					mes "ไฟล์เกี่ยวกับ ... ";
+					input @str$;
+					mes "^0000FF" + @str$ + "?";
+					next;
+					if (@str$ == "the 1st squad's final mission") {
+						mes "[Librarian Jekan]";
+						mes "หืม ... ?";
+						mes "คุณเป็นอย่างไรบ้าง";
+						mes "รู้เรื่องมั้ย";
+						set god_eremes,4;
+					}
+					else {
+						mes "[Librarian Jekan]";
+						mes "เอ่อ ... ";
+						mes "ไม่คิดอย่างนั้น .... ?";
+					}
+				}
+			}
+		}
+		else if (god_eremes == 2) {
+			mes "[Librarian Jekan]";
+			mes "อ๊ะโปรดอย่าแตะต้องไฟล์ในส่วนนี้โดยปกติมันเป็นสาธารณสมบัติ";
+			next;
+			mes "[Librarian Jekan]";
+			mes "สำหรับตอนนี้ฉันไม่สามารถปล่อยให้ใครก็ตามที่ไม่มีสิทธิ์พิเศษเข้าไปดูในส่วนนั้นได้ฉันต้องหาไฟล์นั้นและส่งให้ทหาร Prontera โดยเร็วที่สุด";
+			next;
+			mes "[Librarian Jekan]";
+			mes "เอ้อ! แสงนี้ไม่สว่างพอสำหรับตาฉันหรอกพวกเขาเริ่มจะเจ็บอีกแล้ว ... ";
+			next;
+			mes "[Librarian Jekan]";
+			mes "แล้วอะไรที่พาคุณมาที่นี่ถ้าคุณกำลังมองหาบางอย่างโดยเฉพาะคุณควรลองส่วนอื่น";
+			next;
+			switch(select("ฉันต้องการอ่านเอกสาร:คุณมีตาไม่ดีหรือไม่:ให้ฉันช่วยค้นหาไฟล์:คุณกำลังมองหาไฟล์ประเภทใด?")) {
+			case 1:
+				mes "[Librarian Jekan]";
+				mes "ฉันบอกคุณแล้ว! ไฟล์ในส่วนนี้ยังไม่เปิดเป็นสาธารณะในตอนนี้! อย่าทำให้ฉันพูดซ้ำ!";
+				close;
+			case 2:
+				mes "[Librarian Jekan]";
+				mes "เนื่องจากฉันทำงานภายใต้แสงสลัวเป็นเวลานานดวงตาของฉันก็ไม่ดี";
+				mes "พวกเขาควรจะให้แสงสว่างใหม่แก่ฉันไม่เช่นนั้นฉันจะตาบอดไม่ช้าก็เร็ว ... ";
+				close;
+			case 3:
+				mes "[Librarian Jekan]";
+				mes "อืม? คุณรู้ได้อย่างไรว่าฉันกำลังมองหาไฟล์อะไร";
+				mes "ไม่รู้ด้วยซ้ำว่าข้างในเขียนอะไร";
+				mes "หยุดขัดจังหวะฉันปล่อย!";
+				close;
+			case 4:
+				mes "[Librarian Jekan]";
+				mes "อืม ... ฉันไม่ควรเปิดเผยอะไรที่เกี่ยวข้องกับไฟล์";
+				next;
+				mes "[" + strcharinfo(0) + "]";
+				mes "ไม่ใช่ไฟล์ ... ";
+				input @str$;
+				mes "[" + strcharinfo(0) + "]";
+				mes "^0000FF" + @str$ + "?";
+				next;
+				mes "[Librarian Jekan]";
+				mes "อาจจะ ... ";
+				mes "อาจจะไม่ ~";
+				close;
+			}
+		}
+		else if (god_eremes > 6 && god_eremes < 12) {
+			if (rand(1,10) > 4) {
+				mes "[Librarian Jekan]";
+				mes "หืมคุณหาเจอหรือยังฉันค้นหาไฟล์นั้นมานานแล้ว แต่ไม่พบ";
+				next;
+				mes "[Librarian Jekan]";
+				mes "ฉันจะค้นหาทางด้านขวาต่อคุณคิดว่าจะค้นหาทางซ้ายได้ไหม";
+			}
+			else {
+				mes "[Librarian Jekan]";
+				mes "เจอหรือยังตลอดเวลานี้ฉันก็ยังไม่สามารถขุดไฟล์นั้นได้";
+				next;
+				mes "[Librarian Jekan]";
+				mes "ฉันจะไปตรวจสอบด้านซ้ายให้ดูตรงกลางหรือด้านขวา";
+			}
+		}
+		else if (god_eremes == 12) {
+			mes "[Librarian Jekan]";
+			mes "อ๊ะ! มีแล้ว!";
+			mes "ขอบคุณมาก!";
+			mes "ดีใจที่ยังมีคนใจดีและมีน้ำใจแบบคุณอยู่ในโลก";
+			next;
+			mes "[Librarian Jekan]";
+			mes "ฉันอยากจะให้บางอย่างเพื่อแสดงความขอบคุณ แต่ฉันต้องส่งสิ่งนี้กลับไปที่ Prontera Military ทันที";
+			next;
+			select("ฉันต้องการอ่านเอกสาร");
+			mes "[Librarian Jekan]";
+			mes "โอ้ใช่คุณพูดอย่างนั้นไม่ใช่เหรอดูเหมือนจะไม่";
+			mes "สำคัญมาก แต่ฉันไม่ค่อยแน่ใจ ... ";
+			next;
+			mes "[Librarian Jekan]";
+			mes "อืมมันไม่เจ็บหรอกถ้าฉันทำสำเนาก่อนนี้ให้คุณอ่าน แต่ฉันจะต้องใช้เอกสารบางอย่าง";
+			next;
+			mes "[Librarian Jekan]";
+			mes "ฉันจะร่าย";
+			mes "Search Magic บนมันเพื่อที่มันจะเหมือนต้นฉบับเอาล่ะฉันต้องการสิ่งต่อไปนี้เพื่อทำสำเนา ... ";
+			next;
+			mes "[Librarian Jekan]";
+			mes "2 Slick Paper,";
+			mes "1 Oil Paper,";
+			mes "3 Squid Ink,";
+			mes "3 Feather of Birds and";
+			mes "20 Blue Gemstones.";
+			next;
+			mes "[Librarian Jekan]";
+			mes "โปรดรับข้อมูลเหล่านี้โดยเร็วที่สุดแล้วฉันจะมาที่นี่เพื่อเตรียมการอื่น ๆ เพื่อทำสำเนา";
+			next;
+			mes "[Librarian Jekan]";
+			mes "นอกจากนี้ฉันจะเก็บสำเนานี้ไว้ในห้องสมุดเพื่อให้คุณอ่านและเพื่อป้องกันไม่ให้เผยแพร่สู่สาธารณะดังนั้นคุณจะต้องมาเยี่ยมทุกครั้งที่คุณต้องการอ่านโอเค?";
+			next;
+			mes "[Librarian Jekan]";
+			mes "โอเคตอนนี้ ... ";
+			mes "กลับมาที่นี่";
+			mes "ทันทีที่ทำได้";
+			set god_eremes,13;
+			close;
+		}
+		else if (god_eremes == 13) {
+			if (countitem(7111) > 1 && countitem(7151) && countitem(1024) > 2 && countitem(916) > 2 && countitem(717) > 19) {
+				mes "[Librarian Jekan]";
+				mes "โอ้คุณกลับมาแล้ว";
+				mes "ฉันไม่ได้คาดหวังว่าคุณจะกลับมาที่นี่เร็วขนาดนี้อะไรก็ตามที่อยู่ข้างในนั้นจะต้องสำคัญมากที่คุณจะต้องรู้";
+				next;
+				mes "[Librarian Jekan]";
+				mes "ยังไงก็ได้โปรด";
+				mes "ขอเวลาหน่อย";
+				mes "ในขณะที่ฉันทำอย่างนั้น";
+				mes "คัดลอกสำหรับคุณ";
+				delitem 7111,2;  //Smooth_Paper
+				delitem 7151,1;  //Oil_Paper
+				delitem 1024,3;  //Chinese_Ink
+				delitem 916,3;  //Feather_Of_Birds
+				delitem 717,20;  //Blue_Gemstone
+				set god_eremes,14;
+				next;
+				mes "[Librarian Jekan]";
+				mes "ได้แล้ว ... ";
+				mes "เดี๋ยวเจอกัน";
+				close;
+			}
+			else {
+				mes "[Librarian Jekan]";
+				mes "ลืมไปแล้ว";
+				mes "สิ่งที่คุณต้องทำ";
+				mes "สำเนาหรือไม่เอาล่ะให้ฉัน";
+				mes "บอกอีกที ... ";
+				next;
+				mes "[Librarian Jekan]";
+				mes "2 Slick Paper,";
+				mes "1 Oil Paper,";
+				mes "3 Squid Ink,";
+				mes "3 Feather of Birds and";
+				mes "20 Blue Gemstones.";
+				next;
+				mes "[Librarian Jekan]";
+				mes "กรุณามา";
+				mes "กลับมาพร้อมของเหล่านั้น";
+				mes "ทันทีที่ทำได้";
+				close;
+			}
+		}
+		else if (god_eremes > 13 && god_eremes < 16) {
+			if (rand(1,10) > 4) {
+				mes "[Librarian Jekan]";
+				mes "ให้ฉันไปตรวจสอบเอกสารก่อนที่จะทำสำเนา ... ";
+			}
+			else {
+				mes "[Librarian Jekan]";
+				mes "ให้ฉันไปตรวจดูเอกสารก่อนทำสำเนา ... ";
+				set god_eremes,god_eremes+1;
+			}
+			close;
+		}
+		else if (god_eremes == 16) {
+			mes "[Librarian Jekan]";
+			mes "เอาล่ะอย่างที่คิดเอกสารดูเหมือนจะไม่มีข้อมูลสำคัญอะไรเลย";
+			next;
+			mes "[Librarian Jekan]";
+			mes "จำไว้ว่าสำเนานี้ต้องอยู่ในห้องสมุด Prontera นั่นหมายความว่าคุณต้องกลับมาถ้าคุณต้องการอ่านเอกสารอีกครั้ง";
+			set god_eremes,17;
+			close;
+		}
+		else if (god_eremes > 16) {
+			mes "[Librarian Jekan]";
+			mes "ยินดีต้อนรับเพื่อนของฉัน!";
+			mes "แล้ววันนี้คุณต้องการอะไร";
+			next;
+			while(1) {
+				switch(select("บันทึกการค้นหา:ออกจากการค้นหา:ค้นหาวิธีใช้:Converse.")) {
+				case 1:
+					mes "^663300- Search Magic Initiated -";
+					mes "- กรุณาใส่คีย์เวิร์ด -";
+					mes " ";
+					mes "*Search Magic is";
+					mes "พิจารณาตัวพิมพ์เล็กและใหญ่";
+					mes "กรุณาอย่าใช้";
+					mes "ตัวพิมพ์ใหญ่. ^000000";
+					next;
+					input .@input$;
+					if (compare(.@input$,"crusader") == 1) {
+						mes "^663300[Keyword:^996633Crusader^663300]";
+						mes "นักรบครูเสดเป็นนักรบที่กำลังเตรียมพร้อมสำหรับสงครามศักดิ์สิทธิ์กับความชั่วร้ายที่กำลังจะมาถึงนักดาบที่มีประสบการณ์มักจะมีความสามารถทางวิญญาณที่โดดเด่น ^000000";
+						close2;
+						if (compare(.@input$,"3rd_company") == 1) {
+							mes "^663300[Keyword:^9966333rd Company^663300]";
+							mes "เฉพาะผู้ที่เก่งที่สุดในกลุ่มครูเสดเท่านั้นที่ได้รับการคัดเลือกเพื่อสร้างอันดับของทีมทั้งหมดในกองร้อยที่ 3 บันทึกการโอนย้ายส่วนใหญ่ของกองร้อยที่ 3 ไม่สามารถใช้งานได้ ^000000";
+							next;
+							mes "^663300[Keyword:^9966333rd Company^663300]";
+							mes "หน่วยที่ 1 ของหมวดที่ 3 เป็นข้อยกเว้นเนื่องจากสมาชิกทุกคนออกจากตำแหน่งหรือถูกย้ายไปยังกองกำลังอื่นสามารถค้นหาข้อมูลที่เฉพาะเจาะจงเพิ่มเติมได้โดยการค้นหา ^9966333 กองทหาร ^663300";
+							close2;
+							if (compare(.@input$,"3rd_platoon") == 1) {
+								mes "^663300[Keyword:^9966333rd Platoon^663300]";
+								mes "กองทหารที่ 3 ถือเป็นกองกำลังชั้นยอดในกองร้อยที่ 3 มีเพียงบันทึกของหน่วยที่ 1 ในหมวดที่ 3 เท่านั้นที่มีอยู่เนื่องจากสถานการณ์พิเศษ ^000000";
+								next;
+								mes "^663300[Keyword:^9966333rd Platoon^663300]";
+								mes "สามารถหาข้อมูลเพิ่มเติมได้โดยการค้นหา ^9966331st Squad ^663300";
+								close2;
+								if (compare(.@input$,"1st_squad") == 1) {
+									mes "^663300[Keyword:^9966331st Squad^663300]";
+									mes "หน่วยที่ 1";
+									mes "สมบูรณ์";
+									mes "บัญชีรายชื่อสมาชิก";
+									mes "...^000000";
+									next;
+									mes "^663300 [คำค้น:^9966331st Squad ^663300]";
+									mes "^0000FF:Rebarev Doug";
+									mes " :Jack O";
+									mes " :Zan.Huadoku";
+									mes " :Cuaque Donon";
+									mes " :Emma Searth";
+									mes " :Royal Myst";
+									mes " :The Nineball^000000";
+									if (god_eremes == 17) {
+										set god_eremes,18;
+									}
+									close2;
+									if (compare(.@input$,"record") == 1) {
+										mes "^663300[Keyword:^9966331st Squad Record^663300]";
+										mes "หน่วยที่ 1 มีชื่อเสียงในฐานะฝ่ายค้นหาที่มีทักษะมากที่สุดในกลุ่มครูเสดอย่างไรก็ตามมันถูกยกเลิกเนื่องจากภารกิจสุดท้ายของมัน ^000000";
+										next;
+										mes "^663300[Keyword:^9966331st Squad Record^663300]";
+										mes "หน่วยที่ 1 แอบอยู่";
+										mes "ได้รับมอบหมายจากราชสำนักให้ค้นหาและได้มา ^996633godly artifacts ^663300.";
+										mes "อย่างไรก็ตามภารกิจล้มเหลวเนื่องจากความขัดแย้งที่เกิดจากการไม่เชื่อฟังของสมาชิกคนหนึ่ง ^000000";
+										next;
+										mes "^663300[Keyword:^9966331st Squad Record^663300]";
+										mes "สมาชิกที่มีความผิดฐานไม่เชื่อฟังถูกปลดออกจากทีมระหว่างภารกิจนี้อย่างไรก็ตามการกระทำของเขาเพียงพอที่จะส่งผลให้ภารกิจสุดท้ายของหน่วยที่ 1 ล้มเหลว ^000000";
+										next;
+										mes "^663300[Keyword:^9966331st Squad Record^663300]";
+										mes "เนื่องจากเหตุการณ์ที่น่าอัปยศนี้หน่วยที่ 1 จึงถูกยกเลิกและ";
+										mes "สมาชิกของมันถูกส่งไปฝึกอบรมทางวินัยเป็นเวลา 3 เดือน";
+										next;
+										mes "^663300[Keyword:^9966331st Squad Record^663300]";
+										mes "สมาชิกส่วนใหญ่ของหน่วยที่ 1 ถูกย้ายไปอยู่ทีมอื่นหรือเกษียณอายุอดีตผู้นำของพวกเขา Rebarev Doug ปัจจุบันรับผิดชอบการค้นคว้าสิ่งประดิษฐ์ของพระเจ้าภายใต้พระราชโองการ ^000000";
+										close2;
+										if (god_eremes == 18) {
+											set god_eremes,19;
+										}
+									}
+								}
+								else {
+									mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+									mes "- ไม่พบผลลัพธ์ -";
+									close2;
+								}
+							}
+						}
+						else if (compare(.@input$,"3rd_platoon") == 1) {
+							mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+							mes "แต่ละ บริษัท ประกอบด้วย";
+							mes "จาก 4 Platoons โปรด";
+							mes "ระบุ บริษัท . ^000000";
+							next;
+							close2;
+						}
+						else if (compare(.@input$,"1st_squad") == 1) {
+							mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+							mes "The 1st Squad:Crusaders.";
+							mes "แต่ละหมวดประกอบด้วย 4 หน่วยโปรดระบุ บริษัท และหมวดสำหรับข้อมูลเกี่ยวกับหน่วยเฉพาะ ^000000";
+							close2;
+						}
+						else if (compare(.@input$,"record") == 1) {
+							mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+							mes "- ไม่พบผลลัพธ์ -";
+							close2;
+						}
+						else {
+							mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+							mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+							mes "-search with a keyword :"+.@input$+" -";
+							mes "- ไม่พบผลลัพธ์ -";
+							close2;
+						}
+					}
+					else if (compare(.@input$,"3rd_company") == 1) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "^663300[Keyword:^9966333rd Company^663300]";
+						mes "เฉพาะผู้ที่เก่งที่สุดในกลุ่มครูเสดเท่านั้นที่ได้รับการคัดเลือกเพื่อสร้างอันดับของทีมทั้งหมดในกองร้อยที่ 3 บันทึกการโอนย้ายส่วนใหญ่ของกองร้อยที่ 3 ไม่สามารถใช้งานได้ ^000000";
+						next;
+						mes "^663300[Keyword:^9966333rd Company^663300]";
+						mes "หน่วยที่ 1 ของหมวดที่ 3 เป็นข้อยกเว้นเนื่องจากสมาชิกทุกคนออกจากตำแหน่งหรือถูกย้ายไปยังกองกำลังอื่นสามารถค้นหาข้อมูลที่เฉพาะเจาะจงเพิ่มเติมได้โดยการค้นหา ^9966333 กองทหาร ^663300";
+						close2;
+						if (compare(.@input$,"3rd_platoon") == 1) {
+							mes "^663300[Keyword:^9966333rd Platoon^663300]";
+							mes "กองทหารที่ 3 ถือเป็นกองกำลังชั้นยอดในกองร้อยที่ 3 มีเพียงบันทึกของหน่วยที่ 1 ในหมวดที่ 3 เท่านั้นที่มีอยู่เนื่องจากสถานการณ์พิเศษ ^000000";
+							next;
+							mes "^663300[Keyword:^9966333rd Platoon^663300]";
+							mes "สามารถหาข้อมูลเพิ่มเติมได้โดยการค้นหา ^9966331st Squad ^663300";
+							close2;
+							if (compare(.@input$,"1st_squad") == 1) {
+								mes "^663300[Keyword:^9966331st Squad^663300]";
+								mes "หน่วยที่ 1";
+								mes "สมบูรณ์";
+								mes "บัญชีรายชื่อสมาชิก";
+								mes "...^000000";
+								next;
+								mes "^663300[Keyword:^9966331st Squad^663300]";
+								mes "^0000FF :Rebarev Doug";
+								mes " :Jack O";
+								mes " :Zan.Huadoku";
+								mes " :Cuaque Donon";
+								mes " :Emma Searth";
+								mes " :Royal Myst";
+								mes " :The Nineball^000000";
+								close2;
+								if (god_eremes == 17) {
+									set god_eremes,18;
+								}
+								if (compare(.@input$,"record") == 1) {
+									mes "^663300[Keyword:^9966331st Squad Record^663300]";
+									mes "หน่วยที่ 1 มีชื่อเสียงในฐานะฝ่ายค้นหาที่มีทักษะมากที่สุดในกลุ่มครูเสดอย่างไรก็ตามมันถูกยกเลิกเนื่องจากภารกิจสุดท้ายของมัน ^000000";
+									next;
+									mes "^663300[Keyword:^9966331st Squad Record^663300]";
+									mes "หน่วยที่ 1 แอบอยู่";
+									mes "ได้รับมอบหมายจากราชสำนักให้ค้นหาและได้มา ^996633godly artifacts ^663300.";
+									mes "อย่างไรก็ตามภารกิจล้มเหลวเนื่องจากความขัดแย้งที่เกิดจากการไม่เชื่อฟังของสมาชิกคนหนึ่ง ^000000";
+									next;
+									mes "^663300[Keyword:^9966331st Squad Record^663300]";
+									mes "สมาชิกที่มีความผิดฐานไม่เชื่อฟังถูกปลดออกจากทีมระหว่างภารกิจนี้อย่างไรก็ตามการกระทำของเขาเพียงพอที่จะส่งผลให้ภารกิจสุดท้ายของหน่วยที่ 1 ล้มเหลว ^000000";
+									next;
+									mes "^663300[Keyword:^9966331st Squad Record^663300]";
+									mes "เนื่องจากเหตุการณ์ที่น่าอัปยศนี้หน่วยที่ 1 จึงถูกยกเลิกและ";
+									mes "สมาชิกของมันถูกส่งไปฝึกอบรมทางวินัยเป็นเวลา 3 เดือน";
+									next;
+									mes "^663300[Keyword:^9966331st Squad Record^663300]";
+									mes "สมาชิกส่วนใหญ่ของหน่วยที่ 1 ถูกย้ายไปอยู่ทีมอื่นหรือเกษียณอายุอดีตผู้นำของพวกเขา Rebarev Doug ปัจจุบันรับผิดชอบการค้นคว้าสิ่งประดิษฐ์ของพระเจ้าภายใต้พระราชโองการ ^000000";
+									close2;
+									if (god_eremes == 18) {
+										set god_eremes,19;
+									}
+								}
+							}
+							else {
+								mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+								mes "- ไม่พบผลลัพธ์ -";
+								close2;
+							}
+						}
+					}
+					else if (compare(.@input$,"3rd_platoon") == 1) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "หมวดที่ 3:";
+						mes "- ไม่พบผลลัพธ์ -";
+						mes "- แนะนำให้ป้อนคำหลักที่เฉพาะเจาะจงมากขึ้น -";
+						close2;
+					}
+					else if (compare(.@input$,"1st_squad") == 1) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "บริษัท ที่ 3:";
+						mes "- ไม่พบผลลัพธ์ -";
+						mes "- แนะนำให้ป้อนคำหลักที่เฉพาะเจาะจงมากขึ้น -";
+						close2;
+					}
+					else if ((compare(.@input$,"record") == 1) && (god_eremes > 17)) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "- ไม่พบผลลัพธ์ -";
+						mes "- แนะนำให้ป้อนชื่อเฉพาะของกองกำลังเพื่อการวิจัยที่ดีขึ้น -";
+						next;
+						close2;
+					}
+					else if (compare(.@input$,"rebarev_doug") == 1) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "อดีตผู้นำ";
+						mes "กองร้อยที่ 3 กองร้อยที่ 3";
+						mes "1st Squad. ทำหน้าที่เป็นผู้สอนของ Crusader Boot Camp และปัจจุบัน";
+						mes "ดำเนินการวิจัยตามพระบรมราชโองการ ^000000";
+						next;
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "ตำแหน่งปัจจุบัน:";
+						mes "^996633Prontera Castle, Prontera^663300.^000000";
+						close2;
+					}
+					else if (compare(.@input$,"egnigem") == 1) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "^FF0000Prohibited Search Term!^000000";
+						close2;
+					}
+					else if (compare(.@input$,"zan.huadoku") == 1) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "อดีตสมาชิก";
+						mes "กองร้อยที่ 3 กองร้อยที่ 3";
+						mes "หน่วยที่ 1 ทำหน้าที่เป็นผู้คุมอาวุธตั้งแต่ปลดประจำการ";
+						mes "ของ 1st Squad.";
+						next;
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "ตำแหน่งปัจจุบัน:";
+						mes "^996633Blacksmith Guild, Geffen^663300.^000000";
+						close2;
+					}
+					else if (compare(.@input$,"cuaque_donon") == 1) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "อดีตสมาชิก";
+						mes "กองร้อยที่ 3 กองร้อยที่ 3";
+						mes "หน่วยที่ 1 ออกจากราชการ";
+						mes "และตอนนี้ทำงานอยู่ที่อินน์";
+						next;
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "ตำแหน่งปัจจุบัน:";
+						mes "^996633Inn, Morocc^663300.^000000";
+						close2;
+					}
+					else if (compare(.@input$,"jack_o") == 1) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "อดีตสมาชิก";
+						mes "กองร้อยที่ 3 กองร้อยที่ 3";
+						mes "1 Squad. ทำหน้าที่เป็นเจ้าหน้าที่สัสดีตั้งแต่ปลดประจำการกองที่ 1";
+						next;
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "ตำแหน่งปัจจุบัน:";
+						mes "^996633Alberta Port^663300.^000000";
+						close2;
+					}
+					else if (compare(.@input$,"emma_searth") == 1) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "อดีตสมาชิก";
+						mes "กองร้อยที่ 3 กองร้อยที่ 3";
+						mes "1st Squad. เกษียณตั้งแต่";
+						mes "การแยกวงที่ 1";
+						next;
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "ตำแหน่งปัจจุบัน:";
+						mes "^996633Al De Baran^663300.^000000";
+						close2;
+					}
+					else if (compare(.@input$,"royal_myst") == 1) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "อดีตสมาชิก";
+						mes "กองร้อยที่ 3 กองร้อยที่ 3";
+						mes "หน่วยที่ 1 ไม่ทราบหน้าที่ปัจจุบัน";
+						next;
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "ตำแหน่งปัจจุบัน:";
+						mes "^996633Casino, Comodo^663300.^000000";
+						close2;
+					}
+					else if (compare(.@input$,"the_nineball") == 1) {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "อดีตสมาชิก";
+						mes "กองร้อยที่ 3 กองร้อยที่ 3";
+						mes "1st Squad. ทำหน้าที่เป็นเจ้าหน้าที่รักษาความปลอดภัยตั้งแต่ปลดประจำการของหน่วยที่ 1";
+						next;
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "ตำแหน่งปัจจุบัน:";
+						mes "^996633Tavern, Jawaii^663300.^000000";
+						close2;
+					}
+					else {
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "^663300[Keyword:^996633"+.@input$+"^663300]";
+						mes "No result has been found.";
+						close2;
+					}
+					break;
+				case 2:
+					mes "^663300- Search Magic -";
+					mes "- กำลังจะปิด - ^000000";
+					next;
+					mes "^663300- ... -^000000";
+					next;
+					mes "^663300- ... -^000000";
+					mes "^663300- ... -^000000";
+					next;
+					mes "^663300- Search Magic -";
+					mes "- ปิดการใช้งาน - ^000000";
+					close;
+				case 3:
+					mes "[Librarian Jekan]";
+					mes "อืม ... ";
+					mes "สวยจัง";
+					mes "รุ่นล้าสมัย";
+					mes "ของ Search Magic,";
+					mes "ดังนั้นฉันเข้าใจว่าถ้า";
+					mes "มันทำให้คุณลำบาก";
+					next;
+					mes "[Librarian Jekan]";
+					mes "ตอนนี้ ... ";
+					mes "ขั้นแรกหากคุณจะป้อนคำค้นหาเดียวเช่นชื่อของใครบางคนคุณจะต้องป้อน ^660000lee_hester ^000000 หากคุณกำลังค้นหา Lee Hester ";
+					next;
+					mes "[Librarian Jekan]";
+					mes "ไม่ใช้ใด ๆ ";
+					mes "ตัวพิมพ์ใหญ่!";
+					mes "และใช้เครื่องหมายขีดล่างเพื่อ";
+					mes "ระบุช่องว่างระหว่างชื่อและนามสกุลและภายในชื่อหน่วยทหาร";
+					next;
+					mes "[Librarian Jekan]";
+					mes "ตัวอย่างเช่น บริษัท ที่สี่จะถูกป้อนเป็น ^6600004th_company ^000000 ตอนนี้ ... ทนกับฉัน";
+					next;
+					mes "[Librarian Jekan]";
+					mes "หากคุณกำลังมองหาข้อมูลเกี่ยวกับหน่วยใดทีมหนึ่งคุณจำเป็นต้องรู้หมวดหมู่และกองร้อยที่อยู่ภายใต้";
+					next;
+					mes "[Librarian Jekan]";
+					mes "ตัวอย่างเช่นหากคุณต้องการค้นหา Crusader 4th Squad of the 4th Platoon of the 4th Company คุณจะป้อน ... ";
+					next;
+					mes "[Librarian Jekan]";
+					mes "'^660000crusader 4th_company 4th_platoon 4th_squad record ^000000' ทั้งหมดในบรรทัดเดียวฉันหวังว่านี่จะช่วยคุณในการค้นหาของคุณ ... ";
+					next;
+					break;
+				case 4:
+					mes "[Librarian Jekan]";
+					mes "บอกเราได้นะ";
+					mes "รัฐบาลไม่";
+					mes "รู้วิธี";
+					mes "จัดสรรเงิน";
+					mes "และทรัพยากร";
+					next;
+					mes "[Librarian Jekan]";
+					mes "อย่างแรกมี Jawaii";
+					mes "คู่บ่าวสาวต้องการจริงๆ";
+					mes "เกาะทั้งเกาะสำหรับตัวเองงั้นอีกครั้งฉันเป็นโสดดังนั้นฉันอาจจะลำเอียง";
+					next;
+					mes "[Librarian Jekan]";
+					mes "แล้วมองมาที่ฉันสิ";
+					mes "อัจฉริยะไม่ควรเสียเวลาอันมีค่าไปทำสิ่งที่ไร้ประโยชน์สำหรับห้องสมุด!";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Librarian Jekan]";
+			mes "อ๊ะโปรดอย่าแตะต้องหนังสือใด ๆ ในส่วนนั้น ... ฉันแน่ใจว่าไม่มีอะไรที่จะเป็นประโยชน์กับคุณ";
+			next;
+			switch(select("ไม่สนใจเขาและตรวจสอบหนังสือ:ถอยหลัง.")) {
+			case 1:
+				mes "[Librarian Jekan]";
+				mes "เฮ้ ... !";
+				mes "ฉันคิดว่าฉันพูด";
+				mes "ห้ามแตะ!";
+				close2;
+				warp "prontera",120,264;
+				end;
+			case 2:
+				mes "[Librarian Jekan]";
+				mes "ขอบคุณครับรู้สึก";
+				mes "เรียกดูฟรี";
+				mes "ส่วนอื่น ๆ ";
+				next;
+				mes "[Librarian Jekan]";
+				mes "เป็นเรื่องดีมากที่มีผู้เยี่ยมชมในห้องสมุดโดยเฉพาะอย่างยิ่งเมื่อปัจจุบันผู้คนจำนวนมากไม่อ่านหนังสือ";
+				close;
+			}
+		}
+	}
+	else {
+		mes "[Librarian Jekan]";
+		mes "อ๊ะได้โปรดอย่า";
+		mes "แตะหนังสือใด ๆ ใน";
+		mes "ส่วนนั้นมี";
+		mes "ไม่มีประโยชน์อะไรเลย";
+		mes "ส่วนนั้นอยู่แล้ว";
+		next;
+		switch(select("ไม่สนใจเขาและตรวจสอบหนังสือ:ถอยหลัง.")) {
+		case 1:
+			mes "[Librarian Jekan]";
+			mes "บอกแล้ว ... !";
+			mes "ห้ามแตะ";
+			mes "หนังสือที่นี่!";
+			close2;
+			warp "prontera",120,264;
+			end;
+		case 2:
+			mes "[Librarian Jekan]";
+			mes "ขอบคุณครับรู้สึก";
+			mes "เรียกดูฟรี";
+			mes "ส่วนอื่น ๆ ";
+			next;
+			mes "[Librarian Jekan]";
+			mes "เป็นเรื่องดีมากที่มีผู้เยี่ยมชมในห้องสมุดโดยเฉพาะอย่างยิ่งเมื่อปัจจุบันผู้คนจำนวนมากไม่อ่านหนังสือ";
+			close;
+		}
+	}
+	close;
+}
+
+geffen_in,109,161,3	script	Crusader#God1	751,{
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes > 17 && god_megin_1 < 2) {
+			mes "[Zan.Huadoku]";
+			mes "^333333*Phew...*^000000";
+			mes "งานนี้กำลังมาถึงแล้วจริงๆการไปทำภารกิจกับเพื่อนร่วมรบฟังดูดีกว่านี้เยอะ";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "อย่างน้อยก็ในสมัยนั้นฉันก็รู้สึกเหมือนได้ทำสิ่งที่มีประโยชน์จริงๆ!";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "เฮ้ ... ";
+			mes "ให้ฉันช่วยไหม";
+			mes "กับอะไร";
+			next;
+			switch(select("ถามเขาเกี่ยวกับหน่วยที่ 1:ถามเขาว่าเขาเป็นอย่างไรบ้าง:ถามเขาเกี่ยวกับภารกิจสุดท้ายของหน่วยที่ 1.")) {
+			case 1:
+				if (god_eremes == 18) {
+					mes "[Zan.Huadoku]";
+					mes "ใช่ฉันเป็นสมาชิกของหน่วยที่ 1 ในหมวดที่ 3 เมื่อนานมาแล้วเธอรู้ได้อย่างไร";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "ฉันคิดถึงพวกที่กลับมาในทีมฉันสงสัยว่าเมื่อเร็ว ๆ นี้หัวหน้าของเราเป็นยังไงบ้าง ... ";
+					next;
+					mes "^3355FF คุณเล่าเรื่อง Zan เกี่ยวกับ Rebarev Doug และตอนนี้เขาเป็นอาจารย์สอน Crusader Boot Camp อย่างไรดูเหมือนว่าเขาจะหมกมุ่นอยู่กับความคิดของเขาในอดีต ^000000";
+					close;
+				}
+				else if (god_eremes > 18) {
+					mes "[Zan.Huadoku]";
+					mes "ใช่ฉันเป็นสมาชิกของหน่วยที่ 1 ในหมวดที่ 3 เมื่อนานมาแล้วเธอรู้ได้อย่างไร";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "ฉันคิดถึงพวกที่กลับมาในทีมฉันสงสัยว่าเมื่อเร็ว ๆ นี้หัวหน้าของเราเป็นยังไงบ้าง ... ";
+					next;
+					mes "^3355FF คุณเล่าเรื่อง Zan เกี่ยวกับ Rebarev Doug และตอนนี้เขาเป็นอาจารย์สอน Crusader Boot Camp อย่างไรดูเหมือนว่าเขาจะหมกมุ่นอยู่กับความคิดของเขาในอดีต ^000000";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "...";
+					mes "......";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "^3355FF คุณเล่าเรื่อง Zan เกี่ยวกับ Rebarev Doug และตอนนี้เขาเป็นอาจารย์สอน Crusader Boot Camp ควรพูดคุยเขาจะจามรอยู่กับความคิดของเขาใน ^000000";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "รอ ... ";
+					mes "เขาชื่ออะไร ... ?";
+					mes "ไม่มีทางที่ฉันจะลืมอะไรแบบนั้น ... ";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "ทำไม่ได้";
+					mes "จำชื่อเขาไว้!";
+					mes "เขาคือเหตุผล";
+					mes "ชีวิตของฉันคือ ... !";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "^333333*Groan...*^000000";
+					mes "ฉัน .... หัว ... ";
+					mes "เจ็บหัว ... ";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "^3355FFZan ดูสับสนมากและตาของเขาเริ่มเคลือบด้วยความงุนงงคุณลองพูดกับเขาอีกครั้ง แต่เขาไม่ตอบกลับเลย ^000000";
+					if (!god_megin_1) {
+						set god_megin_1,1;
+					}
+					close;
+				}
+			case 2:
+				mes "[Zan.Huadoku]";
+				mes "ฉันเป็นยังไงบ้าง?";
+				mes "ฉันทำงานให้กับสมาคมช่างตีเหล็กเลือกอาวุธดีๆ";
+				mes "เพื่อจัดหาพวกครูเสด";
+				next;
+				mes "[Zan.Huadoku]";
+				mes "บางครั้งฉันก็เข้าใจ";
+				mes "เบื่อกับสิ่งที่ทำอยู่ฉันพยายามโน้มน้าวตัวเองอยู่เสมอว่างานของฉันมีความสำคัญต่อนักรบครูเสดในอนาคต แต่ ... ";
+				next;
+				mes "[Zan.Huadoku]";
+				mes "คุณรู้อะไรไหม";
+				mes "หลายคนถามคำถามแปลก ๆ เกี่ยวกับตัวฉันเมื่อเร็ว ๆ นี้ฉันรู้สึกเหมือนโดนสอดแนม แต่บางทีฉันก็แค่หวาดระแวง";
+				close;
+			case 3:
+				if (god_eremes == 18) {
+					mes "[Zan.Huadoku]";
+					mes "ใช่เรา";
+					mes "ภารกิจสุดท้าย ... ";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "Final ... ? คืออะไรฉันรู้ว่ามันเกิดขึ้น แต่ด้วยเหตุผลบางอย่างทั้งหมดที่ฉันสามารถจินตนาการได้ก็คือความว่างเปล่าที่สมบูรณ์เมื่อฉันพยายามคิด";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "ฉัน...";
+					mes "ฉันคิดว่าฉันต้องการบางอย่างเพื่อเตือนฉันฉันรู้ว่ามันเกิดขึ้น แต่ ... ฉันสับสนเหลือเกิน";
+					next;
+					mes "^3355FFZan ดูเหมือนจะมีช่วงเวลาที่ยากลำบากมากในการนึกถึงความทรงจำในอดีตของเขา ^000000";
+					close;
+				}
+				else if (god_eremes > 18 && god_megin_1 > 0) {
+					mes "[Zan.Huadoku]";
+					mes "ภารกิจสุดท้าย ... ";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "อืม ... ";
+					mes "ห๊ะ.. ไม่";
+					mes "จำอะไรก็ได้";
+					mes "มันแปลกนะบางที";
+					mes "ฉันต้องการเบาะแสสักหน่อย?";
+					next;
+					mes "^3355FFZan.Huadoku ดูเหมือนจะ";
+					mes "มีช่วงเวลาที่ยากลำบากในการจดจำสิ่งที่เกิดขึ้นในอดีตคุณเริ่มแบ่งปันสิ่งที่คุณได้อ่านในห้องสมุดเกี่ยวกับหน่วยที่ 1 ... ^000000";
+					next;
+					mes "...";
+					next;
+					mes "...";
+					mes "......";
+					next;
+					mes ".....";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "ใช่ใช่แล้ว! แล้วสามวันหลังจากที่เราเริ่มภารกิจเราก็พบว่า ... ";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "อืมฉันไม่แน่ใจว่ามันคืออะไร แต่เราพบ ^0000FF ชิ้นส่วนที่ไม่รู้จัก ^000000 ซึ่งเป็นสัญญาณจากพระเจ้า! แล้วก็ ... !";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "แล้ว ... ";
+					mes "โอ้พระเจ้า.";
+					mes "ฉันจำไม่ได้ ... ";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "ฉันคิดอะไรไม่ออกมากกว่านั้นฉันจำไม่ได้ด้วยซ้ำว่าเราเจออะไร แต่ฉันแน่ใจว่ามันสำคัญมาก";
+					next;
+					mes "^3355FFZan ยืนนิ่งอยู่ในความเงียบด้วยสีหน้าเจ็บปวด ^000000";
+					if (god_megin_1 == 1) {
+						set god_megin_1,2;
+					}
+					close;
+				}
+				else {
+					mes "[Zan.Huadoku]";
+					mes "ภารกิจสุดท้าย ... ";
+					next;
+					mes "[Zan.Huadoku]";
+					mes "อืม ... ";
+					mes "ห๊ะ.. ไม่";
+					mes "จำอะไรก็ได้";
+					mes "มันแปลกนะบางที";
+					mes "ฉันต้องการเบาะแสสักหน่อย?";
+					close;
+				}
+			}
+		}
+		else if (god_megin_1 > 1 && god_megin_1 < 3) {
+			mes "...";
+			next;
+			mes "...";
+			mes ".....";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ใช่ใช่แล้ว! แล้วสามวันหลังจากที่เราเริ่มภารกิจเราก็พบว่า ... ";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "อืมฉันไม่แน่ใจว่ามันคืออะไร แต่เราพบ ^0000FF ชิ้นส่วนที่ไม่รู้จัก ^000000 ซึ่งเป็นสัญญาณจากพระเจ้า! แล้วก็ ... !";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "แล้ว ... ";
+			mes "โอ้พระเจ้า.";
+			mes "ฉันจำไม่ได้ ... ";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ฉันคิดอะไรไม่ออกมากกว่านั้นฉันจำไม่ได้ด้วยซ้ำว่าเราเจออะไรสามเดือนหลังจากนั้นทุกอย่างเกิดขึ้นฉันมีปัญหาที่หัว ... ";
+			next;
+			mes "^3355FFZan ยืนนิ่งอยู่ในความเงียบด้วยสีหน้าเจ็บปวด ^000000";
+			set god_megin_1,3;
+			close;
+		}
+		else if (god_megin_1 > 2) {
+			mes "^3355FF จับหัว";
+			mes "ฉีกผมและดิ้นด้วยความเจ็บปวด Zan ยังคงพูดคำเดิมซ้ำแล้วซ้ำเล่า ... ^000000";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "3 วันต่อมา!";
+			mes "เราพบ ^0000FFfragment ^000000!";
+			mes "มันเป็นสัญญาณของ G-God! แต่ทำไม";
+			mes "จำไม่ได้เหรอ! ทำไม?!";
+			close;
+		}
+		else {
+			mes "[Zan.Huadoku]";
+			mes "เฮ้ยยย";
+			mes "ให้ฉันช่วยไหม";
+			close;
+		}
+	}
+	else {
+		mes "[Zan.Huadoku]";
+		mes "หวัดดี!";
+		mes "คุณรู้จัก";
+		mes "ความสำคัญของอุปทาน?";
+		next;
+		switch(select("No.:Yes!")) {
+		case 1:
+			mes "[Zan.Huadoku]";
+			mes "กองกำลังทหารหรือฝ่ายใด ๆ ต้องการเสบียงของตนเพื่อเติมเต็มหากต้องต่อสู้ต่อไปเป็นเวลานาน";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ตัวอย่างเช่นสมมติว่ากลุ่มของคุณออกล่าสัตว์โดยไม่มีผู้รักษาในกรณีนี้ทุกคนจะต้องกินไอเทมฟื้นฟูสุขภาพเช่นยาปรุงยา";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ตัวอย่างการใช้ว่ากลุ่มของคุณออกล่าสัตว์โดยไม่มีผู้รักษาในกรณีนี้ทุกคนจะต้องกินไอเทมบำบัดสุขภาพเช่นยาสมุนไพร";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "แต่ถ้าสมาชิกในปาร์ตี้ของคุณเดินทางไปมาระหว่างเมืองและพื้นที่ล่าสัตว์เขาสามารถจัดหาไอเท็มการรักษาใหม่ให้กับปาร์ตี้ของคุณได้";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "การจัดหาปาร์ตี้ของคุณด้วยวิธีนี้จะช่วยให้คุณล่าสัตว์ได้โดยไม่ต้องกังวลสำหรับหน้าที่นั้นคลาส Merchant จะดีที่สุดโดยใช้รถเข็น";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ฉันคิดว่านั่นเป็นเหตุผลว่าทำไมฉันถึงมาทำงานที่นี่ในสมาคมช่างตีเหล็กในฐานะผู้ควบคุมอาวุธฉันมีหน้าที่ต้องจัดหาเสบียงสำหรับกองกำลังครูเสด";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ช่างตีเหล็กในกิลด์นี้ช่วยฉันจัดหาอาวุธคุณภาพสูงสำหรับสงครามครูเสดด้วย";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ถ้าคุณเกิดไอเท็มสุขภาพหมดขณะออกล่าทำไมคุณไม่ขอความช่วยเหลือจากพ่อค้าล่ะ";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "เป็นไปได้มากว่าพวกเขาจะมีสินค้าสำรองและยินดีที่จะแบ่งปันกับคุณหากคุณถามอย่างดีพอ";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ฉันหวังว่าจะได้พบคุณอีกครั้งในภายหลังขอให้ Odin ปกป้องคุณในการเดินทางของคุณ";
+			close;
+		case 2:
+			mes "[Zan.Huadoku]";
+			mes "โอ้ ... ";
+			mes "ถ้าอย่างนั้น";
+			mes "ในกรณีนั้น";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ให้ฉันบอกคุณเกี่ยวกับความรู้ที่มีประโยชน์บางอย่างที่ฉันได้เรียนรู้ในขณะที่ทำงานกับ Blacksmiths.";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ทักษะการตีตัวละครของช่างตีเหล็กจะได้รับผลกระทบจากค่าสถานะ DEX และ LUK DEX และ LUK มีผลต่อทักษะการสร้างไอเทมสำหรับ Alchemists.";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ตั้งแต่ฉันอยู่ที่นี่ในกิลด์ช่างตีเหล็กฉันพยายามทำความเข้าใจกับช่างตีเหล็กให้ดีขึ้นและพัฒนาความชื่นชมในงานของพวกเขาให้ลึกซึ้งยิ่งขึ้น";
+			next;
+			mes "[Zan.Huadoku]";
+			mes "ได้แล้ว ... ";
+			mes "ง่ายนิดเดียว";
+			close;
+		}
+	}
+}
+
+morocc_in,146,179,0	script	Employee#megin1	66,{
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes > 17 && god_megin_2 < 1) {
+			mes "^3355FFThe Inn Employee";
+			mes "ตาคุณสงสัย ^000000";
+			next;
+			mes "[Inn Employee]";
+			mes "ขอโทษนะ";
+			mes "มีอะไรให้ช่วยไหม";
+			mes "คุณกำลังมองหา";
+			mes "ใครบางคน ... ?";
+			next;
+			input @str$;
+			if (@str$ == "Cuaque Donon" || @str$ == "Cuaque" || @str$ == "Donon") {
+				mes "[" + strcharinfo(0) + "]";
+				mes "คุณบังเอิญรู้จักคนชื่อ" + @str$ + "... ?";
+				if (god_eremes == 18) {
+					mes "[Inn Employee]";
+					mes "ฉันไม่คิด";
+					mes "ฉันรู้จักคนนั้น";
+					mes "ฉันเดาว่าผู้ชายคนนั้นจากไป";
+					mes "ก่อนเริ่มทำงาน";
+					mes "ที่นี่อาจจะ?";
+					close;
+				}
+				else if (god_eremes > 18) {
+					next;
+					mes "^3355FF เมื่อคุณพูดชื่อนั้นเธอก็เข้ามาใกล้คุณทันที";
+					mes "และเริ่มพูดด้วยน้ำเสียงที่ต่ำและคุกคาม ^000000";
+					next;
+					mes "[Scary Inn Employee]";
+					mes "คุณเป็นใคร";
+					mes "ถ้าลองทำอะไรตลก ๆ ";
+					mes "ฉันจะฉีกหัวใจเธอออก!";
+					mes "ทำไมขี้สงสัยจัง?!";
+					mes "คุณเป็นหนึ่งในนั้นหรือไม่!";
+					next;
+					switch(select("Rebarev Doug ส่งฉันมา!:เดี๋ยวก่อนเขาซ่อนตัวอยู่เหรอ:แค่ ... อยากรู้อยากเห็น.")) {
+					case 1:
+						if (rand(1,10) > 3) {
+							mes "[Ms. Scary Inn Employee]";
+							mes "รีบาเรฟดั๊ก ... ?!";
+							mes "ไอ้แก่นั่นต้องกลัว";
+							mes "ของข่าวลือที่เรากำลังแพร่กระจายไปทั่วนั้นมีความเหมาะสมเพียงพอที่จะส่งคนของเขาหรือไม่!";
+							next;
+							mes "[Ms. Scary Inn Employee]";
+							mes "แต่ ... ";
+							mes "ฉันไม่ได้อยู่ในอารมณ์";
+							mes "เพื่อนำคุณไปสู่";
+							mes "Cuaque Donon ... ";
+							next;
+							mes "^3355FFThe Inn Employee";
+							mes "เคาะคุณออก ~ ^000000";
+							close2;
+							percentheal -100,0;
+							end;
+						}
+						else {
+							mes "[Ms. Scary Inn Employee]";
+							mes "รีบาเรฟดั๊ก ... ?!";
+							mes "ไอ้แก่นั่นต้องกลัว";
+							mes "ของข่าวลือที่เรากำลังแพร่กระจายไปทั่วนั้นมีความเหมาะสมเพียงพอที่จะส่งคนของเขาหรือไม่!";
+							next;
+							mes "[Ms. Scary Inn Employee]";
+							mes "หืม ... ";
+							mes "อาจไม่ใช่ความคิดที่ดีที่จะให้คนอย่างคุณคุยกับ Cuaque Donon คุณดูเหมือนจะไม่ดี ... ";
+							next;
+							mes "[Ms. Scary Inn Employee]";
+							mes "แต่คุณได้รับคำใบ้เท่านั้น";
+							mes "และฉันจะพูดแค่ครั้งเดียว ... ";
+							mes "^0000FFAragham ไม่เคยสะสม";
+							mes "อัพเกรดไอเทม ^000000";
+							set god_megin_2,1;
+							close;
+						}
+					case 2:
+						if (rand(1,10) > 4) {
+							mes "[Ms. Scary Inn Employee]";
+							mes "ถูกต้อง";
+							mes "ถ้าคุณอยู่ที่นี่";
+							mes "ตามหาเขา";
+							mes "รู้แน่";
+							mes "ทำไมเขาถึงซ่อน";
+							next;
+							mes "[Ms. Scary Inn Employee]";
+							mes "กล้าดียังไง ... ";
+							mes "กล้าดียังไง";
+							mes "งี่เง่ากับฉัน?!";
+							next;
+							mes "^3355FFThe Inn Employee";
+							mes "เคาะคุณออก ~ ^000000";
+							close2;
+							percentheal -100,0;
+						}
+						else {
+							mes "[Ms. Scary Inn Employee]";
+							mes "ถูกต้อง";
+							mes "ถ้าคุณอยู่ที่นี่";
+							mes "ตามหาเขา";
+							mes "รู้แน่";
+							mes "ทำไมเขาถึงซ่อน";
+							next;
+							mes "[Ms. Scary Inn Employee]";
+							mes "อืมอาจจะไม่";
+							mes "ใครจะไปรู้ล่ะ";
+							mes "ของเพื่อน Cuaque made";
+							mes "ตอนที่เขาเป็นสงครามครูเสด";
+							mes "ได้ แต่ฟัง ... ";
+							next;
+							mes "[Ms. Scary Inn Employee]";
+							mes "ฉันแค่ให้";
+							mes "คุณคำใบ้ครั้งนี้ ... ";
+							mes "^0000FFAragham ไม่เคยสะสม";
+							mes "อัพเกรดไอเทม ^000000";
+							set god_megin_2,1;
+							close;
+						}
+					case 3:
+						if (rand(1,10) > 3) {
+							mes "[Ms. Scary Inn Employee]";
+							mes "แค่อยากรู้?";
+							mes "หึ.. คุณมีประสาทมากใช่ไหมฉันขอโทษที่ต้องบอกคุณ แต่ ... ";
+							next;
+							mes "[Ms. Scary Inn Employee]";
+							mes "ฉันไม่ได้อยู่ในอารมณ์";
+							mes "เพื่อนำคุณไปสู่";
+							mes "Cuaque Donon ... ";
+							mes "หึหึหึหึ ... ";
+							next;
+							mes "^3355FFThe Inn Employee";
+							mes "เคาะคุณออก ~ ^000000";
+							close2;
+							percentheal -100,0;
+							end;
+						}
+						else {
+							mes "[Ms. Scary Inn Employee]";
+							mes "แค่อยากรู้?";
+							mes "หึ.. คุณมีประสาทมากใช่ไหมฉันขอโทษที่ต้องบอกคุณ แต่ ... ";
+							next;
+							mes "[Ms. Scary Inn Employee]";
+							mes "บอกไม่ถูก";
+							mes "คุณอยู่ที่ไหนเขา";
+							mes "คือมากที่สุดที่ฉันทำได้";
+							mes "ขอคำใบ้หน่อย";
+							mes "ตั้งใจฟังตอนนี้ ... ";
+							mes "ฉันจะพูดแค่ครั้งเดียว";
+							next;
+							mes "[Ms. Scary Inn Employee]";
+							mes "^0000FFAragham ไม่เคย";
+							mes "สะสมไอเทมอัพเกรด. ^000000";
+							mes "ตอนนี้อย่าลืม!";
+							set god_megin_2,1;
+							close;
+						}
+					}
+				}
+			}
+			else {
+				mes "[Inn Employee]";
+				mes "อะไร ... ?";
+				mes "ไม่รู้";
+				mes "ใคร ๆ ก็ตั้งชื่อนั้น";
+				mes "ถ้าเป็นแค่ชื่อ ... ";
+				close2;
+			}
+		}
+		else if (god_megin_2 > 0) {
+			mes "[Inn Employee]";
+			mes "ยินดีต้อนรับสู่โรงแรมแห่งนี้";
+			mes "เมื่อคุณย้ายไปที่ทางเข้าคุณยังสามารถเข้าสู่โซน PvP ได้โดยใช้คนเฝ้าประตู PvP";
+			next;
+			mes "[Inn Employee]";
+			mes "โดยปกติแล้วคุณสามารถเยี่ยมชมโรงแรมขนาดเล็กในเมืองใหญ่ ๆ ได้หากคุณต้องการพักผ่อนหรือแข่งขันกับคนอื่น ๆ อินน์คือสถานที่ที่จะไป";
+			next;
+			mes "^3355FF ยินดีต้อนรับคุณ";
+			mes "มืออาชีพมาก";
+			mes "ราวกับว่าไม่มีอะไร";
+			mes "เกิดขึ้น. ^000000";
+			close;
+		}
+		else {
+			mes "[Inn Employee]";
+			mes "ยินดีต้อนรับสู่โรงแรม";
+			mes "เมื่อคุณย้ายไปที่ทางเข้าคุณยังสามารถเข้าสู่โซน PvP ได้โดยใช้คนเฝ้าประตู PvP";
+			next;
+			mes "[Inn Employee]";
+			mes "โดยปกติแล้วคุณสามารถเยี่ยมชมโรงแรมขนาดเล็กในเมืองใหญ่ ๆ ได้หากคุณต้องการพักผ่อนหรือแข่งขันกับคนอื่น ๆ อินน์คือสถานที่ที่จะไป";
+			close2;
+		}
+	}
+	else {
+		mes "[Inn Employee]";
+		mes "ยินดีต้อนรับสู่โรงแรมแห่งนี้";
+		mes "เมื่อคุณย้ายไปที่ทางเข้าคุณยังสามารถเข้าสู่โซน PvP ได้โดยใช้คนเฝ้าประตู PvP";
+		next;
+		mes "[Inn Employee]";
+		mes "โดยปกติแล้วคุณสามารถเยี่ยมชมโรงแรมขนาดเล็กในเมืองใหญ่ ๆ ได้หากคุณต้องการพักผ่อนหรือแข่งขันกับคนอื่น ๆ อินน์คือสถานที่ที่จะไป";
+		next;
+		mes "[Inn Employee]";
+		mes "โอ้ฉันมีความลับนิดหน่อย ... ! ฉันได้ยินว่าเจ้าของโรงแรมกำลังวางแผนทำธุรกิจที่น่าสนใจมันเป็นโปรเจ็กต์สำคัญบางอย่าง แต่อย่าให้ใครรู้ว่าฉันบอกคุณ!";
+		close;
+	}
+}
+
+in_rogue,243,61,0	script	Suspicious Man#megin	748,{
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes == 18) {
+			mes "[Cuaque Donon]";
+			mes "คุณเป็นใคร?!";
+			mes "ห่าไร";
+			mes "คุณเข้ามาที่นี่?!";
+			mes "ไปให้พ้น!";
+			mes "Geeeet awwwway!";
+			close;
+		}
+		else if (god_eremes > 18) {
+			if (god_megin_2 > 0 && god_megin_2 < 4) {
+				mes "[Cuaque Donon]";
+				mes "คุณเป็นใคร?!";
+				mes "ห่าไร";
+				mes "คุณเข้ามาที่นี่?!";
+				mes "ไปให้พ้น!";
+				mes "Geeeet awwwway!";
+				next;
+				mes "^3355FF คุณพยายามอย่างเต็มที่เพื่อทำให้เขาสงบลงและบอกเขาว่าคุณพบอะไรในเอกสาร ^000000";
+				next;
+				if ((countitem(740) > 0) || (countitem(741) > 0) || (countitem(742) > 0) || (countitem(743) > 0) || (countitem(750) > 0) || (countitem(751) > 0) || (countitem(752) > 0) || (countitem(753) > 0) || (countitem(754) > 0) || (countitem(7206) > 0) || (countitem(7212) > 0)){
+					if (countitem(740) > 0) {
+						set .@toy$,"Puppet";
+					}
+					else if (countitem(741) > 0) {
+						set .@toy$,"Poring Doll";
+					}
+					else if (countitem(742) > 0) {
+						set .@toy$,"Chonchon Doll";
+					}
+					else if (countitem(743) > 0) {
+						set .@toy$,"Spore Doll";
+					}
+					else if (countitem(750) > 0) {
+						set .@toy$,"Baphomet Doll";
+					}
+					else if (countitem(751) > 0) {
+						set .@toy$,"Osiris Doll";
+					}
+					else if (countitem(752) > 0) {
+						set .@toy$,"Rocker Doll";
+					}
+					else if (countitem(753) > 0) {
+						set .@toy$,"Yoyo Doll";
+					}
+					else if (countitem(754) > 0) {
+						set .@toy$,"Racoon Doll";
+					}
+					else if (countitem(7206) > 0) {
+						set .@toy$,"Black Cat Doll";
+					}
+					else {
+						set .@toy$,"Hung Doll";
+					}
+					mes "^3355FF คุณดึง" +.@toy$ + " ออกมา";
+					mes "ปกปิดใบหน้าของคุณและกระดิกแขนราวกับว่ามันกำลังพูด ^000000";
+				}
+				else {
+					mes "^3355FF คุณต้องพบบางสิ่ง";
+					mes "ที่สามารถทำให้ Cuaque Donon สงบลงได้ ^000000";
+					next;
+					mes "^3355F น่าเสียดายที่ Chaque Donon ดูเหมือน";
+					mes "จะต้องถอยกลับไปสู่ความคิดแบบเด็ก ๆ บางทีถ้าคุณนำสิ่งที่เด็ก ๆ ชอบมาด้วยสิ่งที่จะทำให้พวกเขาสบายใจ ... ^000000";
+					close;
+				}
+				next;
+				mes "^3355FFChaque Donon พยักหน้า";
+				mes "และดูดนิ้วหัวแม่มือของเขาอย่างมีความสุขมันทำให้คุณเสียใจที่เห็นอดีตครูเซเดอร์ถูกลดสถานะให้เป็นแบบนี้ ^000000";
+				next;
+				switch(select("ถามเขาเกี่ยวกับ Inn Maid:ถามเขาว่าเขาเป็นอย่างไรบ้าง:ถามเกี่ยวกับภารกิจสุดท้ายของหน่วยที่ 1")) {
+				case 1:
+					mes "[Cuaque Donon]";
+					mes " เธอคือน้องสาวของฉัน";
+					mes "และเธอก็เป็นคนโกงด้วย";
+					mes "เมื่อออกจากราชการ .... ";
+					next;
+					mes "[Cuaque Donon]";
+					mes "...";
+					mes "......";
+					next;
+					mes "[Cuaque Donon]";
+					mes "ครอบครัวของฉันคาดหวังเสมอ";
+					mes "มากเกินไปของฉันนั่นเป็นเหตุผลว่าทำไมฉันถึงเคยเป็น Crusader ฉันหมายความว่าพวกเขาได้รับค่าตอบแทนที่ดีและได้รับความเคารพ";
+					next;
+					mes "[Cuaque Donon]";
+					mes "ตอนที่ฉันเกษียณพี่สาวของฉันโมโหมากเธอเป็นคนเดียวที่ฉันพึ่งได้ แต่ตอนนี้ฉันทำให้ชีวิตยุ่งเหยิงแบบนี้ ... ";
+					next;
+					mes "[Cuaque Donon]";
+					mes "แต่ถึงแม้จะตะโกนใส่ฉันและบอกว่าฉันไร้ค่าเธอก็ได้";
+					mes "ฉันก็ทำงานที่โรงแรมของเธออยู่ดี";
+					next;
+					mes "[Cuaque Donon]";
+					mes "ฉันไปทำงานที่นั่น";
+					mes "ใช้ชีวิตเงียบ ๆ แต่ตอนนี้มีคนมากมายอยากคุยกับฉันเกี่ยวกับเรื่องที่สำคัญกับฉันด้วยเหตุผลบางอย่าง";
+					next;
+					mes "[Cuaque Donon]";
+					mes "ฉันไม่รู้ว่าฉันพูดหรือทำอะไร แต่ฉันคิดว่าเมื่อฉันให้คำตอบที่ถูกต้องแก่พวกเขาหลังจากที่ฉันจำบางสิ่งได้ในที่สุดพวกเขาก็พยายามทำร้ายฉัน";
+					next;
+					mes "[Cuaque Donon]";
+					mes "ตอนนี้พี่สาวของฉันซ่อนตัวอยู่";
+					mes "ฉันอยู่ที่นี่มันน่าเบื่อและเหงาและผู้ชายที่อยู่ชั้นล่างก็มักจะตะโกนเรียกฉันให้ออกไป";
+					next;
+					mes "[Cuaque Donon]";
+					mes "แม้แต่กิลด์โกงนั่น";
+					mes "บางครั้งพี่สาวของฉันก็เข้ามาตะโกนใส่ฉันพวกเขาทั้งหมดต้องการให้ฉันบอกบางอย่างที่ฉันควรรู้!";
+					next;
+					mes "[Cuaque Donon]";
+					mes "แต่ฉันจำอะไรไม่ได้เลย!";
+					mes "ที่นี่ปลอดภัยจากคนอันตราย แต่ไม่รู้ว่าจะนานแค่ไหน";
+					next;
+					mes "[Cuaque Donon]";
+					mes "แม้แต่พี่สาวของฉันก็ยังบอกว่าฉันต้องบอกกับ Rogue Guild ด้วยไม่งั้นพวกเขาจะไม่ปกป้องเราอีกแล้ว";
+					next;
+					mes "[Cuaque Donon]";
+					mes "เธอดูเศร้ามากเมื่อเธอ";
+					mes "พูดแบบนั้นฉันไม่อยากให้เธอผิดหวังหรือทำให้เธออารมณ์เสียเธอ";
+					mes "ทั้งหมดที่ฉันเหลือ ... ";
+					if (god_megin_2 == 2) {
+						next;
+						mes "[Cuaque Donon]";
+						mes "โอ้ฉันจำอะไรได้บ้าง!";
+						mes "พี่สาวบอกฉันว่าอย่าบอกใคร แต่ฉันจะบอกคุณ ... ";
+						next;
+						mes "^3355FFCuaque Donon";
+						mes "whispers into your ears.^000000";
+						next;
+						mes "[Cuaque Donon]";
+						mes "^666666 เธอบอกว่า Rogue Guild ต้องการอะไรจากฉันเธอจะส่งให้ฉันไปหาคนดีๆที่เราไว้ใจได้และสามารถช่วยฉันได้ ^000000";
+						next;
+						mes "[Cuaque Donon]";
+						mes "^666666 ถึงกระนั้นนี่ก็เป็นสถานที่ที่ปลอดภัยที่สุดสำหรับฉันสักพัก แต่ฉันก็พร้อมที่จะหนีไปเสมอถ้าฉันต้องทำ ^000000";
+						set god_megin_2,3;
+					}
+					close;
+				case 2:
+					mes "[Cuaque Donon]";
+					mes "เป็นไงบ้าง?";
+					mes "คนมาเยอะแล้ว";
+					mes "เพื่อดูฉันพวกเขาทั้งหมดต้องการให้ฉันบอกสิ่งที่ฉันไม่รู้ด้วยซ้ำ!";
+					next;
+					mes "[Cuaque Donon]";
+					mes "สมาคมโกงสัญญาว่าจะ";
+					mes "ปกป้องฉัน แต่บางครั้งพวกมันก็ทำให้ฉันกลัวนรกโดยออกมาจากพื้นทันที";
+					next;
+					mes "[Cuaque Donon]";
+					mes "โอ้และพี่สาวของฉันบอกว่าเธอ";
+					mes "จะบ่นกับเจ้านายเก่าของฉันเกี่ยวกับบางอย่างเธอบอกว่าฉันเคยสบายดี แต่ตอนนี้ฉันเกษียณแล้วฉันก็ไม่เหมือนเดิมอีกต่อไป";
+					next;
+					mes "[Cuaque Donon]";
+					mes "แต่เจ้านายเก่าของฉันตั้งแต่ตอนที่ฉันยังเป็นครูเซเดอร์ไม่อยากเจอน้องสาวของฉันเธอจะขอความช่วยเหลือจากพวกโจรคนอื่น ๆ เพื่อเผยแพร่ข่าวลือ ... ";
+					next;
+					mes "[Cuaque Donon]";
+					mes "เหมือนใครที่ทำงานเป็น Crusader ภายใต้เจ้านายเก่าของฉันจะลงเอยเหมือนฉันรู้ไหม ... แตกแล้ว";
+					if (god_megin_2 == 1) {
+						set god_megin_2,2;
+					}
+					close;
+				case 3:
+					mes "[Cuaque Donon]";
+					mes "ไม่รู้ ... ";
+					mes "จำไม่ได้ด้วยซ้ำ";
+					if (god_megin_2 == 3) {
+						next;
+						mes "[Cuaque Donon]";
+						mes "เดี๋ยวนะ!";
+						mes "^0000FFMegingjard ^000000! ถูกต้อง";
+						mes "เราเจอแล้วและ";
+						mes "เรารู้ว่ามันคืออะไร";
+						mes "แค่มอง!";
+						next;
+						if (rand(1,10) > 4) {
+							switch(select("^FF0000Megingjard^000000!:^FFFFFFListen to him quietly^000000.")) {
+							case 1:
+								mes "[Cuaque Donon]";
+								mes "ว้าาาาาาาาา ~!";
+								mes "เหมือนเดิม";
+								mes "เหมือนคนอื่น ๆ !";
+								mes "ไปให้พ้น!";
+								set god_megin_2,0;
+								close;
+							case 2:
+								mes "[Cuaque Donon]";
+								mes "ฉันจำได้หลังจากที่เราพบมันพวกเราคนหนึ่งในทีมมีเรื่องทะเลาะกับหัวหน้าคนเก่าของเราฉันเฝ้ายามกลางคืนและบังเอิญได้ยินมันฉันคิดว่าหัวหน้าของเราไม่อยู่ในแนว ... ";
+								next;
+								mes "[Cuaque Donon]";
+								mes "เออ ... ";
+								mes "จำไม่ได้";
+								mes "มากกว่านั้น ... ";
+								set god_megin_2,4;
+								close;
+							}
+						}
+						else {
+							switch( select( "^FF0000Megingjard^000000!", "^FFFFFFMegingjard!^000000.", "^FFFFFFListen to him quitely^000000" ) ) {
+							case 1:
+								mes "[Cuaque Donon]";
+								mes "ว้าาาาาาาาา ~!";
+								mes "เหมือนเดิม";
+								mes "เหมือนคนอื่น ๆ !";
+								mes "ไปให้พ้น!";
+								set god_megin_2,0;
+								close;
+							case 2:
+								mes "[Cuaque Donon]";
+								mes "ว้าาาาาาาาา ~!";
+								mes "เหมือนเดิม";
+								mes "เหมือนคนอื่น ๆ !";
+								mes "ไปให้พ้น!";
+								set god_megin_2,0;
+								close;
+							case 3:
+								mes "[Cuaque Donon]";
+								mes "ฉันจำได้หลังจากที่เราพบมันพวกเราคนหนึ่งในทีมมีเรื่องทะเลาะกับหัวหน้าคนเก่าของเราฉันเฝ้ายามกลางคืนและบังเอิญได้ยินมันฉันคิดว่าหัวหน้าของเราไม่อยู่ในแนว ... ";
+								next;
+								mes "[Cuaque Donon]";
+								mes "เออ ... ";
+								mes "จำไม่ได้";
+								mes "มากกว่านั้น ... ";
+								set god_megin_2,4;
+								close;
+							}
+						}
+					}
+					close2;
+				}
+			}
+			else if (god_megin_2 == 4) {
+				mes "[Cuaque Donon]";
+				mes "ฉันจำได้ว่าหลังจากที่เราพบ Megingjard พวกเราคนหนึ่งในทีมทะเลาะกับหัวหน้าเก่าของเราฉันเฝ้ายามกลางคืนและบังเอิญได้ยินมันฉันคิดว่าหัวหน้าของเราไม่อยู่ในแนว ... ";
+				next;
+				mes "[Cuaque Donon]";
+				mes "เออ ... ";
+				mes "จำไม่ได้";
+				mes "มากกว่านั้น ... ";
+				next;
+				mes "[Cuaque Donon]";
+				mes "ง่วงแล้ว";
+				mes "เจ็บหัวแล้ว";
+				mes "ขอพักก่อนนะ ... ";
+				close2;
+			}
+			else {
+				mes "[Cuaque Donon]";
+				mes "คุณเป็นใคร?!";
+				mes "ห่าไร";
+				mes "คุณเข้ามาที่นี่?!";
+				mes "ไปให้พ้น!";
+				mes "Geeeet awwwway!";
+				close2;
+			}
+		}
+	}
+	else {
+		mes "[Cuaque Donon]";
+		mes "คุณเป็นใคร?!";
+		mes "ห่าไร";
+		mes "คุณเข้ามาที่นี่?!";
+		next;
+		mes "[Cuaque Donon]";
+		mes "ว้าาาา ... !";
+		mes "หัวของฉัน!";
+		mes "มันเจ็บมาก!";
+		mes "กลัวจัง!";
+		close;
+	}
+}
+
+alberta,196,146,0	script	Crusader#megin2	751,{
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes == 18) {
+			mes "[Jack O]";
+			mes "^333333*Yawn...*^000000";
+			mes "มันเงียบและน่าเบื่อเหมือนเดิมมาดูกันว่าวันนี้มี Swordmen คนไหนบ้างที่ฉันสามารถรับสมัครได้";
+			next;
+			mes "[Jack O]";
+			mes "Eh...?";
+			next;
+			switch(select("ถามเขาเกี่ยวกับ Rebarev Doug:ถามเขาว่าเขาเป็นอย่างไรบ้าง:ถามเขาเกี่ยวกับภารกิจสุดท้ายของหน่วยที่ 1.")) {
+			case 1:
+				mes "[Jack O]";
+				mes "อ๊ะ! ใช่หัวหน้าคนเก่าของเรากลับมาในทีมที่ 1 แล้วหึฉันไม่ได้เห็นเขาเลยตั้งแต่พวกเราถูกยุบ";
+				close;
+			case 2:
+				mes "[Jack O]";
+				mes "ฉันเหรอใช่ฉันยุ่งอยู่เสมอในการสรรหาครูเซดในอนาคต";
+				mes "เรายินดีต้อนรับ Swordsman เสมอ";
+				mes "สุดยอดมาก!";
+				next;
+				mes "[Jack O]";
+				mes "มันฟังดูยังไงทำไมคุณไม่อาสาสมัครเป็น Crusader";
+				close;
+			case 3:
+				mes "[Jack O]";
+				mes "ภารกิจสุดท้าย?";
+				mes "เอ๊ะจำไม่ได้จริงๆ";
+				close;
+			}
+		}
+		else if (god_eremes > 18) {
+			if (god_megin_3 == 0 || god_megin_3 == 1) {
+				mes "[Jack O]";
+				mes "^333333*Yawn...*^000000";
+				mes "มันเงียบและน่าเบื่อเหมือนเดิมมาดูกันว่าวันนี้มี Swordmen คนไหนบ้างที่ฉันสามารถรับสมัครได้";
+				next;
+				mes "[Jack O]";
+				mes "เอ๋ ... ?";
+				next;
+				switch(select("ถามเขาเกี่ยวกับ Rebarev Doug:ถามเขาว่าเขาเป็นอย่างไรบ้าง:ถามเกี่ยวกับภารกิจสุดท้ายของหน่วยที่ 1.")) {
+				case 1:
+					if (god_megin_3 == 1) {
+						mes "[Jack O]";
+						mes "ใช่แล้วหัวหน้าเก่าของเรา";
+						mes "ตอนนี้ฉันจำได้ว่าเขาเป็น";
+						mes "เป็นคนขี้เหวี่ยงขี้วีน";
+						mes "ตอนนี้ที่ฉันคิดเกี่ยวกับมัน!";
+						next;
+						mes "[Jack O]";
+						mes "คุณเชื่อไหมว่าเขาเคยพูดว่า ^0000FF ไม่มีใครเคร่งศาสนาไปกว่าเขาในโลกนี้ ^000000?! นั่นคือความเห็นแก่ตัวที่นั่นและอาจจะเป็นบ้า";
+						next;
+						mes "[Jack O]";
+						mes "ยังไงก็ตามทุกคนในทีม";
+						mes "ภูมิใจในศรัทธาของพวกเขาเมื่อไหร่";
+						mes "คุณมีช่วงเวลาที่ยากลำบากใน";
+						mes "โลกแห่งความจริงคุณพึ่งศาสนานะรู้ไหม";
+						next;
+						mes "[Jack O]";
+						mes "ยังไงก็ได้ในบันทึกเกี่ยวกับ";
+						mes "ทีมของเรามันบอกว่าพวกเราคนหนึ่งถูกลงโทษฐานไม่เชื่อฟังกบฏหรืออะไรสักอย่างนั่น";
+						mes "เรื่องโกหก";
+						next;
+						mes "[Jack O]";
+						mes "ระหว่างภารกิจสุดท้ายของเรา";
+						mes "หัวหน้าคนเก่าของเราทะเลาะกับเราครั้งใหญ่เกี่ยวกับบางสิ่งที่เราพบฉันจำได้ว่ามันเป็นสิ่งประดิษฐ์ของพระเจ้า แต่ฉันจำไม่ได้ชัดเจนว่ามันคืออะไร";
+						next;
+						mes "[Jack O]";
+						mes "แม้ว่าจะมีการโต้เถียงกันอย่างชัดเจน แต่ฉันคิดว่ามันเป็นหัวหน้าทีมของเราที่ไม่อยู่ในแถว";
+						mes "ฉัน ... ฉันพูดไม่ออกจริงๆ ... ";
+						next;
+						mes "[Jack O]";
+						mes "ฉันทำไม่ได้สำหรับชีวิตของฉัน";
+						mes "จำได้ว่าผู้ชายที่";
+						mes "ทะเลาะกับหัวหน้าทีม";
+						mes "ดูเหมือนว่ายิ่งสูงขึ้น";
+						mes "หนวดทำอะไรกับฉัน ... ";
+						next;
+						mes "[Jack O]";
+						mes "ยังไงก็ตามฉันรู้แน่ว่าไม่ว่าผู้ชายคนนั้นจะทำอะไรมันก็ไม่ใช่ความดื้อรั้นอันที่จริงฉันคิดว่าเขาอาจจะพูดถูก";
+						next;
+						mes "[Jack O]";
+						mes "นั่นคือทั้งหมดที่ฉันจำได้";
+						mes "ฉันควรกินกรีนเฮิร์บดีกว่าตอนนี้หัวของฉันสั่นอย่างบ้าคลั่งทุกครั้งที่คิดถึงเวลานั้น";
+						set god_megin_3,2;
+						close;
+					}
+					else {
+						mes "[Jack O]";
+						mes "อ๊ะ! ใช่หัวหน้าคนเก่าของเรากลับมาในทีมที่ 1 แล้วหึฉันไม่ได้เห็นเขาเลยตั้งแต่พวกเราถูกยุบ";
+						close;
+					}
+				case 2:
+					mes "[Jack O]";
+					mes "ฉันเหรอใช่ฉันไม่ได้เลวร้ายขนาดนี้กำลังยุ่งอยู่กับการสรรหาครูเซดในอนาคตเรายินดีต้อนรับทุกคน";
+					mes "Swordmen ถ้าพวกเขาแสดงศักยภาพ ~";
+					close;
+				case 3:
+					mes "[Jack O]";
+					mes "หือ ... ?";
+					mes "ทำไม";
+					mes "อยากรู้ไหม";
+					next;
+					mes "^3355FF คุณบอกเขาว่าคุณได้อ่านอะไรในบันทึกของหน่วยที่ 1 หลังจากนั้น Jack O ก็ดูสับสนเล็กน้อย ^000000";
+					next;
+					mes "[Jack O]";
+					mes "หือ ... ?";
+					mes "ฉันอาจจะจำไม่ได้";
+					mes "ตั้งแต่นั้นเป็นต้นมา แต่ส่วนที่เกี่ยวกับ ^0000FFinsubordination ^000000 ไม่ถูกต้องฉันแน่ใจในเรื่องนั้น";
+					if (god_megin_3 == 0) {
+						set god_megin_3,1;
+					}
+					close;
+				}
+			}
+			else if (god_megin_3 == 2) {
+				mes "[Jack O]";
+				mes "หัวหน้าเก่าของเราคือ";
+				mes "หยิ่งมากถึงมากที่สุด";
+				mes "จากการเป็นร็อกเกอร์ของเขาเล็กน้อย";
+				next;
+				mes "[Jack O]";
+				mes "ฉันหมายถึงคนปกติ";
+				mes "อย่าพูดอย่าง '^0000FFI เป็นคนที่เคร่งศาสนาที่สุดในจักรวาลคุกเข่าต่อหน้าฉัน! ^000000' ใช่ไม่ใช่เรื่องปกติที่จะพูด";
+				next;
+				mes "[Jack O]";
+				mes "อย่างไรก็ตามถ้าหมู่";
+				mes "หัวหน้าลงโทษใครก็ตามที่ไม่เชื่อฟังฉันแน่ใจว่ามันไม่มีเหตุผลฉันจำไม่ได้เหมือนกัน แต่ฉันมั่นใจในสิ่งนั้น";
+				next;
+				mes "[Jack O]";
+				mes "ขอโทษทีฉันต้องกินกรีนเฮิร์บสักหน่อยดูแบบนี้";
+				mes "เป็นสิ่งเดียวที่เหมาะกับอาการปวดหัวของฉัน";
+				next;
+				mes "^3355FFJack O busily chewed";
+				mes "เกี่ยวกับสมุนไพรสีเขียว";
+				mes "ดูเหมือนว่าจะช่วยบรรเทาอาการปวดหัวของเขาได้มาก ^000000";
+				close;
+			}
+			else {
+				mes "[Jack O]";
+				mes "^333333*Yawn...*^000000";
+				mes "มันเงียบและน่าเบื่อเหมือนเดิมมาดูกันว่าวันนี้มี Swordmen คนไหนบ้างที่ฉันสามารถรับสมัครได้";
+				close;
+			}
+		}
+		else {
+			mes "[Jack O]";
+			mes "เฮ้เด็ก!";
+			mes "เคยคิดถึง";
+			mes "เป็น สงครามครูเสด ";
+			close2;
+		}
+	}
+	else {
+		if (BaseClass == Job_Swordman){
+			mes "[Jack O]";
+			mes "เฮ้เด็ก!";
+			mes "เคยคิดถึง";
+			mes "เป็น สงครามครูเสด ";
+			next;
+			mes "[Jack O]";
+			mes "โดยทั่วไปแล้วคุณจะอาสาเป็นส่วนหนึ่งของกองทัพของเราและฝึกฝนเพื่อสงครามศักดิ์สิทธิ์";
+			next;
+			mes "[Jack O]";
+			mes "ถ้าคุณมีความเชื่อและรู้วิธีการใช้ดาบคุณจะยินดีเป็นอย่างยิ่งที่นี่";
+			next;
+			mes "[Jack O]";
+			mes "แค่คิดถึงข้อเสนอแนะของฉัน";
+			mes "แล้วกลับมาถ้าคุณสนใจเอาล่ะแล้วเจอกันใหม่ ~";
+			close;
+		}
+		else {
+			mes "[Jack O]";
+			mes "^333333*Yawn...*^000000";
+			mes "มันเงียบและน่าเบื่อเหมือนเดิมมาดูกันว่าวันนี้มี Swordmen คนไหนบ้างที่ฉันสามารถรับสมัครได้";
+			next;
+			mes "[Jack O]";
+			mes "หือ ... ?";
+			mes "สนใจอยากรู้เรื่องครูเสดมากกว่านี้มั้ยฮ่า ๆ ๆ ฉันเดาว่าต้องเป็นอย่างนั้น";
+			next;
+			mes "[Jack O]";
+			mes "เอาตุ๊กตามาให้ด้วย";
+			mes "เด็กที่อยู่ตรงหน้าฉันถ้าเธอโชคดีเธอจะให้ของตอบแทนที่เรียบร้อยมันคืออะไรฉันไม่รู้ฉันไม่มีตุ๊กตา";
+			next;
+			mes "[Jack O]";
+			mes "ตามรหัสครูเซเดอร์ฉันไม่ควรจะโกหกใช่เธอเชื่อใจฉันได้!";
+			close2;
+		}
+	}
+}
+
+aldebaran,66,213,0	script	Lady#megin	69,{
+	if (checkweight(1301,3) == 0) {
+		mes "- คุณบรรทุกสิ่งของมากเกินไป!";
+		close;
+	}
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes == 18) {
+			mes "[Emma Searth]";
+			mes "^333333 * Sigh ... * ^000000 ฉันยังไม่ได้รับคำตอบใด ๆ จากพวกเขาฉันไม่รู้";
+			mes "ถ้าฉันรอได้นานกว่านี้เพื่อเข้าร่วม Kafra Corporation";
+			close;
+		}
+		else if (god_eremes > 18 && god_eremes < 26) {
+			if (god_megin_4 < 2) {
+				mes "[Emma Searth]";
+				mes "^333333*Sigh...*^000000 ฉันไม่ได้รับคำตอบใด ๆ จากพวกเขา ไม่รู้ ";
+				mes "ถ้าฉันรอได้นานกว่านี้เพื่อเข้าร่วม Kafra Corporation";
+				next;
+				mes "[Emma Searth]";
+				mes "โอ้นักผจญภัยฉันเคยทำงานในสายงานเดียวกับที่คุณทำมาก่อนโดยเฉพาะฉันเคยเป็นครูเซเดอร์";
+				next;
+				mes "[Emma Searth]";
+				mes "ฉันชื่อ Emma Searth ตอนนี้ฉันกำลังทำตามความฝันและสมัครเป็น Kafra Lady วันแห่งการถือดาบของฉันจึงสิ้นสุดลง";
+				next;
+				mes "[Emma Searth]";
+				mes "น่าเศร้าที่ฉันยังทำไม่สำเร็จเพราะฉันได้รับการวินิจฉัยว่า";
+				mes "แปลก ๆ ^0000FFamnesia ^000000.";
+				next;
+				mes "[Emma Searth]";
+				mes "แน่นอนฉันเข้าใจว่า";
+				mes "Kafra Corporation เป็น บริษัท มืออาชีพขนาดใหญ่ แต่";
+				mes "ถ้าฉันสามารถทำงานให้ได้แม้ว่าจะเป็นแค่พาร์ทไทม์ ... ";
+				next;
+				mes "[Emma Searth]";
+				mes "ปัญหาใหญ่ขนาดนั้นเลยเหรอ";
+				mes "ฉันคิดว่าพวกเขากังวล";
+				mes "ฉันลืมข้อมูลสำคัญของลูกค้าเมื่อได้รับการว่าจ้าง";
+				next;
+				mes "[Emma Searth]";
+				mes "มันแปลกมากเมื่อฉันเป็น";
+				mes "สงครามครูเสดฉันจำได้";
+				mes "ทุกอย่างชัดเจนและฉันไม่เคยมีปัญหาในการนึกถึงอดีตเลย";
+				next;
+				mes "[Emma Searth]";
+				mes "แต่ตอนนี้ฉันมีอาการไมเกรนทุกครั้งที่ฉันพยายามจดจ่ออยู่กับความทรงจำในช่วงเวลานั้น";
+				mes "เมื่อฉันเคยต่อสู้ใน Prontera Military";
+				next;
+				mes "[Emma Searth]";
+				mes "^333333*Sigh...*^000000";
+				next;
+				switch(select("เกี่ยวกับอดีตของเธอ:ทำไมต้องเป็น Kafra Lady?:เกี่ยวกับความทรงจำที่เธอจำได้.")) {
+				case 1:
+					if (countitem(7015) > 0) {
+						mes "^3355FF กลิ่นของคุณ";
+						mes "ที่คั่นความทรงจำ";
+						mes "ดูเหมือนจะนำความกระจ่าง";
+						mes "กับความคิดของเธอ ^000000";
+						next;
+						mes "[Emma Searth]";
+						mes "ฉันเกิดในครอบครัวที่ร่ำรวยซึ่งฉันถูกเลี้ยงดูมาเพื่อเรียนรู้มารยาทการฟันดาบขี่ม้าเปโค่และเรียนดนตรีตั้งแต่ฉันยังเป็น";
+						mes "เกิดมาฉันคิดว่าคุณสามารถพูดได้ว่าฉันมีการศึกษาค่อนข้างดี";
+						next;
+						mes "[Emma Searth]";
+						mes "อย่างไรก็ตามพ่อแม่ของฉันไม่ใช่";
+						mes "ยินดีเมื่อรู้ว่าฉันอยากเป็น Kafra Lady";
+						next;
+						mes "[Emma Searth]";
+						mes "พ่อแม่ของฉันยืนยันว่า";
+						mes "ฉันกลายเป็น Sage หรือ Scholar";
+						mes "ในที่สุดฉันก็วิ่งได้แล้ว";
+						mes "ออกไปจากพวกเขาโดยเข้าร่วมกับพวกครูเสด";
+						next;
+						mes "[Emma Searth]";
+						mes "โชคดีที่พวกครูเสดโฆษณาการรับสมัครของพวกเขาในเวลานั้นฉันจึงถือโอกาสนั้นนอกจากนี้การมีประสบการณ์ทางทหารอาจช่วยให้ฉันเข้าร่วม Kafra ได้ด้วย!";
+						next;
+						mes "[Emma Searth]";
+						mes "ใน Boot Camp ฉันทำได้ดีมาก";
+						mes "ฉันมีโอกาสได้เข้าร่วมทีมชั้นยอดทีมของฉันมักได้รับมอบหมายภารกิจที่ยากลำบากและเราไม่เคยล้มเหลวในการทำสิ่งเหล่านั้นให้สำเร็จ";
+						next;
+						mes "[Emma Searth]";
+						mes "ในที่สุดชื่อเสียงของฉันในฐานะครูเซเดอร์หญิงและการอยู่ในตำแหน่งทางทหารที่น่านับถือก็เพียงพอที่จะทำให้ครอบครัวของฉันพอใจ";
+						next;
+						mes "[Emma Searth]";
+						mes "แต่หลังจากวันนั้น";
+						mes "ทุกอย่างผิดพลาด";
+						mes "ฉันจำได้แค่นั้น";
+						mes "เศร้ามากและหดหู่";
+						mes "ยังไงก็ตามฉันรู้สึกเหมือนเรา";
+						mes "แม้จะทรยศ ... ";
+						next;
+						mes "[Emma Searth]";
+						mes "ฉันคิดว่าฉันทำได้";
+						mes "พยายามจำ";
+						mes "สหายของฉัน ... ";
+						set god_megin_4,1;
+						close;
+					}
+					else {
+						mes "[Emma Searth]";
+						mes "อ่าไม่ต้องพูดถึงมันน่าหดหู่เกินไปบางทีถ้าคุณมี ^0000FF หน่วยความจำ ^000000 ช่วยสักหน่อยฉันอาจจะจำอดีตที่ลืมไปได้ทุกอย่างเช่นเครื่องช่วยเตือนตัวกำหนดตารางเวลาที่คั่นหน้า a สตริง ... ";
+						close;
+					}
+				case 2:
+					mes "[Emma Searth]";
+					mes "วันหนึ่งฉันบังเอิญไปเห็นคุณ Leilah ทำงานที่ Al De Baran เธอเปล่งประกายด้วยความมั่นใจและได้รับคำสั่งจากลูกค้าด้วย!";
+					next;
+					mes "[Emma Searth]";
+					mes "เธอดำเนินตัวเองอย่างมืออาชีพไม่ว่าสถานการณ์จะเป็นอย่างไรแม้ว่าฉันรู้ว่าเธอเหนื่อยจากการทำงานในช่วงฤดูร้อน แต่เธอก็ทำให้ทุกอย่างดูง่ายดาย!";
+					next;
+					mes "[Emma Searth]";
+					mes "เมื่อลูกค้าผู้ชายพยายามจีบเธอเธอก็ไม่เคยลดความสุขุมเธอแค่ปรับแว่นและทำในสิ่งที่ต้องทำ";
+					next;
+					mes "[Emma Searth]";
+					mes "สำหรับฉันเธอเหมือนนางฟ้าผู้โดดเดี่ยวในขณะนั้นดูเหมือนว่าโลกนี้มีอยู่จริงเพียงแค่นางเลย์เยาะเย้ย";
+					next;
+					mes "[Emma Searth]";
+					mes "ฉันได้ยินมาว่า Kafra Ladies มักจะเดินทางไปทั่วโลกซึ่งเป็นสิ่งที่ฉันใฝ่ฝันมาตลอด";
+					next;
+					mes "[Emma Searth]";
+					mes "คุณไลลาห์เป็นไอดอลของฉัน";
+					mes "และเธอคือเหตุผลว่าทำไม";
+					mes "อยากเป็น Kafra Lady";
+					close;
+				case 3:
+					if (countitem(511) > 0 && god_megin_3 > 1) {
+						mes "^3355FFEmma Searth กุมหัวของเธอและเอาชนะในขณะที่เธอเป็นโรคไมเกรนอีก ^000000";
+						next;
+						mes "^3355FF โปรดจำไว้ว่ากรีนเฮิร์บสามารถบรรเทาอาการแจ็คโอได้คุณจึงมอบกรีนเฮิร์บให้เอ็มม่าเธอรับมันและดูผ่อนคลายขึ้นเล็กน้อย ^000000";
+						next;
+						mes "[Emma Searth]";
+						mes "ฉันยังไม่แน่ใจ";
+						mes "ฉันจำได้แค่ไหน";
+						mes "แล้วฉันจริงแค่ไหน";
+						mes "ลืม";
+						next;
+						mes "[Emma Searth]";
+						mes "ปล่อยฉัน ... ";
+						mes "พยายามจำทุกคนในทีมเรามาดูกันมี Jack O, The Nineball. Z-Zan. Zan.H-Huadoku. C-Cuaque Donon. Myself. อืม E ... Eni ... Egni ... อืม ... ";
+						next;
+						mes "[Emma Searth]";
+						mes "Egni...";
+						mes "เอ็กนิเกม? ^000000";
+						mes "นั่นใคร?";
+						mes "โอ้ไม่ฉันแน่ใจว่าเขาอาจจะ";
+						mes "มีไม่เคยมีใคร";
+						mes "ตั้งชื่อนั้นกับเรา?";
+						close2;
+						set god_megin_4,2;
+						end;
+					}
+					else {
+						mes "^3355FFEmma Searth กุมหัวของเธอและเอาชนะในขณะที่เธอเป็นโรคไมเกรนอีก ^000000";
+						next;
+						mes "[Emma Searth]";
+						mes "ฉันยังไม่แน่ใจ";
+						mes "ฉันจำได้แค่ไหน";
+						mes "แล้วฉันจริงแค่ไหน";
+						mes "ลืม";
+						close;
+					}
+				}
+			}
+			else if (god_megin_4 > 1) {
+				mes "[Emma Searth]";
+				mes "^0000FFJack O, The Nineball, Zan.Huadoku, Cuaque Donon, Egnigem. ^000000 โอ้ฉันคิดถึงพวกนั้นจริงๆ ... ";
+				close;
+			}
+			else {
+				mes "[Emma Searth]";
+				mes "^333333 * Sigh ... * ^000000 ฉันยังไม่ได้รับคำตอบใด ๆ จากพวกเขาฉันไม่รู้";
+				mes "ถ้าฉันรอได้นานกว่านี้เพื่อเข้าร่วม Kafra Corporation";
+				close;
+			}
+		}
+		else if (god_eremes == 25) {
+			mes "[Emma Searth]";
+			mes "เอ็กนิเกม ... ";
+			mes "ชื่อนั้นทำให้";
+			mes "ฉันเศร้ามากฉันไม่ใช่";
+			mes "ค่อนข้างแน่ใจว่าทำไม แต่ ... ";
+			close;
+		}
+		else if (god_eremes == 26 || god_eremes == 27) {
+			mes "[Emma Searth]";
+			mes "เอ็กนิเกม ... ";
+			mes "ชื่อนั้นทำให้";
+			mes "ฉันเศร้ามากฉันไม่ใช่";
+			mes "ค่อนข้างแน่ใจว่าทำไม แต่ ... ";
+			next;
+			mes "^3355FFEmma หันไปก่อนที่คุณจะเห็นเธอร้องไห้ถึงกระนั้นไหล่ของเธอก็ยังคงสั่นไหวขณะที่คุณจินตนาการถึงความยากลำบากที่เธอต้องทน";
+			next;
+			mes "[Emma Searth]";
+			mes "ฉันหวังว่าฉันจะรู้ว่าชื่อนั้นหมายถึงอะไรฉันแน่ใจว่ามันเชื่อมโยงกับความทรงจำที่สำคัญในอดีตของฉัน";
+			next;
+			mes "[Emma Searth]";
+			mes "ฉันขอบคุณมากที่มาที่นี่เพื่อพูดคุยกับฉันเกี่ยวกับวันเก่า ๆ ฉันอยากให้คุณมีสิ่งนี้";
+			set god_eremes,28;
+			getitem 603,1; // Old_Blue_Box
+			if (checkre(3)) {
+				if (BaseLevel < 56) getexp 2700,0;
+				else if ((BaseLevel > 55) && (BaseLevel < 61)) getexp 3000,0;
+				else if ((BaseLevel > 60) && (BaseLevel < 66)) getexp 5605,0;
+				else if ((BaseLevel > 65) && (BaseLevel < 71)) getexp 8223,0;
+				else if ((BaseLevel > 70) && (BaseLevel < 76)) getexp 21227,0;
+				else if ((BaseLevel > 75) && (BaseLevel < 81)) getexp 39073,0;
+				else if ((BaseLevel > 80) && (BaseLevel < 86)) getexp 45102,0;
+				else if ((BaseLevel > 85) && (BaseLevel < 91)) getexp 54615,0;
+				else getexp 122035,0;
+			} else {
+				if (BaseLevel < 56) getexp 27000,0;
+				else if ((BaseLevel > 55) && (BaseLevel < 61)) getexp 30000,0;
+				else if ((BaseLevel > 60) && (BaseLevel < 66)) getexp 56052,0;
+				else if ((BaseLevel > 65) && (BaseLevel < 71)) getexp 82233,0;
+				else if ((BaseLevel > 70) && (BaseLevel < 76)) getexp 212271,0;
+				else if ((BaseLevel > 75) && (BaseLevel < 81)) getexp 390738,0;
+				else if ((BaseLevel > 80) && (BaseLevel < 86)) getexp 451020,0;
+				else if ((BaseLevel > 85) && (BaseLevel < 91)) getexp 546156,0;
+				else getexp 1220358,0;
+			}
+			close;
+		}
+		else if (god_eremes == 28) {
+			mes "[Emma Searth]";
+			mes "เอ็กนิเกม ... ";
+			mes "ชื่อนั้นทำให้";
+			mes "ฉันเศร้ามากฉันไม่ใช่";
+			mes "ค่อนข้างแน่ใจว่าทำไม แต่ ... ";
+			next;
+			mes "^3355FFEmma หันไปก่อนที่คุณจะเห็นเธอร้องไห้ถึงกระนั้นไหล่ของเธอก็ยังคงสั่นไหวขณะที่คุณจินตนาการถึงความยากลำบากที่เธอต้องทน";
+			close;
+		}
+		else {
+			mes "[Emma Searth]";
+			mes "^333333*Sigh...*^000000 ฉันไม่ได้รับคำตอบใด ๆ จากพวกเขา ไม่รู้ ";
+			mes "ถ้าฉันรอได้นานกว่านี้เพื่อเข้าร่วม Kafra Corporation";
+			close;
+		}
+	}
+	else {
+		mes "[Emma Searth]";
+		mes "ฉันได้ยินเสียง Kafra Ladies เดินทางไปทั่วโลกเป็นสิ่งที่ฉันใฝ่ฝันมาตลอดหวังว่าสักวันหนึ่งฉันจะได้ทำงานให้กับ Kafra Corporation ด้วยนะ";
+		next;
+		mes "[Emma Searth]";
+		mes "^333333*Sigh...*^000000";
+		mes "ยังไงก็ท้อใจไม่ได้ยินอะไรจากพวกเขาเลย ... ";
+		close;
+	}
+}
+
+cmd_in02,190,94,3	script	Man#megin	828,{
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes == 18) {
+			mes "[Royal Myst]";
+			mes "หวา ... ?";
+			mes "อยากคุยมั้ย";
+			next;
+			mes "[Royal Myst]";
+			mes "ฉันคืออะไรจิตแพทย์ส่วนตัวของคุณ?! ผู้หญิงคนเดียว";
+			mes "ฉันไม่ว่าง!";
+			mes "ฉันจะแทงตัวไหนดี ... ?";
+			next;
+			switch(select("พูดถึงเรบาเรฟดั๊ก:พูดของทีมที่ 1:พูดคุยเกี่ยวกับการพนัน:พูดคุยเกี่ยวกับงานอดิเรก.")) {
+			case 1:
+				mes "[Royal Myst]";
+				mes "หวา -? เขาอีกแล้ว?! บอกเขาว่าฉันสบายดี! สำรวยแม้! ทำไมเขาต้องส่งคนพวกนี้ไปถาม";
+				mes "คำถามโง่ ๆ ?";
+				close;
+			case 2:
+				mes "[Royal Myst]";
+				mes "1st Squad ใช่ฉันเคยอยู่ในนั้นพวกเราทุกคนในทีมก็เคยเป็นเพื่อนที่ดีจริงๆเหมือนกัน";
+				next;
+				mes "[Royal Myst]";
+				mes "Zan.Huadoku, Cuaque Donon,";
+				mes "Jack O, Emma Searth และ The Nineball อือ ... ฉันสงสัยว่าทั้งหมดนี้เป็นยังไง?";
+				close;
+			case 3:
+				mes "[Royal Myst]";
+				mes "การพนันฉันรักมันคุณ";
+				mes "รู้ไหมเอ๊ะฉันไม่ได้ชนะตลอดเวลา แต่ฉันชอบมากที่สุดเมื่อฉันปล่อยให้ Zeny มากกว่าที่ฉันมาด้วยฮ่า ๆ ๆ !";
+				close;
+			case 4:
+				mes "[Royal Myst]";
+				mes "งานอดิเรก?";
+				mes "อะไรนะคุณกำลังมา";
+				mes "กับฉัน?";
+				next;
+				mes "[Royal Myst]";
+				mes "งานอดิเรกของผู้ชายคือการดื่มหรือเปล่าคุณก็ไม่รู้นะเนี่ยฉันก็เก่งเหมือนกันนะ! Mwahahaha!";
+				close;
+			}
+		}
+		else if (god_eremes > 18 && god_eremes < 21) {
+			if (god_megin_6 == 0 && god_megin_5 > 4 && god_megin_4 > 1 && god_megin_3 > 1 && god_megin_2 > 3 && god_megin_1 > 2) {
+				mes "[Royal Myst]";
+				mes "หวา ... ?";
+				mes "อยากคุยมั้ย";
+				next;
+				mes "[Royal Myst]";
+				mes "ฉันคืออะไรจิตแพทย์ส่วนตัวของคุณ?! ผู้หญิงคนเดียว";
+				mes "ฉันไม่ว่าง!";
+				mes "ฉันจะแทงตัวไหนดี ... ?";
+				next;
+			}
+			else if (god_megin_6 > 0) {
+				mes "[Royal Myst]";
+				mes "หืม?";
+				mes "ว่าไง";
+				next;
+			}
+			else {
+				mes "[Royal Myst]";
+				mes "หวา ... ?";
+				mes "อยากคุยมั้ย";
+				next;
+				mes "[Royal Myst]";
+				mes "ฉันคืออะไรจิตแพทย์ส่วนตัวของคุณ?! ผู้หญิงคนเดียว";
+				mes "ฉันไม่ว่าง!";
+				mes "ฉันจะแทงตัวไหนดี ... ?";
+				close;
+			}
+			if (god_megin_6 < 16) {
+				switch( select("พูดถึง Rebarev Doug", "พูดถึงทีมที่ 3", "คุยเรื่องการพนัน", "คุยงานอดิเรก.") ) {
+				case 1:
+					if (god_megin_6 == 0) {
+						mes "[Royal Myst]";
+						mes "หือคนแก่คนนั้นต้องการอะไรในครั้งนี้บอกพวกเขาว่าฉันสบายดีสำรวยด้วย! ทำไมเขาถึงส่งคนมา ... ";
+						set god_megin_6,1;
+						close;
+					}
+					else if (god_megin_6 > 0 && god_megin_6 < 15) {
+						mes "[Royal Myst]";
+						mes "ห่าอะไร!? หยุดพูดถึงเขา! ฉันไม่อยากเห็นหน้าเขาอีก! บอกให้ปล่อยฉันไว้คนเดียว!";
+						close;
+					}
+					else if (god_megin_6 > 14) {
+						mes "[Royal Myst]";
+						mes "ไอ้บ้าเอ้ย ... ";
+						mes "เขาได้รับค่าจ้างเท่าไหร่สำหรับการศึกษาสิ่งที่พวกเราทุกคนค้นพบ! เอ๊ะยังไงก็ตามฉันไม่สนใจตราบเท่าที่";
+						mes "เขาจ่ายให้ฉัน ... ";
+						next;
+						mes "[Royal Myst]";
+						mes "อือ ... ";
+						mes "ฉันแค่ไม่ทำ";
+						mes "ดูแลอีกต่อไป";
+						close;
+					}
+				case 2:
+					if (god_megin_6 < 15) {
+						mes "[Royal Myst]";
+						mes "1st Squad ใช่ฉันเคยอยู่ในนั้นพวกเราทุกคนในทีมก็เคยเป็นเพื่อนที่ดีจริงๆเหมือนกัน";
+						next;
+						mes "[Royal Myst]";
+						mes "Zan.Huadoku, Cuaque Donon,";
+						mes "Jack O, Emma Searth และ The Nineball อือ ... ฉันสงสัยว่าทั้งหมดนี้เป็นยังไง?";
+					}
+					else if (god_megin_6 > 14) {
+						mes "[Royal Myst]";
+						mes "หน่วยที่ 1?";
+						mes "ไม่รู้ไม่สนใจ ~";
+						mes "ฉันดูเหมือนครูเซเดอร์โง่ ๆ หรือเปล่า";
+					}
+					close;
+				case 3:
+					if (god_megin_6 < 15) {
+						mes "[Royal Myst]";
+						mes "การพนัน?! โอ้มนุษย์ ... ";
+						mes "ฉันชอบการพนันนะรู้ยัง!";
+						mes "หึ แต่ฉันยังโชคดีไม่พอที่จะชนะฮ่า ๆ ๆ ~!";
+						close;
+					}
+					else if (god_megin_6 > 14) {
+						mes "[Royal Myst]";
+						mes "การพนัน ... !";
+						mes "เฮ้เฮ้! คุณต้องเสี่ยงบ้าง";
+						mes "และอื่น ๆ ที่คุณไม่ควรจริงๆ";
+						mes "ฉันอดสงสารผู้ชายคนนั้นไม่ได้ E--";
+						next;
+						mes "[Royal Myst]";
+						mes "Ergh...?";
+						mes "ให้ตายเถอะฉันจำชื่อเขาไม่ได้เธอคิดว่าฉันจะไม่ลืมผู้ชายที่ฉันกำลังแร็พ แต่ ... เอ๊ะฉันจะจำได้ทันทีที่ฉันสร่างเมา";
+						next;
+						mes "[Royal Myst]";
+						mes "เฮ้คุณคิดว่าเกิดอะไรขึ้นกับครูเซเดอร์เมื่อพวกเขาถูกล้อมกรอบและถูกสังหารห๊ะพวกเขาไปไหนกันแน่นิฟล์เฮมวาฮัลล่า ... ?";
+						set god_eremes,20;
+						close;
+					}
+				case 4:
+					if (god_megin_6 == 0) {
+						mes "Hobbies?";
+						mes "อะไรนะคุณกำลังมา";
+						mes "กับฉัน?";
+						next;
+						mes "[Royal Myst]";
+						mes "งานอดิเรกของผู้ชายคือการดื่มหรือเปล่าคุณก็ไม่รู้นะเนี่ยฉันก็เก่งเหมือนกันนะ! Mwahahaha!";
+						close;
+					}
+					else if (god_megin_6 > 0 && god_megin_6 < 15) {
+						if (countitem(970) > 0) {
+							mes "[Royal Myst]";
+							mes "พูดถึงไหน";
+							mes "ฉันไม่ได้ดื่ม";
+							mes "นานมาก. เกือบ";
+							mes "สองสามชั่วโมงได้แล้ว";
+							next;
+							mes "[Royal Myst]";
+							mes "โอ้ดูเหมือนว่าคุณจะมีเครื่องดื่มอร่อย ๆ ที่ฉันสามารถเพลิดเพลินได้ Bwahahaha! Gimmie ~!";
+							next;
+							mes "^3355FF ก่อนที่คุณจะคิดได้";
+							mes "Royal Myst จุ่มมือลงในคลังของคุณและช่วยตัวเองให้เป็นแอลกอฮอล์ ^000000";
+							delitem 970,1;
+							set god_megin_6,god_megin_6 +2;
+							close;
+						}
+						else {
+							mes "[Royal Myst]";
+							mes "พูดถึงมันทำไมคุณจะเอาของที่ฉันชอบมาให้ฉันด้วยเพราะฉันเต็มใจจะรับมันมากกว่า! Bwahahaha!";
+							close;
+						}
+					}
+					else if (god_megin_6 > 14) {
+						mes "[Royal Myst]";
+						mes "^333333 *Hiccup* ^000000 โอ้ยยยยยยยยยยยยยยยยยยยยยยยยยยยยยยไม่ใช่ขยะเลียนแบบที่เคยเสิร์ฟที่บาร์สมัยนี้ ... ";
+						next;
+						mes "[Royal Myst]";
+						mes "เฮ้! มีอะไรก็อยากได้";
+						mes "รู้เรื่องฉันหรือเปล่าคุณชอบฉันฉันจะบอกอะไรคุณ! Eeeeeverythiiing ~~ !!";
+						close;
+					}
+				}
+			}
+		}
+		else {
+			mes "[Royal Myst]";
+			mes "เอ๊ะห่า ~";
+			mes "ฉันเพิ่งรู้";
+			mes "ฉันจะชนะ";
+			mes "คราวนี้!";
+			close;
+		}
+	}
+	else {
+		mes "[Royal Myst]";
+		mes "หวา ... ?";
+		mes "อยากคุยมั้ย";
+		next;
+		mes "[Royal Myst]";
+		mes "ฉันคืออะไรจิตแพทย์ส่วนตัวของคุณ?! ผู้หญิงคนเดียว";
+		mes "ฉันไม่ว่าง!";
+		mes "ฉันจะแทงตัวไหนดี ... ?";
+		close;
+	}
+}
+
+jawaii_in,44,110,0	script	Security Officer#megin	734,{
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes == 18) {
+			mes "[The Nineball]";
+			mes "ยินดีต้อนรับสู่ Jawaii,";
+			mes "สวรรค์รีสอร์ท!";
+			next;
+			mes "[The Nineball]";
+			mes "ฉันคือ 'The Nineball' เจ้าหน้าที่รักษาความปลอดภัยของ Jawaii! หากคุณพบปัญหาใด ๆ หรือพบคนโสดโปรดอย่าลังเลที่จะรายงานให้ฉันทราบโดยเร็วที่สุด ~";
+			next;
+			mes "[The Nineball]";
+			mes "มีคนบอกว่ามี";
+			mes "เป็นคนขี้เมาหลายคนที่นี่";
+			mes "เมื่อเร็ว ๆ นี้ แต่เพื่อประโยชน์สูงสุดของเราที่จะทำให้ประสบการณ์ของคุณที่นี่สนุกที่สุดเท่าที่จะทำได้";
+			close;
+		}
+		else if (god_eremes > 18) {
+			if (god_megin_5 < 5) {
+				mes "[The Nineball]";
+				mes "ยินดีต้อนรับสู่ Jawaii,";
+				mes "สวรรค์รีสอร์ท!";
+				next;
+				mes "[The Nineball]";
+				mes "ฉันคือ 'The Nineball เจ้าหน้าที่รักษาความปลอดภัยของ Jawaii! หากคุณพบปัญหาใด ๆ หรือพบคนโสดโปรดอย่าลังเลที่จะรายงานให้ฉันทราบโดยเร็วที่สุด ~";
+				next;
+				mes "[The Nineball]";
+				mes "มีคนบอกว่ามี";
+				mes "เมื่อเร็ว ๆ นี้มีคนขี้เมาที่เกเรหลายคน แต่เราเพื่อประโยชน์สูงสุดที่จะทำให้ประสบการณ์ของคุณที่นี่สนุกที่สุดเท่าที่จะทำได้";
+				set god_megin_5,god_megin_5 +1;
+				close;
+			}
+			else if (god_megin_5 == 5) {
+				mes "^3355FFHe acted very bright and friendly, but for a fleeting moment, you were able to glimpse a hint of sadness in his eyes.^000000";
+				next;
+				mes "^3355FF ดูเหมือนจะไม่เป็นอย่างนั้น";
+				mes "คุณจะสามารถรับเขาได้";
+				mes "พูดถึงอะไรกันแน่";
+				mes "เกิดขึ้นในหมู่ที่ 1 ... ^000000";
+				close;
+			}
+		}
+	}
+	else {
+		mes "[The Nineball]";
+		mes "ยินดีต้อนรับสู่ Jawaii,";
+		mes "สวรรค์รีสอร์ท!";
+		next;
+		mes "[The Nineball]";
+		mes "ฉันคือ 'The Nineball เจ้าหน้าที่รักษาความปลอดภัยของ Jawaii! หากคุณพบปัญหาใด ๆ หรือพบคนโสดโปรดอย่าลังเลที่จะรายงานให้ฉันทราบโดยเร็วที่สุด ~";
+		next;
+		mes "[The Nineball]";
+		mes "มีคนบอกว่ามี";
+		mes "เมื่อเร็ว ๆ นี้มีคนขี้เมาที่เกเรหลายคน แต่เราเพื่อประโยชน์สูงสุดที่จะทำให้ประสบการณ์ของคุณที่นี่สนุกที่สุดเท่าที่จะทำได้";
+		close;
+	}
+
+}
+
+niflheim,109,254,0	script	Egnigem	796,{
+	if ($God1 >= $@god_check1 && $God2 < $@god_check2) {
+		if (god_eremes > 19 && god_eremes < 25) {
+			if (god_eremes > 22) {
+				mes "[Egnigem]";
+				mes "กลับไปทำไม";
+				mes "สถานที่แห่งความมืดอันเงียบเหงานี้หรือ";
+				next;
+				mes "[Egnigem]";
+				mes "โปรดกลับไปที่โลก";
+				mes "ของสิ่งมีชีวิตการอยู่ที่นี่คือการทนทุกข์เช่นนี้เป็นธรรมชาติของ Niflheim";
+				close;
+			}
+			else {
+				mes "[Egnigem]";
+				mes "ทักทาย ... ";
+				mes "" + strcharinfo (0) + ".";
+				mes "ฉันเฝ้ามองคุณอยู่ใน";
+				mes "โลกของสิ่งมีชีวิตฉันเห็นว่าคุณกำลังยุ่งอยู่กับการค้นหาความจริงเกี่ยวกับหน่วยที่ 1 ใช่หรือไม่";
+				next;
+				mes "[Egnigem]";
+				mes "ฉันสามารถให้คำตอบกับคุณได้อย่างไรก็ตามฉันเป็นสมาชิกคนเดียวของทีมที่ 1 ที่เก็บความทรงจำทั้งหมดของฉันเอาไว้ ... ";
+				next;
+				mes "[Egnigem]";
+				mes "หึหึ ... ";
+				mes "ให้ฉันบอกคุณทุกอย่าง";
+				mes "เกี่ยวกับ 1 Squad that's";
+				mes "ถูกลืม ... ";
+				while(1) {
+					next;
+					switch(select("The Mission:Fate of the 1st Squad:ทำไมคุณถึงอยู่ใน Niflheim?:ขอบคุณฉันได้ยินมามากพอแล้ว.")) {
+					case 1:
+						mes "[Egnigem]";
+						mes "ก่อนอื่นบันทึกอย่างเป็นทางการของภารกิจของเราทำให้เข้าใจผิด";
+						mes "มันมีความจริงตาม";
+						mes "เกี่ยวกับหลักฐานทางวาจา แต่รายละเอียดที่สำคัญที่สุดถูกละทิ้งหรือเปลี่ยนแปลง";
+						next;
+						mes "[Egnigem]";
+						mes "ตอนนี้เราได้รับมอบหมายอย่างลับๆ";
+						mes "เพื่อค้นหา ^0000FF สิ่งประดิษฐ์ของพระเจ้า ^000000 ตามพระราชกฤษฎีกาเพียงสามวันเราก็ประสบความสำเร็จและพบ Megingjard!";
+						next;
+						mes "[Egnigem]";
+						mes "ตอนนี้บันทึกบอกว่าภารกิจไม่น่าพอใจใช่มั้ยนั่นคงเป็นเพราะฉัน";
+						next;
+						mes "[Egnigem]";
+						mes "คุณรู้ไหมว่า Megingjard";
+						mes "เป็นเข็มขัดที่เทพเจ้าสวมใส่อยู่หรือเปล่ามันเป็นหนึ่งในกุญแจสู่ความแข็งแกร่งอันยิ่งใหญ่ของ ธ อร์อีกชื่อหนึ่งคือ 'Girdle of Might'";
+						next;
+						mes "[Egnigem]";
+						mes "Now, if a human were to wear";
+						mes "that, there's a possibility that Megingjard would give him strength comparable to a god. Naturally, you'd be afraid of such a thing falling into the wrong hands.";
+						next;
+						mes "[Egnigem]";
+						mes "ในความคิดของ Rebarev Doug เขา";
+						mes "เป็นคนเดียวที่คู่ควรกับเข็มขัดเนื่องจากเขาคิดว่าตัวเองเป็นคนเคร่งศาสนาที่สุดที่ยังมีชีวิตอยู่จึงใกล้เคียงกับเทพเจ้ามากที่สุด";
+						next;
+						mes "[Egnigem]";
+						mes "เขาบอกให้เราเข้าใจอย่างชัดเจนว่ามีเพียงเขาเท่านั้นที่สวมใส่ Megingjard แม้ว่าเขาจะเป็นผู้นำของเรา แต่พวกเราบางคนก็รู้สึกไม่สบายใจที่เขาสวมเข็มขัดและไม่มอบให้กับผู้บังคับบัญชาซึ่งเป็นเป้าหมายของภารกิจของเรา";
+						next;
+						mes "[Egnigem]";
+						mes "โดยธรรมชาติฉันต่อต้านเขาเขาดูไม่สมดุลอย่างเห็นได้ชัดและมันจะเป็นอันตรายหากให้เขาควบคุมพลังดังกล่าวมันทำให้เกิดการต่อสู้ด้วยหมัดระหว่างเรา";
+						next;
+						mes "[Egnigem]";
+						mes "ส่วนที่เหลือของทีมไม่สามารถทำได้";
+						mes "ตกลงกันว่าเราควรเชื่อฟังผู้นำของเราหรือไม่และปล่อยให้เขามีเข็มขัดบางคนแค่อยากทำภารกิจให้สำเร็จในขณะที่คนอื่น ๆ ก็กลัวว่าจะเกิดอะไรขึ้น";
+						next;
+						mes "[Egnigem]";
+						mes "แต่ Rebarev ไม่รอให้เราตัดสินใจเขาทำลาย Megingjard เป็นชิ้นเล็กชิ้นน้อยตั้งใจที่จะเก็บมันส่วนใหญ่ไว้และสร้างขึ้นใหม่ในภายหลังและนำชิ้นส่วนหนึ่งชิ้นไปให้ Prontera Military เท่านั้น";
+						next;
+						mes "[Egnigem]";
+						mes "เขารู้ว่าไม่มีทางได้";
+						mes "ออกไปโดยเก็บ Megingjard ทั้งหมดไว้กับตัวเองเพราะทั้งทีมอาจทำให้เขาเสียชื่อเสียงได้";
+						next;
+						mes "[Egnigem]";
+						mes "แต่ Rebarev รู้";
+						mes "ว่าเขาหลอกเขาได้";
+						mes "ผู้บังคับบัญชาโดยให้ชิ้นส่วนของสิ่งประดิษฐ์และบอกว่าส่วนที่เหลือถูกทำลาย";
+						next;
+						mes "[Egnigem]";
+						mes "ฉันค้นพบความตั้งใจของเขาเมื่อ";
+						mes "ฉันพบว่าเขากำลังแยก Megingjard ก่อนที่ฉันจะหยุดเขาได้";
+						mes "ฉันถูกฆ่าไอ้นั่น";
+						mes "กับดักที่พร้อมสำหรับฉัน ... ";
+						next;
+						mes "[Egnigem]";
+						mes "หลังจบภารกิจ Rebarev Doug เพียงแค่มอบเข็มขัดให้กับผู้เล่นระดับสูงเท่านั้นและมอบให้";
+						mes "บัญชีที่แตกต่างจากที่เกิดขึ้นจริง ... ";
+						break;
+					case 2:
+						mes "[Egnigem]";
+						mes "เมื่อภารกิจเสร็จสิ้น Rebarev Doug กลับมารายงานตัวที่ Prontera Military ด้วยความตั้งใจที่จะรักษาส่วนใหญ่ของ Megingjard ไว้สำหรับตัวเอง";
+						next;
+						mes "[Egnigem]";
+						mes "ด้วยเหตุผลบางอย่างเขามีอิทธิพลอย่างมากในลำดับชั้นของทหารตอนนี้ผมมั่นใจว่าพวกเขาค่อนข้างเข้าใจแล้วว่าเขาฆ่าผม";
+						next;
+						mes "[Egnigem]";
+						mes "แต่ Rebarev Doug คาดหวังสิ่งนี้และอธิบายให้ผู้บังคับบัญชาของเขาทราบว่าทีมถูกล่อลวงโดยพลังของ Megingjard และฉันได้นำพวกเราบางคนไปทำการกบฏต่อเขา";
+						next;
+						mes "[Egnigem]";
+						mes "เขาบอกผู้บังคับบัญชาของเขาว่า Megingjard เสียหายเหมือนพวกเรา";
+						mes "ต่อสู้กันเองและชิ้นส่วนที่เขามอบให้ก็คือทั้งหมดที่เหลืออยู่";
+						next;
+						mes "[Egnigem]";
+						mes "เนื่องจากลักษณะการปฏิบัติภารกิจของเราเป็นความลับหน่วยที่ 1 จึงถูกยกเลิกและเราไม่ได้ให้เรื่องราวที่ Rebarev เลี้ยงข้าราชการจนกว่าจะสายเกินไป";
+						next;
+						mes "[Egnigem]";
+						mes "ทีมถูกลงโทษและ";
+						mes "ถูกส่งไปฝึกอบรมทางวินัยเป็นเวลาสามเดือนในช่วงเวลานี้ความทรงจำที่เฉพาะเจาะจงถูกลบออกจากสมาชิกในทีมโดยไม่เป็นธรรมชาติ";
+						next;
+						mes "[Egnigem]";
+						mes "ในที่สุดทุกคนก็ถูกย้ายไปยังทีมและตำแหน่งอื่น ๆ ชื่อของฉันต้องถูกลบออกจากบันทึกทั้งหมดเนื่องจากการได้ยินหรืออ่านชื่อของฉันอาจทำให้สมองถูกล้าง";
+						next;
+						mes "[Egnigem]";
+						mes "อย่างไรก็ตามพวกเขายังต้องการแพะรับบาปอย่างเป็นทางการดังนั้นพวกเขาจึงใช้ชื่อของ Royal Myst ในบันทึกนั่นอาจเป็นเหตุผลว่าทำไมเขาถึงต้องเจอกับช่วงเวลาที่ยากลำบากในตอนนี้";
+						next;
+						mes "[Egnigem]";
+						mes "และตอนนี้ Rebarev Doug ได้ศึกษาสิ่งประดิษฐ์ของพระเจ้าโดยอาศัยชิ้นส่วนของ Megingjard ที่เราพบในภารกิจนั้นโดยใช้เงินทุนวิจัยของราชอาณาจักรสักวันเขาอาจจะสร้างเข็มขัดขึ้นมาใหม่ได้";
+						next;
+						mes "[Egnigem]";
+						mes "นอกจากนี้ยังมี";
+						mes "คำถามสองสามข้อ";
+						mes "ฉันไม่เคยทำได้";
+						mes "ตอบ";
+						next;
+						mes "[Egnigem]";
+						mes "ฉันไม่เคยรู้มาก่อนเลยว่าทำไมกษัตริย์ Tristram III จึงสั่งให้วิจัยสิ่งประดิษฐ์ของพระเจ้ามันรบกวนฉันด้วยที่ Rebarev Doug รับผิดชอบการวิจัยของ Megingjard ต้องมีเหตุผลบางอย่าง";
+						next;
+						mes "[Egnigem]";
+						mes "ไม่ว่าในกรณีใดเพื่อประโยชน์ของ Midgard คุณจะต้องรับผิดชอบในการค้นหาคำตอบ";
+						next;
+						mes "[Egnigem]";
+						mes "มีคนตายไม่มาก";
+						mes "ทำได้ แต่ที่แย่ไปกว่านั้นคือไม่มีใครจำฉันได้อีกต่อไปฉันตายคนเดียวและฉันก็ยังเหงาอยู่ที่นี่เพื่อคนตาย";
+						break;
+					case 3:
+						mes "[Egnigem]";
+						mes "ส่วนที่แย่ที่สุดของทีม";
+						mes "การลบความทรงจำคือ";
+						mes "ที่ Emma Searth มีอย่างแน่นอน";
+						mes "ไม่มีความทรงจำเกี่ยวกับฉัน";
+						next;
+						mes "[Egnigem]";
+						mes "คุณสนใจฟังไหม";
+						mes "กับฉันสักพักได้ไหมคุณ";
+						mes "คนเดียวกับใคร";
+						mes "ฉันคุยเรื่องนี้ได้ ... ";
+						next;
+						mes "[Egnigem]";
+						mes "จากตรงนี้ฉันเห็นเอ็มม่าคนนั้น";
+						mes "กำลังไล่ตามความฝันของเธออีกครั้งและ";
+						mes "ฉันมีความสุขสำหรับเธอ แต่มันก็ยัง";
+						mes "ไม่ใช่เรื่องง่ายที่จะรู้จักผู้หญิงของคุณ";
+						mes "ความรักลืมเธอไปหมดแล้ว";
+						next;
+						mes "[Egnigem]";
+						mes "ฉันจำครั้งแรกที่ได้พบเธอฉันเดาว่ามันเป็นรักแรกพบ แต่ฉันขี้ขลาดเกินไปที่จะสารภาพรักฉันจึงสิ้นหวังเมื่อเธอเข้าร่วมสงครามครูเสด";
+						next;
+						mes "[Egnigem]";
+						mes "ฉันใช้เวลาสักพัก แต่ฉันก็ตัดสินใจที่จะเข้าร่วมเป็น Crusader";
+						mes "เช่นกันฉันอยากใกล้ชิดกับเธอมาก ๆ ";
+						next;
+						mes "[Egnigem]";
+						mes "ตอนนี้หลังจากการผจญภัยและช่วงเวลาดีๆร่วมกันฉันอยู่ในสถานการณ์ที่เลวร้ายที่สุดเท่าที่จะเป็นไปได้";
+						next;
+						mes "[Egnigem]";
+						mes "ฉันตายแล้ว ... ";
+						mes "แต่ฉันไม่มีแม้แต่คำปลอบใจที่เธอเป็น";
+						mes "ไว้ทุกข์กับการสูญเสียของฉัน";
+						next;
+						mes "[Egnigem]";
+						mes "ฉันคิดว่านั่นคือเหตุผลที่ฉันมาที่นี่";
+						mes "ใน Niflheim ฉันไม่สามารถเดินต่อไปยังสวรรค์วัลฮัลล่าหรือที่อื่นโดยไม่มีเธอได้";
+						next;
+						mes "[Egnigem]";
+						mes "ยังไงก็ตามไปเยี่ยมสำนักงานใหญ่ Crusader คุณอาจสามารถเรียนรู้เพิ่มเติมเกี่ยวกับ Rebarev Doug และหยุดความสับสนใหม่ ๆ ที่เขาอาจวางแผนไว้ได้โชคดีเพื่อนของฉัน";
+						break;
+					case 4:
+						mes "[Egnigem]";
+						mes "ขอบคุณสำหรับ";
+						mes "ฟังฉัน ... ";
+						if (god_eremes == 21) {
+							set god_eremes,23;
+						}
+						else if (god_eremes == 22) {
+							set god_eremes,24;
+						}
+						close;
+					}
+				}
+			}
+		}
+		else if (god_eremes == 25) {
+			mes "[Egnigem]";
+			mes "ในฐานะครูเซเดอร์ ... ";
+			mes "นี่คือสิ่งที่ดีที่สุด";
+			mes "ฉันทำได้เพื่อตอบแทน";
+			mes "สิ่งที่คุณทำเพื่อฉัน";
+			next;
+			mes "[Egnigem]";
+			mes "ฟัง ... ";
+			mes "ฉันจะไป";
+			mes "ฝังใจ";
+			mes "^666666 สุดท้ายร่องรอยแห่งความแข็งแกร่งของฉัน ^000000 ... ";
+			specialeffect EF_BEGINSPELL5;
+			specialeffect2 EF_HOLYHIT;
+			next;
+			mes "[Egnigem]";
+			mes "ขอให้ฟ้าสวรรค์";
+			mes "ตอบฉันเมื่อฉันเรียกร้อง";
+			mes "แสงสว่างแห่งความยุติธรรมที่ให้อำนาจแก่ผู้ปกป้องความจริงและคุกคามศัตรูแห่งสันติภาพ";
+			specialeffect EF_BEGINSPELL6;
+			specialeffect2 EF_HOLYHIT;
+			next;
+			mes "[Egnigem]";
+			mes "ขอให้คุณส่องแสงด้วย";
+			mes "แสงแห่งความจริงขอให้แสงสว่างในตัวคุณขจัดเงา";
+			mes "ของการหลอกลวงความกลัวและความอาฆาตพยาบาท";
+			specialeffect EF_BEGINSPELL6;
+			specialeffect2 EF_HOLYHIT;
+			next;
+			mes "[Egnigem]";
+			mes "โดยอำนาจศักดิ์สิทธิ์";
+			mes "ลงทุนในตัวฉันฉันขอมอบพลังที่เหลืออยู่ให้คุณด้วยความถ่อมใจสู้อย่างมีเกียรติและอย่ามองข้ามความชอบธรรม";
+			specialeffect EF_LOCKON;
+			specialeffect2 EF_HOLYCROSS;
+			set god_eremes,27;
+			if (checkre(3)) {
+				if (BaseLevel < 56) getexp 2700,0;
+				else if ((BaseLevel > 55) && (BaseLevel < 61)) getexp 3000,0;
+				else if ((BaseLevel > 60) && (BaseLevel < 66)) getexp 5605,0;
+				else if ((BaseLevel > 65) && (BaseLevel < 71)) getexp 8223,0;
+				else if ((BaseLevel > 70) && (BaseLevel < 76)) getexp 21227,0;
+				else if ((BaseLevel > 75) && (BaseLevel < 81)) getexp 39073,0;
+				else if ((BaseLevel > 80) && (BaseLevel < 86)) getexp 45102,0;
+				else if ((BaseLevel > 85) && (BaseLevel < 91)) getexp 54615,0;
+				else getexp 122035,0;
+			} else {
+				if (BaseLevel < 56) getexp 27000,0;
+				else if ((BaseLevel > 55) && (BaseLevel < 61)) getexp 30000,0;
+				else if ((BaseLevel > 60) && (BaseLevel < 66)) getexp 56052,0;
+				else if ((BaseLevel > 65) && (BaseLevel < 71)) getexp 82233,0;
+				else if ((BaseLevel > 70) && (BaseLevel < 76)) getexp 212271,0;
+				else if ((BaseLevel > 75) && (BaseLevel < 81)) getexp 390738,0;
+				else if ((BaseLevel > 80) && (BaseLevel < 86)) getexp 451020,0;
+				else if ((BaseLevel > 85) && (BaseLevel < 91)) getexp 546156,0;
+				else getexp 1220358,0;
+			}
+			close;
+		}
+		else if (god_eremes == 26) {
+			mes "[Egnigem]";
+			mes "ในฐานะครูเซเดอร์ ... ";
+			mes "นี่คือสิ่งที่ดีที่สุด";
+			mes "ฉันทำได้เพื่อตอบแทน";
+			mes "สิ่งที่คุณทำเพื่อฉัน";
+			next;
+			mes "[Egnigem]";
+			mes "ฟัง ... ";
+			mes "ฉันจะไป";
+			mes "ฝังใจ";
+			mes "^666666 สุดท้ายร่องรอยแห่งความแข็งแกร่งของฉัน ^000000 ... ";
+			specialeffect EF_BEGINSPELL5;
+			specialeffect2 EF_HOLYHIT;
+			next;
+			mes "[Egnigem]";
+			mes "ขอให้ฟ้าสวรรค์";
+			mes "ตอบฉันเมื่อฉันเรียกร้อง";
+			mes "แสงสว่างแห่งความยุติธรรมที่ให้อำนาจแก่ผู้ปกป้องความจริงและคุกคามศัตรูแห่งสันติภาพ";
+			specialeffect EF_BEGINSPELL6;
+			specialeffect2 EF_HOLYHIT;
+			next;
+			mes "[Egnigem]";
+			mes "ขอให้คุณส่องแสงด้วย";
+			mes "แสงแห่งความจริงขอให้แสงสว่างในตัวคุณขจัดเงา";
+			mes "ของการหลอกลวงความกลัวและความอาฆาตพยาบาท";
+			specialeffect EF_BEGINSPELL6;
+			specialeffect2 EF_HOLYHIT;
+			next;
+			mes "[Egnigem]";
+			mes "โดยอำนาจศักดิ์สิทธิ์";
+			mes "ลงทุนในตัวฉันฉันขอมอบพลังที่เหลืออยู่ให้คุณด้วยความถ่อมใจสู้อย่างมีเกียรติและอย่ามองข้ามความชอบธรรม";
+			specialeffect EF_LOCKON;
+			specialeffect2 EF_HOLYCROSS;
+			set god_eremes,27;
+			if (checkre(3)) {
+				if (BaseLevel < 56) getexp 2700,0;
+				else if ((BaseLevel > 55) && (BaseLevel < 61)) getexp 3000,0;
+				else if ((BaseLevel > 60) && (BaseLevel < 66)) getexp 5605,0;
+				else if ((BaseLevel > 65) && (BaseLevel < 71)) getexp 8223,0;
+				else if ((BaseLevel > 70) && (BaseLevel < 76)) getexp 21227,0;
+				else if ((BaseLevel > 75) && (BaseLevel < 81)) getexp 39073,0;
+				else if ((BaseLevel > 80) && (BaseLevel < 86)) getexp 45102,0;
+				else if ((BaseLevel > 85) && (BaseLevel < 91)) getexp 54615,0;
+				else getexp 122035,0;
+			} else {
+				if (BaseLevel < 56) getexp 27000,0;
+				else if ((BaseLevel > 55) && (BaseLevel < 61)) getexp 30000,0;
+				else if ((BaseLevel > 60) && (BaseLevel < 66)) getexp 56052,0;
+				else if ((BaseLevel > 65) && (BaseLevel < 71)) getexp 82233,0;
+				else if ((BaseLevel > 70) && (BaseLevel < 76)) getexp 212271,0;
+				else if ((BaseLevel > 75) && (BaseLevel < 81)) getexp 390738,0;
+				else if ((BaseLevel > 80) && (BaseLevel < 86)) getexp 451020,0;
+				else if ((BaseLevel > 85) && (BaseLevel < 91)) getexp 546156,0;
+				else getexp 1220358,0;
+			}
+			close;
+		}
+		else if (god_eremes < 20) {
+			mes "[Egnigem]";
+			mes "คุณถูกทรยศโดยโชคชะตาเช่นกันหรือคุณเป็นเพียงคนพเนจรที่สะดุดเข้าสู่ดินแดนแห่งความมืดนี้";
+			next;
+			mes "[Egnigem]";
+			mes "อืมชีวิตไม่สมควรได้รับ";
+			mes "ต้องอยู่ในดินแดนแห่งความหนาวเหน็บและความทุกข์ทรมาน แต่ฉันช่วยให้คุณรอดพ้นได้โดยการบอกสิ่งที่เล็กน้อยเท่านั้น";
+			mes "ฉันรู้";
+			next;
+			switch(select("ถามเขาเกี่ยวกับสิ่งปลูกสร้าง:ลบเครื่องหมายบนแผนที่ย่อ:ยกเลิก.")) {
+			case 1:
+				mes "[Egnigem]";
+				mes "ฉันเข้าใจแล้วถ้าคุณเข้าใจเค้าโครงของ Niflheim ดีขึ้นคุณมีโอกาสรอดและหนีได้มากขึ้น";
+				next;
+				switch(select("ปราสาทแม่มด:ร้านเครื่องมือ:ร้านขายอาวุธ:โรงเตี๊ยม:ยกเลิก")) {
+				case 1:
+					mes "[Egnigem]";
+					mes "แม่มดแห่งนิฟล์เฮม ... ";
+					mes "คุณสามารถหาปราสาทของเธอได้ที่เครื่องหมาย ^FF3355 + ^000000 ที่ฉันสร้างไว้บนแผนที่ย่อของคุณ";
+					next;
+					mes "[Egnigem]";
+					mes "หือ ... ";
+					mes "ดูเหมือนว่าคนที่อาศัยอยู่ใน Niflheim กำลังตามหาแม่มด แต่ฉันไม่ค่อยเข้าใจว่าอะไรสำคัญเกี่ยวกับเธอ";
+					viewpoint 1,253,191,2,0xFFFF33;
+					break;
+				case 2:
+					mes "[Egnigem]";
+					mes "ร้านขายเครื่องมือหรือไม่ที่นี่ใน Niflheim พวกเขาขายสินค้าเฉพาะที่";
+					mes "หาซื้อที่ไหนไม่ได้แล้ว";
+					next;
+					mes "[Egnigem]";
+					mes "คุณอาจอยากเห็นพวกเขา";
+					mes "ของใช้เองฉันวาด";
+					mes "a ^CE6300 + ^000000 บนแผนที่ย่อของคุณเพื่อทำเครื่องหมาย";
+					mes "ที่ตั้งของมัน";
+					viewpoint 1,217,196,3,0xFFCE63;
+					break;
+				case 3:
+					mes "[Egnigem]";
+					mes "ฉันทำเครื่องหมายที่ตั้งของร้านค้าอาวุธไว้ที่ ^55FF33 + ^000000 ที่นั่นไม่มีอะไรพิเศษเกินไป";
+					viewpoint 1,216,171,4,0xFF55FF;
+					break;
+				case 4:
+					mes "[Egnigem]";
+					mes "โรงเตี๊ยมอยู่ที่ ^3355FF + ^000000 พวกเขาขายเฉพาะเครื่องดื่มให้กับคนตายเท่านั้นแม้ว่า ... ";
+					viewpoint 1,189,207,5,0xFF3355;
+					break;
+				case 5:
+					mes "[Egnigem]";
+					mes "เลือก ลบเครื่องหมายบนแผนที่ย่อ จากเมนูเพื่อลบเครื่องหมายตำแหน่งอาคารทั้งหมดที่ฉันทำ";
+					close;
+				}
+				close;
+			case 2:
+				viewpoint 2,253,191,2,0xFF00FF;
+				viewpoint 2,217,196,3,0xFF00FF;
+				viewpoint 2,216,171,4,0xFF00FF;
+				viewpoint 2,189,207,5,0xFF00FF;
+				mes "[Egnigem]";
+				mes "ได้เลยเครื่องหมายทั้งหมดที่ฉันทำถูกลบออกจากแผนที่ย่อของคุณแล้วถ้าคุณต้องการตรวจสอบสถานที่ใน Niflheim อีกครั้งโปรดถามฉันเลย";
+				close;
+			case 3:
+				mes "[Egnigem]";
+				mes "คุณจะไปสำรวจสถานที่แห่งนี้ด้วยตัวคุณเองหรือไม่กล้าสวยไม่ใช่เหรอระวัง:ที่นี่ใน Niflheim ความมืดครอบงำสูงสุด";
+				close;
+			}
+		}
+		else {
+			mes "[Egnigem]";
+			mes "ฉันหวังอย่างนั้นจริงๆ";
+			mes "Emma Searth ทำได้";
+			mes "จำฉันได้ไหม ... ";
+			next;
+			mes "^3355FF ดวงตาของเขาดูเหมือน";
+			mes "ชุ่มฉ่ำไปด้วยความเศร้า";
+			mes "เป็นไปได้หรือไม่สำหรับ";
+			mes "ตายเพื่อหลั่งน้ำตา ^000000";
+			close;
+		}
+	}
+	else {
+		mes "[Egnigem]";
+		mes "คุณถูกทรยศโดยโชคชะตาเช่นกันหรือคุณเป็นเพียงคนพเนจรที่สะดุดเข้าสู่ดินแดนแห่งความมืดนี้";
+		next;
+		mes "[Egnigem]";
+		mes "อืมชีวิตไม่สมควรได้รับ";
+		mes "ต้องอยู่ในดินแดนแห่งความหนาวเหน็บและความทุกข์ทรมาน แต่ฉันช่วยให้คุณรอดพ้นได้โดยการบอกสิ่งที่เล็กน้อยเท่านั้น";
+		mes "ฉันรู้";
+		next;
+		switch(select("ถามเขาเกี่ยวกับสิ่งปลูกสร้าง:ลบเครื่องหมายบนแผนที่ย่อ:ยกเลิก.")) {
+		case 1:
+			mes "[Egnigem]";
+			mes "...I see. Now, let me introduce you all buildings in Niflheim!";
+			next;
+			switch(select("Witch's Castle:Tool Shop:Weapon Shop:Tavern:Cancel")) {
+			case 1:
+				mes "[Egnigem]";
+				mes "แม่มดแห่งนิฟล์เฮม ... ";
+				mes "คุณสามารถหาปราสาทของเธอได้ที่เครื่องหมาย ^FF3355 + ^000000 ที่ฉันสร้างไว้บนแผนที่ย่อของคุณ";
+				next;
+				mes "[Egnigem]";
+				mes "หือ ... ";
+				mes "ดูเหมือนว่าคนที่อาศัยอยู่ใน Niflheim กำลังตามหาแม่มด แต่ฉันไม่ค่อยเข้าใจว่าอะไรสำคัญเกี่ยวกับเธอ";
+				viewpoint 1,253,191,6,0xFFFF33;
+				break;
+			case 2:
+				mes "[Egnigem]";
+				mes "ร้านขายเครื่องมือหรือไม่ที่นี่ใน Niflheim พวกเขาขายสินค้าเฉพาะที่";
+				mes "หาซื้อที่ไหนไม่ได้แล้ว";
+				next;
+				mes "[Egnigem]";
+				mes "คุณอาจอยากเห็นพวกเขา";
+				mes "ของใช้เองฉันวาด";
+				mes "a ^CE6300 + ^000000 บนแผนที่ย่อของคุณเพื่อทำเครื่องหมาย";
+				mes "ที่ตั้งของมัน";
+				viewpoint 1,217,196,7,0xFFCE63;
+				break;
+			case 3:
+				mes "[Egnigem]";
+				mes "ฉันทำเครื่องหมายที่ตั้งของร้านค้าอาวุธไว้ที่ ^55FF33 + ^000000 ที่นั่นไม่มีอะไรพิเศษเกินไป";
+				viewpoint 1,216,171,8,0xFF55FF;
+				break;
+			case 4:
+				mes "[Egnigem]";
+				mes "ฉันทำผิดที่ตั้งของร้านค้าอาวุธไว้ที่ ^55FF33 + ^000000 ที่นั่นไม่มีอะไรพิเศษ";
+				viewpoint 1,189,207,9,0xFF3355;
+				break;
+			case 5:
+				mes "[Egnigem]";
+				mes "เลือก ลบเครื่องหมายบนแผนที่ย่อ จากเมนูเพื่อลบเครื่องหมายตำแหน่งอาคารทั้งหมดที่ฉันทำ";
+				close;
+				break;
+			}
+			close;
+		case 2:
+			viewpoint 2,253,191,6,0xFF00FF;
+			viewpoint 2,217,196,7,0xFF00FF;
+			viewpoint 2,216,171,8,0xFF00FF;
+			viewpoint 2,189,207,9,0xFF00FF;
+			mes "[Egnigem]";
+			mes "ได้เลยเครื่องหมายทั้งหมดที่ฉันทำถูกลบออกจากแผนที่ย่อของคุณแล้วถ้าคุณต้องการตรวจสอบสถานที่ใน Niflheim อีกครั้งโปรดถามฉันเลย";
+			close;
+		case 3:
+			mes "[Egnigem]";
+			mes "คุณจะไปสำรวจสถานที่แห่งนี้ด้วยตัวคุณเองหรือไม่กล้าสวยไม่ใช่เหรอระวัง:ที่นี่ใน Niflheim ความมืดครอบงำสูงสุด";
+			close;
+		}
+		close2;
+	}
+}

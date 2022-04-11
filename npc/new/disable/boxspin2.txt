@@ -1,0 +1,89 @@
+-	script	SysSpin2	-1,{
+	end;
+
+OnInit:
+	setarray $@SSPIN_Rate2[0],	// Number , X , Rate
+		1,32531,95,
+		2,32629,93,
+		3,32633,89,
+		4,31478,86,
+		5,32413,83,
+		6,32439,81,
+		7,20132,79,
+		8,20430,76,
+		9,31687,73,
+		10,20761,70,
+		11,31686,65,
+		12,19952,60,
+		13,20010,55,
+		14,20011,50,
+		15,20448,45,
+		16,20142,40,
+		17,20154,35,
+		18,20069,30,
+		19,20255,25, 
+		20,20263,20,
+		21,31386,15,
+		22,31510,10,
+		23,32656,5,
+		24,32660,1;
+
+
+
+	setarray $@SSPIN_cutin2$[0],"cos_01","cos_02","cos_03","cos_04","cos_05","cos_06","cos_07","cos_08","cos_09","cos_10",
+	"cos_11","cos_12","cos_13","cos_14","cos_15","cos_16","cos_17","cos_18","cos_19","cos_20","cos_21","cos_22","cos_23","cos_24";
+
+	set $@SSPIN_cutin_max2,getarraysize($@SSPIN_cutin2$);
+	end;
+}
+
+function	script	SSPIN_Rate2	{
+	for (set .@i,getarraysize($@SSPIN_Rate2)-1; .@i >= 0; set .@i,.@i-3) {
+		if (getarg(0) == $@SSPIN_Rate2[.@i-2]) return $@SSPIN_Rate2[.@i-1];
+	}
+}
+
+
+function	script	SSPIN_GetCutin2	{
+	for (set .@i,getarraysize($@SSPIN_Rate2)-1; .@i >= 0; set .@i,.@i-3) {
+		if ($@SSPIN_Rate2[.@i] > getarg(0)) return ($@SSPIN_Rate2[.@i-2]-1);
+	}
+	return $@SSPIN_cutin_max2-1;
+}
+
+function	script	boxspin2	{
+	cutin "cos_OG",1;
+	mes "[ ^0000FFBox Spin^000000 ]";
+	mes "สวัสดี "+strcharinfo(0)+" ";
+	mes "มาลุ้นกันว่าวันนี้จะได้รับอะไร";
+	next;
+	mes "[ ^0000FFBox Spin^000000 ]";
+	mes "กำลังสุ่มไอเทม";
+	mes "กรุณารอสักครู่...";
+	set .@rate,rand(100);
+	set .@start,rand($@SSPIN_cutin_max2);
+	set .@end,callfunc("SSPIN_GetCutin2",.@rate);
+	for (set .@i,0; .@i < 50; set .@i,.@i+1) {
+		cutin $@SSPIN_cutin2$[.@start],4;
+		set .@start,(.@start == ($@SSPIN_cutin_max2-1)) ? 0 : (.@start+1);
+		sleep2 100;
+	}
+	while (.@start != .@end) {
+		cutin $@SSPIN_cutin2$[.@start],4;
+		set .@start,(.@start == ($@SSPIN_cutin_max2-1)) ? 0 : (.@start+1);
+		sleep2 600;
+	}
+	cutin $@SSPIN_cutin2$[.@start],4;
+	mes "================";
+		set .@xrate,callfunc("SSPIN_Rate2",(.@end+1));
+		mes "ยินดีด้วยคุณได้รับ "+getitemname(.@xrate)+"";
+		getitem .@xrate,1;
+		set #lastTimeSpin,gettimetick(2);
+		next;
+		mes "ไว้มาลุ้นใหม่นะ";
+		//mes ""+.@end+"";
+		//mes ""+.@rate+"";
+		close2;
+		cutin "",255;
+	}
+	

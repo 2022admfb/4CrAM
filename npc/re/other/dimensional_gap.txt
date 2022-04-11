@@ -1,0 +1,569 @@
+//===== rAthena Script ======================================
+//= Dimensional Gap NPCs
+//===== Description:=========================================
+//= NPC script for Dimensional Gap
+//===== Additional Comments:=================================
+//= 1.0 First Version. [Nova]
+//============================================================
+
+mid_camp,207,290,6	script	Expedition Guide#01	4_M_EIN_SOLDIER,{
+	mes "[คู่มือการเดินทาง]";
+	mes "คุณจะเข้าสู่ ^0000FFDimensional Gap ^000000 หรือไม่? โปรดใช้อุปกรณ์ขนส่งที่คุณเห็นที่นี่";
+	next;
+	switch(select("ช่องว่างมิติคืออะไร:สิ้นสุดการสนทนา")) {
+	case 1:
+		mes "[คู่มือการเดินทาง]";
+		mes "อย่างที่คุณรู้ว่าเราได้เข้าสู่รอยแยกมิติเพื่อไปยัง Ash Vacuum แล้วใช่ไหม? ช่องว่างมิติเป็นการขยายการค้นพบครั้งแรกนั้น";
+		next;
+		mes "[คู่มือการเดินทาง]";
+		mes "สมาชิกคนหนึ่งของทีมสำรวจพบทางลับๆเหล่านี้เพื่อผ่านช่องว่างมิติ";
+		next;
+		mes "[คู่มือการเดินทาง]";
+		mes "นี่เป็นเหมือนสะพาน Bifrost เวอร์ชัน Midgard Alliance เพื่อให้สามารถเชื่อมต่อเราไปยังส่วนต่างๆของโลกใหม่ได้";
+		next;
+		mes "[คู่มือการเดินทาง]";
+		mes "เวลาและพื้นที่บิดเบี้ยวในช่องว่างมิติ ไม่ได้มีการค้นพบทางเดินทั้งหมดดังนั้นโปรดใช้ความระมัดระวังเมื่อเข้าไปในพื้นที่ที่ไม่ได้รับการยืนยัน";
+		next;
+		mes "[คู่มือการเดินทาง]";
+		mes "ใครก็ตามที่หลงทางที่นี่ยังไม่ได้กลับมา";
+		close;
+	case 2:
+		mes "[คู่มือการเดินทาง]";
+		mes "ดูแล.";
+		close;
+	}
+}
+
+mid_camp,212,290,4	script	Expedition Guide#02	4_M_EIN_SOLDIER,{
+	mes "[คู่มือการเดินทาง]";
+	mes "กรุณาใช้ ^0000FFT อุปกรณ์ขนส่ง ^000000 หากคุณต้องการเดินทางผ่านรอยแยกมิติ ข้อมูลภายในยังไม่ได้รับการสำรวจอย่างสมบูรณ์ดังนั้นโปรดระวังในนั้น";
+	close;
+}
+
+moc_fild22b,225,198,6	duplicate(Expedition Guide#01)	Expedition Guide#03	4_M_MOC_SOLDIER
+moc_fild22b,223,203,4	duplicate(Expedition Guide#02)	Expedition Guide#04	4_M_MOC_SOLDIER
+bif_fild01,314,155,6	duplicate(Expedition Guide#01)	Expedition Guide#05	4_M_EIN_SOLDIER
+bif_fild01,320,154,4	duplicate(Expedition Guide#02)	Expedition Guide#06	4_M_EIN_SOLDIER
+dic_fild02,236,33,6	duplicate(Expedition Guide#01)	Expedition Guide#07	4_M_EIN_SOLDIER
+dic_fild02,239,36,4	duplicate(Expedition Guide#02)	Expedition Guide#08	4_M_EIN_SOLDIER
+
+dali,137,87,4	script	Allied Forces Soldier	4_M_MOCASS1,{
+	mes "[ทหารกองกำลังพันธมิตร]";
+	mes "รอยแยกมิตินี้เชื่อมต่อกับกองกำลังพันธมิตร ^0000FFExpedition Camp ^000000 ในโจตันไฮม์";
+	next;
+	mes "[ทหารกองกำลังพันธมิตร]";
+	mes "ไม่ต้องกังวลมีการตั้งค่าหลังจากทดสอบการทดลองหลายร้อยครั้งเพื่อการเคลื่อนย้ายที่ปลอดภัย";
+	close;
+}
+
+dali,122,60,4	script	Morocc Soldier	4_M_MOC_SOLDIER,{
+	mes "[Morocc Soldier]";
+	mes "รอยแยกมิตินี้เชื่อมต่อกับ ^0000FFMorocc ^000000 กลับมาใน Midgard";
+	next;
+	mes "[Morocc Soldier]";
+	mes "นี่คือประตูกลับสู่โลกของเราที่เร็วที่สุด พื้นที่นี้ยังคงถูกทำลาย แต่ในไม่ช้าความพยายามในการบูรณะจะมาถึง";
+	close;
+}
+
+dali,51,104,6	script	Spledide Soldier	4_M_FAIRYSOLDIER2,{
+	mes "[ทหาร Spledide]";
+	mes "รอยแยกมิตินี้เชื่อมต่อกับทางใต้ของ ^0000FFBifrost ^000000 ช่วยให้เดินทางไปยังแนวหน้า Splendide ได้อย่างรวดเร็ว";
+	next;
+	mes "[ทหาร Spledide]";
+	mes "หากเราใช้อย่างถูกต้องก็จะช่วยให้เราก้าวไปสู่เมืองหลวงของซาฟาได้ง่ายขึ้น";
+	next;
+	mes "[ทหาร Spledide]";
+	mes "นายกเทศมนตรีได้ขอให้เราร่วมมืออย่างดีที่สุดเท่าที่จะทำได้แทนที่จะต่อสู้ดังนั้นฉันจึงรับคำสั่งไม่ให้ทำอะไร เนื่องจากเรามีศัตรูร่วมกันเราจะไม่ต่อสู้กับ Sapha ... ในตอนนี้ ...";
+	close;
+}
+
+dali,56,126,4	script	Dispatched Sapha	4_MAN_BENKUNI,{
+	mes "[Dispatched Sapha]";
+	mes "รอยแยกมิตินี้เชื่อมต่อกับพื้นที่ทางใต้ของ ^0000FF เทือกเขาคามิดัล ^000000 ในเอลไดคาสเตส ฉันเพิ่งแวะไปค้นคว้า แต่มันก็เหลือเชื่อมาก";
+	next;
+	mes "[Dispatched Sapha]";
+	mes "นอกจากนี้ยังอยู่ติดกับเมืองหลวงลาฟีนอีกด้วย ..... อืม ... ไม่ต้องห่วงฉันไม่ต้องการต่อสู้ในสถานที่เช่นนี้";
+	close;
+}
+
+dali,109,94,4	shop	Sundries Merchant	4_M_MERCAT2,611:-1,1750:-1,1065:-1
+
+dali,112,95,4	script	Logistics Manager	4_M_MERCAT2,{
+	mes "[ผู้จัดการฝ่ายโลจิสติกส์]";
+	mes "ยินดีต้อนรับ. ฉันรับผิดชอบด้านการขนส่งเพื่อดูแลสิ่งของของคุณในสถานที่แปลก ๆ นี้ คุณต้องการเข้าถึงที่เก็บข้อมูลของคุณหรือไม่?";
+	next;
+	switch(select("เปิดพื้นที่เก็บข้อมูล 200 Zeny:ไม่ขอบคุณ")) {
+	case 1:
+		if (Zeny > 199) {
+			if(!callfunc("F_CanOpenStorage")){
+				mes "[ผู้จัดการฝ่ายโลจิสติกส์]";
+				mes "คุณยังไม่มีคุณสมบัติในการใช้ที่เก็บข้อมูล";
+			}
+			else {
+				Zeny -= 200;
+				openstorage;
+			}
+		}
+		else {
+			mes "[ผู้จัดการฝ่ายโลจิสติกส์]";
+			mes "คุณต้องมีอย่างน้อย 200 zeny เพื่อใช้ที่เก็บข้อมูล";
+		}
+		break;
+	case 2:
+		mes "[ผู้จัดการฝ่ายโลจิสติกส์]";
+		mes "โปรดแจ้งให้เราทราบหากคุณเปลี่ยนใจ";
+	}
+	close;
+}
+
+dali,115,85,5	script	Party Leader#dali	2_M_SWORDMASTER,{
+	hideonnpc "Party Leader#dali";
+	hideoffnpc "Party Leader#dali2";
+	donpcevent "#dalichat::OnEnable";
+	end;
+}
+
+dali,115,85,0	script	#dalichat	-1,{
+	end;
+OnInit:
+	hideonnpc "Party Leader#dali2";
+	disablenpc "#dalichat";
+	end;
+OnEnable:
+	enablenpc "#dalichat";
+	initnpctimer;
+	end;
+OnTimer1000:
+	npctalk "เรียน !!!", "Party Leader#dali2";
+	end;
+OnTimer2000:
+	npctalk "ที่นี่ที่นี่ ทุกคนเงียบและเข้าแถว!", "Party Leader#dali2";
+	end;
+OnTimer3000:
+	npctalk "ตอนนี้เราได้เข้าไปด้านในของรอยแตกมิติแล้ว ควรไปที่ไหนก่อน", "Party Leader#dali2";
+	end;
+OnTimer4000:
+	npctalk "ใครมีความเห็น?", "Party Leader#dali2";
+	end;
+OnTimer6000:
+	npctalk "ฉันได้ยินข่าวลือเกี่ยวกับนักดาบเวทย์มนตร์ ไปหาเขากันเถอะ", "Party Member#MONK";
+	end;
+OnTimer7500:
+	npctalk "เราได้ยินเกี่ยวกับการแข่งขันมายากลที่จัดขึ้นที่นี่!", "Party Member#WANDERER";
+	end;
+OnTimer9000:
+	npctalk "มันอยู่ที่ไหน?!", "Party Member#MONK";
+	end;
+OnTimer10500:
+	npctalk "เอ่อฉันหิวนิดหน่อย ... สงสัยมีใครขายมันเทศอุ่น ๆ หรือแม้แต่เกี๊ยว ...", "Party Member#CRU";
+	end;
+OnTimer12000:
+	npctalk "อยากกินอีกมั้ย?", "Party Member#GUILL";
+	end;
+OnTimer13500:
+	npctalk "ฉันแค่สงสัยเกี่ยวกับการประลอง ..", "Party Member#WANDERER";
+	end;
+OnTimer15000:
+	npctalk "ฉันต้องกินอะไรก่อนทำอะไร", "Party Member#CRU";
+	end;
+OnTimer16500:
+	npctalk "นอกจากนี้ฉันยังได้ยินเกี่ยวกับสิ่งที่เรียกว่าหอคอยปีศาจ", "Party Member#MONK";
+	end;
+OnTimer18000:
+	npctalk "ฉันเพิ่งเห็นแม่ค้าข้างถนนเดินผ่านไป ... เขาอยู่ไหน?", "Party Member#GUILL";
+	end;
+OnTimer19500:
+	emotion ET_SLEEPY, getnpcid(0, "Party Member#SURA");
+	npctalk "ฮะ? นี่คืออะไร? คุณยังไม่ได้เข้า?", "Party Member#SURA";
+	end;
+OnTimer20000:
+	npctalk "ฉันอยากรู้เกี่ยวกับ Faceworms ที่ฉันได้ยินจาก Laphine", "Party Member#MONK";
+	end;
+OnTimer21000:
+	npctalk "ฉันสามารถกลับมาหลังจากทานอาหารได้หรือไม่?", "Party Member#CRU";
+	end;
+OnTimer22500:
+	npctalk "คุณสามารถจับได้หรือไม่?", "Party Member#WANDERER";
+	npctalk "ตื่นหรือยัง?", "Party Member#SHADOW";
+	end;
+OnTimer24000:
+	emotion ET_FRET, getnpcid(0, "Party Member#SURA");
+	npctalk "ทำไมคุณยังอยู่ที่นี่?", "Party Member#SURA";
+	end;
+OnTimer24500:
+	npctalk "แขวนไว้สักหน่อย พ่อค้ากำลังจะผ่านไปในไม่ช้า", "Party Member#GUILL";
+	end;
+OnTimer25500:
+	npctalk "นั่นคือความปรารถนาของคุณ ....", "Party Member#MONK";
+	end;
+OnTimer27000:
+	npctalk "ฉันต้องการซื้อน้ำองุ่นเย็น ~", "Party Member#CRU";
+	end;
+OnTimer28500:
+	npctalk "ฉันไม่รู้. อาจเกิดอุบัติเหตุขึ้นข้างหน้า", "Party Member#SHADOW";
+	end;
+OnTimer30000:
+	npctalk "อะไร? กล้าดียังไง?!", "Party Member#WANDERER";
+	end;
+OnTimer31500:
+	npctalk "จิบน้ำผลไม้ให้ฉัน", "Party Member#GUILL";
+	end;
+OnTimer32000:
+	npctalk "ไอ ~ ไอ ~", "Party Member#EINOLD";
+	end;
+OnTimer33000:
+	emotion ET_FRET, getnpcid(0, "Party Member#SURA");
+	end;
+OnTimer34000:
+	npctalk "ประณาม! ฉันโกรธ! ฉันมาที่นี่เพราะฉันได้ยินว่ามีงานเลี้ยงเท่านั้นที่ได้รับอนุญาตให้เข้าไป!", "Party Member#SURA";
+	end;
+OnTimer36000:
+	npctalk "คุณจะตีฉัน? ทำมัน!", "Party Member#MONK";
+	emotion ET_ANGER, getnpcid(0, "Party Member#MONK");
+	npctalk "คุณจ่ายค่าอาหารของคุณ", "Party Member#CRU";
+	end;
+OnTimer37500:
+	emotion ET_FRET, getnpcid(0, "Party Member#SURA");
+	end;
+OnTimer39000:
+	npctalk "อย่างไรก็ตามฉันไม่ได้กิน", "Party Member#WANDERER";
+	npctalk "หมายความว่า .. ฉันจะไม่กินแล้ว", "Party Member#GUILL";
+	npctalk "ถูกแล้ว .. ฉันควรจะไปกับกลุ่มอื่น!", "Party Member#SHADOW";
+	end;
+OnTimer40500:
+	emotion ET_KIK, getnpcid(0, "Party Member#CRU");
+	npctalk "เฮ้. คุณโกรธ?", "Party Member#CRU";
+	end;
+OnTimer42000:
+	npctalk "ไม่ใช่เลย.", "Party Member#GUILL";
+	end;
+OnTimer43500:
+	emotion ET_KIK, getnpcid(0, "Party Member#MONK");
+	npctalk "ดูเขางีบหลับ. ฮิฮิ.", "Party Member#MONK";
+	end;
+OnTimer45000:
+	emotion ET_SLEEPY, getnpcid(0, "Party Member#SURA");
+	npctalk "บ๊ะฉันไม่สน ฉันจะงีบหลับตื่นขึ้นมาเมื่อเราพร้อม";
+	end;
+OnTimer46500:
+	emotion ET_KIK, getnpcid(0, "Party Member#CRU");
+	npctalk "คุณอารมณ์เสีย !!", "Party Member#CRU";
+	npctalk "ขอกลับก่อนตายได้ไหม ...", "Party Member#WANDERER";
+	npctalk "อะไร? คุณเราต้องคุยกัน! ฉันดีเกินไปสำหรับคุณ!", "Party Member#EINOLD";
+	end;
+OnTimer48000:
+	npctalk "ขอโทษนะ ..... ทุกคน ............. ?", "Party Leader#dali2";
+	end;
+OnTimer49500:
+	emotion ET_ANGER, getnpcid(0, "Party Member#GUILL");
+	npctalk "ไม่ !!!!!!!!!", "Party Member#GUILL";
+	npctalk "ก็ตาม ~", "Party Member#MONK";
+	end;
+OnTimer51000:
+	emotion ET_CRY, getnpcid(0, "Party Leader#dali2");
+	npctalk "โปรดฟังฉัน ....", "Party Leader#dali2";
+	npctalk "เขาโกรธอยู่แล้ว ....", "Party Member#WANDERER";
+	npctalk "งีบหลับ. ฉันก็ง่วงเหมือนกันงั้นเราจะกะกัน", "Party Member#SHADOW";
+	end;
+OnTimer52500:
+	hideonnpc "Party Leader#dali2";
+	hideoffnpc "Party Leader#dali";
+	stopnpctimer;
+	disablenpc "#dalichat";
+	end;
+}
+
+dali,115,85,3	script	Party Leader#dali2	2_M_SWORDMASTER,{}
+dali,117,81,7	script	Party Member#WANDERER	4_F_WANDERER,{}
+dali,117,79,5	script	Party Member#CRU	4_F_CRU,{}
+dali,118,83,3	script	Party Member#MONK	4_F_MONK,{}
+dali,119,76,7	script	Party Member#SHADOW	4_F_SHADOWCHASER,{}
+dali,119,78,2	script	Party Member#GUILL	4_M_JPNOJI,{}
+dali,120,77,4	script	Party Member#SURA	4_F_SURA,{}
+dali,120,81,3	script	Party Member#EINOLD	4_M_EINOLD,{}
+
+dali,102,83,5	script	Merchant Prince#HUMERC	4_M_HUMERCHANT,2,2,{
+	mes "[Prince Canet]";
+	mes "คุณเป็นใคร?";
+	next;
+	mes "[Prince Canet]";
+	mes "คุณต้องการอะไร?";
+	mes "คุณกำลังมองหาบางสิ่งบางอย่างเข้ามา";
+	mes "โดยเฉพาะ?";
+	next;
+	mes "[Prince Canet]";
+	mes "ดังนั้นผู้บังคับบางคนจึงได้รับ";
+	mes "การปราบปรามพ่อค้าเมื่อเร็ว ๆ นี้";
+	mes "ฉันไม่สามารถขายอะไรได้";
+	next;
+	mes "[Prince Canet]";
+	mes "มานี่สิ...";
+	next;
+	mes "[Jumpy Knight]";
+	mes "ฉันรู้ว่าคุณจะอยู่ที่นี่ !!";
+	mes "ห้ามมิให้มีการซื้อขายที่ผิดกฎหมาย";
+	mes "ที่นี่!";
+	mes "ไม่รู้เหรอ";
+	hideoffnpc "Jumpy Knight#JP_RUN";
+	next;
+	mes "[Prince Canet]";
+	mes "บอกว่าใคร?";
+	next;
+	mes "[Jumpy Knight]";
+	mes "โอเคแสดงใบอนุญาตของคุณ";
+	next;
+	mes "[Prince Canet]";
+	mes "ใบอนุญาต?";
+	mes "ที่นี่ไม่มีใครรับผิดชอบ!";
+	next;
+	mes "[Prince Canet]";
+	mes "คุณ! หากคุณต้องการอะไรมา";
+	mes "ฉันโอเค?";
+	next;
+	mes "[Jumpy Knight]";
+	mes "ฉันจะจับคุณ!";
+	hideonnpc "Merchant Prince#HUMERC";
+	close2;
+	hideonnpc "Jumpy Knight#JP_RUN";
+	enablenpc "Merchant Prince#HUMERC2";
+	hideoffnpc "Merchant Prince#HUMERC2";
+	disablenpc "Merchant Prince#HUMERC";
+	end;
+OnTouch:
+	mes "[Prince Canet]";
+	mes "น้ำผลไม้เย็น!";
+	mes "แอปเปิ้ลองุ่นส้ม ~";
+	mes "ทุกสิ่งที่คุณต้องการ!";
+	next;
+	mes "[Prince Canet]";
+	mes "มันเทศเกี๊ยว ~";
+	mes "ที่นี่เรามีของหวานแสนอร่อย ~";
+	close;
+}
+
+dali,105,82,1	script	Jumpy Knight#JP_RUN	4_M_JP_RUN,{
+	end;
+OnInit:
+	hideonnpc "Jumpy Knight#JP_RUN";
+	end;
+}
+
+dali,63,112,7	script	Merchant Prince#HUMERC2	4_M_HUMERCHANT,2,2,{
+	mes "[Prince Canet]";
+	mes "คุณต้องจ่ายค่าผ่านทางเพื่อผ่านที่นี่";
+	next;
+	switch(select("ค่าผ่านทางอะไร"))
+	{
+		case 1:
+			mes "[Prince Canet]";
+			mes "คุณไม่รู้?";
+			mes "500 zeny";
+			next;
+			mes "[Jumpy Knight]";
+			mes "คุณอยู่ที่นั่น!";
+			mes "หยุดตรงนั้น!";
+			hideoffnpc "Jumpy Knight#JP_RUN2";
+			next;
+			mes "[Prince Canet]";
+			mes "ฮึ ยังไงติดตามกันตลอด";
+			mes "มีความสนใจฉันหรืออะไรบางอย่าง? ฉันไม่คิดว่าคุณกับฉันจะเข้ากันได้ดี ...";
+			next;
+			mes "[Jumpy Knight]";
+			mes "ทำไมเราไม่หาแล้วล่ะ?";
+			next;
+			mes "[Prince Canet]";
+			mes "นั่นไม่ใช่การพูดอีกต่อไป";
+			mes "ฉัน outta ที่นี่ ~";
+			next;
+			mes "[Jumpy Knight]";
+			mes "วิ่งต่อไปคุณขี้ขลาดส่อเสียด!";
+			hideonnpc "Merchant Prince#HUMERC2";
+			close2;
+			hideonnpc "Jumpy Knight#JP_RUN2";
+			hideoffnpc "Merchant Prince#HUMERC3";
+			disablenpc "Merchant Prince#HUMERC2";
+			end;
+	}
+OnInit:
+	disablenpc "Merchant Prince#HUMERC2";
+	end;
+OnTouch:
+	mes "[Prince Canet]";
+	mes "500 zeny";
+	close;
+}
+
+dali,67,113,3	script	Jumpy Knight#JP_RUN2	4_M_JP_RUN,{
+	end;
+OnInit:
+	hideonnpc "Jumpy Knight#JP_RUN2";
+	end;
+}
+
+dali,89,97,3	script	Merchant Prince#HUMERC3	4_M_HUMERCHANT,{
+	mes "[Prince Canet]";
+	mes "คุณโชคดีที่คุณได้พบ";
+	mes "กับฉัน.";
+	mes "ฉันเป็นใคร?";
+	mes "ฉันมาที่นี่เพื่อเป็นพ่อค้า";
+	mes "กษัตริย์.";
+	next;
+	mes "[Prince Canet]";
+	mes "ฉันอาจจะทำงานแผงลอยข้างถนน";
+	mes "ตอนนี้ แต่ฉันจะมีร้านจริง";
+	mes "สักวัน.";
+	next;
+	mes "[Prince Canet]";
+	mes "เป็นวันแรกของฉันดังนั้นฉันจึงมี";
+	mes "ขายรายใหญ่.";
+	next;
+	mes "[Prince Canet]";
+	mes "มาดูกันว่าฉันมี ...";
+	mes "แหวนอะไรสักอย่าง!";
+	mes "ดาบของ!";
+	mes "เป้สะพายหลังกันบ้าง!";
+	next;
+	mes "[Prince Canet]";
+	mes "บอกฉันว่าคุณต้องการอะไร";
+	hideoffnpc "Jumpy Knight#JP_RUN3";
+	next;
+	mes "[Prince Canet]";
+	mes "คุณมาทำอะไรที่นี่?";
+	mes "นี่คือจุดของฉันสำหรับร้านค้า";
+	mes "ออกไปจากสนามหญ้าของฉัน!";
+	next;
+	mes "[Jumpy Knight]";
+	mes "บ๊ะ !!";
+	mes "คุณจะต้องเสียใจกับคำพูดเหล่านั้น!";
+	next;
+	mes "[Prince Canet]";
+	mes "ฉันกำลังสั่น...";
+	hideonnpc "Merchant Prince#HUMERC3";
+	close2;
+	hideonnpc "Jumpy Knight#JP_RUN3";
+	enablenpc "Merchant Prince#HUMERC";
+	hideoffnpc "Merchant Prince#HUMERC";
+	end;
+OnInit:
+	hideonnpc "Merchant Prince#HUMERC3";
+	end;
+}
+
+dali,89,94,7	script	Jumpy Knight#JP_RUN3	4_M_JP_RUN,{
+	end;
+OnInit:
+	hideonnpc "Jumpy Knight#JP_RUN3";
+	end;
+}
+
+
+dali02,58,123,3	script	Curious Knight#KY_KNT	4_M_KY_KNT,{
+	mes "[อัศวินขี้สงสัย]";
+	mes "ราชองครักษ์ในที่นี้";
+	mes "หมดหวังสำหรับความช่วยเหลือ";
+	mes "เราผ่านสถานที่ลับ";
+	mes "ในพระราชวัง.";
+	next;
+	mes "[อัศวินขี้สงสัย]";
+	mes "เราถูกดึงออกไปที่นี่ ...";
+	mes "ไม่รู้ว่าฉันอยู่ที่ไหน แต่ฉันต้องทำ";
+	mes "สร้างฐานที่นี่สำหรับ";
+	mes "อัศวิน";
+	close;
+}
+dali02,51,112,5	script	Confused Thief#DST_SOL	4_DST_SOLDIER,{
+	mes "[จอมโจรสับสน]";
+	mes "หนึ่งนาทีฉันอยู่ในบาร์ ...";
+	mes "นาทีต่อไปฉันอยู่ที่นี่ ...";
+	mes "สถานที่นี้คืออะไร?";
+	next;
+	mes "[จอมโจรสับสน]";
+	mes "ที่นี่ไม่มีกลางคืนหรือกลางวัน";
+	mes "อืมบางอย่างต้องมีค่า";
+	mes "ในสถานที่แห่งนี้ ...";
+	close;
+}
+dali02,65,115,5	script	Adventurous Rafflesia#ra	4_M_RAFLE_GR,{
+	mes "[Rafflesia นักผจญภัย]";
+	mes "ไม่ต้องเป็น Thanatos";
+	mes "ทาวเวอร์ ...";
+	mes "ฉันรู้สึกถึงมนต์ดำที่นี่";
+	next;
+	mes "[คู่มือ]";
+	mes "โอ้เรากลับมาที่นี่อีกครั้ง";
+	mes "ฉันหาทางออกไม่เจอ!";
+	mes "เราติดอยู่ในเขาวงกตนี้!";
+	next;
+	mes "[นักท่องเที่ยว]";
+	mes "สถานที่นี้คือ Prontera ที่มีชื่อเสียงไหม";
+	mes "มันมืดเหมือนเมืองใหญ่!";
+	next;
+	mes "[นักเดินทาง]";
+	mes "ฉันได้ยินเสียงนาฬิกาดัง";
+	mes "ที่นี่ต้อง Geffen!";
+	close;
+}
+
+dali02,68,117,5	script	Guide#ra	4_M_RAFLE_GR,{
+	mes "[คู่มือ]";
+	mes "โอ้เรากลับมาที่นี่อีกครั้ง";
+	mes "ฉันหาทางออกไม่เจอ!";
+	mes "เราติดอยู่ในเขาวงกตนี้!";
+	next;
+	mes "[นักท่องเที่ยว]";
+	mes "สถานที่นี้คือ Prontera ที่มีชื่อเสียงไหม";
+	mes "มันมืดเหมือนเมืองใหญ่!";
+	next;
+	mes "[นักเดินทาง]";
+	mes "ฉันได้ยินเสียงนาฬิกาดัง";
+	mes "ที่นี่ต้อง Geffen!";
+	next;
+	mes "[Rafflesia นักผจญภัย]";
+	mes "ไม่ต้องเป็น Thanatos";
+	mes "ทาวเวอร์ ...";
+	mes "ฉันรู้สึกถึงมนต์ดำที่นี่";
+	close;
+}
+
+dali02,65,119,5	script	Tourist#ra	4_M_RAFLE_GR,{
+	mes "[นักท่องเที่ยว]";
+	mes "สถานที่นี้คือ Prontera ที่มีชื่อเสียงไหม";
+	mes "มันมืดเหมือนเมืองใหญ่!";
+	next;
+	mes "[Rafflesia นักผจญภัย]";
+	mes "ไม่ต้องเป็น Thanatos";
+	mes "ทาวเวอร์ ...";
+	mes "ฉันรู้สึกถึงมนต์ดำที่นี่";
+	next;
+	mes "[คู่มือ]";
+	mes "โอ้เรากลับมาที่นี่อีกครั้ง";
+	mes "ฉันหาทางออกไม่เจอ!";
+	mes "เราติดอยู่ในเขาวงกตนี้!";
+	next;
+	mes "[นักเดินทาง]";
+	mes "ฉันได้ยินเสียงนาฬิกาดัง";
+	mes "ที่นี่ต้อง Geffen!";
+	close;
+}
+
+dali02,69,122,5	script	Traveller#ra	4_M_RAFLE_GR,{
+	mes "[นักเดินทาง]";
+	mes "ฉันได้ยินเสียงนาฬิกาดัง";
+	mes "ที่นี่ต้อง Geffen!";
+	next;
+	mes "[คู่มือ]";
+	mes "โอ้เรากลับมาที่นี่อีกครั้ง";
+	mes "ฉันหาทางออกไม่เจอ!";
+	mes "เราติดอยู่ในเขาวงกตนี้!";
+	next;
+	mes "[นักท่องเที่ยว]";
+	mes "สถานที่นี้คือ Prontera ที่มีชื่อเสียงไหม";
+	mes "มันมืดเหมือนเมืองใหญ่!";
+	next;
+	mes "[Rafflesia นักผจญภัย]";
+	mes "ไม่ต้องเป็น Thanatos";
+	mes "ทาวเวอร์ ...";
+	mes "ฉันรู้สึกถึงมนต์ดำที่นี่";
+	close;
+}
+

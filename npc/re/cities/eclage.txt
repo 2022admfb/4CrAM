@@ -1,0 +1,106 @@
+//===== rAthena Script ======================================= 
+//= General Eclage NPC.
+//===== By: ================================================== 
+//= Dastgir
+//===== Current Version: ===================================== 
+//= 2.0
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Eclage Town NPC
+//===== Additional Comments: ================================= 
+//= 1.0 Generic NPC place holders. [Euphy]
+//= 2.0 Converted from the official Aegis script. [Dastgir]
+//============================================================ 
+
+ecl_in02,96,22,3	script	sign#prison_inn	545,{
+	mes "[North] Prison";
+	mes "[West] Clinic";
+	close;
+}
+
+ecl_in01,8,71,5	script	Eclage Guard#pri_inn	447,{
+	mes "[Eclage Guard]";
+	mes "เส้นทางนี้จะนำคุณไปยังส่วนล่างของ Eclage คุณจะพบคุกและคลินิกที่นั่น";
+	close;
+}
+
+ecl_in02,164,56,3	script	Receptionist#Laphine	835,{
+	mes "[Receptionist]";
+	mes "ยินดีต้อนรับสู่ Eclage Clinic.";
+	next;
+	switch (select("บันทึกตำแหน่ง:พักผ่อน:จบการสนทนา")) {
+	case 1:
+		mes "[Receptionist}";
+		mes "คลินิกถูกตั้งให้เป็นจุดเซฟของคุณระวังด้วยนะ ~";
+		savepoint "ecl_in02",162,50,1,1;
+		close;
+	case 2:
+		mes "[Receptionist}";
+		mes "ฟื้นฟูจิตใจและร่างกายของคุณที่คลินิกของเราเต็มไปด้วยพลังสะอาดของเอแคลจ";
+		mes "ปกติเราเรียกเก็บเงิน 1 Splendide Coin ตามปกติ แต่เราเสนอส่วนลดพิเศษสำหรับนักเดินทางของคุณทั้งหมดคือ 5,000 zeny";
+		next;
+		switch (select("ชำระเงินด้วย Splendide Coin:ชำระเงินด้วย Zeny:ยกเลิก")) {
+		case 1:
+			if (!countitem(6081)) {
+				mes "[Receptionist}";
+				mes "ดูเหมือนว่าคุณจะมีเหรียญไม่เพียงพอคุณช่วยตรวจสอบบัญชีของคุณอีกครั้งได้ไหม";
+				close;
+			}
+			mes "[Receptionist}";
+			mes "ทำเองที่บ้าน ~";
+			close2;
+			delitem 6081,1; //6081
+			percentheal 100,100;
+			warp "ecl_in02",167,49;
+			end;
+		case 2:
+			if (Zeny < 5000) {
+				mes "[Receptionist]";
+				mes "ดูเหมือนว่าคุณไม่มีทรัพยากรเพียงพอที่จะดำเนินการต่อโปรดตรวจสอบบัญชีของคุณอีกครั้งหรือไม่";
+				close;
+			}
+			mes "[Receptionist}";
+			mes "ทำเองที่บ้าน ~";
+			close2;
+			Zeny = Zeny - 5000;
+			percentheal 100,100;
+			warp "ecl_in02",167,49;
+			end;
+		case 3:
+			close;
+		}
+	case 3:
+		close;
+	}
+}
+
+ecl_in02,135,45,5	script	Injured Laphine	442,{
+	mes "[Injured Laphine]";
+	mes "โอวววว ... ";
+	mes "ที่ไหน ... อยู่ ... ฉัน?";
+	next;
+	mes "[Doctor]";
+	mes "คุณอยู่ที่คลินิกไม่ต้องกังวล";
+	mes "เราห้ามเลือดและร่ายคาถาฉุกเฉิน";
+	mes "เลือดออกเยอะมากใกล้แล้วนะ";
+	next;
+	mes "[Injured Laphine]";
+	mes "......";
+	mes "อะไรไม่ฉัน ... ฉันไม่รู้สึกอะไรเลย ... เกิดอะไรขึ้น?";
+	next;
+	mes "[Doctor]";
+	mes "อืมม ... ลูกศรมันหักปีกของแกแย่มาก ... ";
+	next;
+	mes "[Injured Laphine]";
+	mes "... หมายความว่าไง";
+	next;
+	mes "[Doctor]";
+	mes "อืม ... ฉันจะบอกคุณหลังจากที่คุณฟื้น แต่คุณควรรู้คุณไม่สามารถตกแต่งตัวใหญ่ได้อีกต่อไป";
+	mes "พูดอีกอย่างคือคุณได้รับบาดเจ็บที่ปีกลูกศรพุ่งทะลุส่วนที่สำคัญที่สุดในปีก";
+	next;
+	mes "[Injured Laphine]";
+	mes "อะไรนะไม่มีทาง ... ได้โปรด ... หมอ !! ไม่ !!";
+	close;
+}
+ecl_in02,137,44,3	duplicate(Injured Laphine)	Doctor Laphine#doctor	441

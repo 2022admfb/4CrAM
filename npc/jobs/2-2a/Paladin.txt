@@ -1,0 +1,85 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= 1.1 Made all into functions, additional checks, etc. [Lupus]
+//= 1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================ 
+
+valkyrie,53,39,3	script	Paladin#Valkyrie	752,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Paladin]";
+			mes "ยินดีด้วย";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		mes "[Paladin]";
+		mes "อย่าลืม";
+		mes "ว่าสงครามศักดิ์สิทธิ์";
+		mes "ใกล้เข้ามาแล้ว!";
+		mes "เราต้องเตรียมตัวให้พร้อม!";
+		mes "ขอแสงแห่งความยุติธรรม";
+		mes "ทำให้เส้นทางของเราสดใสเสมอ!";
+		close;
+	}
+	else if (ADVJOB == Job_Paladin && Class == Job_Swordman_High && JobLevel > 39) {
+		mes "[Paladin]";
+		mes "สงครามศักดิ์สิทธิ์จะ";
+		mes "อยู่กับเราก่อนเรา";
+		mes "รู้ไว้ยิ่งกว่าเดิม";
+		mes "เราต้องการผู้ชายที่แข็งแกร่ง";
+		mes "และผู้หญิงจะต่อสู้เพื่ออะไร";
+		mes "ดีและถูกต้อง";
+		next;
+		mes "[Paladin]";
+		mes "สู้ต่อไป";
+		mes "ด้านของความชอบธรรม";
+		mes "เป็นพาลาดิน?";
+		next;
+		if (select("No.:Yes.") == 1) {
+			mes "[Paladin]";
+			mes "เมื่อคุณพร้อม";
+			mes "อย่าลังเลที่จะกลับมา";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Paladin]";
+			mes "คุณยังสามารถเรียนรู้ทักษะเพิ่มเติมได้อีกโปรดใช้";
+			mes "คะแนนทักษะที่เหลือทั้งหมดของคุณก่อนที่จะกลับมาหาฉัน";
+			close;
+		}
+		jobchange Job_Paladin;
+		set ADVJOB,0;
+		mes "[Paladin]";
+		mes "ยินดีด้วย";
+		mes "ในฐานะพาลาดินฉันหวังว่า";
+		mes "คุณจะปกป้องคนเหล่านั้น";
+		mes "อ่อนแอกว่าคุณและนำมา";
+		mes "ชัยชนะของเราในอนาคต";
+		mes "สงครามระหว่างความดีและความชั่ว";
+		close;
+	}
+	mes "[Paladin]";
+	mes "ยินดีต้อนรับ";
+	mes "ถึง Valhalla,";
+	mes "หอเกียรติยศ.";
+	next;
+	mes "[Paladin]";
+	mes "กรุณาทำให้";
+	mes "สบายตัว";
+	mes "ในขณะที่คุณอยู่ที่นี่";
+	mes "ให้เกียรตินักรบ!";
+	close;
+}

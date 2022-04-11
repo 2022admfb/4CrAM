@@ -1,0 +1,86 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= 1.1 Made all into functions, additional checks, etc. [Lupus]
+//= 1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================ 
+
+valkyrie,44,47,5	script	High Wizard#Valkyrie	735,{
+	if (ADVJOB == 0 ||  Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[High Wizard]";
+			mes "ยินดีด้วย";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		mes "[High Wizard]";
+		mes "เรามีพ่อมดสูง";
+		mes "ความรับผิดชอบของ";
+		mes "ใช้เวทมนตร์ทำลายล้างของเรา";
+		mes "เพื่อวัตถุประสงค์ที่ถูกต้อง";
+		next;
+		mes "[High Wizard]";
+		mes "การฝึกฝนตลอดชีวิต";
+		mes "จำเป็นก่อนที่จะกลายเป็น";
+		mes "พ่อมดชั้นสูงนึกออกไหม";
+		mes "จะเกิดอะไรขึ้นถ้าพลังของเรา";
+		mes "วางมือผิด?!";
+		close;
+	}
+	else if (ADVJOB == Job_High_Wizard && Class == Job_Mage_High && JobLevel > 39) {
+		mes "[High Wizard]";
+		mes "ถึงเวลาแล้ว";
+		mes "และ Midgard มี";
+		mes "ต้องการของผู้ที่ทำได้";
+		mes "ใช้เวทมนตร์ที่แข็งแกร่งที่สุด ... ";
+		next;
+		mes "[High Wizard]";
+		mes "คุณต้องการที่จะ";
+		mes "กลายเป็นพ่อมดชั้นสูง?";
+		next;
+		if (select("No.:Yes.") == 1) {
+			mes "[High Wizard]";
+			mes "เมื่อคุณพร้อม";
+			mes "อย่าลังเลที่จะกลับมา";
+			mes "เกียรติยศแด่นักรบ!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[High Wizard]";
+			mes "คุณยังสามารถเรียนรู้ทักษะเพิ่มเติมได้อีกโปรดใช้";
+			mes "คะแนนทักษะที่เหลือทั้งหมดของคุณก่อนที่จะกลับมาหาฉัน";
+			close;
+		}
+		jobchange Job_high_Wizard;
+		set ADVJOB,0;
+		mes "[High Wizard]";
+		mes "ยินดีด้วย";
+		mes "ในฐานะพ่อมดชั้นสูง";
+		mes "ฉันหวังว่าคุณจะใช้";
+		mes "พลังของคุณที่จะนำมา";
+		mes "สันติสุขแด่ผู้ถูกกดขี่";
+		close;
+	}
+	mes "[High Wizard]";
+	mes "ยินดีต้อนรับ";
+	mes "ถึง Valhalla,";
+	mes "หอเกียรติยศ.";
+	next;
+	mes "[High Wizard]";
+	mes "กรุณาทำให้";
+	mes "สบายตัว";
+	mes "ในขณะที่คุณอยู่ที่นี่";
+	mes "ให้เกียรตินักรบ!";
+	close;
+}

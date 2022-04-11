@@ -1,0 +1,51 @@
+-	script	GM_Login	-1,{
+
+//INFO:
+//Before setting the GM level, put the gm level and its settings in conf / groups.conf to avoid errors. (The levels placed here are examples so the need to add.)
+
+OnPcLoginEvent:
+
+	//configure the gm level here
+	//Rank	
+	set .@toplv,1;
+	set .@premierm,2;
+	set .@master,3;
+	set .@pvp,4;
+	
+	//grouplv
+	set .@level_vip,5;
+	set .@level_cm,40;
+	set .@level_gm,60;
+	set .@level_adm,99;
+
+	sleep2 2000;
+		if(#Credit == 1 && #usehat == 1 || #Credit ==2 && #usehat == 1){
+		hateffect 155,true;	
+		}
+		else if(#Rank == .@toplv){
+		hateffect 150,true;
+		}
+		else if(#Rank == .@premierm){
+			hateffect 151,true;
+		}
+		else if(#Rank == .@master){
+			hateffect 152,true;
+		}
+		else if(#Rank == .@pvp){
+			hateffect 157,true;
+		}
+		else if(getgroupid() == .@level_vip){
+			hateffect 149,true;
+		}
+		else if(getgroupid() == .@level_adm){
+                  
+			//hateffect 156,true;
+		}
+		/*else if(getgroupid() == .@level_cm){
+			hateffect 149,true;
+		}
+		else if(getgroupid() == .@level_gm){
+			hateffect 150,true;
+		}*/
+end;
+}

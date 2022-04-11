@@ -1,0 +1,82 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= 1.1 Made all into functions, additional checks, etc. [Lupus]
+//= 1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================ 
+
+valkyrie,44,42,5	script	High Priest#Valkyrie	60,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[High Priest]";
+			mes "ยินดีด้วย";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		mes "[High Priest]";
+		mes "ผ่านอำนาจ";
+		mes "แห่งความศักดิ์สิทธิ์ขอให้เรา";
+		mes "พบกับสันติสุขความเข้มแข็ง";
+		mes "และการป้องกันส่งมอบ";
+		mes "พวกเราจากพลังแห่งความชั่วร้าย ... ";
+		close;
+	}
+	else if (ADVJOB == Job_High_Priest && Class == Job_Acolyte_High && JobLevel > 39) {
+		mes "[High Priest]";
+		mes "โลกของเราอยู่ใน";
+		mes "ความต้องการของคน";
+		mes "พรสวรรค์และความมั่นใจ";
+		mes "โปรดดำเนินการต่อ";
+		mes "การทำงานที่ดีเป็นคู่";
+		mes "วีรบุรุษแห่งความศักดิ์สิทธิ์ ... ";
+		next;
+		mes "[High Priest]";
+		mes "คุณต้องการ";
+		mes "เปลี่ยนเป็น High Priest?";
+		next;
+		if (select("No.:Yes.") == 1) {
+			mes "[High Priest]";
+			mes "เมื่อคุณพร้อม";
+			mes "อย่าลังเลที่จะกลับมา";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[High Priest]";
+			mes "คุณยังสามารถเรียนรู้ทักษะเพิ่มเติมได้อีกโปรดใช้";
+			mes "คะแนนทักษะที่เหลือทั้งหมดของคุณก่อนที่จะกลับมาหาฉัน";
+			close;
+		}
+		jobchange Job_High_Priest;
+		set ADVJOB,0;
+		mes "[High Priest]";
+		mes "ยินดีด้วย";
+		mes "ในฐานะมหาปุโรหิต";
+		mes "ฉันหวังว่าเธอจะนำทาง";
+		mes "คนอื่น ๆ ตามเส้นทาง";
+		mes "สู่ความศักดิ์สิทธิ์ ... ";
+		close;
+	}
+	mes "[High Priest]";
+	mes "ยินดีต้อนรับ";
+	mes "ถึง Valhalla,";
+	mes "หอเกียรติยศ.";
+	next;
+	mes "[High Priest]";
+	mes "กรุณาทำให้";
+	mes "สบายตัว";
+	mes "ในขณะที่คุณอยู่ที่นี่";
+	mes "ให้เกียรตินักรบ!";
+	close;
+}

@@ -1,0 +1,193 @@
+//==============================================
+// - Script By : M-Ro Online
+// - Script City : Thailand 
+// - Script Support Server : Hercules & rAthena
+//==============================================
+-	script	Death Match	-1,{
+OnInit:
+set .time, 10;
+setarray .map$, 
+//กำหนดแผนที่
+//"m_pvp01",
+//"m_pvp02",
+//"m_pvp03",
+//"prt_pvp",
+//"pvp_y_8-1",
+"pvp_y_8-2",
+"ra_koe",
+"guild_vs1";
+//"guild_vs2";
+
+end;
+
+OnPCKillEvent:
+if(strcharinfo(3) == "guild_vs1"){
+ sleep2 500;
+   //mapannounce "pvp_arena2", strcharinfo(0) + " has entered the PVP Arena!",0;
+   announce strcharinfo(0) +" สังหาร "+ rid2name(killedrid), bc_map;
+   //announce strcharinfo(0) +" สังหาร "+ rid2name(killedrid)"ในสนามประลอง",0;
+   end;
+   }
+   else if (strcharinfo(3) == "pvp_y_8-2"){
+	   
+   }
+   end;
+   
+OnPCDieEvent:
+//if(strcharinfo(3) == "guild_vs1" && strcharinfo(3) == "pvp_y_8-2"){
+set .time, 10;
+getmapxy( .@map$, .@x, .@y);
+for ( set .@i, 0; .@i < getarraysize(.map$); set .@i, .@i+1 ) {
+	
+if ( .@map$ == .map$[.@i] ) {
+	atcommand "@alive";
+	
+sleep2 1000;
+//เมื่อตายจะถูกชุบทันที
+//เช็คไอเทมที่เสียหายถ้ามีซ่อมให้ทันที
+if (getbrokenid(1) > 0) { atcommand "@repairall"; }
+//แก้สถานะต่างๆ
+sc_end SC_POISON;
+sc_end SC_FREEZE;
+sc_end SC_SLEEP;
+sc_end SC_STAN;
+sc_end SC_STUN;
+sc_end SC_STONE;
+sc_end SC_SILENCE;
+sc_end SC_BLIND;
+sc_end SC_Bleeding;
+sc_end SC_CONFUSION;
+sc_end SC_CURSE;
+sc_end SC_HALLUCINATION;
+sc_end SC_ORCISH;
+//เพิ่มHPและSP 100%
+percentheal 100,100; 
+//==============================================
+//พค่าอาหาร 30นาที Support Hercules
+//sc_start SC_FOOD_STR, 1800000,5;
+//sc_start SC_FOOD_AGI, 1800000,5;
+//sc_start SC_FOOD_VIT, 1800000,5;
+//sc_start SC_FOOD_INT, 1800000,5;
+//sc_start SC_FOOD_DEX, 1800000,5;
+//sc_start SC_FOOD_LUK, 1800000,5;
+////พสกิลต่างๆ
+//sc_start SC_BLESSING,1800000,10;
+//sc_start SC_INC_AGI, 1800000,10;
+//sc_start 41,1800000,10; //กอเรีย
+//sc_start 40,1800000,10; // MAGNIFICAT เร่ง
+////==============================================
+////พค่าอาหาร 30นาที Support rAthena
+//sc_start SC_STRFood, 1800000,5;
+//sc_start SC_AGIFood, 1800000,5;
+//sc_start SC_VITFood, 1800000,5;
+//sc_start SC_INTFood, 1800000,5;
+//sc_start SC_DEXFood, 1800000,5;
+//sc_start SC_LUKFood, 1800000,5;
+////พสกิลต่างๆ
+//sc_start SC_BLESSING,1800000,10;
+//sc_start SC_INCREASEAGI,1800000,10;
+//sc_start 41,1800000,10; //กอเรีย
+//sc_start 40,1800000,10; // MAGNIFICAT เร่ง
+//==============================================
+
+//สุ่มเกิดในแผนที่
+warp .map$[.@i], 0, 0;
+break;
+}
+}
+//close;
+//}
+}
+
+-	script	Die Message	-1,{
+OnPCDieEvent:
+//ข้อความที่จะแสดงว่าตายเหมือนผู้เล่นพิมเอง
+//message strcharinfo(0),"ตูตายอีกแล้ว!!";
+//emotion ET_HUK,2;
+end;
+
+}
+
+
+izlude,143,199,4	script	PVP Deathmatch	635,{
+	set .@n$,"[^FF0000PVP Manager^000000]";
+    set .@charid,getcharid(0);
+	mes .@n$;
+    mes "คุณต้องการเข้าร่วม PVP Deathmatch ?";
+	next;
+	if(select("- ตกลง","- ยกเลิก")==2)
+	{
+		close;
+		end;
+	}
+	mes .@n$;
+    mes "ในสนามรบมีแต่ผู้กล้าหาญ";
+	mes "พยายามเข้าล่ะ";
+//sc_start SC_STRFood, 18000,5;
+//sc_start SC_AGIFood, 18000,5;
+//sc_start SC_VITFood, 18000,5;
+//sc_start SC_INTFood, 18000,5;
+//sc_start SC_DEXFood, 18000,5;
+//sc_start SC_LUKFood, 18000,5;
+//บัพสกิลต่างๆ
+//sc_start SC_BLESSING,18000,10;
+//sc_start SC_INCREASEAGI,10000,10;
+//sc_start 41,18000,10; //กอเรีย
+//sc_start 40,18000,10; // MAGNIFICAT เร่ง
+announce""+strcharinfo(0)+" เข้าร่วมลานประลอง DeathMatch ใครเจ๋งก็เข้ามา !! ",bc_all;	
+	set .@x,rand(1,15);
+	L_warploop:
+	if (.@x < 16) {
+		if (.@x == 0)
+			{ warpchar "guild_vs1",49,92; }
+		else if (.@x == 1)
+			{ warpchar "guild_vs1",49,92; }
+		else if (.@x == 2)
+			{ warpchar "guild_vs1",49,92; }
+		else if (.@x == 3)
+			{ warpchar "guild_vs1",49,92; }
+		else if (.@x == 4)
+			{ warpchar "guild_vs1",49,8; }
+		else if (.@x == 5)
+			{ warpchar "guild_vs1",49,8; }
+		else if (.@x == 6)
+			{ warpchar "guild_vs1",49,8; }
+		else if (.@x == 7)
+			{ warpchar "guild_vs1",49,8; }
+		else if (.@x == 8)
+			{ warpchar "guild_vs1",92,50; }
+		else if (.@x == 9)
+			{ warpchar "guild_vs1",92,50; }
+		else if (.@x == 10)
+			{ warpchar "guild_vs1",92,50; }
+		else if (.@x == 11)
+			{ warpchar "guild_vs1",92,50; }
+		else if (.@x == 12)
+			{ warpchar "guild_vs1",7,50; }
+		else if (.@x == 13)
+			{ warpchar "guild_vs1",7,50; }
+		else if (.@x == 14)
+			{ warpchar "guild_vs1",7,50; }
+		else if (.@x == 15)
+			{ warpchar "guild_vs1",7,50; }
+	}
+		//goto L_warploop;
+		close;
+}
+prontera,138,110,8	duplicate(PVP Deathmatch)	PVP#601	635
+morocc,155,116,5	duplicate(PVP Deathmatch)	PVP#602	635
+guildhall1,51,90,5	duplicate(PVP Deathmatch)	PVP#500	635
+guildhall2,51,90,5	duplicate(PVP Deathmatch)	PVP#501	635
+guildhall3,51,90,5	duplicate(PVP Deathmatch)	PVP#502	635
+guildhall4,51,90,5	duplicate(PVP Deathmatch)	PVP#503	635
+guildhall5,51,90,5	duplicate(PVP Deathmatch)	PVP#504	635
+guildhall6,51,90,5	duplicate(PVP Deathmatch)	PVP#505	635
+guildhall7,51,90,5	duplicate(PVP Deathmatch)	PVP#506	635
+guildhall8,51,90,5	duplicate(PVP Deathmatch)	PVP#507	635
+guildhall9,51,90,5	duplicate(PVP Deathmatch)	PVP#508	635
+guildhall10,51,90,5	duplicate(PVP Deathmatch)	PVP#509	635
+guildhall11,51,90,5	duplicate(PVP Deathmatch)	PVP#510	635
+guildhall12,51,90,5	duplicate(PVP Deathmatch)	PVP#511	635
+guildhall13,51,90,5	duplicate(PVP Deathmatch)	PVP#512	635
+guildhall14,51,90,5	duplicate(PVP Deathmatch)	PVP#513	635
+guildhall15,51,90,5	duplicate(PVP Deathmatch)	PVP#514	635

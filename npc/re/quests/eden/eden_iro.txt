@@ -1,0 +1,1749 @@
+//===== rAthena Script =======================================
+//= Eden iRO NPCs
+//===== By$==================================================
+//= -SkittleNugget-
+//===== Current Version$=====================================
+//= 1.4
+//===== Compatible With$=====================================
+//= rAthena Project
+//===== Description$=========================================
+//= Eden scripts custom to iRO(disabled by default).
+//= You may need iRO's data.grf to view some of the items.
+//===== Additional Comments$=================================
+//= 1.0 First version.
+//= 1.1 Edited and added more NPCs, lots of placeholders.[Euphy]
+//= 1.2 Added VIP NPCs and features.[Euphy]
+//= 1.3 Added Mail Annex Station scripts, commented out.[Euphy]
+//= 1.4 Added Merry Badger.[Euphy/-SkittleNugget-]
+//============================================================
+
+// Acolyte Warper(part of other/acolyte_warp.txt)
+//============================================================
+moc_para01,14,32,5	script	Aperture#acolytewarp	90,{
+	mes "[Aperture]";
+	mes "สวัสดีนักผจญภัย ";
+	mes "ฉันได้เรียนเวทมนตร์จากทั่วมิดการ์ดเพื่ออัพเกรดสิ่งที่ฉันเชื่อว่าเป็นหนึ่งในทักษะที่ยิ่งใหญ่ที่สุดที่มีให้ในคลาสนักบวช ";
+	next;
+
+	if(is_function("VIP_iRO_Acolyte"))
+		callfunc "VIP_iRO_Acolyte","[Aperture]","Prontera";
+
+	mes "[Aperture]";
+	mes "ฉันเป็น Acolyte เพียงคนเดียวที่ได้รับทักษะ Warp Portal เลเวล 10! ";
+	emotion ET_THINK, playerattached();
+	next;
+	mes "[Aperture]";
+	mes "ถูกตัอง! และ...";
+	mes "ฉันสัญญาว่าฉันจะไม่ลืมสถานที่ที่ฉันจำได้แล้ว";
+	mes "วันหนึ่งฉันจะเพิ่มระดับทักษะของฉันเพื่อวาร์ปไปทุกที่ที่ฉันต้องการ ~ ";
+	next;
+	mes "[Aperture]";
+	mes "ฉันยินดีที่จะพาคุณไปยังสถานที่ต่างๆที่ฉันจำได้โดยมีค่าธรรมเนียมเล็กน้อย ";
+	mes "คุณต้องการใช้บริการนี้หรือไม่ ";
+	next;
+	switch(select("ใช่:ยกเลิก")) {
+	case 1:
+		mes "[Aperture]";
+		mes "คุณอยากไปที่ไหน ";
+		mes "ขอให้คุณโชคดีในการเดินทาง ";
+		next;
+
+		setarray .@towns$[0], "Prontera", "Izlude", "Geffen", "Payon", "Morocc", "Alberta", "Al De Baran", "Comodo", "Umbala", "Juno", "Einbroch", "Lighthalzen", "Hugel", "Rachel";
+		setarray .@cost[0],          600,      600,     1200,    1200,     1200,      1800,          2200,     2200,     2200,   1800,       2200,          2200,    2200,     2200;
+
+		set .@size, getarraysize(.@towns$);
+		for(set .@i,0; .@i<.@size; set .@i,.@i+1)
+			set .@menu$, .@menu$+.@towns$[.@i]+" -> "+.@cost[.@i]+"z:";
+		set .@i, select(.@menu$+"ยกเลิก")-1;
+		if(.@i == .@size) {
+			mes "[Aperture]";
+			mes "กลับมาเมื่อคุณต้องการวาร์ป ";
+			close;
+		}
+		if(Zeny < .@cost[.@i]) {
+			mes "[Aperture]";
+			mes "ฉันขอโทษ แต่คุณไม่มี ";
+			mes "zeny เพียงพอสำหรับการเทเลพอร์ต ";
+			mes "บริการ.ค่าธรรมเนียมในการเทเลพอร์ต ";
+			mes "ถึง "+.@towns$[.@i] +" คือ "+.@cost[.@i] +" zeny.";
+			close;
+		}
+		specialeffect2 EF_READYPORTAL;
+		specialeffect2 EF_TELEPORTATION;
+		specialeffect2 EF_PORTAL;
+		next;
+		set Zeny, Zeny - .@cost[.@i];
+		switch(.@i) {
+			case 0: warp "prontera",116,72; break;
+			case 1: warp "izlude",128,98; break;
+			case 2: warp "geffen",120,39; break;
+			case 3: warp "payon",161,58; break;
+			case 4: warp "morocc",156,46; break;
+			case 5: warp "alberta",117,56; break;
+			case 6: warp "aldebaran",168,112; break;
+			case 7: warp "comodo",209,143; break;
+			case 8: warp "umbala",100,154; break;
+			case 9: warp "yuno",158,125; break;
+			case 10: warp "einbroch",67,195; break;
+			case 11: warp "lighthalzen",159,90; break;
+			case 12: warp "hugel",98,150; break;
+			case 13: warp "rachel",119,135; break;
+		}
+		close;
+	case 2:
+		mes "[Aperture]";
+		mes "กลับมาเมื่อคุณต้องการวาร์ป";
+		close;
+	}
+}
+
+function	script	VIP_iRO_Acolyte	{
+	if(!vip_status(VIP_STATUS_ACTIVE)) {
+		mes getarg(0);
+		mes "แต่พลังเต็มของฉันมีให้เฉพาะคนที่เป็นวีไอพีเท่านั้น ";
+		mes "ฉันยังสามารถเสนอวาร์ปไปที่ "+getarg(1) +" แม้ว่า ";
+		next;
+		switch(select(getarg(0)+" -> 1800z:ยกเลิก")) {
+		case 1:
+			if(Zeny < 1800) {
+				mes getarg(0);
+				mes "ฉันขอโทษ แต่คุณไม่มี ";
+				mes "zeny เพียงพอสำหรับการเทเลพอร์ต ";
+				mes "บริการ.ค่าธรรมเนียมในการเทเลพอร์ต ";
+				mes "ถึง "+getarg(1) +" คือ 1,800 zeny ";
+				close;
+			}
+			specialeffect2 EF_READYPORTAL;
+			specialeffect2 EF_TELEPORTATION;
+			specialeffect2 EF_PORTAL;
+			next;
+			set Zeny, Zeny - 1800;
+			if(getarg(1) == "Juno")
+				warp "yuno",158,125;
+			else
+				warp "prontera",116,72;
+			close;
+		case 2:
+			close;
+		}
+	}
+	return;
+}
+
+
+// Primo d'Buffer, VIP stat bonuses
+//============================================================
+moc_para01,26,15,3	script	Primo d'Buffer	790,{
+	mes "[Primo d'Buffer]";
+	mes "สวัสดีนักผจญภัยคุณดูเหมือนว่าคุณอยากจะออกไปช่วยโลก! ";
+	if(!vip_status(VIP_STATUS_ACTIVE)) {
+		mes "ฉันยังสามารถบอกได้ว่าคุณไม่ได้รับความสุขจาก '^6666ffVIP Status ^000000' ";
+		next;
+		mes "[Primo d'Buffer]";
+		mes "คำสั่งของฉันคือการช่วยเหลือนักผจญภัยที่ถูกทำเครื่องหมายเป็น VIP พร้อมกับบัฟพิเศษ! ";
+		mes "ตอนนี้ฉันจะให้ ^ff0000 +7 กับสถิติทั้งหมดของคุณเป็นเวลา 30 นาที ^000000 ถ้าคุณเป็น VIP ";
+		next;
+		mes "[Primo d'Buffer]";
+		mes "หากคุณต้องการเป็น VIP คุณสามารถใช้ WarpPortal เพื่อ ^FF8C42Power-UP ^000000 บัญชีเกมของคุณพร้อมสถานะ VIP แน่นอนว่าการเป็น VIP ยังมีข้อดีอีกมากมายเช่น EXP และอัตราการดรอปที่สูงขึ้นพื้นที่เก็บข้อมูลที่มากขึ้นและ NPC บัฟพิเศษเช่นฉัน!";
+		mes "การเดินทางที่มีความสุข! ";
+		close;
+	}
+	//new
+	//mes "[Primo d'Buffer]";
+	//mes "อนุญาติให้ใช้งาน แพทซ์ Class 3 ขึ้นไป";
+	//end;
+	//
+	mes "ฉันสามารถบอกได้ด้วยว่าคุณมีความสุขกับ '^007FFFVIP Status ^000000' ";
+	next;
+	mes "[Primo d'Buffer]";
+	mes "มันสุดยอดมาก! ";
+	mes "นี่คือ +7 สำหรับสถิติทั้งหมดของคุณเป็นเวลา 30 นาทีเพื่อช่วยคุณในการเดินทาง กลับมาเมื่อคุณต้องการเติมสถิติของคุณ! ";
+	close2;
+	sc_start SC_FOOD_STR_CASH,1200000,7;
+	sc_start SC_FOOD_AGI_CASH,1200000,7;
+	sc_start SC_FOOD_VIT_CASH,1200000,7;
+	sc_start SC_FOOD_DEX_CASH,1200000,7;
+	sc_start SC_FOOD_INT_CASH,1200000,7;
+	sc_start SC_FOOD_LUK_CASH,1200000,7;
+	end;
+	
+	OnInit:
+	waitingroom "Buff Vip",0;
+	end;
+}
+
+// Clearchus, VIP mercenary rentals
+//============================================================
+moc_para01,53,30,3	script	Clearchus	470,{
+	if(checkquest(62238,PLAYTIME) > -1 && checkquest(62238,PLAYTIME) < 2) {
+		mes "คุณต้องรอให้หมดเวลาก่อนจึงจะจ้างทหารรับจ้างใหม่ได้ ";
+		close;	
+	}
+	mes "[Clearchus]";
+	mes "สวัสดีนักผจญภัยหนุ่ม! ฉันเป็นตัวแทนของ Midgardian Mercenary Mission";
+	next;
+	mes "[Clearchus]";
+	mes "เราให้การฝึกอบรม แก่ทหารรับจ้าง ที่ต้องการ โดยจับคู่พวกเขากับนักผจญภัยเช่นตัวคุณเอง ";
+	next;
+	mes "[Clearchus]";
+	mes "องค์กรของเราแข็งแกร่ง 10,000 คน! ตอนนี้ ให้ฉันดูว่าคุณได้ลงทะเบียนสำหรับบริการนี้หรือไม่ ";
+	next;
+	if(!vip_status(VIP_STATUS_ACTIVE)) {
+		mes "[Clearchus]";
+		mes "ขออภัยที่ดูเหมือนว่าคุณไม่ใช่ VIP โปรดรับ VIP เพื่อที่คุณจะได้ใช้บริการนี้ คุณสามารถเข้าถึง VIP ชั่วคราวได้โดยพูดคุยกับ Gramps ที่สำนักงานใหญ่ Eden Group ";
+		next;
+		mes "[Clearchus]";
+		mes "Vip เป็นเครื่องมือที่มีประโยชน์มากสำหรับนักผจญภัยที่มีให้เข้าถึงบริการ Kafra พิเศษส่วนลดวาร์ป เนื้อหาพิเศษและการใช้ Primo d'Buffer หากนักผจญภัยมีวีไอพีเต็มพวกเขาจะได้รับประสบการณ์ดรอปและการเพิ่มพื้นที่เก็บข้อมูล! ";
+		close;
+	}
+	mes "[Clearchus]";
+	mes "ชื่อของคุณอยู่ในรายชื่อ ";
+	next;
+	mes "[Clearchus]";
+	mes "คุณกำลังมองหาชุดทักษะประเภทใดในกลุ่มทหารรับจ้าง ";
+	next;
+
+	switch(select("Swordsman:Archer:Lancer")) {
+	case 1:
+		set .@base_id,12163; //SwordMercenary_Scroll
+		break;
+	case 2:
+		set .@base_id,12153; //Bow_Mercenary_Scroll
+		break;
+	case 3:
+		set .@base_id,12173; //SpearMercenary_Scroll
+		break;
+	}
+	     if(BaseLevel < 11) set .@i,0;
+	else if(BaseLevel < 21) set .@i,1;
+	else if(BaseLevel < 31) set .@i,2;
+	else if(BaseLevel < 41) set .@i,3;
+	else if(BaseLevel < 51) set .@i,4;
+	else if(BaseLevel < 61) set .@i,5;
+	else if(BaseLevel < 71) set .@i,6;
+	else if(BaseLevel < 81) set .@i,7;
+	else if(BaseLevel < 91) set .@i,8;
+	else set .@i,9;
+
+	mes "[Clearchus]";
+	mes "ฉันมีแค่ทหารรับจ้างในใจ! ";
+	next;
+	mes "[Clearchus]";
+	mes "ขอให้สนุกนะได้ยินไหม ";
+	getitem .@base_id +.@i,1;
+	if(isbegin_quest(62238) > 0)
+		erasequest 62238;
+	setquest 62238;
+	close;
+}
+
+// Carrot & Red Potion Traders
+//============================================================
+moc_para01,166,51,3	script	Phelix#edco	85,{
+	mes "[Phelix]";
+	mes "โอ้ ...ฉันเห็นจากท่าทางนั้นคุณต้องการให้ฉันทำงานและให้ คุณฉันมี Meat กับ Carrot ...";
+	mes "เพื่อนของฉัน Izaac ที่นี่มี Red Potions แต่ฉันมี Carrot อยู่แค่บางส่วน ";
+	mes "ดังนั้นฉันสามารถแลกเปลี่ยนคุณ ^0000CC1 Carrot = 3 Jellopy ^000000 ";
+	next;
+	mes "[Phelix]";
+	mes "หากคุณสนใจข้อเสนอของฉันขอ Jellopies ที่ฉันพูดถึง ";
+	next;
+	select("แลกเปลี่ยน Carrots.");
+	mes "[Phelix]";
+	mes "เอาล่ะมาดูกันว่ามีอะไรบ้าง ...";
+	next;
+	if(countitem(909) < 3) {
+		mes "[Phelix]";
+		mes "อืมดูสิฉันบอกว่า 3 Jellopies ต่อ 1 Carrot ...เข้าใจมั้ย ";
+		close;
+	}
+	mes "[Phelix]";
+	mes "ก็ไม่เลวนะ...";
+	mes "คุณต้องการกี่ชิ้น ";
+	next;
+	switch(select("มากที่สุดเท่าที่จะทำได้:ฉันต้องการเลือก:ไม่เป็นไรฉันชอบ Jellopy ของฉัน.")) {
+	case 1:
+		set .@amount, countitem(909) / 3;
+		break;
+	case 2:
+		set .@available, countitem(909) / 3;
+		mes "[Phelix]";
+		mes "คุณต้องการกี่ชิ้น ";
+		mes "^ff0000 คุณมีมากพอสำหรับ "+.@available +" Carrot.^000000 ";
+		input .@input;
+		next;
+		if(.@input < 1 || .@input > 10000) {
+			mes "[Phelix]";
+			mes "ไม่ต้องการจัดการ? พอใช้ ...";
+			close;
+		}
+		if(.@input > .@available) {
+			mes "[Phelix]";
+			mes "เพื่อนฉันบอกว่าสำหรับทุก ๆ 3 Jellopy ฉันจะให้คุณ 1 Carrot ";
+			close;
+		}
+		set .@amount, .@input;
+		break;
+	case 3:
+		mes "[Phelix]";
+		mes "อย่ารบกวนฉันถ้าคุณไม่ต้องการซื้อขาย ";
+		close;
+	}
+	if(checkweight(515,.@amount) == 0) {
+		mes "[Phelix]";
+		mes "คุณมีน้ำหนักเกิน ";
+		close;
+	}
+	mes "[Phelix]";
+	mes "ไปเลย ~! ตามที่ฉันสัญญาไว้ ";
+	//mes "พยายามอย่ายัดหน้าค่ะ ";
+	delitem 909,.@amount*3; //Jellopy
+	getitem 515,.@amount; //Carrot
+	end;
+}
+
+moc_para01,163,51,7	script	Izaac#edco	86,{
+	mes "[Izaac]";
+	mes "ขอให้เป็นวันที่ดี!";
+	mes "คุณเก็บของแปลก ๆ จากสัตว์ประหลาดหรือไม่ ";
+	mes "ฉันต้องการสิ่งต่างๆเช่น Jellopy, Fluff, Shell, Feather of Birds, Tree Root, Worm Peelings และ Chrysalis ";
+	mes "ฉันต้องการสิ่งนั้นสำหรับบางสิ่งบางอย่าง ";
+	next;
+	mes "[Izaac]";
+	mes "แน่นอนฉันจะไม่ขอให้คุณให้ของฟรีแก่ฉัน จะเกิดอะไรขึ้น ถ้าฉันแลกสิ่งต่อไปนี้สำหรับ ^CC00001 Red Potion ^000000";
+	mes "Shell";
+	mes "Fluff";
+	mes "Jellopy";
+	mes "Tree Root";
+	mes "Worm Peelings";
+	mes "Feather of Birds";
+	mes "Chrysalis";
+	next;
+	switch(select("แน่นอน!:ฉันคิดว่ามันเป็นการฉ้อโกง!:ไม่ขอบคุณ.")) {
+	case 1:
+		mes "[Izaac]";
+		mes "ต้องการรายการไหน ";
+		mes "คุณต้องนำมาให้ฉัน? ";
+		next;
+
+		setarray .@items[0], 935, 914, 909, 902, 955, 916, 915;
+		setarray .@count[0],   5,  10,  10,   6,   1,   7,   6;
+
+		set .@size, getarraysize(.@items);
+		for(set .@i,0; .@i<.@size; set .@i,.@i+1)
+			set .@menu$, .@menu$+getitemname(.@items[.@i])+":";
+		set .@select, select(.@menu$+"ยกเลิก")-1;
+		if(.@select == .@size) {
+			mes "[Izaac]";
+			mes "ชัวร์ ~ ";
+			mes "ไม่มีปัญหา.";
+			close;
+		}
+		set .@item, .@items[.@select];
+		set .@item$, getitemname(.@item);
+		set .@price, .@count[.@select];
+
+		if(countitem(.@item) < .@price) {
+			mes "[Izaac]";
+			mes "เฮ้ item ไปไหนหมด ";
+			mes ""+.@item$+" นั้น";
+			mes "คุณสัญญากับฉัน?";
+			mes "จะให้ฉัน" +.@item$+"!";
+			close;
+		}
+		mes "[Izaac]";
+		mes "โอเคให้ฉันตรวจสอบ ";
+		mes "เท่าไหร่ "+.@item$;
+		//mes "คุณมีต่อคุณ ";
+		mes "อืม ...";
+		next;
+		set .@amount, countitem(.@item) / .@price;
+		set .@trade_amount, .@amount * .@price;
+		mes "[Izaac]";
+		mes "คุณมี";
+		mes "รวมของ "+countitem(.@item) +" "+.@item$+" ...";
+		mes "สำหรับทั้งหมดนั้นฉันให้คุณได้ ";
+		mes "ผลรวมของ "+.@amount +" Red Potion(s) ";
+		next;
+		mes "[Izaac]";
+		mes "พูดว่าอะไรนะ?";
+		mes "เรามีข้อตกลงหรือไม่ ";
+		next;
+		if(select("ตกลง.:ยกเลิก.") == 2) {
+			mes "[Izaac]";
+			mes "หึ ~ ";
+			mes "ได้เลย ";
+			mes "แม้ว่าจะ ";
+			mes .@item$+"มีประโยชน์กว่า";
+			mes "สำหรับนักผจญภัยเช่นคุณ? ";
+			close;
+		}
+		if(checkweight(501,.@amount) == 0) { //custom check
+			mes "[Izaac]";
+			mes "คุณมีน้ำหนักเกิน ";
+			close;
+		}
+		delitem .@item,.@trade_amount;
+		getitem 501,.@amount; //Red_Potion
+		mes "[Izaac]";
+		mes "ไปเลย! ";
+		mes "ตรวจสอบจำนวน "+.@item$;
+		mes "ฉันให้คุณแล้วมันน่าจะดีนะ ";
+		mes "ขอบคุณที่เป็นข้อเสนอที่ดี ~ ";
+		close;
+	case 2:
+		mes "[Izaac]";
+		//mes "ฉีก ...? ";
+		mes "หากคุณตรวจสอบมูลค่าตลาด ";
+		mes "ของที่ซื้อขายกันฉันเป็นคนที่ได้รับ ";
+		//mes "ฉีกทิ้งที่นี่ ";
+		close;
+	case 3:
+		mes "[Izaac]";
+		mes "ได้เลยไม่มีปัญหา ";
+		mes "แต่กลับมาหาฉันถ้าคุณเปลี่ยนใจ ";
+		close;
+	}
+}
+
+// Safe to 7 Certificate Exchanger
+//============================================================
+moc_para01,50,39,4	script	Eve Natalia	882,{
+	mes "[Eve Natalia]";
+	mes "ดังนั้นฉัน จึงอยู่ในเมืองสักพัก เพื่อดูว่าฉันสามารถติดต่อค้าขาย กับนักล่า MVP ได้หรือไม่! ";
+	mes "ฉันยินดีที่จะใช้อุปกรณ์ MVP และมอบ Refine +7 ที่ฉันมีให้คุณเพื่อแลกเปลี่ยน; ";
+	mes "ถ้าทุกอย่างดีพอ ฉันจะเปิดโอกาสทางธุรกิจต่อไป! ";
+	next;
+	mes "[Eve Natalia]";
+	mes "คุณมีอุปกรณ์ใดบ้างที่ฉันกำลังมองหาเพื่อรับ ^CC0000Refine +7 แบบสุ่ม ";
+	next;
+	switch(select("คุณต้องการอะไร?:ตกลง!:ไม่เป็นไร.")) {
+	case 1:
+		mes "[Eve Natalia]";
+		mes "<ITEM>[Nydhoggur's Shadow Garb]<INFO>2554</INFO></ITEM> : แลกเปลี่ยน 2 Refine Ticket +7 แบบสุ่ม ";
+		mes "<ITEM>[Valkyrja's Shield]<INFO>2115</INFO></ITEM> : แลกเปลี่ยน 2 Refine Ticket +7 แบบสุ่ม ";
+		mes "<ITEM>[Valkyrian Armor]<INFO>2357</INFO></ITEM> : แลกเปลี่ยน 3 Refine Ticket +7 แบบสุ่ม";
+		mes "<ITEM>[Diabolus Robe]<INFO>2374</INFO></ITEM> : แลกเปลี่ยน 3 Refine Ticket +7 แบบสุ่ม";
+		mes "<ITEM>[Diabolus Armor]<INFO>2375</INFO></ITEM> : แลกเปลี่ยน 1 Refine Ticket +7 แบบสุ่ม";
+		mes "<ITEM>[Diabolus Boots]<INFO>2433</INFO></ITEM> : แลกเปลี่ยน 1 Refine Ticket +7 แบบสุ่ม";
+		mes "<ITEM>[Diabolus Manteau]<INFO>2537</INFO></ITEM> : แลกเปลี่ยน 2 Refine Ticket +7 แบบสุ่ม";
+		mes "<ITEM>[Twin Edge of Naght Sieger Blue]<INFO>13412</INFO></ITEM> : แลกเปลี่ยน 1 Refine Ticket +7 แบบสุ่ม";
+		mes "<ITEM>[Twin Edge of Naght Sieger Red]<INFO>13413</INFO></ITEM> : แลกเปลี่ยน 1 Refine Ticket +7 แบบสุ่ม";
+		close;
+	case 2:
+		mes "[Eve Natalia]";
+		mes "ฉันจะถามคุณว่าคุณต้องการแลกเปลี่ยนอุปกรณ์ชิ้นไหนโปรดตรวจสอบว่าชิ้นแรกในคลังของคุณคือ อุปกรณ์ที่คุณต้องการจะมอบให้ฉัน";
+		mes "^CC0000ดังนั้นหากมีรายการซ้ำกัน คุณควรเก็บเข้าใน โกดังเก็บของ ^000000 ";
+		next;
+		set .@i, select("เดี๋ยวก่อน:Nidhoggur's Shadow Garb 4:Valkyrja's Shield 4:Valkyrian Armor 5:Diabolus Robe 5:Diabolus Armor 2:Diabolus Boots 2:Diabolus Manteau 4:Twin Edge of Naght Sieger Blue 2:Twin Edge of Naght Sieger Red 2")-2;
+		if(.@i == -1)
+			break;
+
+		setarray .@items[0],   2554, 2115, 2357, 2374, 2375, 2433, 2537, 13412, 13413;
+		setarray .@tickets[0],    2,    2,    3,    3,    1,    1,    2,     1,     1;
+
+		set .@item, .@items[.@i];
+		set .@amount, .@tickets[.@i];
+
+		mes "[Eve Natalia]";
+		mes "ฉันเห็นว่าคุณมี "+countitem(.@item) +" "+getitemname(.@item) +".";
+		mes "คุณต้องการแลกเปลี่ยนอันที่ 1 ในคลังของคุณสำหรับ ^00CC00 "+.@amount +" Refine +7 แบบสุ่ม ^000000 หรือไม่ ";
+		mes "บอกฉันว่า '1' ถ้าคุณต้องการ หรือ '0' เพื่อยกเลิก ";
+		next;
+		input .@input;
+		if(.@input < 0 || .@input > 1) {
+			mes "[Eve Natalia]";
+			mes "มันเป็น 0 หรือ 1 มันไม่ยากขนาดนั้น ";
+			close;
+		} else if(.@input == 0) {
+			mes "[Eve Natalia]";
+			mes "ดีที่สุดคือมั่นใจก่อนซื้อขายมีวันที่ดี ";
+			close;
+		}
+		if(countitem(.@item) == 0) {
+			mes "[Eve Natalia]";
+			mes "คุณไม่มี ไอเท็ม ...หยุดเสียเวลาของฉัน ";
+			close;
+		}
+		mes "[Eve Natalia]";
+		mes "โอ้สมบูรณ์แบบคุณได้รับ ^CC0000 "+.@amount +" ^000000 Refine +7! ";
+		delitem .@item,1;
+		for(set .@i,0; .@i<.@amount; set .@i,.@i+1) {
+			// Note$iRO lists item 6235 as "Safe to 7 Headgear Certificate", but it's Guarantee_Armor_6Up in our database.
+			if(rand(2)){
+				announce""+strcharinfo(0)+" ได้รับ Refine Weapon Ticket +7 !! ",bc_all,0xff00dd;
+				getitem 6230,1; //Guarantee_Weapon_7Up
+			}
+			else{
+				announce""+strcharinfo(0)+" ได้รับ Refine Armor Ticket +7 !! ",bc_all,0xff00dd;
+				getitem 6234,1; //Guarantee_Armor_7Up
+			}
+		}
+		close;
+	case 3:
+		break;
+	}
+	mes "[Eve Natalia]";
+	mes "พอใช้ถ้าคุณมีธุระกับฉันในอนาคตอย่าอาย! ";
+	close;
+}
+
+// Bubble Gum & Battle Manual Exchanger
+//============================================================
+moc_para01,48,184,2	script	Gum & Manual Exchanger	562,{
+	if(checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
+		mes "คุณกำลังบรรทุกสิ่งของมากเกินไปในขณะนี้ ";
+		close;	
+	}
+	mes "[Trader Machine]";
+	mes "ใส่ Bubble Gums และ / หรือ Battle Manuals เพื่อแลกเปลี่ยน Gums และ Manuals ที่มีประสิทธิภาพสูงขึ้น ";
+	next;
+	mes "[Trader Machine]";
+	mes "อัตราแลกเปลี่ยน:";
+	mes "2 Bubble Gum -> 1 HE Bubble Gum";
+	mes "2 Battle Manual -> 1 HE Battle Manual";
+	mes "4 HE Battle Manual -> 1 Battle Manual X3";
+	mes "3 Thick Battle Manual -> 2 Battle Manual X3";
+	mes "คุณต้องการแลกกับอะไร ";
+	next;
+	switch(select("HE Bubble Gum:HE Battle Manual:1 Battle Manual X3:2 Battle Manual X3:1 Costume Corsair:ไม่มีอะไร")) {
+	case 1:
+		callsub L_Exchange,12210,2,12412,1;
+		break;
+	case 2:
+		callsub L_Exchange,12208,2,12411,1;
+		break;
+	case 3:
+		callsub L_Exchange,12411,4,14545,1;
+		break;
+	case 4:
+		callsub L_Exchange,12312,3,14545,2;
+		break;
+	case 5:
+		mes "[Trader Machine]";
+		mes "ฉันสามารถมอบ Battle Manual X3 ให้คุณ 1 อันสำหรับคอสตูม Corsair 1 ตัว  <ITEM>[Corsair]<INFO>19619</INFO></ITEM>";
+		next;
+		if(countitem(19619) == 0) {
+			mes "[Trader Machine]";
+			mes "คุณไม่มีหมวกคอสตูม Corsair เพื่อทำการค้า ";
+			close;
+		}
+		next;
+		if(select("ตกลง!:ไม่ล่ะ.") == 2)
+			close;
+		// Unofficial dialogue.
+		mes "[Trader Machine]";
+		mes "คุณวางสิ่งของที่ต้องการลงในเครื่อง ...";
+		next;
+		mes "[Trader Machine]";
+		mes "เครื่องคืนสินค้าให้คุณ! ";
+		delitem 19619,1; //C_Corsair
+		getitem 14545,1; //Battle_Manual_X3
+		close;
+	case 6:
+		close;
+	}
+
+//callsub L_Exchange,<Insert Item>,<Amount>,<Return Item>,<Amount>
+L_Exchange:
+	mes "[Trader Machine]";
+	mes "คุณต้องการกี่ชิ้น "+getitemname(getarg(2))+"";
+	mes "ฉันสามารถให้คุณได้มากถึง 60 ";
+	mes "พิมพ์ 0 เพื่อยกเลิก ";
+	next;
+	input .@amount;
+	if(.@amount == 0) {
+		mes "[Trader Machine]";
+		mes "ยกเลิก.";
+		close;
+	} else if(.@amount < 0 || .@amount > 60) {
+		mes "[Trader Machine]";
+		mes "ฉันบอกว่าสูงสุด 60 เท่านั้น ";
+		close;
+	}
+	mes "[Trader Machine]";
+	mes "นั่นคือผลรวมของ "+.@amount +" "+getitemname(getarg(2)) +"";
+	mes "ถูกต้องหรือไม่ ";
+	next;
+	if(select("ตกลง!:ไม่ล่ะ.") == 2)
+		close;
+	set .@cost, getarg(1) * .@amount;
+	set .@total_amount, getarg(3) * .@amount;
+	if(countitem(getarg(0)) < .@cost) {
+		mes "[Trader Machine]";
+		mes "คุณมี "+getitemname(getarg(0)) +" ไม่เพียงพอที่จะทำการซื้อขาย ";
+		close;
+	}
+	delitem getarg(0),.@cost;
+	getitem getarg(2),.@total_amount;
+	close;
+}
+
+// Merry Badger
+//============================================================
+moc_para01,13,22,4	script	Merry Badger#xch	882,{
+	disable_items;
+	mes "[Merry Badger]";
+	mes "สวัสดี! ฉันชื่อ Merry Badger และฉันได้รับการว่าจ้างให้แลกเปลี่ยน ^00CC00Eden Merit Badges <ITEM>[Eden Merit Badges]<INFO>6495</INFO></ITEM> ^000000! ";
+	next;
+	mes "[Merry Badger]";
+	mes "ฉันสามารถเอา Merit Badges ของคุณไปมอบของที่มีประโยชน์ให้คุณได้หรือฉันจะเอาของของคุณไปและให้ตรา Eden Merit กับคุณก็ได้ ";
+	mes "เมื่อฉันได้รับอนุญาตมากขึ้นฉันสามารถเสนอสิ่งต่างๆเพื่อ แลกเปลี่ยนกับคุณได้ดังนั้นโปรดจำไว้ว่าเมื่อไปที่ Eden Group ";
+	next;
+	// switch( select( "Redeem Badges", "Trade in FOR badges", "Exchange Rates", "15 Job Manuals - 1 JM Box", "Sky Fortress Tickets", "Weekly Special" ) ) {// Sky Fortress Tickets meaningless without the instance
+	switch( select( "EMB แลกไอเท็ม", "แลกรับ EMB", "อัตราแลกเปลี่ยน", "15 Job Manuals - 1 JM Box", "", "พิเศษประจำสัปดาห์" ) ) {
+	case 1:
+		setarray .@menu_list$[0],
+			"4 EMB สำหรับ 10 KVM Badge",
+			"4 EMB สำหรับ 10 Bravery Medals",
+			"4 EMB สำหรับ 10 Valor Medals", 
+			"8 EMB สำหรับ 1 Reset Stone",
+			"5 EMB สำหรับ Battle Manual Buff",
+			"5 EMB สำหรับ Job Battle Manual Buff",
+			"10 EMB สำหรับ HE Battle Manual Buff",
+			"20 EMB สำหรับ 3X Battle Manual Buff",
+			"5 EMB สำหรับ Bubblegum Buff", 
+			"10 EMB สำหรับ HE Bubblegum Buff",
+			"",	// "5 EMB for Miracle Buff"(item doesn't exist in db)
+			"1 EMB สำหรับ Yggdrasil Leaf",
+			"",	// "5 EMB for Rental Wing of Beelzebub"(item doesn't exist in db)
+			"5 EMB สำหรับ Rental Halter Lead",
+			"5 EMB สำหรับ 20 Blue Herbs",
+			"Token of Siegfried",
+			"ยกเลิก";
+		.@menu$= implode( .@menu_list$, ":" );
+		while(1) {
+			mes "[Merry Badger]";
+			mes "แน่นอนฉันมีหลายทางเลือกสำหรับ ป้ายของคุณในขณะนี้! ";
+			next;
+			switch( select(.@menu$) ) {
+			case 1:// "4 EMB for 10 KVM Badge"
+				callsub L_Exchange,4,6376,10;// KVM_Badge
+				break;
+			case 2:// "4 EMB for 10 Bravery Medals"
+				callsub L_Exchange,4,7828,10;// BF_Badge1
+				break;
+			case 3:// "4 EMB for 10 Valor Medals"
+				callsub L_Exchange,4,7829,10;// BF_Badge2
+				break;
+			case 4:// "8 EMB for 1 Reset Stone"
+				callsub L_Exchange,8,6320,1;// Premium_Reset_Stone
+				break;
+			case 5:// "5 EMB for Battle Manual Buff"
+				callsub L_Exchange,5,12208,1;// Battle_Manual
+				break;
+			case 6:// "5 EMB for Job Battle Manual Buff"
+				callsub L_Exchange,5,14592,1;// Job_Manual50
+				break;
+			case 7:// "10 EMB for HE Battle Manual Buff"
+				callsub L_Exchange,10,12411,1;// HE_Battle_Manual
+				break;
+			case 8:// "20 EMB for 3X Battle Manual Buff"
+				callsub L_Exchange,20,14545,1;// Battle_Manual_X3
+				break;
+			case 9:// "5 EMB for Bubblegum Buff"
+				callsub L_Exchange,5,12210,1;// Bubble_Gum
+				break;
+			case 10:// "10 EMB for HE Bubblegum Buff"
+				callsub L_Exchange,10,12412,1;// HE_Bubble_Gum
+				break;
+			case 11:// "5 EMB for Miracle Buff"
+				.@item_id = 22819;
+				if(countitem(6495) < 5) {
+					mes "[Merry Badger]";
+					mes "คุณมีไม่เพียงพอ ^00CC00Eden Merit Badges ^000000 มาเริ่มกันใหม่! ";
+					break;
+				}
+				mes "[Merry Badger]";
+				mes "โอเคฉันให้ ^ff0000 "+getitemname(.@item_id) +" ^000000 สำหรับ ^0066CC5 ของ Eden Merit Badge ของคุณ ^000000 ";
+				mes "คุณต้องการที่จะ?";
+				next;
+				if(select("Yes", "No") == 2) {
+					mes "[Merry Badger]";
+					mes "ฉันเข้าใจมาดูกันว่าคุณจะชอบอะไรที่แตกต่างออกไป!";
+					break;
+				}
+				mes "[Merry Badger]";
+				mes "ไปเลย! คุณต้องการอะไรอีก? ";
+				delitem 6495, 5;// Para_Logro_Badge
+				consumeitem .@item_id;
+				break;
+			case 12:// "1 EMB for Yggdrasil Leaf"
+				callsub L_Exchange,1,610,1;// Leaf_Of_Yggdrasil
+				break;
+			case 13:// "5 EMB for Rental Wing of Beelzebub"
+				.@item_id = 14645;
+				if(countitem(6495) < 5) {
+					mes "[Merry Badger]";
+					mes "คุณมีไม่เพียงพอ ^00CC00Eden Merit Badges ^000000 มาเริ่มกันใหม่! ";
+					break;
+				}
+				mes "[Merry Badger]";
+				mes "โอเคฉันให้ ^ff0000 "+getitemname(.@item_id) +" ^000000 สำหรับ ^0066CC5 ของ Eden Merit Badge ของคุณ ^000000 ";
+				mes "คุณต้องการที่จะ?";
+				next;
+				if(select("Yes", "No") == 2) {
+					mes "[Merry Badger]";
+					mes "ฉันเข้าใจมาดูกันว่าคุณจะชอบอะไรที่แตกต่างออกไป! ";
+					break;
+				}
+				mes "[Merry Badger]";
+				mes "ไปเลย! คุณต้องการอะไรอีก? ";
+				delitem 6495, 5;// Para_Logro_Badge
+				rentitem .@item_id, 604800;	// 7 days
+				break;
+			case 14:// "5 EMB for Rental Halter Lead"
+				callsub L_Exchange,5,17162,1;// Boarding_Halter_Box7
+				break;
+			case 15:// "5 EMB for 20 Blue Herbs"
+				callsub L_Exchange,5,510,20;// Blue_Herb
+				break;
+			case 16:// Token of Siegfried
+				if(vip_status(VIP_STATUS_ACTIVE) == false) {
+					mes "[Merry Badger]";
+					mes "VIP Services ให้บริการแก่ผู้ใช้ทุกคนด้วย VIP !! ";
+					close;
+				}
+				// custom from here
+				.@date = gettime(DT_YYYYMMDD);
+				if(.@date <= eden_iro_token_date) {
+					mes "[Merry Badger]";
+					mes "คุณได้รับ Token แล้ววันนี้! ";
+					close;
+				}
+				mes "[Merry Badger]";
+				mes "ไปเลย! คุณต้องการอะไรอีก? ";
+				eden_iro_token_date = .@date;
+				getitem 7621,10;// Token_Of_Siegfried
+				close;
+			case 17:// Nothing Now
+				mes "[Merry Badger]";
+				mes "วิเศษมาก! ";
+				mes "ฉันจะอยู่ที่นี่ถ้าคุณต้องการแลกกับ Eden Merit Badges! ";
+				close;
+			}
+			next;
+		}
+	case 2:
+		mes "[Merry Badger]";
+		mes "ฉันมีตัวเลือกจำนวน จำกัด ณ ตอนนี้ แต่นี่คือสิ่งที่ฉันสามารถเสนอเพื่อรับ 1 Eden Merit Badge! ";
+		next;
+		switch( select( "Etc Items", "Equipments", "ยกเลิก" ) ) {
+		case 1:
+			while(1) {
+				if(select( "5x Old Purple Box", "ยกเลิก" ) == 2) {
+					mes "[Merry Badger]";
+					mes "วิเศษมาก! ";
+					mes "ฉันจะอยู่ที่นี่ถ้าคุณต้องการแลกกับ Eden Merit Badges! ";
+					close;
+				}
+				while(1) {
+					if(countitem(617) < 5) {
+						mes "[Merry Badger]";
+						mes "คุณมีไม่เพียงพอที่จะได้รับตรา Eden Merit 1 อัน มาเริ่มกันใหม่! ";
+						break;
+					}
+					mes "[Merry Badger]";
+					mes "โอเคฉันสามารถให้ ^CC00001 Eden Merit Badge ^000000 สำหรับ ^0000CC5 ของ Old Purple Boxes ^000000 คุณต้องการที่จะ?";
+					next;
+					if(select( "Yes", "No" ) == 2) {
+						mes "[Merry Badger]";
+						mes "ฉันเข้าใจมาดูกันว่าคุณชอบอะไรที่แตกต่างออกไป! ";
+						break;
+					}
+					else {
+						mes "[Merry Badger]";
+						mes "ไปเลย! อยากได้อะไรอีก";
+						delitem 617,5;// Old_Violet_Box
+						getitem 6495,1;// Para_Logro_Badge
+						next;
+					}
+				}
+				next;
+			}
+		case 2:
+			while(1) {
+				mes "[Merry Badger]";
+				mes "ฉันจะเอาไอเทมชั้นนำในคลังของคุณ! ตรวจสอบให้แน่ใจว่าคุณไม่มีรายการใด ๆ ที่คุณไม่ต้องการแลกเปลี่ยน ";
+				next;
+				switch( select( "Giant Faceworm Snake Skin", "Giant Faceworm Snake Skin[1]", "ไม่มีอะไร" ) ) {
+				case 1:
+					.@item_req = 20717;// FaceWorm_Skin
+					.@item_name$= "Giant Faceworm Snake Skin";
+					.@amount_reward = 5;
+					break;
+				case 2:
+					.@item_req = 20718;// FaceWorm_Skin_
+					.@item_name$= "Giant Faceworm Snake Skin[1]";
+					.@amount_reward = 7;
+					break;
+				case 3:
+					mes "[Merry Badger]";
+					mes "วิเศษมาก! ";
+					mes "ฉันจะอยู่ที่นี่ถ้าคุณต้องการแลกกับ Eden Merit Badges! ";
+					next;
+					mes "[Merry Badger]";
+					mes "ก็โอเคถ้าคุณอยากเห็นสิ่งที่ฉันเสนอก็แค่ถาม! ";
+					close;
+				}
+				while(1) {
+					if(countitem(.@item_req) < 1) {
+						mes "[Merry Badger]";
+						mes "คุณมีไม่เพียงพอที่จะได้รับตรา Eden Merit 1 อัน มาเริ่มกันใหม่! ";
+						break;
+					}
+					mes "[Merry Badger]";
+					mes "โอเคฉันให้ ^ff0000 "+.@amount_reward +" Eden Merit Badge ^000000 สำหรับ ^00ff00 "+.@item_name$+" ^000000 คุณต้องการที่จะ?";
+					next;
+					if(select( "Yes", "No" ) == 2) {
+						mes "[Merry Badger]";
+						mes "ฉันเข้าใจมาดูกันว่าคุณชอบอะไรที่แตกต่างออกไป! ";
+						break;
+					}
+					delitem .@item_req, 1;
+					getitem 6495, .@amount_reward;// Para_Logro_Badge
+					mes "[Merry Badger]";
+					mes "ไปเลย! คุณชอบอะไรอีก? ";
+					next;
+				}
+				next;
+			}
+		case 3:
+			mes "[Merry Badger]";
+			mes "ก็โอเคถ้าคุณอยากเห็นสิ่งที่ฉันเสนอก็แค่ถาม! ";
+			close;
+		}
+	case 3:
+		mes "[Merry Badger]";
+		mes "นี่คือสิ่งที่ฉันจะให้คุณสำหรับ ^00CC00Eden Merit Badges ^000000 ของคุณ! ";
+		mes "โอเคฉันมีของพิเศษสำหรับ 3 Merit Badge สัปดาห์นี้ฉันจะให้ ^00CC0040 Light Granule ^000000, ^00CC0040 Gun Powder ^000000, ^0000CC3 Izidor ^000000, ^00CC0010 Prickly Fruit ^000000, ^0000CC1 Mandragora Flowerpot ^000000 และ ^00CC003 Elder Branch ^000000 " ;
+		mes "^00CC002 Eden Merit Badges^000000 = ^0000CC10x KVM Badge^000000";
+		mes "^00CC002 Eden Merit Badges^000000 = ^0000CC10x Bravery Medals^000000";
+		mes "^00CC002 Eden Merit Badges^000000 = ^0000CC10x Valor Medals^000000";
+		mes "^00CC005 Eden Merit Badges^000000 = ^0000CC5x Medium Life Potion^000000";
+		mes "^00CC005 Eden Merit Badges^000000 = ^0000CC5x Life Insurance^000000";
+		mes "^00CC005 Eden Merit Badges^000000 = ^0000CC5x Token Of Siegfried^000000";
+		mes "^00CC007 Eden Merit Badges^000000 = ^0000CC1x Job Battle Manual^000000";
+		mes "^00CC008 Eden Merit Badges^000000 = ^0000CC1x Reset Stone^000000";
+		next;
+		mes "[Merry Badger]";
+		mes "นี่คือสิ่งที่คุณสามารถให้ฉันได้ ^00CC001 Eden Merit Badge ^000000! ";
+		mes "^0000CC5x Old Purple Boxes ^000000 ";
+		close;
+	case 4:
+		mes "[Merry Badger]";
+		mes "ฉันมีอาวุธที่แข็งแกร่งในการให้สิ่งนี้ แต่คุณก็คุ้มค่า! ";
+		mes "คุณต้องการแลกเปลี่ยน Job Manual 15 รายการเพื่อรับ Job Manuals 10 กล่องที่ซื้อขายได้ 1 กล่องหรือไม่ ";
+		mes "ฉันรู้ว่า 15 ไม่เท่ากับ 10 แต่กล่องมีราคาแพงคุณก็รู้ ";
+		next;
+		if(countitem(14592) < 15) {
+			mes "[Merry Badger]";
+			mes "คุณไม่มีคู่มืองาน 15 เล่มขึ้นไปเพื่อรับ 1 กล่อง! ";
+			close;
+		}
+		// custom dialogue below
+		if(select("Yes", "No") == 2) {
+			mes "[Merry Badger]";
+			mes "วิเศษมาก! ";
+			mes "ฉันจะอยู่ที่นี่ถ้าคุณต้องการแลกกับ Eden Merit Badges! ";
+			close;
+		}
+		mes "[Merry Badger]";
+		mes "วิเศษมากคุณต้องการอะไรอีก? ";
+		delitem 14592,15; //Job_Manual50
+		getitem 13990,1; //Job_Manual50_Box
+		close;
+	case 5:
+		mes "[Merry Badger]";
+		mes "ฉันไม่เข้าใจจริงๆว่าทำไม แต่ฉันมีคูปองกองนี้ที่จะขาย ";
+		mes "คุณต้องการแลกเหรียญตรา Eden Merit 25 เหรียญสำหรับตั๋วดันเจี้ยน ( Sky Fortress ) 1 ใบหรือไม่? หากคุณเป็น VIP ตั๋วของคุณจะมีอายุการใช้งานยาวนานขึ้นมาก! ";
+		next;
+		if(select( "ตกลง", "ไม่ล่ะ" ) == 2) {
+			mes "[Merry Badger]";
+			mes "ฉันเข้าใจมาดูกันว่าคุณชอบอะไรที่แตกต่างออกไป! ";
+			close;
+		}
+		if(countitem(6495) < 25) {
+			mes "[Merry Badger]";
+			mes "คุณมีป้ายไม่พอ! ";
+			close;
+		}
+		delitem 6495,25;
+		if(vip_status(VIP_STATUS_ACTIVE))
+			getitem 17570,1;// Sky Fortress Ticket 3 Hour Box
+		else
+			getitem 17569,1;// Sky Fortress Ticket 1 Hour Box
+		mes "[Merry Badger]";
+		mes "ไปเลย! คุณต้องการอะไรอีก? ";
+		close;
+	case 6:
+		while(1) {
+			mes "[Merry Badger]";
+			mes "ความพิเศษประจำสัปดาห์คือ ....";
+			next;
+			mes "[Merry Badger]";
+			mes "โอเคฉันมีของพิเศษสำหรับ 3 Merit Badge หรือ 1,000,000 zeny สัปดาห์นี้ฉันจะให้ ^00CC0040 Light Granule ^000000, 40 Gun Powder ^000000, ^0000CC3 Izidor ^000000 ";
+			mes "^00CC0010 Prickly Fruit ^000000, ^0000CC1 Mandragora Flowerpot ^000000 และ ^00CC003 Elder Branch ^000000 ";
+			next;
+			switch( select( "ใช้ Merit Badges", "ใช้ Zeny", "ยกเลิก" ) ) {
+			case 1:
+				if(countitem(6495) < 3) {
+					mes "[Merry Badger]";
+					mes "คุณมีไม่เพียงพอ ^00CC00Eden Merit Badges ^000000 มาเริ่มกันใหม่! ";
+					next;
+					continue;
+				}
+				delitem 6495,3; //Para_Logro_Badge
+				break;
+			case 2:
+				if(Zeny < 1000000) {
+					mes "[Merry Badger]";
+					mes "คุณมีไม่เพียงพอ ^00CC00Zeny ^000000 มาเริ่มกันใหม่! ";
+					next;
+					continue;
+				}
+				Zeny -= 1000000;
+				break;
+			case 3:
+				mes "[Merry Badger]";
+				mes "ฉันเข้าใจมาดูกันว่าคุณต้องการอะไรที่แตกต่างออกไป!";
+				close;
+			}
+			getitem 7938,40;// Light_Granule
+			getitem 6244,40;// Gun_Power
+			getitem 709,3;	// Izidor
+			getitem 576,10;	// Prickly_Fruit
+			getitem 6217,1;	// Mandragora_Flowerpot
+			getitem 7939,3;	// Elder_Branch
+			mes "[Merry Badger]";
+			mes "ไปเลย! คุณต้องการอะไรอีก? ";
+			next;
+		}
+	}
+	end;
+
+//callsub L_Exchange,<badge cost>,<item id>,<amount>;
+L_Exchange:
+	if(countitem(6495) < getarg(0)) {
+		mes "[Merry Badger]";
+		mes "คุณมีไม่เพียงพอ ^00CC00Eden Merit Badges ^000000 มาเริ่มกันใหม่! ";
+		return;
+	}
+	mes "[Merry Badger]";
+	mes sprintf("โอเคฉันให้ ^ff0000% s ^000000 สำหรับ ^0066CC% d ของเหรียญรางวัล Eden ของคุณ ^000000 ",
+				callfunc("F_InsertPlural",getarg(2),getitemname(getarg(1))), getarg(0));
+	mes "คุณต้องการที่จะ?";
+	next;
+	if(select("ตกลง", "ยกเลิก") == 2) {
+		mes "[Merry Badger]";
+		mes "ฉันเข้าใจมาดูกันว่าคุณจะชอบอะไรที่แตกต่างออกไป! ";
+		return;
+	}
+	mes "[Merry Badger]";
+	mes "ไปเลย! อยากได้อะไรอีก";
+	delitem 6495, getarg(0); //Para_Logro_Badge
+	getitem getarg(1),getarg(2);
+	return;
+}
+
+// Kafra Stacker
+//============================================================
+moc_para01,41,167,2	script	Kafra Stacker#eden	749,{
+	if(checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
+		mes "- รอสักครู่! -";
+		mes "- ขณะนี้คุณกำลังดำเนินการอยู่ -";
+		mes "- สินค้ามีน้ำหนักมากเกินไป.-";
+		mes "- โปรดกลับมาใหม่ -";
+		mes "- หลังจากที่คุณใส่บางส่วนลงในที่เก็บของ Kafra-";
+		close;
+	}
+	mes "[Toma]";
+	mes "ฉันสามารถนำวัสดุสิ้นเปลืองคาฟราของคุณมาซ้อนกันได้ ";
+	mes "และทำให้มันพอดีเป็นกอง! ";
+	next;
+	mes "[Toma]";
+	mes "โปรดเข้าใจว่าฉันทำได้ ";
+	mes "สแต็กครั้งละ 10 ชิ้นเท่านั้น ";
+	mes "งั้นคุยกับฉันต่อไปจนกว่า ";
+	mes "คุณมีกองละ 1 กอง! ";
+	next;
+	while(1) {
+		if(select("รวมกอง!:ไม่สนใจ.") == 2)
+			break;
+		// Something strange goes on here, haven't quite figured it out...
+		mes "[Toma]";
+		mes "สิบกองลง!";
+		mes "อยากทำอีกไหม";
+		next;
+	}
+	mes "[Toma]";
+	mes "เอาล่ะ laterz ";
+	close;
+}
+
+// Code Redeemer
+//============================================================
+moc_para01,38,162,2	script	Code the Redeemer#Give1	405,{
+	if(checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
+		mes "^0000ff ถือไว้ตรงนั้น! ";
+		mes "คุณถือสินค้ามากเกินไปและไม่มีพื้นที่เก็บของเพียงพอที่จะรับรางวัลใด ๆ โปรดเพิ่มพื้นที่เก็บสินค้าให้มากขึ้นและกลับมารับความท้าทายนี้ ^000000 ";
+		close;
+	}
+	mes "[Code the Redeemer]";
+	mes "ยินดีต้อนรับ" +strcharinfo(0) +"!";
+	mes "ฉันรอคอยคุณอยู่ ";
+	next;
+	mes "[Code the Redeemer]";
+	mes "ฉันเป็นตัวแทนจำหน่ายทั้งหมด";
+	mes "สิ่งของที่นักผจญภัยชอบ";
+	mes "ซื้อเองบนเว็บไซต์";
+	mes "หรือรับเป็นโปรโมชั่น";
+	next;
+	mes "[Code the Redeemer]";
+	mes "^0000FFหากรายการว่างเปล่า ";
+	mes "นั่นหมายความว่าคุณไม่มี";
+	mes "ไม่ได้ซื้อ ";
+	mes "รหัสซีเรียลของคุณจากเว็บไซต์ ^000000 ";
+	next;
+
+	// If you have a code redemption system, write your SQL queries here.
+	select("");
+
+	close;
+}
+
+// Cash Shops
+//============================================================
+/* Due to the irregularity of iRO's databases, some of these sprites may not display properly.*/
+
+askald,110,118,6	cashshop	Kafra Headgears#eden1	115,14024:500,14098:150,17081:300,14097:500,14094:1000,14017:400,14099:300
+askald,112,118,2	cashshop	Kafra Dye Shop#dyes2	114,6287:150
+askald,114,118,2	cashshop	Kafra Consumables#eden3	112,13810:5,14167:400,16556:100,14111:75,14075:25,16419:30,14107:70,14104:50,14112:25,14082:30,14091:60,14088:30,14085:60,14169:40,14170:40,14172:40,14173:40,14171:40,14174:40,14159:100,14160:100,14161:100,14162:100,14163:100:14164:100,16420:1500
+askald,116,118,2	cashshop	Kafra Rental Items#eden	721,16683:150,16682:50,14126:250,14125:250,16430:250,14137:250,14127:250,14118:250,14119:250,14132:250,16425:250,14124:250,14133:250,14130:250,16424:250,14136:250,14122:250,16426:250,14135:250,14134:250,14138:250,16428:250,16431:250,14139:250,14131:250,16429:250,16427:250
+askald,118,118,2	cashshop	Kafra Costume#eden5	860,16974:300,16972:600,16973:150,16975:150,16977:150,17014:150,17015:150
+askald,120,118,1	cashshop	Kafra Utility Shop#eden	113,16677:25,13990:400,16396:100,16394:100,17106:500,6241:10,6240:10,6225:15,6226:15,14002:5,6294:500,7776:50,7619:30,7620:30,12208:40,14156:400,12210:40,14158:400,14042:50,14044:50,14046:50,14048:50,14114:50,14166:40,16418:500,16381:400,14165:100,14157:100,14178:100
+
+// Duplicate NPCs
+//============================================================
+/* Technically these NPC names are different, but it's not worth editing the original scripts.*/
+
+// Weapon/Armor Refiner "Normalson"(merchants/refine.txt)
+moc_para01,14,185,4	script	Normalson#ed	826,{
+	callfunc "refinemain","Normalson",0;
+	end;
+}
+
+// Advanced Refiner "Suhnmi"(merchants/advanced_refiner.txt)
+moc_para01,26,185,4	duplicate(Suhnbi#cash)	Suhnmi#eden	85
+
+// HD Refiner "Blacksmith Mighty Hammer"(re/merchants/hd_refiner.txt)
+// A combination of the +7~9 and +10 and up refiner, currently a placeholder.
+moc_para01,38,185,4	duplicate(MightyHammer)	Mighty Hammer#ed	826
+
+// Refiner Effect
+-	script	#eden_refine_effect	-1,{
+OnInit:
+	initnpctimer;
+	end;
+OnTimer5000:
+	specialeffect EF_REFINEOK,AREA,"Suhnmi#eden";
+	specialeffect EF_REFINEOK,AREA,"Mighty Hammer#ed";
+	initnpctimer;
+	end;
+}
+
+// Gym Pass Trainer "Ripped Cabus"(other/gympass)
+moc_para01,33,162,6	duplicate(Ripped Cabus#GymPass)	Ripped Callus#ed	899
+
+// RWC 2012 Enchanter "Goldenthiefberg"(events/RWC_2012.txt)
+// A combination of the slotter and enchanter, currently a placeholder.
+moc_para01,27,179,4	script	RWC Enchanter#new10	87,{ end; }
+
+// Cash Headgear Dyer "Alora"(merchants/cashheadgear_dye.txt)
+// Also converts some +8 and up headgears into costumes, currently a placeholder.
+moc_para01,21,185,4	duplicate(Alora)	Alora#headgear_dye2	862
+
+// Stylist "Dinorah Lacostt"(?)
+// Dyes clothing for an Omni Clothing Dye, currently a placeholder.
+moc_para01,33,185,4	script	Dinorah Lacostt#ed	862,{ end; }
+
+// Commonly Updated NPCs
+//============================================================
+/* These scripts change on a regular basis, so they're mostly just placeholders for now.*/
+
+moc_para01,29,35,4	script	Gramps#huntquests	866,{
+	if (eaclass()&EAJL_THIRD){
+		mes "^FF0000 เมื่อไปถึง Job Level 50 หรือ Base Level 150 Gramps จะไม่ได้รับคะแนนประสบการณ์ประเภทที่ถึงขีดสุดอีกต่อไป ^000000";
+		next;
+		mes "นอกจากนี้ Gramps จะไม่อนุญาตให้แจกจ่ายคะแนนเหล่านั้นอีก";
+		next;
+	}
+	//if (checkquest(62837) != 2)
+		//callsub S_GM_Notice;
+	setarray .@Timer, 60444, 60495, 60449, 60450, 60486, 60487;
+	for (.@i = 0; .@i < getarraysize(.@Timer); .@i++){
+		if (checkquest(.@Timer[.@i],PLAYTIME) == 2)
+			erasequest .@Timer[.@i];
+	}
+	mes "[Gramps]";
+	mes "เมื่อคุณอายุมากขึ้นคุณจะขมขื่น";
+	mes "นานเกินไปแล้วที่ฉันไม่ได้ทำอะไรเกี่ยวกับสัตว์ประหลาดที่เดินเตร่อยู่รอบ ๆ Rune Midgard";
+	next;
+	mes "[Gramps]";
+	mes "นั่นเป็นเหตุผลที่ฉันขอให้คุณ wippersnappers ช่วยฉันล่าสัตว์ประหลาด";
+	mes "คุณจะช่วยฉันนักผจญภัยรุ่นเยาว์ได้ไหม";
+	next;
+	switch(select("ใช่ฉันจะช่วย", "ตอบแทนฉัน!", "^FF0000ฉันต้องการเลิกล่าสัตว์ ^000000", "^0000FFคุณวาร์ปฉันได้ไหม ^000000", "คุณสามารถลบตัวจับเวลาได้หรือไม่?", "คุณให้ภารกิจอะไร", "ให้ฉันเป็น VIP 3 วันแบบ จำกัด", "บอกข้อมูลเพิ่มเติมเกี่ยวกับ VIP Access", "ไม่ขอบคุณ")){
+		case 1:	//Yes, I'll help.
+			mes "[Gramps]";
+			mes "โอเคฉันมีสัตว์ประหลาดในใจที่ฉันต้องการความช่วยเหลือในการกำจัด";
+			next;
+			mes "[Gramps]";
+			mes "Waddya พูดว่าเด็ก?";
+			mes "ต้องการตามล่าหาฉันหรือไม่?";
+			next;
+			.@map = select("ฉันจะตามล่า" + .Gramps_MapName$[0] + "[70-100]", "ฉันจะตามล่า" + .Gramps_MapName$[1] + "[101-125]", "ฉันจะตามล่า" + .Gramps_MapName$[2] + "[126-150]", "ไม่ขอบคุณ") - 1;
+			if (.@map == 3){
+				mes "[Gramps]";
+				mes "เหมาะกับตัวเอง";
+				close;
+			}
+			callsub S_CheckLevel, .@map;
+			mes "[Gramps]";
+			mes "โอเคเด็กน้อย";
+			mes "ล่ามอนสเตอร์ที่" + .Gramps_MapName$[.@map] + " และฉันสามารถตายอย่างชายชราที่มีความสุขได้";
+			next;
+			mes "[Gramps]";
+			mes "ขอให้ฉันเทเลพอร์ตคุณแล้วฉันจะส่งคุณไปยังพื้นที่ล่าสัตว์พิเศษ";
+			mes "แล้วคุณล่ะอยากล่าอะไร?";
+			next;
+			if (vip_status(1) || checkquest(60810,PLAYTIME) == 1)
+				.@vip_status = 1;
+			.@loc = 4 * .@map;
+			.@Turn_1 = .Gramps_Turn[.@loc];     .@mob1 = .Gramps_Turn[.@loc + 1];
+			.@Turn_2 = .Gramps_Turn[.@loc + 2]; .@mob2 = .Gramps_Turn[.@loc + 3];
+			.@hunt = select(getmonsterinfo(.@mob1,MOB_NAME), getmonsterinfo(.@mob2,MOB_NAME), (.@vip_status?"ล่าทั้งหมด":""), "ยกเลิก");
+			if (.@hunt == 4)
+				close;
+			setarray .@Timer1, 60444, 60449, 60486;
+			setarray .@Timer2, 60495, 60450, 60487;
+			.@Timer1 = .@Timer1[.@map];
+			.@Timer2 = .@Timer2[.@map];
+			if (.@hunt == 3){
+				if (checkquest(.@Turn_1) < 0 && checkquest(.@Timer1) < 0 && checkquest(.@Turn_2) < 0 && checkquest(.@Timer2) < 0){
+					setquest .@Turn_1;
+					setquest .@Timer1;
+					setquest .@Turn_2;
+					setquest .@Timer2;
+					close;
+				}
+				.@hunt = 1;
+			}
+			.@Turn = (.@hunt == 1 ? .@Turn_1 : .@Turn_2);
+			.@Timer = (.@hunt == 1 ? .@Timer1 : .@Timer2);
+			if (checkquest(.@Turn,HUNTING) == 2){
+				mes "[Gramps]";
+				mes "คุณเสร็จสิ้นภารกิจนี้แล้ว";
+				mes "สิ่งที่คุณต้องทำคือบอกฉันว่าคุณทำเสร็จแล้ว";
+			} else if (checkquest(.@Turn,HUNTING) == 1){
+				if (.@vip_status){
+					mes "[Gramps]";
+					mes "คุณอยู่ในภารกิจนี้แล้ว";
+					mes "คุณต้องการให้ฉันวิปริตคุณไปที่นั่นหรือไม่?";
+					next;
+					if (select("ส่งมาให้ฉันเดี๋ยวนี้!", "ไม่ใช่ตอนนี้.") == 1){
+						close2;
+						announce""+strcharinfo(0)+" ได้เข้าสู่ ดันเจี้ยนรายสัปดาห์ Turn IN !! ",bc_all,0x1b93b9;
+						warp .Gramps_MapWarp$[.@map], .Gramps_MapX[.@map], .Gramps_MapY[.@map];
+						end;
+					}
+				} else {
+					mes "[Gramps]";
+					mes "บอกให้ฉันวาร์ปคุณแล้วฉันจะส่งคุณไปยังพื้นที่ล่าสัตว์พิเศษ";
+					mes "คุณอยู่ในภารกิจนี้แล้ว";
+				}
+			} else if (checkquest(.@Timer,PLAYTIME) == 1){
+				mes "[Gramps]";
+				mes "รอสักครู่!";
+				mes "คุณต้องรอ 23 ชั่วโมงก่อนที่ฉันจะปล่อยให้คุณทำภารกิจนี้ได้อีกครั้ง";
+			} else if ((checkquest(.@Timer1,PLAYTIME) == 1 || checkquest(.@Timer2,PLAYTIME) == 1) && !.@vip_status){
+				mes "[Gramps]";
+				mes "ฉันขอโทษ แต่ฉันสามารถให้คุณได้ครั้งละหนึ่งภารกิจในหมวดหมู่นี้";
+				mes "หากคุณเป็นสมาชิกวีไอพีฉันสามารถมอบทั้งภารกิจและวาร์ปไปยังพื้นที่ได้ฟรี";
+			} else {
+				if (!.@vip_status){
+					mes "[Gramps]";
+					mes "บอกให้ฉันวาร์ปคุณแล้วฉันจะส่งคุณไปยังพื้นที่ล่าสัตว์พิเศษ";
+				}
+				setquest .@Turn;
+				setquest .@Timer;
+			}
+			close;
+		case 2:	//Reward Me!
+			mes "[Gramps]";
+			mes "ฉันจะตรวจสอบภารกิจทั้งหมดที่ฉันให้มา";
+			next;
+			for (.@i = 0; .@i < getarraysize(.quest_id); .@i++){
+				if (checkquest(.quest_id[.@i], HUNTING) == 2){
+					if (checkquest(60819,PLAYTIME) != 1){
+						if (checkquest(60819) > 0)
+							erasequest 60819;
+						mes "[Gramps]";
+						mes "ฉันจะให้บัฟแบบสุ่มสำหรับการทำภารกิจล่าสัตว์ให้สำเร็จ";
+						mes "ฉันสามารถมอบบัฟนี้ให้คุณได้ทุกๆ 16 ชั่วโมง";
+						sc_start SC_DEXFOOD,1800000,12;
+						sc_start SC_ATKPOTION,1800000,0;
+						sc_start SC_MATKPOTION,1800000,0;
+						sc_start SC_SPEEDUP0,1800000,25;
+						setquest 60819; // Hunting Daily Timer
+						next;
+					}
+					.@monster$ = getmonsterinfo(.monster_id[.@i],MOB_NAME);
+					mes "[Gramps]";
+					mes "อืม ... ให้ฉันดู ~";
+					mes "คุณได้เสร็จสิ้น '" + .@monster$ + " ภารกิจล่าสัตว์";
+					.@boost = 600;
+					if (vip_status(1)){
+						mes "คุณต้องการทั้งฐานและประสบการณ์งานหรือแยก?";
+						next;
+						.@vip_reward = select("^FF0000 ทั้ง Base และ Job EXP ^000000", "^0000FF ฉันต้องการ Base EXP เท่านั้น ^000000", "^FFA400 ฉันต้องการ Job EXP เท่านั้น ^000000");
+						.@boost = 1000;
+						mes "[Gramps]";
+						mes "นี่คือรางวัลของคุณ";
+					}
+					erasequest .quest_id[.@i];
+					.@BaseExp = getmonsterinfo(.monster_id[.@i], MOB_BASEEXP) * .@boost;
+					.@JobExp = getmonsterinfo(.monster_id[.@i], MOB_JOBEXP) * .@boost;
+					if (eaclass()&EAJL_THIRD && BaseLevel > 149)
+						.@BaseExp = 0;
+					if (eaclass()&EAJL_THIRD && JobLevel > 49)
+						.@JobExp = 0;
+					switch(.@vip_reward){
+						case 2:
+							getexp .@BaseExp,0;
+							getexp .@JobExp,0;
+							break;
+						case 3:
+							getexp 0,.@BaseExp;
+							getexp 0,.@JobExp;
+							break;
+						default:
+							getexp .@BaseExp,.@JobExp;
+							break;
+					}
+					getitem "Para_Logro_Badge", (.@vip_reward ? 2 : 1);
+					next;
+				}
+			}
+			close;
+		case 3:	//I want to quit hunting
+			mes "[Gramps]";
+			mes "ฉันจะตรวจสอบว่าคุณทำภารกิจอะไรจนถึงตอนนี้";
+			mes "บอกฉันว่าคุณอยากเลิกทำอันไหน";
+			next;
+			for (.@i = 0; .@i < getarraysize(.quest_id); .@i++){
+				if (checkquest(.quest_id[.@i], HUNTING) == 1){
+					.@monster$ = getmonsterinfo(.monster_id[.@i],MOB_NAME);
+					mes "[Gramps]";
+					mes "คุณยังไม่เสร็จสิ้น '" + .@monster$ + " ภารกิจล่าสัตว์";
+					mes "คุณต้องการดำเนินการต่อหรือเลิก";
+					next;
+					if (select("ออกล่าต่อไป" + .@monster$, "^FF0000 กำจัดเควสของฉัน ^000000") == 2){
+						erasequest .quest_id[.@i];
+						mes "[Gramps]";
+						mes "บันทึกทั้งหมดของคุณสำหรับภารกิจนี้ถูกลบแล้ว";
+						close2;
+						.@questerased = 1;
+					}
+				}
+			}
+			if (.@questerased)
+				end;
+			close;
+		case 4:	//Can you warp me?
+			mes "[Gramps]";
+			mes "คุณต้องการให้ฉันส่งคุณไปที่ใด";
+			mes "พื้นที่ที่ฉันจะส่งคุณไปไม่ใช่พื้นที่ปกติ แต่เป็นพื้นที่ล่าสัตว์พิเศษ";
+			next;
+			mes "[Gramps]";
+			mes "นอกจากนี้ตราบใดที่คุณมีการจับเวลา 23 ชั่วโมงฉันจะยังคงวาร์ปคุณไปยังพื้นที่ล่าสัตว์ แต่คุณยังต้องรอให้ตัวจับเวลาหมดลงก่อนที่ฉันจะสามารถให้ภารกิจล่าสัตว์ได้อีกครั้ง";
+			next;
+			.@map = select(.Gramps_MapName$[0] + "[70-100]", .Gramps_MapName$[1] + "[101-125]", .Gramps_MapName$[2] + "[126-150]", "ยกเลิก") - 1;
+			if (.@map == 3)
+				close;
+			.@loc = 4 * .@map;
+			.@Turn_1 = .Gramps_Turn[.@loc];
+			.@Turn_2 = .Gramps_Turn[.@loc + 2];
+			setarray .@Timer1, 60444, 60449, 60486;
+			setarray .@Timer2, 60495, 60450, 60487;
+			.@Timer1 = .@Timer1[.@map];
+			.@Timer2 = .@Timer2[.@map];
+			if (checkquest(.@Turn_1) < 0 && checkquest(.@Timer1) < 0 && checkquest(.@Turn_2) < 0 && checkquest(.@Timer2) < 0){
+				mes "[Gramps]";
+				mes "ฉันจะไม่ส่งคุณไปที่นั่นเพราะคุณไม่ได้ทำภารกิจนั้นหรือคุณยังไม่ได้ทำภารกิจนี้เมื่อเร็ว ๆ นี้";
+				close;
+			}
+			mes "[Gramps]";
+			mes "กำลังส่งคุณตอนนี้";
+			close2;
+			warp .Gramps_MapWarp$[.@map], .Gramps_MapX[.@map], .Gramps_MapY[.@map];
+			end;
+		case 5:	//Can you erase the timer?
+			mes "[Gramps]";
+			mes "ฉันสามารถลบตัวจับเวลารายวันของเควสได้ถ้าคุณให้หินรีเซ็ต 1 ชิ้นแก่ฉัน";
+			mes "คุณพูดว่าอะไรนะเด็ก?";
+			next;
+			if (select("นี่คือหินรีเซ็ต 1 ชิ้น", "ไม่ขอบคุณฉันจะรอ") == 1){
+				if (!countitem("Premium_Reset_Stone")){
+					mes "[Gramps]";
+					mes "มาตอนนี้ฉันจะไม่ทำฟรี";
+					mes "คุณสามารถรับ Reset Stones ได้จาก Kafra Consumables Employee ที่ชั้นบน";
+				} else {
+					if (checkquest(60574,PLAYTIME) == 1){
+						mes "[Gramps]";
+						mes "ฉันสามารถให้คุณรีเซ็ตตัวจับเวลาการล่าของคุณได้ทุกๆ 3 ชั่วโมงเท่านั้น";
+						mes "รอให้ตัวจับเวลาหมดเวลาก่อนที่คุณจะลองรีเซ็ต";
+					} else {
+						setarray .@quest_erase, 60444, 60495, 60449, 60450, 60486, 60487, 60574;
+						for (.@i = 0; .@i < getarraysize(.@quest_erase); .@i++){
+							if (checkquest(.@quest_erase[.@i]) > 0)
+								erasequest .@quest_erase[.@i];
+						}
+						mes "[Gramps]";
+						mes "ลบตัวจับเวลารายวันทั้งหมดของคุณแล้ว";
+						delitem "Premium_Reset_Stone", 1;
+						setquest 60574;
+					}
+				}
+			}
+			close;
+		case 6:	//What missions are you giving
+			mes "[Gramps]";
+			mes "ฉันกำลังให้ภารกิจล่าสัตว์หลายอย่าง";
+			next;
+			mes "[Gramps]";
+			mes "พื้นที่มอนสเตอร์ของสัปดาห์นี้ ได้แก่ :";
+			mes "70-100"  + .Gramps_MapName$[0];
+			mes "ล่า" + getmonsterinfo(.Gramps_Turn[1],MOB_NAME) + " &" + getmonsterinfo(.Gramps_Turn[3],MOB_NAME);
+			mes "101-125" + .Gramps_MapName$[1];
+			mes "ล่า" + getmonsterinfo(.Gramps_Turn[5],MOB_NAME) + " &" + getmonsterinfo(.Gramps_Turn[7],MOB_NAME);
+			mes "126-150" + .Gramps_MapName$[2];
+			mes "ล่า" + getmonsterinfo(.Gramps_Turn[9],MOB_NAME) + " &" + getmonsterinfo(.Gramps_Turn[11],MOB_NAME);
+			close;
+		case 7:	//Give me Limited 3 day VIP
+			if (countitem("Premium_Reset_Stone") < 2){
+				mes "[Gramps]";
+				mes "คุณต้องนำหิน Premium Reset Stone 2 ก้อนเพื่อรับบริการนี้";
+				mes "เปิด Cash Shop และซื้อจากที่นั่น";
+			} else if (checkquest(60810,PLAYTIME) == 1){
+				mes "[Gramps]";
+				mes "ดูเหมือนว่าคุณได้เปิดใช้งานการเข้าถึงแบบ จำกัด แล้ว";
+				mes "การเข้าถึงของคุณจะสิ้นสุดลงเมื่อหมดเวลา";
+			} else {
+				if (checkquest(60810) > 0)
+					erasequest 60810;
+				mes "[Gramps]";
+				mes "โอเคคุณจะมีสิทธิ์เข้าถึง VIP แบบ จำกัด 3 วันนับจากจุดนี้เป็นต้นไป";
+				mes "ถามฉันเกี่ยวกับรายละเอียดเฉพาะเพื่อดูข้อมูลเพิ่มเติมเกี่ยวกับการเข้าถึงนี้";
+				delitem "Premium_Reset_Stone", 2;
+				setquest 60810;
+			}
+			close;
+		case 8:	//Tell me more about the VIP Access
+			mes "[Gramps]";
+			mes "โอเคถ้าคุณให้หินรีเซ็ต 2 ชิ้นคุณจะมีสิทธิ์เข้าถึง VIP แบบ จำกัด สำหรับ VIP เฉพาะ NPC บางคนเท่านั้น";
+			next;
+			mes "[Gramps]";
+			mes "ซึ่งรวมถึงการเข้าถึงบริการ Kafra พิเศษส่วนลดวาร์ปไปยังพื้นที่ต่างๆและแม้แต่การใช้ Primo d'Buffer ที่ Eden Group";
+			next;
+			mes "[Gramps]";
+			mes "นอกจากนี้ฉันจะอนุญาตให้คุณได้รับเควสการล่าสัตว์ทั้งสองในขณะที่คุณเปิดใช้งาน VIP Access อยู่";
+			next;
+			mes "[Gramps]";
+			mes "สิ่งเดียวที่จับได้คือคุณจะไม่ได้รับสิทธิประโยชน์บางอย่างจาก VIP เช่น EXP Boost และพื้นที่เก็บข้อมูลเพิ่มเติม";
+			close;
+		case 9:	//No thanks pops.
+			mes "[Gramps]";
+			mes "ป๊อด?";
+			mes "คุณควรเรียนรู้เกี่ยวกับความเคารพที่นั่น";
+			close;
+	}
+	end;
+
+S_CheckLevel:
+	setarray .@BaseMin,  70, 101, 126;
+	setarray .@BaseMax, 100, 125, 150;
+	if (BaseLevel >= .@BaseMin[getarg(0)] && BaseLevel <= .@BaseMax[getarg(0)])
+		return;
+	mes "[Gramps]";
+	mes "ขออภัยฉันมอบภารกิจนี้ให้กับนักผจญภัยที่อยู่ระหว่างเลเวลเท่านั้น" + .@BaseMin[getarg(0)] + "-" + .@BaseMax[getarg(0)] + ".";
+	close;
+
+S_GM_Notice:
+	while(1){
+		mes "[Gramps]";
+		mes "ถือไว้ที่นั่น! ฉันมีข้อความที่จะแสดงเพียงครั้งเดียวหลังจากที่คุณตอบคำถามถูกต้องแล้ว";
+		next;
+		mes "[Gramps]";
+		mes "ข้อมูลเกี่ยวกับทีม GM!";
+		next;
+		mes "[Rules]";
+		mes "1. วิธีเดียวที่จะเป็น GM ได้คือต้องได้รับการว่าจ้างจากสำนักงานในแคลิฟอร์เนียของเรา เราไม่รับสมัครผู้เล่นเป็น GM!";
+		next;
+		mes "[Rules]";
+		mes "2. ทีมงาน GM จะไม่ขอรหัสผ่านของคุณเป็นอันขาด!";
+		next;
+		mes "[Rules]";
+		mes "3. หากมีคนเรียกร้องค่าไถ่เพื่อรักษาบัญชีของคุณให้อยู่ในสถานะที่ดีพวกเขาไม่ได้เป็นสมาชิกของ GM อย่าจ่ายเงิน!";
+		mes "ทีมงาน GM จะไม่ขอให้คุณติดต่อกับพวกเขานอกระบบตั๋ว หากพวกเขาเรียกร้องผ่านผู้ส่งข้อความด่วนหรือโซเชียลมีเดียอย่าสนใจพวกเขา!";
+		next;
+		mes "[Rules]";
+		mes "4. ทีมงาน GM จะไม่ขอให้คุณติดตั้งและใช้งาน Teamviewer!";
+		next;
+		mes "[Rules]";
+		mes "5. คุณจะสามารถเห็นสมาชิกทีม GM ในห้องสนทนาได้ตลอดเวลาหากพวกเขาอยู่ที่นั่น พวกเขาไม่มีทางพิเศษที่จะล่องหน!";
+		next;
+		mes "[Rules]";
+		mes "6. ทีมงาน GM ยินดีที่จะแสดงสไปรท์ของ GM เสมอ หากปฏิเสธก็สามารถเพิกเฉยได้";
+		next;
+		mes "[Questionaire # 1]";
+		mes "ทีม GM รับสมัครผู้เล่นเป็น GM หรือไม่?";
+		next;
+		if (select("ใช่", "ไม่") == 2){ .@n++; }
+		mes "[Questionaire # 2]";
+		mes "ทีมงาน GM จะขอรหัสผ่านจากคุณหรือไม่?";
+		next;
+		if (select("ใช่", "ไม่") == 2){ .@n++; }
+		mes "[Questionaire # 3]";
+		mes "ทีม GM จะเรียกร้องเงินสดจากคุณในเกมหรือผ่านทางข้อความโต้ตอบแบบทันทีหรือโซเชียลมีเดียหรือไม่?";
+		next;
+		if (select("ไม่", "ใช่") == 1){ .@n++; }
+		mes "[Questionaire # 4]";
+		mes "คุณควรติดตั้ง Teamviewer เพราะ GM ขอให้คุณ?";
+		next;
+		if (select("ไม่", "ใช่") == 1){ .@n++; }
+		mes "[Questionaire # 5]";
+		mes "สมาชิกทีม GM สามารถมองไม่เห็นในห้องสนทนาได้หรือไม่?";
+		next;
+		if (select("อาจจะ", "ไม่", "ใช่") == 2){ .@n++; }
+		mes "[Questionaire # 6]";
+		mes "คุณสามารถขอดูสไปรท์ของ GM เพื่อยืนยันตัวตนของ GM ได้หรือไม่?";
+		next;
+		if (select("ไม่", "ใช่") == 2){ .@n++; }
+		if (.@n == 6)
+			break;
+		else
+			.@n = 0;
+	}
+	setquest 62837;
+	completequest 62837;
+	return;
+
+
+OnInit:
+	setarray .Gramps_MapName$, "Payon Dungeon", "Geffen Dungeon", "Moscovia Dungeon";
+	setarray .Gramps_MapWarp$, "new_1", "new_2", "new_3";
+	setarray .Gramps_MapX, 74, 74, 74;
+	setarray .Gramps_MapY, 121, 120, 120;
+	setarray .Gramps_Turn, 60601, 1883, 60507, 1622, 60593, 1771, 60501, 1163, 60469, 1713, 60484, 1656;
+	setarray .monster_id,  1193,  1106,  1410,  1417,  1370,  1374,  2083,  2084,  1778,
+			 1777,  1752,  1753,  2085,  2086,  1402,  1403,  1504,  1505,  1713,  1716,
+			 1614,  1615,  1714,  1717,  1657,  1654,  1652,  1655,  1656,  1653,  1316,
+			 1314,  1736,  1737,  1987,  2024,  1163,  1208,  1780,  1781,  2019,  2021,
+			 1622,  1617,  1670,  1671,  1672,  1673,  1838,  1837,  1627,  1782,  1769,
+			 1770,  1638,  1635,  1637,  1634,  1639,  1636,  1613,  1619,  1676,  1677,
+			 1678,  1679,  1867,  1870,  1253,  1194,  1215,  1162,  1699,  1698,  1986,
+			 2092,  1133,  1134,  1135,  1833,  1831,  1143,  1109,  1194,  1297,  1384,
+			 1385,  1773,  1774,  1196,  1257,  2015,  1993,  1509,  1510,  1836,  1680,
+			 1256,  1148,  1989,  1282,  1390,  1715,  1668,  1988,  2133,  2132,  1718,
+			 1992,  2137,  2136,  1318,  1315,  1367,  1366,  1295,  1771,  1772,  1865,
+			 1864,  1883,  1102,  1379,  1206,  1703,  1201,  1735,  1155,  1884,  1995,
+			 1775,  1682,  1132,  1408,  1866,  1213,  1319,  2013,  1628,  1377,  2134,
+			 1776,  1197,  1117,  1219,  1401,  1376,  1406,  1869,  1796,  1797,  1375,
+			 1405,  2071,  1198,  1098,  1512,  1513,  1309,  2153,  1291,  1999,  1154,
+			 2315,  2313,  1386,  2365,  2366,  1199,  2363,  2370,  2309,  2310,  2364,
+			 1692,  1255,  2204,  1305,  2369,  2367,  2073,  2199;
+	setarray .quest_id,   60443, 60445, 60451, 60452, 60453, 60454, 60455, 60456, 60459,
+			60460, 60461, 60462, 60463, 60464, 60465, 60466, 60467, 60468, 60469, 60470,
+			60476, 60477, 60478, 60479, 60480, 60481, 60482, 60483, 60484, 60485, 60488,
+			60489, 60490, 60491, 60492, 60493, 60501, 60502, 60503, 60504, 60505, 60506,
+			60507, 60508, 60509, 60510, 60511, 60512, 60513, 60514, 60515, 60516, 60517,
+			60518, 60519, 60520, 60521, 60522, 60523, 60524, 60525, 60526, 60527, 60528,
+			60529, 60530, 60531, 60532, 60535, 60536, 60537, 60538, 60539, 60540, 60541,
+			60542, 60543, 60544, 60545, 60546, 60547, 60549, 60550, 60551, 60552, 60553,
+			60554, 60555, 60556, 60557, 60558, 60559, 60560, 60561, 60562, 60565, 60570,
+			60571, 60572, 60573, 60575, 60576, 60579, 60580, 60581, 60582, 60583, 60584,
+			60585, 60586, 60587, 60588, 60589, 60590, 60591, 60592, 60593, 60594, 60595,
+			60596, 60601, 60602, 60603, 60604, 60605, 60608, 60609, 60610, 60611, 60612,
+			60614, 60815, 60816, 60817, 60818, 60820, 60821, 60822, 60824, 60825, 60826,
+			60827, 60828, 60830, 60831, 60832, 60833, 60834, 60835, 60836, 60837, 60838,
+			60839, 60840, 60841, 60842, 60843, 60844, 60845, 60846, 60848, 60849, 60851,
+			60853, 60854, 60855, 60856, 60857, 60858, 60859, 60860, 60861, 60862, 60863,
+			60864, 60865, 60866, 60867, 60868, 60869, 62832, 62833;
+	end;
+}
+
+
+
+
+-	script	Return to Eden#template	-1,{
+	mes "ส่งคุณกลับไปที่ Eden Group";
+	close2;
+	warp "moc_para01", 31, 14;
+	end;
+}
+
+new_1,77,118,3	duplicate(Return to Eden#template)	Return to Eden#paydun00l	707
+new_2,77,118,3	duplicate(Return to Eden#template)	Return to Eden#gefdun03m	707
+new_3,77,118,3	duplicate(Return to Eden#template)	Return to Eden#mosdun02h	707
+	//next;
+	//switch(select("Yes, I'll help.:Reward Me!:^ff0000I want to quit hunting^000000:^0000ffCan you warp me?^000000:Can you erase the timer?:What missions are you giving?:Give me Limited 3 day VIP:Tell me more about the VIP Access:No thanks, pops.")) {
+
+
+moc_para01,174,33,3	script	Bathory#2012spirits	1102,{
+	mes "[Bathory]";
+	mes "ฮิ ฮิ ฮิ! แสงสว่าง อยู่ที่ Glast Heim ในสัปดาห์นี้ดังนั้นฉันจึงพาคนไปที่นั่นด้วยเงินเพียง 1,000z!";
+	next;
+	mes "[Bathory]";
+	mes "แล้วยังไงล่ะ? อยากขี่ไม้กวาดสวย ๆ ของ Bathory ไหม";
+	next;
+	switch(select("ฉันจะไปด้วย!:ไม่ล่ะ ขอบคุณ.")) {
+	case 1:
+		if(Zeny < 1000) {
+			mes "[Bathory]";
+			mes "มาเลยที่รัก ...";
+			mes "คุณไม่มี 1,000 zeny เหรอ?";
+			close;
+		}
+		mes "[Bathory]";
+		mes "เอาล่ะจับให้แน่น! ";
+		close2;
+		set Zeny, Zeny-1000;
+		warp "niflheim",194,185;
+		end;
+	case 2:
+		mes "["+strcharinfo(0)+"]";
+		mes "ไม่ขอบคุณอาจจะช้ากว่านี้ ";
+		close;
+	}
+}
+
+moc_para01,26,174,4	script	Grandma Boxter#boxx	840,{ end; }
+
+// Mail Annex Station
+//============================================================
+/* Map "auction_03" is a duplicate of "auction_02".
+
+moc_para01,30,187,4	script	Mail Annex Station	888,{
+	mes "[Mail Annex Station]";
+	mes "คุณต้องการไปที่สถานี Kafra Mail Annex หรือไม่";
+	next;
+	switch(select("Yes, send me now!:No thanks.")) {
+	case 1:
+		mes "[Mail Annex Station]";
+		mes "ส่งคุณไปที่ Mail Annex Room";
+		close2;
+		warp "auction_03",151,23;
+		end;
+	case 2:
+		mes "[Mail Annex Station]";
+		mes "โอเคถ้าอย่างนั้น!";
+		close;
+	}
+}
+auction_03,152,16,0	warp	#mail_annex_warp	1,1,moc_para01,30,184
+
+auction_03,152,42,4	script	Kafra Employee#annex	117,{
+	mes "[Kafra Employee]";
+	mes "ยินดีต้อนรับสู่ Kafra's Mail Annex Station ตอนนี้ที่นี่เป็นที่เดียวในการส่งและเรียกอีเมล ";
+	next;
+	mes "[Kafra Employee]";
+	mes "คุณอยากจะทำอะไร?";
+	next;
+	switch(select("Access Mail:Storage:Cancel")) {
+	case 1:
+		if(Zeny < 130) {
+			mes "[Kafra Employee]";
+			mes "ขอโทษ แต่คุณมีเงินไม่พอ ";
+			mes "ในการใช้บริการกล่องจดหมาย";
+			mes "คุณจะต้องจ่าย 130 zeny.";
+			close;
+		}
+		mes "[Kafra Employee]";
+		mes "ขอบคุณที่ใช้บริการ Kafra ";
+		set Zeny, Zeny - 130;
+		close2;
+		openmail;
+		end;
+	case 2:
+		callfunc "F_KafStor",0,1200,0;
+		end;
+	case 3:
+		mes "[Kafra Employee]";
+		mes "ขอบคุณที่ใช้บริการ Kafra ";
+		close;
+	}
+}
+
+auction_03,145,47,2	shop	Tool Dealer#annex	83,611:-1,501:-1,502:-1,503:-1,506:-1,504:-1,645:-1,656:-1,657:-1,601:-1,602:-1,1065:-1,911:-1,910:-1,717:-1,1092:-1,1093:-1,713:400
+
+*/
+
+// Fallen_Angel_Wing Enchant
+//============================================================
+moc_para01,179,27,3	script	Dark Luhir#new10	4_F_VALKYRIE2,{
+	disable_items;
+	mes "[Dark Luhir]";
+	mes "สวัสดี ~ มอบ Status พิเศษให้กับผู้ที่มีไอเทม^0000FF Fallen Angel Wing <ITEM>[ Fallen Angel Wing ]<INFO>2589</INFO></ITEM> ";
+	next;
+	if(getequipid(EQI_GARMENT) != 2589) {// Fallen_Angel_Wing
+		mes "[Dark Luhir]";
+		mes "กรุณา ^0000FF สวมใส่ไอเท็ม Fallen Angel Wing ของคุณก่อน ^000000 จากนั้นฉันจะให้สถิติพิเศษแก่คุณ";
+		close;
+	}
+	switch( select( "ยกเลิก", "Enchant Fallen Angel Wing", "Reset Fallen Angel Wing Stats" ) ) {
+	case 1:
+		mes "[Dark Luhir]";
+		mes "ต่อจากนั้น ...";
+		close;
+	case 2:
+		.@refine = getequiprefinerycnt(EQI_GARMENT);
+		setarray .@card[0],
+			getequipcardid(EQI_GARMENT,0),
+			getequipcardid(EQI_GARMENT,1),
+			getequipcardid(EQI_GARMENT,2),
+			getequipcardid(EQI_GARMENT,3);
+		mes "[Dark Luhir]";
+		mes "มีเพียง 1 ซ็อกเก็ตเท่านั้นที่จะ ได้รับค่าสถานะพิเศษเมื่อระดับการปรับแต่งอยู่ระหว่าง 1 ~ 6 ";
+		mes "ถ้าระดับการปรับแต่งคือ 7 ~ 8 จะสามารถรับค่าสถานะได้ 2 ซ็อกเก็ต ";
+		mes "+9 สามารถรับค่าสเตตัสไปยังทั้ง 3 ซ็อกเก็ต ";
+		next;
+		mes "[Dark Luhir]";
+		if(.@refine < 7)
+			mes "ระดับการปรับแต่งของไอเทมนี้ต่ำกว่า 7 มีเพียง ^ff0000socket สล็อต 4 ^000000 เท่านั้นที่สามารถรับค่าสถานะพิเศษได้";
+		else if(.@refine < 9)
+			mes "ระดับการปรับแต่งของไอเทมนี้อยู่ระหว่าง 7 ~ 8 ^ff0000Socket สล็อต 3 และ 4 ^000000 สามารถรับสถิติพิเศษได้ ";
+		else
+			mes "ระดับการปรับแต่งของไอเทมนี้มากกว่า 9 ^ff0000Socket สล็อต 2, 3 และ 4 ^000000 ทั้งหมด 3 ตัวสามารถรับค่าสถิติพิเศษได้ ";
+		mes "คุณต้องการ Status พิเศษประเภทใด ";
+		next;
+		switch( select( "ให้ฉันเตรียมของก่อน", "1.Fighting spirit", "2.Magic Attack", "3.Archery", "4.Critical", "5.MaxHP", "6.MaxSP", "7.Atk speed", "8.STR", "9.AGI", "10.VIT", "11.INT", "12.DEX", "13.LUK" ) ) {
+		case 1:
+			mes "[Dark Luhir]";
+			mes "โปรดกลับมาหลังจากเตรียมสิ่งของของคุณ";
+			close;
+		case 2:
+			setarray .@enchants[0],4809,4808,4820,4821;		// Fighting Spirit 3~5 / Fighting Spirit 6
+			.@string$= "Fighting Spirit stats จะสุ่มระหว่าง 3~5(ATK+HIT) range.";
+			break;
+		case 3:
+			setarray .@enchants[0],4812,4826,4827,4828;		// Spell 4~6 / Spell 7
+			.@string$= "Magic spell stats จะสุ่มระหว่าง 4~6(MATK +Reduce change casting time).";
+			break;
+		case 4:
+			setarray .@enchants[0],4832,4833,4834,4835;		// Expert Archer 1~3 / Expert Archer 4
+			.@string$= "Archery stats จะสุ่มระหว่าง 1~3(Range atack rate).";
+			break;
+		case 5:
+			setarray .@enchants[0],4863,4864,4865,4866;		// Fatal 1~3 / Fatal 4
+			.@string$= "Critical stats จะสุ่มระหว่าง 1~4(Critical damage +CRI).";
+			break;
+		case 6:
+			setarray .@enchants[0],4861,4862,4867,4868;		// MaxHP +1~3% / MaxHP +4%
+			.@string$= "MHP stats จะสุ่มระหว่าง 1~3(Increase MHP %).";
+			break;
+		case 7:
+			setarray .@enchants[0],4870,4800,4871,4801;		// +25,50 or 75 sp / +100 sp
+			.@string$= "SP stats จะสุ่มระหว่าง 25~75.";
+			break;
+		case 8:
+			setarray .@enchants[0],4869,4872,4873,4807;		// Delayafterattack 1~3 / +1 ASPD
+			.@string$= "Atack delay stats จะสุ่มระหว่าง 1~3(Reduce attack delay %).";
+			break;
+		case 9:
+			setarray .@enchants[0],4702,4703,4704,4853;		// Str +3~5 / Special Str
+			.@string$= "STR stats จะสุ่มระหว่าง 3~5.";
+			break;
+		case 10:
+			setarray .@enchants[0],4731,4732,4733,4854;		// Agi +2~4 / Special Agi
+			.@string$= "AGI stats จะสุ่มระหว่าง 2~4.";
+			break;
+		case 11:
+			setarray .@enchants[0],4742,4743,4744,4855;		// Vit +3~5 / Special Vit
+			.@string$= "VIT stats จะสุ่มระหว่าง 3~5.";
+			break;
+		case 12:
+			setarray .@enchants[0],4712,4713,4714,4856;		// Int +3~5 / Special Int
+			.@string$= "INT stats จะสุ่มระหว่าง 3~5.";
+			break;
+		case 13:
+			setarray .@enchants[0],4722,4723,4724,4857;		// Dex +3~5 / Special Dex
+			.@string$= "DEX stats จะสุ่มระหว่าง 3~5.";
+			break;
+		case 14:
+			setarray .@enchants[0],4752,4753,4754,4858;		// Luk +3~5 / Special Luk
+			.@string$= "LUK stats จะสุ่มระหว่าง 3~5.";
+			break;
+		}
+		mes "[Dark Luhir]";
+		mes .@string$+"^ff0000 สถิติที่กำหนดไม่สามารถย้อนกลับได้ ^000000 คุณต้องการดำเนินการต่อหรือไม่?";
+		next;
+		if(select( "1.ยกเลิก", "2.ใช่ ทำมันให้ฉัน." ) == 1) {
+			mes "[Dark Luhir]";
+			mes "ต่อจากนั้น ...";
+			close;
+		}
+
+		// anti-hack
+		if(callfunc("F_IsEquipIDHack", EQI_GARMENT, 2589) || callfunc("F_IsEquipCardHack", EQI_GARMENT, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_GARMENT, .@refine))
+			close;
+
+		if(.@card[3] == 0) {
+			.@card[3] = .@enchants[ rand(3) ];
+			.@slot = 4;
+		}
+		else if(.@card[2] == 0 && .@refine >= 7) {
+			.@card[2] = .@enchants[ rand(3) ];
+			.@slot = 3;
+		}
+		else if(.@card[1] == 0 && .@refine >= 9) {
+			.@card[1] = .@enchants[ rand(4) ];
+			.@slot = 2;
+		}
+		else {
+			mes "[Dark Luhir]";
+			mes "ดูเหมือนว่ารายการนี้จะมีเสน่ห์สูงสุดอยู่แล้ว โปรดนำมาอีกอันเพื่อสถิติเพิ่มเติม ";
+			close;
+		}
+		specialeffect2 EF_REPAIRWEAPON;
+		mes "[Dark Luhir]";
+		mes "ให้ความสามารถของไอเทม ^990000" +.@slot +"socket ^000000.";
+		delequip EQI_GARMENT;
+		getitem2 2589,1,1, .@refine,0, .@card[0], .@card[1], .@card[2], .@card[3];
+		close;
+	case 3:
+		mes "[Dark Luhir]";
+		mes "การรีเซ็ตค่าสถานะของ Fallen Angel Wing จะทำให้คุณเสียเงิน 1,000,000 zeny? ";
+		mes "คุณต้องการดำเนินการต่อหรือไม่ ";
+		next;
+		if(select( "ตกลง", "ยกเลิก!" ) == 2)
+			close;
+		if(Zeny < 1000000) {
+			mes "[Dark Luhir]";
+			mes "คุณโกหกคุณไม่มี zeny! ";
+			close;
+		}
+		if(getequipid(EQI_GARMENT) == 2589) {
+			.@refine = getequiprefinerycnt(EQI_GARMENT);
+			.@card[0] = getequipcardid(EQI_GARMENT,0);
+
+			mes "[Dark Luhir]";
+			specialeffect2 EF_REPAIRWEAPON;
+			mes "กำลังรีเซ็ตสถิติรายการ ";
+			delequip EQI_GARMENT;
+			Zeny -= 1000000;
+			getitem2 2589,1,1, .@refine,0, .@card[0],0,0,0;// Fallen_Angel_Wing
+		}
+		close;
+	}
+}

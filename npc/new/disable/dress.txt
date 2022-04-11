@@ -1,0 +1,101 @@
+-	script	Dress	-1,{
+OnClass:
+//##############EXEMPLE DISABLE CLASS:##############
+// 	if (Class > X && Class < Y) {
+//	mes "[^FF8000Class Suit^000000]";
+//    mes "I'm sorry, but I can't change your clothes.";
+//	end;
+//close;
+//}
+//##############Put two bars to disable the line.##############
+
+//	if (Class > 4007 && Class < 4021) {		//#######TRANSCEDENT CLASS: IF YOU WANT TO DISABLE THE TRANSCENDENT CLASS.######
+//	mes "[^FF8000Class Suit^000000]";
+//    mes "I'm sorry, but I can't change your clothes.";
+//	end;
+//close;
+//}
+//	if (Class > 6 && Class < 21 || Class > 4030 && Class < 4043 || Class == 4030) {		//#######FIRST CLASS AND BABY OLDTIMES CLASS: IF YOU WANT TO DISABLE THE OLDTIMES CLASS.######
+//	mes "[^FF8000Class Suit^000000]";
+//    mes "I'm sorry, but I can't change your clothes.";
+//	end;
+//close;
+//}
+	if (Class > 0 && Class < 6 || Class > 4000 && Class < 4007 || Class == 23 || Class == 24 || Class == 25 || Class > 4044 && Class < 4053 || Class == 4190 || Class == 4191 || Class == 4211 || Class == 4212 || Class == 4215 || Class == 4218 || Class > 4023 && Class < 4029 || Class > 4219 && Class < 4243|| Class == 0 || Class == 6 || Class == 4007 || Class == 4023 || Class == 4029) {			//#######DO NOT DISABLE THIS LINE######
+    mes "[^FF8000Class Suit^000000]";
+    mes "I'm sorry, but I can't change your clothes.";
+close;
+}
+	mes "[^FF8000Class Suit^000000]";
+	mes "Hello "+strcharinfo(0)+"!";
+    mes "Choose which look you want.";
+	next;
+	switch(select("^28B4B0[»]^000000Costume jRO:^28B4B0[»]^000000Costume 4th:^28B4B0[»]^000000Costume Transcedent Class:^28B4B0[»]^000000Costume First Class:^28B4B0[»]^000000Costume 3rd:^28B4B0[»]^000000Return to Normal:^28B4B0[»]^000000Cancel")){
+	case 1:
+		setlook LOOK_BODY2,1;
+		set costume1,1;
+		mes "[^FF8000Class Suit^000000]";
+		mes "Your outfit has been changed.";
+		close;
+	case 2:
+		setlook LOOK_BODY2,2;
+		set costume2,1;
+		mes "[^FF8000Class Suit^000000]";
+		mes "Your outfit has been changed.";
+		close;
+	case 3:
+		setlook LOOK_BODY2,3;
+		set costume3,1;
+		mes "[^FF8000Class Suit^000000]";
+		mes "Your outfit has been changed.";
+		close;
+	case 4:
+		setlook LOOK_BODY2,4;
+		set costume4,1;
+		mes "[^FF8000Class Suit^000000]";
+		mes "Your outfit has been changed.";
+		close;
+	case 5:
+		setlook LOOK_BODY2,5;
+		set costume5,1;
+		mes "[^FF8000Class Suit^000000]";
+		mes "Your outfit has been changed.";
+		close;
+	case 6:
+		if(costume2 == 1){
+		mes "[^FF8000Class Suit^000000]";
+		mes "Your clothes are back to normal.";
+		setlook LOOK_BODY2,0;
+		set costume2,0;
+		end;
+		}
+		if(costume1 == 1){
+		mes "[^FF8000Class Suit^000000]";
+		mes "Your outfit is back to normal.";
+		setlook LOOK_BODY2,0;
+		set costume1,0;
+		end;
+		}
+		mes "[^FF8000Class Suit^000000]";
+		mes "You already have the main clothes.";
+	close;
+	case 7:
+		mes "[^FF8000Class Suit^000000]";
+		mes "Okay, come back whenever you want!";
+	close;
+}
+OnInit:
+	bindatcmd("class",strnpcinfo(0) +"::OnClass");
+	end;
+OnPCLoginEvent:
+	if(costume2 == 1){
+		setlook LOOK_BODY2,2;
+		end;
+	}
+	if(costume1 == 1){
+		setlook LOOK_BODY2,1;
+		end;
+	}
+}
+prontera,155,273,3	duplicate(Dress)	Class Suit#prt	647
+//prontera,167,176,3	duplicate(Dress)	Class Suit#prt	647

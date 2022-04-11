@@ -1,0 +1,2081 @@
+//===== rAthena Script ======================================= 
+//= Alchemist Job Quest
+//===== By:==================================================
+//= nestor_zulueta (Fusion), converted by Darkchild
+//===== Current Version:===================================== 
+//= 3.1
+//===== Compatible With:===================================== 
+//= rAthena Project
+//===== Description:========================================= 
+//= [Official Conversion]
+//= Job quest for Alchemist classes
+//===== Additional Comments:================================= 
+//= 2.5 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
+//=     No longer uses function "F_BlockHigh"
+//= 2.6 Corrected a bug in advanced class checking. [L0ne_W0lf]
+//= 2.7 Added missing checkweights. [L0ne_W0lf]
+//= 2.8 Fixed minor typo in test section. [L0ne_W0lf]
+//= 2.9 Added Quest Log commands. [Kisuka]
+//= 3.0 Removed the need for use of 'goto.' [L0ne_W0lf]
+//= 3.1 Added missing changequest commands. [Kisuka]
+//============================================================ 
+
+alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
+	mes "[Parmy Gianino]";
+	if (Upper == 1) {
+		mes "ยินดีต้อนรับสู่";
+		mes "Alchemist";
+		//mes "I-Impossible! How c-can";
+		//mes "มีเรื่องแบบนี้เกิดขึ้น?";
+		next;
+		mes "[Parmy Gianino]";
+		//mes "เดี๋ยวก่อนรอ ... ";
+		//mes "ฉันขอโทษฉันสับสน,";
+		mes "คุณดูเหมือน";
+		mes "คนที่ฉันเคยรู้จัก. ";
+		mes "ยังไงก็แปลกดี";
+		mes "ความรู้สึกเกี่ยวกับคุณ ... ";
+		close;
+	}
+	if (BaseJob != Job_Merchant) {
+		if (BaseJob == Job_Alchemist) {
+			mes "ยินดีต้อนรับ, " + strcharinfo(0) + ".";
+			mes "Alchemist Union";
+			mes "วันนี้ยุ่งเหมือนเคย.";
+			next;
+			mes "[Parmy Gianino]";
+			mes "ทุกคนกำลังยุ่งกับ";
+			mes "งานวิจัยของตัวเอง แต่เมื่อไม่นานมานี้มีความก้าวหน้า ในด้านเทคโนโลยีชีวภาพ.";
+			next;
+			mes "[Parmy Gianino]";
+			mes "ทุกคนต่างหวังว่าการศึกษาทางเทคโนโลยีชีวภาพจะให้ผลลัพธ์ ในเชิงบวก .";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "ยินดีต้อนรับสู่";
+			mes "สหภาพนักเล่นแร่แปรธาตุ";
+			mes "เรากำลังรับสมัคร";
+			mes "คนเก่ง";
+			mes "ด้วยไอเดียแปลกใหม่";
+			next;
+			mes "[Parmy Gianino]";
+			mes "หากคุณสนใจที่จะทำงานเกี่ยวกับ เคมี โปรดติดต่อเราในภายหลังเมื่อคุณมีความรู้มากขึ้น";
+			next;
+			mes "[Parmy Gianino]";
+			mes "เพียงสิ่งเดียว:";
+			mes "คุณต้องมี";
+			mes "ความรู้เกี่ยวกับ";
+			mes "พ่อค้าก่อน";
+			close;
+		}
+		mes "ยินดีต้อนรับสู่";
+		mes "สหภาพนักเล่นแร่แปรธาตุ";
+		mes "เรากำลังรับสมัคร";
+		mes "คนเก่ง";
+		mes "ด้วยไอเดียแปลกใหม่";
+		next;
+		mes "[Parmy Gianino]";
+		mes "ถ้าคุณรู้จัก พ่อค้าที่โดดเด่นไม่ว่าจะด้วยวิธีใดก็ตาม โปรดแนะนำ พวกเขาให้เราทราบคนประเภทนี้มักจะมีพรสวรรค์ในการเล่นแร่แปรธาตุและการทดลอง ~";
+		close;
+	}
+	if (ALCH_Q == 0) {
+		mes "ยินดีต้อนรับสู่";
+		mes "สหภาพนักเล่นแร่แปรธาตุ";
+		mes "มีอะไรให้ช่วยไหม";
+		next;
+		switch(select("ฉันต้องการเรียนรู้เกี่ยวกับ Alchemists.:ฉันต้องการเข้าร่วม Alchemist.:ไม่มีอะไร.")) {
+		case 1:
+			mes "[Parmy Gianino]";
+			mes "นักเล่นแร่แปรธาตุศึกษาและสร้างสารและสิ่งของใหม่ ๆ จากวัสดุที่มีอยู่ความรู้ของเราช่วยให้เราเปลี่ยนคุณสมบัติของสารเคมีในระดับอะตอม";
+			next;
+			mes "[Parmy Gianino]";
+			mes "คนส่วนใหญ่คิดว่าเป้าหมายสุดท้ายของเรา";
+			mes "คือการสร้างทองคำ แต่นั่นไม่ใช่ความจริงทั้งหมดเราต้องการสร้างสิ่งต่างๆเช่นยา";
+			mes "และวัสดุใหม่";
+			next;
+			mes "[Parmy Gianino]";
+			mes "พวกเราสองสามคนค้นคว้าข้อมูล";
+			mes "การสร้างชีวิตแม้ว่าพวกเราหลายคนจะมองว่าอาณาเขตของพระเจ้านั้นสนามนั้นซับซ้อนมากพวกเราส่วนใหญ่ก็จัดการกับโครงการที่ซับซ้อนน้อยกว่าเล็กน้อยอยู่ดี";
+			next;
+			mes "[Parmy Gianino]";
+			mes "หากคุณสนใจที่จะเป็นนักเล่นแร่แปรธาตุฉันขอแนะนำให้คุณได้รับประสบการณ์มากมายในฐานะพ่อค้าก่อนการเป็นพ่อค้าเป็นโอกาสที่ดีในการเรียนรู้เกี่ยวกับวัสดุเมื่อคุณจัดการกับพวกเขา";
+			next;
+			mes "[Parmy Gianino]";
+			mes "ไม่ว่าคุณจะพยายามเป็นหรือไม่";
+			mes "นักเล่นแร่แปรธาตุคือการตัดสินใจของคุณเส้นทางสู่การเป็นนักเล่นแร่แปรธาตุนั้นท้าทายมากและคุณจะต้องมุ่งเน้นไปที่การทดลองและการวิจัยแทนที่จะเป็นเรื่องการค้า";
+			close;
+		case 2:
+			mes "[Parmy Gianino]";
+			mes "อย่างนั้นเหรอ";
+			mes "ยินดีที่ได้รู้จัก";
+			mes "ฉันชื่อปาร์มี่จิอานิโน";
+			mes "ของ Alchemist Union";
+			next;
+			mes "[Parmy Gianino]";
+			mes "ถ้าคุณเข้าร่วมสหภาพของเราและ";
+			mes "เสร็จสิ้นการฝึกอบรมคุณ";
+			mes "จะได้รับการยอมรับอย่างเป็นทางการ";
+			mes "เป็นนักเล่นแร่แปรธาตุและสามารถ";
+			mes "เพื่อสนับสนุนการวิจัยของเรา";
+			next;
+			mes "[Parmy Gianino]";
+			mes "แต่เราไม่รับทุกคน";
+			mes "คุณต้องมีความดื้อรั้นมาก";
+			mes "และความทุ่มเทอย่างจริงใจในการสำรวจ";
+			mes "ศาสตร์แขนงต่างๆ";
+			next;
+			mes "[Parmy Gianino]";
+			mes "มีคู่";
+			mes "ของข้อกำหนดในการเข้าร่วม";
+			mes "the Alchemist Union แต่";
+			mes "เราจะคุยกัน";
+			mes "หลังจากที่คุณสมัคร";
+			next;
+			mes "[Parmy Gianino]";
+			mes "ถ้าอย่างนั้นก็จะ";
+			mes "คุณชอบสมัคร";
+			mes "สำหรับการลงทะเบียน?";
+			next;
+			if (select("ฉันต้องการสมัคร:ฉันจะทำภายหลัง.") == 1) {
+				if (JobLevel < 40) {
+					mes "[Parmy Gianino]";
+					mes "อืมม ... ";
+					mes "สักครู่.";
+					mes "ฉันขอโทษที่ต้องพูดแบบนั้น";
+					mes "คุณไม่มีประสบการณ์";
+					mes "พอเป็นพ่อค้า";
+					mes "เข้าร่วมกับเราตอนนี้";
+					next;
+					mes "[Parmy Gianino]";
+					mes "อย่างน้อยต้องคุณ";
+					mes "^551A8BJob Level 40^000000 จะกลายเป็น";
+					mes "นักเล่นแร่แปรธาตุจงกลับมา";
+					mes "ต่อมาเมื่อคุณพบ";
+					mes "ความต้องการระดับงานโอเคไหม";
+					close;
+				}
+					if (SkillPoint) {
+					mes "อ๊ะเกือบแล้ว";
+					mes "พร้อมที่จะเป็น";
+					mes "นักเล่นแร่แปรธาตุ แต่คุณต้อง";
+					mes "จัดสรรสิ่งที่คุณไม่ได้ใช้ก่อน";
+					mes "แต้มทักษะ";
+					next;
+					mes "[Vincent Carsciallo]";
+					mes "คุยกับฉันอีกครั้ง";
+					mes "เมื่อคุณใช้จ่ายหมดแล้ว";
+					mes "ทั้งหมดของคุณพิเศษ";
+					mes "แต้มทักษะ";
+					close2;
+					cutin "",255;
+					end;
+				}
+				//new
+					mes "[Parmy Gianino]";
+					mes "อ่าทำได้ดีมาก";
+					mes "ฉันเห็นว่าคุณ";
+					mes "ได้เรียนรู้ทั้งหมด";
+					mes "พื้นฐานของการเล่นแร่แปรธาตุ";
+					next;
+					//set ALCH_Q,0;
+					setquest 2040;
+					completequest 2040;
+					set .@jlevel,JobLevel;
+					callfunc "Job_Change",Job_Alchemist;
+					callfunc "F_ClearJobVar";
+					mes "[Vincent Carsciallo]";
+					mes "ต่อจากนี้ไปคุณคือ";
+					mes "ตอนนี้เป็นสมาชิกของเรา";
+					mes "สหภาพที่มีชื่อเสียง";
+					mes "ฉันหวังว่าคุณจะได้เรียนรู้มากมาย ... ";
+					next;
+					if (.@jlevel == 50) {
+						getitem 7133,1; //Slim_Potion_Create_Book
+						mes "[Vincent Carsciallo]";
+						mes "ฉันให้";
+						mes "สิ่งที่พิเศษ";
+						mes "ใช้เพื่อ";
+						mes "เริ่มต้นชีวิตของคุณ";
+						mes "ของการวิจัย";
+					}
+					else {
+						switch(rand(1,6)) {
+						case 1:
+							getitem 7127,1; //Alcol_Create_Book
+							break;
+						case 2:
+							getitem 7128,1; //FireBottle_Create_Book
+							break;
+						case 3:
+							getitem 7129,1; //Acid_Create_Book
+							break;
+						case 4:
+							getitem 7130,1; //Plant_Create_Book
+							break;
+						case 5:
+							getitem 7131,1; //Mine_Create_Book
+							break;
+						case 6:
+							getitem 7144,1; //Normal_Potion_Book
+						}
+						mes "[Vincent Carsciallo]";
+						mes "และ ... ";
+						mes "นี่คือสิ่งเล็กน้อย";
+						mes "มีอะไรให้ช่วย";
+						mes "คุณเริ่มของคุณ";
+						mes "การวิจัย";
+					}
+		//close;
+				/*
+				mes "[Parmy Gianino]";
+				mes "เอาล่ะใบสมัครของคุณได้รับการยอมรับแล้วตอนนี้คุณต้องจ่ายค่าธรรมเนียมการสมัคร 50,000 Zeny และนำสิ่งของบางอย่างมาก่อนจึงจะสามารถเริ่มการฝึกอบรมอย่างเป็นทางการได้";
+				next;
+				mes "[Parmy Gianino]";
+				mes "แต่ถ้าคุณนำ ^551A8BOld Magic Book ^000000 และ ^551A8BHammer of Blacksmith ^000000";
+				mes "เราจะยอมรับสิ่งนั้นแทนข้อกำหนดรายการ";
+				next;
+				mes "[Parmy Gianino]";
+				mes "ตอนนี้ ... ";
+				mes "กรุณาลงชื่อ";
+				mes "แอปพลิเคชัน";
+				next;
+				select(strcharinfo(0));
+				mes "[Parmy Gianino]";
+				mes "ดีดีตอนนี้ถ้าคุณมี";
+				mes "ค่า Zeny สำหรับค่าสมัครของคุณพร้อมแล้วฉันจะบอกคุณว่าคุณจะต้องนำสิ่งของใดบ้างตอนนี้ให้ความสนใจ";
+				next;
+				if (Zeny < 50000) {
+					mes "[Parmy Gianino]";
+					mes "อ๊ะคุณไม่";
+					mes "ดูเหมือนจะมี Zeny เพียงพอ";
+					mes "กลับมาหาฉันเมื่อคุณมี 50,000 Zeny มิฉะนั้นเราจะไม่สามารถดำเนินการใบสมัครของคุณได้";
+					close;
+				}
+				set Zeny, Zeny-50000;
+				mes "[Parmy Gianino]";
+				mes "มาดูกัน";
+				mes "" + strcharinfo(0);
+				mes "ต้องนำ ... ";
+				switch(rand(1,3)) {
+				case 1:
+					set ALCH_Q,1;
+					setquest 2028;
+					mes "^551A8B7 Berserk Potions^000000.";
+					break;
+				case 2:
+					set ALCH_Q,2;
+					setquest 2029;
+					mes "^551A8B100 Mini Furnaces^000000.";
+					break;
+				case 3:
+					set ALCH_Q,3;
+					setquest 2030;
+					mes "^551A8B7,500 Fire Arrows^000000.";
+				}
+				next;
+				mes "[Parmy Gianino]";
+				mes "เมื่อรวบรวมได้แล้ว";
+				mes "ของเหล่านั้นกลับมา";
+				mes "สำหรับฉันและการฝึกอบรมของคุณ";
+				mes "ในฐานะนักเล่นแร่แปรธาตุจะเริ่มขึ้น";
+				mes "เจอกันเร็ว ๆ นี้ ~";
+				close;*/
+		}
+			mes "[Parmy Gianino]";
+			mes "พ่อค้าคนเก่ง";
+			mes "ยินดีต้อนรับเสมอที่นี่";
+			mes "โปรดกลับมาเร็ว ๆ นี้";
+			close;
+		case 3:
+			mes "[Parmy Gianino]";
+			mes "อืม ... ";
+			mes "โปรดแจ้งให้เราทราบ";
+			mes "ถ้าคุณต้องการอะไร";
+			close;
+		}
+	}
+	else if (ALCH_Q >= 1 && ALCH_Q <= 3) {
+		if (countitem(1006) > 0 && countitem(1005) > 0) {
+			mes "เอาล่ะ ~!";
+			mes "คุณได้นำ";
+			mes "หนังสือเวทมนตร์เก่าและ";
+			mes "ค้อนของช่างตีเหล็ก";
+			mes "เราจะใส่ของเหล่านี้";
+			mes "ใช้ประโยชน์ได้ดี";
+			mes "to good use.";
+			next;
+			delitem 1006,1; //Old_Magic_Book
+			delitem 1005,1; //Hammer_Of_Blacksmith
+			mes "[Parmy Gianino]";
+			mes "โอเคตอนนี้คุณต้องเรียนรู้";
+			mes "พื้นฐานในการเป็นนักเล่นแร่แปรธาตุและเรียนรู้ขั้นตอนการผสมสารเคมีและยา";
+			set ALCH_Q,4;
+			if(checkquest(2028) != -1) {
+				changequest 2028,2031;
+			}
+			else if(checkquest(2029) != -1) {
+				changequest 2029,2031;
+			}
+			else {
+				changequest 2030,2031;
+			}
+			next;
+			mes "[Parmy Gianino]";
+			mes "แต่ก่อนอื่นคุณต้องคุยกับ Raspuchin ฉันไม่แน่ใจจริงๆว่าคุณกำลังพูดถึงอะไรกับเขา ... ";
+			next;
+			mes "[Parmy Gianino]";
+			mes "มันไม่น่าจะมีอะไรพิเศษ แต่คุณยังต้องคุยกับราสปูชินเพราะเห็นได้ชัดว่าเขาเป็นส่วนหนึ่งของกระบวนการคัดเลือกนักเล่นแร่แปรธาตุ";
+			close;
+		}
+		switch(ALCH_Q) {
+		case 1:setarray .@items[0],657,7; break;
+		case 2:setarray .@items[0],612,100; break;
+		case 3:setarray .@items[0],1752,7500; break;
+		}
+		if (countitem(.@items[0]) >= .@items[1]) {
+			mes "ดูเหมือนว่า";
+			mes "พร้อมแล้ว";
+			mes "สหภาพจะใส่";
+			mes "สินค้าเหล่านี้ใช้ประโยชน์ได้จริง";
+			next;
+			delitem .@items[0],.@items[1];
+			mes "[Parmy Gianino]";
+			mes "โอเคตอนนี้คุณต้องเรียนรู้";
+			mes "พื้นฐานในการเป็นนักเล่นแร่แปรธาตุและเรียนรู้ขั้นตอนการผสมสารเคมีและยา";
+			set ALCH_Q,4;
+			if(checkquest(2028) != -1) {
+				changequest 2028,2031;
+			}
+			else if(checkquest(2029) != -1) {
+				changequest 2029,2031;
+			}
+			else {
+				changequest 2030,2031;
+			}
+			next;
+			mes "[Parmy Gianino]";
+			mes "แต่ก่อนอื่นคุณต้องคุยกับ Raspuchin ฉันไม่แน่ใจจริงๆว่าคุณกำลังพูดถึงอะไรกับเขา ... ";
+			next;
+			mes "[Parmy Gianino]";
+			mes "มันไม่น่าจะมีอะไรพิเศษ แต่คุณยังต้องคุยกับราสปูชินเพราะเห็นได้ชัดว่าเขาเป็นส่วนหนึ่งของกระบวนการคัดเลือกนักเล่นแร่แปรธาตุ";
+			close;
+		}
+		mes "คุณยังไม่พร้อมหรือ";
+		mes "อย่างที่เคยพูดไป";
+		mes "คุณต้องนำ";
+		mes "^551A8B"+callfunc("F_InsertPlural",.@items[1],getitemname(.@items[0]))+"^000000.";
+		next;
+		mes "[Parmy Gianino]";
+		mes "กลับมาเมื่อไหร่";
+		mes "ได้เตรียม";
+		mes "รายการที่ต้องการ";
+		close;
+	}
+	else if (ALCH_Q == 4) {
+		mes "ไปคุยกับ";
+		mes "นายราสุชิน.";
+		mes "เขามีส่วนร่วมในการ";
+		mes "กระบวนการคัดเลือกนักเล่นแร่แปรธาตุไม่ว่าจะหมายถึงอะไรก็ตาม";
+		next;
+		mes "[Parmy Gianino]";
+		mes "หวังว่านะ";
+		mes "จะไม่มากเกินไป";
+		mes "ปัญหาฉันเดาว่าเขาจะสัมภาษณ์คุณและถามคุณ";
+		mes "คำถามง่ายๆ";
+		close;
+	}
+	else {
+		mes "อาขอโทษ แต่";
+		mes "ตอนนี้ฉันไม่ว่าง ~";
+		next;
+		mes "[Parmy Gianino]";
+		mes "[ปาร์มี่จิอานิโน]";
+		mes "ทำไมไม่ถาม";
+		mes "คนอื่นถ้าคุณ";
+		mes "ไม่แน่ใจว่าจะไปเยี่ยมใคร";
+		mes "ต่อไปขอให้โชคดี ~";
+		close;
+	}
+}
+
+alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
+	mes "[Raspuchin Gregory]";
+	if (BaseJob != Job_Merchant) {
+		if (BaseJob == Job_Alchemist) {
+			mes "ฮีฮีฮี";
+			mes "คิเฮเฮ ~!";
+			mes "เอ๊ะต้องการอะไร?!";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "คุณไม่ได้มาที่นี่เพื่อขโมยผลการทดลองของฉันหรือลอกเลียนผลงานของฉันใช่ไหมคุณกล้าคิดว่าขโมยทางปัญญาได้อย่างไร!";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "คุณไม่ใช่เหรอ?";
+			mes "ในฐานะเพื่อนร่วมงาน";
+			mes "ขอเตือนหน่อยนะ";
+			mes "กลอุบายแบบนั้นไม่ใช่";
+			mes "ทนอยู่ที่นี่";
+			mes "สมาคมนักเล่นแร่แปรธาตุ!";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "ฮีฮีฮี";
+			mes "คิเฮเฮ ~!";
+			mes "น่ารักขนาดไหนมาแล้ว";
+			mes "ทั้งหมดนี้เพื่อเล่น ... ";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "ฉันจะปล่อยเธอ";
+			mes "ไปคราวนี้ ... ";
+			mes "แต่คราวหน้าอย่านะ";
+			mes "คาดว่าจะจากไปอย่างง่ายดาย ... ";
+			close;
+		}
+		else {
+			mes "มันคืออะไร?!";
+			mes "อยากรู้อยากเห็น";
+			mes "กับสิ่งที่ฉันกำลังทำอยู่?";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "ฮีฮี";
+			mes "คิเฮเฮ ~!";
+			mes "ทำไมฉันไม่ว่าง";
+			mes "ค้นคว้า,";
+			mes "แน่นอน!";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "ครั้งนี้";
+			mes "ยาหมดแล้ว ... ";
+			mes "ใช้เพื่อถ่าย";
+			mes "ทั่วประเทศ!";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "ฮีฮีฮี!";
+			mes "สิ่งนี้";
+			mes "มีอันตราย";
+			mes "เก็บเป็นความลับ!";
+			mes "เข้าใจไหม";
+			close;
+		}
+	}
+	if (ALCH_Q == 0) {
+		mes "ฮีฮีฮี";
+		mes "คิเฮเฮ ~!";
+		mes "คุณทำอะไร";
+		mes "อยากได้ลูก?";
+		next;
+		mes "[Raspuchin Gregory]";
+		mes "พ่อค้าควรไปตั้งร้านค้าและขายสินค้าทำไมคุณถึงหลงอยู่ในสถานที่เช่นนี้";
+		next;
+		mes "[Raspuchin Gregory]";
+		mes "ฮิฮิฮิ ~!";
+		mes "ไปขายที่อื่น!";
+		mes "และปล่อยฉันไว้กับฉัน";
+		mes "องค์กรมืด!";
+		close;
+	}
+	else if (ALCH_Q >= 1 && ALCH_Q <= 3) {
+		mes "ฮีฮีฮี";
+		mes "คิเฮเฮ ~!";
+		mes "คุณทำอะไร";
+		mes "อยากได้ลูก?";
+		next;
+		mes "[Raspuchin Gregory]";
+		mes "อะไร ... ?";
+		mes "เรียนเล่นแร่แปรธาตุ?!";
+		mes "อย่าแม้แต่จะพูด";
+		mes "เรื่องไร้สาระ!";
+		next;
+		mes "[Raspuchin Gregory]";
+		mes "แม้ว่าคุณจะพยายามศึกษามาเป็นพันปี แต่อาจจะมากกว่านั้นก็ไม่มีประโยชน์สำหรับคุณ! ลืมไปซะและแค่กังวลเรื่องร้านของคุณ!";
+		close;
+	}
+	else if ((ALCH_Q == 4) || (ALCH_Q == 5)) {
+		if (ALCH_Q == 4) {
+			mes "ฮีฮีฮี";
+			mes "คิเฮเฮ ~!";
+			mes "คุณทำอะไร";
+			mes "อยากได้ลูก?";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "อะไร ... ?";
+			mes "เข้าร่วมสหภาพ!?";
+			mes "ไม่ชอบเลย ... ";
+			mes "ฉันไม่ ... !";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "สมัยนี้ใคร ๆ ก็คิดว่าทำได้";
+			mes "เป็นนักเล่นแร่แปรธาตุเพียงแค่รู้วิธีผสมสมุนไพรสองสามชนิดนั่นเป็นเหตุผลว่าทำไมฉันจึงต้องสัมภาษณ์";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "ฮีฮีฮี";
+			mes "คิเฮเฮ ~!";
+			mes "ฉันวางแผนที่จะกำจัดคนโง่และคนไร้ความสามารถทั้งหมดและไล่ตามพวกเขา";
+			mes "หมดแล้ว! เราไม่ต้องปัญญาอ่อน!";
+			next;
+			if (JobLevel == 50) {
+				mes "[Raspuchin Gregory]";
+				mes "รอ ... ";
+				mes "อาจจะมี";
+				mes "ตัดสินคุณผิด";
+				if (Sex == SEX_MALE) {
+					mes "คุณอาจจะเป็นเด็กน่ารัก";
+					mes "แต่ฉันบอกได้เลยว่าคุณฉลาด";
+					mes "จากสายตาของคุณ";
+				}
+				else {
+					mes "หือ. คุณน่ารักไม่เป็นไร";
+					mes "แต่บอกได้เลยว่าคุณมีสมอง";
+				}
+				next;
+				mes "[Raspuchin Gregory]";
+				mes "คุณไม่ใช่แค่เด็กโง่ ๆ ";
+				mes "ฉันบอกได้เลยว่าฉันเคยผ่านช่วงเวลาที่ยากลำบากมาบ้างแล้วในฐานะพ่อค้ายอดเยี่ยมมากเคะฮิฮิ ~";
+				next;
+				mes "[Raspuchin Gregory]";
+				mes "สบายดีเราจะไม่ดูถูกสติปัญญาของกันและกันฉันจะให้คุณผ่านการสัมภาษณ์";
+				next;
+				mes "[Raspuchin Gregory]";
+				mes "เร็วเข้ามาเป็นนักเล่นแร่แปรธาตุหาข้อมูลดีๆหน่อยแล้วคุณอาจจะช่วยฉันได้บ้างฮ่าฮ่าฮ่า ~!";
+				next;
+				mes "[Raspuchin Gregory]";
+				mes "ไป Darwin!";
+				mes "เขาจะสอนวิธีทำการทดลองให้บอกเขาว่า";
+				mes "ฉันส่งเธอไป";
+				set ALCH_Q,6;
+				changequest 2031,2032;
+				close;
+			}
+			else {
+				mes "[Raspuchin Gregory]";
+				mes "แปลกใจมั้ย?";
+				mes "Keheheh ~ ถ้าคุณคิดว่า";
+				mes "กลายเป็น Alchemist";
+				mes "แค่เรื่องของการเปลี่ยนแปลง";
+				mes "เสื้อผ้าของคุณแล้วคุณล่ะ";
+				mes "เข้าใจผิดอย่างน่าเศร้า";
+				next;
+				mes "[Raspuchin Gregory]";
+				mes "ตอนนี้ลองแก้";
+				mes "ปัญหาทั้งหมดนี้";
+				mes "มาดูกันว่าฉลาด";
+				mes "จริงๆ";
+			}
+		}
+		else if (ALCH_Q == 5) {
+			mes "อะไร ... ?!";
+			mes "อยากถ่าย";
+			mes "ทดสอบอีกแล้วเหรอ!";
+			mes "ฉันคิดว่าฉันบอกไป";
+			mes "คุณจะจากไป!";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "ไม่ชอบเลย ... ";
+			mes "ฉันไม่ชอบแบบนี้!";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "สบายดี ... ";
+			mes "ฉันจะพยายามมองข้ามการแสดงที่น่าสงสารของคุณในครั้งที่แล้วและให้";
+			mes "โอกาสอีกครั้งอย่าคาดคั้น";
+			mes "ขึ้นอีกแล้วเหรอ";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "ถึงตอนนี้,";
+			mes "ให้ฉันทั้งหมด";
+			mes "^551A8Bright ^000000 คำตอบ";
+			mes "ครั้งนี้";
+		}
+		next;
+		switch(rand(1,3)) {
+		case 1:
+			mes "[Raspuchin Gregory]";
+			mes "12 + 23 + 34 + 45 = ?";
+			next;
+			input .@input;
+			if (.@input != 114) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "1000 - 36 - 227 - 348 = ?";
+			next;
+			input .@input;
+			if (.@input != 389) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "14 * 17 * 3 = ?";
+			next;
+			input .@input;
+			if (.@input != 714) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "9765 / 3 / 5 / 7 = ?";
+			next;
+			input .@input;
+			if (.@input != 93) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "(47 * 28) - (1376 / 4) = ?";
+			next;
+			input .@input;
+			if (.@input != 972) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "(2646 / 7) + (13 * 28) = ?";
+			next;
+			input .@input;
+			if (.@input != 742) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "เท่าไหร่";
+			mes "ยาแดง 12 ขวด";
+			mes "ปีกผีเสื้อ 1 อัน";
+			mes "และ 5 Fly Wings ราคา";
+			mes "ลดราคา 24%?";
+			next;
+			input .@input;
+			if (.@input != 909) set .@w_point,.@w_point+1;
+			mes "คืออะไร";
+			mes "น้ำหนักรวมของ";
+			mes "3 Scimiters, 2 Helms";
+			mes "และ 1 Long Coat?";
+			next;
+			input .@input;
+			if (.@input != 450) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "คืออะไร";
+			mes "การป้องกันทั้งหมดของ";
+			mes "เป็น Biretta, Mantle,";
+			mes "หน้ากากโอเปร่าริบบิ้น";
+			mes "ท่อไอเสียรองเท้าบูทและ";
+			mes "ที่ครอบหู?";
+			next;
+			input .@input;
+			if (.@input != 20) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "ถ้าคุณซื้อ 5 Helms";
+			mes "พร้อมส่วนลด 24%";
+			mes "และขายที่ 20";
+			mes "กำไรเท่าไหร่";
+			mes "คุณมีรายได้ไหม";
+			next;
+			input .@input;
+			if (.@input != 8800) set .@w_point,.@w_point+1;
+			break;
+		case 2:
+			mes "[Raspuchin Gregory]";
+			mes "13 + 25 + 37 + 48 = ?";
+			next;
+			input .@input;
+			if (.@input != 123) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "1000 - 58 - 214 - 416 = ?";
+			next;
+			input .@input;
+			if (.@input != 312) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "12 * 24 * 3 = ?";
+			next;
+			input .@input;
+			if (.@input != 864) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "10530 / 3 / 5 / 2 = ?";
+			next;
+			input .@input;
+			if (.@input != 351) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "(35 * 19) - (1792 / 7) = ?";
+			next;
+			input .@input;
+			if (.@input != 409) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "(2368 / 8) + (24 * 17) = ?";
+			next;
+			input .@input;
+			if (.@input != 704) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "(2646 / 7) + (13 * 28) = ?";
+			next;
+			input .@input;
+			if (.@input != 742) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "คืออะไร";
+			mes "ราคารวม";
+			mes "ยาเขียว 15 ขวด";
+			mes "6 แว่นขยายและ";
+			mes "4 กับดักหลัง";
+			mes "ส่วนลด 24%?";
+			next;
+			input .@input;
+			if (.@input != 934) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "คืออะไร";
+			mes "น้ำหนักรวมของ";
+			mes "3 ริงพอมเมลเซเบอร์,";
+			mes "4 แคปและ 2 บูท?";
+			next;
+			input .@input;
+			if (.@input != 550) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "คืออะไร";
+			mes "การป้องกันทั้งหมดของ";
+			mes "บัคเลอร์เสื้อยาว";
+			mes "หน้ากากแก็สริบบิ้นใหญ่";
+			mes "ริบบิ้นน่ารักสักกะที";
+			mes "และแว่นตา?";
+			next;
+			input .@input;
+			if (.@input != 16) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "กำไรเท่าไหร่";
+			mes "ทำถ้าคุณซื้อ Tights";
+			mes "ลดราคา 24% และ";
+			mes "ขายที่ 20% ของ";
+			mes "ราคาปกติ";
+			next;
+			input .@input;
+			if (.@input != 8520) set .@w_point,.@w_point+1;
+			break;
+		case 3:
+			mes "[Raspuchin Gregory]";
+			mes "12 + 23 + 34 + 45 = ?";
+			next;
+			input .@input;
+			if (.@input != 114) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "1000 - 58 - 214 - 416 = ?";
+			next;
+			input .@input;
+			if (.@input != 312) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "14 * 17 * 3 = ?";
+			next;
+			input .@input;
+			if (.@input != 714) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "10530 / 3 / 5 / 2 = ?";
+			next;
+			input .@input;
+			if (.@input != 351) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "(47 * 28) - (1376 / 4) = ?";
+			next;
+			input .@input;
+			if (.@input != 972) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "(2646 / 7) + (13 * 28) = ?";
+			next;
+			input .@input;
+			if (.@input != 742) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "คืออะไร";
+			mes "ต้นทุนทั้งหมดของ";
+			mes "6 Red Potions,";
+			mes "7 Green Potions,";
+			mes "and 8 Fly Wings";
+			mes "ลดราคา 24%?";
+			next;
+			input .@input;
+			if (.@input != 798) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "คืออะไร";
+			mes "น้ำหนักรวมของ";
+			mes "2 Ring Pommel Sabers,";
+			mes "3 Caps, and 3 boots?";
+			next;
+			input .@input;
+			if (.@input != 480) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "คืออะไร";
+			mes "การป้องกันทั้งหมดของ";
+			mes "a Mirror Shield, Mr. Smile, Leather Jacket, Silk Robe, Wedding Veil, Muffler, and Eye Patch?";
+			next;
+			input .@input;
+			if (.@input != 12) set .@w_point,.@w_point+1;
+			mes "[Raspuchin Gregory]";
+			mes "ถ้าคุณซื้อเกราะหุ้มเบาะ 4 ตัว";
+			mes "ลดราคา 24%";
+			mes "พวกมันอยู่ที่ 20% ของต้นฉบับ";
+			mes "ราคาเท่าไหร่กำไร";
+			mes "คุณทำจากการขายนี้หรือ";
+			next;
+			input .@input;
+			if (.@input != 7680) set .@w_point,.@w_point+1;
+		}
+		if (.@w_point == 0) {
+			mes "[Raspuchin Gregory]";
+			mes "โอ ... ";
+			mes "สุดยอด! เยี่ยม!";
+			mes "คุณเข้าใจถูกแล้ว!?";
+			mes "Keheheh ฉันไม่มีทางเลือกอื่นนอกจากรับทราบคุณ ... ";
+			next;
+		}
+		else if (.@w_point == 1) {
+			mes "[Raspuchin Gregory]";
+			mes "คุณคิดผิด!";
+			mes "แต่ฉันจะปล่อยให้มันเลื่อน";
+			mes "ผ่านการสัมภาษณ์!";
+			next;
+		}
+		else if (.@w_point == 2 && ALCH_Q == 5) {
+			mes "[Raspuchin Gregory]";
+			mes "เอาจริง";
+			mes "จุดอ่อนทางคณิตศาสตร์";
+			mes "แต่คราวนี้ฉันจะปล่อยเธอไป ... ";
+			next;
+		}
+		else {
+			set ALCH_Q,5;
+			mes "[Raspuchin Gregory]";
+			mes "เคเฮเฮ! ไอ้โง่!";
+			mes "แค่ฟังของคุณ";
+			mes "คำตอบทำให้ฉันรู้สึก";
+			mes "มึนงง!";
+			mes "เข้าใจผิดหมดแล้ว!";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "คนแบบนั้นได้ยังไง";
+			mes "ยังตอบไม่ได้ทั้งหมด";
+			mes "คำถามง่ายๆเหล่านี้คิด";
+			mes "ของการเป็น Alchemist?!";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "หืม ... ?";
+			mes "ได้รับ";
+			mes "มั้ย?";
+			next;
+			mes "[Raspuchin Gregory]";
+			mes "โง่! แม้ว่าคุณจะทำผิดเพียงเล็กน้อย แต่ทุกอย่างก็ผิดพลาด";
+			mes "ในการเล่นแร่แปรธาตุออกไปจากที่นี่!";
+			mes "คุณทำให้ฉันป่วย!";
+			close;
+		}
+		mes "[Raspuchin Gregory]";
+		mes "เร็วเข้ามาเป็นนักเล่นแร่แปรธาตุหาข้อมูลดีๆหน่อยแล้วคุณอาจจะช่วยฉันได้บ้างฮ่าฮ่าฮ่า ~!";
+		next;
+		mes "[Raspuchin Gregory]";
+		mes "ไปหา Darwin!";
+		mes "เขาจะสอนวิธีทำการทดลองให้บอกเขาว่า";
+		mes "ฉันส่งเธอไป";
+		set ALCH_Q,6;
+		changequest 2031,2032;
+		close;
+	}
+	else if (ALCH_Q == 6) {
+		mes "คุณกำลังทำอะไร";
+		mes "ไปหา Darwin เดี๋ยวนี้";
+		next;
+		mes "[Raspuchin Gregory]";
+		mes "เคเฮเฮเฮเฮเฮเฮ ~";
+		mes "อย่าคิดว่านี่คือจุดจบของมัน!";
+		close;
+	}
+		mes "เคเฮเฮเฮเฮเฮเฮ ~";
+		mes "อย่าคิดว่านี่คือจุดจบของมัน!";
+	close;
+}
+
+alde_alche,13,15,7	script	Studying Man#am	750,{
+	if (checkweight(1201,1) == 0) {
+		mes "- เดี๋ยวก่อน! -";
+		mes "- ขณะนี้คุณกำลังถือ -";
+		mes "- มีของกับคุณมากเกินไป -";
+		mes "- โปรดกลับมาอีกครั้ง -";
+		mes "- หลังจากที่คุณเก็บสิ่งของบางอย่างลงในที่เก็บของ kafra storage. -";
+		close;
+	}
+	mes "[Darwin]";
+	if (BaseJob != Job_Merchant) {
+		if (BaseJob == Job_Alchemist) {
+			mes "อา ... ";
+			mes "คุณ ... ";
+			mes "กลายเป็น";
+			mes "an Alchemist.";
+			next;
+			mes "[Darwin]";
+			mes "จำไว้ ... ";
+			mes "ในการแสวงหาของคุณ";
+			mes "ทำของคุณ";
+			mes "ความฝันเป็นจริง";
+			mes "ไม่เสียอะไร";
+			mes "คุณหวงแหน";
+			next;
+			mes "[Darwin]";
+			mes "อา ... ";
+			mes "Harmona...";
+			mes "ที่รัก ... ";
+			close;
+		}
+		else {
+			mes "เมื่อคุณมี";
+			mes "ความฝันของคุณคุณ";
+			mes "มีทุกอย่าง";
+			mes "ถ้าไม่มีพวกเขาคุณก็มี";
+			mes "ไม่มีอะไรจะเสียอีกแล้ว";
+			next;
+			mes "[Darwin]";
+			mes "ดวงตาต้องสาปเหล่านี้ ... ";
+			mes "พวกเขาสูญเสียการมองเห็น";
+			mes "ความฝันของฉันเมื่อนานมาแล้ว";
+			mes "ฮ่าฮ่าฮ่า ... ";
+			next;
+			mes "[Darwin]";
+			mes "สวรรค์";
+			mes "มีอยู่จริง ... ?";
+			mes "ไม่ได้โดยไม่ต้องรัก ... ";
+			mes "ไม่ได้ถ้าไม่มี Harmona ... ";
+			close;
+		}
+	}
+	if (ALCH_Q == 6) {
+		mes "...";
+		next;
+		mes "[Darwin]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Darwin]";
+		mes "...";
+		mes "......";
+		mes "Who is it...?";
+		next;
+		monster "alde_alche",13,15,"Wolf",1013,1;
+		killmonsterall "alde_alche";
+		mes "[Darwin]";
+		mes "หมาป่า?";
+		mes "หรือมนุษย์?";
+		mes "คุณต้องแสวงหา";
+		mes "บางอย่างเธอไม่ใช่เหรอ";
+		next;
+		mes "[Darwin]";
+		mes "After all...";
+		mes "หลังจากนั้น ... ";
+		mes "ทุกคนล้วนมีความปรารถนา";
+		mes "สมหวังระวังตัว";
+		mes "อย่าเป็นเหมือนป่า";
+		mes "หมาป่าวาดดอกไม้";
+		next;
+		mes "[Darwin]";
+		mes "ในความพยายามของคุณที่จะได้รับสิ่งอื่นคุณอาจต้องเสียสละสิ่งที่มีค่าสำหรับคุณ";
+		next;
+		mes "[Darwin]";
+		mes "การปลูกฝังความสุขสนุกสนาน";
+		mes "ก็เหมือนกับการปลูกดอกไม้";
+		mes "ถ้ามีบางอย่างหายไป";
+		mes "ดอกไม้จะร่วงโรย ... ";
+		next;
+		mes "[Darwin]";
+		mes "อะไรทำให้คุณ";
+		mes "ไปสถานที่แบบนี้?";
+		next;
+		switch(select("ฉันต้องการเรียนรู้วิธีการทดลอง:บอกข้อมูลเพิ่มเติมเกี่ยวกับดอกไม้:ไม่มีอะไร.")) {
+		case 1:
+			mes "[Darwin]";
+			mes "คุณต้องการ";
+			mes "เรียนเล่นแร่แปรธาตุ?";
+			mes "ทุกสิ่งที่ฉันรู้";
+			mes "ฉันเรียนมาเพื่อ";
+			mes "เห็นแก่ตัว";
+			mes "ฝันที่เป็นจริง ... ";
+			next;
+			mes "[Darwin]";
+			mes "ฉันจะสอน";
+			mes "คุณคือพื้นฐาน ... ";
+			mes "แต่เป็นทุกอย่างของคุณ";
+			mes "ต้องเรียนรู้ทีหลัง";
+			mes "ถูกส่งผ่าน";
+			mes "แรงจูงใจของคุณเอง";
+			next;
+			mes "[Darwin]";
+			mes "ฉันจะสอนคุณ";
+			mes "วิธีทำง่ายๆ";
+			mes "ยางั้นก็ได้";
+			mes "นำสิ่งต่อไปนี้";
+			mes "วัสดุทันที";
+			next;
+			mes "[Darwin]";
+			mes "^551A8B3 Medicine Bowls^000000,";
+			mes "^551A8B3 Empty Bottles^000000,";
+			mes "^551A8B1 Red Herb^000000,";
+			mes "^551A8B1 Yellow Herb^000000 and";
+			mes "^551A8B1 White Herb^000000.";
+			set ALCH_Q,7;
+			changequest 2032,2033;
+			next;
+			mes "[Darwin]";
+			mes "เมื่อคุณมี";
+			mes "เตรียมทุกอย่าง";
+			mes "กลับมาหาฉัน";
+			close;
+		case 2:
+			mes "[Darwin]";
+			mes "ดอกไม้ ... ?";
+			mes "ในความมืดมิด";
+			mes "ความคิดของฉัน";
+			mes "มีดอกตูม";
+			mes "ที่ฉันจำเลือนลาง ... ";
+			next;
+			mes "[Darwin]";
+			mes "สำหรับคนที่";
+			mes "ฉันรักฉันใส่ทั้งหมด";
+			mes "จากความพยายามของฉัน";
+			mes "การค้นคว้าสิ่งนั้นสิ่งเดียว";
+			next;
+			mes "[Darwin]";
+			mes "ฉันจะไม่บอกรายละเอียดกับคุณ";
+			mes "แต่ฉันกำลังค้นคว้าโดยทั่วไป";
+			mes "ความสัมพันธ์ระหว่าง";
+			mes "หมาป่ากับดอกไม้";
+			next;
+			mes "[Darwin]";
+			mes "แต่ใช่ ... ";
+			mes "มันคือดอกไม้";
+			mes "ด้วยความแวววาวของมันจึงถูกกล่าวว่า";
+			mes "เพื่อให้คุณได้เห็นสรวงสวรรค์";
+			mes "The ^551A8BIllusion Flower^000000...";
+			next;
+			mes "[Darwin]";
+			mes "ฉันทำด้วยซ้ำ";
+			mes "โฮมุนคูลัส,";
+			mes "แต่ไม่มีใครเชื่อว่าฉันสามารถสร้างชีวิตใหม่จากดอกไม้ ... ";
+			next;
+			mes "[Darwin]";
+			mes "ถ้าอย่างนั้น ... ";
+			mes "อืมมีเรื่องอื่นเกิดขึ้นและตอนนี้ฉันไม่เหลืออะไรแล้วเวลาไม่มีความหมายสำหรับฉันอีกต่อไป";
+			next;
+			mes "[Darwin]";
+			mes "อ่า ... ";
+			mes "Harmona...";
+			mes "หายไปไหน";
+			mes "ฉันหวังว่าคุณจะอยู่ในทุ่งนา";
+			mes "ดอกไม้งาม ... ";
+			close;
+		case 3:
+			mes "[Darwin]";
+			mes "พิจารณาอะไร";
+			mes "มีค่าที่สุด";
+			mes "ถึงคุณมันไม่สามารถ";
+			mes "ได้รับการคุ้มครองถ้าคุณ";
+			mes "จำไม่ได้";
+			close;
+		}
+	}
+	else if (ALCH_Q == 7) {
+		mes "...";
+		mes "......";
+		next;
+		mes "[Darwin]";
+		mes "...";
+		mes "......";
+		mes "มันคือใคร ... ?";
+		next;
+		mes "[Darwin]";
+		mes "อา ... ";
+		mes "คุณคือคนที่";
+		mes "ปรารถนาที่จะเรียนรู้การเล่นแร่แปรธาตุ";
+		mes "เตรียมทุกอย่างแล้วหรือยัง";
+		next;
+		if (countitem(710) > 0) {
+			mes "[Darwin]";
+			mes "รอ.";
+			mes "ดอกไม้ภาพลวงตานั่น";
+			mes "ได้ยังไง?";
+			next;
+			mes "[Darwin]";
+			mes "เจอที่ไหน?!";
+			mes "ดอกไม้ที่ค่อยๆ";
+			mes "บุปผาใต้";
+			mes "แสงจันทร์?";
+			mes "สวยจัง ... !";
+			next;
+			mes "[Darwin]";
+			mes "ธ - นั่นดอก ... ";
+			mes "ขอดูหน่อย";
+			mes "ดอกไม้ลวงตา!";
+			mes "อุว้าาาาาาว !!";
+			next;
+			mes "[Darwin]";
+			mes "ใจดีจัง";
+			mes "จะให้ฉันมีดอกไม้นี้ได้ไหม";
+			mes "ฉันมั่นใจว่านี่คือดอกไม้แสงจันทร์ที่ฉันตามหา!";
+			next;
+			if (select("ขออภัยฉันไม่สามารถให้คุณได้:ฉันนำมาเพื่อมอบให้คุณ.") == 1) {
+				mes "[Darwin]";
+				mes "ฉันเข้าใจ";
+				mes "ให้ไม่ได้";
+				mes "ช่างมีค่า";
+				mes "ดอกไม้ให้ใครก็ได้";
+				mes "อืม ... ไม่เป็นไร";
+				next;
+				mes "[Darwin]";
+				mes "มันทำให้ความทรงจำเก่า ๆ กลับคืนมาฉันไม่ควรถามตั้งแต่แรกไม่ว่าในกรณีใดโปรดนำสิ่งที่จำเป็นสำหรับการทดลองมาด้วย";
+				next;
+				mes "[Darwin]";
+				mes "กรุณาทิ้งดอกไม้นั้น";
+				mes "ที่อื่นมันนำ";
+				mes "ย้อนความทรงจำ ... ";;
+				close;
+			}
+			mes "[Darwin]";
+			mes "คุณ";
+			mes "จริงจัง?!";
+			mes "ขอบคุณ!";
+			mes "ช่างเป็นดอกไม้ที่มีค่า";
+			mes "อาฮาร์โมน่าที่รัก ... ";
+			next;
+			mes "[Darwin]";
+			mes "ครับ ... ";
+			mes "ฉันจะตอบแทนคุณสำหรับสิ่งนี้";
+			mes "ฉันจะปลูกความรู้ทั้งหมดของฉันเกี่ยวกับการเล่นแร่แปรธาตุไว้ในความคิดของคุณโดยตรง ... ";
+			next;
+			mes "[Darwin]";
+			mes "เบิกตากว้าง";
+			mes "แล้วมองเข้ามาในตาฉัน !!";
+			mes "อย่าหยุดจนสุด !!";
+			next;
+			mes "Lorem ipsum dolor sit amet,";
+			next;
+			mes "Lorem ipsum dolor sit amet,";
+			mes "consectetuer adipiscing elit.";
+			next;
+			mes "Lorem ipsum dolor sit amet,";
+			mes "consectetuer adipiscing elit.";
+			mes "Aenean fermentum ullamcorper.";
+			next;
+			mes "Lorem ipsum dolor sit amet,";
+			mes "consectetuer adipiscing elit.";
+			mes "Aenean fermentum ullamcorper.";
+			mes "Vestibulum ante ipsum primis in";
+			next;
+			mes "Lorem ipsum dolor sit amet,";
+			mes "consectetuer adipiscing elit.";
+			mes "Aenean fermentum ullamcorper.";
+			mes "Vestibulum ante ipsum primis in";
+			mes "faucibus orci luctus et ultrices";
+			next;
+			mes "Lorem ipsum dolor sit amet,";
+			mes "consectetuer adipiscing elit.";
+			mes "Aenean fermentum ullamcorper.";
+			mes "Vestibulum ante ipsum primis in";
+			mes "faucibus orci luctus et ultrices";
+			mes "posuere cubilia Curae; Morbi";
+			next;
+			mes "Lorem ipsum dolor sit amet,";
+			mes "consectetuer adipiscing elit.";
+			mes "Aenean fermentum ullamcorper.";
+			mes "Vestibulum ante ipsum primis in";
+			mes "faucibus orci luctus et ultrices";
+			mes "posuere cubilia Curae; Morbi";
+			mes "massa, fermentum vitae...";
+			next;
+			delitem 710,1; //Illusion_Flower
+			mes "[Darwin]";
+			mes "^666666*Gasp...*^000000";
+			mes "ตอนนี้คุณ";
+			mes "an Alchemist!!";
+			mes "ไปที่สหภาพ";
+			mes "และทิ้งคนสุดท้าย";
+			mes "ร่องรอยชีวิตพ่อค้า !!";
+			set ALCH_Q,40;
+			changequest 2033,2034;
+			close;
+		}
+		else if (countitem(7134) > 2 && countitem(713) > 2 && countitem(507) > 0 && countitem(508) > 0 && countitem(509) > 0) {
+			mes "[Darwin]";
+			mes "ดูเหมือนว่าคุณมีทุกอย่างพร้อมแล้วตามที่สัญญาไว้ฉันจะสอนวิธีทำยาง่ายๆให้";
+			next;
+			mes "[Darwin]";
+			mes "ขั้นแรกเตรียมชามยาจากนั้นใส่สมุนไพรเข้าไปข้างในแบบนี้แล้วค่อยๆบดให้ละเอียด";
+			next;
+			mes "[Darwin]";
+			mes "เทปริมาณเล็กน้อย";
+			mes "น้ำสะอาดแล้วคน";
+			mes "ส่วนผสมจนข้น";
+			mes "หลังจากนั้นเพิ่มสมุนไพรอีก";
+			next;
+			mes "[Darwin]";
+			mes "นั่นคือวิธีที่คุณทำถ้าคุณคิดว่าคุณมีเพียงพอแล้วค่อยๆเทส่วนผสมลงในขวดเปล่า";
+			delitem 7134,3; //Medicine_Bowl
+			delitem 713,3; //Empty_Bottle
+			delitem 507,1; //Red_Herb
+			delitem 508,1; //Yellow_Herb
+			delitem 509,1; //White_Herb
+			next;
+			mes "[Darwin]";
+			mes "เอาล่ะ";
+			mes "เสร็จแล้ว";
+			mes "ตอนนี้ทำยา";
+			mes "ใช้ขั้นตอนง่ายๆ";
+			mes "ฉันแค่อธิบายให้คุณฟัง";
+			next;
+			switch(select("เตรียมชามยา:ใส่ชามยาไว้บนหัวของคุณ:คลิกที่ชามยา.")) {
+			case 1:
+				break;
+			case 2:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "อะไร ... ?";
+				next;
+				break;
+			case 3:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "ไม่!";
+				next;
+				break;
+			}
+			switch(select("ใส่สิ่งสกปรกลงในชามยา:ใส่สมุนไพรลงในชามยา:ใส่พิณในชามยา.")) {
+			case 1:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "... เอ๋!?";
+				mes "นั่นไม่ใช่";
+				mes "ยา!";
+				next;
+				break;
+			case 2:
+				break;
+			case 3:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "A Harp?";
+				mes "แล้วจะทำยังไง";
+				mes "คุณทำอย่างนั้นเหรอ";
+				next;
+				break;
+			}
+			switch(select("บดสมุนไพร:บดยาชาม:บดเท้าดาร์วิน.")) {
+			case 1:
+				break;
+			case 2:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "Wh - คืออะไร";
+				mes "คุณทำ!?";;
+				next;
+				break;
+			case 3:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "อ๊าก ... !";
+				mes "คุณทำอะไร";
+				mes "คิดว่าคุณ";
+				mes "ทำ?!";
+				next;
+				break;
+			}
+			switch(select("Spray clean water.:Drink clean water.:Pour clean water.")) {
+			case 1:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "หือ?";
+				mes "คุณกำลังทำอะไร";
+				next;
+				break;
+			case 2:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "ร - รอ ... ";
+				mes "คุณ";
+				mes "พักสมอง?";
+				next;
+				break;
+			case 3:
+				break;
+			}
+			switch(select("บดสมุนไพรต่อไป:กินสมุนไพรต่อไป:เต้นรำและร้องเพลงต่อไป.")) {
+			case 1:
+				break;
+			case 2:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "กินสมุนไพรไหม";
+				mes "ฉันคิดว่าคุณต้องการ";
+				mes "เพื่อมุ่งเน้นไปที่";
+				mes "งานในมือ ... ";
+				next;
+				break;
+			case 3:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "ร้องเพลงและ";
+				mes "เต้น? Alchemists";
+				mes "อย่าทำอย่างนั้นมี";
+				mes "บ้าไปแล้วเหรอ";
+				next;
+				break;
+			}
+			switch(select("ใส่บะหมี่แล้วทอด:เทใส่ขวดเปล่า:ถือชามยาแล้วดื่ม.")) {
+			case 1:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "เราเป็นนักเล่นแร่แปรธาตุ";
+				mes "ไม่ใช่พ่อครัวร้านอาหาร";
+				next;
+				break;
+			case 2:
+				break;
+			case 3:
+				set .@w_point,.@w_point+1;
+				mes "[Darwin]";
+				mes "หือ ... ";
+				mes "สวยเลอะเทอะ ... ";
+				next;
+				break;
+			}
+			if (.@w_point > 0) {
+				mes "[Darwin]";
+				mes "...";
+				mes "......";
+				next;
+				mes "[Darwin]";
+				mes "คุณทำส่วนผสมให้ยุ่ง";
+				mes "เนื่องจากคุณไม่ได้ทำตามขั้นตอน! รับส่วนผสมเพิ่มเติมเพื่อที่คุณจะได้ลอง";
+				mes "อีกครั้งจนกว่าจะเข้าใจ";
+				close;
+			}
+			getitem 501,1; //Red_Potion
+			getitem 503,1; //Yellow_Potion
+			getitem 504,1; //White_Potion
+			mes "[Darwin]";
+			mes "ทำได้ดีมาก";
+			mes "มันออกมาค่อนข้างดีเพราะนี่เป็นครั้งแรกของคุณไปเก็บยาที่คุณเพิ่งทำไป";
+			set ALCH_Q,8;
+			changequest 2033,2035;
+			next;
+			mes "[Darwin]";
+			mes "ไปที่ห้องถัดไป";
+			mes "และพูดกับ Van Helmont ถึง";
+			mes "ฝึกต่อไป";
+			next;
+			mes "[Darwin]";
+			mes "ไม่เคยลืม ... ";
+			mes "คุณต้องปกป้องเสมอ";
+			mes "สิ่งที่มีค่าที่สุดสำหรับคุณ";
+			close;
+		}
+		else {
+			mes "[Darwin]";
+			mes "ลืมไปแล้ว";
+			mes "ต้องเอาอะไรมาบ้าง";
+			mes "ขอเตือนสักครั้ง";
+			mes "อีกแล้วเจ้าต้องมา";
+			mes "กลับด้วย ... ";
+			next;
+			mes "[Darwin]";
+			mes "^551A8B3 Medicine Bowls^000000,";
+			mes "^551A8B3 Empty Bottle^000000,";
+			mes "^551A8B1 Red Herb^000000,";
+			mes "^551A8B1 Yellow Herb^000000 and";
+			mes "^551A8B1 White Herb^000000.";
+			next;
+			mes "[Darwin]";
+			mes "กลับมา";
+			mes "เมื่อคุณเป็น";
+			mes "พร้อม ... ";
+			close;
+		}
+	}
+	else if (ALCH_Q == 8) {
+		mes "ฉันบอกว่าจะไป";
+		mes "ถึง Van Helmont";
+		mes "ฉันอยากจะสอนคุณ";
+		mes "มากกว่านี้ แต่ทำไม่ได้";
+		next;
+		mes "[Darwin]";
+		mes "อ๊า ... ";
+		mes "Harmona, ที่รัก.";
+		mes "ฉันมองไม่เห็นดอกไม้อีกแล้ววิญญาณของฉันเงียบ";
+		mes "เหี่ยวเหมือนกัน .. ";
+		close;
+	}
+	else if (ALCH_Q == 40) {
+		mes "ฉันได้ให้ความรู้ทั้งหมดแก่คุณแล้วและไม่มีอะไรเพิ่มเติม";
+		mes "สอนคุณ";
+		next;
+		mes "[Darwin]";
+		mes "ไปที่ชั้นสองแล้วคุยกับหัวหน้าสหภาพของเราสักครั้ง";
+		mes "คุณทำอย่างนั้นชีวิตของคุณในฐานะนักเล่นแร่แปรธาตุจะเริ่มต้นขึ้น";
+		close;
+	}
+	else {
+		mes "เมื่อคุณมี";
+		mes "ความฝันของคุณคุณ";
+		mes "มีทุกอย่าง";
+		mes "ถ้าไม่มีพวกเขาคุณก็มี";
+		mes "ไม่มีอะไรจะเสียอีกแล้ว";
+		next;
+		mes "[Darwin]";
+		mes "ดวงตาต้องสาปเหล่านี้ ... ";
+		mes "พวกเขาสูญเสียการมองเห็น";
+		mes "ความฝันของฉันเมื่อนานมาแล้ว";
+		mes "ฮ่าฮ่าฮ่า ... ";
+		next;
+		mes "[Darwin]";
+		mes "สวรรค์";
+		mes "มีอยู่จริง ... ?";
+		mes "ไม่ได้โดยไม่ต้องรัก ... ";
+		mes "ไม่ได้ถ้าไม่มี Harmona ... ";
+		close;
+	}
+}
+
+alde_alche,79,19,5	script	Experiment Expert#am	748,{
+	mes "[Van Helmont]";
+	if (BaseJob != Job_Merchant) {
+		if (BaseJob == Job_Alchemist) {
+			mes "คุณต้องการอะไร";
+			mes "ไม่ว่าง !! อย่า";
+			mes "รบกวนหน่อยนะขอรับ";
+			mes "ระหว่างทาง";
+			next;
+			mes "[Van Helmont]";
+			mes "มาแล้ว ... ";
+			mes "คุณจะไม่ได้รับ";
+			mes "งานวิจัยใด ๆ ที่ทำเสร็จแล้วถ้าคุณไม่ยอมออกไปเรียนรู้ทุกสิ่งที่ทำได้";
+			next;
+			mes "[Van Helmont]";
+			mes "กำลังอ่านวารสารวิทยาศาสตร์และทำการทดลองนั่นคือสิ่งที่เกี่ยวกับการเล่นแร่แปรธาตุตอนนี้ให้ฉันกลับไปทำงาน!";
+			close;
+		}
+		else {
+			mes "แค่นิดเดียว ... ";
+			mes "อีกนิด ... ";
+			mes "Nooo! Just a little";
+			mes "อีกนิดแล้วมัน";
+			mes "จะเสร็จแล้ว!";
+			next;
+			mes "[Van Helmont]";
+			mes "ทำไม ... ?!";
+			mes "ทำไมล้มเหลวอีก!";
+			mes "การคำนวณของฉันคือ";
+			mes "ถูกต้อง! W-Wait ... !";
+			next;
+			mes "[Van Helmont]";
+			mes "บางทีถ้าฉันเก็บประจุฟลักซ์ความร้อนโดยใช้การไล่ระดับสีแบบนิวทรอนิกส์มันก็อาจใช้ได้ ... !";
+			close;
+		}
+	}
+	if (ALCH_Q == 8) {
+		mes "อร๊ายยย ... !";
+		mes "ทำไมสูตรนี้ถึงใช้ไม่ได้มีอะไรผิดปกติในทางทฤษฎีมันถูกต้องทั้งหมด แต่ต้องมีข้อผิดพลาดในสูตรที่ไหนสักแห่ง ... ";
+		next;
+		mes "[Van Helmont]";
+		mes "ฉันเทลงในนี้และมันควรจะหยุดเดี๋ยวก่อนนี่เป็นทางออกที่ผิด! ฉันจะทำเช่นนั้นได้อย่างไร";
+		mes "ผิดพลาดโง่! เมื่อไหร่ ";
+		mes "โดนเปลี่ยน?!";
+		next;
+		mes "[Van Helmont]";
+		mes "โอเคโอเค ... ";
+		mes "ฉันแค่ต้องแก้ไขส่วนนี้";
+		mes "ไม่ต้องเริ่มใหม่ฉันแค่";
+		mes "ต้องซ่อม ... แต่เดี๋ยวก่อนรอ ... ";
+		next;
+		mes "[Van Helmont]";
+		mes ".................";
+		next;
+		mes "[Van Helmont]";
+		mes "อืม ... ";
+		mes "คุณเป็นใคร";
+		next;
+		if (select("ฉันต้องการเป็น Alchemist.:.......") == 2) {
+			mes "[Van Helmont]";
+			mes "หืม ... ?";
+			mes "คุณแค่อยากดูอะไรดีสบายดี แต่ทำเงียบ ๆ และจากไปเมื่อคุณทำเสร็จแล้ว";
+			next;
+			mes "[Van Helmont]";
+			mes "หลีกทางให้ฉันอย่าไปแตะต้องสิ่งของเพราะอาจมีวัสดุที่ระเหยได้จึงอาจเกิดอุบัติเหตุได้";
+			close;
+		}
+		mes "[Van Helmont]";
+		mes "คุณ ... ?";
+		mes "นักเล่นแร่แปรธาตุ?";
+		mes "พ่อค้าตลกอะไรอย่างนี้";;
+		next;
+		mes "[Van Helmont]";
+		mes "นั่นก็ดี แต่ฉันมีการทดลองเร่งด่วนที่ต้องใช้";
+		mes "ความสนใจของฉันอย่าได้รับ";
+		mes "ระหว่างทาง";
+		next;
+		if (select("Teach me something.:...") == 1) {
+			mes "[Van Helmont]";
+			mes "อ๊าก ... !";
+			mes "ฉันบอกแล้วใช่ไหมว่าอย่ามารบกวนฉันมีอะไรยากที่จะเข้าใจเกี่ยวกับเรื่อง";
+			next;
+			mes "[Van Helmont]";
+			mes "สบายดีฉันจะส่งงานให้คุณเรียนรู้บางอย่าง";
+			mes "ใหม่แล้วกลับมาดูกัน";
+			mes "จะเอาอะไรดี ... ";
+			next;
+			mes "[Van Helmont]";
+			mes "โอเคฉันเข้าใจแล้ว";
+			mes "ไปเรียนรู้วิธีทำ";
+			mes "ผู้ต่อต้านและส่วนผสม";
+			mes "จาก Molgenstein";
+			next;
+			mes "[Van Helmont]";
+			mes "คุณไม่จำเป็นต้องนำอะไรไปเลยแค่ไปดูเขาที่ทำงานและให้เขาบอกคุณว่าเขาแก้ปัญหาเหล่านั้นอย่างไรเข้าใจไหม";
+			next;
+			mes "[Van Helmont]";
+			set ALCH_Q,9;
+			changequest 2035,2036;
+			mes "แล้วเจอกันใหม่";
+			mes "คุณควรไปเป็น";
+			mes "เร็วที่สุด";
+			close;
+		}
+		mes "[Van Helmont]";
+		mes "...";
+		next;
+		mes "[Van Helmont]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Van Helmont]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Van Helmont]";
+		mes "ดังนั้นถ้าฉันปรับเทียบอัตราการเผาไหม้ของสารประกอบนี้ใหม่ก็น่าจะลบล้างแนวโน้มที่เกาะติดกันในฟลักซ์อนุภาคนี้ได้ ... ";
+		next;
+		mes "[Van Helmont]";
+		mes "แต่ฉันจะทำยังไง";
+		mes "เกี่ยวกับสิ่งที่เกิดขึ้นเอง";
+		mes "การตกผลึก?! ฉันไม่สามารถเอาเมทริกซ์นี้ออกได้ดีฉันต้องการให้ตัวเร่งปฏิกิริยาไปถึงจุดที่สาม";
+		next;
+		mes "[Van Helmont]";
+		mes "เหี้ย!";
+		mes "เป็นอะไร";
+		mes "ฉันจะทำยังไง!";
+		close;
+	}
+	else if (ALCH_Q == 9) {
+		mes "เอาล่ะถ้าฉันทำแผลที่นี่ในหนวดและเพิ่มเจลโลปี้และเมือกเหนียวลงไปใน ... ชามยาของฉันหายไปไหน";
+		next;
+		mes "[Van Helmont]";
+		mes "ฉันใช้มันตลอดเวลาแบบนี้เหรอ?! ฉันสงสัยว่านิโคลัสมีอะไรเหลืออยู่ฮึเจ็บ ๆ ๆ รอสักครู่นะ ... ";
+		next;
+		mes "[Van Helmont]";
+		mes "...";
+		next;
+		mes "[Van Helmont]";
+		mes "...";
+		mes "......";
+		mes "คุณเป็นใคร";
+		next;
+		if (select("ฉันอยากเป็นนักเล่นแร่แปรธาตุ?:......") == 2) {
+			mes "[Van Helmont]";
+			mes "หืม ... ?";
+			mes "คุณแค่อยากดูอะไรดีสบายดี แต่ทำเงียบ ๆ และจากไปเมื่อคุณทำเสร็จแล้ว";
+			next;
+			mes "[Van Helmont]";
+			mes "หลีกทางให้ฉันอย่าไปแตะต้องสิ่งของเพราะอาจมีวัสดุที่ระเหยได้จึงอาจเกิดอุบัติเหตุได้";
+			close;
+		}
+		mes "[Van Helmont]";
+		mes "อ๊ะแน่นอนพ่อค้าจากเมื่อก่อนคุณเรียนรู้อะไรจาก Molgenstein ฉันไม่ได้ส่งคุณไปที่นั่นเพื่อความสนุกสนานเท่านั้นนะ";
+		next;
+		mes "[Van Helmont]";
+		mes "ขอถามหน่อย";
+		mes "บางคำถามถึง";
+		mes "ตรวจสอบสิ่งที่คุณ";
+		mes "เรียนแล้ว";
+		next;
+		if(MISC_QUEST & 4) {
+			mes "[Van Helmont]";
+			mes "รายการไหนไม่ใช่";
+			mes "จำเป็นต้องทำ";
+			mes "ผู้ต่อต้าน?";
+			next;
+			if (select("Karvodailnirol:Detrimindexta:Alcohol") != 1) set .@w_point,.@w_point+1;
+			mes "[Van Helmont]";
+			mes "What item is not";
+			mes "necessary to make";
+			mes "a Mixture?";
+			next;
+			if (select("Karvodailnirol:Detrimindexta:Alcohol") != 2) set .@w_point,.@w_point+1;
+			if (.@w_point > 0) {
+				mes "[Van Helmont]";
+				mes "คุณไม่ได้ฟัง Molgenstein เลยเหรอคุณอาจจะ";
+				mes "ต้องดูเขาทำอีกครั้ง";
+				next;
+				mes "[Van Helmont]";
+				mes "หากคุณไม่สามารถบอกรายการที่ต้องการในการทดลองได้";
+				mes "คุณอาจจะทำร้ายตัวเอง!";
+				close;
+			}
+			mes "[Van Helmont]";
+			mes "เก่งจังเรียนเก่ง";
+			mes "โอเคตอนนี้คุณรู้อะไรบางอย่างเกี่ยวกับการทดลองเรียบร้อยแล้วตอนนี้ฉันสามารถทำการทดลองต่อได้แล้ว";
+			next;
+			mes "[Van Helmont]";
+			mes "ออกไปหาห้องถัดไป";
+			mes "ไปหาคนนี้แล้วคุยกับนิโคลัสเขาจะฝึกคุณต่อ";
+			next;
+			set ALCH_Q,20;
+			changequest 2036,2037;
+			mes "[Van Helmont]";
+			mes "คุณเป็นอะไร";
+			mes "ยังทำอยู่ที่นี่?";
+			mes "ไป! เราทั้งสองมี";
+			mes "สำคัญกว่า";
+			mes "สิ่งที่ต้องทำ!";
+			close;
+		}
+		else {
+			mes "[Van Helmont]";
+			mes "รายการทำอะไร";
+			mes "ต้องทำ";
+			mes "ผู้ต่อต้าน?";
+			next;
+			select("Feather:Sticky Mucus:Animal Gore");
+			mes "[Van Helmont]";
+			mes "รายการทำอะไร";
+			mes "ต้องทำ";
+			mes "ส่วนผสม?";
+			next;
+			select("Monster Feed:Ancient Lips:Rotten Bandage");
+			mes "[Van Helmont]";
+			mes "พูดตรงๆนายไม่รู้ใช่ไหม! ฉันบอกว่าจะไปมอลเกนสไตน์แล้วให้เขาสอนไม่ใช่เหรอ!";
+			next;
+			mes "[Van Helmont]";
+			mes "อย่าคิดที่จะกลับมาจนกว่าคุณจะคุยกับเขาตอนนี้หยุดรบกวนฉันและออกไปจากที่นี่!";
+			close;
+		}
+	}
+	else if (ALCH_Q == 20) {
+		mes "อะไร ... ?";
+		mes "ฉันคิดว่าฉันบอกคุณไป";
+		mes "คุยกับนิโคลัสข้างบ้าน?";
+		next;
+		mes "[Van Helmont]";
+		mes "ฉันต้องค้นคว้าต่อไป";
+		mes "และคุณจะต้องจบการเป็น Alchemist ให้ได้มาเริ่มกันเลย!";
+		close;
+	}
+	else {
+		mes "แค่นิดเดียว ... ";
+		mes "อีกนิด ... ";
+		mes "Nooo! Just a little";
+		mes "อีกนิดแล้วมัน";
+		mes "จะเสร็จแล้ว!";
+		next;
+		mes "[Van Helmont]";
+		mes "ทำไม ... ?!";
+		mes "ทำไมล้มเหลวอีก!";
+		mes "การคำนวณของฉันคือ";
+		mes "ถูกต้อง! รอ ... ";
+		next;
+		mes "[Van Helmont]";
+		mes "บางทีถ้าฉันเก็บประจุฟลักซ์ความร้อนโดยใช้การไล่ระดับแบบนิวโทรนิกมันก็อาจจะใช้ได้ ... ";
+		close;
+	}
+}
+
+alde_alche,101,184,4	script	Master Alchemist#am	122,{
+	cutin "job_alche_vincent",2;
+	mes "[Vincent Carsciallo]";
+	if (Upper == 1) {
+		mes "คุณก้าวข้าม ... ";
+		mes "ยอดเยี่ยมยอดเยี่ยม";
+		next;
+		mes "[Vincent Carsciallo]";
+		mes "คุณไม่ได้อยู่ที่นี่";
+		mes "ไปท่องโลกกว้างกันเถอะเพื่อน";
+		close2;
+		cutin "",255;
+		end;
+	}
+	if (BaseJob != Job_Merchant) {
+		if (BaseJob == Job_Alchemist) {
+			mes "ยินดีต้อนรับ!";
+			mes "แล้วคุณล่ะ";
+			mes "การวิจัยมาพร้อมกัน";
+			next;
+			mes "[Vincent Carsciallo]";
+			mes "บางครั้งคุณจะได้ผลลัพธ์ที่ไม่คาดคิดจากการทดลองแม้ว่าสิ่งเหล่านี้อาจเป็นความปราชัยในการวิจัยของคุณ แต่ผลลัพธ์ดังกล่าวอาจนำไปสู่การค้นพบใหม่ ๆ ด้วย";
+			next;
+			mes "[Vincent Carsciallo]";
+			mes "ถ้าคุณค้นพบสิ่งใหม่ ๆ ";
+			mes "มาบอกพวกเราอย่าลืมว่าพวกเราร่วมมือกันเพื่อไขปริศนาแห่งวิทยาศาสตร์!";
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "หืม ... ";
+			mes "ผู้เริ่มต้น?";
+			mes "ไม่ควรเป็น";
+			mes "เล่นในสถานที่";
+			mes "แบบนี้";
+			next;
+			mes "[Vincent Carsciallo]";
+			mes "มีสารเคมีระเหยและอันตรายจำนวนมาก";
+			mes "วัสดุในตึกนี้มันจะดีกว่านี้มากถ้าคุณเล่นข้างนอก";
+		}
+		else {
+			mes "หืม ... ?";
+			mes "นักผจญภัยคืออะไร";
+			mes "ทำที่นี่ใน";
+			mes "สมาคมนักเล่นแร่แปรธาตุ?";
+			next;
+			mes "[Vincent Carsciallo]";
+			mes "กลัวว่าจะมี";
+			mes "มีให้เราไม่มากนัก";
+			mes "ถ้าคุณไม่อยู่ที่นี่";
+			mes "สมาชิกสหภาพของเรา";
+		}
+		close2;
+		cutin "",255;
+		end;
+	}
+	if (ALCH_Q == 0) {
+		mes "หืม ... ?";
+		mes "พ่อค้า?";
+		mes "คุณสนใจ";
+		mes "ในการเรียนรู้การเล่นแร่แปรธาตุ";
+		next;
+		mes "[Vincent Carsciallo]";
+		mes "นี่คือสหภาพนักเล่นแร่แปรธาตุ";
+		mes "เราค้นคว้าและทดลองกับสารต่างๆมากมายเพื่อสร้างวัสดุใหม่โดยไม่ต้องใช้เวทมนตร์";
+		next;
+		mes "[Vincent Carsciallo]";
+		mes "สักวันเราหวังว่าจะปลดล็อค";
+		mes "ความลับของชีวิตเช่นเดียวกับความลึกลับอื่น ๆ ของวิทยาศาสตร์";
+		next;
+		mes "[Vincent Carsciallo]";
+		mes "หลังจากเดินทางในฐานะพ่อค้ามาเป็นเวลานานคุณต้องพัฒนาความอยากรู้อยากเห็นทางวิทยาศาสตร์ขึ้นมาบ้างถ้าคุณต้องการเรียนรู้การเล่นแร่แปรธาตุทำไมคุณไม่ลองเข้าร่วม Alchemist Union?";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else if (ALCH_Q == 40) {
+		if (JobLevel < 40) {
+			set ALCH_Q,0;
+			mes "อืม ... ดูเหมือนคุณจะยังไม่มีคุณสมบัติ";
+			mes "จำไว้ว่าคุณต้องไปถึง  job level 40  ถึงจะเป็น Alchemist.";
+			close2;
+			cutin "",255;
+			end;
+		}
+		if (SkillPoint) {
+			mes "อ๊ะเกือบแล้ว";
+			mes "พร้อมที่จะเป็น";
+			mes "นักเล่นแร่แปรธาตุ แต่คุณต้อง";
+			mes "จัดสรรสิ่งที่คุณไม่ได้ใช้ก่อน";
+			mes "แต้มทักษะ";
+			next;
+			mes "[Vincent Carsciallo]";
+			mes "คุยกับฉันอีกครั้ง";
+			mes "เมื่อคุณใช้จ่ายหมดแล้ว";
+			mes "ทั้งหมดของคุณพิเศษ";
+			mes "แต้มทักษะ";
+			close2;
+			cutin "",255;
+			end;
+		}
+		if (checkquest(2039) != -1) {
+			changequest 2039,2040;
+		}
+		if (checkquest(2034) != -1) {
+			changequest 2034,2040;
+		}
+		mes "อ่าทำได้ดีมาก";
+		mes "ฉันเห็นว่าคุณ";
+		mes "ได้เรียนรู้ทั้งหมด";
+		mes "พื้นฐานของการเล่นแร่แปรธาตุ";
+		next;
+		set ALCH_Q,0;
+		completequest 2040;
+		set .@jlevel,JobLevel;
+		callfunc "Job_Change",Job_Alchemist;
+		callfunc "F_ClearJobVar";
+		mes "[Vincent Carsciallo]";
+		mes "ต่อจากนี้ไปคุณคือ";
+		mes "ตอนนี้เป็นสมาชิกของเรา";
+		mes "สหภาพที่มีชื่อเสียง";
+		mes "ฉันหวังว่าคุณจะได้เรียนรู้มากมาย ... ";
+		next;
+		if (.@jlevel == 50) {
+			getitem 7133,1; //Slim_Potion_Create_Book
+			mes "[Vincent Carsciallo]";
+			mes "ให้ฉันให้";
+			mes "สิ่งที่พิเศษ";
+			mes "ใช้เพื่อ";
+			mes "เริ่มต้นชีวิตของคุณ";
+			mes "ของการวิจัย";
+		}
+		else {
+			switch(rand(1,6)) {
+			case 1:
+				getitem 7127,1; //Alcol_Create_Book
+				break;
+			case 2:
+				getitem 7128,1; //FireBottle_Create_Book
+				break;
+			case 3:
+				getitem 7129,1; //Acid_Create_Book
+				break;
+			case 4:
+				getitem 7130,1; //Plant_Create_Book
+				break;
+			case 5:
+				getitem 7131,1; //Mine_Create_Book
+				break;
+			case 6:
+				getitem 7144,1; //Normal_Potion_Book
+			}
+			mes "[Vincent Carsciallo]";
+			mes "และ ... ";
+			mes "นี่คือสิ่งเล็กน้อย";
+			mes "มีอะไรให้ช่วย";
+			mes "คุณเริ่มของคุณ";
+			mes "การวิจัย";
+		}
+		next;
+		mes "[Vincent Carsciallo]";
+		mes "ฉันจะเห็น";
+		mes "แล้วคุณ ... ";
+		mes "อย่าลืมพก";
+		mes "ด้วยความภาคภูมิใจ";
+		mes "เป็นนักเล่นแร่แปรธาตุ!";
+		close2;
+		cutin "",255;
+		end;
+	}
+	else {
+		mes "อา ... ";
+		mes "ฉันเชื่อว่าคุณ";
+		mes "ลงทะเบียนแล้ว";
+		mes "สำหรับฝึกเพื่อเป็น";
+		mes "นักเล่นแร่แปรธาตุ";
+		next;
+		mes "[Vincent Carsciallo]";
+		mes "โปรดฟัง";
+		mes "นักเล่นแร่แปรธาตุคนอื่น ๆ และปฏิบัติตามคำแนะนำของพวกเขาอย่างระมัดระวังคุณจะได้เรียนรู้มากมายจากพวกเขา";
+		close2;
+		cutin "",255;
+		end;
+	}
+}
+
+alde_alche,145,19,1	script	Chief Researcher#am	57,{
+	if (checkweight(1201,1) == 0) {
+		mes "- เดี๋ยวก่อน! -";
+		mes "- ขณะนี้คุณกำลังถือ -";
+		mes "- มีของกับคุณมากเกินไป -";
+	mes "- โปรดกลับมาอีกครั้ง -";
+		mes "-หลังจากที่คุณเก็บสิ่งของบางอย่างลงในที่เก็บของ kafra storage. -";
+		close;
+	}
+	if (ALCH_Q > 19 && ALCH_Q < 22) {
+		if (ALCH_Q == 20) {
+			mes "[Nicholas Flamel]";
+			mes "โอ ... ";
+			mes "คุณคือคนพุ่งพรวด";
+			mes "พ่อค้าที่ต้องการ";
+			mes "จะเป็นนักเล่นแร่แปรธาตุ?";
+			next;
+			mes "[Nicholas Flamel]";
+			mes "นักเล่นแร่แปรธาตุต้องจำสมการเคมีกฎทางวิทยาศาสตร์และข้อมูลอื่น ๆ อีกมากมายมันค่อนข้างยาก";
+			next;
+			mes "[Nicholas Flamel]";
+			mes "นักเล่นแร่แปรธาตุต้องจำสมการเคมีกฎทางวิทยาศาสตร์และข้อมูลอื่น ๆ อีกมากมายมันค่อนข้างยาก";
+			next;
+			mes "[Nicholas Flamel]";
+			mes "ถ้าคุณไม่สามารถโฟกัสได้คุณจะสับสนในภายหลังเมื่อคุณดูแผนภูมิการเล่นแร่แปรธาตุการทดสอบของฉันจะตัดสินความสามารถของคุณในการทำสิ่งนั้น";
+			next;
+		}
+		mes "[Nicholas Flamel]";
+		mes "หาคำที่กวน";
+		mes "ในกลุ่มตัวอักษรที่ฉันให้คุณพวกเขาสามารถทำได้โดยใช้";
+		mes "หรือตัวอักษรทั้งหมด";
+		next;
+		mes "[Nicholas Flamel]";
+		mes "ถ้าคุณผ่าน";
+		mes "เลือกคำ";;
+		mes "that is ^551A8BIN^000000 the puzzle.";
+		next;
+		switch(rand(1,3)) {
+		case 1:
+			mes "t m y a n y e o b n e g p r i";
+			next;
+			if (select("Brake:Brass:Bug:Broken:Brigan?") == 5) set .@alch_t,.@alch_t+10;
+			mes "o n c u t a p j l e r s v m u";
+			next;
+			if (select("vendor:storage:weapon:simple:streetshop") == 1) set .@alch_t,.@alch_t+10;
+			mes "t v a r m e g p h e u b o y l";
+			next;
+			if (select("molasses:party:leader:sweets:treacle") == 2) set .@alch_t,.@alch_t+10;
+			mes "q z a h n a i n b r d p t n c";
+			next;
+			if (select("partisan:partizan:pato:paros:pack") == 2) set .@alch_t,.@alch_t+10;
+			break;
+		case 2:
+			mes "m p d i c f a r o g n k w a s";
+			next;
+			if (select("packman:sunshine:ragnarok:wonderland:frost") == 1) set .@alch_t,.@alch_t+10;
+			mes "g b n o p r e f a r e t a s k";
+			next;
+			if (select("purple:smoker:ragnarok:bolt:burnt wood") == 3) set .@alch_t,.@alch_t+10;
+			mes "u g n i s j e k c e o g n d p";
+			next;
+			if (select("scab:kinship:donate:source:opening") == 5) set .@alch_t,.@alch_t+10;
+			mes "r o e h n r o m c a i n p t t";
+			next;
+			if (select("forgemerchant:potionmerchant:dcmerchant:vendingmerchant:battlemerchant") == 2) set .@alch_t,.@alch_t+10;
+			break;
+		case 3:
+			mes "s m i e x b w u n e t a g l r";
+			next;
+			if (select("tiger:wolf:pumpkin:tripped:tore") == 1) set .@alch_t,.@alch_t+10;
+			mes "n i e g b o p d s o a u w r v";
+			next;
+			if (select("bash:provoke:endure:stun:abracadabra") == 3) set .@alch_t,.@alch_t+10;
+			mes "l r m g r e x t a v i n e d e";
+			next;
+			if (select("alberta:latifoliate:crimson:maple:evergreen") == 5) set .@alch_t,.@alch_t+10;
+			mes "r o e h n r o m c a i n p t t";
+			next;
+			if (select("forgemerchant:potionmerchant:dcmerchant:vendingmerchant:battlemerchant") == 2) set .@alch_t,.@alch_t+10;
+			break;
+		}
+		mes "[Nicholas Flamel]";
+		mes "อ๊ะเสร็จแล้ว";
+		mes "ตอนนี้เรามาดู ... ";
+		if (.@alch_t > 30) {
+			set ALCH_Q,22;
+			mes "เก่งมาก!";
+			next;
+			mes "[Nicholas Flamel]";
+			mes "เยี่ยมมากคุณพบคำที่ซ่อนอยู่ทั้งหมดแล้วด้วยสมาธิแบบนั้นคุณจะไม่มีปัญหาในการจดจำข้อมูล";
+			next;
+			mes "[Nicholas Flamel]";
+			mes "กลับมาอีกหน่อย";
+			mes "ฉันเตรียมงานชิ้นต่อไป";
+			mes "สำหรับการฝึกของคุณ";
+			next;
+			mes "[Nicholas Flamel]";
+			mes "โอ้และก่อนที่คุณจะคุยกับ";
+			mes "ฉันอีกครั้งให้แน่ใจว่าคุณมี";
+			mes "^551A8Bplenty of room in your inventory^000000.";
+			close;
+		}
+		else {
+			set ALCH_Q,21;
+			mes "^666666*Gasp!*^000000 H-horrible!";
+			next;
+			mes "[Nicholas Flamel]";
+			mes "เมื่อพิจารณาจากผลลัพธ์เหล่านี้คุณเห็นได้ชัดว่ามีปัญหาในการตั้งสมาธิ";
+			next;
+			mes "[Nicholas Flamel]";
+			mes "ถ้าคุณยังไขปริศนาคำศัพท์ง่ายๆเหล่านี้ไม่ได้คุณจะติดตามการทดลองและการวิจัยของคุณได้อย่างไร";
+			next;
+			mes "[Nicholas Flamel]";
+			mes "ทำไมคุณไม่ผ่อนคลาย";
+			mes "แล้วพักก่อนนะ";
+			mes "สอบอีกแล้วเหรอ";
+			close;
+
+		}
+	}
+	else if (ALCH_Q == 22) {
+		if (MaxWeight - Weight < 1370) {
+			mes "[Nicholas Flamel]";
+			mes "โอ้โฮ ... ";
+			mes "คุณกำลังบรรทุกสิ่งของมากเกินไปก่อนอื่นให้นำสิ่งของของคุณไปเก็บไว้ใน Kafra Storage";
+			close;
+		}
+		mes "[Nicholas Flamel]";
+		mes "เอาล่ะ ... ";
+		mes "ต่อไป";
+		mes "คุณจะได้รับมอบหมาย";
+		mes "ต้องเดินทางไป ^551A8BJuno ^000000.";
+		next;
+		mes "[Nicholas Flamel]";
+		mes "ที่นั่นคุณจะต้องคุยกับ ^551A8BBain ^000000 และ ^551A8BBajin ^000000 สองคนนั้นกำลังทำการวิจัยการเล่นแร่แปรธาตุกับปราชญ์";
+		mes "ใน Juno คุณจะได้เรียนรู้บางสิ่งบางอย่างโดยการช่วยเหลือพวกเขาในโครงการของพวกเขา";
+		next;
+		mes "[Nicholas Flamel]";
+		mes "กลับมาหาฉันตามเธอ";
+		mes "ช่วยพวกเขาทีพวกเขาจะต้องใช้ไอเท็มทั้งหมดนี้เพื่อทำการทดลองต่อไป";
+		next;
+		set ALCH_Q,23;
+		changequest 2037,2038;
+		mes "[Nicholas Flamel]";
+		mes "1 Mixture,";
+		mes "5 Burnt Tree,";
+		mes "5 Fine Sand,";
+		mes "3 Rough Oridecon";
+		mes "and 3 Rough Elunium.";
+		getitem 974,1; //Mixture
+		getitem 7068,5; //Burn_Tree
+		getitem 7043,5; //Fine_Sand
+		getitem 756,3; //Oridecon_Stone
+		getitem 757,3; //Elunium_Stone
+		next;
+		mes "[Nicholas Flamel]";
+		mes "ได้เลย";
+		mes "เดินทางปลอดภัย";
+		mes "แล้วกลับมาใหม่";
+		mes "ชิ้นเดียว";
+		close;
+	}
+	else if (ALCH_Q == 23) {
+		mes "[Nicholas Flamel]";
+		mes "ฉันไม่ได้พูดกับ";
+		mes "ไปที่ Juno และช่วย";
+		mes "Bain and Bajin with";
+		mes "การวิจัยการเล่นแร่แปรธาตุของพวกเขา?";
+		close;
+	}
+	else if (ALCH_Q == 24) {
+		set ALCH_Q,40;
+		changequest 2038,2039;
+		mes "[Nicholas Flamel]";
+		mes "อ๊ะกลับมาแล้ว!";
+		mes "ฉันเพิ่งได้รับข้อความจาก Bain";
+		mes "และ Bajin พวกเขาบอกให้ฉันรู้ว่าพวกเขามีความสุขมากกับความช่วยเหลือของคุณ";
+		next;
+		mes "[Nicholas Flamel]";
+		mes "ถ้าคุณดีพอ";
+		mes "เพื่อช่วยพี่น้องเหล่านั้น";
+		mes "คุณมีคุณสมบัติที่จะเป็น";
+		mes "นักเล่นแร่แปรธาตุ";
+		next;
+		mes "[Nicholas Flamel]";
+		mes "ทำได้ดีมาก!";
+		mes "สิ่งที่คุณต้องทำตอนนี้คือพูดคุยกับหัวหน้าสหภาพที่ชั้น 2! ยินดีด้วยคุณจะกลายเป็นนักเล่นแร่แปรธาตุในไม่ช้า!";
+		close;
+	}
+	else if (ALCH_Q == 40 && BaseJob == Job_Merchant) {
+		mes "[Nicholas Flamel]";
+		mes "สิ่งที่คุณต้องทำตอนนี้คือพูดคุยกับหัวหน้าสหภาพที่ชั้น 2! ยินดีด้วยคุณจะกลายเป็นนักเล่นแร่แปรธาตุในไม่ช้า!";
+		close;
+	}
+	else {
+		mes "[Nicholas Flamel]";
+		mes "Lorem ipsum dolor sit amet,";
+		mes "consectetuer adipiscing elit.";
+		mes "Vivamus sem. Sed metus";
+		mes "lacus, viverra id, rutrum eget,";
+		mes "rhoncus sit amet, lectus.";
+		next;
+		mes "[Nicholas Flamel]";
+		mes "Suspendisse sit amet urna in";
+		mes "nisl fringilla faucibus. Nulla scelerisque eros...";
+		mes "^666666*Mumble Mumble*^000000";
+		close;
+	}
+}
+
+//============================================================ 
+// Old changelog
+//============================================================ 
+//= 1.0 Working.
+//=     npc/quests/counteragent_mixture.txt Also Needed
+//=     npc/quests/quests_yuno.txt Also Needed [Darkchild]
+//= 1.1 Fixed some minor bugs.  Optimized some lines. Re-organized the script a bit. 
+//=     Giving Parmry NPC, Hammer and Old Book now waves the 50000 fee. (based of mRO website)
+//=     Having a joblvl of 50 allows you to skip Rasputin's test. (based of mRO website) [kobra_k88]
+//= 1.2 fixed a few typos (have to hunt more) [Lupus]
+//= 1.3 Added Baby Class Support [Lupus]
+//= 1.6 Added a func which prevent advanced classes passing
+//=     2nd Job Quests again. It also guides adv classes where
+//=     to go. [Lupus]
+//= 1.6a fixed some wrong answers, thanks to zlider for info [Lupus]
+//= 2.0 Changed numbers to constants. [Vicious]
+//= 2.2 Got rid of 'al_morgen' var. Now uses (MISC_QUEST & 4) [Lupus]
+//= 2.3 Optimized, changed job numbers to constants. Fixed some spelling [Lupus]
+//= 2.4 Added alternative prizes according to JobLevel [Lupus]
+//= 2.4a Fixed 2 wrong answers in Rasputin's test [Lupus]
+//============================================================ 

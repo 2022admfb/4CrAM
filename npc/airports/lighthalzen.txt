@@ -1,0 +1,85 @@
+//===== rAthena Script ======================================= 
+//= Lighthalzen Airport Staff
+//===== By: ================================================== 
+//= L0ne_W0lf, Muad_Dib
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Lighthalzen Airport Staff
+//===== Additional Comments: ================================= 
+//= 1.0 First version.
+//============================================================ 
+
+lhz_airport,143,43,5	script	Airport Staff#lhz_air1a::lhz_airport1	90,{
+	mes "[Airport Staff]";
+	mes "ยินดีต้อนรับสู่";
+	mes "สนามบิน Lighthalzen,";
+	mes "ที่เราให้บริการไม่หยุดพัก";
+	mes "เที่ยวบินไป Einbroch, Juno และ Hugel";
+	next;
+	if (select("ขึ้นเรือเหาะ.:ยกเลิก.") == 1) {
+		mes "[Airport Staff]";
+		mes "ค่าขึ้นเครื่องคือ";
+		mes "1,200 zeny แต่คุณทำได้";
+		mes "ยกเว้นค่าธรรมเนียมหากคุณแลก";
+		mes "ตั๋วเรือเหาะฟรี";
+		next;
+		if (select("ตกลง:ยกเลิก") == 1) {
+			if (countitem(7311) > 0) {
+				delitem 7311,1; //Free_Flying_Ship_Ticket
+				warp "lhz_airport",148,51;
+				end;
+			}
+			if (Zeny >= 1200) {
+				set Zeny, Zeny - 1200;
+				warp "lhz_airport",148,51;
+				end;
+			}
+			mes "[Airship Staff]";
+			mes "ฉันขอโทษ แต่คุณไม่ทำ";
+			mes "ต้องจ่าย 1,200 zeny";
+			mes "สำหรับค่าขึ้นเครื่อง";
+			close;
+		}
+	}
+	mes "[Airport Staff]";
+	mes "ขอบคุณและ";
+	mes "ได้โปรดกลับมาอีกครั้ง";
+	mes "ขอให้มีความสุขนะครับ ~";
+	close;
+}
+
+lhz_airport,158,43,5	duplicate(lhz_airport1)	Airship Staff#lhz_air1b	90
+lhz_airport,126,43,5	duplicate(lhz_airport1)	Airship Staff#lhz_air1c	90
+
+lhz_airport,143,49,3	script	Arrival Staff#lhz_air2a::lhz_airport2	90,{
+	mes "[Arrival Staff]";
+	mes "ยินดีต้อนรับสู่สนามบิน Lighthalzen";
+	mes "โปรดให้ฉันแนะนำคุณไปที่";
+	mes "หากคุณเดินทางมาจากเที่ยวบินของคุณมิฉะนั้นโปรด";
+	mes "ขึ้นเรือเหาะที่กำลังจะไปเพื่อไปให้ถึงจุดหมายที่คุณตั้งใจไว้";
+	next;
+	if (select("ออกไปยังอาคารผู้โดยสารหลัก.:ยกเลิก.") == 1) {
+		mes "[Arrival Staff]";
+		mes "เมื่อคุณอยู่ในอาคารผู้โดยสารหลักคุณจะต้องจ่ายค่าธรรมเนียมอีกครั้ง";
+		mes "ขึ้นเรือเหาะคุณควร";
+		mes "ออกไปก็ต่อเมื่อ Lighthalzen เป็นจุดหมายปลายทางของคุณแล้วเราจะไป";
+		mes "ไปที่เทอร์มินัลหลัก?";
+		next;
+		if (select("ตกลง:ยกเลิก") == 1) {
+			warp "lhz_airport",142,40;
+			end;
+		}
+	}
+	mes "[Arrival Staff]";
+	mes "ได้เลยขอบคุณ";
+	mes "เพื่อการอุปถัมภ์ของคุณ";
+	mes "และฉันหวังว่าคุณจะมี";
+	mes "เที่ยวบินสบาย ๆ ~";
+	close;
+}
+
+lhz_airport,126,51,3	duplicate(lhz_airport2)	Arrival Staff#lhz_air2b	90
+lhz_airport,158,50,3	duplicate(lhz_airport2)	Arrival Staff#lhz_air2c	90

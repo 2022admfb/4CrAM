@@ -1,0 +1,550 @@
+//===== rAthena Script ======================================= 
+//= Royal Guard Job Quest
+//===== By: ================================================== 
+//= Muad_Dib
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= [Official Conversion]
+//= Job change Quest from Crusader / Paladin -> Royal Guard.
+//===== Additional Comments: ================================= 
+//= 1.0 First Version. [brAthena]
+//= 1.1 Updated script. [Euphy]
+//= 1.2 Added GM management function. [Euphy]
+//= 1.3 Added VIP features. [Euphy]
+//= 2.0 Prontera castle map changed in ep16.1 [Capuche]
+//============================================================
+
+// prt_castle,48,161,3	script	Middle-aged Gentleman#rg	57,{
+prt_cas,172,275,5	script	Middle-aged Gentleman#rg	1_M_LIBRARYMASTER,{
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 1000) {
+		mes "- แพ็คของคุณหนักเกินไป -";
+		mes "- ทำให้ร่างกายเบาขึ้นก่อน -";
+		mes "- และโปรดลองอีกครั้ง -";
+		close;
+	}
+	if (Class == Job_Royal_Guard || Class == Job_Royal_Guard_T || Class == Job_Baby_Royal_Guard) {
+		mes "[Middle-aged Gentleman]";
+		mes "เอ่อฉันกำลังทำอะไรฉันมาที่นี่เพื่อทำธุระ ... ";
+		next;
+		mes "^ 000099 บางทีความรู้สึกของฉันย้ายไปอยู่ที่อื่นแล้ว ^ 000000";
+		close;
+	}
+	if (BaseLevel < 99 || JobLevel < 50 || SkillPoint != 0) {
+		mes "[Middle-aged Gentleman]";
+		mes "โอ้คุณยังเด็กอยู่ทำงานให้หนัก ๆ นะ";
+		close;
+	}
+	if (checkriding() || checkcart() || checkfalcon()) {
+		mes "[Middle-aged Gentleman]";
+		mes "คุณกำลังลากอะไรบางอย่างถ้าคุณกำลังขี่บางสิ่งคุณควรลงจากหลังม้าก่อนที่จะดำเนินการต่อ";
+		close;
+	}
+	if (BaseJob != Job_Crusader) {
+		mes "[Middle-aged Gentleman]";
+		mes "ฉันไม่มีอะไรจะพูดกับคุณหาคนอื่น";
+		close;
+	}
+	if (job_royal == 0) {
+		mes "[Middle-aged Gentleman]";
+		mes "ฉันกำลังพูดอะไร ... (พึมพำ) ส่วนที่เหลืออยู่ใน Glast Heim รอบ 13 ....... ";
+		next;
+		mes "[Middle-aged Gentleman]";
+		mes "เอ่อ?";
+		mes "คุณต้องการอะไรหรือเปล่า";
+		next;
+		select("ฉันไม่เคยเห็นคุณมาก่อน.");
+		mes "[Middle-aged Gentleman]";
+		mes "ฮิฮิฮิไม่ต้องห่วงฉัน";
+		next;
+		mes "[Middle-aged Gentleman]";
+		mes "ถ้าคุณไม่มีธุระกับฉันก็ไปหาเพื่อนฉันเถอะ";
+		next;
+		select("คุณดูไม่เหมือนอัศวิน ... ");
+		mes "[Middle-aged Gentleman]";
+		mes "คุณเป็นคนขี้สงสัยคุณเป็นใครคุณต้องการอะไร";
+		next;
+		select("แค่มองไปรอบ ๆ !: นี่คือห้องทำงานของฉัน!: ฉันเป็นใครคุณเป็นใคร?");
+		mes "[Middle-aged Gentleman]";
+		mes "คุณอยากจะเถียงกับฉันไหมคุณรู้ไหมว่าฉันเป็นใคร";
+		next;
+		if(select("ไม่จริงคุณเป็นใคร: ขอโทษนะฉันจะไม่ทำร้ายความรู้สึกของคุณ.") == 2) {
+			mes "["+strcharinfo(0)+"]";
+			mes "ขอโทษค่ะฉันต้องแน่ใจฉันไม่รู้ว่าคุณมาจากวังหลวง";
+			next;
+			mes "[Middle-aged Gentleman]";
+			mes "พอแล้วอย่าทำผิดอีก";
+			close;
+		}
+		mes "["+strcharinfo(0)+"]";
+		mes "ฉันเป็นสมาชิกที่นี่และมีอำนาจในการค้นหาว่าธุรกิจของคุณอยู่ที่นี่";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "คุณเป็นคนแปลกหน้าและฉันไม่แน่ใจว่าคุณอยู่ที่นี่หรือไม่";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "ถ้าคุณบอกตัวตนของคุณฉันจะขอโทษ";
+		next;
+		mes "[Middle-aged Gentleman]";
+		mes "คุณช่างดื้อเหลือเกิน";
+		mes "ถ้าคุณต้องการจริงๆฉันจะแนะนำตัวเอง";
+		next;
+		mes "[Middle-aged Gentleman]";
+		mes "ฉันคือไฮน์ริช";
+		mes "ฉันกำลังรวบรวมข้อมูลเกี่ยวกับร่องรอยของ King Schmidtz ที่หายไป";
+		next;
+		select("Schmidzt's trace? Is it a treasure?");
+		mes "[Heinrich]";
+		mes "นักโบราณคดีส่วนใหญ่กระตือรือร้นที่จะได้สมบัติฉันกำลังมองหาร่องรอยของ ^ 000099Royal Guard ^ 000000 และลูกชายของพวกเขาที่อยู่ในกลุ่ม Schmidtz";
+		next;
+		select("Royal Guard?");
+		mes "[Heinrich]";
+		mes "ฟังดูน่าสนใจใช่ไหมฉันไม่สามารถพูดได้ แต่ประวัติและไฟล์ของพวกเขาอยู่ภายใต้การรักษาความปลอดภัยที่เข้มงวด";
+		next;
+		select("Can't you tell me?");
+		mes "[Heinrich]";
+		mes "ฉันไม่สามารถพูดถึงราชองครักษ์กับใครก็ได้ที่ถามถึงพวกเขา";
+		next;
+		mes "[Heinrich]";
+		mes "แต่ !! ฉันอยากจะเชื่อเธอ ... ";
+		next;
+		switch(select("ฉันต้องการทราบข้อมูลเพิ่มเติม: หยุดพูด")) {
+		case 1:
+			if (VIP_SCRIPT) {
+				callfunc "VIP_Third_Class";
+				set job_royal,1;
+				setquest 12090;
+				next;
+			}
+			mes "[Heinrich]";
+			mes "คุณใจร้อน";
+			next;
+			mes "[Heinrich]";
+			mes "มันไม่ใช่เรื่องง่ายที่จะบอกคนอย่างคุณกลับไป";
+			set job_royal,1;
+			setquest 12090;
+			close;
+		case 2:
+			mes "[Heinrich]";
+			mes "ความคิดที่ดี";
+			next;
+			mes "[Heinrich]";
+			mes "ลืมมันไปและปล่อยใจให้ทำสิ่งที่มีค่ามากกว่านี้";
+			close;
+		}
+	}
+	mes "[Heinrich]";
+	if (job_royal == 1) {
+		mes "[Heinrich]";
+		mes "คุณเป็นเพื่อนรักกัน";
+		mes "มีอะไรจะคุยกับฉันอีกไหม";
+		next;
+		select("ถ้าคุณไม่สามารถไว้วางใจฉันทดสอบฉันเพื่อน");
+		mes "[Heinrich]";
+		mes "ทดสอบ?";
+		mes "ทดสอบแล้วเหรอหึหึ!";
+		next;
+		mes "[Heinrich]";
+		mes "เพื่อนคุณแสดงความสนใจของคุณเกี่ยวกับงานของฉันแน่ใจหรือว่าคุณล้อเล่นฉัน";
+		next;
+		select("I'm serious!");
+		mes "[Heinrich]";
+		mes "จริงเหรอ";
+		mes "ดีคุณอาจจะคิดผิดว่า Royal Guard คืออะไรดังนั้นในความคิดของคุณคุณคิดว่าอะไรคือกุญแจสำคัญในการเป็น Royal Guard?";
+		next;
+		select("Decision and Bravery:Calm Judgment:Sharp wisdom:Benevolent spirit");
+		mes "[Heinrich]";
+		mes "ทางเลือกที่ดี";
+		mes "จริงๆแล้วอีก 3 คนก็ต้องมีวิญญาณของราชองครักษ์ด้วยนะเพื่อน";
+		next;
+		mes "[Heinrich]";
+		mes "แต่ตามเอกสารการวิจัยเกี่ยวกับราชองครักษ์ความเชื่อที่ดีที่สุดคือ 'การบำเพ็ญตบะและความอดทน'";
+		next;
+		mes "[Heinrich]";
+		mes "เข้าใจแล้วใช่ไหม";
+		mes "Asceticism and Endurance young มันต่างจากที่คุณตอบนิดหน่อย";
+		next;
+		mes "[Heinrich]";
+		mes "ดูเหมือนคุณจะสนใจเรื่องราวนี้มาก แต่ฉันไม่สามารถบอกอะไรคุณได้มากกว่านี้";
+		next;
+		mes "[Heinrich]";
+		mes "เฉพาะผู้ที่มีคุณสมบัติเท่านั้นที่จะได้ยินประวัติราชองครักษ์";
+		next;
+		select("ฉันจะทำอย่างไรเพื่อฟังเรื่องราวนั้น?");
+		mes "^ 000099 เฮนริชมีสีหน้าเจ็บปวดใจจากนั้นเขาก็เหมือนหลับไปในที่สุดเขาก็พูดพร้อมกับละทิ้งโดยประมาท ^ 000000";
+		next;
+		mes "[Heinrich]";
+		mes "เจ้าดื้อเกินไป";
+		mes "ถ้าอย่างนั้นฉันจะทดสอบคุณเพื่อดูการบำเพ็ญตบะและความอดทนของคุณ";
+		next;
+		mes "[Heinrich]";
+		mes "นานมาแล้ว King Schmidtz มอบตำแหน่งให้กับทหารผู้กล้าที่กลับมาพร้อมกับ Sacred Marks 100 อัน";
+		next;
+		mes "[Heinrich]";
+		mes "ถ้าคุณอยากฟังเรื่องราวเพิ่มเติมคุณต้องแสดงทัศนคติที่คล้ายกันของคุณให้ฉันดู";
+		next;
+		if(select("นั่นคือข้อเรียกร้องที่ไม่ยุติธรรม: ฉันจะพยายาม") == 1) {
+			mes "[Heinrich]";
+			mes "ความคิดที่ดีมันจะดีกว่าถ้าพบสิ่งที่ดีกว่านี้";
+			close;
+		}
+		mes "[Heinrich]";
+		mes "โอเคมาทำแบบนี้จริงๆแล้วมันยากเกินไปที่จะรวบรวม 100 Sacred Marks เพียงแค่แสดงความทะเยอทะยานของคุณโดยการรวบรวม Burning Hearts 100 ดวง";
+		next;
+		mes "[Heinrich]";
+		mes "ถ้าคุณนำมาให้ฉันสามารถเล่าเรื่องราวให้คุณฟังได้มากขึ้นนั่นหมายความว่าคุณแสดงความอดทนต่อฉัน";
+		next;
+		mes "[Heinrich]";
+		mes "อย่าลืมนำ 100 Burning Hearts มาด้วย";
+		set job_royal,2;
+		changequest 12090,12091;
+		close;
+	} else if (job_royal == 2) {
+		if (countitem(7097) < 100) {
+			mes "อย่าลืมนำ 100 Burning Heart มาด้วย";
+			close;
+		}
+		mes "คุณได้รับทั้งหมดหรือไม่";
+		mes "คนส่วนใหญ่ไม่สนใจฉันหรือล้มเลิกภารกิจ";
+		next;
+		mes "[Heinrich]";
+		mes "เดี๋ยวฉันจัดของที่นายเอามาให้";
+		delitem 7097,100; //Burning_Heart
+		set job_royal,3;
+		changequest 12091,12092;
+		close;
+	} else if (job_royal == 3) {
+		mes "...";
+		mes "ดีฉันรู้สึกได้ถึงความจริงจากใจของคุณตอนนี้ฉันสามารถบอกคุณได้มากขึ้นในเรื่องนี้";
+		next;
+		select("ตกลงบอกข้อมูลเพิ่มเติม");
+		mes "[Heinrich]";
+		mes "สมาชิกที่ดีที่สุดของคลาส Crusader และ Paladin จะได้รับคุณสมบัติเป็น Royal Guard";
+		next;
+		mes "[Heinrich]";
+		mes "พวกเขาเป็นตัวแทนของคำสั่งของพระเจ้าและตัดสินด้วยการลงโทษที่รวดเร็ว";
+		next;
+		mes "[Heinrich]";
+		mes "เรายังมีความคิดเห็นมากมายเกี่ยวกับวิธีที่พวกเขาสามารถรอดชีวิตได้แน่นอนว่าต้องมีคนเชื่อว่าประวัติศาสตร์ของพวกเขาไม่ได้เป็นเท็จ";
+		next;
+		select("ยังมีเอกสารอยู่หรือไม่?");
+		mes "[Heinrich]";
+		mes "อืมเอกสารที่คุณพูด ... ";
+		next;
+		mes "[Heinrich]";
+		mes "น่าเสียดายหลังจากที่กษัตริย์ Schmidtz หายตัวไปร่องรอยของ Royal Guard ก็หายไป";
+		next;
+		mes "[Heinrich]";
+		mes "ประวัติความเชื่อวิสัยทัศน์และทักษะการต่อสู้ของพวกเขาดูเหมือนจะหายไปโดยไม่มีการบันทึกเอกสารใด ๆ ";
+		next;
+		mes "[Heinrich]";
+		mes "มันหายไปกับราชา";
+		next;
+		select("ดังนั้นเหตุผลในการค้นหาร่องรอย ...");
+		mes "[Heinrich]";
+		mes "ฉันกังวลเกี่ยวกับราชองครักษ์ในอดีตที่อาจไม่สามารถเล่าประวัติของพวกเขาได้";
+		next;
+		mes "[Heinrich]";
+		mes "พลังลึกลับ ... ไม่สามารถปรากฏได้อีกแล้วในโลกมันน่าผิดหวังขนาดไหน ~!";
+		next;
+		mes "[Heinrich]";
+		mes "นั่นเป็นเหตุผลว่าทำไมฉันจึงตั้งใจที่จะฟื้นฟูงานของพวกเขา";
+		next;
+		select("คุณมีความคืบหน้ามากแค่ไหน?");
+		mes "[Heinrich]";
+		mes "โชคดีที่ฉันขุดพบสมบัติส่วนใหญ่และตีความมันออกมาฉันมีร่องรอยเหลือให้ค้นหา";
+		next;
+		select("ส่วนที่เหลือของร่องรอย?");
+		mes "[Heinrich]";
+		mes "ราชองครักษ์สลักตรากษัตริย์ Schmidtz บนฉลองพระองค์ร่องรอยของประเพณีนี้เป็นเบาะแสสุดท้าย";
+		next;
+		mes "[Heinrich]";
+		mes "ตามรายงานจากเมืองอื่น ๆ ร่องรอยสุดท้ายอาจมีอยู่ในอารามภายใน Glass Heim";
+		next;
+		mes "[Heinrich]";
+		mes "แต่มันอันตรายเกินไปสำหรับฉันที่นั่นฉันเลยยอมแพ้";
+		next;
+		mes "[Heinrich]";
+		mes "ตอนนี้ฉันไม่สามารถบอกคุณได้ว่าทำไมถึงมีร่องรอย";
+		next;
+		if(select("น่าสนใจฉันไปที่นั่นได้ไหม: ดูเหมือนจะอันตรายจริงๆ") == 2) {
+			mes "[Heinrich]";
+			mes "ความคิดที่ดีการสำรวจที่นั่นไร้ประโยชน์";
+			close;
+		}
+		mes "[Heinrich]";
+		mes "ล้อเล่นเหรอ";
+		mes "คุณไม่ควรทำเหมือนมันเป็นแค่งานบ้านธรรมดา ๆ ";
+		next;
+		select("ฉันไม่ได้ล้อเล่นฉันจริงจัง.");
+		mes "[Heinrich]";
+		mes "ถ้าคุณพูดแบบนั้นฉันก็ไม่มีตัวเลือกอีกแล้ว";
+		next;
+		mes "[Heinrich]";
+		mes "ฉันไม่รู้ว่ามันจะเป็นประโยชน์หรือไม่ฉันจะเขียนอธิบายโดยละเอียด";
+		next;
+		mes "^ 000099 นี่คือร่องรอยสุดท้ายของ Royal Guard เปิดหน้าต่างเควสและตรวจสอบตำแหน่ง ^ 000000";
+		set job_royal,4;
+		changequest 12092,12093;
+		close;
+	} else if (job_royal == 4) {
+		if (countitem(6274) == 0) {
+			mes "เจ้าหน้าที่ของเราได้ออกตามหาร่องรอยสุดท้ายแล้วดังนั้นอย่าทำงานหนักเกินไป";
+			close;
+		}
+		mes "ไม่มันไม่ถูกต้องที่ฉันต้องการ";
+		next;
+		mes "[Hainrich]";
+		mes "คุณทำให้ฉันประหลาดใจคุณเข้าใจได้อย่างไรจนถึงขณะนี้ไม่มีใครสามารถเข้าใจได้";
+		next;
+		mes "[Heinrich]";
+		mes "ขอบคุณมากครับ";
+		mes "ขอบคุณสำหรับความพยายามของคุณฉันสามารถหาเบาะแสสุดท้ายได้น่าทึ่งมาก ~!";
+		next;
+		mes "^ 000099Heinrich ลังเลและนำโล่เก่ามาจากด้านข้างของห้องทำงาน ^ 000000";
+		next;
+		mes "[Heinrich]";
+		mes "เจ้าหน้าที่ของเราขุดมันขึ้นมาพวกเขาสันนิษฐานว่ากษัตริย์ Schmidtz ใช้มัน แต่เขาไม่ได้ใช้";
+		next;
+		select("แน่ใจว่าไม่ได้ใช้ราชา?");
+		mes "[Heinrich]";
+		mes "ฉันไม่สามารถแน่ใจได้ทั้งหมด";
+		mes "บางทีคุณอาจจะพูดถูก แต่เมื่อเราทำการระบุตัวตนครั้งแรกเรามั่นใจได้ว่าไม่มีการใช้";
+		next;
+		mes "[Heinrich]";
+		mes "แต่มันเป็นสมบัติเก่าดังนั้นมันจะมีประโยชน์อย่างไรฉันอาจจะรู้วิธีใช้";
+		next;
+		select("Can I keep it?");
+		mes "[Heinrich]";
+		mes "แน่นอน";
+		mes "สักวันมันอาจจะมีประโยชน์สำหรับคุณ";
+		next;
+		mes "^ 000099 คุณได้รับโล่จาก Heinrich มีตัวอักษรบางตัวสลักอยู่ด้านในของโล่ ^ 000000";
+		next;
+		mes "^ 000099 หากคุณต้องการดูตัวอักษรโปรดตรวจสอบหน้าต่างเควส ^ 000000";
+		next;
+		mes "[Heinrich]";
+		mes "โอเค ~~ ได้แล้ว";
+		mes "ตอนนี้ฉันกำลังถอดรหัสผ้าอยู่งั้นฉันจะยุ่งมาก!";
+		delitem 6274,1; //Saint_Cloth_Piece
+		getitem 6275,1; //King_Shield
+		set job_royal,5;
+		changequest 12093,12094;
+		close;
+	} else if (job_royal == 5) {
+		if (countitem(6275) == 0) {
+			mes "อะไรนะคุณทำโล่หายไปหรือเปล่าอันที่หลังของคุณคืออะไร";
+			getitem 6275,1; //King_Shield
+			close;
+		}
+		mes "ขอบคุณสำหรับความช่วยเหลือของคุณฉันสามารถทำงานขุดให้เสร็จได้ขอบคุณมาก";
+		close;
+	}
+}
+
+glast_01,240,366,5	script	Memory of King Schmidtz	844,{
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 1000) {
+		mes "- แพ็คของคุณหนักเกินไป -";
+		mes "- ทำให้ร่างกายเบาขึ้นก่อน -";
+		mes "- และโปรดลองอีกครั้ง -";
+		close;
+	}
+	if (ismounting() || checkriding()) {
+		mes "กรุณาถอดอุปกรณ์ขี่ม้าของคุณออกแล้วลองอีกครั้ง!";
+		close;
+	}
+	if (BaseJob == Job_Crusader && job_royal == 5) {
+		if (countitem(6275) == 0) {
+			mes "^ 000099 ดูเหมือนคุณจะทำโล่หายกลับไปที่ Heinrich แล้วขอความช่วยเหลือ ^ 000000";
+			close;
+		}
+		mes "[Memory of King Schmidtz]";
+		mes "คุณเป็นใคร";
+		next;
+		select("ฉันนำของที่ระลึก ... ");
+		mes "[Memory of King Schmidtz]";
+		mes "ของที่ระลึก?";
+		next;
+		mes "[Memory of King Schmidtz]";
+		mes "เสียดายเพื่อนอีกหนึ่งคนที่โดนไฮน์ริชหลอก";
+		next;
+		select("Do you know Heinrich?");
+		mes "[Memory of King Schmidtz]";
+		mes "เขาเป็นผู้ช่วยที่ซื่อสัตย์ของฉันและเขายังคงเป็นเช่นนั้นมาหลายร้อยปี";
+		next;
+		select("How has he lived for hundreds...");
+		mes "[Memory of King Schmidtz]";
+		mes "บางทีร่างกายของเขาก็เป็นเพียงการร่ายเขาพบวิธีที่จะย้ายจากร่างหนึ่งไปอีกร่างเพื่อที่จะมีชีวิตอยู่";
+		next;
+		mes "[Memory of King Schmidtz]";
+		mes "เขาไม่ต้องการยอมรับความตายของฉันและเดินทางไปทั่วโลกเพื่อตามหา Royal Guards ต่อไป";
+		next;
+		select("What's the meaning of this shield?");
+		mes "[Memory of King Schmidtz]";
+		mes "โล่จากไฮน์ริชคือสัญญาของเราก่อนที่ฉันจะตาย";
+		next;
+		mes "[Memory of King Schmidtz]";
+		mes "Heinrich ถูกตั้งข้อหาให้หาคนที่เหมาะสมมาเป็น Royal Guards โล่คือสัญญา";
+		next;
+		mes "[Memory of King Schmidtz]";
+		mes "สำหรับเขานี่เป็นคำสั่งสุดท้ายที่ฉันให้กับเขา";
+		next;
+		mes "[Memory of King Schmidtz]";
+		mes "ตอนนี้เขาไม่จำเป็นต้องทำอีกต่อไป แต่จะยังคงเป็นคนโง่ที่ไม่สามารถลืมคำสั่งสุดท้ายของกษัตริย์ของเขาได้";
+		next;
+		select("So what now? Can I leave?");
+		mes "[Memory of King Schmidtz]";
+		mes "ขอโทษ แต่ฉันส่งคุณไม่ได้ในตอนนี้";
+		next;
+		mes "[Memory of King Schmidtz]";
+		mes "นี่คือสัญญากับไฮน์ริชดังนั้นฉันต้องรักษาไว้เธอดูซื่อสัตย์และกล้าหาญ";
+		next;
+		mes "[Memory of King Schmidtz]";
+		mes "ตอนนี้ถึงเวลารักษาสัญญากับ Heinrich แล้วก็แล้วแต่คุณ";
+		next;
+		mes "[Memory of King Schmidtz]";
+		mes "ฉันวางแผนจะรับคุณเป็นสมาชิกของ Royal Guard เพื่อสืบสานประเพณีที่หายไปคุณพร้อมจะทำหรือยัง";
+		next;
+		if(select("Sure, of course:Not yet") == 2) {
+			mes "[Memory of King Schmidtz]";
+			mes "อืมเฮ็นริชอาจจะตัดสินผิดก็ได้";
+			close;
+		}
+		mes "[Memory of King Schmidtz]";
+		mes "ถ้าเป็นเช่นนั้นฉันจะตั้งให้คุณเป็นราชองครักษ์";
+		next;
+		if(select("Great.:Not yet.") == 2) {
+			mes "[Memory of King Schmidtz]";
+			mes "บางทีไฮน์ริชอาจมีภาพลักษณ์ของคุณผิด";
+			close;
+		}
+		mes "[Memory of King Schmidtz]";
+		if (BaseLevel < 99 || JobLevel < 50 || SkillPoint != 0) {
+			mes "ดูร่างกายของคุณก่อนหน้านั้น!";
+			next;
+			mes "[Memory of King Schmidtz]";
+			mes "ยังยึดติดกับตัวเองอยู่หรือเปล่า";
+			mes "เจ้าไม่สามารถสืบทอดราชองครักษ์ได้!";
+			close;
+		}
+		mes "ยินดีด้วย! ราชองครักษ์หนุ่ม";
+		mes "เป็นสัญลักษณ์แห่งเกียรติยศและสืบสานประเพณีอันยิ่งใหญ่ของชื่อใหม่ของคุณ";
+		close2;
+		specialeffect2 EF_MAPPILLAR;
+		progressbar "FFFF00",7;
+		specialeffect2 EF_LORD;
+		delitem 6275,1; //King_Shield
+		erasequest 12094;
+		jobchange roclass(eaclass()|EAJL_THIRD);
+		getitem 5757,1; //Schmidt_Helm
+		getitem 2795,1; //Green_Apple_Ring
+		end;
+	}
+	end;
+}
+
+gl_church,173,88,0	script	Delicate trace#01	844,{
+	if (job_royal == 4 && countitem(6274) == 0) {
+		progressbar "ffff00",5;
+		set .@roy_ran, rand(1,70);
+		if (.@roy_ran < 6)
+			getitem 6274,1; //Saint_Cloth_Piece
+		else if (.@roy_ran > 5 && .@roy_ran < 66)
+			getitem 7049,1; //Stone
+		else {
+			mes "ระหว่างการตรวจสอบสภาพภูมิประเทศแตกมันจะดีกว่าถ้าไปขุดที่อื่นสักพัก";
+			disablenpc strnpcinfo(0);
+			initnpctimer;
+			close;
+		}
+	}
+	mes "มีร่องรอยว่ามีคนมาขุดที่นี่แล้ว";
+	close;
+OnTimer60000:
+	enablenpc strnpcinfo(0);
+	stopnpctimer;
+OnTimer1000:
+OnTimer20000:
+OnTimer40000:
+	specialeffect EF_MAPPILLAR;
+	end;
+	specialeffect EF_MAPPILLAR;
+	end;
+	specialeffect EF_MAPPILLAR;
+	end;
+}
+gl_church,158,103,0	duplicate(Delicate trace#01)	Delicate trace#02	844
+gl_church,139,90,0	duplicate(Delicate trace#01)	Delicate trace#03	844
+gl_church,126,62,0	duplicate(Delicate trace#01)	Delicate trace#04	844
+gl_church,148,5,0	duplicate(Delicate trace#01)	Delicate trace#05	844
+gl_church,185,72,0	duplicate(Delicate trace#01)	Delicate trace#06	844
+gl_church,185,72,0	duplicate(Delicate trace#01)	Delicate trace#07	844
+gl_church,211,94,0	duplicate(Delicate trace#01)	Delicate trace#08	844
+gl_church,185,125,0	duplicate(Delicate trace#01)	Delicate trace#09	844
+gl_church,143,125,0	duplicate(Delicate trace#01)	Delicate trace#10	844
+gl_church,105,115,0	duplicate(Delicate trace#01)	Delicate trace#11	844
+
+gl_church,158,100,0	script	#Clue of traces	111,4,4,{
+	end;
+OnTouch_:
+	if (job_royal == 4 && countitem(6274) == 0) {
+		specialeffect2 EF_FREEZE;
+		mes "ฉันรู้สึกได้ถึงพลังที่แข็งแกร่งแถว ๆ นี้คงจะดีกว่าถ้าได้สำรวจรอบ ๆ ที่นี่";
+		viewpoint 1,173,88 ,1, 0xFFFF00;
+		viewpoint 1,158,103,2, 0xFFFF00;
+		viewpoint 1,139,90 ,3, 0xFFFF00;
+		viewpoint 1,126,62 ,4, 0xFFFF00;
+		viewpoint 1,148,5  ,5, 0xFFFF00;
+		viewpoint 1,185,72 ,6, 0xFFFF00;
+		viewpoint 1,211,94 ,7, 0xFFFF00;
+		viewpoint 1,185,125,8, 0xFFFF00;
+		viewpoint 1,143,125,9, 0xFFFF00;
+		viewpoint 1,105,115,10,0xFFFF00;
+		close;
+	}
+	end;
+}
+
+sec_in02,12,43,3	script	sorcereryal	57,1,1,{
+	callfunc "F_GM_NPC";
+	switch(select("Royal Guard:Rune Knight:Sorcerer")) {
+	case 1:
+		mes "1~5";
+		input .@input;
+		next;
+		if (.@input < 1 || .@input > 5) {
+			mes "ตั้งไอเทมปรับราชองครักษ์";mes "Set item to adjust the Royal Guard";
+			mes "คุณสามารถกำหนดตัวเลขระหว่าง 1 ถึง 5 เท่านั้น";
+		} else {
+			set job_royal, .@input;
+			mes "เสร็จสมบูรณ์";
+		}
+		close;
+	case 2:
+		mes "1~24";
+		input .@input;
+		next;
+		if (.@input < 1 || .@input > 24) {
+			mes "เซ็ตไอเทมปรับ Rune Knight";
+			mes "คุณสามารถตั้งค่า nbumber ระหว่าง 1 ถึง 24 เท่านั้น";
+		} else {
+			set job_rune_edq, .@input;
+			mes "เสร็จสมบูรณ์";
+		}
+		close;
+	case 3:
+		mes "1~5";
+		input .@input;
+		next;
+		if (.@input < 1 || .@input > 5) {
+			mes "ตั้งค่าไอเทมปรับหมอผี";
+			mes "คุณสามารถกำหนดตัวเลขระหว่าง 1 ถึง 5 เท่านั้น";
+		} else {
+			set job_soc, .@input;
+			mes "Completed";
+		}
+		close;
+	}
+}

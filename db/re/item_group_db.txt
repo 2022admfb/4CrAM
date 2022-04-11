@@ -1,0 +1,1989 @@
+// Item Group Database
+//
+// Structure of Database:
+// GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
+//==========================================
+//==========Costume_Silvervine===============
+//==========================================
+IG_Costume_Silvervine,20764,3,1,1,0,0,0
+IG_Costume_Silvervine,20765,3,1,1,0,0,0
+IG_Costume_Silvervine,20746,6,1,1,0,0,0
+IG_Costume_Silvervine,31625,25,1,1,0,0,0
+IG_Costume_Silvervine,31444,100,1,1,0,0,0
+IG_Costume_Silvervine,31195,100,1,1,0,0,0
+IG_Costume_Silvervine,20253,50,1,1,0,0,0
+IG_Costume_Silvervine,20467,50,1,1,0,0,0
+IG_Costume_Silvervine,20019,100,1,1,0,0,0
+IG_Costume_Silvervine,20076,50,1,1,0,0,0
+IG_Costume_Silvervine,31044,50,1,1,0,0,0
+IG_Costume_Silvervine,19599,50,1,1,0,0,0
+IG_Costume_Silvervine,31295,100,1,1,0,0,0
+IG_Costume_Silvervine,19876,100,1,1,0,0,0
+IG_Costume_Silvervine,19540,30,1,1,0,0,0
+IG_Costume_Silvervine,19652,100,1,1,0,0,0
+IG_Costume_Silvervine,20254,30,1,1,0,0,0
+IG_Costume_Silvervine,19823,10,1,1,0,0,0
+IG_Costume_Silvervine,19721,50,1,1,0,0,0
+IG_Costume_Silvervine,20147,5,1,1,0,0,0
+IG_Costume_Silvervine,31636,5,1,1,0,0,0
+IG_Costume_Silvervine,31684,5,1,1,0,0,0
+IG_Costume_Silvervine,31643,5,1,1,0,0,0
+IG_Costume_Silvervine,31686,100,1,1,0,0,0
+
+//==========================================
+//=================Box Lv 10================
+//==========================================
+IG_LEVEL_UP_10,12323,0,100,0 // flywing
+IG_LEVEL_UP_10,12324,0,5,0 // butterfly wing
+IG_LEVEL_UP_10,11567,0,200,0 // Red potion
+IG_LEVEL_UP_10,12325,0,10,0 // merrifire
+//IG_LEVEL_UP_10,14592,0,1,0,0,0,0 // JOB
+//IG_LEVEL_UP_10,12263,0,1,0,0,0,0 // EXP
+IG_LEVEL_UP_10,12265,0,2,0// recive
+//IG_LEVEL_UP_10,12516,0,1,0,0,0,0 // small life
+IG_LEVEL_UP_10,14887,0,1,0,0,0,0 // ultimate cook
+IG_LEVEL_UP_10,12215,0,5,0,0,0,0 //Blessing
+//IG_LEVEL_UP_10,12202,0,1,0,0,0,0 //str
+//IG_LEVEL_UP_10,12202,0,1,0,0,0,0 //agi
+//IG_LEVEL_UP_10,12202,0,1,0,0,0,0 //int
+//IG_LEVEL_UP_10,12202,0,1,0,0,0,0 //dex
+//IG_LEVEL_UP_10,12202,0,1,0,0,0,0 //luk
+//IG_LEVEL_UP_10,12202,0,1,0,0,0,0 //vit
+IG_LEVEL_UP_10,32364,0,1,0 // levelbox
+
+//==========================================
+//=================Box Lv 20================
+//==========================================
+IG_LEVEL_UP_20,12323,0,100,0 // flywing
+IG_LEVEL_UP_20,12324,0,10,0// butterfly wing
+IG_LEVEL_UP_20,11567,0,200,0 // Red potion
+IG_LEVEL_UP_20,12325,0,10,0 // merrifire
+//IG_LEVEL_UP_20,14592,0,1,0,0,0,0 // JOB
+//IG_LEVEL_UP_20,12263,0,1,0,0,0,0 // EXP
+IG_LEVEL_UP_20,12265,0,5,0 // recive
+//IG_LEVEL_UP_20,12516,0,1,0,0,0,0 // small life
+IG_LEVEL_UP_20,12215,0,5,0,0,0,0 //Blessing
+IG_LEVEL_UP_20,14887,0,3,0 // ultimate cook
+IG_LEVEL_UP_20,32356,0,1,0 // levelbox
+//==========================================
+//=================Box Lv 30================
+//==========================================
+IG_LEVEL_UP_30,12323,0,200,0 // flywing
+IG_LEVEL_UP_30,12324,0,10,0// butterfly wing
+IG_LEVEL_UP_30,11567,0,400,0 // Red potion
+IG_LEVEL_UP_30,12325,0,10,0 // merrifire
+//IG_LEVEL_UP_30,14592,0,1,0,0,0,0 // JOB
+//IG_LEVEL_UP_30,12263,0,1,0,0,0,0 // EXP
+IG_LEVEL_UP_30,12265,0,5,0// recive
+IG_LEVEL_UP_30,12516,0,1,0 // small life
+IG_LEVEL_UP_30,14887,0,2,0 // ultimate cook
+IG_LEVEL_UP_30,12215,0,5,0,0,0,0 //Blessing
+IG_LEVEL_UP_30,32357,0,1,0 // levelbox
+//==========================================
+//=================Box Lv 40================
+//==========================================
+IG_LEVEL_UP_40,12323,0,200,0 // flywing
+IG_LEVEL_UP_40,12324,0,10,0// butterfly wing
+IG_LEVEL_UP_40,11567,0,400,0 // Red potion
+IG_LEVEL_UP_40,12325,0,10,0 // merrifire
+IG_LEVEL_UP_40,14592,0,1,0 // JOB
+IG_LEVEL_UP_40,12263,0,1,0 // EXP
+IG_LEVEL_UP_40,12265,0,5,0 // recive
+IG_LEVEL_UP_40,12516,0,1,0 // small life
+IG_LEVEL_UP_40,14887,0,3,0 // ultimate cook
+//IG_LEVEL_UP_40,12202,0,1,0,0,0,0 //str
+//IG_LEVEL_UP_40,12203,0,1,0,0,0,0 //agi
+//IG_LEVEL_UP_40,12204,0,1,0,0,0,0 //int
+//IG_LEVEL_UP_40,12205,0,1,0,0,0,0 //dex
+//IG_LEVEL_UP_40,12206,0,1,0,0,0,0 //luk
+//IG_LEVEL_UP_40,12207,0,1,0,0,0,0 //vit
+IG_LEVEL_UP_40,12215,0,15,0,0,0,0 //Blessing
+IG_LEVEL_UP_40,32358,0,1,0 // levelbox
+//==========================================
+//=================Box Lv 50================
+//==========================================
+IG_LEVEL_UP_50,12323,0,200,0 // flywing
+IG_LEVEL_UP_50,12324,0,10,0 // butterfly wing
+IG_LEVEL_UP_50,11567,0,400,0 // Red potion
+IG_LEVEL_UP_50,12325,0,10,0 // merrifire
+IG_LEVEL_UP_50,14592,0,1,0 // JOB
+IG_LEVEL_UP_50,12263,0,1,0 // EXP
+IG_LEVEL_UP_50,12265,0,5,0 // recive
+IG_LEVEL_UP_50,12516,0,1,0 // small life
+IG_LEVEL_UP_50,14887,0,4,0 // ultimate cook
+//IG_LEVEL_UP_50,12202,0,2,0,0,0,0 //str
+//IG_LEVEL_UP_50,12203,0,2,0,0,0,0 //agi
+//IG_LEVEL_UP_50,12204,0,2,0,0,0,0 //int
+//IG_LEVEL_UP_50,12205,0,2,0,0,0,0 //dex
+//IG_LEVEL_UP_50,12206,0,2,0,0,0,0 //luk
+//IG_LEVEL_UP_50,12207,0,2,0,0,0,0 //vit
+IG_LEVEL_UP_50,12215,0,15,0,0,0,0 //Blessing
+IG_LEVEL_UP_50,32359,0,1,0 // levelbox
+//==========================================
+//=================Box Lv 60================
+//==========================================
+IG_LEVEL_UP_60,12323,0,200,0 // flywing
+IG_LEVEL_UP_60,12324,0,10,0 // butterfly wing
+IG_LEVEL_UP_60,11567,0,400,0 // Red potion
+IG_LEVEL_UP_60,12325,0,10,0 // merrifire
+IG_LEVEL_UP_60,14592,0,1,0 // JOB
+IG_LEVEL_UP_60,12263,0,1,0 // EXP
+IG_LEVEL_UP_60,12265,0,5,0 // recive
+IG_LEVEL_UP_60,12516,0,3,0 // small life
+IG_LEVEL_UP_60,14887,0,4,0 // ultimate cook
+//IG_LEVEL_UP_60,12202,0,3,0,0,0,0 //str
+//IG_LEVEL_UP_60,12203,0,3,0,0,0,0 //agi
+//IG_LEVEL_UP_60,12204,0,3,0,0,0,0 //int
+//IG_LEVEL_UP_60,12205,0,3,0,0,0,0 //dex
+//IG_LEVEL_UP_60,12206,0,3,0,0,0,0 //luk
+//IG_LEVEL_UP_60,12207,0,3,0,0,0,0 //vit
+IG_LEVEL_UP_60,12215,0,15,0,0,0,0 //Blessing
+IG_LEVEL_UP_60,32360,0,1,0 // levelbox
+//==========================================
+//=================Box Lv 70================
+//==========================================
+IG_LEVEL_UP_70,12323,0,200,0 // flywing
+IG_LEVEL_UP_70,12324,0,10,0 // butterfly wing
+IG_LEVEL_UP_70,11567,0,400,0 // Red potion
+IG_LEVEL_UP_70,12325,0,10,0 // merrifire
+IG_LEVEL_UP_70,14592,0,1,0 // JOB
+IG_LEVEL_UP_70,12263,0,1,0 // EXP
+IG_LEVEL_UP_70,12265,0,5,0 // recive
+IG_LEVEL_UP_70,12516,0,4,0 // small life
+IG_LEVEL_UP_70,14887,0,4,0 // ultimate cook
+//IG_LEVEL_UP_70,12202,0,4,0,0,0,0 //str
+//IG_LEVEL_UP_70,12203,0,4,0,0,0,0 //agi
+//IG_LEVEL_UP_70,12204,0,4,0,0,0,0 //int
+//IG_LEVEL_UP_70,12205,0,4,0,0,0,0 //dex
+//IG_LEVEL_UP_70,12206,0,4,0,0,0,0 //luk
+//IG_LEVEL_UP_70,12207,0,4,0,0,0,0 //vit
+IG_LEVEL_UP_70,12215,0,15,0,0,0,0 //Blessing
+IG_LEVEL_UP_70,32361,0,1,0 // levelbox
+//==========================================
+//=================Box Lv 80================
+//==========================================
+IG_LEVEL_UP_80,12323,0,200,0,0,0,0 // flywing
+IG_LEVEL_UP_80,12324,0,10,0,0,0,0 // butterfly wing
+IG_LEVEL_UP_80,11567,0,400,0,0,0,0 // Red potion
+IG_LEVEL_UP_80,12325,0,10,0,0,0,0 // merrifire
+IG_LEVEL_UP_80,14592,0,1,0,0,0,0 // JOB
+IG_LEVEL_UP_80,12263,0,1,0,0,0,0 // EXP
+IG_LEVEL_UP_80,12265,0,5,0,0,0,0 // recive
+IG_LEVEL_UP_80,12516,0,5,0,0,0,0 // small life
+IG_LEVEL_UP_80,14887,0,5,0,0,0,0 // ultimate cook
+//IG_LEVEL_UP_80,12202,0,5,0,0,0,0 //str
+//IG_LEVEL_UP_80,12203,0,5,0,0,0,0 //agi
+//IG_LEVEL_UP_80,12204,0,5,0,0,0,0 //int
+//IG_LEVEL_UP_80,12205,0,5,0,0,0,0 //dex
+//IG_LEVEL_UP_80,12206,0,5,0,0,0,0 //luk
+//IG_LEVEL_UP_80,12207,0,5,0,0,0,0 //vit
+IG_LEVEL_UP_80,12215,0,15,0,0,0,0 //Blessing
+IG_LEVEL_UP_80,32362,0,1,0,0,0,0 // levelbox
+//==========================================
+//=================Box Lv 90================
+//==========================================
+IG_LEVEL_UP_90,12323,0,200,0,0,0,0 // flywing
+IG_LEVEL_UP_90,12324,0,10,0,0,0,0 // butterfly wing
+IG_LEVEL_UP_90,11567,0,400,0,0,0,0 // Red potion
+IG_LEVEL_UP_90,12325,0,10,0,0,0,0 // merrifire
+IG_LEVEL_UP_90,14592,0,1,0,0,0,0 // JOB
+IG_LEVEL_UP_90,12263,0,1,0,0,0,0 // EXP
+IG_LEVEL_UP_90,12265,0,5,0,0,0,0 // recive
+IG_LEVEL_UP_90,12516,0,5,0,0,0,0 // small life
+IG_LEVEL_UP_90,14887,0,5,0,0,0,0 // ultimate cook
+//IG_LEVEL_UP_90,12202,0,5,0,0,0,0 //str
+//IG_LEVEL_UP_90,12203,0,5,0,0,0,0 //agi
+//IG_LEVEL_UP_90,12204,0,5,0,0,0,0 //int
+//IG_LEVEL_UP_90,12205,0,5,0,0,0,0 //dex
+//IG_LEVEL_UP_90,12206,0,5,0,0,0,0 //luk
+//IG_LEVEL_UP_90,12207,0,5,0,0,0,0 //vit
+IG_LEVEL_UP_90,12215,0,15,0,0,0,0 //Blessing
+IG_LEVEL_UP_90,32363,0,1,0,0,0,0 // levelbox
+//==========================================
+//=================Box Lv 100================
+//==========================================
+IG_LEVEL_UP_100,12323,0,200,0,0,0,0 // flywing
+IG_LEVEL_UP_100,12324,0,10,0,0,0,0 // butterfly wing
+IG_LEVEL_UP_100,11567,0,400,0,0,0,0 // Red potion
+IG_LEVEL_UP_100,12325,0,10,0,0,0,0 // merrifire
+IG_LEVEL_UP_100,14592,0,1,0,0,0,0 // JOB
+IG_LEVEL_UP_100,12263,0,1,0,0,0,0 // EXP
+IG_LEVEL_UP_100,12265,0,5,0,0,0,0 // recive
+IG_LEVEL_UP_100,12516,0,5,0,0,0,0 // small life
+//IG_LEVEL_UP_100,12202,0,5,0,0,0,0 //str
+//IG_LEVEL_UP_100,12203,0,5,0,0,0,0 //agi
+//IG_LEVEL_UP_100,12204,0,5,0,0,0,0 //int
+//IG_LEVEL_UP_100,12205,0,5,0,0,0,0 //dex
+//IG_LEVEL_UP_100,12206,0,5,0,0,0,0 //luk
+//IG_LEVEL_UP_100,12207,0,5,0,0,0,0 //vit
+IG_LEVEL_UP_100,12215,0,15,0,0,0,0 //Blessing
+IG_LEVEL_UP_100,14887,0,5,0,0,0,0 // ultimate cook
+// GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
+//==========================================
+//=================OCP BOX 1================
+//==========================================
+IG_OCP_1,19102,500,1,1,1,0,0 // hat
+IG_OCP_1,19114,500,1,1,1,0,0 // 
+IG_OCP_1,18543,500,1,1,1,0,0 // 
+IG_OCP_1,18877,500,1,1,1,0,0 // 
+IG_OCP_1,18564,500,1,1,1,0,0 // 
+//IG_OCP_1,18799,500,1,1,1,0,0 // 
+IG_OCP_1,19083,500,1,1,1,0,0 // 
+IG_OCP_1,18746,500,1,1,1,0,0 // 
+IG_OCP_1,18670,500,1,1,1,0,0 // 
+IG_OCP_1,18616,500,1,1,1,0,0 //
+IG_OCP_1,5978,500,1,1,1,0,0 //hat
+IG_OCP_1,15072,30,1,1,1,0,0 //armor
+IG_OCP_1,1746,500,1,1,1,0,0 //weapon
+IG_OCP_1,1837,500,1,1,1,0,0 //
+IG_OCP_1,13088,500,1,1,1,0,0 //
+IG_OCP_1,13412,100,1,1,1,0,0 //
+IG_OCP_1,13413,100,1,1,1,0,0 // weapon
+IG_OCP_1,28910,20,1,1,1,0,0 //shield
+IG_OCP_1,20799,20,1,1,1,0,0 //garment
+IG_OCP_1,28386,30,1,1,1,0,0 //accsesory
+IG_OCP_1,28394,30,1,1,1,0,0 //
+IG_OCP_1,18756,30,1,1,1,0,0 //SET1
+IG_OCP_1,2959,30,1,1,1,0,0 //SET
+IG_OCP_1,15169,30,1,1,1,0,0 //SET2
+IG_OCP_1,2881,500,1,1,1,0,0 //SET3
+IG_OCP_1,2365,500,1,1,1,0,0 //SET
+//IG_OCP_1,2192,30,1,1,1,0,0 //SET4
+IG_OCP_1,2743,30,1,1,1,0,0 //SET
+IG_OCP_1,2115,50,1,1,1,0,0 //SET5
+IG_OCP_1,1420,50,1,1,1,0,0 //SET
+IG_OCP_1,12411,700,8,1,1,0,0 //EXPDROPJOB
+IG_OCP_1,12412,700,8,1,1,0,0 //EXPDROPJOB
+IG_OCP_1,14592,700,8,1,1,0,0 //EXPDROPJOB
+IG_OCP_1,7619,20,30,1,1,0,0 //ore
+IG_OCP_1,7620,20,30,1,1,0,0 //ore
+// GroupID,ItemID,Rate{,Amount,Random,isAnnounced,Duration,GUID,isBound,isNamed}
+//==========================================
+//=================OCP BOX 2================
+//==========================================
+IG_OCP_2,5531,50,1,1,1,0,0 // hat
+IG_OCP_2,5933,30,1,1,1,0,0 // 
+IG_OCP_2,5500,60,1,1,1,0,0 // 
+IG_OCP_2,18543,50,1,1,1,0,0 // 
+IG_OCP_2,18787,50,1,1,1,0,0 // 
+IG_OCP_2,18746,50,1,1,1,0,0 // 
+IG_OCP_2,18616,50,1,1,1,0,0 // 
+IG_OCP_2,18564,50,1,1,1,0,0 // 
+//IG_OCP_2,5878,50,1,1,1,0,0 // 
+IG_OCP_2,19112,500,1,1,1,0,0 //hat
+IG_OCP_2,19048,500,1,1,1,0,0 //armor
+IG_OCP_2,15103,30,1,1,1,0,0 //armor
+IG_OCP_2,1746,500,1,1,1,0,0 //weapon
+IG_OCP_2,13088,500,1,1,1,0,0 //
+IG_OCP_2,16022,500,1,1,1,0,0 //
+IG_OCP_2,18813,500,1,1,1,0,0 //
+IG_OCP_2,1665,500,1,1,1,0,0 // 
+//IG_OCP_2,1672,500,1,1,1,0,0 //
+IG_OCP_2,1835,500,1,1,1,0,0 //
+IG_OCP_2,13412,100,1,1,1,0,0 //
+IG_OCP_2,13413,100,1,1,1,0,0 //weapon
+IG_OCP_2,2196,30,1,1,1,0,0 //shield
+IG_OCP_2,20712,30,1,1,1,0,0 //garment
+IG_OCP_2,22058,500,1,1,1,0,0 //shoe
+IG_OCP_2,28411,300,1,1,1,0,0 //accessory
+IG_OCP_2,2985,300,1,1,1,0,0 //accessory
+IG_OCP_2,28410,300,1,1,1,0,0 //accessory
+IG_OCP_2,20797,50,1,1,1,0,0 //SET1
+IG_OCP_2,2371,50,1,1,1,0,0 //SET1
+IG_OCP_2,2935,20,1,1,1,0,0 //SET2
+IG_OCP_2,2387,20,1,1,1,0,0 //SET2
+IG_OCP_2,2440,20,1,1,1,0,0 //SET2
+IG_OCP_2,2744,20,1,1,1,0,0 //SET2
+IG_OCP_2,6241,20,50,1,1,0,0 //ore
+IG_OCP_2,6240,20,50,1,1,0,0 //ore
+IG_OCP_2,14545,700,6,1,1,0,0 //Exp
+IG_OCP_2,14592,600,10,1,1,0,0 //job
+//==========================================
+//=================OCP BOX 3================
+//==========================================
+IG_OCP_3,19079,500,1,1,1,0,0 // hat
+IG_OCP_3,19125,500,1,1,1,0,0 // hat
+IG_OCP_3,5916,500,1,1,1,0,0 // hat
+IG_OCP_3,18787,500,1,1,1,0,0 // hat
+IG_OCP_3,18670,500,1,1,1,0,0 // hat
+IG_OCP_3,19083,500,1,1,1,0,0 // hat
+IG_OCP_3,18937,500,1,1,1,0,0 // hat
+IG_OCP_3,15106,500,1,1,1,0,0 // armor
+IG_OCP_3,15103,500,1,1,1,0,0 // armor
+//IG_OCP_3,15140,500,1,1,1,0,0 // armor
+IG_OCP_3,13017,500,1,1,1,0,0 // weapon
+IG_OCP_3,1665,500,1,1,1,0,0 // weapon
+IG_OCP_3,16024,500,1,1,1,0,0 // weapon
+IG_OCP_3,2191,500,1,1,1,0,0 // weapon
+IG_OCP_3,20783,500,1,1,1,0,0 // garment
+IG_OCP_3,20778,500,1,1,1,0,0 // garment
+IG_OCP_3,15071,500,1,1,1,0,0 // garment
+IG_OCP_3,20728,500,1,1,1,0,0 // garment
+IG_OCP_3,22103,500,1,1,1,0,0 // shoe
+IG_OCP_3,22042,500,1,1,1,0,0 // shoe
+IG_OCP_3,22060,500,1,1,1,0,0 // shoe
+IG_OCP_3,2702,500,1,1,1,0,0 // accessory
+IG_OCP_3,2864,500,1,1,1,0,0 // accessory
+IG_OCP_3,28305,500,1,1,1,0,0 // accessory
+IG_OCP_3,28353,500,1,1,1,0,0 // accessory
+IG_OCP_3,15169,50,1,1,1,0,0 // set
+IG_OCP_3,1649,50,1,1,1,0,0 // set
+IG_OCP_3,2195,50,1,1,1,0,0 // set
+IG_OCP_3,20753,50,1,1,1,0,0 // set
+IG_OCP_3,22069,50,1,1,1,0,0 // set
+IG_OCP_3,22104,50,1,1,1,0,0 // set
+IG_OCP_3,1646,50,1,1,1,0,0 // set
+//IG_OCP_3,2192,50,1,1,1,0,0 // set
+IG_OCP_3,2743,50,1,1,1,0,0 // set
+IG_OCP_3,7619,20,30,1,1,0,0 // ore
+IG_OCP_3,7620,20,30,1,1,0,0 // ore
+IG_OCP_3,12411,500,8,1,1,0,0 // exp
+IG_OCP_3,12412,500,8,1,1,0,0 // exp
+IG_OCP_3,14592,500,8,1,1,0,0 // exp
+IG_OCP_3,17229,100,1,1,1,0,0 // wing1day
+
+//==========================================
+//=================Overseas Care Package XVI================
+//==========================================
+
+IG_OCP_4,18591,300,1,1,1,0,0 // hat
+IG_OCP_4,15204,10,1,1,1,0,0 // hat
+IG_OCP_4,15249,300,1,1,1,0,0 // hat
+IG_OCP_4,22172,300,1,1,1,0,0 // hat
+IG_OCP_4,28565,30,1,1,1,0,0 // hat
+IG_OCP_4,28564,300,1,1,1,0,0 // hat
+IG_OCP_4,14545,700,6,1,1,0,0 // hat
+IG_OCP_4,14592,700,8,1,1,0,0 // hat
+IG_OCP_4,12991,50,1,1,1,0,0 // hat
+IG_OCP_4,6635,40,8,1,1,0,0 // hat
+
+//==========================================
+//=================Overseas Care Package Remix II================
+//==========================================
+
+IG_OCP_5,5411,30,1,1,1,0,0 // hat
+IG_OCP_5,18676,30,1,1,1,0,0 // hat
+IG_OCP_5,15087,500,1,1,1,0,0 // hat
+IG_OCP_5,16051,500,1,1,1,0,0 // hat
+IG_OCP_5,2589,10,1,1,1,0,0 // hat
+IG_OCP_5,2576,30,1,1,1,0,0 // hat
+IG_OCP_5,19917,500,1,1,1,0,0 // hat
+IG_OCP_5,20173,500,1,1,1,0,0 // hat
+IG_OCP_5,19919,500,1,1,1,0,0 // hat
+IG_OCP_5,19903,500,1,1,1,0,0 // hat
+IG_OCP_5,5329,700,1,1,1,0,0 // hat
+IG_OCP_5,20183,700,1,1,1,0,0 // hat
+IG_OCP_5,19616,700,1,1,1,0,0 // hat
+
+//==========================================
+//=================Overseas Care Package XIX================
+//==========================================
+
+IG_OCP_6,19171,30,1,1,1,0,0 // hat
+IG_OCP_6,19337,500,1,1,1,0,0 // hat
+IG_OCP_6,2202,15,1,1,1,0,0 // hat
+IG_OCP_6,19299,50,1,1,1,0,0 // hat
+IG_OCP_6,15283,30,1,1,1,0,0 // hat
+IG_OCP_6,22189,70,1,1,1,0,0 // hat
+IG_OCP_6,28594,50,1,1,1,0,0 // hat
+IG_OCP_6,28485,70,1,1,1,0,0 // hat
+IG_OCP_6,12991,700,1,1,1,0,0 // hat
+IG_OCP_6,6635,40,1,1,1,0,0 // hat
+IG_OCP_6,14545,700,2,1,1,0,0 // hat
+IG_OCP_6,12412,700,2,1,1,0,0 // hat
+IG_OCP_6,31717,500,1,1,1,0,0 // hat
+IG_OCP_6,31714,400,1,1,1,0,0 // hat
+IG_OCP_6,31394,500,1,1,1,0,0 // hat
+IG_OCP_6,31733,1000,1,1,1,0,0 // hat
+IG_OCP_6,31734,1000,1,1,1,0,0 // hat
+
+
+//==========================================
+//=================Overseas Care Package Remix X================
+//==========================================
+
+IG_OCP_7,18656,30,1,1,1,0,0 // hat
+IG_OCP_7,18603,1000,1,1,1,0,0 // hat
+IG_OCP_7,18657,75,1,1,1,0,0 // hat
+IG_OCP_7,18666,75,1,1,1,0,0 // hat
+IG_OCP_7,28502,10,1,1,1,0,0 // hat
+IG_OCP_7,20800,20,1,1,1,0,0 // hat
+IG_OCP_7,20707,500,1,1,1,0,0 // hat
+IG_OCP_7,28429,10,1,1,1,0,0 // hata
+IG_OCP_7,19669,500,1,1,1,0,0 // hat
+IG_OCP_7,5674,400,1,1,1,0,0 // hat
+IG_OCP_7,31215,700,1,1,1,0,0 // hat
+IG_OCP_7,31028,400,1,1,1,0,0 // hat
+IG_OCP_7,20238,1200,1,1,1,0,0 // hat
+IG_OCP_7,31186,200,1,1,1,0,0 // hat
+IG_OCP_7,12412,800,1,1,1,0,0 // hat
+IG_OCP_7,12103,1000,1,1,1,0,0 // hat
+IG_OCP_7,31786,1000,1,1,1,0,0 // hat
+IG_OCP_7,31785,1000,1,1,1,0,0 // hat
+
+//==========================================
+//=================Fullmoon egg================
+//==========================================
+
+IG_NEW_EGG_1,28507,10,1,1,1,0,0 //magician's glove
+IG_NEW_EGG_1,2959,28,1,1,1,0,0 // fidelity necklace
+IG_NEW_EGG_1,31249,48,1,1,1,0,0 // Costume Hopping Rabbit
+IG_NEW_EGG_1,31472,48,1,1,1,0,0 // costume fairy
+IG_NEW_EGG_1,4480,4,1,1,1,0,0 // KD - Card
+IG_NEW_EGG_1,5185,20,1,1,1,0,0 //Laurel_Wreath
+IG_NEW_EGG_1,18756,7,1,1,1,0,0 //shiba hat
+IG_NEW_EGG_1,20348,40,1,1,1,0,0 //sunny hat
+IG_NEW_EGG_1,24217,50,1,1,1,0,0 //blitz
+IG_NEW_EGG_1,24218,50,1,1,1,0,0 //blitz
+IG_NEW_EGG_1,24231,55,1,1,1,0,0 //blitz
+IG_NEW_EGG_1,24232,75,1,1,1,0,0 //blitz
+IG_NEW_EGG_1,24343,75,1,1,1,0,0 //blitz
+IG_NEW_EGG_1,24344,75,1,1,1,0,0 //blitz
+
+///-------low rate---------
+IG_NEW_EGG_1,24277,70,1,1,1,0,0 //wizard shoe
+IG_NEW_EGG_1,24264,70,1,1,1,0,0 //wizard arrmor
+IG_NEW_EGG_1,24296,70,1,1,1,0,0 //warlock weapon
+IG_NEW_EGG_1,24309,70,1,1,1,0,0 //warlock  shield
+IG_NEW_EGG_1,24249,50,1,1,1,0,0 //magician earring
+IG_NEW_EGG_1,24254,50,1,1,1,0,0 //magician pendant
+IG_NEW_EGG_1,12796,250,10,1,0,0,0 //red booster
+IG_NEW_EGG_1,32696,200,10,1,0,0,0 //ultimate cook
+IG_NEW_EGG_1,13534,250,1,1,0,0,0 //light white potion box
+IG_NEW_EGG_1,13810,250,1,1,0,0,0 //light blue potion box
+IG_NEW_EGG_1,12912,100,1,1,0,0,0 //convex miror box
+IG_NEW_EGG_1,17229,70,1,1,1,0,0 //flywing 1 day
+IG_NEW_EGG_1,12209,700,10,1,0,0,0 //life insurance
+IG_NEW_EGG_1,12211,900,10,1,0,0,0 //kafra card
+IG_NEW_EGG_1,12215,900,10,1,0,0,0 //blessing scroll
+IG_NEW_EGG_1,12216,900,10,1,0,0,0 //agi scroll
+IG_NEW_EGG_1,14600,400,5,1,0,0,0 //mental potion
+
+
+//==========================================
+//=================Eragon egg================
+//==========================================
+
+IG_NEW_EGG_2,19020,10,1,1,1,0,0 //survival
+IG_NEW_EGG_2,19139,10,1,1,1,0,0 // survival
+IG_NEW_EGG_2,20813,10,1,1,1,0,0 // survival
+IG_NEW_EGG_2,22170,10,1,1,1,0,0 // survival
+IG_NEW_EGG_2,19329,2,1,1,1,0,0 // devill hand
+IG_NEW_EGG_2,22829,2,1,1,1,0,0 //sealed Card
+IG_NEW_EGG_2,20249,8,1,1,1,0,0 //red strong
+IG_NEW_EGG_2,31719,10,1,1,1,0,0 //flame
+IG_NEW_EGG_2,19934,14,1,1,1,0,0 //alive ten gallon hat of flame
+IG_NEW_EGG_2,20195,15,1,1,1,0,0 //scratching
+IG_NEW_EGG_2,18647,18,1,1,1,0,0 //star
+IG_NEW_EGG_2,19594,13,1,1,1,0,0 //geographer band
+
+
+///-------low rate---------
+IG_NEW_EGG_2,24075,20,1,1,1,0,0 //Large Shadow Weapon
+IG_NEW_EGG_2,24072,20,1,1,1,0,0 //Large Shadow 
+IG_NEW_EGG_2,24215,20,1,1,1,0,0 //Advanced Shadow Shield
+IG_NEW_EGG_2,24214,20,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_2,12419,50,1,1,1,0,0 //mana+
+IG_NEW_EGG_2,12418,50,1,1,1,0,0 //fullswing
+//IG_NEW_EGG_2,12796,250,10,1,0,0,0 //red booster
+IG_NEW_EGG_2,32696,60,10,1,0,0,0 //ultimate cook
+IG_NEW_EGG_2,13534,100,1,1,0,0,0 //light white potion box
+IG_NEW_EGG_2,13810,100,1,1,0,0,0 //light blue potion box
+IG_NEW_EGG_2,12912,70,1,1,0,0,0 //convex miror box
+IG_NEW_EGG_2,17229,70,1,1,1,0,0 //flywing 1 day
+IG_NEW_EGG_2,12209,120,10,1,0,0,0 //life insurance
+IG_NEW_EGG_2,12211,120,10,1,0,0,0 //kafra card
+IG_NEW_EGG_2,12793,50,1,1,0,0,0 //pillx10
+IG_NEW_EGG_2,14233,100,1,1,0,0,0 //dead
+IG_NEW_EGG_2,14600,70,5,1,0,0,0 //mental potion
+IG_NEW_EGG_2,40012,0,1,0,0,0,0//ticket
+
+
+//==========================================
+//=================Illusion of luanda================
+//==========================================
+
+IG_NEW_EGG_3,28626,20,1,1,1,0,0 //Illusion Tablet
+IG_NEW_EGG_3,18174,20,1,1,1,0,0 // Illusion bow
+IG_NEW_EGG_3,19366,20,1,1,1,0,0 // Illusion helm
+IG_NEW_EGG_3,15348,20,1,1,1,0,0 // ILLusion armor
+IG_NEW_EGG_3,22192,20,1,1,1,0,0 // Illusion goibne greave
+IG_NEW_EGG_3,20923,20,1,1,1,0,0 //Illsion Goibne spaulder
+IG_NEW_EGG_3,20249,38,1,1,1,0,0 //red strong
+IG_NEW_EGG_3,31719,40,1,1,1,0,0 //flame
+IG_NEW_EGG_3,19934,44,1,1,1,0,0 //alive ten gallon hat of flame
+IG_NEW_EGG_3,20195,45,1,1,1,0,0 //scratching
+IG_NEW_EGG_3,18647,48,1,1,1,0,0 //star
+IG_NEW_EGG_3,19594,43,1,1,1,0,0 //geographer band
+
+
+///-------low rate---------
+IG_NEW_EGG_3,24393,70,1,1,1,0,0 //Large Shadow Weapon
+IG_NEW_EGG_3,24394,70,1,1,1,0,0 //Large Shadow 
+IG_NEW_EGG_3,24395,70,1,1,1,0,0 //Advanced Shadow Shield
+IG_NEW_EGG_3,24399,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_3,24400,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_3,24401,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_3,24396,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_3,24397,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_3,24398,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_3,12419,120,1,1,1,0,0 //mana+
+IG_NEW_EGG_3,12418,120,1,1,1,0,0 //fullswing
+IG_NEW_EGG_3,12796,250,10,1,0,0,0 //red booster
+IG_NEW_EGG_3,32696,200,10,1,0,0,0 //ultimate cook
+IG_NEW_EGG_3,13534,250,1,1,0,0,0 //light white potion box
+IG_NEW_EGG_3,13810,250,1,1,0,0,0 //light blue potion box
+IG_NEW_EGG_3,12912,100,1,1,0,0,0 //convex miror box
+IG_NEW_EGG_3,17229,70,1,1,1,0,0 //flywing 1 day
+IG_NEW_EGG_3,12209,700,10,1,0,0,0 //life insurance
+IG_NEW_EGG_3,12211,900,10,1,0,0,0 //kafra card
+IG_NEW_EGG_3,12793,100,1,1,0,0,0 //pillx10
+IG_NEW_EGG_3,14233,700,1,1,0,0,0 //dead
+IG_NEW_EGG_3,14600,200,5,1,0,0,0 //mental potion
+
+//==========================================
+//=================Illusion of moonlight================
+//==========================================
+
+IG_NEW_EGG_4,28725,20,1,1,1,0,0 //Illusion Tablet
+IG_NEW_EGG_4,26109,20,1,1,1,0,0 // Illusion bow
+IG_NEW_EGG_4,26007,20,1,1,1,0,0 // Illusion helm
+IG_NEW_EGG_4,22133,20,1,1,1,0,0 // ILLusion armor
+IG_NEW_EGG_4,20838,20,1,1,1,0,0 // Illusion goibne greave
+IG_NEW_EGG_4,19210,20,1,1,1,0,0 //Illsion Goibne spaulder
+IG_NEW_EGG_4,19209,20,1,1,1,0,0 //Illsion
+IG_NEW_EGG_4,16063,20,1,1,1,0,0 //Illsion
+IG_NEW_EGG_4,15195,20,1,1,1,0,0 //Illsion
+IG_NEW_EGG_4,20195,45,1,1,1,0,0 //scratching
+IG_NEW_EGG_4,18647,48,1,1,1,0,0 //star
+IG_NEW_EGG_4,19594,43,1,1,1,0,0 //geographer band
+IG_NEW_EGG_4,20348,40,1,1,1,0,0 //sunny hat
+IG_NEW_EGG_4,31249,48,1,1,1,0,0 // Costume Hopping Rabbit
+IG_NEW_EGG_4,31472,48,1,1,1,0,0 // costume fairy
+
+
+///-------low rate---------
+IG_NEW_EGG_4,24393,70,1,1,1,0,0 //Large Shadow Weapon
+IG_NEW_EGG_4,24394,70,1,1,1,0,0 //Large Shadow 
+IG_NEW_EGG_4,24395,70,1,1,1,0,0 //Advanced Shadow Shield
+IG_NEW_EGG_4,24399,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_4,24400,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_4,24401,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_4,24396,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_4,24397,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_4,24398,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_4,12419,120,1,1,1,0,0 //mana+
+IG_NEW_EGG_4,12418,120,1,1,1,0,0 //fullswing
+IG_NEW_EGG_4,12796,250,10,1,0,0,0 //red booster
+IG_NEW_EGG_4,32696,200,10,1,0,0,0 //ultimate cook
+IG_NEW_EGG_4,13534,250,1,1,0,0,0 //light white potion box
+IG_NEW_EGG_4,13810,250,1,1,0,0,0 //light blue potion box
+IG_NEW_EGG_4,12912,100,1,1,0,0,0 //convex miror box
+IG_NEW_EGG_4,17229,70,1,1,1,0,0 //flywing 1 day
+IG_NEW_EGG_4,12209,700,10,1,0,0,0 //life insurance
+IG_NEW_EGG_4,12211,900,10,1,0,0,0 //kafra card
+IG_NEW_EGG_4,12793,100,1,1,0,0,0 //pillx10
+IG_NEW_EGG_4,14233,700,1,1,0,0,0 //dead
+IG_NEW_EGG_4,14600,200,5,1,0,0,0 //mental potion
+
+
+//==========================================
+//=================Illusion of vampire================
+//==========================================
+
+IG_NEW_EGG_5,28022,20,1,1,1,0,0 //Illusion Tablet
+IG_NEW_EGG_5,28023,20,1,1,1,0,0 // Illusion bow
+IG_NEW_EGG_5,2039,20,1,1,1,0,0 // Illusion helm
+IG_NEW_EGG_5,18149,20,1,1,1,0,0 // ILLusion armor
+IG_NEW_EGG_5,32692,20,1,1,1,0,0 // Illusion goibne greave
+IG_NEW_EGG_5,20840,20,1,1,1,0,0 //Illsion Goibne spaulder
+IG_NEW_EGG_5,28508,20,1,1,1,0,0 //Illsion Goibne spaulder
+IG_NEW_EGG_5,28509,20,1,1,1,0,0 //Illsion Goibne spaulder
+IG_NEW_EGG_5,15195,40,1,1,1,0,0 //alive ten gallon hat of flame
+IG_NEW_EGG_5,20195,45,1,1,1,0,0 //scratching
+IG_NEW_EGG_5,18647,48,1,1,1,0,0 //star
+IG_NEW_EGG_5,19594,43,1,1,1,0,0 //geographer band
+IG_NEW_EGG_5,31249,48,1,1,1,0,0 // Costume Hopping Rabbit
+IG_NEW_EGG_5,31472,48,1,1,1,0,0 // costume fairy
+
+
+///-------low rate---------
+IG_NEW_EGG_5,24393,70,1,1,1,0,0 //Large Shadow Weapon
+IG_NEW_EGG_5,24394,70,1,1,1,0,0 //Large Shadow 
+IG_NEW_EGG_5,24395,70,1,1,1,0,0 //Advanced Shadow Shield
+IG_NEW_EGG_5,24399,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_5,24400,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_5,24401,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_5,24396,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_5,24397,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_5,24398,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_5,12419,120,1,1,1,0,0 //mana+
+IG_NEW_EGG_5,12418,120,1,1,1,0,0 //fullswing
+IG_NEW_EGG_5,12796,250,10,1,0,0,0 //red booster
+IG_NEW_EGG_5,32696,200,10,1,0,0,0 //ultimate cook
+IG_NEW_EGG_5,13534,250,1,1,0,0,0 //light white potion box
+IG_NEW_EGG_5,13810,250,1,1,0,0,0 //light blue potion box
+IG_NEW_EGG_5,12912,100,1,1,0,0,0 //convex miror box
+IG_NEW_EGG_5,17229,70,1,1,1,0,0 //flywing 1 day
+IG_NEW_EGG_5,12209,700,10,1,0,0,0 //life insurance
+IG_NEW_EGG_5,12211,900,10,1,0,0,0 //kafra card
+IG_NEW_EGG_5,12793,100,1,1,0,0,0 //pillx10
+IG_NEW_EGG_5,14233,700,1,1,0,0,0 //dead
+IG_NEW_EGG_5,14600,200,5,1,0,0,0 //mental potion
+
+//==========================================
+//=================Illusion of frozen================
+//==========================================
+
+IG_NEW_EGG_6,13337,20,1,1,1,0,0 //Illusion Tablet
+IG_NEW_EGG_6,1846,20,1,1,1,0,0 // Illusion bow
+IG_NEW_EGG_6,28922,20,1,1,1,0,0 // Illusion helm
+IG_NEW_EGG_6,20847,20,1,1,1,0,0 // ILLusion armor
+IG_NEW_EGG_6,19223,20,1,1,1,0,0 // Illusion goibne greave
+//IG_NEW_EGG_5,20840,20,1,1,1,0,0 //Illsion Goibne spaulder
+//IG_NEW_EGG_5,28508,20,1,1,1,0,0 //Illsion Goibne spaulder
+//IG_NEW_EGG_5,28509,20,1,1,1,0,0 //Illsion Goibne spaulder
+IG_NEW_EGG_6,15195,40,1,1,1,0,0 //alive ten gallon hat of flame
+IG_NEW_EGG_6,20195,45,1,1,1,0,0 //scratching
+IG_NEW_EGG_6,18647,48,1,1,1,0,0 //star
+IG_NEW_EGG_6,19594,43,1,1,1,0,0 //geographer band
+IG_NEW_EGG_6,31249,48,1,1,1,0,0 // Costume Hopping Rabbit
+IG_NEW_EGG_6,31472,48,1,1,1,0,0 // costume fairy
+
+
+///-------low rate---------
+IG_NEW_EGG_6,24393,70,1,1,1,0,0 //Large Shadow Weapon
+IG_NEW_EGG_6,24394,70,1,1,1,0,0 //Large Shadow 
+IG_NEW_EGG_6,24395,70,1,1,1,0,0 //Advanced Shadow Shield
+IG_NEW_EGG_6,24399,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_6,24400,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_6,24401,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_6,24396,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_6,24397,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_6,24398,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_NEW_EGG_6,12419,120,1,1,1,0,0 //mana+
+IG_NEW_EGG_6,12418,120,1,1,1,0,0 //fullswing
+IG_NEW_EGG_6,12796,250,10,1,0,0,0 //red booster
+IG_NEW_EGG_6,32696,200,10,1,0,0,0 //ultimate cook
+IG_NEW_EGG_6,13534,250,1,1,0,0,0 //light white potion box
+IG_NEW_EGG_6,13810,250,1,1,0,0,0 //light blue potion box
+IG_NEW_EGG_6,12912,100,1,1,0,0,0 //convex miror box
+IG_NEW_EGG_6,17229,70,1,1,1,0,0 //flywing 1 day
+IG_NEW_EGG_6,12209,700,10,1,0,0,0 //life insurance
+IG_NEW_EGG_6,12211,900,10,1,0,0,0 //kafra card
+IG_NEW_EGG_6,12793,100,1,1,0,0,0 //pillx10
+IG_NEW_EGG_6,14233,700,1,1,0,0,0 //dead
+IG_NEW_EGG_6,14600,200,5,1,0,0,0 //mental potion
+
+//==========================================
+//=================Illusion of abyss================
+//==========================================
+
+IG_OCP_10,13469,20,1,1,1,0,0 //Illusion Tablet
+IG_OCP_10,1326,20,1,1,1,0,0 // Illusion bow
+IG_OCP_10,32005,20,1,1,1,0,0 // Illusion helm
+IG_OCP_10,13338,20,1,1,1,0,0 // ILLusion armor
+IG_OCP_10,16065,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_10,19247,20,1,1,1,0,0 //Illsion Goibne spaulder
+IG_OCP_10,15195,40,1,1,1,0,0 //alive ten gallon hat of flame
+IG_OCP_10,20195,45,1,1,1,0,0 //scratching
+IG_OCP_10,18647,48,1,1,1,0,0 //star
+IG_OCP_10,19594,43,1,1,1,0,0 //geographer band
+IG_OCP_10,31249,48,1,1,1,0,0 // Costume Hopping Rabbit
+IG_OCP_10,31472,48,1,1,1,0,0 // costume fairy
+
+
+///-------low rate---------
+IG_OCP_10,24393,70,1,1,1,0,0 //Large Shadow Weapon
+IG_OCP_10,24394,70,1,1,1,0,0 //Large Shadow 
+IG_OCP_10,24395,70,1,1,1,0,0 //Advanced Shadow Shield
+IG_OCP_10,24399,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_10,24400,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_10,24401,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_10,24396,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_10,24397,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_10,24398,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_10,12419,120,1,1,1,0,0 //mana+
+IG_OCP_10,12418,120,1,1,1,0,0 //fullswing
+IG_OCP_10,12796,250,10,1,0,0,0 //red booster
+IG_OCP_10,32696,200,10,1,0,0,0 //ultimate cook
+IG_OCP_10,13534,250,1,1,0,0,0 //light white potion box
+IG_OCP_10,13810,250,1,1,0,0,0 //light blue potion box
+IG_OCP_10,12912,100,1,1,0,0,0 //convex miror box
+IG_OCP_10,17229,70,1,1,1,0,0 //flywing 1 day
+IG_OCP_10,12209,700,10,1,0,0,0 //life insurance
+IG_OCP_10,12211,900,10,1,0,0,0 //kafra card
+IG_OCP_10,12793,100,1,1,0,0,0 //pillx10
+IG_OCP_10,14233,700,1,1,0,0,0 //dead
+IG_OCP_10,14600,200,5,1,0,0,0 //mental potion
+
+//==========================================
+//=================Illusion of Teddy bear================
+//==========================================
+
+IG_OCP_8,28745,20,1,1,1,0,0 //Illusion Tablet
+IG_OCP_8,28244,20,1,1,1,0,0 // Illusion bow
+IG_OCP_8,2051,20,1,1,1,0,0 // Illusion helm
+IG_OCP_8,22190,20,1,1,1,0,0 // ILLusion armor
+IG_OCP_8,19344,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_8,15195,40,1,1,1,0,0 //alive ten gallon hat of flame
+IG_OCP_8,20195,45,1,1,1,0,0 //scratching
+IG_OCP_8,18647,48,1,1,1,0,0 //star
+IG_OCP_8,19594,43,1,1,1,0,0 //geographer band
+IG_OCP_8,31249,48,1,1,1,0,0 // Costume Hopping Rabbit
+IG_OCP_8,31472,48,1,1,1,0,0 // costume fairy
+
+
+///-------low rate---------
+IG_OCP_8,24393,70,1,1,1,0,0 //Large Shadow Weapon
+IG_OCP_8,24394,70,1,1,1,0,0 //Large Shadow 
+IG_OCP_8,24395,70,1,1,1,0,0 //Advanced Shadow Shield
+IG_OCP_8,24399,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_8,24400,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_8,24401,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_8,24396,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_8,24397,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_8,24398,70,1,1,1,0,0 //Advanced Shadow Shoes
+IG_OCP_8,12419,120,1,1,1,0,0 //mana+
+IG_OCP_8,12418,120,1,1,1,0,0 //fullswing
+IG_OCP_8,12796,250,10,1,0,0,0 //red booster
+IG_OCP_8,32696,200,10,1,0,0,0 //ultimate cook
+IG_OCP_8,13534,250,1,1,0,0,0 //light white potion box
+IG_OCP_8,13810,250,1,1,0,0,0 //light blue potion box
+IG_OCP_8,12912,100,1,1,0,0,0 //convex miror box
+IG_OCP_8,17229,70,1,1,1,0,0 //flywing 1 day
+IG_OCP_8,12209,700,10,1,0,0,0 //life insurance
+IG_OCP_8,12211,900,10,1,0,0,0 //kafra card
+IG_OCP_8,12793,100,1,1,0,0,0 //pillx10
+IG_OCP_8,14233,700,1,1,0,0,0 //dead
+IG_OCP_8,14600,200,5,1,0,0,0 //mental potion
+
+//==========================================
+//=================Illusion 17.1 OS================
+//==========================================
+
+IG_OCP_9,1862,20,1,1,1,0,0 //Illusion Tablet
+IG_OCP_9,13493,20,1,1,1,0,0 // Illusion bow
+IG_OCP_9,16088,20,1,1,1,0,0 // Illusion helm
+IG_OCP_9,16089,20,1,1,1,0,0 // ILLusion armor
+IG_OCP_9,18178,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_9,18179,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_9,18180,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_9,21047,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_9,26151,20,1,1,1,0,0 // Illusion goibne greave
+//IG_OCP_9,26164,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_9,28038,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_9,28136,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_9,28253,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_9,28755,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_9,28629,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_9,32019,20,1,1,1,0,0 // Illusion goibne greave
+IG_OCP_9,15195,40,1,1,1,0,0 //alive ten gallon hat of flame
+IG_OCP_9,20195,45,1,1,1,0,0 //scratching
+IG_OCP_9,18647,48,1,1,1,0,0 //star
+IG_OCP_9,19594,43,1,1,1,0,0 //geographer band
+IG_OCP_9,31249,48,1,1,1,0,0 // Costume Hopping Rabbit
+IG_OCP_9,31472,48,1,1,1,0,0 // costume fairy
+
+
+///-------low rate---------
+IG_OCP_9,15376,30,1,1,1,0,0 //os armor
+IG_OCP_9,15377,30,1,1,1,0,0 //os armor
+IG_OCP_9,20933,30,1,1,1,0,0 //os armor
+IG_OCP_9,20934,30,1,1,1,0,0 //os armor
+IG_OCP_9,22196,30,1,1,1,0,0 //os armor
+IG_OCP_9,22197,30,1,1,1,0,0 //os armor
+IG_OCP_9,32207,30,1,1,1,0,0 //os armor
+IG_OCP_9,32208,30,1,1,1,0,0 //os armor
+IG_OCP_9,32209,30,1,1,1,0,0 //os armor
+IG_OCP_9,32210,30,1,1,1,0,0 //os armor
+IG_OCP_9,12419,120,1,1,1,0,0 //mana+
+IG_OCP_9,12418,120,1,1,1,0,0 //fullswing
+IG_OCP_9,12796,250,10,1,0,0,0 //red booster
+IG_OCP_9,32696,200,10,1,0,0,0 //ultimate cook
+IG_OCP_9,13534,250,1,1,0,0,0 //light white potion box
+IG_OCP_9,13810,250,1,1,0,0,0 //light blue potion box
+IG_OCP_9,12912,100,1,1,0,0,0 //convex miror box
+IG_OCP_9,17229,70,1,1,1,0,0 //flywing 1 day
+IG_OCP_9,12209,700,10,1,0,0,0 //life insurance
+IG_OCP_9,12211,900,10,1,0,0,0 //kafra card
+IG_OCP_9,12793,100,1,1,0,0,0 //pillx10
+IG_OCP_9,14233,700,1,1,0,0,0 //dead
+IG_OCP_9,14600,200,5,1,0,0,0 //mental potion
+
+//==========================================
+//=================COS 1================
+//==========================================
+IG_COS_1,40012,0,1,0,0,0,0 
+IG_COS_1,19529,6,1,1,1,0,0 
+IG_COS_1,19528,6,1,1,1,0,0 
+IG_COS_1,19526,6,1,1,1,0,0 
+IG_COS_1,19527,6,1,1,1,0,0 
+IG_COS_1,19524,6,1,1,1,0,0 
+IG_COS_1,19532,6,1,1,1,0,0 
+IG_COS_1,19538,4,1,1,1,0,0 
+IG_COS_1,19539,4,1,1,1,0,0 
+IG_COS_1,19540,4,1,1,1,0,0 
+IG_COS_1,19541,4,1,1,1,0,0 
+IG_COS_1,19543,4,1,1,1,0,0 
+IG_COS_1,19544,4,1,1,1,0,0 
+IG_COS_1,19546,4,1,1,1,0,0 
+IG_COS_1,19550,4,1,1,1,0,0 
+IG_COS_1,19565,4,1,1,1,0,0 
+IG_COS_1,19568,3,1,1,1,0,0 
+IG_COS_1,19584,3,1,1,1,0,0 
+IG_COS_1,19586,3,1,1,1,0,0 
+IG_COS_1,19596,3,1,1,1,0,0 
+IG_COS_1,32412,2,1,1,1,0,0 
+IG_COS_1,19589,2,1,1,1,0,0 
+IG_COS_1,19549,2,1,1,1,0,0 
+IG_COS_1,19605,2,1,1,1,0,0 
+IG_COS_1,19606,2,1,1,1,0,0 
+
+//==========================================
+//=================COS 2================
+//==========================================
+IG_COS_2,40012,0,1,0,0,0,0 
+IG_COS_2,19588,6,1,1,1,0,0 
+IG_COS_2,19597,6,1,1,1,0,0 
+IG_COS_2,19612,6,1,1,1,0,0 
+IG_COS_2,19617,6,1,1,1,0,0 
+IG_COS_2,19643,6,1,1,1,0,0 
+IG_COS_2,19903,4,1,1,1,0,0 
+IG_COS_2,19910,4,1,1,1,0,0 
+IG_COS_2,19735,4,1,1,1,0,0 
+IG_COS_2,19639,4,1,1,1,0,0 
+IG_COS_2,19657,4,1,1,1,0,0 
+IG_COS_2,19707,4,1,1,1,0,0 
+IG_COS_2,19701,4,1,1,1,0,0 
+IG_COS_2,19738,4,1,1,1,0,0 
+IG_COS_2,19774,3,1,1,1,0,0 
+IG_COS_2,19888,3,1,1,1,0,0 
+IG_COS_2,19733,3,1,1,1,0,0 
+IG_COS_2,19902,3,1,1,1,0,0 
+IG_COS_2,19851,2,1,1,1,0,0 
+IG_COS_2,19871,2,1,1,1,0,0 
+IG_COS_2,19630,2,1,1,1,0,0 
+IG_COS_2,19836,2,1,1,1,0,0 
+IG_COS_2,19726,2,1,1,1,0,0
+IG_COS_2,19834,2,1,1,1,0,0  
+IG_COS_2,19795,2,1,1,1,0,0 
+
+//==========================================
+//=================Beginner Scroll================
+//==========================================
+IG_BOX_2,5497,2,1,1,1,0,0 // king tiger doll hat
+IG_BOX_2,18580,2,1,1,1,0,0 //yggdrasil crown
+IG_BOX_2,20533,2,1,1,1,0,0 //Butter fly wing [Pink]
+IG_BOX_2,20812,2,1,1,1,0,0 //Backstep bag
+IG_BOX_2,2985,5,1,1,1,0,0 //gyges Ring
+IG_BOX_2,19616,5,1,1,1,0,0 // wickebine' black ear
+IG_BOX_2,20269,5,1,1,1,0,0 // white fox
+IG_BOX_2,20325,5,1,1,1,0,0 // costume little Aquarium
+IG_BOX_2,19916,7,1,1,1,0,0 //black cat hat
+IG_BOX_2,18885,7,1,1,1,0,0 //jeje cap
+IG_BOX_2,5283,10,1,1,1,0,0 //chick hat
+IG_BOX_2,5568,10,1,1,1,0,0 //rabbit bonnet
+IG_BOX_2,19839,10,1,1,1,0,0 //vanilmirth hat
+///-------low rate---------
+IG_BOX_2,24031,20,1,1,1,0,0 //kingbird weapon
+IG_BOX_2,24034,20,1,1,1,0,0 //lucky
+IG_BOX_2,24043,20,1,1,1,0,0 //dex
+IG_BOX_2,24029,20,1,1,1,0,0 //ancient armor
+IG_BOX_2,24040,20,1,1,1,0,0 //lucky
+IG_BOX_2,24037,20,1,1,1,0,0 //dex
+//IG_BOX_2,12796,35,10,1,0,0,0 //red booster
+IG_BOX_2,13534,100,1,1,0,0,0 //light white potion box
+IG_BOX_2,13810,100,1,1,0,0,0 //light blue potion box
+IG_BOX_2,12912,65,1,1,0,0,0 //convex miror box
+IG_BOX_2,17229,60,1,1,1,0,0 //flywing 1 day
+IG_BOX_2,12209,120,10,1,0,0,0 //life insurance
+IG_BOX_2,12211,120,10,1,0,0,0 //kafra card
+IG_BOX_2,12216,100,10,1,0,0,0 //agi scroll
+IG_BOX_2,14600,80,5,1,0,0,0 //mental potion
+IG_BOX_2,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Old Hat Box================
+//==========================================
+IG_BOX_1,18666,500,1,1,0,0,0
+IG_BOX_1,5563,500,1,1,0,0,0
+IG_BOX_1,5207,500,1,1,0,0,0
+IG_BOX_1,18615,500,1,1,0,0,0
+IG_BOX_1,18616,500,1,1,0,0,0
+IG_BOX_1,5575,500,1,1,0,0,0
+IG_BOX_1,18665,500,1,1,0,0,0
+IG_BOX_1,5667,500,1,1,0,0,0
+IG_BOX_1,5611,500,1,1,0,0,0
+IG_BOX_1,18683,500,1,1,0,0,0
+IG_BOX_1,18620,500,1,1,0,0,0
+IG_BOX_1,5531,500,1,1,0,0,0
+IG_BOX_1,18895,500,1,1,0,0,0
+IG_BOX_1,5447,500,1,1,0,0,0
+IG_BOX_1,5985,500,1,1,0,0,0
+IG_BOX_1,5530,500,1,1,0,0,0
+IG_BOX_1,2295,500,1,1,0,0,0
+IG_BOX_1,5132,500,1,1,0,0,0
+IG_BOX_1,5377,500,1,1,0,0,0
+IG_BOX_1,5609,500,1,1,0,0,0
+IG_BOX_1,5496,500,1,1,0,0,0
+IG_BOX_1,5594,500,1,1,0,0,0
+IG_BOX_1,18599,500,1,1,0,0,0
+IG_BOX_1,5403,500,1,1,0,0,0
+IG_BOX_1,5317,500,1,1,0,0,0
+IG_BOX_1,5660,500,1,1,0,0,0
+IG_BOX_1,5654,500,1,1,0,0,0
+IG_BOX_1,5610,500,1,1,0,0,0
+IG_BOX_1,5396,500,1,1,0,0,0
+IG_BOX_1,5528,500,1,1,0,0,0
+IG_BOX_1,5527,500,1,1,0,0,0
+IG_BOX_1,5355,500,1,1,0,0,0
+IG_BOX_1,18644,500,1,1,0,0,0
+IG_BOX_1,5519,500,1,1,0,0,0
+IG_BOX_1,18818,500,1,1,0,0,0
+IG_BOX_1,5594,500,1,1,0,0,0
+IG_BOX_1,5232,500,1,1,0,0,0
+IG_BOX_1,5499,500,1,1,0,0,0
+IG_BOX_1,5503,500,1,1,0,0,0
+IG_BOX_1,5333,500,1,1,0,0,0
+IG_BOX_1,5463,500,1,1,0,0,0
+IG_BOX_1,5227,500,1,1,0,0,0
+IG_BOX_1,18643,500,1,1,0,0,0
+IG_BOX_1,5511,500,1,1,0,0,0
+IG_BOX_1,5376,500,1,1,0,0,0
+IG_BOX_1,18642,500,1,1,0,0,0
+IG_BOX_1,5508,500,1,1,0,0,0
+IG_BOX_1,5659,500,1,1,0,0,0
+IG_BOX_1,5462,500,1,1,0,0,0
+IG_BOX_1,18596,500,1,1,0,0,0
+IG_BOX_1,5538,500,1,1,0,0,0
+IG_BOX_1,5579,500,1,1,0,0,0
+IG_BOX_1,18576,500,1,1,0,0,0
+IG_BOX_1,5766,500,1,1,0,0,0
+IG_BOX_1,5153,500,1,1,0,0,0
+IG_BOX_1,5490,500,1,1,0,0,0
+IG_BOX_1,5263,500,1,1,0,0,0
+IG_BOX_1,5312,500,1,1,0,0,0
+IG_BOX_1,18613,500,1,1,0,0,0
+IG_BOX_1,5765,500,1,1,0,0,0
+IG_BOX_1,5776,500,1,1,0,0,0
+IG_BOX_1,5800,500,1,1,0,0,0
+IG_BOX_1,5793,500,1,1,0,0,0
+IG_BOX_1,5737,500,1,1,0,0,0
+IG_BOX_1,5304,500,1,1,0,0,0
+IG_BOX_1,5140,500,1,1,0,0,0
+IG_BOX_1,5431,500,1,1,0,0,0
+IG_BOX_1,5152,500,1,1,0,0,0
+IG_BOX_1,5653,500,1,1,0,0,0
+IG_BOX_1,18630,500,1,1,0,0,0
+IG_BOX_1,5254,500,1,1,0,0,0
+IG_BOX_1,5313,500,1,1,0,0,0
+IG_BOX_1,5372,500,1,1,0,0,0
+IG_BOX_1,5762,500,1,1,0,0,0
+IG_BOX_1,18534,500,1,1,0,0,0
+IG_BOX_1,5405,500,1,1,0,0,0
+IG_BOX_1,5273,500,1,1,0,0,0
+IG_BOX_1,5491,500,1,1,0,0,0
+IG_BOX_1,5516,500,1,1,0,0,0
+IG_BOX_1,5151,500,1,1,0,0,0
+IG_BOX_1,5363,500,1,1,0,0,0
+IG_BOX_1,5314,500,1,1,0,0,0
+IG_BOX_1,5500,500,1,1,0,0,0
+IG_BOX_1,5421,500,1,1,0,0,0
+IG_BOX_1,5658,500,1,1,0,0,0
+IG_BOX_1,5539,500,1,1,0,0,0
+IG_BOX_1,5375,500,1,1,0,0,0
+IG_BOX_1,5311,500,1,1,0,0,0
+IG_BOX_1,5253,500,1,1,0,0,0
+IG_BOX_1,5324,500,1,1,0,0,0
+IG_BOX_1,18574,500,1,1,0,0,0
+IG_BOX_1,18571,500,1,1,0,0,0
+IG_BOX_1,5420,500,1,1,0,0,0
+IG_BOX_1,2259,500,1,1,0,0,0
+IG_BOX_1,5751,500,1,1,0,0,0
+IG_BOX_1,5214,500,1,1,0,0,0
+IG_BOX_1,5502,500,1,1,0,0,0
+IG_BOX_1,5099,500,1,1,0,0,0
+IG_BOX_1,5362,500,1,1,0,0,0
+IG_BOX_1,5315,500,1,1,0,0,0
+IG_BOX_1,5286,500,1,1,0,0,0
+IG_BOX_1,18657,500,1,1,0,0,0
+IG_BOX_1,5674,500,1,1,0,0,0
+IG_BOX_1,5305,500,1,1,0,0,0
+IG_BOX_1,5501,500,1,1,0,0,0
+IG_BOX_1,5495,500,1,1,0,0,0
+IG_BOX_1,5378,500,1,1,0,0,0
+IG_BOX_1,5208,500,1,1,0,0,0
+IG_BOX_1,5767,500,1,1,0,0,0
+IG_BOX_1,18727,500,1,1,0,0,0
+IG_BOX_1,5761,500,1,1,0,0,0
+IG_BOX_1,5388,500,1,1,0,0,0
+IG_BOX_1,5770,500,1,1,0,0,0
+IG_BOX_1,5509,500,1,1,0,0,0
+IG_BOX_1,5789,500,1,1,0,0,0
+IG_BOX_1,18851,500,1,1,0,0,0
+IG_BOX_1,5256,500,1,1,0,0,0
+IG_BOX_1,18612,500,1,1,0,0,0
+IG_BOX_1,18575,500,1,1,0,0,0
+IG_BOX_1,18580,500,1,1,0,0,0
+IG_BOX_1,5137,500,1,1,0,0,0
+IG_BOX_1,18542,500,1,1,0,0,0
+IG_BOX_1,5793,500,1,1,0,0,0
+IG_BOX_1,5325,500,1,1,0,0,0
+IG_BOX_1,18697,500,1,1,0,0,0
+IG_BOX_1,18698,500,1,1,0,0,0
+IG_BOX_1,18702,500,1,1,0,0,0
+IG_BOX_1,18703,500,1,1,0,0,0
+IG_BOX_1,18677,500,1,1,0,0,0
+IG_BOX_1,18678,500,1,1,0,0,0
+IG_BOX_1,18679,500,1,1,0,0,0
+IG_BOX_1,5271,500,1,1,0,0,0
+IG_BOX_1,18695,500,1,1,0,0,0
+IG_BOX_1,18640,500,1,1,0,0,0
+IG_BOX_1,5788,500,1,1,0,0,0
+IG_BOX_1,18754,500,1,1,0,0,0
+IG_BOX_1,18894,500,1,1,0,0,0
+IG_BOX_1,31561,500,1,1,0,0,0
+IG_BOX_1,18896,500,1,1,0,0,0
+IG_BOX_1,18832,500,1,1,0,0,0
+IG_BOX_1,18917,500,1,1,0,0,0
+IG_BOX_1,18855,500,1,1,0,0,0
+IG_BOX_1,18676,500,1,1,0,0,0
+IG_BOX_1,18901,500,1,1,0,0,0
+IG_BOX_1,18900,500,1,1,0,0,0
+IG_BOX_1,18918,500,1,1,0,0,0
+IG_BOX_1,5545,500,1,1,0,0,0
+IG_BOX_1,5546,500,1,1,0,0,0
+IG_BOX_1,5549,500,1,1,0,0,0
+IG_BOX_1,5550,500,1,1,0,0,0
+IG_BOX_1,5569,500,1,1,0,0,0
+IG_BOX_1,5570,500,1,1,0,0,0
+IG_BOX_1,5581,500,1,1,0,0,0
+IG_BOX_1,5582,500,1,1,0,0,0
+IG_BOX_1,5588,500,1,1,0,0,0
+IG_BOX_1,5589,500,1,1,0,0,0
+IG_BOX_1,5598,500,1,1,0,0,0
+IG_BOX_1,5599,500,1,1,0,0,0
+IG_BOX_1,5662,500,1,1,0,0,0
+IG_BOX_1,5663,500,1,1,0,0,0
+IG_BOX_1,5739,500,1,1,0,0,0
+IG_BOX_1,5740,500,1,1,0,0,0
+IG_BOX_1,5513,500,1,1,0,0,0
+IG_BOX_1,5512,500,1,1,0,0,0
+IG_BOX_1,5515,500,1,1,0,0,0
+IG_BOX_1,5514,500,1,1,0,0,0
+
+//==========================================
+//=================Refine================
+//==========================================
+IG_Refine_1,6238,2,1,1,1,0,0 // +11
+IG_Refine_1,6239,2,1,1,1,0,0 //+11
+IG_Refine_1,23720,2,1,1,1,0,0 //shadow Random
+IG_Refine_1,22829,1,1,1,1,0,0 //Sealed Card Album
+IG_Refine_1,22902,5,1,1,1,0,0 //Sealed Card Album Scroll II
+IG_Refine_1,23926,7,1,1,1,0,0 // shadow+9
+IG_Refine_1,23436,9,1,1,1,0,0 //shadow 1-10
+IG_Refine_1,6228,8,1,1,1,0,0 //+9
+IG_Refine_1,6232,8,1,1,1,0,0 //+9
+IG_Refine_1,6229,10,1,1,1,0,0 //+8
+IG_Refine_1,6233,10,1,1,1,0,0 //+8
+///-------low rate---------
+IG_Refine_1,6456,40,1,1,1,0,0 //+5weapon
+IG_Refine_1,6457,40,1,1,1,0,0 //+5armor
+IG_Refine_1,6235,20,1,1,1,0,0 //+6armor
+IG_Refine_1,6231,20,1,1,1,0,0 //+6weapon
+IG_Refine_1,6234,15,1,1,1,0,0 //+7weapon
+IG_Refine_1,6235,15,1,1,1,0,0 //+7arormor
+//IG_BOX_2,12796,35,10,1,0,0,0 //red booster
+IG_Refine_1,25464,50,1,1,0,0,0 //World Moving Rights
+IG_Refine_1,14537,105,1,1,0,0,0 //Regeneration Potion
+IG_Refine_1,14535,110,1,1,0,0,0 //Medium Life Potion
+IG_Refine_1,14534,110,1,1,0,0,0 //Small Life Potion
+IG_Refine_1,13534,120,1,1,0,0,0 //light white potion box
+IG_Refine_1,13810,120,1,1,0,0,0 //light blue potion box
+IG_Refine_1,12912,65,1,1,0,0,0 //convex miror box
+IG_Refine_1,17229,60,1,1,1,0,0 //flywing 1 day
+IG_Refine_1,12209,140,10,1,0,0,0 //life insurance
+IG_Refine_1,12211,140,10,1,0,0,0 //kafra card
+IG_Refine_1,12216,100,10,1,0,0,0 //agi scroll
+IG_Refine_1,14600,80,5,1,0,0,0 //mental potion
+IG_Refine_1,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Weapon================
+//==========================================
+IG_Suprem_1,21049,5,1,1,1,0,0 //Sealed Eastern Sword   // Oriental Sword 13499 //Gladius_Daemonicus class 2 21054 //Claw Sword [2] //21052 Vernan // Volar 21051 21023// Warlock 26158 //crimson rose
+IG_Suprem_1,18182,5,1,1,1,0,0 //Sealed Royal Bow
+IG_Suprem_1,2054,5,1,1,1,0,0 //Sealed Aeon Staff [2]
+IG_Suprem_1,13495,5,1,1,1,0,0 // Sealed Red Lotus Sword
+IG_Suprem_1,18183,5,1,1,1,0,0 //Sealed Narcissus Bow
+IG_Suprem_1,26156,5,1,1,1,0,0 //Sealed Shadow Staff
+IG_Suprem_1,13460,5,1,1,1,0,0 //Sealed Magic Sword
+IG_Suprem_1,13461,5,1,1,1,0,0 //Sealed Evil Sword
+IG_Suprem_1,13462,5,1,1,1,0,0 //Sealed Maximum Sword
+IG_Suprem_1,28137,5,1,1,1,0,0 //Sealed Avenger
+IG_Suprem_1,28632,5,1,1,1,0,0 //Sealed Exoricist's Bible
+IG_Suprem_1,32021,5,1,1,1,0,0 //Sealed Aquatic Spear
+IG_Suprem_1,1864,5,1,1,1,0,0 //Sealed Iron Nail
+IG_Suprem_1,28759,5,1,1,1,0,0 //Sealed Madogum
+IG_Suprem_1,28040,5,1,1,1,0,0 //Sealed Katar of Shiver
+///-------low rate---------
+IG_Suprem_1,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_1,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_1,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_1,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_1,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_1,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_1,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_1,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_1,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_1,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_1,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_1,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Weapon================
+//==========================================
+IG_Suprem_2,2057,5,1,1,1,0,0 //Adorare Staff
+IG_Suprem_2,28044,5,1,1,1,0,0 //Agudo Filo
+IG_Suprem_2,18186,5,1,1,1,0,0 //Aiming Bow
+IG_Suprem_2,32108,5,1,1,1,0,0 //Antique Cello*
+IG_Suprem_2,18125,5,1,1,1,0,0 //Arcus Daemonicus
+IG_Suprem_2,32023,5,1,1,1,0,0 //Argen Blanco
+//IG_Suprem_2,13460,5,1,1,1,0,0 //Arm Knuckle Booster Mace
+IG_Suprem_2,32107,5,1,1,1,0,0 //Black Circle
+IG_Suprem_2,32026,5,1,1,1,0,0 //Blocking Spear
+IG_Suprem_2,18190,5,1,1,1,0,0 //Bolt Shooter
+IG_Suprem_2,32303,5,1,1,1,0,0 //Bolt Revolver
+IG_Suprem_2,28633,5,1,1,1,0,0 //Boltijin
+///-------low rate---------
+IG_Suprem_2,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_2,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_2,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_2,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_2,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_2,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_2,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_2,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_2,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_2,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_2,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_2,40012,0,1,0,0,0,0//ticket
+
+
+//==========================================
+//=================Weapon================
+//==========================================
+IG_Suprem_3,28618,5,1,1,1,0,0 //Book of the Sun God
+IG_Suprem_3,16096,5,1,1,1,0,0 //Bright Mace
+IG_Suprem_3,21054,5,1,1,1,0,0 //Claw Sword
+IG_Suprem_3,16093,5,1,1,1,0,0 //Coolant Injection
+IG_Suprem_3,26160,5,1,1,1,0,0 //Dust Grave
+IG_Suprem_3,16092,5,1,1,1,0,0 //Engine Pilebunker
+IG_Suprem_3,13090,5,1,1,1,0,0 //Faceworm Queen Leg
+IG_Suprem_3,18187,5,1,1,1,0,0 //Falken Shooter
+IG_Suprem_3,32350,5,1,1,1,0,0 //Farthezan
+IG_Suprem_3,1866,5,1,1,1,0,0 //Dedicated Bandage
+IG_Suprem_3,1990,5,1,1,1,0,0 //Floral Mic Of Aigu
+IG_Suprem_3,16094,5,1,1,1,0,0 //Gene Rod
+IG_Suprem_3,18122,5,1,1,1,0,0 //Gigantic Bow
+IG_Suprem_3,1333,5,1,1,1,0,0 //Gene Rod
+///-------low rate---------
+IG_Suprem_3,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_3,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_3,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_3,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_3,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_3,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_3,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_3,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_3,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_3,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_3,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_3,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Weapon================
+//==========================================
+IG_Suprem_4,13346,5,1,1,1,0,0 //Grinder Huuma Shuriken
+IG_Suprem_4,1336,5,1,1,1,0,0 //Guardian Knight Axe
+IG_Suprem_4,28141,5,1,1,1,0,0 //Guardian Knight Battle Axe
+IG_Suprem_4,18191,5,1,1,1,0,0 //Guardian Knight Bow
+IG_Suprem_4,21055,5,1,1,1,0,0 //Guardian Knight Claymore
+IG_Suprem_4,32027,5,1,1,1,0,0 //Guardian Knight Spear
+IG_Suprem_4,32024,5,1,1,1,0,0 //Harve
+IG_Suprem_4,26212,5,1,1,1,0,0 //Heart Whip
+IG_Suprem_4,26138,5,1,1,1,0,0 //Hellfire Staff
+IG_Suprem_4,13345,5,1,1,1,0,0 //Huuma Shuriken Clearness
+IG_Suprem_4,26139,5,1,1,1,0,0 //Icicle Staff
+IG_Suprem_4,28767,5,1,1,1,0,0 //Jack The Knife
+IG_Suprem_4,28772,5,1,1,1,0,0 //Jewel Detector Mk47
+IG_Suprem_4,28765,5,1,1,1,0,0 //Judgement Slasher
+IG_Suprem_4,16095,5,1,1,1,0,0 //Lucis_Flail
+IG_Suprem_4,21018,5,1,1,1,0,0 //Lindy Hop
+IG_Suprem_4,28010,5,1,1,1,0,0 //Juliette D. Rachel
+///-------low rate---------
+IG_Suprem_4,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_4,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_4,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_4,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_4,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_4,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_4,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_4,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_4,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_4,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_4,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_4,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Weapon================
+//==========================================
+IG_Suprem_5,28138,5,1,1,1,0,0 //Maxi Spanner
+IG_Suprem_5,28771,5,1,1,1,0,0 //Metal Detector Mk47
+IG_Suprem_5,32013,5,1,1,1,0,0 //Metal Stick
+IG_Suprem_5,28721,5,1,1,1,0,0 //Monokage
+IG_Suprem_5,21038,5,1,1,1,0,0 //Oriental Sword
+IG_Suprem_5,21058,5,1,1,1,0,0 //Patent Dragonic Slayer
+IG_Suprem_5,26161,5,1,1,1,0,0 //Penitentia
+IG_Suprem_5,28768,5,1,1,1,0,0 //Platinum Dagger
+IG_Suprem_5,1865,5,1,1,1,0,0 //Raging Dragon Fist
+IG_Suprem_5,28042,5,1,1,1,0,0 //Rapid Cross
+IG_Suprem_5,26165,5,1,1,1,0,0 //Royal Cleric Staff
+IG_Suprem_5,28774,5,1,1,1,0,0 //Royal Gladius (R)
+IG_Suprem_5,13347,5,1,1,1,0,0 //Royal Huuma Shuriken
+IG_Suprem_5,28046,5,1,1,1,0,0 //Royal Katar
+IG_Suprem_5,18198,5,1,1,1,0,0 //Royal Knight Archer Bow
+IG_Suprem_5,21039,5,1,1,1,0,0 //Royal Knight's Broadsword
+IG_Suprem_5,26016,5,1,1,1,0,0 //Royal Knight's Lance
+///-------low rate---------
+IG_Suprem_5,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_5,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_5,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_5,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_5,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_5,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_5,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_5,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_5,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_5,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_5,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_5,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Weapon================
+//==========================================
+IG_Suprem_6,1870,5,1,1,1,0,0 //Royal Knuckle
+IG_Suprem_6,28776,5,1,1,1,0,0 //Royal Magician Dagger
+IG_Suprem_6,2060,5,1,1,1,0,0 //Royal Magician Staff
+IG_Suprem_6,26166,5,1,1,1,0,0 //Royal Magician Wand
+IG_Suprem_6,32304,5,1,1,1,0,0 //Royal Revolver
+IG_Suprem_6,28636,5,1,1,1,0,0 //Royal Sage Book
+IG_Suprem_6,26216,5,1,1,1,0,0 //Royal Whip
+IG_Suprem_6,16099,5,1,1,1,0,0 //Rubber Hammer
+IG_Suprem_6,1867,5,1,1,1,0,0 //Safety Knuckle
+IG_Suprem_6,32110,5,1,1,1,0,0 //Safety Lute
+IG_Suprem_6,28635,5,1,1,1,0,0 //Safety Manual
+IG_Suprem_6,32352,5,1,1,1,0,0 //Safety Saber
+IG_Suprem_6,26215,5,1,1,1,0,0 //Safety Whip
+IG_Suprem_6,1560,5,1,1,1,0,0 //Sage's Diary
+IG_Suprem_6,28140,5,1,1,1,0,0 //Saw Axe
+IG_Suprem_6,26213,5,1,1,1,0,0 //Scarlet Ribbon
+///-------low rate---------
+IG_Suprem_6,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_6,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_6,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_6,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_6,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_6,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_6,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_6,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_6,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_6,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_6,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_6,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Weapon================
+//==========================================
+IG_Suprem_7,26154,5,1,1,1,0,0 //Spirit Pendulum
+IG_Suprem_7,2027,5,1,1,1,0,0 //Sunflower Boy
+IG_Suprem_7,1181,5,1,1,1,0,0 //Tae Goo Lyeon
+IG_Suprem_7,16051,5,1,1,1,0,0 //Valkyrie Hammer
+IG_Suprem_7,28717,5,1,1,1,0,0 //Valkyrie Knife
+IG_Suprem_7,21052,5,1,1,1,0,0 //Vernan
+IG_Suprem_7,18145,5,1,1,1,0,0 //Vigilante Bow
+IG_Suprem_7,21051,5,1,1,1,0,0 //Volar
+IG_Suprem_7,26162,5,1,1,1,0,0 //Welding Wand
+IG_Suprem_7,18188,5,1,1,1,0,0 //Wind Gale
+IG_Suprem_7,26172,5,1,1,1,0,0 //Royal Foxtail
+IG_Suprem_7,26155,5,1,1,1,0,0 //Meowmeow Foxtail
+//IG_Suprem_7,26143,5,1,1,1,0,0 //Diva Fox Tail
+///-------low rate---------
+IG_Suprem_7,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_7,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_7,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_7,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_7,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_7,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_7,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_7,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_7,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_7,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_7,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_7,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Shield================
+//==========================================
+IG_Suprem_8,2190,5,1,1,1,0,0 //Ancient Shield Of Aeon
+IG_Suprem_8,28921,5,1,1,1,0,0 //Anemos Shield
+IG_Suprem_8,28942,5,1,1,1,0,0 //Cursed Knight's Shield
+IG_Suprem_8,28901,5,1,1,1,0,0 //Cursed Mad Bunny
+IG_Suprem_8,28920,5,1,1,1,0,0 //Diamond Shield
+IG_Suprem_8,28941,5,1,1,1,0,0 //Excelion Shield
+IG_Suprem_8,2162,5,1,1,1,0,0 //Geffenia Water Book
+IG_Suprem_8,2187,5,1,1,1,0,0 //Gray Shield
+IG_Suprem_8,28902,5,1,1,1,0,0 //Mad Bunny
+IG_Suprem_8,2185,5,1,1,1,0,0 //Magic Reflector
+IG_Suprem_8,2137,5,1,1,1,0,0 //Neo Valkyrja's Shield
+IG_Suprem_8,28953,5,1,1,1,0,0 //Poring Combat Shield
+//IG_Suprem_8,2192,5,1,1,1,0,0 //Rose of Eden
+///-------low rate---------
+IG_Suprem_8,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_8,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_8,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_8,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_8,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_8,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_8,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_8,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_8,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_8,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_8,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_8,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Arrmor================
+//==========================================
+IG_Suprem_9,15204,5,1,1,1,0,0 //Abyss Dress
+IG_Suprem_9,15116,5,1,1,1,0,0 //Airship's Armor
+IG_Suprem_9,15249,5,1,1,1,0,0 //Antonio's Coat [1]
+IG_Suprem_9,15283,5,1,1,1,0,0 //Black Thread Mighty Armor [1]
+//IG_Suprem_9,15364,5,1,1,1,0,0 //Ceres Armor [1]
+IG_Suprem_9,15177,5,1,1,1,0,0 //Robe_Of_Elemental
+IG_Suprem_9,15145,5,1,1,1,0,0 //Evil Dragon Armor [1]
+IG_Suprem_9,15354,5,1,1,1,0,0 //Dex_Armor
+IG_Suprem_9,15405,5,1,1,1,0,0 //Fafnir Scale
+IG_Suprem_9,15146,5,1,1,1,0,0 //Flattery Robe [1]
+///-------low rate---------
+IG_Suprem_9,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_9,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_9,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_9,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_9,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_9,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_9,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_9,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_9,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_9,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_9,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_9,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Arrmor================
+//==========================================
+IG_Suprem_10,15074,5,1,1,1,0,0 //Geffen Magic Robe [1]
+IG_Suprem_10,15393,5,1,1,1,0,0 //Gold Dragon Plate [1]
+IG_Suprem_10,15178,5,1,1,1,0,0 //Golden Ninja Suit
+IG_Suprem_10,15097,5,1,1,1,0,0 //Hero Hidden Cloth [1]
+IG_Suprem_10,15095,5,1,1,1,0,0 //Judgement Shawl[1]
+IG_Suprem_10,15094,5,1,1,1,0,0 //Brave Magic Coat[1]
+IG_Suprem_10,15093,5,1,1,1,0,0 //Brave Plate
+IG_Suprem_10,15098,5,1,1,1,0,0 //Brave Target Suit
+IG_Suprem_10,15096,5,1,1,1,0,0 //Brave Trademail
+IG_Suprem_10,15180,5,1,1,1,0,0 //Hippie_Cloth
+IG_Suprem_10,15420,5,1,1,1,0,0 //Ice Prison Dress
+///-------low rate---------
+IG_Suprem_10,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_10,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_10,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_10,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_10,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_10,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_10,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_10,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_10,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_10,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_10,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_10,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Arrmor================
+//==========================================
+IG_Suprem_11,15397,5,1,1,1,0,0 //STR Soutane
+IG_Suprem_11,15398,5,1,1,1,0,0 //AGI Soutane
+IG_Suprem_11,15399,5,1,1,1,0,0 //Soutane
+IG_Suprem_11,15400,5,1,1,1,0,0 //Soutane
+IG_Suprem_11,15401,5,1,1,1,0,0 //Soutane
+IG_Suprem_11,15402,5,1,1,1,0,0 //Soutane
+IG_Suprem_11,15391,5,1,1,1,0,0 //Red Dragon Plate
+IG_Suprem_11,15392,5,1,1,1,0,0 //Green Dragon Plate
+IG_Suprem_11,15393,5,1,1,1,0,0 //Gold Dragon Plate
+IG_Suprem_11,15394,5,1,1,1,0,0 //Purple Dragon Plate
+IG_Suprem_11,15395,5,1,1,1,0,0 //Blue Dragon Plate
+IG_Suprem_11,15396,5,1,1,1,0,0 //Silver Dragon Plate
+///-------low rate---------
+IG_Suprem_11,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_11,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_11,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_11,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_11,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_11,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_11,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_11,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_11,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_11,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_11,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_11,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Arrmor================
+//==========================================
+IG_Suprem_12,15186,5,1,1,1,0,0 //Kafra Costume
+IG_Suprem_12,15169,5,1,1,1,0,0 //Kardui Robe [1]
+IG_Suprem_12,15388,5,1,1,1,0,0 //King Schmidt's Suit
+IG_Suprem_12,15205,5,1,1,1,0,0 //Holy_Coat
+IG_Suprem_12,15179,5,1,1,1,0,0 //Mine Worker Vest
+IG_Suprem_12,15384,5,1,1,1,0,0 //Ritual Robes
+IG_Suprem_12,15278,5,1,1,1,0,0 //Soaring Physical Armor
+IG_Suprem_12,15279,5,1,1,1,0,0 //Robust Magical Armor
+IG_Suprem_12,15283,5,1,1,1,0,0 //Mighty Black Threaded Armor
+//IG_Suprem_12,15196,5,1,1,1,0,0 //Sea Dragon Armor
+IG_Suprem_12,15353,5,1,1,1,0,0 //Splendid Swift Armor
+IG_Suprem_12,15346,5,1,1,1,0,0 //Unexpected Fortune Armor
+IG_Suprem_12,15347,5,1,1,1,0,0 //Strong Healthy Armor
+///-------low rate---------
+IG_Suprem_12,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_12,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_12,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_12,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_12,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_12,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_12,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_12,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_12,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_12,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_12,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_12,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Arrmor================
+//==========================================
+IG_Suprem_13,15383,5,1,1,1,0,0 //Temporal Transcendent Robe
+IG_Suprem_13,15417,5,1,1,1,0,0 //Armor of Purple Thread
+IG_Suprem_13,15419,5,1,1,1,0,0 //Mighty White Threaded Armor
+IG_Suprem_13,15389,5,1,1,1,0,0 //King Schmidt's Manteau
+IG_Suprem_13,15390,5,1,1,1,0,0 //Regia Hunting Mail
+IG_Suprem_13,15212,5,1,1,1,0,0 //YSF01 Plate
+//IG_Suprem_13,15188,5,1,1,1,0,0 //Mirage Robe
+//IG_Suprem_13,15187,5,1,1,1,0,0 //Diva Robe
+IG_Suprem_13,15189,5,1,1,1,0,0 //Fallen Warrior Armor
+IG_Suprem_13,15246,5,1,1,1,0,0 //True Hunting Mail
+///-------low rate---------
+IG_Suprem_13,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_13,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_13,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_13,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_13,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_13,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_13,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_13,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_13,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_13,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_13,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_13,40012,0,1,0,0,0,0//ticket
+
+
+//==========================================
+//=================Garment================
+//==========================================
+IG_Suprem_14,20831,5,1,1,1,0,0 //Adventurer's Spirit [1]
+IG_Suprem_14,20743,5,1,1,1,0,0 //Airship's Cloak [1]
+IG_Suprem_14,20944,5,1,1,1,0,0 //Anti Magic Manteau
+IG_Suprem_14,20947,5,1,1,1,0,0 //Clergy's Manteau
+IG_Suprem_14,20721,5,1,1,1,0,0 //Cloak of Gray
+IG_Suprem_14,20813,5,1,1,1,0,0 //Cloak of Survival
+IG_Suprem_14,20946,5,1,1,1,0,0 //Dragon Scale Hood*
+IG_Suprem_14,20834,5,1,1,1,0,0 //Drifter's Cape
+IG_Suprem_14,20902,5,1,1,1,0,0 //True Hunting Manteau
+IG_Suprem_14,20700,5,1,1,1,0,0 //Egir Manteau
+IG_Suprem_14,20799,5,1,1,1,0,0 //Elemental Towel
+IG_Suprem_14,20807,5,1,1,1,0,0 //Endure Amistr Bag
+///-------low rate---------
+IG_Suprem_14,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_14,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_14,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_14,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_14,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_14,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_14,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_14,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_14,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_14,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_14,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_14,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Garment================
+//==========================================
+IG_Suprem_15,20800,5,1,1,1,0,0 //Enforcer Cape
+IG_Suprem_15,2589,5,1,1,1,0,0 //Fallen Angel Wing
+IG_Suprem_15,20748,5,1,1,1,0,0 //Fallen Warrior Manteau
+IG_Suprem_15,20749,5,1,1,1,0,0 //Fallen Warrior Manteau[1]
+IG_Suprem_15,20744,5,1,1,1,0,0 //Felrock's Cloak [1]
+IG_Suprem_15,20726,5,1,1,1,0,0 //Fire Dragon's Coat
+IG_Suprem_15,20943,5,1,1,1,0,0 //Geffen Magic Muffler [1]
+IG_Suprem_15,20820,5,1,1,1,0,0 //Elemental Cape
+IG_Suprem_15,20783,5,1,1,1,0,0 //Hero Cape
+IG_Suprem_15,15389,5,1,1,1,0,0 //King Schmidt's Manteau
+IG_Suprem_15,20707,5,1,1,1,0,0 //Kirin wing
+///-------low rate---------
+IG_Suprem_15,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_15,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_15,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_15,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_15,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_15,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_15,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_15,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_15,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_15,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_15,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_15,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Garment================
+//==========================================
+IG_Suprem_16,20949,5,1,1,1,0,0 //Ladon's Skin
+IG_Suprem_16,20845,5,1,1,1,0,0 //Malach's Skin
+IG_Suprem_16,20942,5,1,1,1,0,0 //Manteau Of Guardsman [1]
+//IG_Suprem_16,20747,5,1,1,1,0,0 //Manteau Great Nature [1]
+//IG_Suprem_16,20735,5,1,1,1,0,0 //Manteau Of Flame Heart [1]
+//IG_Suprem_16,20734,5,1,1,1,0,0 //Manteau Of Leafwind [1]
+//IG_Suprem_16,20745,5,1,1,1,0,0 //Manteau Of Mistic Froz [1]
+IG_Suprem_16,20822,5,1,1,1,0,0 //Mine Worker's Backpack
+IG_Suprem_16,20952,5,1,1,1,0,0 //Nameless Assassin's Muffler
+IG_Suprem_16,20932,5,1,1,1,0,0 //Old Morocc Shawl
+IG_Suprem_16,20941,5,1,1,1,0,0 //Phoenix Muffler
+IG_Suprem_16,20931,5,1,1,1,0,0 //Prism Rangers Scarf
+IG_Suprem_16,20969,5,1,1,1,0,0 //Rainbow Muffler
+///-------low rate---------
+IG_Suprem_16,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_16,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_16,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_16,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_16,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_16,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_16,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_16,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_16,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_16,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_16,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_16,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Garment================
+//==========================================
+IG_Suprem_17,20922,5,1,1,1,0,0 //Leviathan Muffler
+IG_Suprem_17,20815,5,1,1,1,0,0 //Seraphim Robe
+IG_Suprem_17,20837,5,1,1,1,0,0 //Skin of Gwiber*
+IG_Suprem_17,20836,5,1,1,1,0,0 //Skin of Lindwyrm
+IG_Suprem_17,20939,5,1,1,1,0,0 //Temporal Transcendent Manteau*
+IG_Suprem_17,20814,5,1,1,1,0,0 //Wakwak_Manteau
+IG_Suprem_17,20962,5,1,1,1,0,0 //Typhon's Skin
+IG_Suprem_17,20940,5,1,1,1,0,0 //Violet Halo
+IG_Suprem_17,20947,5,1,1,1,0,0 //Clergy's Manteau
+IG_Suprem_17,20856,5,1,1,1,0,0 //YSF01 Manteau
+IG_Suprem_17,20842,5,1,1,1,0,0 //Candy Pouch Bag (Physical)
+IG_Suprem_17,20843,5,1,1,1,0,0 //Candy Pouch Bag (Range)
+IG_Suprem_17,20844,5,1,1,1,0,0 //Candy Pouch Bag (Matk)
+///-------low rate---------
+IG_Suprem_17,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_17,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_17,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_17,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_17,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_17,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_17,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_17,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_17,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_17,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_17,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_17,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Acc================
+//==========================================
+IG_Suprem_18,28510,5,1,1,1,0,0 //A Vampire's Servant
+IG_Suprem_18,2743,5,1,1,1,0,0 //Angelic Ring
+IG_Suprem_18,28429,5,1,1,1,0,0 //Arquien's Necklace
+IG_Suprem_18,2892,5,1,1,1,0,0 //Assassin Handcuffs
+IG_Suprem_18,28320,5,1,1,1,0,0 //Assassin's Despair
+IG_Suprem_18,32222,5,1,1,1,0,0 //Brooch of Hero
+IG_Suprem_18,28513,5,1,1,1,0,0 //Celine's Brooch
+IG_Suprem_18,28533,5,1,1,1,0,0 //Chemical Glove
+IG_Suprem_18,28520,5,1,1,1,0,0 //Egir Ring
+IG_Suprem_18,28411,5,1,1,1,0,0 //Emerald Earring
+IG_Suprem_18,2980,5,1,1,1,0,0 //Evil Spirit Glove 
+IG_Suprem_18,28438,5,1,1,1,0,0 // Fairy Leaf Powder
+///-------low rate---------
+IG_Suprem_18,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_18,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_18,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_18,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_18,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_18,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_18,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_18,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_18,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_18,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_18,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_18,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Acc================
+//==========================================
+IG_Suprem_19,28386,5,1,1,1,0,0 //Fallen Monk Rosary
+IG_Suprem_19,32227,5,1,1,1,0,0 //Hrodvitnir's Chain
+IG_Suprem_19,2959,5,1,1,1,0,0 //Fidelity Necklace
+IG_Suprem_19,28499,5,1,1,1,0,0 //Proof of Glory
+IG_Suprem_19,28442,5,1,1,1,0,0 //Hippie Feather
+IG_Suprem_19,28491,5,1,1,1,0,0 //Hunting Knife
+IG_Suprem_19,2977,5,1,1,1,0,0 //Hurt Mind
+IG_Suprem_19,28551,5,1,1,1,0,0 //Imperial Glove
+IG_Suprem_19,28372,5,1,1,1,0,0 //Imperial Ring
+IG_Suprem_19,28503,5,1,1,1,0,0 //Keraunos
+IG_Suprem_19,2978,5,1,1,1,0,0 //Gentle Heart
+IG_Suprem_19,28433,5,1,1,1,0,0 //Luminous Blue Stone
+IG_Suprem_19,2964,5,1,1,1,0,0 // Magic Intensifier Ring
+IG_Suprem_19,28507,5,1,1,1,0,0 // Magician's Gloves
+IG_Suprem_19,28565,5,1,1,1,0,0 //Perverse Demon Mask
+///-------low rate---------
+IG_Suprem_19,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_19,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_19,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_19,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_19,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_19,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_19,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_19,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_19,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_19,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_19,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_19,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Acc================
+//==========================================
+IG_Suprem_20,2720,5,1,1,1,0,0 //Medal of Honor (Swordman)
+IG_Suprem_20,2721,5,1,1,1,0,0 //Medal of Honor (Thief)
+IG_Suprem_20,2722,5,1,1,1,0,0 //Medal of Honor (Acolyte)
+IG_Suprem_20,2723,5,1,1,1,0,0 //Medal of Honor (Mage)
+IG_Suprem_20,2724,5,1,1,1,0,0 //Medal of Honor (Archer)
+IG_Suprem_20,2725,5,1,1,1,0,0 //Medal of Honor (Merchant)
+IG_Suprem_20,28484,5,1,1,1,0,0 //Rebel Scarf
+IG_Suprem_20,32206,5,1,1,1,0,0 //Prontera Militia Glove
+IG_Suprem_20,32262,5,1,1,1,0,0 //Rasen Fuma's Orb
+IG_Suprem_20,2886,5,1,1,1,0,0 //Sapha Ring
+IG_Suprem_20,28410,5,1,1,1,0,0 //Sapphire Wrist
+IG_Suprem_20,28379,5,1,1,1,0,0 // Shadow Ring
+IG_Suprem_20,32263,5,1,1,1,0,0 // Shield Ring
+IG_Suprem_20,2899,5,1,1,1,0,0 // Sound Amplifier
+///-------low rate---------
+IG_Suprem_20,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_20,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_20,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_20,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_20,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_20,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_20,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_20,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_20,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_20,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_20,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_20,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Acc================
+//==========================================
+IG_Suprem_21,28394,5,1,1,1,0,0 //King of Spirit Ring
+IG_Suprem_21,2744,5,1,1,1,0,0 //Sprint Ring
+IG_Suprem_21,32221,5,1,1,1,0,0 //Temporal Transcendence Ring
+IG_Suprem_21,28594,5,1,1,1,0,0 //Temporal Ring
+IG_Suprem_21,32204,5,1,1,1,0,0 //Immortal Dog Tag
+IG_Suprem_21,32234,5,1,1,1,0,0 //Warrior's Ring
+IG_Suprem_21,28564,5,1,1,1,0,0 //Valkyrie Drop
+IG_Suprem_21,28575,5,1,1,1,0,0 //Verus Core
+IG_Suprem_21,2855,5,1,1,1,0,0 //Whikebain's Black Tail
+IG_Suprem_21,5825,5,1,1,1,0,0 //Knight Of Honor Badge
+IG_Suprem_21,2964,5,1,1,1,0,0 // Magic Intensifier Ring
+IG_Suprem_21,28430,5,1,1,1,0,0 //Arch Bishop Ring
+
+///-------low rate---------
+IG_Suprem_21,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_21,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_21,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_21,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_21,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_21,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_21,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_21,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_21,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_21,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_21,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_21,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Shoe================
+//==========================================
+IG_Suprem_22,22171,5,1,1,1,0,0 //Ancient Hero Boots
+IG_Suprem_22,22046,5,1,1,1,0,0 //Airship's Boots
+IG_Suprem_22,22209,5,1,1,1,0,0 //Clergy's Boots
+IG_Suprem_22,22138,5,1,1,1,0,0 //Demonist_Shoes
+IG_Suprem_22,22208,5,1,1,1,0,0 //Dragon Scale Boots
+IG_Suprem_22,22134,5,1,1,1,0,0 //Enforcer Shoes
+IG_Suprem_22,22210,5,1,1,1,0,0 //Fluffy Fish Shoes
+IG_Suprem_22,22238,5,1,1,1,0,0 //Great Hero Boots
+IG_Suprem_22,22035,5,1,1,1,0,0 //Heoric Nepenthes Shoes
+IG_Suprem_22,22036,5,1,1,1,0,0 //Heroic Silver Fox Leather Boots
+IG_Suprem_22,22207,5,1,1,1,0,0 // Imperial Boots
+IG_Suprem_22,22047,5,1,1,1,0,0 //Felrock's Boots
+IG_Suprem_22,22168,5,1,1,1,0,0 //True Hunting Boots
+IG_Suprem_22,22141,5,1,1,1,0,0 //YSF01 Greave
+
+///-------low rate---------
+IG_Suprem_22,14544,70,1,1,0,0,0 //Big Magic Defence Potion
+IG_Suprem_22,14537,120,2,1,0,0,0 //Regeneration Potion
+IG_Suprem_22,14535,120,2,1,0,0,0 //Medium Life Potion
+IG_Suprem_22,14592,80,1,1,0,0,0 //Job mannual
+IG_Suprem_22,12411,80,1,1,0,0,0 //HE Battle
+IG_Suprem_22,12412,35,1,1,0,0,0 //HE gum
+IG_Suprem_22,6241,30,1,1,0,0,0 //HD elu
+IG_Suprem_22,6240,30,1,1,0,0,0 //HD ori
+IG_Suprem_22,7620,25,1,1,0,0,0 //En Elu
+IG_Suprem_22,7619,25,1,1,0,0,0 //En Ori
+IG_Suprem_22,6635,10,1,1,1,0,0 //Blacksmith blessing
+IG_Suprem_22,40012,0,1,0,0,0,0//ticket
+
+//==========================================
+//=================Cos================
+//==========================================
+IG_COS_3,20597,5,1,1,1,0,0 //Costume: Evil Scythe
+IG_COS_3,20598,5,1,1,1,0,0 //Costume: Big Black Cat
+IG_COS_3,20511,5,1,1,1,0,0 //Costume: Blue Fairy Wings
+IG_COS_3,20502,5,1,1,1,0,0 //Costume: Devil Wings
+IG_COS_3,20535,5,1,1,1,0,0 //Costume: Digital Space
+IG_COS_3,20590,5,1,1,1,0,0 //Costume: Evil Druid Cross
+IG_COS_3,20593,5,1,1,1,0,0 //Costume: Ice Wings
+IG_COS_3,20517,5,1,1,1,0,0 //Costume Giant Cat Bag
+IG_COS_3,20762,5,1,1,1,0,0 //Costume Great Devil Wings
+IG_COS_3,20737,5,1,1,1,0,0 //Costume Kirin Wing
+IG_COS_3,20586,5,1,1,1,0,0 //Costume: Loli Ruri's Crescent
+IG_COS_3,20516,5,1,1,1,0,0 //Costume: Michael's Wings
+IG_COS_3,20589,5,1,1,1,0,0 //Costume: One Wing
+IG_COS_3,20504,5,1,1,1,0,0 //Costume: Pink Cupid Wing
+IG_COS_3,20507,5,1,1,1,0,0 //Costume: Poring Bag
+IG_COS_3,20514,5,1,1,1,0,0 //Costume: Sword of Thanatos
+IG_COS_3,20599,5,1,1,1,0,0 //Costume: Sakura Wings
+IG_COS_3,20510,5,1,1,1,0,0 //Costume: Sword Wings
+IG_COS_3,20603,5,1,1,1,0,0 //Costume: Ulysses Wings
+IG_COS_3,20570,5,1,1,1,0,0 //Costume: Valentines Chocolate Backpack
+IG_COS_3,20571,5,1,1,1,0,0 //Costume: Valkyrie Wings
+IG_COS_3,20509,5,1,1,1,0,0 //Costume Wings of Uriel
+IG_COS_3,20543,5,1,1,1,0,0 //Undead Poring Backpack
+IG_COS_3,20572,5,1,1,1,0,0 //Wings of Love
+IG_COS_3,20526,5,1,1,1,0,0 //Costume BlueAngeling Wing
+IG_COS_3,20525,5,1,1,1,0,0 //Costume Bloody Wing
+IG_COS_3,20530,5,1,1,1,0,0 //Costume Wings of Gabriel
+
+//==========================================
+//=================Cos Helm================
+//==========================================
+IG_COS_4,20315,5,1,1,1,0,0 //Costume: Analyze Eye
+IG_COS_4,20112,5,1,1,1,0,0 //Costume: Aqua Ten Gallon Hat /top
+IG_COS_4,31885,5,1,1,1,0,0 //Costume Earth Master / low
+IG_COS_4,31803,5,1,1,1,0,0 //Costume: Aura of Tornado /low
+IG_COS_4,31121,5,1,1,1,0,0 //Costume: Bat Stole* /low
+IG_COS_4,31398,5,1,1,1,0,0 //Costume: Blinking Small Eyes /mid
+IG_COS_4,31301,5,1,1,1,0,0 //Costume: Blinking Eyes /mid 
+IG_COS_4,400056,5,1,1,1,0,0 //Costume: Blue Devil Wig* /low
+IG_COS_4,31611,5,1,1,1,0,0 //Costume: Dark Snake Lord Stole /low
+IG_COS_4,19988,5,1,1,1,0,0 //Costume: Elder Crown /top
+IG_COS_4,31062,5,1,1,1,0,0 //Costume: Eleanor Wig /top
+IG_COS_4,31575,5,1,1,1,0,0 //Costume: Electric Two Sides Up Hair /low
+IG_COS_4,31795,5,1,1,1,0,0 //Costume: Elephant Fairy /mid
+IG_COS_4,20405,5,1,1,1,0,0 //Costume: Eremes' Scarf /low
+IG_COS_4,31057,5,1,1,1,0,0 //Costume: Eremes' Scarf (Black) /low
+IG_COS_4,31545,5,1,1,1,0,0 //Costume: Eremes Scarf (Blue) /low
+IG_COS_4,20221,5,1,1,1,0,0 //Costume: Eyes Of Ifrit /mid
+IG_COS_4,31178,5,1,1,1,0,0 //Costume: Fire Muffler /low
+IG_COS_4,31568,5,1,1,1,0,0 //Costume: Costume: Floating Yin-Yang Beads /mid
+IG_COS_4,31635,5,1,1,1,0,0 //Costume: Flowing Long (Blonde) /low
+IG_COS_4,31636,5,1,1,1,0,0 //Costume: Flowing Long (Silver) /low
+IG_COS_4,31438,5,1,1,1,0,0 //Costume: Fluffy Angel Cape /low
+//IG_COS_4,19605,5,1,1,1,0,0 //Costume: Gangster Scarf
+IG_COS_4,31615,5,1,1,1,0,0 //Costume: Geisha Make Up /mid
+IG_COS_4,31846,5,1,1,1,0,0 //Costume: Hair Ribbon Wig /low
+IG_COS_4,31457,5,1,1,1,0,0 //Costume: Husky Hat* /top
+IG_COS_4,31938,5,1,1,1,0,0 //Costume: Long Twin Braids /low
+
+
+//==========================================
+//=================Cos Helm================
+//==========================================
+IG_COS_5,20142,5,1,1,1,0,0 //Costume: Machoman's Glasses
+IG_COS_5,410005,5,1,1,1,0,0 //Costume: Magic Heir
+IG_COS_5,19968,5,1,1,1,0,0 //Costume: Magic Stone Hat
+IG_COS_5,31851,5,1,1,1,0,0 //Costume: Floating Shields
+IG_COS_5,31856,5,1,1,1,0,0 //Costume Airy Two Side Up (Blonde)
+IG_COS_5,31884,5,1,1,1,0,0 //Costume Magic Helm
+IG_COS_5,31887,5,1,1,1,0,0 //Costume Pure Scarf / low
+IG_COS_5,31930,5,1,1,1,0,0 //Costume Standing Mic / mid
+IG_COS_5,31933,5,1,1,1,0,0 //Costume Miyabi Doll Long Hair (Light Purple) /low
+IG_COS_5,31943,5,1,1,1,0,0 //Costume tree frog hoodies    
+IG_COS_5,20398,5,1,1,1,0,0 //Costume: Niffleheim Bunny Hat*
+IG_COS_5,31566,5,1,1,1,0,0 //Costume: Stole of Dominion /low
+IG_COS_5,20407,5,1,1,1,0,0 //Costume: Test Subject Aura (Red)** /low
+IG_COS_5,31095,5,1,1,1,0,0 //Costume Mythical Baphomet Horns
+IG_COS_5,31236,5,1,1,1,0,0 //Costume Vicious Mind Aura(Mid) /mid
+IG_COS_5,31315,5,1,1,1,0,0 //Costume Stall of Angel** /low
+IG_COS_5,31201,5,1,1,1,0,0 //Costume: Royal Rabbit Crown
+IG_COS_5,20326,5,1,1,1,0,0 //Costume: Sailor Collar // low
+IG_COS_5,20316,5,1,1,1,0,0 //Costume: Seraphic Corolla*
+IG_COS_5,420010,5,1,1,1,0,0 //Costume Dark Master    
+IG_COS_5,31405,5,1,1,1,0,0 //Costume Eleanor Wig(Yellow)
+IG_COS_5,400124,5,1,1,1,0,0 //Majestic Goat of Costume Dawn    
+IG_COS_5,19158,5,1,1,1,0,0 //Costume GeminiS58 Eyes Blue*** Costume: Red Lotus Demon Wig /mid
+IG_COS_5,400057,5,1,1,1,0,0 //Costume: Red Lotus Demon Wig /low
+
+//==========================================
+//=================Cos Pet================
+//==========================================
+IG_COS_6,31798,5,1,1,1,0,0 //Costume: Baby Panda
+IG_COS_6,31437,5,1,1,1,0,0 //Costume: Baby Penguin
+IG_COS_6,31923,5,1,1,1,0,0 //Costume: Baby Polar Bear
+IG_COS_6,31186,5,1,1,1,0,0 //Costume: Black Cat
+IG_COS_6,31542,5,1,1,1,0,0 //Costume: Clay Poring Jar
+IG_COS_6,31600,5,1,1,1,0,0 //Costume: Kishu Dog
+IG_COS_6,31491,5,1,1,1,0,0 //Costume: Orange Tabby Cat
+IG_COS_6,19291,5,1,1,1,0,0 //Costume: Shiba Inu
+IG_COS_6,31452,5,1,1,1,0,0 //Costume: White Cat
+IG_COS_6,31299,5,1,1,1,0,0 //Costume: White Rabbit
+IG_COS_6,31517,5,1,1,1,0,0 //Costume Bear
+IG_COS_6,31512,5,1,1,1,0,0 //Costume Panda Rabbit
+IG_COS_6,31620,5,1,1,1,0,0//Costume Magic Successor
+
+
+//==========================================
+//=================New Egg================
+//==========================================
+IG_BOX_3,19329,4,1,1,1,0,0 //Devil's Hand
+IG_BOX_3,19116,4,1,1,1,0,0 //Red Baby Dragon
+IG_BOX_3,17294,35,1,1,1,0,0 //Shadow Magical Package
+IG_BOX_3,22529,8,1,1,1,0,0 //Shadow Exchange SynthesisBox
+IG_BOX_5,32565,12,1,1,1,0,0 //Mystic Cloak Red Costume
+IG_BOX_3,19342,20,1,1,1,0,0 //Bull Hat
+IG_BOX_3,19426,20,1,1,1,0,0 //King Of Spirit Circlet
+IG_BOX_3,19300,25,1,1,1,0,0 //Ruff officer
+IG_BOX_3,20949,25,1,1,1,0,0 //Skin Of Ladon
+IG_BOX_3,19139,35,1,1,1,0,0 //survivior
+IG_BOX_3,15186,45,1,1,1,0,0 //kafra
+IG_BOX_3,19168,45,1,1,1,0,0 //kafra
+IG_BOX_3,6635,30,2,1,1,0,0 //blessing blacksmith
+///-------low rate---------
+IG_BOX_3,23175,60,1,1,0,0,0 //Uniform Repair Kit
+IG_BOX_3,23720,60,1,1,0,0,0 //shadow option Random
+IG_BOX_3,25464,50,10,1,0,0,0 //World Moving Rights
+IG_BOX_3,14537,74,5,1,0,0,0 //Regeneration Potion
+IG_BOX_3,14535,89,5,1,0,0,0 //Medium Life Potion
+IG_BOX_3,14534,85,5,1,0,0,0 //Small Life Potion
+IG_BOX_3,13534,83,1,1,0,0,0 //light white potion box
+IG_BOX_3,13717,80,1,1,0,0,0 //abrasive
+IG_BOX_3,13548,65,1,1,0,0,0 //big bun
+IG_BOX_3,12209,93,10,1,0,0,0 //life insurance
+IG_BOX_3,12793,60,10,1,0,0,0 //battle pill
+IG_BOX_3,14600,70,5,1,0,0,0 //mental potion
+IG_BOX_3,40059,0,1,0,0,0,0//ticket Rare
+
+//==========================================
+//=================New Egg================
+//==========================================
+//IG_BOX_4,22829,2,1,1,1,0,0 //Sealed Card Album
+IG_BOX_4,28598,4,1,1,1,0,0 //Powered Chip [1]
+IG_BOX_4,32204,4,1,1,1,0,0 //Immortal Dog Tag [1]
+IG_BOX_4,17293,35,1,1,1,0,0 //Shadow Physical Package
+IG_BOX_4,22529,8,1,1,1,0,0 //Shadow Exchange SynthesisBox
+IG_BOX_5,32412,12,1,1,1,0,0 //Amaterasu Aura Pink Costume
+IG_BOX_5,32513,12,1,1,1,0,0 //Deadload Crown Costume
+//IG_BOX_4,19426,10,1,1,1,0,0 //King Of Spirit Circlet
+IG_BOX_4,19112,20,1,1,1,0,0 //tengu
+IG_BOX_4,5933,20,1,1,1,0,0 //tengu
+IG_BOX_4,28502,25,1,1,1,0,0 //mob
+IG_BOX_4,2202,35,1,1,1,0,0 //sun
+IG_BOX_4,18791,35,1,1,1,0,0 //shrine
+IG_BOX_4,6635,30,2,1,1,0,0 //blessing blacksmith
+///-------low rate---------
+IG_BOX_4,23720,60,1,1,0,0,0 //shadow option Random
+IG_BOX_4,25464,50,10,1,0,0,0 //World Moving Rights
+IG_BOX_4,14537,74,5,1,0,0,0 //Regeneration Potion
+IG_BOX_4,14535,89,5,1,0,0,0 //Medium Life Potion
+IG_BOX_4,14534,85,5,1,0,0,0 //Small Life Potion
+IG_BOX_4,13534,83,1,1,0,0,0 //light white potion box
+IG_BOX_4,13717,80,1,1,0,0,0 //abrasive
+IG_BOX_4,13548,65,1,1,0,0,0 //big bun
+IG_BOX_4,12209,93,10,1,0,0,0 //life insurance
+IG_BOX_4,12793,60,10,1,0,0,0 //battle pill
+IG_BOX_4,14600,70,5,1,0,0,0 //mental potion
+IG_BOX_4,40059,0,1,0,0,0,0//ticket Rare
+
+//==========================================
+//=================New Egg================
+//==========================================
+//IG_BOX_5,22829,3,1,1,1,0,0 //Sealed Card Album
+IG_BOX_5,20931,4,1,1,1,0,0 //Prism Ranger Scarf
+IG_BOX_5,20922,4,1,1,1,0,0 //Leviathan Muffler
+IG_BOX_5,22134,8,1,1,1,0,0 //Enforcer Shoes
+IG_BOX_5,5968,8,1,1,1,0,0 //Clergy Nurse Cap
+IG_BOX_5,19589,12,1,1,1,0,0 //Costume Fallen Angel Lost
+IG_BOX_5,15165,10,1,1,1,0,0 //Pure White Marching Hat
+IG_BOX_5,5564,20,1,1,1,0,0 //Crown of Deceit
+IG_BOX_5,5918,20,1,1,1,0,0 //Gambler's Seal
+IG_BOX_5,19125,25,1,1,1,0,0 //	Cylinder Hairband
+IG_BOX_5,19246,35,1,1,1,0,0 //Royal Guard Necklace
+IG_BOX_5,18823,35,1,1,1,0,0 //Imperial Feather
+IG_BOX_5,6635,30,2,1,1,0,0 //blessing blacksmith
+///-------low rate---------
+IG_BOX_5,23720,60,1,1,0,0,0 //shadow option Random
+IG_BOX_5,25464,50,10,1,0,0,0 //World Moving Rights
+IG_BOX_5,14537,74,5,1,0,0,0 //Regeneration Potion
+IG_BOX_5,14535,89,5,1,0,0,0 //Medium Life Potion
+IG_BOX_5,14534,85,5,1,0,0,0 //Small Life Potion
+IG_BOX_5,13534,83,1,1,0,0,0 //light white potion box
+IG_BOX_5,13717,80,1,1,0,0,0 //abrasive
+IG_BOX_5,13548,65,1,1,0,0,0 //big bun
+IG_BOX_5,12209,93,10,1,0,0,0 //life insurance
+IG_BOX_5,12793,60,10,1,0,0,0 //battle pill
+IG_BOX_5,14600,70,5,1,0,0,0 //mental potion
+IG_BOX_5,40059,0,1,0,0,0,0//ticket Rare
+
+
+//15186 kafra
+//19168
+//19139 // survivior
+//5933 tengu
+//19112 tengu
+//32767 cos
+//
+
+

@@ -1,0 +1,2215 @@
+//===== rAthena Script ======================================= 
+//= Quest NPCs related to Amatsu
+//===== By:================================================== 
+//= rAthena Dev Team & MasterOfMuppets
+//===== Current Version:===================================== 
+//= 1.5
+//===== Compatible With:===================================== 
+//= rAthena Project
+//===== Description:========================================= 
+//= [Official Conversion]
+//= Momotaro Event
+//= Sushi Quest
+//= Dungeon Quest
+//===== Additional Comments:================================= 
+//= 1.3 Rescripted to Aegis 10.3 Standards. [L0ne_W0lf]
+//= 1.4 Added missing checkweight. [L0ne_W0lf]
+//= 1.4a Fixed typo in condition check [Gepard]
+//= 1.5 Added questlog support. [Euphy]
+//============================================================ 
+
+// Momotaro Event::japan_momo_q
+//============================================================ 
+amatsu,223,236,3	script	Publisher#ama	763,{
+	if (checkweight(1201,1) == 0) {
+		mes "- รอสักครู่!! -";
+		mes "- ขณะนี้คุณกำลังดำเนินการ -";
+		mes "- มีสิ่งของติดตัวคุณมากเกินไป -";
+		mes "- โปรดเก็บสิ่งของบางอย่างไว้ในที่เก็บ Kafra ของคุณ -";
+		mes "- แล้วลองอีกครั้ง -";
+		close;
+	}
+	if (event_momo < 2) {
+		mes "[Publisher]";
+		mes "ฮัลโหล ~ !!";
+		mes "^009CFFScroll Publishing Company ของเรา ^000000";
+		mes "เผยแพร่อย่างมืออาชีพ";
+		mes "นิทาน.";
+		mes " ";
+		next;
+		mes "[Publisher]";
+		mes "เราก่อตั้งขึ้น";
+		mes "^3163FF ทัศนศึกษาโมโมทาโร่ ^000000";
+		mes "เพื่อเฉลิมฉลอง ^009CFF <Momotaro Story> ^000000 ขายได้มากกว่าล้านเล่ม";
+		next;
+		mes "[Publisher]";
+		mes "กลายเป็นโมโมทาโร่และกำจัด";
+		mes "Dokebis เหมือนในเรื่อง!";
+		mes "นอกจากนี้ยังจะมีรางวัล";
+		next;
+		switch(select("Momotaro Story คืออะไร?:ฉันอยากลอง!:ตอนนี้ฉันยุ่งอยู่ ...")) {
+		case 1:
+			mes "[Publisher]";
+			mes "เอ๊ะ ~!? ไม่รู้เรื่องได้ไง";
+			mes "โมโมทาโร่? พวกเขาไม่มีสิ่งนี้";
+			mes "เรื่องเล่าในมิดการ์ด ?? ดี...";
+			mes "ให้ฉันเล่าเรื่องให้คุณฟัง";
+			next;
+			mes "[Publisher]";
+			mes "นานมาแล้วมีคู่สามีภรรยาเก่าอาศัยอยู่ พวกเขามีความสุข แต่ไม่มีลูก";
+			next;
+			mes "[Publisher]";
+			mes "วันหนึ่งขณะที่หญิงชรากำลังซักผ้าอยู่นั้นเธอพบว่ามีมนุษย์ตัวหนึ่ง";
+			mes "ลูกพีช. เธอผ่าครึ่งและ ...";
+			mes "'กะเทย!' มีทารกอยู่ข้างใน!";
+			next;
+			mes "[Publisher]";
+			mes "ชายชราและหญิงสาวตกใจ";
+			mes "พวกเขาตัดสินใจรับเลี้ยงทารกนั้น";
+			mes "และมอบความรักให้กับเขา ...";
+			next;
+			mes "[Publisher]";
+			mes "ทารกคนนั้นเติบโตอย่างรวดเร็วเช่นเดียวกับต้นถั่วจาก 'Jack and Beanstalk' และกลายเป็นเด็กที่แข็งแกร่งในเวลาเพียงไม่กี่วัน";
+			mes " ";
+			next;
+			mes "[Publisher]";
+			mes "เด็กคนนั้นชื่อ ...";
+			mes "<โมทาโร่> !!!";
+			mes "โมโมทาโร่เดินทางไปกำจัด";
+			mes "dokebis ที่ก่อกวน";
+			mes "หอคอย";
+			next;
+			mes "[Publisher]";
+			mes "เขากลายเป็นเพื่อนกับ";
+			mes "^3163FF Yoyo, Picky, Desert Wolf ^000000";
+			mes "และกำจัด Dokebis ทั้งหมด จากนั้นเขาก็ใช้ชีวิตอย่างมีความสุขตลอดไปกับคู่รักเก่า";
+			next;
+			mes "[Publisher]";
+			mes "เป็นยังไงบ้าง?";
+			mes "เยี่ยมใช่มั้ย?";
+			mes "ฉันหมายถึงเรื่องนี้ขายได้ล้านเล่ม!";
+			close;
+		case 2:
+			if (BaseLevel > 29) {
+				mes "[Publisher]";
+				mes "เย้-! คุณดูตื่นเต้น!";
+				mes "คุณจะพร้อมใช้งานเร็ว ๆ นี้";
+				mes "กรุณากรอกบัตรลงทะเบียนนี้";
+				next;
+				mes "[Publisher]";
+				mes "....................";
+				mes "...... อืม ..... มาดูกัน .....";
+				mes ".............ดี!";
+				mes "เอาล่ะ!";
+				mes "เริ่มกันเลย ~~~ !!!!!!!!!";
+				mes "<Momotaro Field Trip>~!";
+				next;
+				warp "ama_test",52,35;
+				end;
+			}
+			mes "[Publisher]";
+			mes "อืม ~";
+			mes "ทำไมคุณไม่ฝึกฝนตัวเองให้มากขึ้น";
+			mes "แล้วกลับมา?";
+			close;
+		case 3:
+			mes "[Publisher]";
+			mes "เอ๊ะ?";
+			mes "... แต่มีรางวัลแสนหวานรออยู่ ...";
+			close;
+		}
+	}
+	else if (event_momo == 4) {
+		mes "[Publisher]";
+		mes "อา ~ อากาศดีจัง!";
+		mes "นี่คือสภาพอากาศที่สมบูรณ์แบบสำหรับการอ่านหนังสือ";
+		close;
+	}
+	else if (event_momo > 1) {
+		mes "[Publisher]";
+		mes "เป็นยังไงบ้าง? คุณสนุกไหม?";
+		mes "ฉันหวังว่าคุณจะมีช่วงเวลาที่ดี";
+		mes "ระหว่างการทัศนศึกษา";
+		mes " ";
+		mes " ";
+		next;
+		mes "[Publisher]";
+		mes "นี่คือรางวัลสำหรับคุณ";
+		mes "ขอให้สนุกกับเรื่องราวต่อไป ~";
+		mes " ";
+		set .@event_momo, event_momo;
+		set event_momo,4;
+		completequest 8128;
+		completequest 8129;
+		completequest 8130;
+		if (.@event_momo == 3) {
+			set .@gift_1,rand(1,10);
+			if (.@gift_1 == 1) {
+				getitem 659,1; //Heart_Of_Her
+			}
+			if (.@gift_1 == 2) {
+				getitem 633,1; //Baked_Yam
+			}
+			if (.@gift_1 == 3) {
+				getitem 634,1; //Tropical_Banana
+			}
+			if (.@gift_1 == 4) {
+				getitem 639,1; //Armlet_Of_Obedience
+			}
+			if (.@gift_1 == 5) {
+				getitem 636,1; //No_Recipient
+			}
+			if (.@gift_1 == 6) {
+				getitem 628,1; //Well_Dried_Bone
+			}
+			if (.@gift_1 == 7) {
+				getitem 637,1; //Old_Broom
+			}
+			if (.@gift_1 == 8) {
+				getitem 635,1; //Horror_Of_Tribe
+			}
+			if (.@gift_1 == 9) {
+				getitem 626,1; //Monster_Juice
+			}
+			if (.@gift_1 == 10) {
+				getitem 641,1; //Contracts_In_Shadow
+			}
+		}
+		else {
+			set .@gift_2,rand(1,10);
+			if (.@gift_2 == 1) {
+				getitem 622,1; //Rainbow_Carrot
+			}
+			if (.@gift_2 == 2) {
+				getitem 627,1; //Sweet_Milk
+			}
+			if (.@gift_2 == 3) {
+				getitem 629,1; //Singing_Flower
+			}
+			if (.@gift_2 == 4) {
+				getitem 632,1; //Fatty_Chubby_Earthworm
+			}
+			if (.@gift_2 == 5) {
+				getitem 623,1; //Earthworm_The_Dude
+			}
+			if (.@gift_2 == 6) {
+				getitem 619,1; //Unripe_Apple
+			}
+			if (.@gift_2 == 7) {
+				getitem 621,1; //Bitter_Herb
+			}
+			if (.@gift_2 == 8) {
+				getitem 620,1; //Orange_Juice
+			}
+			if (.@gift_2 == 9) {
+				getitem 625,1; //Lusty_Iron
+			}
+			if (.@gift_2 == 10) {
+				getitem 624,1; //Rotten_Fish
+			}
+		}
+		close;
+	}
+}
+
+ama_test,52,44,3	script	Assistant#ama	109,{
+	if (event_momo == 0) {
+		mes "[Satoshi]";
+		mes "ยินดีต้อนรับสู่ <Momotaro Field Trip>";
+		mes " ";
+		next;
+		mes "[Satoshi]";
+		mes "ฉันซาโตชิเป็นผู้ดูแลห้องรอใน <Momotaro Field Trip>";
+		next;
+		mes "[Satoshi]";
+		mes "เดิมทีฉันทำงานให้กับ บริษัท สิ่งพิมพ์ แต่เราขาดคนงานสำหรับ Field Trip ...";
+		mes "แต่ทำงานที่นี่ดีกว่าเยอะ!";
+		mes "ตอนนี้ฉันแค่เฝ้าดูคนที่พยายามทำภารกิจให้สำเร็จ ฮิฮิฮิ ~";
+		next;
+		mes "[Satoshi]";
+		mes "................";
+		mes "ผมล้อเล่น";
+		mes "* เช็ดเหงื่อ *";
+		next;
+		mes "[Satoshi]";
+		mes "ให้ฉันอธิบาย";
+		mes "เกี่ยวกับกฎใน Field Trip";
+		mes " ";
+		next;
+		mes "[Satoshi]";
+		mes "ก่อนอื่น ... คุณได้ยินไหม";
+		mes "เกี่ยวกับเรื่องราวจากสำนักพิมพ์?";
+		next;
+		if (select("ใช่ไม่ใช่") == 1) {
+			mes "[Satoshi]";
+			mes "อิอิ ... สบายดีนะ";
+			mes "เรื่องโมโมทาโร่เป็นของเรา";
+			mes "ความภาคภูมิใจ. เป็นเรื่องที่ดีที่สุดเท่าที่เคยมีมา";
+			mes "ห๊ะ !!!";
+			next;
+			mes "[Satoshi]";
+			mes "... อืม ...";
+			next;
+			mes "[Satoshi]";
+			mes "Field Trip เป็นเรื่องง่าย";
+			mes "เข้าไปข้างในแล้วกำจัด";
+			mes "โดเคบิสอย่างกล้าหาญ !!!";
+			mes "เช่นเดียวกับโมโมทาโร่ !!!";
+			mes "เข้าใจ? อย่างกล้าหาญ !!!";
+			next;
+			mes "[Satoshi]";
+			mes "นอกจากนี้ยังมีสาม";
+			mes "สิ่งที่คุณต้องรู้";
+			next;
+			mes "[Satoshi]";
+			mes "อันดับแรก ....";
+			mes "คุณไม่สามารถกลับมาได้อีกเมื่อเคลียร์ทัศนศึกษาแล้ว โปรดจำไว้ว่า";
+			next;
+			mes "[Satoshi]";
+			mes "ประการที่สอง ....";
+			mes "ห้าม Q-pet";
+			mes "ภายในทัศนศึกษา";
+			mes "หากคุณอยู่กับสัตว์เลี้ยง";
+			mes "กรุณาเปลี่ยนสถานะเป็นไข่";
+			next;
+			mes "[Satoshi]";
+			mes "และในที่สุดก็...";
+			mes "บุคคลหนึ่งสามารถอยู่ในไฟล์";
+			mes "ทัศนศึกษาเป็นเวลา 6 นาที";
+			next;
+			mes "[Satoshi]";
+			mes "ถ้าอย่างนั้นได้โปรด";
+			mes "รอถึงตาคุณ";
+			mes "ในห้องรอ";
+			mes "ขอให้โชคดีสู้ ๆ !!";
+			close;
+		}
+		mes "[Assistant]";
+		mes "เอ๊ะ? คุณทำไม่ได้";
+		mes "ข้ามเรื่องราว";
+		mes "ตอนไปทัศนศึกษา !!";
+		mes "ฉันยอมให้คุณทำแบบนั้นไม่ได้";
+		mes "ในฐานะแฟนของโมโมทาโร่ !!!";
+		next;
+		mes "[Assistant]";
+		mes "โปรดฟังเรื่องราว";
+		mes "จากสำนักพิมพ์";
+		mes "ขอบคุณ.";
+		mes "บาย ~~";
+		next;
+		warp "amatsu",223,230;
+		end;
+	}
+	else if (event_momo == 1) {
+		mes "[Satoshi]";
+		mes "โอ้ ... คุณสบายดีไหม?";
+		mes "ฉันคิดว่ามันสนุก แต่อาจจะยากเกินไปสำหรับคุณ?";
+		next;
+		mes "[Satoshi]";
+		mes "ตอนนี้คุณจะทำอะไร?";
+		mes "คุณต้องการเข้าไปอีกไหม";
+		next;
+		if (select("ใช่:ไม่ฉันอยากกลับไป") == 1) {
+			mes "[Satoshi]";
+			mes "ยิ่งคุณพยายามมากเท่าไหร่ชัยชนะที่หอมหวานก็จะได้ลิ้มรส";
+			mes "ขอให้โชคดีในการต่อสู้!";
+			close;
+		}
+		mes "[Satoshi]";
+		mes "ฉันเดาว่าความเป็นจริงของสถานการณ์คือคุณไม่สามารถเติมเต็มบทบาทของโมโมทาโร่ได้ ...";
+		mes "ยังไงก็อย่าเพิ่งหดหู่";
+		next;
+		mes "[Satoshi]";
+		mes "ฉันคิดว่าคุณได้รับประสบการณ์เพียงพอจากการทัศนศึกษา";
+		next;
+		mes "[Assistant]";
+		mes "หากคุณได้ยินเรื่องราวดีๆ";
+		mes "กรุณาติดต่อของเรา";
+		mes "บริษัท สำนักพิมพ์.";
+		mes "บาย-";
+		close2;
+		percentheal 100,0;
+		set event_momo,0;
+		warp "amatsu",223,230;
+		end;
+	}
+	else if (event_momo == 2) {
+		mes "[Satoshi]";
+		mes "วู้ฮู้ ~ ยินดีด้วย !!";
+		mes "คุณยอดเยี่ยมมาก!";
+		next;
+		mes "[Satoshi]";
+		mes "ได้เวลากล่าวคำอำลา";
+		mes "หากคุณได้ยินเรื่องราวดีๆ";
+		mes "กรุณาติดต่อของเรา";
+		mes "บริษัท สำนักพิมพ์.";
+		mes "บาย-";
+		close2;
+		percentheal 100,0;
+		warp "amatsu",223,230;
+		end;
+	}
+	mes "[Satoshi]";
+	mes "วู้ฮู้ ~ ยินดีด้วย !!";
+	mes "คุณยอดเยี่ยมมาก !!";
+	mes "แม้ว่าการจบของคุณจะดูอ่อนแอ ...";
+	next;
+	mes "[Satoshi]";
+	mes "ได้เวลากล่าวคำอำลา";
+	mes "หากคุณได้ยินเรื่องราวดีๆ";
+	mes "กรุณาติดต่อของเรา";
+	mes "บริษัท สำนักพิมพ์.";
+	mes "บาย-";
+	close2;
+	warp "amatsu",223,230;
+	end;
+
+OnInit:
+	waitingroom "รอการจัดแสดง",10,"Assistant#ama::OnStartArena",1;
+	enablewaitingroomevent "Assistant#ama";
+	end;
+
+OnStartArena:
+	disablenpc "Coach#ama";
+	donpcevent "Am Mut#ama::OnReset";
+	donpcevent "Dokebi#ez::OnReset";
+	donpcevent "Dokebi#hd::OnReset";
+	enablenpc "Grandma#ama1";
+	enablenpc "Grandpa#ama";
+	warpwaitingpc "ama_test",50,83;
+	donpcevent "Timer#ama::OnEnable";
+	disablewaitingroomevent "Assistant#ama";
+	end;
+
+OnReset:
+	enablewaitingroomevent "Assistant#ama";
+	end;
+}
+
+ama_test,34,25,0	script	Hanako chan#ama	-1,2,2,{
+OnTouch_:
+	mes "[Hanako chan]";
+	mes "....... อีเหี้ยยยยยย";
+	mes ".....................";
+	next;
+	mes "[Hanako chan]";
+	mes ".. อีนี่ฮี่ฮี่ฮี่ฮี่ฮี่";
+	mes "..........................";
+	next;
+	mes "[Hanako chan]";
+	mes "......................";
+	mes "... อยากได้กระดาษชำระสีแดง ....";
+	mes "..... หรือกระดาษชำระ bl-ue .... ";
+	close;
+}
+
+ama_test,49,93,4	script	Grandpa#ama	766,{
+	end;
+
+OnInit:
+	disablenpc "Grandpa#ama";
+	end;
+}
+
+ama_test,50,93,4	script	Grandma#ama1	761,10,10,{
+	end;
+
+OnInit:
+	disablenpc "Grandma#ama1";
+	end;
+
+OnTouch_:
+	mes "[Grandma]";
+	mes "อร๊าก !!!";
+	next;
+	mes "[Grandma]";
+	mes "น้ำผึ้ง!! มีคนแฮ็กบัญชีของฉันและขโมยอุปกรณ์ของฉันไป !!";
+	next;
+	mes "[Grandpa]";
+	mes "อืม. หัวหน้ากล่าวว่า Dokebi มีรายได้ 20 ล้าน zeny จากการแฮ็คบัญชีของผู้อื่น ...";
+	next;
+	setquest 8127;
+	mes "[Grandma]";
+	mes "ดุ๊กดิ๊ก !!!! ";
+	next;
+	mes "[Grandpa]";
+	mes ".... เคยได้ยินมาบ้างว่า .. ..... ";
+	next;
+	mes "[Grandpa]";
+	mes "ยังไงก็โมโมทาโร่ ...";
+	next;
+	mes "[Grandpa]";
+	mes "อย่างที่คุณทราบเนื่องจากเราใช้เวลาในการนั่งคุยกัน";
+	mes "เราไม่สามารถฆ่า Dokebis ได้เพราะเราอยู่ในระดับต่ำดังนั้น ... โปรดทำเพื่อเรา ";
+	next;
+	mes "[Grandma]";
+	mes "โมโมทาโร่ ...";
+	mes "ฉันอยากจะให้คุณจริงๆ";
+	mes "a handmade ^3163FFYummiest Red Potion in the whole world ^000000 ... แต่ ...";
+	mes "..... ทำไม่สำเร็จ ....";
+	next;
+	mes "[Grandma]";
+	mes "...ฉันขอโทษ. ฉันควรจะเลเวลอัพมาก่อน ... * สะอื้น *";
+	next;
+	mes "[คุณย่าและ[Grandpa]";
+	mes "งั้น ... ช่วยฉันหน่อยสิเด็ก ~";
+	close2;
+	set event_momo,1;
+	if (countitem(9010) > 0 || countitem(9005) > 0 || countitem(9016) > 0) {
+		disablenpc "Grandpa#ama";
+		disablenpc "Grandma#ama1";
+		donpcevent "Dokebi#ez::OnEnable";
+	}
+	else {
+		disablenpc "Grandpa#ama";
+		disablenpc "Grandma#ama1";
+		donpcevent "Dokebi#hd::OnEnable";
+	}
+	end;
+}
+
+ama_test,34,15,0	script	Dokebi#ez	-1,{
+OnInit:
+	disablenpc "Dokebi#ez";
+	end;
+
+OnEnable:
+	enablenpc "Dokebi#ez";
+	set .MyMobs,9;
+	monster "ama_test",45,95,"Dokebi",1110,1,"Dokebi#ez::OnMyMobDead";
+	monster "ama_test",45,99,"Dokebi",1110,1,"Dokebi#ez::OnMyMobDead";
+	monster "ama_test",47,101,"Dokebi",1110,1,"Dokebi#ez::OnMyMobDead";
+	monster "ama_test",51,101,"Dokebi",1110,1,"Dokebi#ez::OnMyMobDead";
+	monster "ama_test",55,101,"Dokebi",1110,1,"Dokebi#ez::OnMyMobDead";
+	monster "ama_test",55,97,"Dokebi",1110,1,"Dokebi#ez::OnMyMobDead";
+	monster "ama_test",55,93,"Dokebi",1110,1,"Dokebi#ez::OnMyMobDead";
+	monster "ama_test",53,91,"Dokebi",1110,1,"Dokebi#ez::OnMyMobDead";
+	monster "ama_test",49,91,"Dokebi",1110,1,"Dokebi#ez::OnMyMobDead";
+	end;
+
+OnReset:
+	killmonster "ama_test","Dokebi#ez::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mapannounce "ama_test","ฉัน ... ฉันจะกลับมา ~~~~ !!!",bc_map;
+		enablenpc "Coach#ama";
+		set event_momo,2;
+	}
+	else {
+		set .@dokebi_tel,rand(1,4);
+		if (.@dokebi_tel == 1) {
+			mapannounce "ama_test","!! มันบุก !!!! วิ่ง!!",bc_map;
+		}
+		else if (.@dokebi_tel == 2) {
+			mapannounce "ama_test"," โอ๊ยโอ๊ย !!! ",bc_map;
+		}
+		else if (.@dokebi_tel == 3) {
+			mapannounce "ama_test"," แต่ฉันไม่ได้ทำอะไรบาอาดเลย ~ !!",bc_map;
+		}
+		else if (.@dokebi_tel == 4) {
+			mapannounce "ama_test"," ฉันขอโทษ ~~ Waaaaah ~~ ",bc_map;
+		}
+	}
+	end;
+}
+
+ama_test,34,16,0	script	Dokebi#hd	-1,{
+OnInit:
+	disablenpc "Dokebi#hd";
+	end;
+
+OnEnable:
+	enablenpc "Dokebi#hd";
+	set .MyMobs,9;
+	monster "ama_test",45,95,"Dokebi",1110,1,"Dokebi#hd::OnMyMobDead";
+	monster "ama_test",45,99,"Dokebi",1110,1,"Dokebi#hd::OnMyMobDead";
+	monster "ama_test",47,101,"Dokebi",1110,1,"Dokebi#hd::OnMyMobDead";
+	monster "ama_test",51,101,"Dokebi",1110,1,"Dokebi#hd::OnMyMobDead";
+	monster "ama_test",55,101,"Dokebi",1110,1,"Dokebi#hd::OnMyMobDead";
+	monster "ama_test",55,97,"Dokebi",1110,1,"Dokebi#hd::OnMyMobDead";
+	monster "ama_test",55,93,"Dokebi",1110,1,"Dokebi#hd::OnMyMobDead";
+	monster "ama_test",53,91,"Dokebi",1110,1,"Dokebi#hd::OnMyMobDead";
+	monster "ama_test",49,91,"Dokebi",1110,1,"Dokebi#hd::OnMyMobDead";
+	end;
+
+OnReset:
+	killmonster "ama_test","Dokebi#hd::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mapannounce "ama_test"," ฉันจะกลับมา ~~~~ !!!",bc_map;
+		enablenpc "Coach#ama";
+		set event_momo,2;
+	}
+	else {
+		set .@dokebi_tel,rand(1,4);
+		if (.@dokebi_tel == 1) {
+			mapannounce "ama_test","!! มันเป็น RAID !!!! วิ่ง!!",bc_map;
+		}
+		if (.@dokebi_tel == 2) {
+			mapannounce "ama_test"," โอ๊ยโอ๊ย !!! ",bc_map;
+		}
+		if (.@dokebi_tel == 3) {
+			mapannounce "ama_test"," แต่ฉันไม่ได้ทำอะไรเลยบะอาด ~!",bc_map;
+		}
+		if (.@dokebi_tel == 4) {
+			mapannounce "ama_test"," ฉันขอโทษ ~~! ว้าาาาาา ~~",bc_map;
+		}
+	}
+	end;
+}
+
+ama_test,50,100,3	script	Coach#ama	762,15,15,{
+	mes "[Coach]";
+	mes "โฮ่โฮ่ ~ ดี";
+	mes "ฉันเฝ้าดูคุณอยู่ในห้องวีไอพี คุณเป็นอะไรบางอย่างจริงๆ";
+	mes "ฉันรู้สึกทึ่งจริงๆ";
+	next;
+	mes "[Coach]";
+	mes "ฉันคิดว่าคุณเป็นจริงๆ";
+	mes "โมโมทาโร่ในเรื่อง!";
+	mes "โฮะโฮะโฮะโฮะ ...";
+	next;
+	switch(select("ดีดี. มันไม่มีอะไร ~:มันน่าเบื่อ")) {
+	case 1:
+		mes "[Coach]";
+		mes "...โฮ้โฮ้โฮ้..";
+		mes "อย่าภูมิใจในตัวเองมากนัก";
+		mes "เมื่อฉันยังเด็กเหมือนคุณ";
+		mes "ฉันบีบ Dokebi ด้วย";
+		mes "นิ้วก้อยของฉัน โฮโฮโฮ ~";
+		next;
+		mes "[Coach]";
+		mes "..............";
+		mes "... อย่าให้ฉันดูนะ";
+		mes "ฉันแค่ล้อเล่น อืม";
+		next;
+		changequest 8127,8128;
+		mes "[Coach]";
+		mes "ตอนนี้เรื่องราวของโมโมทาโร่จบลงแล้ว";
+		mes "คุณจะได้รับรางวัลเมื่อคุณพูดคุยกับผู้หญิงของผู้จัดพิมพ์ที่คุณเห็นเป็นคนแรก";
+		next;
+		mes "[Coach]";
+		mes "อย่าสูญเสียความนับถือตัวเองสูง";
+		mes "ในอนาคต. อำลา.";
+		close2;
+		donpcevent "Timer#ama::OnDisable";
+		warp "amatsu",223,230;
+		disablenpc "Coach#ama";
+		donpcevent "Assistant#ama::OnReset";
+		end;
+	case 2:
+		mes "[Coach]";
+		mes "..... !!!!!!";
+		mes ".... โฮะโฮะโฮะ ..";
+		mes "คุณค่อนข้างตลก";
+		mes "เอาล่ะของร้อน";
+		mes "คุณต้องการฟังข้อเสนอของฉันไหม";
+		next;
+		changequest 8127,8129;
+		mes "[Coach]";
+		mes "ในตอนนี้ฉันควรจะส่งคุณกลับ ... แต่!";
+		mes "ฉันอยากรู้จริงๆ";
+		mes "สิ่งที่คุณสามารถทำได้ อิอิ ~";
+		mes "โฮโฮโฮ ~";
+		next;
+		mes "[Coach]";
+		mes "ดังนั้นฉันจะให้โอกาสคุณ";
+		mes "แต่ถ้าคุณล้มเหลว";
+		mes "^3163FF คุณไม่สามารถรับคำท้านี้ได้ ^000000";
+		mes "นอกจากนี้ภารกิจนี้จะค่อนข้างยาก";
+		next;
+		if (select("เนอะ .. สบายดีนะ:เอามาฟู '!") == 1) {
+			erasequest 8129;
+			mes "[Coach]";
+			mes "โฮโฮ ~ เข้าใจแล้ว ...";
+			mes "คุณต้องเหนื่อยจากการต่อสู้ครั้งก่อน มันจะเป็นการต่อสู้ที่ยิ่งใหญ่แม้ว่า ...";
+			next;
+			mes "[Coach]";
+			mes "ตอนนี้เรื่องราวของโมโมทาโร่จบลงแล้ว";
+			mes "คุณจะได้รับรางวัลของคุณ";
+			mes "เมื่อคุณคุยกับ";
+			mes "ผู้หญิงของผู้จัดพิมพ์ที่คุณคุยด้วยเป็นครั้งแรก";
+			next;
+			mes "[Coach]";
+			mes "อย่าสูญเสียความนับถือตัวเองสูง";
+			mes "ในอนาคต. อำลา.";
+			next;
+			setquest 8128;
+			warp "amatsu",223,230;
+			disablenpc "Coach#ama";
+			donpcevent "Timer#ama::OnDisable";
+			donpcevent "Assistant#ama::OnReset";
+			end;
+		}
+		mes "[Coach]";
+		mes "Hohoho ~ ฉันชอบทัศนคติของคุณ";
+		mes "ตอนนี้นี่คือการต่อสู้ครั้งสุดท้าย!";
+		mes "แสดงให้ฉันเห็นว่าคุณมีอะไรบ้าง";
+		mes "ฉันรอคอยสิ่งนี้";
+		percentheal 70,0;
+		disablenpc "Coach#ama";
+		donpcevent "Am Mut#ama::OnEnable";
+		close;
+	}
+
+OnInit:
+	disablenpc "Coach#ama";
+	end;
+
+OnTouch_:
+	mes "[Coach]";
+	mes "บูมแบมบูม !!!";
+	mes "ทาด้า ~~~!";
+	close;
+}
+
+ama_test,34,17,0	script	Am Mut#ama	-1,{
+OnInit:
+	disablenpc "Am Mut#ama";
+	end;
+
+OnEnable:
+	enablenpc "Am Mut#ama";
+	set .MyMobs,3;
+	monster "ama_test",35,102,"Am Mut",1301,1,"Am Mut#ama::OnMyMobDead";
+	monster "ama_test",40,91,"Am Mut",1301,1,"Am Mut#ama::OnMyMobDead";
+	monster "ama_test",56,108,"Am Mut",1301,1,"Am Mut#ama::OnMyMobDead";
+	end;
+
+OnReset:
+	killmonster "ama_test","Am Mut#ama::OnMyMobDead";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		enablenpc "Coach#after";
+	}
+	else {
+		set .@am_mut_tel,rand(1,3);
+		if (.@am_mut_tel == 1) {
+			mapannounce "ama_test"," อ๊าก !! ฉันทำผิด ... !",bc_map;
+		}
+		if (.@am_mut_tel == 2) {
+			mapannounce "ama_test"," ฮึ ... จะแพ้ได้ยังไง! ... ",bc_map;
+		}
+		if (.@am_mut_tel == 3) {
+			mapannounce "ama_test"," แม่มมมม ~~ !!!",bc_map;
+		}
+	}
+	end;
+}
+
+ama_test,50,100,3	script	Coach#after	762,5,5,{
+	end;
+
+OnInit:
+	disablenpc "Coach#after";
+	end;
+
+OnTouch_:
+	mes "[Coach]";
+	mes "(ปรบมือ - ปรบมือ - ปรบมือ -)";
+	next;
+	mes "[Coach]";
+	mes "โฮโฮโฮ ~ คุณเป็นอะไรบางอย่างจริงๆ";
+	mes "คุณมีการเคลื่อนไหว kiddo";
+	mes "ฉันจะให้คุณ";
+	next;
+	mes "[Coach]";
+	mes "ถึงเวลาแล้ว ...";
+	mes "ให้ฉันแสดงทางออก";
+	mes "ผมมีช่วงเวลาที่ดี...";
+	mes "อย่าลืมรับรางวัลนะคะ ~";
+	close2;
+	set event_momo,3;
+	changequest 8129,8130;
+	warp "amatsu",223,230;
+	disablenpc "Coach#after";
+	donpcevent "Timer#ama::OnDisable";
+	donpcevent "Assistant#ama::OnReset";
+	end;
+}
+
+ama_test,34,18,0	script	Timer#ama	-1,{
+OnInit:
+	disablenpc "Timer#ama";
+	end;
+
+OnEnable:
+	enablenpc "Timer#ama";
+	initnpctimer;
+	end;
+OnDisable:
+	stopnpctimer;
+	end;
+
+OnTimer1000:
+	mapannounce "ama_test"," เปิดใช้งานตัวตั้งเวลาแล้ว คุณมีเวลา 6 นาที ทำลายล้างสัตว์ประหลาดให้ทันเวลา!",bc_map;
+	end;
+
+OnTimer181000:
+	mapannounce "ama_test"," เหลือ 3 นาที ",bc_map;
+	end;
+
+OnTimer301000:
+	mapannounce "ama_test"," เหลือ 1 นาที ",bc_map;
+	end;
+OnTimer361000:
+	mapannounce "ama_test","Beep- Beep- Beep- เวลาผ่านไป",bc_map;
+	end;
+
+OnTimer361500:
+	enablenpc "backwarp#ama";
+	end;
+
+OnTimer362000:
+	disablenpc "backwarp#ama";
+	end;
+
+OnTimer362500:
+	donpcevent "Assistant#ama::OnReset";
+	donpcevent "Timer#ama::OnDisable";
+	end;
+}
+
+ama_test,50,100,0	script	backwarp#ama	-1,25,25,{
+OnInit:
+	disablenpc "backwarp#ama";
+	end;
+
+OnTouch_:
+	warp "amatsu",115,95;
+	end;
+}
+
+// Sushi Quest::japan_sushi
+//============================================================ 
+ama_in01,162,17,1	script	Sushi Master#ama	765,{
+	if (MaxWeight - Weight < 5000) {
+		mes "[Magumagu]";
+		mes "เฮ้. คุณดูหนักมากจริงๆ";
+		mes "คุณไม่มีปัญหาในการเดินเหรอ?";
+		mes "ฉันขอโทษ แต่ไม่มีที่ว่าง";
+		mes "เพื่อวางสิ่งของของคุณในร้านของฉัน";
+		next;
+		mes "[Magumagu]";
+		mes "นำสิ่งของของคุณไปเก็บไว้ที่ไหนสักแห่ง";
+		mes "ทำไมอุ้มเยอะจัง ... ?";
+		mes "หุหุหุ ...";
+		close;
+	}
+	else if (ama_sushi == 4) {
+		mes "[Magumagu]";
+		mes "ฝึกหั่นปลาดิบ";
+		mes "ทุกวันจะทำให้คุณเป็นพ่อครัวซูชิระดับปรมาจารย์";
+		mes "อย่าเสียเวลาที่นี่และเรียนรู้ในสิ่งที่คุณถนัด";
+		mes " ";
+		close;
+	}
+	else if (fish_r == 1) {
+		if (countitem(529) > 9) {
+			mes "[Magumagu]";
+			mes "โอ้! ฉันซาบซึ้งจริงๆ";
+			mes "ตรงเวลา!";
+			mes "ฉันต้องการให้พวกเขาทำขนมจริงๆ";
+			next;
+			mes "[Magumagu]";
+			mes "ขอบคุณ. มันไม่มีอะไร แต่";
+			mes "ฉันจะให้อาหารพิเศษของร้านฉัน Fish Slice เป็นการตอบแทน";
+			next;
+			set fish_r,0;
+			erasequest 10036;
+			delitem 529,10; //Candy
+			getitem 544,15; //Fish_Slice
+			mes "[Magumagu]";
+			mes "นี่คือชิ้นปลา 15 ชิ้น";
+			mes "โปรดเพลิดเพลินกับอาหารนี้กับเพื่อนของคุณ";
+			mes "และกลับมาอีกครั้งเมื่อคุณพลาดรสชาติอาหาร Amatsu";
+			close;
+		}
+		mes "[Magumagu]";
+		mes "คุณไม่ได้เตรียมตัว";
+		mes "สิ่งที่ฉันขอ ...";
+		mes "อย่าลืมสิ่งที่ฉันถาม";
+		next;
+		mes "[Magumagu]";
+		mes "10 ^0000FFCandy ^000000";
+		mes "คุณไม่ได้ลืมมันใช่มั้ย?";
+		mes "กรุณานำอุปกรณ์เหล่านี้มาให้ฉัน";
+		close;
+	}
+	else if (fish_r == 2) {
+		if (countitem(964) > 9) {
+			mes "[Magumagu]";
+			mes "โอ้! ฉันซาบซึ้งจริงๆ";
+			mes "ตรงเวลา!";
+			mes "ฉันต้องการให้พวกเขาทำซอส";
+			next;
+			mes "[Magumagu]";
+			mes "ขอบคุณ. มันไม่มีอะไร แต่";
+			mes "ฉันจะให้ซูชิสองชุดเป็นการตอบแทน";
+			next;
+			set fish_r,0;
+			erasequest 10037;
+			delitem 964,10; //Crap_Shell
+			getitem 551,20; //Shusi
+			mes "[Magumagu]";
+			mes "แบ่งปันกับเพื่อนของคุณ";
+			mes "และสมาชิกในครอบครัว";
+			mes "โปรดมาอีกครั้ง.";
+			close;
+		}
+		mes "[Magumagu]";
+		mes "คุณไม่ได้เตรียมตัว";
+		mes "สิ่งที่ฉันขอ ...";
+		mes "อย่าลืมสิ่งที่ฉันถาม";
+		next;
+		mes "[Magumagu]";
+		mes "10 ^0000FFCrab หอย ^000000 ...";
+		mes "คุณไม่ได้ลืมมันใช่มั้ย?";
+		mes "กรุณานำอุปกรณ์เหล่านี้มาให้ฉัน";
+		close;
+	}
+	else if (fish_r == 3) {
+		if (countitem(961) > 9) {
+			mes "[Magumagu]";
+			mes "โอ้! ฉันซาบซึ้งจริงๆ";
+			mes "ตรงเวลา!";
+			mes "ฉันกำลังเตรียมอาหารทานเล่น ...";
+			next;
+			mes "[Magumagu]";
+			mes "ขอบคุณ. มันเป็นอะไร แต่";
+			mes "ฉันจะให้ซูชิตอบแทนคุณหลายชุด";
+			next;
+			set fish_r,0;
+			erasequest 10038;
+			delitem 961,10; //Conch
+			getitem 551,30; //Shusi
+			mes "[Magumagu]";
+			mes "สำหรับสามคน";
+			mes "ดังนั้นแบ่งปันกับเพื่อนของคุณ";
+			mes "กลับมาอีกครั้งหากคุณต้องการช่วยเหลือเพิ่มเติม";
+			close;
+		}
+		mes "[Magumagu]";
+		mes "คุณไม่ได้เตรียมตัว";
+		mes "สิ่งที่ฉันขอ ...";
+		mes "อย่าลืมสิ่งที่ฉันถาม";
+		next;
+		mes "[Magumagu]";
+		mes "10 ^0000FFConches ^000000";
+		mes "คุณไม่ได้ลืมมันใช่มั้ย?";
+		mes "กรุณานำอุปกรณ์เหล่านี้มาให้ฉัน";
+		close;
+	}
+	else if (fish_r == 4) {
+		if (countitem(1023) > 9) {
+			mes "[Magumagu]";
+			mes "โอ้! ฉันซาบซึ้งจริงๆ";
+			mes "ตรงเวลา!";
+			mes "ฉันกำลังตกแต่งแผ่นเสียง";
+			next;
+			mes "[Magumagu]";
+			mes "ขอบคุณ. มันเป็นอะไร แต่";
+			mes "ฉันจะให้อาหารจำนวนมากเป็นการตอบแทน";
+			next;
+			set fish_r,0;
+			erasequest 10039;
+			delitem 1023,10; //Fish_Tail
+			getitem 544,20; //Fish_Slice
+			getitem 551,30; //Shusi
+			mes "[Magumagu]";
+			mes "คุณสามารถเลี้ยงกิลด์ของคุณได้";
+			mes "กับอาหารนี้";
+			mes "กลับมาพร้อมกับเพื่อน";
+			close;
+		}
+		mes "[Magumagu]";
+		mes "คุณไม่ได้เตรียมตัว";
+		mes "สิ่งที่ฉันขอ ...";
+		mes "อย่าลืมสิ่งที่ฉันถาม";
+		next;
+		mes "[Magumagu]";
+		mes "10 ^0000FF ปลาหาง ^000000";
+		mes "คุณไม่ได้ลืมมันใช่มั้ย?";
+		mes "กรุณานำอุปกรณ์เหล่านี้มาให้ฉัน";
+		close;
+	}
+	else if (fish_r == 5) {
+		if (countitem(736) > 0) {
+			mes "[Magumagu]";
+			mes "โอ้! ฉันซาบซึ้งจริงๆ";
+			mes "ตรงเวลา!";
+			mes "ฉันไม่มีแผ่นเสียงสีขาว";
+			next;
+			mes "[Magumagu]";
+			mes "ขอบคุณ. มันเป็นอะไร แต่";
+			mes "ฉันจะให้ซูชิสองชุดเป็นการตอบแทน";
+			next;
+			delitem 736,1; //White_Platter
+			set fish_r,0;
+			erasequest 10040;
+			getitem 551,20; //Shusi
+			mes "[Magumagu]";
+			mes "แบ่งปันกับเพื่อนของคุณ";
+			mes "และสมาชิกในครอบครัว";
+			mes "โปรดมาอีกครั้ง.";
+			close;
+		}
+		mes "[Magumagu]";
+		mes "คุณไม่ได้เตรียมตัว";
+		mes "สิ่งที่ฉันขอ ...";
+		mes "อย่าลืมสิ่งที่ฉันถาม";
+		next;
+		mes "[Magumagu]";
+		mes "ฉันต้องการแผ่นเสียงสีขาว:";
+		mes "1 ^0000FFChina ^000000";
+		mes "คุณไม่ได้ลืมมันใช่มั้ย?";
+		mes "เอามาให้ฉันโอเค?";
+		close;
+	}
+	else if (fish_r == 6) {
+		if (countitem(950) > 99) {
+			if (ama_sushi == 2) {
+				mes "[Magumagu]";
+				mes "..............................";
+				next;
+				mes "[Magumagu]";
+				mes "คุณเป็นคนที่ใจดีจริงๆ";
+				mes "คุณได้นำทุกอย่าง";
+				mes "ที่ฉันถามคุณ ...";
+				next;
+				mes "[Magumagu]";
+				mes "คุณไม่ใช่คนต่างชาติคนแรก";
+				mes "ฉันได้พบ. Amatsu เริ่มมีนักท่องเที่ยวมากขึ้นเรื่อย ๆ";
+				mes "ฉันแค่อยากจะทดสอบคุณ";
+				mes " ";
+				next;
+				mes "[Magumagu]";
+				mes "งานของคุณเป็นเพียงธุระ แต่";
+				mes "ฉันต้องการรู้...";
+				mes "คุณอุทิศตัวเองอย่างไร";
+				mes "คุณจริงจังแค่ไหนกับการทำงานให้เสร็จและไม่ยอมแพ้";
+				next;
+				mes "[Magumagu]";
+				mes "ผมคิดว่า,";
+				mes "'ถ้ามีคนแบบนั้น";
+				mes "ฉันจะให้คนนั้นทุกอย่างเกี่ยวกับการทำอาหารที่ฉันเชี่ยวชาญ";
+				next;
+				mes "[Magumagu]";
+				mes "และ.....";
+				mes "คุณ...";
+				mes "คุณคือที่หนึ่ง.";
+				next;
+				mes "[Magumagu]";
+				mes "ฉันแก่แล้ว ไม่มีใครรู้ว่าฉันสามารถถือมีดเล่มนี้ได้นานแค่ไหน คุณได้รับเลือกให้สืบทอดศิลปะการทำอาหารของฉัน ...";
+				mes " ";
+				next;
+				delitem 950,100; //Heart_Of_Mermaid
+				set ama_sushi,4;
+				completequest 10041;
+				getitem 1144,1; //Sasimi
+				mes "[Magumagu]";
+				mes "นี่เอามีดของฉัน";
+				mes "จากนี้ไปทำอาหารรสเลิศด้วยมีดเล่มนั้น";
+				mes "... เรียนรู้วิธีการแล่ปลา";
+				mes " ";
+				mes " ";
+				next;
+				mes "[Magumagu]";
+				mes "จากนี้ไปฉันจะไม่ขอบุญคุณและให้ชิ้นปลาตอบแทนคุณอีกต่อไป ....";
+				mes "ฝึกฝนทักษะของคุณด้วยมีดเล่มนั้นและสอนให้ชาวแผ่นดินใหญ่ได้ลิ้มรสอาหารรสเลิศ ...";
+				close;
+			}
+			else {
+				mes "[Magumagu]";
+				mes "ว้าว ... นี่คือหัวใจจริงๆของ";
+				mes "เงือก. ตำนานกล่าวว่า";
+				mes "สิ่งเหล่านี้สามารถพบได้ในทวีปอื่นเป็นเรื่องจริง ...";
+				mes " ";
+				next;
+				mes "[Magumagu]";
+				mes "การรวบรวมทั้งหมดนี้ต้องเป็นเรื่องยาก ... เอาล่ะ";
+				mes "วันนี้ฉันจะใช้ไฟล์";
+				mes "ส่วนผสมในการทำอาหารพิเศษสำหรับคุณ!";
+				next;
+				mes "[Magumagu]";
+				mes "ให้ฉันสักครู่...";
+				mes "ฉันจะแสดงทักษะการทำอาหารที่แท้จริง ^0000FF ให้คุณดู ^000000";
+				next;
+				delitem 950,20; //Heart_Of_Mermaid
+				getitem 551,20; //Shusi
+				mes "[Magumagu]";
+				mes "ลองสิ่งเหล่านี้ก่อน";
+				mes "ทำจากส่วนผสมที่สดใหม่";
+				next;
+				delitem 950,20; //Heart_Of_Mermaid
+				getitem 544,20; //Fish_Slice
+				mes "[Magumagu]";
+				mes "ลองสิ่งเหล่านี้ด้วย";
+				mes "ชิ้นปลาของร้านฉันคือที่สุดของที่สุด!";
+				next;
+				delitem 950,20; //Heart_Of_Mermaid
+				getitem 551,20; //Shusi
+				mes "[Magumagu]";
+				mes "มีมากขึ้น ไม่พูดไม่จา ... !";
+				mes "มันไม่ดีเหรอ? ฮะ? มันไม่ดีเหรอ?";
+				next;
+				delitem 950,20; //Heart_Of_Mermaid
+				getitem 544,20; //Fish_Slice
+				mes "[Magumagu]";
+				mes "ฮาฮา ~! ยังไม่เสร็จ!";
+				mes "ไม่เป็นไรมีอีก!";
+				next;
+				delitem 950,20; //Heart_Of_Mermaid
+				getitem 544,10; //Fish_Slice
+				getitem 551,10; //Shusi
+				mes "[Magumagu]";
+				mes "เอาของเหลือ.";
+				mes "คุณดูยัด ...";
+				mes "แบ่งปันส่วนที่เหลือกับเพื่อนและครอบครัวของคุณ";
+				next;
+				set ama_sushi,ama_sushi+1;
+				set fish_r,0;
+				erasequest 10041;
+				mes "[Magumagu]";
+				mes "ขอบคุณมากสำหรับวันนี้! ฮาฮา!";
+				mes "กลับมาอีกครั้งเมื่อคุณรู้สึกอยากช่วย ดูแล...!!!";
+				close;
+			}
+		}
+		mes "[Magumagu]";
+		mes "คุณไม่ได้เตรียมตัว";
+		mes "สิ่งที่ฉันขอ ...";
+		mes "อย่าลืมสิ่งที่ฉันถาม";
+		next;
+		mes "[Magumagu]";
+		mes "100 ^0000FFHearts of Mermaid ^000000 โอเคมั้ย?";
+		mes "คุณไม่ได้ลืมมันใช่มั้ย?";
+		mes "กรุณานำเสบียงมาให้ฉัน";
+		close;
+	}
+	mes "[Magumagu]";
+	mes "วัวศักดิ์สิทธิ์ ~";
+	mes "นี่คือปัญหา.....";
+	mes "มีลูกค้ามากมาย แต่หาวัตถุดิบไม่ครบตามที่ต้องการ ...";
+	next;
+	mes "[Magumagu]";
+	mes "นี่มันสยอง ...";
+	mes "ลูกค้าของฉันบางคนจะไม่ได้รับ";
+	mes "โอกาสในการรับประทานอาหาร Amatsu ชั้นดี ...";
+	mes " ";
+	next;
+	mes "[Magumagu]";
+	mes "ดีดี. คุณเป็นลูกค้าหรือไม่?";
+	mes "ยินดีต้อนรับ. เช่นเคยครับร้านผม";
+	mes "ให้ความสำคัญกับความสดใหม่เป็นอย่างมาก";
+	mes "ชิ้นปลา อะไรทำให้คุณมาที่นี่ ... ?";
+	next;
+	switch(select("ฉันต้องการซื้อซูชิ:ฉันต้องการซื้อชิ้นปลา:คุณต้องการความช่วยเหลือหรือไม่:ทำงานต่อไปให้ดี")) {
+	case 1:
+		mes "[Magumagu]";
+		mes "ได้เลย ... ! เท่าไหร่?";
+		mes "ซูชิชุดละ 700z ถ้าคุณ";
+		mes "ต้องการซูชิเพียง 1 ชิ้น มันคือ 74z";
+		mes "ถ้าคุณต้องการมากขึ้นบอกฉัน";
+		next;
+		switch(select("700z ชุด!:74z ชิ้น!:ฉันจะลองดูในภายหลัง")) {
+		case 1:
+			if (Zeny < 700) {
+				mes "[Magumagu]";
+				mes "คุณมีเงินไม่พอ";
+				mes "ถ้าคุณอยากกินปลาชิ้นอร่อยคุณควรนำเงินมาเพิ่ม";
+				close;
+			}
+			set Zeny, Zeny-700;
+			getitem 551,10; //Shusi
+			mes "[Magumagu]";
+			mes "ไปเลย หากคุณชอบรสชาติโปรดสั่งเพิ่ม";
+			close;
+		case 2:
+			if (Zeny < 74) {
+				mes "[Magumagu]";
+				mes "คุณมีเงินไม่พอ";
+				mes "หากคุณต้องการกินซูชิแสนอร่อย";
+				mes "คุณควรนำเงินมากขึ้น";
+				close;
+			}
+			set Zeny, Zeny-74;
+			getitem 551,1; //Shusi
+			mes "[Magumagu]";
+			mes "ไปเลย หากคุณชอบรสชาติโปรดสั่งเพิ่ม";
+			close;
+		case 3:
+			mes "[Magumagu]";
+			mes "แล้วแต่คุณ. ซูชิของฉันคือ";
+			mes "ดีที่สุดของที่สุด! รสชาติ";
+			mes "และความสดใหม่เป็นสิ่งที่ดีที่สุดใน";
+			mes "โลก. ถ้าคุณมีเวลาลองซูชิของฉัน";
+			close;
+		}
+	case 2:
+		mes "[Magumagu]";
+		mes "ได้เลย ... ! เท่าไหร่?";
+		mes "ชุดชิ้นปลา 350z";
+		mes "ชิ้นปลา 1 ชิ้นเท่ากับ 37z";
+		mes "ถ้าคุณต้องการมากขึ้นบอกฉัน";
+		next;
+		switch(select("350z ชุด!:37z ชิ้น!:ฉันจะลองดูในภายหลัง")) {
+		case 1:
+			if (Zeny < 350) {
+				mes "[Magumagu]";
+				mes "คุณมีเงินไม่พอ";
+				mes "ถ้าคุณอยากกินปลาชิ้นอร่อยคุณควรนำเงินมาเพิ่ม";
+				close;
+			}
+			set Zeny, Zeny-350;
+			getitem 544,10; //Fish_Slice
+			mes "[Magumagu]";
+			mes "ไปเลย หากคุณชอบรสชาติโปรดสั่งเพิ่ม";
+			close;
+		case 2:
+			if (Zeny < 37) {
+				mes "[Magumagu]";
+				mes "คุณมีเงินไม่พอ";
+				mes "หากคุณต้องการกินเนื้อปลาอร่อย ๆ คุณควรนำเงินมาเพิ่ม";
+				close;
+			}
+			set Zeny, Zeny-37;
+			getitem 544,1; //Fish_Slice
+			mes "[Magumagu]";
+			mes "ไปเลย หากคุณชอบรสชาติโปรดสั่งเพิ่ม";
+			close;
+		case 3:
+			mes "[Magumagu]";
+			mes "แล้วแต่คุณ. ชิ้นปลาของฉันคือ";
+			mes "ดีที่สุดของที่สุด! รสชาติ";
+			mes "และความสดใหม่เป็นสิ่งที่ดีที่สุดใน";
+			mes "โลก. ถ้าคุณมีเวลาลองชิ้นปลาของฉัน";
+			close;
+		}
+	case 3:
+		if (BaseJob == Job_Novice) {
+			mes "[Magumagu]";
+			mes "ฮ่าฮ่า ~ คุณคือคนที่ต้องการ";
+			mes "ความช่วยเหลือ! ช่วยเหลือผู้อื่น";
+			mes "เมื่อคุณดูแลตัวเองได้";
+			mes " ";
+			close;
+		}
+		else {
+			mes "[Magumagu]";
+			mes "ช่วยได้บ้างจะดีมาก ~ !!";
+			mes "ฉันเป็นห่วงเพราะเราเสมอ";
+			mes "ส่วนผสมหมด ...";
+			mes "คุณช่วยอะไรฉันหน่อยได้ไหม?";
+			mes "ฉันจะตอบแทนคุณ";
+			next;
+			set .@fish_m1,rand(1,10);
+			if (.@fish_m1 == 1 || .@fish_m1 == 2) {
+				set fish_r,1;
+				setquest 10036;
+				mes "[Magumagu]";
+				mes "ฉันต้องการลูกอมเพื่อทำ";
+				mes "ขนมสำหรับลูกค้า";
+				mes "นำ ^0000FF10 ลูกอม ^000000 มาให้ฉัน";
+				mes "มันไม่ยากใช่มั้ย?";
+				mes " ";
+			}
+			else if (.@fish_m1 == 3 || .@fish_m1 == 4) {
+				set fish_r,2;
+				setquest 10037;
+				mes "[Magumagu]";
+				mes "ฉันต้องการกระดองปูเพื่อทำ";
+				mes "ซอสสำหรับทำอาหารของฉัน ...";
+				mes "ถ้าเอา ^0000FF10 ปูมาให้ฉัน ^000000";
+				mes "ฉันจะตอบแทนคุณ";
+				mes "ตกลง?";
+			}
+			else if (.@fish_m1 == 5 || .@fish_m1 == 6) {
+				set fish_r,3;
+				setquest 10038;
+				mes "[Magumagu]";
+				mes "ฉันใช้คอนเชสหมดแล้ว";
+				mes "ฉันต้องการมันเพื่อเรียกน้ำย่อย ...";
+				mes "โปรดนำมาให้ฉันด้วย ^0000FF10 Conches ^000000";
+				mes "ที่นี่หาคอนได้ยาก ...";
+				mes "โปรดช่วยฉันด้วย";
+			}
+			else if (.@fish_m1 == 7 || .@fish_m1 == 8) {
+				set fish_r,4;
+				setquest 10039;
+				mes "[Magumagu]";
+				mes "หางปลาตกแต่งหมด";
+				mes "คลังสินค้า. นี่เป็นเรื่องเร่งด่วน ...";
+				mes "กรุณานำ ^0000FF10 หางปลา ^000000 มาให้ฉัน";
+				mes "พวกเขามักจะขาดหายไปเมื่อฉันต้องการมันไม่ดี ...";
+				mes "โปรดช่วยฉันด้วย";
+			}
+			else if (.@fish_m1 == 9) {
+				set fish_r,5;
+				setquest 10040;
+				mes "[Magumagu]";
+				mes "เราไม่มีแผ่นเสียงที่จะให้บริการ";
+				mes "ชิ้นปลาให้กับลูกค้า";
+				mes "นี่มันสยอง ...";
+				mes "คุณจะซื้อเครื่องลายครามชั้นดีให้ฉันไหม ^0000FFChina ^000000";
+				mes "ใส่อาหารที่ไหนไม่ได้เลย ...";
+			}
+			else {
+				if (rand(1,10) == 1) {
+					set fish_r,6;
+					setquest 10041;
+					mes "[Magumagu]";
+					mes "อย่าถามฉันว่าทำไม ...";
+					mes "แต่ฉันต้องการอะไรที่พิเศษ ...";
+					mes "^0000FF100 หัวใจนางเงือก ^000000 .....";
+					mes "ฉันรู้ว่ามันฟังดูเป็นไปไม่ได้ แต่มันสำคัญมากสำหรับฉัน ...";
+					next;
+					mes "[Magumagu]";
+					mes "อย่าถามคำถามใด ๆ";
+					mes "เกี่ยวกับคำขอของฉัน ...";
+					mes "เพียงแค่เก็บสิ่งที่ฉันต้องการไว้ในใจ";
+				}
+				else {
+					set fish_r,5;
+					setquest 10040;
+					mes "[Magumagu]";
+					mes "เราไม่มีแผ่นเสียงที่จะให้บริการ";
+					mes "ชิ้นปลาให้กับลูกค้า";
+					mes "นี่มันสยอง ...";
+					mes "คุณจะซื้อเครื่องลายครามชั้นดีให้ฉันไหม ^0000FFChina ^000000 ใส่อาหารที่ไหนไม่ได้เลย ...";
+				}
+			}
+			next;
+			mes "[Magumagu]";
+			mes "ขอให้โชคดี ...";
+			mes "ฉันจะรอคุณ.";
+			mes "อย่าลืมสิ่งที่ฉันถาม ...";
+			close;
+		}
+	case 4:
+		mes "[Magumagu]";
+		mes "ฮ่าฮ่าคุณจะไม่ลืมรสชาติของชิ้นปลาของฉันเมื่อคุณได้";
+		mes "ชิมมัน. ถ้าคุณมีเวลาลองชิ้นปลาของฉัน";
+		mes " ";
+		close;
+	}
+}
+
+// Dungeon Quest::japan_mono
+//============================================================ 
+amatsu,112,164,4	script	Gate Soldier#ama1	767,{
+	mes "[Gate Soldier]";
+	mes "นี่คือพระราชวังที่ยิ่งใหญ่";
+	mes "Toukoujyo";
+	mes "ห้ามคนในพื้นที่";
+	mes "จากการเข้า ...";
+	next;
+	mes "[Gate Soldier]";
+	mes "เครื่องแต่งกายของคุณดูไม่คุ้นเคย";
+	mes "คุณมาจากทวีปอื่นหรือเปล่า?";
+	mes "เจ้านายได้อนุญาตให้เข้า";
+	mes "นักท่องเที่ยวจึงเข้าไปได้";
+	mes " ";
+	close;
+}
+	
+amatsu,119,164,4	script	Gate Soldier#ama2	767,{
+	mes "[Gate Soldier]";
+	mes "คุณมาจาก Midgard หรือไม่?";
+	mes "ยินดีต้อนรับสู่ Amatsu";
+	mes "เยี่ยมเจ้านายของเราในชุน - ซู - กัก";
+	mes "เมื่อคุณเข้าไป";
+	mes " ";
+	next;
+	mes "[Gate Soldier]";
+	mes "เขาใจดีจริงๆ";
+	mes "เขาลงทุนในด้านต่างๆเพื่อ";
+	mes "Amatsu และการค้าระหว่างทวีปเป็นความคิดของเขา";
+	close;
+}
+	
+ama_in02,207,40,6	script	Gate Soldier#ama3	767,{
+	mes "[Gate Soldier]";
+	mes "ยินดีต้อนรับ. เจ้าแห่งวัง";
+	mes "ได้รับอนุญาตเป็นพิเศษสำหรับแขก";
+	mes "จากทวีปอื่น ๆ";
+	next;
+	mes "[Gate Soldier]";
+	mes "มองไปรอบ ๆ และใช้เวลาของคุณ";
+	mes "ขอให้มีความสุขกับการเข้าพัก";
+	close;
+}
+	
+ama_in02,207,49,6	script	Gate Soldier#ama4	767,{
+	mes "[Gate Soldier]";
+	mes "ท่านลอร์ดเป็นคนดีจริงๆ";
+	mes "ใครจะไปรู้ว่าเมืองของเรานั้น";
+	mes "ครั้งหนึ่งเคยเป็นหมู่บ้านเล็ก ๆ ?";
+	next;
+	mes "[Gate Soldier]";
+	mes "ฉันขอบคุณเขาที่จ้างฉัน";
+	mes "วันนี้ดูเหมือนว่าเขาจะมี";
+	mes "ปัญหาในใจของเขา";
+	mes "เมื่อเร็ว ๆ นี้เขาดูค่อนข้างมืดมน";
+	mes " ";
+	close;
+}
+	
+amatsu,164,174,4	script	Gate Soldier#ama5	767,{
+	mes "[Gate Soldier]";
+	if (event_amatsu == 0) {
+		mes "คุณเข้าที่นี่ไม่ได้";
+		mes "แม่ของเจ้านายของเรากำลังพักผ่อนอยู่ที่นี่ เธอต้องการพักผ่อน";
+		next;
+		set event_amatsu,1;
+		setquest 8131;
+		mes "[Gate Soldier]";
+		mes "เธอป่วยมาหลายเดือนแล้ว";
+		mes "นั่นคือเหตุผลที่เธออยู่ที่นี่";
+		mes "มันเป็นความเจ็บป่วยที่น่ากลัวทีเดียว ...";
+	}
+	else if (event_amatsu == 1) {
+		mes "เธอควรจะฟื้นสุขภาพ ...";
+		mes "แต่ถึงกระนั้นเจ้านายของฉันก็กังวลมาก";
+		mes " ";
+	}
+	else if (event_amatsu == 5) {
+		mes "อ๊าก! ฉันประหลาดใจกับเสียงที่ดังนั้น";
+		mes "เกิดอะไรขึ้น? ฮะ?";
+		mes " ";
+	}
+	else if (event_amatsu == 6) {
+		mes "แม่ของเจ้านายของเราไม่ได้";
+		mes "ฟื้นฟูสุขภาพของเธออย่างเต็มที่";
+		mes "ยังไงเธอก็ยังดีกว่าเมื่อก่อน";
+		mes " ";
+	}
+	else {
+		mes "ถ้าคุณถูกส่งมาโดยเจ้านายของฉัน";
+		mes "เข้า ...";
+		mes "แต่คุณจะไม่สามารถรักษาได้";
+		mes "เธอ. อีกหลายคนพยายามและล้มเหลว";
+	}
+	close;
+}
+	
+amatsu,171,174,4	script	Gate Soldier#ama6	767,{
+	mes "[Gate Soldier]";
+	if (event_amatsu == 0) {
+		mes "คุณเข้าที่นี่ไม่ได้";
+		mes "แม่ของเจ้านายของเรากำลังพักผ่อนอยู่ที่นี่";
+		mes " ";
+		next;
+		set event_amatsu,1;
+		mes "[Gate Soldier]";
+		mes "เธอป่วยมาหลายเดือนแล้ว";
+		mes "นั่นคือเหตุผลที่เธออยู่ที่นี่";
+		mes "...";
+	}
+	else if (event_amatsu == 1) {
+		mes "กรุณาเงียบ.";
+		mes "แม่ของลอร์ดพักอยู่ที่นี่ เธอต้องการพักผ่อน";
+		next;
+		mes "[Gate Soldier]";
+		mes "เหตุใดจึงเกิดขึ้น";
+		mes "ถึงเจ้านายผู้ใจดีของฉัน ...";
+		mes "จะเป็นไปได้อย่างไร? *ร้องไห้*...";
+	}
+	else if (event_amatsu == 5) {
+		mes "เอ๊ะ? มีบางอย่างกำลังบิน";
+		mes "บนท้องฟ้า ... คุณไม่เห็นเหรอ? ฮึ.";
+		mes "เสียงนั้นทำให้ฉันประหลาดใจ";
+	}
+	else if (event_amatsu == 6) {
+		mes "ตอนนี้เจ้านายของเราโล่งใจ";
+		mes "เรากังวลเกี่ยวกับเรื่องนี้มาก";
+		mes "ตอนนี้ก็โอเค ... * สะอื้น *.";
+	}
+	else {
+		mes "โอ้ ... มนุษย์ คนอื่น ๆ";
+		mes "ทุกทวีปเป็นหมอ!";
+		mes "มาหาหมอกี่คน?! ฉันไม่สามารถนับได้อีกต่อไป!";
+	}
+	close;
+}
+	
+ama_in02,187,57,2	script	Soldier#ama1	767,{
+	mes "[Ichiro]";
+	mes "ยินดีต้อนรับ.";
+	mes "เจ้านายของเราเตรียมห้องพัก";
+	mes "สำหรับนักเดินทางเช่นคุณ";
+	next;
+	mes "[Ichiro]";
+	mes "หากคุณมีปัญหาใด ๆ";
+	mes "บอกฉัน. ฉันจะขอบคุณมากถ้าคุณได้พูดคุยกับลอร์ดแห่ง";
+	mes "พระราชวัง. ทั้งหมดนี้จัดทำโดยเขา";
+	close;
+}
+	
+ama_in02,170,62,4	script	Soldier#ama2	767,{
+	mes "[Jiro]";
+	mes "ฉันชื่อจิโระเป็นผู้ดูแลระบบ";
+	mes "ของพระราชวังนี้ ฉันจะทำอะไรให้คุณได้บ้าง?";
+	next;
+	switch(select("ออกใบอนุญาตการขนส่งให้ฉัน:ฉันต้องการอาศัยอยู่ใน Amatsu:ไม่มีอะไร")) {
+	case 1:
+		if (event_amatsu == 6) {
+			if (countitem(7160) > 0) {
+				mes "[Jiro]";
+				mes "คุณมีแล้ว ...";
+				mes "คุณไม่จำเป็นต้องมีสองคน";
+				close;
+			}
+			mes "[Jiro]";
+			mes "คุณทำใบอนุญาตขนส่งหายหรือไม่?";
+			mes "คุณต้องจ่าย 10,000 zeny เป็นภาษี";
+			mes "เพื่อออกใบอนุญาตขนส่งอื่น";
+			next;
+			if (select("ประเด็นที่หนึ่ง:ไว้ค่อยคุยกันทีหลัง") == 1) {
+				set Zeny, Zeny-10000;
+				getitem 7160,1; //Lord's_Passable_Ticket
+				mes "[Jiro]";
+				mes "ไปเลย";
+				mes "อย่าทำมันเสียในครั้งนี้";
+				close;
+			}
+			mes "[Jiro]";
+			mes "เอาล่ะ ...";
+			mes "พูดคุยกับฉันเมื่อคุณต้องการความช่วยเหลือ";
+			close;
+		}
+		mes "[Gate Soldier]";
+		mes "ท่านลอร์ดประกาศว่า";
+		mes "เขาให้สิทธิ์แขกจาก Midgard ว่าจะไปที่ไหนก็ได้";
+		mes "คุณไม่ต้องการให้ฉันออกใบอนุญาตขนส่งให้คุณ";
+		close;
+	case 2:
+		mes "[Jiro]";
+		mes "ที่เป็นไปไม่ได้. คุณมีอิสระที่จะ";
+		mes "ไปที่ไหนก็ได้ใน Amatsu แต่เจ้านายของฉันไม่อยากกังวลเรื่องการอพยพ";
+		mes "แทนที่จะเป็นเช่นนั้นคุณสามารถอยู่ที่นี่ได้นานเท่าที่คุณต้องการ";
+		close;
+	case 3:
+		mes "[Jiro]";
+		mes "ดีละถ้าอย่างนั้น...";
+		mes "พูดคุยกับฉันเมื่อคุณต้องการความช่วยเหลือ";
+		close;
+	}
+}
+	
+ama_in02,37,157,4	script	Soldier#ama3	767,{
+	mes "[Saburo]";
+	mes "นี่คือสนามฝึกสำหรับพัฒนาทักษะการต่อสู้ของเรา";
+	mes "โปรดมองไปรอบ ๆ ...";
+	next;
+	mes "[Saburo]";
+	mes "เมื่อเร็ว ๆ นี้ฉันรู้สึก";
+	mes "เหมือนทหารเปลี่ยนไป";
+	mes "เมื่อเร็ว ๆ นี้. ฉันจะพูดยังไงดี ...";
+	mes "ใบหน้าของพวกเขามืดมนและ";
+	mes "บางคนไม่ได้อยู่ใกล้ ๆ";
+	mes "พวกเขาไปมิดการ์ดแล้วหรือยัง?";
+	next;
+	mes "[Saburo]";
+	mes "ในงานนี้ฉันพบ";
+	mes "คนแปลกหน้ามากมาย แต่ชั้นล่าง";
+	mes "มีแขกจากแดนไกลที่ดูน่าสงสัย ...";
+	mes "ฉันบอกให้ยามของฉันเฝ้าดูเขา ...";
+	next;
+	mes "[Saburo]";
+	mes "แน่นอนเจ้านายของฉันรู้ทุกอย่างที่เกิดขึ้น";
+	mes "ฮ่าฮ่าอย่าเอาจริงเอาจังกับสิ่งที่ฉันพูด ~";
+	mes "แล้วเจอกัน...";
+	close;
+}
+	
+ama_in02,32,51,6	script	Soldier#ama4	767,{
+	mes "[Shiro]";
+	mes "* ไอไอ * อะไร ...";
+	mes "อย่ามาคุยกับฉัน ...";
+	mes "* ไอไอ * ... โอ้คอประหลาดของฉัน";
+	next;
+	mes "[Shiro]";
+	mes "ยาเย็นของต้มตุ๋น";
+	mes "ไม่มีประโยชน์! ฉันไม่ควรไว้ใจคนจากมิดการ์ด!";
+	mes "* ไอ, ไอ * ...";
+	next;
+	mes "[Shiro]";
+	mes "ฉันไม่รู้ว่าทำไม แต่ ...";
+	mes "ฉันแย่ลงเรื่อย ๆ ...";
+	mes "หนาวอะไรเบอร์นี้";
+	mes "* ไอ * ... * ไอ * ...";
+	close;
+}
+	
+ama_in02,40,167,3	script	Soldier#ama5	767,{
+	mes "[Goro]";
+	mes "* Psst * ... โปรดเงียบ";
+	mes "ฉันจะเล่าเรื่องให้คุณฟัง";
+	mes " ";
+	next;
+	mes "[Goro]";
+	mes "มีข่าวลือในamatsu";
+	mes "เจ้านายของวังนี้ไม่ได้";
+	mes "จริง ... * Psst * เงียบ!";
+	mes "อย่าตกใจและฟังฉัน";
+	next;
+	mes "[Goro]";
+	mes "มีองค์พระอยู่เบื้องหลังจริงๆ";
+	mes "เจ้านายผู้ใจดีและเขาเป็นคนวางแผน";
+	mes "บางอย่าง เขากำลังควบคุม";
+	mes "เมืองของเราอยู่ในที่ซ่อนเร้น";
+	mes "... เจ้านายผู้ใจดีของเราเป็นเพียงหุ่นเชิด ~!";
+	next;
+	mes "[Goro]";
+	mes "เป็นเรื่องจริง! เชื่อฉันเถอะ ~";
+	mes "ฉันเห็นเขา. ลอร์ดที่เป็น";
+	mes "หัวเราะเยาะในเมือง";
+	mes "เตงกูกัก !!";
+	mes "อย่าบอกใครว่าฉันเคยบอกคุณแล้วโอเค?";
+	close;
+}
+	
+ama_in02,32,167,5	script	Soldier#ama6	767,{
+	mes "[Rokuro]";
+	mes "เขามักจะพูดเรื่องไร้สาระ";
+	mes "เขาบอกว่าเจ้านายของเรา";
+	mes "ไม่ใช่ของจริง แต่เป็นของปลอม";
+	mes "มันไม่ตลกด้วยซ้ำ";
+	next;
+	mes "[Rokuro]";
+	mes "อย่างไรก็ตามมันเป็นเรื่องจริงที่";
+	mes "เมื่อเร็ว ๆ นี้มีสิ่งแปลก ๆ";
+	mes "ที่เกิดขึ้น ไม่มี";
+	mes "สถานที่ต้องห้ามก่อน ...";
+	next;
+	mes "[Rokuro]";
+	mes "บางครั้งฉันได้ยินเสียงแปลก ๆ";
+	mes "แม่ของลอร์ดมาแล้ว";
+	mes "ไปพบแพทย์หลายครั้ง";
+	mes "ฉันเดาว่าสุขภาพของเธอไม่ดี";
+	mes "ปรับปรุงหลังการเยี่ยม ...";
+	close;
+}
+	
+ama_in02,42,34,2	script	Soldier#ama7	767,{
+	mes "[Shichiro]";
+	mes "ขอให้มีความสุข";
+	mes "เจ้านายของฉันเตรียมบางอย่าง";
+	mes "ห้องรับแขก.";
+	next;
+	mes "[Shichiro]";
+	mes "หากคุณมีปัญหาใด ๆ";
+	mes "กรุณาโทรหาฉันด้วย. นอกจากนี้พยายามอย่ารบกวนแขกคนอื่น ๆ";
+	mes " ";
+	next;
+	mes "[Shichiro]";
+	mes "มีวันที่ดี.";
+	close;
+}
+	
+ama_in02,203,156,4	script	Soldier#ama8	767,{
+	mes "[Hachiro]";
+	mes "เจ้านายของฉันอยู่ข้างใน";
+	mes "หากคุณต้องการทักทายเขาอย่าลังเลที่จะเข้าไป";
+	next;
+	mes "[Hachiro]";
+	mes "อย่าหยาบคายต่อหน้าเขา";
+	mes "เขารู้สึกไม่สบายอย่างใด";
+	mes "โดยปกติเขาทักทายผู้คนจาก";
+	mes "ทวีปอื่นยินดี แต่ ...";
+	mes "จะเกิดอะไรขึ้นกับเขา ... ?";
+	close;
+}
+	
+ama_in02,195,156,4	script	Soldier#ama9	767,{
+	mes "[Kyuro]";
+	mes "แบบนี้ไม่ดีแน่";
+	mes "เจ้านายของฉันใจดีจริงๆ แต่";
+	mes "เมื่อเร็ว ๆ นี้เขาทำได้ไม่ดี ...";
+	next;
+	mes "[Kyuro]";
+	mes "ฉันได้ยินเกี่ยวกับข่าวลือ";
+	mes "แต่ฉันเชื่อใจเขา เขาทำ";
+	mes "Amatsu เข้าสู่เมืองที่ยิ่งใหญ่";
+	mes "นั่นคือเหตุผลที่ฉันติดตาม";
+	mes "เขาเป็นทหาร";
+	close;
+}
+	
+ama_in02,115,177,7	script	Soldier#ama10	767,{
+	mes "[Jyuro]";
+	mes "คุณมาทำอะไรที่นี่?";
+	mes "ที่นี่ไม่มีอะไรน่าสนใจ";
+	next;
+	if (select("นั่นคือความจริง:เปิดประตู") == 1) {
+		mes "[Jyuro]";
+		mes "มีสิ่งที่ดีกว่ามากมายให้เพลิดเพลินในเมือง ขอให้มีความสุข ...";
+		close;
+	}
+	if (event_amatsu == 6) {
+		if (countitem(7160) > 0) {
+			mes "[Jyuro]";
+			mes "คุณมีตั๋ว ...";
+			mes "คุณต้องการให้ฉันส่งคุณตอนนี้หรือคุณต้องการคำแนะนำเล็กน้อย?";
+			next;
+			if (select("ฉันจะเข้าไป:คำแนะนำได้โปรด") == 1) {
+				mes "[Jyuro]";
+				mes "ฉันจะเปิดประตู";
+				mes "ดูแลตัวเองด้วย ...";
+			}
+			else {
+				mes "[Jyuro]";
+				mes "พื้นที่เลยประตูนี้คือ";
+				mes "ได้รับการปกป้องด้วยเวทมนตร์บางชนิด";
+				mes "คุณอาจโดนใครบางคนฆ่า";
+				mes "หรือหลงทาง";
+				mes " ";
+				next;
+				mes "[Jyuro]";
+				mes "บอกอะไรไม่ได้มาก";
+				mes "ฉันไม่ได้เข้าไปข้างในและ";
+				mes "และเพียงแค่ดูอย่างรวดเร็ว";
+				mes " ";
+				mes " ";
+				next;
+				mes "[Jyuro]";
+				mes "อันดับแรก .....";
+				mes "'อย่าไว้ใจในสิ่งที่คุณเป็น";
+				mes "เห็น ' ไม่รู้เป็นอะไร";
+				mes "หมายความว่า แต่ฉันเดาว่าคุณไม่ควรเชื่อทุกอย่างต่อหน้าต่อตา";
+				next;
+				mes "[Jyuro]";
+				mes "ประการที่สอง .....";
+				mes "'มีกฎบางอย่างใน";
+				mes "มายากล.' ทุกอย่างมี";
+				mes "เหตุผลที่จะมีอยู่ เวทมนตร์ไม่ใช่ข้อยกเว้น คุณอาจจะพบคำตอบ ...";
+				next;
+				mes "[Jyuro]";
+				mes "ฉันจะเปิดประตูนี้";
+				mes "ดูแลตัวเองด้วย ...";
+			}
+			close2;
+			warp "ama_dun01",229,10;
+			end;
+		}
+		mes "[Jyuro]";
+		mes "ฉันขอโทษ.";
+		mes "คุณต้องมีใบอนุญาตขนส่งเพื่อเข้าไป";
+		mes "ได้โปรดกลับไป";
+		close;
+	}
+	mes "[Jyuro]";
+	mes "คุณกำลังพูดถึงประตูอะไร?";
+	mes "ประตู? อยู่ชั้นบนสุดของตึก ??? แน่นอนคุณต้องเข้าใจผิด";
+	emotion ET_SWEAT;
+	next;
+	if (countitem(7160) > 0) {
+		if (select("แสดงตั๋วให้เขาเห็น:ยกเลิก") == 1) {
+			mes "[Jyuro]";
+			mes "อะไร? พาสนั้นคือ ... ?";
+			mes "ใบอนุญาตขนส่งนั้นมาจาก";
+			mes "พระเจ้า แต่ฉันคิดว่ามันมี";
+			mes "ออกให้ผิดคน";
+			next;
+			delitem 7160,1; //Lord's_Passable_Ticket
+			mes "[Jyuro]";
+			mes "ฉันจะเก็บตั๋วนี้ไว้เพราะ";
+			mes "ออกโดยไม่ได้รับอนุญาต";
+			mes "นี่คือคำเตือน";
+			mes "ระวัง.";
+			close;
+		}
+		mes "[Jyuro]";
+		mes "มีหลายสิ่งให้เพลิดเพลินในเมือง ขอให้มีความสุข ...";
+		close;
+	}
+	mes "[Jyuro]";
+	mes "มีหลายสิ่งให้เพลิดเพลินในเมือง ขอให้มีความสุข ...";
+	close;
+}
+	
+ama_dun01,229,7,0	script	Soldier#ama11	767,{
+	mes "[Jyuro]";
+	mes "คุณต้องการกลับไปไหม";
+	next;
+	if (select("ใช่ฉันทำ:ฉันจะอยู่ที่นี่") == 1) {
+		mes "[Jyuro]";
+		mes "ดูแลตัวเอง.";
+		close2;
+		warp "ama_in02",119,181;
+		end;
+	}
+	mes "[Jyuro]";
+	mes "ดูแล...";
+	close;
+}
+	
+ama_in02,200,176,4	script	Lord of Palace#ama	768,{
+	if (event_amatsu == 0) {
+		mes "[Ishida Yoshinaga]";
+		mes "อะไร! ชาวต่างชาติ...? *วุ้ย*";
+		mes "ฉันขอโทษ แต่ฉันไม่ได้อยู่ใน";
+		mes "อารมณ์อยากพบปะผู้คนใหม่ ๆ !";
+		next;
+		mes "[Ishida Yoshinaga]";
+		mes "ออกไป! ฉันไม่สนใจ";
+		mes "คุณเป็นใคร";
+		mes "ฉันรู้สึกไม่สบาย!";
+		close;
+	}
+	else if (event_amatsu == 1) {
+		mes "[Ishida Yoshinaga]";
+		mes "อะไร! ชาวต่างชาติ? สิ่งที่นำมา";
+		mes "คุณอยู่ที่นี่? หากไม่ใช่เรื่องเร่งด่วน";
+		mes "มาหาฉันอีกครั้ง ... !";
+		next;
+		switch(select("ฉันได้ยินเกี่ยวกับแม่ของคุณ ...:นามสกุลของคุณดี:คุณเป็นใคร?")) {
+		case 1:
+			mes "[Ishida Yoshinaga]";
+			mes "อ๋อ ... รู้เรื่องโรคของเธอแล้วเหรอ?";
+			mes "ฉันได้ยินมาว่าในต่างแดน";
+			mes "องค์ความรู้ทางการแพทย์สามารถ";
+			mes "น่าทึ่งมาก";
+			next;
+			mes "[Ishida Yoshinaga]";
+			mes "ยินดีต้อนรับ. อย่างที่คุณทราบฉันเป็น";
+			mes "ลอร์ดแห่ง Toukoujyo";
+			mes "อิชิดะโยชินางะ. ที่ดีที่จะ";
+			mes "พบคุณ.";
+			next;
+			mes "[Ishida Yoshinaga]";
+			mes "เข้าประเด็นกันเลย";
+			mes "แม่ของฉันเพิ่งทำได้ไม่ดี ฉันรู้ว่าคุณมาที่นี่เพราะแบบนั้น";
+			mes "คุณสามารถรักษาโรคของเธอได้หรือไม่?";
+			next;
+			mes "[Ishida Yoshinaga]";
+			mes "จนถึงปัจจุบันแพทย์ที่มีชื่อเสียงหลายคน";
+			mes "ได้ไปเยี่ยมเธอ แต่พวกเขา";
+			mes "ทั้งหมดล้มเหลวในการรักษาโรคของเธอ";
+			mes "และทำให้แย่ลง ...";
+			mes "พวกเขาทำให้ฉันผิดหวัง";
+			next;
+			mes "[Ishida Yoshinaga]";
+			mes "คุณที่มาจากมิดการ์ด";
+			mes "อาจจะรักษาโรคของแม่ได้ ฉันจะตอบแทนคุณอย่างดีหากคุณทำสำเร็จ ...";
+			next;
+			set event_amatsu,2;
+			if (isbegin_quest(8131) == 1)
+				changequest 8131,8132;
+			else
+				setquest 8132;
+			mes "[Ishida Yoshinaga]";
+			mes "ฉันขอร้องคุณ ... ได้โปรด";
+			mes "แม่ของฉันอาศัยอยู่ในบ้านนอกวัง";
+			mes "มาหาฉันเมื่อคุณเสร็จสิ้นการรักษา";
+			close;
+		case 2:
+			mes "[Ishida Yoshinaga]";
+			mes "ดีจัง!? แล้วไง?!";
+			mes "อ่านชื่อของฉันจนกว่าคุณจะได้รับ";
+			mes "เบื่อจัง! ยี้!";
+			next;
+			mes "[Ishida Yoshinaga]";
+			mes "ล้อเล่นแม้ในสถานการณ์คับขันแบบนี้ ... * ฟิ้ว * ...";
+			mes "ขอให้มีความสุขในamatsu";
+			mes "... ก็ตาม!";
+			close;
+		case 3:
+			mes "[Ishida Yoshinaga]";
+			mes "...ผม? ไม่รู้เหรอ ฮะ?";
+			mes "ข้าคือเจ้าแห่งวังนี้";
+			mes "ถ้าไม่รู้จักคุยกับ";
+			mes "ทหารนอก!";
+			close;
+		}
+	}
+	else if (event_amatsu == 5) {
+		if (countitem(1022) > 0) {
+			mes "[Ishida Yoshinaga]";
+			mes "ฉันได้ยินข่าวดี!";
+			mes "แม่ของฉันดูเหมือนจะดีขึ้นแล้ว เธอเป็นโรคอะไร?";
+			next;
+			mes "[Ishida Yoshinaga]";
+			mes "สุนัขจิ้งจอก? ขนาดนั้นเลยเหรอ โอ้ ...";
+			mes "ไม่ใช่โรค ... !!";
+			mes "ทำไมฉันถึงไม่สังเกต?!";
+			next;
+			mes "[Ishida Yoshinaga]";
+			mes "หมาจิ้งจอก ที่จะวิ่งหนีและ";
+			mes "แก้แค้นฉันด้วย";
+			mes "ทาง ... ดีแล้ว ไม่มีโอกาสแก้แค้นแล้ว ... ฮ่า ๆ ๆ !";
+			next;
+			mes "[Ishida Yoshinaga]";
+			mes "อืมมม อืม ...";
+			next;
+			mes "[Ishida Yoshinaga]";
+			mes "ยังไงก็ขอบคุณที่ช่วยตอบ";
+			mes "แม่จะไม่เป็นไรแล้ว ...";
+			mes "อยากตอบแทนบุญคุณ ...";
+			mes "แต่จะมีอะไรดี ... ?";
+			next;
+			mes "[Ishida Yoshinaga]";
+			mes "เอาล่ะฉันจะให้คุณ";
+			mes "ใบอนุญาตขนส่ง";
+			mes "คุณสามารถไปได้ทุกที่";
+			mes "ด้วยตั๋วนี้";
+			next;
+			set event_amatsu,6;
+			completequest 8135;
+			delitem 1022,1; //Fox_Tail
+			getitem 7160,1; //Lord's_Passable_Ticket
+			mes "[Ishida Yoshinaga]";
+			mes "นี่ไม่ใช่รางวัลใหญ่ แต่";
+			mes "สักวันมันจะเป็นประโยชน์สำหรับคุณ";
+			mes "ถามทหารของฉัน 'Jyuro' เกี่ยวกับรายละเอียด";
+			close;
+		}
+		mes "[Ishida Yoshinaga]";
+		mes "อืมได้ยินว่าแม่";
+		mes "ดีขึ้น ... แต่";
+		mes "จะรู้ได้อย่างไรว่าคุณหายขาด";
+		mes "เธอหรือเปล่า?";
+		next;
+		mes "[Ishida Yoshinaga]";
+		mes "มีหลักฐานใดที่พิสูจน์ได้";
+		mes "ที่คุณรักษาเธอ?";
+		next;
+		mes "[Ishida Yoshinaga]";
+		mes "แสดงหลักฐานเพื่อพิสูจน์";
+		mes "การรักษาของคุณ ฉันเคย";
+		mes "พบปะชาวต่างชาติมากมาย";
+		mes "แต่ไม่ใช่ทุกคนที่น่าเชื่อถือ";
+		mes "ดี ... มีความสุข";
+		close;
+	}
+	else if (event_amatsu == 6) {
+		mes "[Ishida Yoshinaga]";
+		mes "* หัวเราะ * มีความสุข";
+		mes "ในamatsu .....";
+		mes "ชาวต่างชาติยินดีต้อนรับเสมอ";
+		close;
+	}
+	mes "[Ishida Yoshinaga]";
+	mes "สถานะแม่เป็นยังไงบ้าง?";
+	mes "ถ้าเจอชื่อโรคช่วยบอกด้วย";
+	mes "ฉันกังวลเกี่ยวกับ";
+	mes "เธอทั้งคืน";
+	next;
+	mes "[Ishida Yoshinaga]";
+	mes "เพราะพกติดตัว";
+	mes "ความรู้จาก Midgard";
+	mes "ฉันมีความเชื่อในความสามารถของคุณ";
+	close;
+}
+	
+ama_in01,22,111,0	script	Grandma#ama2	761,{
+	if (event_amatsu == 4) {
+		mes "[.... ]";
+		mes "^FF6060 Yelp Yelp มนุษย์โง่เขลา";
+		mes "อีกแล้ว! คุณกำลังจะทำอะไร";
+		mes "เพื่อกำจัดฉัน!? ^000000";
+		next;
+		mes "[.... ]";
+		mes "^FF6060 คุณดูเหมือนเรียนรู้";
+		mes "บางอย่างจากที่ไหนสักแห่ง แต่";
+		mes "มันจะไม่เป็นอันตรายฉัน !! เย้! ^000000";
+		next;
+		select("ตาาาาา !!");
+		if ((BaseJob == Job_Priest || BaseJob != Job_Acolyte && BaseJob != Job_Monk) || (countitem(523) < 1 || countitem(948) < 1 || countitem(1029) < 1)) {
+			if (rand(1,4) == 1)
+				set .@fox_kill,0;
+			else
+				set .@fox_kill,1;
+		}
+		else {
+			if (rand(1,2) == 1)
+				set .@fox_kill,0;
+			else
+				set .@fox_kill,1;
+		}
+		if (.@fox_kill == 1) {
+			mes "[.... ]";
+			mes "^FF6060 ช่วยด้วย! เย้! เย้! มนุษย์!";
+			mes "เพื่อขับไล่ฉันออกจากร่างกายนี้เช่น";
+			mes "นี้! ขอสาปแช่งคุณ! ยี้ !! ^000000";
+			next;
+			mes "[.... ]";
+			mes "^FF6060 ฉันจะสาปตระกูลอิชิดะ";
+			mes "ใครทำให้ฉันเป็นแบบนี้! ตลอดไป!";
+			mes "คุณควรระวังมนุษย์! ^000000";
+			next;
+			monster "ama_in01",22,111,"เก้าหาง",1180,1;
+			killmonsterall "ama_in01";
+			set event_amatsu,5;
+			changequest 8134,8135;
+			getitem 1022,1; //Fox_Tail
+			mes "[.... ]";
+			mes "^FF6060 ทุกอย่างที่";
+			mes "Yoshinaga จะทำให้คุณ";
+			mes "ความทุกข์ ... ^000000";
+			mes "^FF0000Yaaaaaaaaaaap !! ^000000";
+			close;
+		}
+		mes "[.... ]";
+		mes "^FF6060 ช่วยด้วย! ฮาฮา! เย้! ฮามาก!";
+		mes "คุณกำลังพยายามขับไล่ฉันออกจากร่างนี้!?";
+		mes "ชุ !! เย้! ^000000";
+		close2;
+		warp "amatsu",167,197;
+		end;
+	}
+	else if (event_amatsu == 5) {
+		mes "[Ishida Saoko]";
+		mes "...ฮะ? ทำไมเธอถึงอยู่ที่นี่...?";
+		mes "* Urrmmm * หัวของฉันเจ็บ ...";
+		mes "แต่ฉันเริ่มจะจำทุกอย่าง ...";
+		next;
+		mes "[Ishida Saoko]";
+		mes "ขอบคุณนักเดินทางจากแดนไกล";
+		mes "ที่ดิน. ฉันเป็นหนี้บุญคุณ ... ขอบคุณมาก ...";
+		next;
+		mes "[Ishida Saoko]";
+		mes "ฉันจะบอกลูกชายของฉันว่า";
+		mes "คุณขับไล่สุนัขจิ้งจอก ...";
+		mes "ขอบคุณ...";
+		next;
+		mes "[Ishida Saoko]";
+		mes "ฉันควรจะพักผ่อนบ้าง";
+		mes "ปวดหัวจังเลยน้องหนึ่ง .....";
+		mes "ไปหาลูกชาย ...";
+		close;
+	}
+	else if (event_amatsu == 6) {
+		mes "[Ishida Saoko]";
+		mes "โอ้คุณ ... ? คุณคือที่หนึ่ง";
+		mes "ผู้ขับไล่สุนัขจิ้งจอก ... ยินดีต้อนรับ";
+		mes "เชิญนั่ง...";
+		next;
+		mes "[Ishida Saoko]";
+		mes "เมื่อฉันคิดว่าการถูกครอบงำ";
+		mes "โดยสุนัขจิ้งจอกเป็นความผิดของฉัน ฉันเลี้ยง";
+		mes "ลูกฉันเลว ... โอ้ ~";
+		mes "ตอนเด็กเขาเป็นเด็กดี";
+		mes "หนุ่ม. ฉันไม่ได้เข้มงวดกับเขา ...";
+		next;
+		mes "[Ishida Saoko]";
+		mes "นานมาแล้วเมืองนี้ไม่ได้ใหญ่โต";
+		mes "อย่างที่เป็นอยู่ในปัจจุบัน ไม่มีใหญ่";
+		mes "พระราชวังเช่น Toukoujyo จากนั้นหนึ่ง";
+		mes "วันนี้ลูกชายของฉันนำความมั่งคั่งมาให้";
+		mes "ไปยังหมู่บ้าน เขาไม่เคยบอกฉันเลยว่าเขาทำอะไรเพื่อรับโชคนั้น ...";
+		next;
+		mes "[Ishida Saoko]";
+		mes "เขาสร้างพระราชวังและช่วย";
+		mes "หอคอยและทำให้เมืองใหญ่ขึ้น";
+		mes "เขาสมบูรณ์แบบจนกระทั่ง ...";
+		mes "เขาเริ่มทำสิ่งแปลก ๆ";
+		next;
+		mes "[Ishida Saoko]";
+		mes "สิ่งต่างๆ ... ซึ่งทำให้พระเจ้าโกรธ";
+		mes "เขาเรียนรู้เวทมนตร์ต้องห้าม";
+		mes "ทำการทดลอง";
+		mes "ในวังสัตว์ประหลาดที่ถูกขังอยู่ในกรง";
+		mes "ทำสิ่งที่น่ากลัวทุกอย่าง ...";
+		next;
+		mes "[Ishida Saoko]";
+		mes "นั่นคือเหตุผลว่าทำไมจึงมี";
+		mes "สัตว์ประหลาดใน Toukoujyo ... ในที่สุด";
+		mes "พระพิโรธของพระเจ้าถูกปลดปล่อย แม้แต่นักบวชในศาลเจ้าก็ช่วยไม่ได้ ...";
+		next;
+		mes "[Ishida Saoko]";
+		mes "ในที่สุดความโกรธก็พุ่งเข้าหา";
+		mes "ฉัน ... ดูเหมือนว่าพระเจ้าพยายามเตือนลูกชายของฉันด้วยสุนัขจิ้งจอก";
+		mes "อย่างไรก็ตามลูกชายของฉันจะไม่หยุด";
+		next;
+		mes "[Ishida Saoko]";
+		mes "ถ้าเป็นไรขอให้หยุดลูกชายของฉัน";
+		mes "ฉันมีเวลาไม่มาก";
+		mes "ผมไม่ทราบว่าจะทำอย่างไร...";
+		mes "โปรดช่วยหมู่บ้านที่เงียบสงบนี้";
+		mes "ฉันขอร้องคุณ ...";
+		mes "เขากำลังคิดอะไรอยู่ ... ?";
+		close;
+	}
+	mes "[.... ]";
+	mes "^FF6060 เยือกเย็นมนุษย์โง่อีกคน!";
+	mes "Yelp, Yelp ใคร! มนุษย์!?";
+	mes "คุณกำลังทำอะไร!";
+	mes "ชุ ... เย้! เย้! ^000000";
+	next;
+	mes "[.... ]";
+	mes "^FF6060 ฉันจะอยู่ที่นี่จนถึง";
+	mes "ตระกูลอิชิดะตายหมด!";
+	mes "อย่ามารบกวนฉัน! เย้! ^000000";
+	close2;
+	warp "amatsu",167,197;
+	end;
+}
+	
+amatsu,189,166,5	script	Kouji#ama	764,{
+	mes "[Kouji]";
+	mes "Ralralrah Ralralrah Ralralrahralralrah ~";
+	mes "Ralralrah Ralralrah Ralralrahralralrah ~";
+	next;
+	mes "[Kouji]";
+	if (event_amatsu == 1) {
+		mes "เมื่อคุณป่วยเค้กข้าวก็ไม่ดี ~";
+		mes "ครอบครัวคือตัวช่วยที่ดีที่สุดเท่าที่ควร ~";
+		mes "เมื่อยาไม่ช่วยนั่นคือเมื่อคุณเห็น ~";
+		mes "ความรักของแม่ดีที่สุดสำหรับฉัน ~";
+	}
+	else if (event_amatsu == 2) {
+		set event_amatsu,3;
+		mes "ภิกษุสงฆ์ ~";
+		mes "สุนัขจิ้งจอกกำลังตามฉันมา!";
+		mes "มันตลกและไร้สาระเล็กน้อย";
+		mes "แต่ต้องบะหมี่ผัดเต้าเจี้ยว!";
+	}
+	else if (event_amatsu == 3) {
+		mes "ปุโรหิตปุโรหิต ~";
+		mes "สุนัขจิ้งจอกกำลังตามฉันมา!";
+		mes "ถ้าเขาไม่จากไปเมื่อไหร่ฉันจะกรี๊ดและตะโกน!";
+		mes "นักบวชประจำศาลเจ้าเหนือควรช่วยข้าด้วย ~";
+		if (isbegin_quest(8132) == 1)
+			changequest 8132,8133;
+	}
+	else if (event_amatsu == 4) {
+		mes "ปุโรหิตปุโรหิต ~";
+		mes "สุนัขจิ้งจอกกำลังติดตามฉัน";
+		mes "ถ้าตะโกนอย่างเดียวไม่ทำให้ฟ็อกซ์กลัว";
+		mes "ฉันอาจต้องการความช่วยเหลือจาก Tiger and Bear ~!";
+		next;
+		mes "[Kouji]";
+		mes "มีอะไรอีกบ้างที่ฉันต้องการในการต่อสู้ครั้งนี้ ???";
+		mes "อาจจะมีน้ำจาก Acolyte บ้าง ~!";
+	}
+	else if (event_amatsu == 5) {
+		mes "เรือท่าเรือน่ากลัวน่ากลัว ~";
+		mes "ที่ว่างเปล่าของผู้คนเต็มไปด้วยขุมทรัพย์ ~";
+		mes "แต่ฉันจำไม่ได้ ~!";
+		mes "ที่เหลือ ... เพลงนี้ ???";
+	}
+	else {
+		mes "หลังคาสีฟ้าใต้ท้องฟ้าสีคราม";
+		mes "กำแพงสีฟ้าริมทะเลสาบสีฟ้า";
+		mes "ความปรารถนาสีฟ้าในจิตใจสีฟ้า";
+		mes "Blue Blue ทุกอย่างเป็นสีน้ำเงิน";
+	}
+	next;
+	mes "[Kouji]";
+	mes "Ralralrah Ralralrah Ralralrahralralrah ~";
+	mes "Ralralrah Ralralrah Ralralrahralralrah ~";
+	close;
+}
+	
+ama_in01,169,173,1	script	Shaman#ama	769,{
+	mes "[Tokako]";
+	mes "เอ่อฉันไม่ใช่หมอผีจริงๆ ...";
+	mes "เพื่อนของฉัน Takehue-kun พามา";
+	mes "ฉันมาที่นี่และเชิญฉันให้ลองเสื้อผ้าเหล่านี้";
+	next;
+	mes "[Tokako]";
+	mes "เขาขอให้ฉันทำเยอะ ๆ";
+	mes "ของแปลก แต่เขาตลก";
+	mes "บางครั้งฉันไม่รู้ว่าอะไร";
+	mes "เขากำลังคิด ถึงกระนั้นเขาก็เป็นเพื่อนที่ดี";
+	next;
+	mes "[Tokako]";
+	mes "หากคุณอยากรู้เกี่ยวกับ";
+	mes "บางอย่างถามทาเคฮิเอะคุง";
+	mes "เขารู้เรื่อง";
+	mes "เวทย์มนต์และเรื่องลึกลับที่คนอื่นไม่รู้";
+	mes " ";
+	close;
+}
+	
+ama_in01,180,173,3	script	Kitsune Mask#ama	762,{
+	if (event_amatsu == 3) {
+		mes "[Takehue]";
+		mes "เอ๊ะคุณเป็นคนต่างชาติ";
+		mes "ฉันแน่ใจว่าคุณมาเยี่ยมฉันเพราะ";
+		mes "คุณกำลังมีปัญหาสุนัขจิ้งจอก";
+		mes "ฉันเห็นสิ่งนั้นในใบหน้าของคุณ";
+		next;
+		mes "[Takehue]";
+		mes "แต่เดิมหัวหน้านักบวชควร";
+		mes "ช่วยคุณ แต่ศาลเจ้านี้เคยเป็น";
+		mes "ถูกทอดทิ้งเมื่อนานมาแล้ว";
+		next;
+		mes "[Takehue]";
+		mes "เป็นการยากที่จะขับไล่สุนัขจิ้งจอกออกไป";
+		mes "ร่างกายมนุษย์ ถ้าคุณมีเหล้า";
+		mes "และบะหมี่ผัดเต้าเจี้ยว";
+		mes "มันจะง่าย แต่หายาก";
+		next;
+		mes "[Takehue]";
+		mes "ฉันรู้เกี่ยวกับสุนัขจิ้งจอกนิดหน่อยดังนั้นฉันจะบอกคุณบางอย่าง ...";
+		mes "สุนัขจิ้งจอกชอบแกล้งคน แต่";
+		mes "เป็นเรื่องยากสำหรับพวกเขาที่จะกระหาย";
+		mes "การแก้แค้น";
+		mes " ";
+		next;
+		mes "[Takehue]";
+		mes "หากสุนัขจิ้งจอกพยาบาทแสดงว่ามนุษย์ก่อให้เกิดอันตราย";
+		mes "สุนัขจิ้งจอกจะแก้แค้น";
+		mes "ต่อต้านคุณครอบครัวของคุณ";
+		mes "แม้แต่เพื่อนสนิทของคุณ!";
+		next;
+		mes "[Takehue]";
+		mes "อย่างไรก็ตามวิญญาณที่แข็งแกร่งขึ้น";
+		mes "จะขับไล่สุนัขจิ้งจอกออกจากมนุษย์";
+		mes "มาตะโกนออกมาและแสดงสปิริตของคุณ!";
+		mes " ";
+		next;
+		select("ตาาาาา !!");
+		set event_amatsu,4;
+		mes "[Takehue]";
+		mes "ดี. แสดงว่าจิตวิญญาณ";
+		mes "ให้พลังงานแก่สุนัขจิ้งจอกหลายครั้ง";
+		mes "ไม่ช้าก็เร็วคุณจะประสบความสำเร็จ";
+		changequest 8133,8134;
+		close;
+	}
+	else if (event_amatsu == 4) {
+		mes "[Takehue]";
+		mes "อย่าลืม. คุณต้องมีไฟล์";
+		mes "ศูนย์รวมของสัตว์ที่แข็งแกร่งขึ้น";
+		mes "กว่าสุนัขจิ้งจอก หากไม่มีสิ่งเหล่านี้ไฟล์";
+		mes "ความเข้มข้นจะไม่มีประโยชน์";
+		close;
+	}
+	else {
+		mes "[Takehue]";
+		mes "เอ๊ะ? ชาวต่างชาติ. ศาลเจ้าแห่งนี้";
+		mes "ไม่เคยมีนักบวชมาก่อน";
+		mes "เวลานาน. เพื่อนของฉัน Tokako และฉันมาที่นี่เพื่อเล่นรอบ ๆ";
+		next;
+		mes "[Takehue]";
+		mes "หากคุณถูกไล่ล่าโดย";
+		mes "มอนสเตอร์โปรดผ่อนคลาย";
+		mes "สัตว์ประหลาดไม่สามารถมาที่นี่ได้";
+		mes "พักผ่อนที่นี่";
+		close;
+	}
+}
+
+//============================================================ 
+// Old changelog
+//============================================================ 
+//= 1.0 Rewrote parts of other/momotaro.txt to make it work.
+//=     I'm sorry for the mess, I couldn't do much better with
+//=     the current code I had.
+//= 1.1 Added Sushi Quest and Amatsu Event from cities/ [Evera]
+//= 1.2 Fixed Momotaro Quest, thanks to .~Abism0~. [Lupus]
+//============================================================ 
+

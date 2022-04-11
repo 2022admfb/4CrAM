@@ -1,0 +1,153 @@
+//===== rAthena Script ======================================= 
+//= Bunny Band Quest
+//===== By:================================================== 
+//= rAthena Dev Team
+//===== Current Version:===================================== 
+//= 1.6
+//===== Compatible With:===================================== 
+//= rAthena Project
+//===== Description:========================================= 
+//= [Official Conversion]
+//= Quest to obtain a Bunny Band headgear.
+//===== Additional Comments:================================= 
+//= 1.5 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//	Changed @BUNYBAN back to BUNYBND, it should be this way.
+//	Removed duplicates. NPC is ALberta-only.
+//= 1.6 Cleaning. [Euphy]
+//============================================================ 
+
+alberta,26,229,0	script	Kafra Employee#bunny	83,{
+	if (BUNYBND == 1) {
+		mes "[Kafra Employee]";
+		mes "สวัสดีค่ะ ~!";
+		mes "คุณต้องการอย่างไร";
+		mes "มีส่วนร่วมใน Kafra";
+		mes "พิเศษของ บริษัท ";
+		mes "^529DFFBunny Band Event ^000000?";
+		next;
+		switch(select("ได้สิฉันเอาของมาให้:ข้อมูลกิจกรรม:ยกเลิก ")) {
+		case 1:
+			mes "[Kafra Employee]";
+			mes "ได้เลย ~";
+			mes "ให้ฉันตรวจสอบ";
+			mes "ดูว่าคุณนำ";
+			mes "ของทั้งหมด ... ";
+			next;
+			setarray .@Items[0],949,100,706,1,722,1,2213,1;
+			for(set .@i,0; .@i<8; set .@i,.@i+2)
+				if (countitem(.@Items[.@i]) < .@Items[.@i+1]) {
+					mes "[Kafra Employee]";
+					mes "โอฉันขอโทษ";
+					mes "แต่คุณต้อง";
+					mes "นำอย่างน้อย";
+					mes callfunc("F_InsertPlural",.@Items[.@i+1],getitemname(.@Items[.@i]))+".";
+					close;
+				}
+			mes "[Kafra Employee]";
+			mes "เยี่ยมมากฉันเห็นแบบนั้น";
+			mes "คุณได้รวบรวม";
+			mes "ทุกสิ่งที่ฉันต้องการ";
+			mes "สร้างบันนี่แบนด์";
+			mes "กรุณารอสักครู่";
+			mes "ในขณะที่ฉันรวบรวม ... ";
+			next;
+			for(set .@i,0; .@i<8; set .@i,.@i+2)
+				if (countitem(.@Items[.@i]) < .@Items[.@i+1]) {
+					mes "[Kafra Employee]";
+					mes "หืมฉันขอโทษ";
+					mes "แต่ฉันทำไม่ได้";
+					mes "ทำตอนนี้เลยคุณ";
+					mes "need "+callfunc("F_InsertPlural",.@Items[.@i+1],getitemname(.@Items[.@i]));
+					mes "เพื่อให้ฉันใส่สิ่งนี้";
+					mes "บันนี่แบนด์กัน ... ";
+					close;
+				}
+			delitem 949,100; //Feather
+			delitem 706,1; //Four_Leaf_Clover
+			delitem 722,1; //Scarlet_Jewel
+			delitem 2213,1; //Cat_Hairband
+			mes "[Kafra Employee]";
+			mes "Ah, นี่ไง ไป~";
+			mes "Bunny Band ที่สมบูรณ์แบบ!";
+			mes "ฉันหวังว่าคุณจะสนุกกับมัน.";
+			getitem 2214,1; //Bunny_Band
+			set BUNYBND,0;
+			next;
+			mes "[Kafra Employee]";
+			mes "ขอบคุณสำหรับ";
+			mes "มีส่วนร่วมในสิ่งนี้";
+			mes "งานพิเศษและของคุณ";
+			mes "ต่ออุปถัมภ์";
+			mes "ของบริการ Kafra ~";
+			close;
+		case 2:
+			goto L_Info;
+		case 3:
+			close;
+		}
+	}
+	mes "[Kafra Employee]";
+	mes "สวัสดี ~! คุณต้องการ";
+	mes "เพื่อเข้าร่วม ^529DFFBunny พิเศษของเรา";
+	mes "งานวงดนตรี ^000000 จัดโดย Kafra";
+	mes "บริษัท และสนับสนุนโดย";
+	mes "สมาคมพ่อค้าอัลเบอร์ตา?";
+	next;
+	switch(select("เข้าร่วมกิจกรรม:ข้อมูลกิจกรรม:ยกเลิก")) {
+	case 1:
+		set BUNYBND,1;
+		mes "[Kafra Employee]";
+		mes "เยี่ยมมากขอบคุณสำหรับ";
+		mes "เข้าร่วม! ถ้าคุณ";
+		mes "ยังไม่ได้ยิน";
+		mes "คุณต้องรวบรวมสิ่งเหล่านี้";
+		mes "รายการถ้าคุณต้องการให้ฉันใส่";
+		mes "บันนี่แบนด์เพื่อเธอ ... ";
+		next;
+		mes "[Kafra Employee]";
+		mes "100 Feathers,";
+		mes "1 Four-Leaf Clover,";
+		mes "1 Kitty Band and";
+		mes "1 Pearl. That's it!";
+		mes "ขอให้โชคดีและจะเป็น";
+		mes "รอคุณอยู่ที่นี่ ~";
+		close;
+	case 2:
+		break;
+	case 3:
+		close;
+	}
+L_Info:
+	mes "[Kafra Employee]";
+	mes "เพื่อขอบคุณผู้มีค่าของเรา";
+	mes "ลูกค้าคาฟราคอร์ปอเรชั่น";
+	mes "ได้จัดเตรียมกิจกรรมพิเศษ";
+	mes "ที่พนักงาน Kafra จะรวมตัวกัน";
+	mes "บันนี่แบนด์สำหรับนักผจญภัย";
+	mes "ผู้ที่นำสิ่งของที่จำเป็น";
+	next;
+	mes "[Kafra Employee]";
+	mes "สำหรับรายการพิเศษนี้";
+	mes "สิ่งของชนิดหนึ่ง";
+	mes "bring 100 Feathers,";
+	mes "1 Four-Leaf Clover,";
+	mes "1 Kitty Band and";
+	mes "1 Pearl.";
+	next;
+	mes "[Kafra Employee]";
+	mes "เมื่อคุณพร้อม";
+	mes "กลับมาและนำ";
+	mes "ของเหล่านั้นให้ฉัน";
+	mes "(สนับสนุนโดย";
+	mes "สมาคมพ่อค้าอัลเบอร์ตา).";
+	close;
+}
+
+//============================================================ 
+// Old changelog
+//============================================================ 
+//= 1.1 using duplicate command
+//= 1.2 Fixed NPC location, removed NPC dupes [Lupus]
+//= 1.3 RE-Fixed exploit V_V, also cleared used VAR [Lupus]
+//= 1.4 replaced BUNYBND with @BUNYBND [Lupus]
+//============================================================ 

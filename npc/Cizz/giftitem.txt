@@ -1,0 +1,33 @@
+auction_03,11,81,5	script	Send an item	56,{
+	OnInit:
+	//dispbottom "21.00 จะได้รับ รางวัล ชดเชย 1,000 Cash";
+	announce "21.00 จะได้รับ รางวัล ชดเชย 1,000 Cash",0;
+	OnClock2053:
+	announce "21.00 จะได้รับ รางวัล ชดเชย 1,000 Cash",0;
+	end;
+	
+	/*if( getgmlevel() < 98 ) end;	// only gm >= 99 can talk
+	mes "ขณะนี้มี ^ff0000"+ getusers(1) +"^000000 player(s) online.";
+	mes "คุณสามารถเพิ่มรายการให้กับผู้เล่นทุกคนยกเว้นผู้ที่อยู่ในโหมดจำหน่ายหรือสนทนา.";
+	next;
+	if( select( "ส่งรหัสรายการ","ออก" ) -1 ) close;
+	input .@item_id;
+	if( getiteminfo( .@item_id,0 ) == -1 ) {
+		mes "รหัสรายการที่ไม่รู้จัก";
+		close;
+	}
+	set .@item_name$, getitemname( .@item_id );
+	set .@gm_name$, strcharinfo(0);
+	do {
+		set .@size, query_sql( "SELECT `account_id`, `name` from `char` where `online` = '1' and `char_id` != "+ getcharid(0) +" order by `account_id` desc limit "+ ( .@loop *128 ) +", 128", .@account_id, .@name$ );
+		for( set .@i, 0; .@i < .@size; set .@i, .@i +1 ) {
+			if ( checkvending( .@name$[.@i] ) || checkchatting( .@name$[.@i] ) ) continue;
+			getitem .@item_id, 1, .@account_id[.@i];
+			message rid2name( .@account_id[.@i] ), "GM "+ .@gm_name$ +" มอบให้คุณ  1,000 Cash";//+ .@item_name$ +".";
+		}
+		set .@loop, .@loop +1;
+	}
+	while( .@size );
+	mes "เสร็จแล้ว";
+	close;*/
+}

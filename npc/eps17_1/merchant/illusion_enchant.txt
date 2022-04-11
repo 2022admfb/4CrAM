@@ -1,0 +1,365 @@
+//===== rAthena Script ======================================= 
+//= Illusion Enchanter 'Episode 17.1'  (kRO Servers)
+//===== By: ================================================== 
+//= NotKappa#2400 - https://rathena.org/board/profile/18391-notkappa/
+//===== Current Version: ===================================== 
+//= 1.0 (Initial release)
+//===== Additional Comments: ================================= 
+// -
+//============================================================
+
+prontera,91,116,5	script	Illusion Enchanter#maintown	677,{
+	disable_command;
+	disable_items;
+	.@npc$ = "[ ^0000FFIllusion Enchanter^000000 ]";
+	if(!metIlluEnchant){
+		mes .@npc$,
+			"โอ้ , คุณเอาอุปกรณ์ Illusion มาหรือเปล่า ?";
+		next;
+		select("ฉันไม่รู้ว่ามันคืออะไร ....");
+		mes .@npc$,
+			"ฉันรีบมาก, ดังนั้นจะอธิบายก่อน.";
+		next;
+		mes .@npc$,
+			"ฉันเป็นนักเล่นแร่แปรธาตุที่ศึกษาสารที่เรียกว่า Illusion Stone เมื่อเร็ว ๆ นี้มีการเผยแพร่ในหมู่นักผจญภัย.";
+		next;
+		select("นี่คือ Illusion?");
+		mes .@npc$,
+			"เรายังไม่รู้ แต่มันน่าสนใจทีเดียว";
+		next;
+		select("น่าทึ่งมาก!");
+		mes .@npc$,
+			"ฉันเดาว่าคุณเคยได้ยินเกี่ยวกับช่องว่างแปลก ๆ ที่เปิดออกไปทั่วโลก Illusion Stone เป็นเหตุการณ์ที่เกิดขึ้นได้ยากซึ่งปรากฏในช่องเหล่านี้";
+		next;
+		mes .@npc$,
+			"โครงสร้างอะตอมของพวกมันไม่สอดคล้องกับแร่ธาตุใด ๆ ที่ฉันเคยเจอมา ... ";
+		next;
+		select("บอกข้อมูลเพิ่มเติม!");
+		mes .@npc$,
+			"เพื่อตัดการไล่ล่าถ้าคุณนำหินมายามาให้ฉันฉันสามารถอัพเกรดอุปกรณ์บางชิ้นให้คุณได้";
+		next;
+		select("จับอะไร?");
+		mes .@npc$,
+			"ไม่มีอันตรายต่อกระบวนการร่ายมนต์มันไม่สามารถทำลายไอเทมของคุณได้เว้นแต่คุณจะตัดสินใจรีเซ็ตมนต์เสน่ห์";
+		next;
+		mes .@npc$,
+			"ฉันจะศึกษาดันเจี้ยนภาพลวงตาเหล่านี้ต่อไปเพื่อที่จะสามารถสร้างอุปกรณ์ที่ทรงพลังยิ่งขึ้นไปอีก!";
+		next;
+		mes .@npc$,
+			"แม้ว่าฉันควรจะพูดถึงเรื่องนี้ก่อนหน้านี้ ... นี่ไม่ใช่บริการฟรีฉันจะต้องใช้ Zeny และ Illusion Stones";
+		next;
+		mes .@npc$,
+			"คุณได้รับทั้งหมดหรือไม่";
+		next;
+		select("เย้!!");
+		metIlluEnchant = 1;
+		mes .@npc$,
+			"เอาล่ะ! มาเริ่มกันเลย";
+		close;
+	}
+	
+	mes .@npc$,
+		"ฉัน Enchant เพียง อุปกรณ์ที่คุณ ได้รับจากการแลกเปลี่ยน Illusion Stones";
+	next;
+	switch(select("คืออะไร Enchant?", "Enchant Illusion equipment", "Reset Illusion equipment")){
+		case 1: // What do I need to enchant?
+			mes .@npc$,
+				"จำไว้ว่าฉันร่ายมนต์เพียงอุปกรณ์ที่คุณได้รับจากการแลกเปลี่ยน Illusion Stones";
+			next;
+			mes .@npc$,
+				"คุณสามารถร่ายมนต์แต่ละชิ้นได้ 2 ครั้งโดยจ่าย 5 Illusion Stones ต่อ Enchant";
+			next;
+			mes .@npc$,
+				"ไม่มีโอกาสที่จะล้มเหลวเมื่อร่ายมนต์ แต่มีโอกาสที่จะล้มเหลวเมื่อคุณรีเซ็ตรายการนี่เป็นเพียงวิธีการทำงานของกระบวนการ";
+			next;
+			mes .@npc$,
+				"ค่าใช้จ่าย Zeny ในการรีเซ็ตมนต์เสน่ห์ แต่โอกาสสำเร็จขึ้นอยู่กับจำนวน Zeny ที่คุณให้ฉัน";
+			close;
+		
+		case 2: // Enchant Illusion equipment
+			
+			for(.@i=0;.@i<10;.@i++){
+				if (!getequipisequiped(.@i))
+					continue;
+				.@eqId = getequipid(.@i);
+				if (inarray(.MeleeWeaponIds,.@eqId) == -1 && 
+					inarray(.RangeWeaponIds,.@eqId) == -1 && 
+					inarray(.MagicWeaponIds,.@eqId) == -1 && 
+					inarray(.AccessoryIds,.@eqId) == -1 && 
+					inarray(.ArmorIds,.@eqId) == -1)
+					continue;
+				.@eqSlots[getarraysize(.@eqSlots)] = .@i;
+				.@cItems[getarraysize(.@cItems)] = .@eqId;
+				.@menu$ += getitemname(.@eqId) + ":";
+				.@count++;
+			}
+			if(.@count == 0){
+				mes .@npc$,
+					"คุณไม่มีอุปกรณ์ Illusion ติดตั้งเลย";
+				close;			
+			}
+			.@s = select(.@menu$) - 1;
+			.@slot = .@eqSlots[.@s];
+			.@equip_id = .@cItems[.@s];
+			.@equip_name$ = getitemname(.@equip_id);
+			setarray .@card[0],
+				getequipcardid(.@slot,0),
+				getequipcardid(.@slot,1),
+				getequipcardid(.@slot,2),
+				getequipcardid(.@slot,3);
+			copyarray .@equip_card[0], .@card[0], 4;	// for final check
+			.@equip_refine = getequiprefinerycnt(.@slot);
+			
+			if (.@card[3] > 0) {
+				mes .@npc$;
+				mes .@equip_name$ + " ผ่านขีด จำกัด อันน่าหลงใหลไปแล้วเราไม่สามารถร่ายมนต์ได้อีกแล้ว";
+				close;
+			}
+			if(.@card[2] == 0)
+				.@cardSlot = 2;
+			else if(.@card[3] == 0)
+				.@cardSlot = 3;
+				
+			if (.@card[.@cardSlot] == 0) {
+				.@cost = .costStones;
+				mes .@npc$;
+				mes "ต้องการ enchant ^0000FF" + .@equip_name$ + "^000000?";
+				mes "สำหรับ enchanting, ต้องมี ^0000FF" + .@cost + "^000000 Illusion Stones.";
+				next;
+				.@s2 = select( "ยกเลิก", "Enchant") - 2;
+				if (.@s2 == -1) {
+					mes .@npc$;
+					mes "โอเคกลับมาเมื่อคุณพร้อม";
+					close;
+				}
+				if (inarray(.MeleeWeaponIds,.@equip_id) != -1)
+					.@card[.@cardSlot] = .MeleeWeaponEn[rand(0,getarraysize(.MeleeWeaponEn)-1)];
+				else if (inarray(.RangeWeaponIds,.@equip_id) != -1)
+					.@card[.@cardSlot] = .RangeWeaponEn[rand(0,getarraysize(.RangeWeaponEn)-1)];
+				else if (inarray(.MagicWeaponIds,.@equip_id) != -1)
+					.@card[.@cardSlot] = .MagicWeaponEn[rand(0,getarraysize(.MagicWeaponEn)-1)];
+				else if (inarray(.AccessoryIds,.@equip_id) != -1)
+					.@card[.@cardSlot] = .AccessoryEnchants[rand(0,getarraysize(.AccessoryEnchants)-1)];
+				else if (inarray(.ArmorIds,.@equip_id) != -1)
+					.@card[.@cardSlot] = .ArmorEnchants[rand(0,getarraysize(.ArmorEnchants)-1)];
+				.@string$ = "enchant number ^630000" + (.@cardSlot - 1) + "^000000.";
+			}
+			
+			if (.@cost > countitem(25271)){
+				mes .@npc$;
+				mes "หืม, เกิดข้อผิดพลาด " + (.@cost - countitem(25271)) + " Illusion Stones. ไม่เพียงพอ, สามารถพูดคุยเกี่ยวกับ enchants. เพิ่มเติม ";
+				close;
+			}
+			
+			specialeffect2 EF_REPAIRWEAPON;
+			delitem 25271,.@cost;// Illusion Stones
+			
+			// anti-hack
+			if (callfunc("F_IsEquipIDHack", .@slot, .@equip_id) || callfunc("F_IsEquipCardHack", .@slot, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]) || 
+				callfunc("F_IsEquipRefineHack", .@slot, .@equip_refine))
+				close;
+				
+			delequip .@slot;
+			mes .@npc$;
+			mes "Trying for " + .@string$;
+			getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+			close;
+		case 3: // Reset Illusion equipment
+			for(.@i=0;.@i<10;.@i++){
+				if (!getequipisequiped(.@i))
+					continue;
+				.@eqId = getequipid(.@i);
+				if (inarray(.MeleeWeaponIds,.@eqId) == -1 && 
+					inarray(.RangeWeaponIds,.@eqId) == -1 && 
+					inarray(.MagicWeaponIds,.@eqId) == -1 && 
+					inarray(.AccessoryIds,.@eqId) == -1 && 
+					inarray(.ArmorIds,.@eqId) == -1)
+					continue;
+				.@eqSlots[getarraysize(.@eqSlots)] = .@i;
+				.@cItems[getarraysize(.@cItems)] = .@eqId;
+				.@menu$ += getitemname(.@eqId) + ":";
+				.@count++;
+			}
+			
+			if(.@count == 0){
+				mes .@npc$,
+					"คุณไม่มีอุปกรณ์ Illusion ติดตั้งเลย";
+				close;			
+			}
+			
+			.@s = select(.@menu$) - 1;
+			.@slot = .@eqSlots[.@s];
+			.@equip_id = .@cItems[.@s];
+			.@equip_name$ = getitemname(.@equip_id);
+			setarray .@card[0],
+				getequipcardid(.@slot,0),
+				getequipcardid(.@slot,1),
+				getequipcardid(.@slot,2),
+				getequipcardid(.@slot,3);
+			copyarray .@equip_card[0], .@card[0], 4;	// for final check
+			.@equip_refine = getequiprefinerycnt(.@slot);
+			
+			if (.@card[2] == 0) {
+				mes .@npc$;
+				mes .@equip_name$ + " ยังไม่มี enchants..";
+				close;
+			}
+			
+			mes .@npc$,
+				"คุณต้องการรีเซ็ตช่องทั้งหมด .. ";
+			next;
+			mes .@npc$,
+				"คุณจะจ่ายเงินให้ฉันเท่าไหร่เพื่อรีเซ็ตรายการให้คุณ";
+			next;
+			.@p = select("100,000 zeny", "200,000 zeny", "300,000 zeny", "400,000 zeny", "500,000 zeny", "5 Illusion Stones");
+			.@chance = 0;
+			if(.@p < 6){
+				.@amt = .@p * 100000;
+				if(.@p < 5){
+					mes .@npc$,
+						"Only " + F_InsertComma(.@amt) + " zeny...";
+					.@chance = 40 + (.@p*10);
+				}else{
+					.@chance = 100;
+					mes .@npc$,
+						"W-wow, " + F_InsertComma(.@amt) + " zeny!";
+					next;
+					mes .@npc$,
+						"ฉันไม่เคยเห็นมากขนาดนี้มาก่อน";
+				}
+			}else {
+				.@amt = 5;
+				.@chance = 100;
+				mes .@npc$,
+					"Illusion Stones!!";
+				emotion ET_SPARK,getnpcid(0,"Illusion Enchanter#maintown");
+			}
+			next;
+			mes .@npc$,
+				"โอกาสสำเร็จคือ " + .@chance + "%";
+			next;
+			if(.@chance != 100){
+				mes .@npc$,	
+					"นี่เป็นโอกาสที่ไอเท็มอาจแตกและคุณสามารถสูญเสียไอเท็มและการ์ดได้!";
+				next;
+				mes .@npc$,
+					"แน่ใจหรือว่าต้องการดำเนินการต่อ";
+				next;
+				if(select("ไม่. ยกเลิก.", "ใช่. แน่นอน.") == 1){
+					mes .@npc$,
+						"เอาล่ะ,กลับมาเมื่อคุณพร้อม.";
+					close;
+				}
+			}
+			
+			mes .@npc$,
+				"จะเสียค่าใช้จ่าย:";
+			if(.@p == 6)
+				mes .@amt + " Illusion Stones.";
+			else
+				mes F_InsertComma(.@amt) + " Zeny";
+			next;
+			
+			if(select("ยกเลิก.", "ต่อไป.") == 1){
+				mes .@npc$,
+					"เอาล่ะ,กลับมาเมื่อคุณพร้อม.";
+				close;
+			}
+			
+			if(.@p == 6){
+				if(.@amt > countitem(25271)){
+					mes .@npc$,
+						"คุณไม่มี "+.@amt+" Illusion Stones.";
+					close;
+				}
+				delitem 25271,.@amt;
+			}else{
+				if(.@amt > Zeny){
+					mes .@npc$,
+						"คุณมีเงินไม่พอ",
+						"คุณจำเป็นต้องมี " + F_InsertComma(.@amt) + " zeny";
+					close;
+				}
+				Zeny -= .@amt;
+			}
+			
+			// anti-hack
+			if (callfunc("F_IsEquipIDHack", .@slot, .@equip_id) || callfunc("F_IsEquipCardHack", .@slot, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]) || 
+				callfunc("F_IsEquipRefineHack", .@slot, .@equip_refine))
+				close;
+				
+			.@c = rand(100);
+			if(.@chance >= .@c){
+				specialeffect2 EF_REPAIRWEAPON;
+				delequip .@slot;
+				mes .@npc$;
+				mes "ขั้นตอนนี้ สำเร็จ!";
+				getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],0,0;
+				close;
+			}
+			
+			specialeffect2 EF_REFINEFAIL;
+			delequip .@slot;
+			mes .@npc$;
+			mes "ขออภัยดูเหมือนว่าฉันไม่ได้ใช้ความพยายามมากพอ ในกระบวนการขั้นตอน มันล้มเหลว !!!!! ... ";
+		close;
+	}
+	end;
+OnInit:
+	.costStones = 5;
+	setarray .MeleeWeaponIds,	28762,1846,28745,13337,13469,28022,
+								16065,16063,28725,32005,28023,26007,
+								21050,1326,13338;
+								
+	setarray .RangeWeaponIds,	18149,28254,28244,18174;
+								
+	setarray .MagicWeaponIds,	28612,26109,2051,28626,2039;
+	setarray .AccessoryIds,		28508,28509;
+	setarray .ArmorIds,			15348,22192,15195,22133,20840,
+								19210,20838,19209,28922,20847,
+								19223,22190,19344;
+	
+	setarray .AccessoryEnchants,4795,4796,4797,4798,	//HP 100~400
+								4928,4870,4800,4871,	//SP 10~75
+								4700,4701,4702,4703,	//STR 1~4
+								4730,4731,4732,4733,	//AGI 1~4
+								4740,4741,4742,4743,	//VIT 1~4
+								4710,4711,4712,4713,	//INT 1~4
+								4720,4721,4722,4723,	//DEX 1~4
+								4750,4751,4752,4753;	//LUK 1~4
+	
+	setarray .ArmorEnchants,	4861,4862,4863,4864,	//Max HP 1~4%
+								4993,29208,4992,29210,	//HP/SP Absorption  1~2%
+								4994,4995,4997,4998,	//strength/agility Lv 1~2
+								29009,29010,29000,29001,//Vitality/Intellect Lv 1~2
+								29003,29004,29006,29007,//Dexterity/Luck Lv 1~2
+								4700,4701,4702,4703,	//STR 1~4
+								4730,4731,4732,4733,	//AGI 1~4
+								4740,4741,4742,4743,	//VIT 1~4
+								4710,4711,4712,4713,	//INT 1~4
+								4720,4721,4722,4723,	//DEX 1~4
+								4750,4751,4752,4753;	//LUK 1~4
+								
+	setarray .MeleeWeaponEn,	4811,4810,4809,4808,4820,		//Fighting Spirit 1~5
+								29081,29082,29083,29084,29085,	//Acute Lv 1~5
+								29061,29062,29063,29064,29065,	//Mettle Lv 1~5
+								4807,4842,						//ASPD 1 2
+								4700,4701,4702,4703,			//STR 1~4
+								4720,4721,4722,4723,			//DEX 1~4
+								4750,4751,4752,4753;			//LUK 1~4
+	
+	setarray .RangeWeaponEn,	4832,4833,4834,4835,4836,		// Expert Archer 1~5
+								29091,29092,29093,29094,29095,	//Master Archer Lv 1~5
+								29071,29072,29073,29074,29075,	//Magic Essence Lv 1~5
+								4807,4842,						//ASPD 1 2
+								4730,4731,4732,4733,			//AGI 1~4
+								4720,4721,4722,4723,			//DEX 1~4
+								4750,4751,4752,4753;			//LUK 1~4
+								
+	setarray .MagicWeaponEn,	4815,4814,4813,4812,4826,	//Spell 1~5
+								4805,4850,					// Archbishop Lv 1~2
+								4710,4711,4712,4713,		//INT 1~4
+								4720,4721,4722,4723,		//DEX 1~4
+								4750,4751,4752,4753;		//LUK 1~4
+end;
+}

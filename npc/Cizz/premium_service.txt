@@ -1,0 +1,354 @@
+izlude,137,155,4	script	Storage VIP	4_F_KAFRA5,{
+	mes "เปิดคลังเก็บของให้กับ";
+	mes "Premium Service เท่านั้น !!";
+	if(#APACHE_PREMIUM_TIME){
+		if(#APACHE_PREMIUM_TIME <= gettimetick(2)){
+			mes "^CC0000ขณะนี้บริการ Sremium Service หมดแล้ว";
+			mes "^CC0000สามารถเปิดคลังเพื่อหยิบออกเท่านั้น !!^000000";
+		}
+		mes "คุณ "+strcharinfo(0)+" ต้องการเปิดคลังไหม ?";
+		if(select("เปิดคลังเก็บของ:ยกเลิก") == 1) {
+			next;
+			mes "ขอบคุณที่ใช้บริการ";
+			close2;
+			if(#APACHE_PREMIUM_TIME <= gettimetick(2)){
+				openstorage2 1,STOR_MODE_GET;
+			}
+			if(#APACHE_PREMIUM_TIME > gettimetick(2)){
+				openstorage2 1,STOR_MODE_GET|STOR_MODE_PUT;
+			}
+			end;
+		}
+		end;
+	}
+	close;
+}
+
+-	script	premium_service_cmd	-1,{
+OnInit:
+	bindatcmd "PremiumService",strnpcinfo(3)+"::OnPremiumService",99,99;
+	$A_npcmax = 100;	// ตั้งค่าจำนวน npc ที่ทั้งเซิฟเรียกได้
+	for(.@i = 1; .@i <= $A_npcmax; ++.@i){
+		setd "$A_PREMIUM_SERVICE"+.@i , 0;
+	}
+	end;
+
+OnPremiumService:
+	.@npc = 1;
+	while(getd("$A_PREMIUM_SERVICE"+.@npc) && .@npc < ($A_npcmax+1)){
+		.@npc++;
+	}
+	if(.@npc == ($A_npcmax+1)){
+		dispbottom "GM กำหนดให้ใช้พร้อมกัน "+$A_npcmax+" คน ตอนนี้ไม่ว่าง รอสักครู่";
+		end;
+	}
+	getmapxy .@map$,.@x,.@y,BL_PC;
+	.@xr=rand(1,2);
+	.@yr=rand(1,2);
+	if(.@xr>1){ .@x=.@x-rand(1,3); } else { .@x=.@x+rand(1,3); }
+	if(.@yr>1){ .@y=.@y-rand(1,3); } else { .@y=.@y+rand(1,3); }
+	unitwarp getnpcid(0,("Premi#ps"+.@npc)),.@map$,.@x,.@y;
+	movenpc ("Premi#ps"+.@npc),.@x,.@y;
+	classchange 4_F_PREMI, ("Premi#ps"+.@npc), bc_self;
+	initnpctimer ("Premi#ps"+.@npc);
+	setd "$A_PREMIUM_SERVICE"+.@npc , 1;
+	end;
+}
+
+-	script	APACHE_CHK_PREMIUM	-1,{
+OnPCLoginEvent:
+	if(#APACHE_PREMIUM_TIME > gettimetick(2)){
+		sc_end SC_APACHE_EXPBOOST_A;
+		sc_end SC_APACHE_ITEMBOOST_A;
+		sc_end SC_APACHE_STORAGE;
+		sc_start SC_APACHE_STORAGE,((#APACHE_PREMIUM_TIME-gettimetick(2))*1000),300;
+		sc_start SC_APACHE_EXPBOOST_A,((#APACHE_PREMIUM_TIME-gettimetick(2))*1000),20;
+		sc_start SC_APACHE_ITEMBOOST_A,((#APACHE_PREMIUM_TIME-gettimetick(2))*1000),30;
+	}
+	if(#APACHE_PREMIUM_TIME <= gettimetick(2)){ sc_end SC_APACHE_EXPBOOST_A; sc_end SC_APACHE_ITEMBOOST_A; sc_end SC_APACHE_STORAGE; }
+	if(#APACHE_EXP_S > gettimetick(2)){
+		sc_end SC_APACHE_EXPBOOST_S;
+		sc_start SC_APACHE_EXPBOOST_S,((#APACHE_EXP_S-gettimetick(2))*1000),30;
+	}
+	if(#APACHE_EXP_S <= gettimetick(2)){ sc_end SC_APACHE_EXPBOOST_S; }
+	if(#APACHE_ITEM_S > gettimetick(2)){
+		sc_end SC_APACHE_ITEMBOOST_S;
+		sc_start SC_APACHE_ITEMBOOST_S,((#APACHE_ITEM_S-gettimetick(2))*1000),30;
+	}
+	if(#APACHE_ITEM_S <= gettimetick(2)){ sc_end SC_APACHE_ITEMBOOST_S; }
+	if(#APACHE_LIFE_S > gettimetick(2)){
+		sc_end SC_APACHE_LIFEINSURANCE;
+		sc_start SC_APACHE_LIFEINSURANCE,((#APACHE_LIFE_S-gettimetick(2))*1000),50;
+	}
+	if(#APACHE_LIFE_S <= gettimetick(2)){ sc_end SC_APACHE_LIFEINSURANCE; }
+	end;
+}
+
+function	script	ps_item	{
+	.@npc = 1;
+	while(getd("$A_PREMIUM_SERVICE"+.@npc) && .@npc < ($A_npcmax+1)){
+		.@npc++;
+	}
+	if(.@npc == ($A_npcmax+1)){
+		dispbottom "GM กำหนดให้ใช้พร้อมกัน "+$A_npcmax+" คน ตอนนี้ไม่ว่าง รอสักครู่";
+		end;
+	}
+	getmapxy .@map$,.@x,.@y,BL_PC;
+	.@xr=rand(1,2);
+	.@yr=rand(1,2);
+	if(.@xr>1){ .@x=.@x-rand(1,3); } else { .@x=.@x+rand(1,3); }
+	if(.@yr>1){ .@y=.@y-rand(1,3); } else { .@y=.@y+rand(1,3); }
+	unitwarp getnpcid(0,("Premi#ps"+.@npc)),.@map$,.@x,.@y;
+	movenpc ("Premi#ps"+.@npc),.@x,.@y;
+	classchange 4_F_PREMI, ("Premi#ps"+.@npc), bc_self;
+	initnpctimer ("Premi#ps"+.@npc);
+	setd "$A_PREMIUM_SERVICE"+.@npc , 1;
+	end;
+}
+
+prontera,0,0,4	script	premium_service	HIDDEN_WARP_NPC,{
+	cutin "prm_3",2;
+	mes "[Premi]";
+	mes "สวัสดี เมี้ยว~";
+	mes "ข้าคือ ^00CC00Premi^000000เอง!";
+	mes "ยินดีที่ได้รู้จักนะ~";
+	next;
+	cutin "prm_2",2;
+	mes "[Premi]";
+	mes "วันนี้ให้ Premi ช่วยบริการอะไรดีเจ้าคะ?";
+	next;
+	setarray .@items[0],4,2,1,6,0;
+	setarray .@names$[0],
+		"เพิ่มค่าประสบการณ์","เพิ่มอัตราการดรอป",
+		"ลดบทลงโทษตอนตาย","รับบริการทั้งหมดครั้งเดียว",
+		"ไม่ทำสิ่งใด";
+	setarray .@names2$[0],
+		"เพิ่มค่าประสบการณ์","เพิ่มอัตราการดรอป",
+		"ลดบทลงโทษตอนตาย","ทั้งหมด";
+	for(.@i=0; .@i<5; .@i++) {
+		if (countitem(6417) < .@items[.@i]) {
+			.@status[.@i] = 2;
+			.@menu$ = .@menu$+.@names$[.@i]+"^aaaaaa (วัตถุดิบไม่พอ)^000000:";
+		} else if (.@i == 4) {
+			.@menu$ = .@menu$+.@names$[.@i]+":";
+		} else {
+			.@status[.@i] = 1;
+			.@menu$ = .@menu$+.@names$[.@i]+" (1วัน):";
+		}
+	}
+	.@i = select(.@menu$)-1;
+	if (.@i == 4) {
+		cutin "prm_3",2;
+		mes "[Premi]";
+		mes "อ่าา!";
+		mes "วันนี้ช่างอากาศดี ไม่ต้องทำอะไร!";
+		next;
+		cutin "prm_2",2;
+		mes "[Premi]";
+		mes "สำหรับ Premi, วันแบบนี้ถ้าได้กิน";
+		mes getitemname(6417)+" คงจะดีที่สุดเลย!";
+		close2;
+		cutin "",255;
+		end;
+	}
+	switch(.@status[.@i]) {
+	case 0:
+	case 1:
+		break;
+	case 2:
+		cutin "prm_4",2;
+		mes "[Premi]";
+		mes "สำหรับ "+.@names$[.@i]+" (1วัน)";
+		mes "ต้องใช้ "+getitemname(6417)+" "+.@items[.@i]+" ชิ้น";
+		close2;
+		cutin "",255;
+		end;
+	}
+	cutin "prm_1",2;
+	mes "^00CC00[Premi]";
+	mes "^00CC00หากต้องการใช้เวทมนต์";
+	if(.@i==3){
+		mes "^00CC00หากต้องการใช้เวทมนต์";
+		mes "^00CC00เพิ่มค่าประสบการณ์";
+		mes "^00CC00เพิ่มอัตราการดรอป";
+		mes "^00CC00ลดบทลงโทษตอนตาย";
+		mes "^00CC00พร้อมกัน ต้องให้";
+	} else {
+		mes "^00CC00"+.@names2$[.@i];
+	}
+	mes "^00CC00"+getitemname(6417)+" "+.@items[.@i]+" ชิ้น";
+	mes "^00CC00ในการเสกนะเจ้าคะ^000000";
+	next;
+	mes "^CC0000? คำเตือน ?";
+	mes "^CC0000ให้ "+getitemname(6417)+" "+.@items[.@i]+" ชิ้น จะได้รับ Buff";
+	if(.@i==3){
+		mes "^CC0000เพิ่มค่าประสบการณ์ (1วัน)";
+		mes "^CC0000เพิ่มอัตราการดรอป (1วัน)";
+		mes "^CC0000ลดบทลงโทษตอนตาย (1วัน)";
+	} else {
+		mes "^CC0000"+.@names2$[.@i]+" (1วัน)";
+	}
+	mes "^CC0000Buff ที่ได้รับ";
+	mes "^CC0000ไม่สามารถถอดสิทธิ์ออกจากตัวได้^000000";
+	next;
+	if(select("รับ Buff:ยกเลิก") == 2) {
+		cutin "prm_3",2;
+		mes "[Premi]";
+		mes "อ่าา!";
+		mes "วันนี้ช่างอากาศดี ไม่ต้องทำอะไร!";
+		next;
+		cutin "prm_2",2;
+		mes "[Premi]";
+		mes "สำหรับ Premi, วันแบบนี้ถ้าได้กิน";
+		mes getitemname(6417)+" คงจะดีที่สุดเลย!";
+		close2;
+		cutin "",255;
+		end;
+	}
+	delitem 6417,.@items[.@i];
+	cutin "prm_1",2;
+	mes "[Premi]";
+	mes "อาฮ่า!";
+	mes "เรามาลองดูความสามารถกันหน่อยไหม!!!";
+	next;
+	switch(.@i) {
+		case 0:
+			sc_start SC_APACHE_EXPBOOST_S,86400000,30;
+			#APACHE_EXP_S = gettimetick(2)+86400;
+			break;
+		case 1:
+			sc_start SC_APACHE_ITEMBOOST_S,86400000,30;
+			#APACHE_ITEM_S = gettimetick(2)+86400;
+			break;
+		case 2:
+			sc_start SC_APACHE_LIFEINSURANCE,86400000,50;
+			#APACHE_LIFE_S = gettimetick(2)+86400;
+			break;
+		case 3:
+			sc_start SC_APACHE_EXPBOOST_S,86400000,30;
+			sc_start SC_APACHE_ITEMBOOST_S,86400000,30;
+			sc_start SC_APACHE_LIFEINSURANCE,86400000,50;
+			#APACHE_EXP_S = gettimetick(2)+86400;
+			#APACHE_ITEM_S = gettimetick(2)+86400;
+			#APACHE_LIFE_S = gettimetick(2)+86400;
+			break;
+	}
+	mes "[Premi]";
+	mes "เป็นอย่างไรบ้างคะ คุณ "+strcharinfo(0)+"!";
+	mes "ยังไม่รู้สึกถึงเวทมนต์ "+.@name$+" หรือเจ้าคะ?";
+	mes "จะมาเป็นแบบนี้ไม่ได้นะ!";
+	mes "รีบออกไปลองต่อสู้ดูค่ะ!";
+	close2;
+	cutin "",255;
+	end;
+OnTimer60000:	// ตั้งค่าเวลาnpcที่เรียกมา หน่วย 1000 = 1วินาที
+	sscanf( strnpcinfo(0), "Premi#ps%d", .@num );
+	stopnpctimer;
+	unitwarp getnpcid(0,("Premi#ps"+.@num)),"prontera",0,0;
+	setd "$A_PREMIUM_SERVICE"+.@num , 0;
+	end;
+}
+
+prontera,0,0,4	duplicate(premium_service)	Premi#ps1	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps2	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps3	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps4	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps5	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps6	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps7	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps8	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps9	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps10	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps11	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps12	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps13	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps14	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps15	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps16	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps17	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps18	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps19	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps20	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps21	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps22	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps23	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps24	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps25	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps26	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps27	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps28	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps29	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps30	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps31	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps32	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps33	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps34	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps35	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps36	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps37	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps38	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps39	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps40	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps41	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps42	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps43	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps44	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps45	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps46	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps47	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps48	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps49	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps50	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps51	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps52	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps53	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps54	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps55	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps56	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps57	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps58	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps59	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps60	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps61	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps62	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps63	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps64	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps65	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps66	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps67	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps68	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps69	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps70	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps71	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps72	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps73	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps74	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps75	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps76	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps77	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps78	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps79	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps80	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps81	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps82	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps83	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps84	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps85	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps86	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps87	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps88	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps89	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps90	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps91	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps92	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps93	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps94	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps95	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps96	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps97	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps98	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps99	HIDDEN_WARP_NPC
+prontera,0,0,4	duplicate(premium_service)	Premi#ps100	HIDDEN_WARP_NPC
+prontera,146,92,6	duplicate(Storage VIP)	StorageVIP#ps100	4_F_KAFRA5,
+morocc,165,97,6	duplicate(Storage VIP)	StorageVIP#ps101	4_F_KAFRA5,
+geffen,116,62,9	duplicate(Storage VIP)	StorageVIP#ps102	4_F_KAFRA5,

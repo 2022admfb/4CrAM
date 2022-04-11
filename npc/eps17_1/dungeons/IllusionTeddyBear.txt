@@ -1,0 +1,1214 @@
+einbroch,149,242,3	script	Teddy Bear Collector#teddybear	4_M_NFMAN,9,9,{
+	if(illusionteddybearquest == 9){
+		mes "[นักสะสมตุ๊กตาหมี]";
+		mes "สวัสดีครับ ^ff0000"+strcharinfo(0)+"^000000 !!!";
+		mes "ฉันจะไม่มีวันลืมคุณ!";
+		mes "ขอบคุณที่ช่วยชีวิตตุ๊กตาหมีที่รัก!";
+		close;
+	}
+	if(illusionteddybearquest == 6){
+		mes "[นักสะสมตุ๊กตาหมี]";
+		mes "ยังไงก็ตามขอบคุณสำหรับความช่วยเหลือของคุณ";
+		mes "โปรดบอกลุงของฉันว่าฉันจะสบายดีและฉันหวังว่าเขาจะหาทางช่วยเท็ดดี้แบร์ของฉันได้ในไม่ช้า";
+		close;
+	}
+	if(illusionteddybearquest == 5){
+		emotion ET_HUK;
+		mes "[นักสะสมตุ๊กตาหมี]";
+		mes "พระเจ้าช่วย! คุณกลับมา!";
+		mes "คุณพบอะไรเกี่ยวกับตุ๊กตาหมีที่น่าสงสารของฉันหรือไม่?";
+		next;
+		mes "[ "+strcharinfo(0)+" ]";
+		mes "ใช่. แต่โปรดอย่าเสียใจ";
+		next;
+		mes "[นักสะสมตุ๊กตาหมี]";
+		mes "ฉันเศร้าแล้ว";
+		next;
+		mes "[ "+strcharinfo(0)+" ]";
+		mes "ลุงของคุณรู้ว่าเท็ดดี้แบร์ของคุณอยู่ที่ไหน แต่ก็ยังหาทางช่วยเขาไม่ได้";
+		mes "แต่เขาสัญญาว่าเขาและเพื่อนของเขาจะไม่มีวันยอมแพ้เขา";
+		next;
+		mes "[ "+strcharinfo(0)+" ]";
+		mes "เขาไม่อยากทำให้คุณเสียใจ";
+		next;
+		emotion ET_CRY;
+		mes "[นักสะสมตุ๊กตาหมี]";
+		mes "ตุ๊กตาหมีที่น่าสงสารของฉัน";
+		mes "ฉันเดาว่าฉันทำอะไรไม่ได้มากเช่นกัน";
+		mes "ฉันหวังแค่ว่าลุงของฉันจะพาเขากลับมาในไม่ช้า";
+		next;
+		mes "[นักสะสมตุ๊กตาหมี]";
+		mes "ยังไงก็ตามขอบคุณสำหรับความช่วยเหลือของคุณ";
+		mes "โปรดบอกลุงของฉันว่าฉันจะสบายดีและฉันหวังว่าเขาจะหาทางช่วยเท็ดดี้แบร์ของฉันได้ในไม่ช้า";
+		illusionteddybearquest = 6;
+		close;
+	}
+	if(illusionteddybearquest == 1){
+		mes "[นักสะสมตุ๊กตาหมี]";
+		mes "ขอถามหน่อยเพื่อนของฉันมันคือ ^ff0000 นักสืบเท็ดดี้แบร์ ^000000";
+		mes "เขาและสมาชิกทีม ^ff0000 เท็ดดี้แบร์ ^000000 กำลังช่วยฉันคิดว่าเกิดอะไรขึ้นกับเท็ดดี้แบร์ที่รัก";
+		mes "ฉันได้ยินมาว่าเขาอยู่ที่ไหนสักแห่งในเหมืองใกล้กับ Einbrooch";
+		next;
+		mes "[นักสะสมตุ๊กตาหมี]";
+		mes "ได้โปรดไปที่นั่นตอนนี้ฉันอยากจะรู้เกี่ยวกับตุ๊กตาหมีที่รักของฉันจริงๆ";
+		close;
+	}
+	mes "[นักสะสมตุ๊กตาหมี]";
+	mes "สวัสดี! ขออภัยฉันต้องการความช่วยเหลือจากคุณจริงๆ";
+	next;
+	mes "[นักสะสมตุ๊กตาหมี]";
+	mes "หากคุณสามารถช่วยฉันได้มันจะทำให้ฉันมีความสุขมาก";
+	mes "ถ้าฉันมีเวลาฉันจะไม่รบกวนใครให้ช่วยฉัน";
+	mes "กรุณาช่วยฉัน?";
+	next;
+	switch(select("ช่วยแบบไหน?","ขอโทษนะฉันยุ่งอยู่")){
+			case 1:
+				break;
+			case 2:
+				mes "[นักสืบเท็ดดี้แบร์]";
+				mes "ดีไม่ต้องกังวล";
+				mes "ฉันไม่คาดหวังอะไรจากคนแปลกหน้าจะซื่อสัตย์";
+				close;
+		}
+	mes "[นักสะสมตุ๊กตาหมี]";
+	mes "ฉันอยากรู้เกี่ยวกับตุ๊กตาหมีตัวหนึ่งของฉัน";
+	mes "ฉันต้องรู้ว่าเขาอยู่ที่ไหนและเกิดอะไรขึ้นกับเขา";
+	next;
+	mes "[นักสะสมตุ๊กตาหมี]";
+	mes "จู่ๆเขาก็กลายเป็นบ้าและไม่ทำตัวเหมือนตุ๊กตาหมีที่แสนดีอีกต่อไป";
+	next;
+	emotion ET_CRY;
+	mes "[นักสะสมตุ๊กตาหมี]";
+	mes "มันทำให้ฉันเศร้าสุด ๆ";
+	mes "ฉันหวังว่าฉันจะได้เขากลับมา";
+	next;
+	mes "[นักสะสมตุ๊กตาหมี]";
+	mes "ลุงของฉัน ^ff0000Steven ^000000 บอกให้ฉันถามเกี่ยวกับเรื่องนี้ แต่อย่างที่คุณรู้ฉันค่อนข้างยุ่ง";
+	mes "คุณช่วยฉันได้มั้ย?";
+	next;
+	switch(select("คุณสามารถไว้วางใจฉัน!","ขอโทษที่ฉันยุ่งเกินไป")){
+			case 1:
+				break;
+			case 2:
+				mes "[นักสะสมตุ๊กตาหมี]";
+				mes "ดีไม่ต้องกังวล";
+				mes "แต่ฉันขอให้คุณช่วยฉัน";
+				close;
+		}
+	illusionteddybearquest = 1;
+	mes "[นักสะสมตุ๊กตาหมี]";
+	mes "หวาน!";
+	mes "ขอถามหน่อยเพื่อนคือ ^ff0000 นักสืบเท็ดดี้แบร์ ^000000";
+	mes "เขาและสมาชิกทีม ^ff0000 เท็ดดี้แบร์ ^000000 กำลังช่วยฉันคิดว่าเกิดอะไรขึ้นกับเท็ดดี้แบร์ที่รัก";
+	mes "ฉันได้ยินมาว่าเขาอยู่ที่ไหนสักแห่งในเหมืองใกล้กับ Einbrooch";
+	next;
+	mes "[นักสะสมตุ๊กตาหมี]";
+	mes "ได้โปรดไปที่นั่นตอนนี้ฉันอยากจะรู้เกี่ยวกับตุ๊กตาหมีที่รักของฉันจริงๆ";
+	end;
+
+OnInit:
+	end;
+	
+	OnTouch:
+	{
+		OnPCLoadMapEvent:
+			if(strcharinfo(3) == strnpcinfo(4))
+			showevent 1, 1;
+			viewpoint 2,149,242,1,0xFF0000;
+			end;
+	}
+}
+
+ein_dun01,194,80,5	script	Detective Teddy Bear#teddybear	4_M_EINMAN2,{
+	if(illusionteddybearquest == 1){
+		emotion ET_CRY;
+		mes "[นักสืบเท็ดดี้แบร์]";
+		mes "ฉันล้มเหลวในฐานะนักสืบสมาชิกในทีมของฉันรู้มากกว่าฉัน";
+		close;
+	}
+	if(illusionteddybearquest > 1){
+		emotion ET_CRY;
+		mes "[นักสืบเท็ดดี้แบร์]";
+		mes "สวัสดีครับ ^ff0000"+strcharinfo(0)+"^000000 ยินดีที่ได้พบคุณอีกครั้ง!";
+		close;
+	}
+	emotion ET_QUESTION;
+	mes "[นักสืบเท็ดดี้แบร์]";
+	mes "คุณมาทำอะไรที่นี่?";
+	next;
+	mes "[นักสืบเท็ดดี้แบร์]";
+	mes "ถ้าคุณไม่มีอะไรทำคุณควรช่วยเพื่อนของฉันที่ Einbrooch";
+	next;
+	mes "[นักสืบเท็ดดี้แบร์]";
+	mes "เขาสามารถใช้ความช่วยเหลือของคุณได้จริงๆ";
+	next;
+	mes "[ "+strcharinfo(0)+" ]";
+	mes "ช่วยแบบไหน?";
+	next;
+	mes "[นักสืบเท็ดดี้แบร์]";
+	mes "ฉันไม่สามารถพูดอะไรได้มาก แต่มันเกี่ยวกับคอลเลกชันตุ๊กตาหมีของเขา";
+	mes "ไปช่วยเขาหน่อยได้ไหม?";
+	next;
+	switch(select("ตกลงฉันจะช่วย","ฉันขอโทษ")){
+		case 1:
+			break;
+		case 2:
+			mes "[นักสืบเท็ดดี้แบร์]";
+			mes "ดีไม่ต้องกังวล";
+			mes "ฉันไม่คาดหวังอะไรจากคนแปลกหน้าจะซื่อสัตย์";
+			close;
+	}
+	mes "[นักสืบเท็ดดี้แบร์]";
+	mes "อ๊า ~~~!";
+	mes "ขอขอบคุณ!";
+	next;
+	mes "[นักสืบเท็ดดี้แบร์]";
+	mes "ฉันสามารถช่วยคุณได้เล็กน้อยเพื่อไปที่ Einbrooch โดยตรงเพื่อที่คุณจะได้ไม่ต้องเดินจากที่นี่";
+	next;
+	switch(select("โอเคส่งฉันไปที่ Einbrooch","ไม่เป็นไรฉันเดินได้")){
+		case 1:
+		//warp "Einbroch",64,200;
+			break;
+		case 2:
+		emotion ET_HUK;
+			mes "[นักสืบเท็ดดี้แบร์]";
+			mes "พระเจ้าช่วย!";
+			mes "ฉันชื่นชมความมุ่งมั่นของคุณ แต่ฉันปล่อยให้คุณเดินคนเดียวไม่ได้";
+			next;
+			mes "[นักสืบเท็ดดี้แบร์]";
+			mes "ช่วยเอาของขวัญชิ้นนี้ไปให้ฉันแล้วไปหาไอน์บรูคกันเถอะ";
+			getitem 501, 10;
+	}
+	warp "Einbroch",64,200;
+	end;
+}
+
+-	script	TeddyBearClue#teddybear	-1,{
+	end;
+	
+OnInit:
+	end;
+OnTouch:
+	{
+		OnPCLoadMapEvent:
+			if(strcharinfo(3) == strnpcinfo(4))
+			//showevent 1, 1;
+			//viewpoint 1,149,242,1,0xFF0000;
+			end;
+	}
+}
+einbroch,66,198,3	duplicate(TeddyBearClue#teddybear)	#TeedyBearClue_1	-1,5,5
+
+ein_dun01,196,80,1	script	Curious Teddy Bear#teddybear_c1	4_TEDDY_BEAR_W,{
+end;
+}
+
+ein_dun01,193,80,5	script	Curious Teddy Bear#teddybear_c2	4_TEDDY_BEAR_W,{
+end;
+}
+
+ein_dun01,191,80,5	script	Curious Teddy Bear#teddybear_c3	4_TEDDY_BEAR_W,{
+end;
+}
+
+ein_dun01,190,80,0	script	Curious Teddy Bear#teddybear_c4	4_TEDDY_BEAR_W,{
+end;
+}
+
+ein_dun01,189,82,0	script	Curious Teddy Bear#teddybear_c5	4_TEDDY_BEAR_W,{
+end;
+}
+
+ein_dun01,189,84,0	script	Curious Teddy Bear#teddybear_c6	4_TEDDY_BEAR_W,{
+end;
+}
+
+ein_dun01,189,85,0	script	Teddy Bear#teddybear_c7	4_TEDDY_BEAR_W,7,7,{
+	if(illusionteddybearquest == 3){
+		mes "[ หมีเท็ดดี้ ]";
+		mes "ก้าวไปสู่สิ่งที่เป็นสีน้ำเงินแปลกประหลาดเหนือฉัน";
+		mes "แต่ฉันจะไม่กล้าทำอย่างนั้น";
+		mes "^ff0000Steven ^000000 ยังกล่าวอีกว่าสถานที่แห่งนั้นเต็มไปด้วยตุ๊กตาหมีที่โกรธแค้น";
+		close;
+	}
+	if(illusionteddybearquest == 2){
+		mes "[ หมีเท็ดดี้ ]";
+		mes "ยิ่งฉันค้นคว้ามากเท่าไหร่สิ่งนี้ก็ยิ่งน่ากลัวมากขึ้นเท่านั้น";
+		mes "คุณเชื่อเรื่องนี้ได้ไหม?";
+		mes "ตุ๊กตาหมียักษ์เรืองแสง?";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "ฟังดูไม่จริง แต่นั่นคือสิ่งที่ฉันได้ยินจาก ^ff0000Steven ^000000";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "ถ้าคุณไม่เชื่อฉันเพียงแค่ถาม ^ff0000Steven ^000000 ด้วยตัวคุณเอง";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "เขาอยู่อีกมิติหนึ่งของสถานที่แห่งนี้";
+		mes "ก้าวไปสู่สิ่งที่เป็นสีน้ำเงินแปลกประหลาดเหนือฉัน";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "แต่ฉันไม่แนะนำให้คุณทำ";
+		mes "^ff0000Steven ^000000 ยังกล่าวอีกว่าสถานที่แห่งนั้นเต็มไปด้วยตุ๊กตาหมีที่โกรธแค้น";
+		illusionteddybearquest = 3;
+		showevent QTYPE_NONE, 0;
+		close;
+		
+	}
+	mes "[ หมีเท็ดดี้ ]";
+	mes "ฉันไม่รู้ว่าทำไมคนอย่างคุณถึงไปที่นี้ในตอนเย็นของวันนี้";
+	end;
+
+OnInit:
+	end;
+	
+	OnTouch:
+	{
+		OnPCLoadMapEvent:
+		if(illusionteddybearquest != 2){
+			end;
+		}
+			if(strcharinfo(3) == strnpcinfo(4))
+			showevent 1, 1;
+			end;
+	}
+}
+
+ein_dun01,198,79,4	script	Teddy Bear#teddybear_c8	4_TEDDY_BEAR_W,5,5,{
+	if(illusionteddybearquest == 2){
+		mes "[ หมีเท็ดดี้ ]";
+		mes "ถามเพื่อนคนอื่น ๆ ของฉันที่นั่นใกล้กับสิ่งแปลกประหลาดสีน้ำเงิน";
+		mes "ฉันเชื่อว่าเขาค้นพบสิ่งนี้มากขึ้น";
+		close;
+	}
+	if(illusionteddybearquest == 1){
+		mes "[ หมีเท็ดดี้ ]";
+		mes "นี้ไม่ดี!";
+		mes "นี่มันแย่จริงๆ!";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "ฉันได้ยินมาว่าตุ๊กตาหมีเร่าร้อน!";
+		mes "ฉันหมายถึงเรืองแสง!";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "คุณเชื่อได้ไหม?";
+		mes "ถามเพื่อนคนอื่น ๆ ของฉันที่นั่นใกล้กับสิ่งที่เป็นสีน้ำเงิน";
+		mes "ฉันเชื่อว่าเขาค้นพบสิ่งนี้มากขึ้น";
+		illusionteddybearquest = 2;
+		showevent QTYPE_NONE, 0;
+		close;
+	}
+	mes "[ หมีเท็ดดี้ ]";
+	mes "ช่างเป็นสถานที่แปลก ๆ ที่จะใช้เวลาช่วงเย็น";
+	end;
+
+OnInit:
+	end;
+	
+	OnTouch:
+	{
+		OnPCLoadMapEvent:
+		if(illusionteddybearquest != 1){
+			end;
+		}
+			if(strcharinfo(3) == strnpcinfo(4))
+			showevent 1, 1;
+			end;
+	}
+}
+
+ein_d02_i,170,193,5	script	Steven#teddybear	4W_M_02,7,7,{
+	if(illusionteddybearquest == 9){
+		mes "[สตีเวน]";
+		mes "สวัสดี!";
+		mes "ขอบคุณสำหรับความช่วยเหลือก่อนหน้านี้!";
+		next;
+		mes "[สตีเวน]";
+		mes "ตอนนี้เท็ดดี้แบร์หลานชายของฉันหายเป็นปกติเพราะความช่วยเหลือของคุณ!";
+		next;
+		mes "[สตีเวน]";
+		mes "ถ้าเดินลงไปอีกหน่อยแล้วไปทางขวาจะพบตุ๊กตาหมีอยู่ที่นั่น";
+		mes "เขามีไอเทมทรงพลังมากมายที่คุณสามารถขอได้";
+		next;
+		mes "[สตีเวน]";
+		mes "ลองไปคุยกับเขา";
+		mes "เขาเป็นตุ๊กตาหมีที่ดีมาก";
+		viewpoint 1,177,158,1,0xFF0000;
+		close;
+	}
+	if(illusionteddybearquest == 8){
+		mes "[สตีเวน]";
+		mes "^ff0000 เท็ดดี้แบร์ ^000000 พูดอะไร";
+		next;
+		mes "[ "+strcharinfo(0)+" ]";
+		mes "เขาบอกว่าคุณต้องสร้างตุ๊กตาเทดดี้แบร์ลายครามที่ดูดี!";
+		next;
+		mes "[สตีเวน]";
+		mes "ตุ๊กตาลายครามของ Teddy Bear?";
+		mes "น่าสนใจ! อะไรต่อไป?";
+		next;
+		mes "[ "+strcharinfo(0)+" ]";
+		mes "จากนั้นคุณต้องแน่ใจว่าหลานชายของคุณเท็ดดี้แบร์พบตุ๊กตาตัวนั้น";
+		mes "ถ้าเขาชอบเขาอาจจะทิ้งร่างเท็ดดี้แบร์ที่น่าสงสารตัวนั้นและครอบครองตุ๊กตาตัวนั้นแทน";
+		next;
+		emotion ET_HUK;
+		mes "[สตีเวน]";
+		mes "พระเจ้าช่วย! มันได้ผล!";
+		mes "ตกลงตอนนี้ฉันจะทำตุ๊กตาลายครามตัวนั้น!";
+		next;
+		mes "[สตีเวน]";
+		mes "และขอบคุณมากสำหรับความช่วยเหลือ!";
+		mes "ฉันมีบางอย่างสำหรับคุณ";
+		mes "โปรดใช้ ^ff0000Illusion Stone ^000000 1 ชิ้น";
+		next;
+		mes "[สตีเวน]";
+		mes "ออกเดินทางและขอบคุณอีกครั้ง!";
+		getitem 25271, 1;
+		illusionteddybearquest = 9;
+		close;
+	}
+	if(illusionteddybearquest == 7){
+		mes "[สตีเวน]";
+		mes "ตามหาตุ๊กตาหมีที่ซ่อนตัวอยู่ที่นั่นฉันรู้ว่ามันยากที่จะทำ แต่โปรดช่วยฉันด้วย";
+		mes "คิดออกว่าเขาจะพูดอะไร.";
+		viewpoint 1,137,230,1,0xFF0000;
+		close;
+	}
+	if(illusionteddybearquest == 6){
+		mes "[สตีเวน]";
+		mes "คุณได้คุยกับหลานชายของฉันหรือยัง?";
+		next;
+		switch(select("ยัง","ฉันมี")){
+			case 1:
+				mes "[สตีเวน]";
+				mes "ขอคุยกับเขาก่อน";
+				close;
+			case 2:
+				break;
+		}
+		mes "[สตีเวน]";
+		mes "เขาเอายังไง?";
+		next;
+		mes "[ "+strcharinfo(0)+" ]";
+		mes "ค่อนข้างดีฉันเดา";
+		mes "อย่างที่คุณเคยพูดฉันพยายามที่จะไม่ทำให้เขาเศร้าไปมากกว่านี้";
+		mes "ฉันทิ้งบางสิ่งที่ฉันคิดว่าเขาไม่จำเป็นต้องรู้";
+		next;
+		mes "[สตีเวน]";
+		mes "ดี!";
+		mes "และฉันมีข่าวดี!";
+		next;
+		mes "[สตีเวน]";
+		mes "ในขณะที่คุณไปหาหลานชายของฉันเพื่อนของฉันพบบางอย่างที่อาจเป็นเบาะแสในการช่วยหลานชายของฉันเท็ดดี้แบร์";
+		mes "โปรดไปทางตะวันตกเฉียงเหนือจากสถานที่นี้";
+		next;
+		mes "[สตีเวน]";
+		mes "ตามหาตุ๊กตาหมีที่ซ่อนตัวอยู่ที่นั่นฉันรู้ว่ามันยากที่จะทำ แต่โปรดช่วยฉันด้วย";
+		mes "คิดออกว่าเขาจะพูดอะไร.";
+		illusionteddybearquest = 7;
+		viewpoint 1,137,230,1,0xFF0000;
+		close;
+	}
+	if(illusionteddybearquest == 5){
+		mes "[สตีเวน]";
+		mes "โปรดบอกหลานชายของฉันด้วยคำพูดที่ดีที่สุดเท่าที่คุณจะคิดได้";
+		mes "ฉันไม่อยากทำให้เขาเสียใจจริงๆ";
+		close;
+	}
+	if(illusionteddybearquest == 4){
+		mes "[สตีเวน]";
+		mes "วิ้ว!";
+		mes "มนุษย์ที่ยังมีชีวิตอยู่ที่นี่อีกหรือ";
+		next;
+		mes "[ "+strcharinfo(0)+" ]";
+		mes "ฮ่าฮ่าฮ่า ... ฉันแค่อยากช่วยหลานชายของคุณ";
+		next;
+		mes "[สตีเวน]";
+		mes "โอ้ว่าเป็นคนดีของคุณ";
+		mes "คุณมีอะไรจนถึงตอนนี้?";
+		next;
+		mes "[ "+strcharinfo(0)+" ]";
+		mes "ไม่มาก.";
+		mes "ตุ๊กตาหมียักษ์เรืองแสง";
+		next;
+		mes "[สตีเวน]";
+		mes "ถูกตัอง.";
+		mes "มีหลายอย่างเกิดขึ้นที่นี่";
+		next;
+		mes "[สตีเวน]";
+		mes "ฉันแค่ไม่อยากทำให้หลานชายเสียใจ";
+		mes "ตุ๊กตาหมีของเขาจะไม่มีวันกลับมา";
+		next;
+		mes "[สตีเวน]";
+		mes "วิญญาณแห่งความมืดเข้าสิงเท็ดดี้แบร์หลานชายของฉันแล้ว";
+		mes "และฉันไม่รู้อะไรเลยที่จะช่วยตุ๊กตาหมีที่น่าสงสารตัวนั้นได้มันเหมือนกับว่าพวกมันรวมตัวกันแล้ว";
+		next;
+		mes "[สตีเวน]";
+		mes "ตอนนี้ช่วยบอกหลานชายของฉันด้วยว่าตอนนี้ฉันยังไม่รู้ว่าจะช่วยตุ๊กตาหมีของเขาอย่างไร";
+		next;
+		mes "[สตีเวน]";
+		mes "แต่ฉันจะไม่หยุดหาคำตอบฉันและเพื่อนของฉันจะค้นคว้าเพิ่มเติมต่อไปจนกว่าเราจะรู้คำตอบ";
+		next;
+		mes "[สตีเวน]";
+		mes "และช่วยบอกหลานชายของฉันด้วยคำพูดที่ดีที่สุดเท่าที่คุณจะคิดได้";
+		mes "ฉันไม่อยากทำให้เขาเสียใจจริงๆ";
+		illusionteddybearquest = 5;
+		close;
+	}
+	mes "[สตีเวน]";
+	mes "ฉันจะไม่ยอมแพ้!";
+	mes "หวังว่าฉันจะโชคดี!";
+	end;
+
+OnInit:
+	end;
+	
+	OnTouch:
+	{
+		OnPCLoadMapEvent:
+		if(illusionteddybearquest != 4){
+			end;
+		}
+			if(strcharinfo(3) == strnpcinfo(4))
+			showevent 1, 1;
+			end;
+	}
+}
+
+// Gloomy Teddy Bear
+ein_d02_i,170,197,5	script	Gloomy Teddy Bear#teddybear	4_teddy_bear_b_l,{
+	if(daily_redteddybear == 2){
+		emotion ET_CONGRATULATION;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "อะฮ่า! คุณทำได้แล้ว! พวกเขาจะเสียใจกับสิ่งที่ทำกับฉัน";
+		mes "คุณทำให้วันของฉันจริงๆ!";
+		next;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "ตอนนี้ใช้ ^0000ffIllusion Stone ^000000";
+		hunt_illusionteddybear_progress = 0;
+		daily_redteddybear = 0;
+		delay_daily_redteddybear = gettimetick(2)+86400;
+		getitem 25271, 1;
+		completequest 95014;
+		erasequest 95014;
+		next;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "กลับมาหาฉันพรุ่งนี้ถ้าคุณต้องการช่วยฉันอีกครั้งหรือคุณสามารถล่าเท็ดดี้แบร์สีอื่น";
+		mes "ดูแล!";
+		end;
+	}
+	if(daily_yellowteddybear == 2){
+		emotion ET_CONGRATULATION;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "อะฮ่า! คุณทำได้แล้ว! พวกเขาจะเสียใจกับสิ่งที่ทำกับฉัน";
+		mes "คุณทำให้วันของฉันจริงๆ!";
+		next;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "ตอนนี้ใช้ ^0000ffIllusion Stone ^000000";
+		hunt_illusionteddybear_progress = 0;
+		daily_yellowteddybear = 0;
+		delay_daily_yellowteddybear = gettimetick(2)+86400;
+		getitem 25271, 1;
+		completequest 95015;
+		erasequest 95015;
+		next;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "กลับมาหาฉันพรุ่งนี้ถ้าคุณต้องการช่วยฉันอีกครั้งหรือคุณสามารถล่าเท็ดดี้แบร์สีอื่น";
+		mes "ดูแล!";
+		end;
+	}
+	if(daily_greenteddybear == 2){
+		emotion ET_CONGRATULATION;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "อะฮ่า! คุณทำได้แล้ว! พวกเขาจะเสียใจกับสิ่งที่ทำกับฉัน";
+		mes "คุณทำให้วันของฉันจริงๆ!";
+		next;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "ตอนนี้ใช้ ^0000ffIllusion Stone ^000000";
+		hunt_illusionteddybear_progress = 0;
+		daily_greenteddybear = 0;
+		delay_daily_greenteddybear = gettimetick(2)+86400;
+		getitem 25271, 1;
+		completequest 95016;
+		erasequest 95016;
+		next;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "กลับมาหาฉันพรุ่งนี้ถ้าคุณต้องการช่วยฉันอีกครั้งหรือคุณสามารถล่าเท็ดดี้แบร์สีอื่น";
+		mes "ดูแล!";
+		end;
+	}
+	if(daily_whiteteddybear == 2){
+		emotion ET_CONGRATULATION;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "อะฮ่า! คุณทำได้แล้ว! พวกเขาจะเสียใจกับสิ่งที่ทำกับฉัน";
+		mes "คุณทำให้วันของฉันจริงๆ!";
+		next;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "ตอนนี้ใช้ ^0000ffIllusion Stone ^000000";
+		hunt_illusionteddybear_progress = 0;
+		daily_whiteteddybear = 0;
+		delay_daily_whiteteddybear = gettimetick(2)+86400;
+		getitem 25271, 1;
+		completequest 95017;
+		erasequest 95017;
+		next;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "กลับมาหาฉันพรุ่งนี้ถ้าคุณต้องการช่วยฉันอีกครั้งหรือคุณสามารถล่าเท็ดดี้แบร์สีอื่น";
+		mes "ดูแล!";
+		end;
+	}
+	if(daily_blueteddybear == 2){
+		emotion ET_CONGRATULATION;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "อะฮ่า! คุณทำได้แล้ว! พวกเขาจะเสียใจกับสิ่งที่ทำกับฉัน";
+		mes "คุณทำให้วันของฉันจริงๆ!";
+		next;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "ตอนนี้ใช้ ^0000ffIllusion Stone ^000000";
+		hunt_illusionteddybear_progress = 0;
+		daily_blueteddybear = 0;
+		delay_daily_blueteddybear = gettimetick(2)+86400;
+		getitem 25271, 1;
+		completequest 95018;
+		erasequest 95018;
+		next;
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "กลับมาหาฉันพรุ่งนี้ถ้าคุณต้องการช่วยฉันอีกครั้งหรือคุณสามารถล่าเท็ดดี้แบร์สีอื่น";
+		mes "ดูแล!";
+		end;
+	}
+	if(hunt_illusionteddybear_progress > 0){
+		mes "[ตุ๊กตาหมีมืดมน]";
+		mes "คุณต้องฆ่า 25x ^009900"+.MobsName$[hunt_ID_illusionteddybear-1]+"^000000";
+		mes "คุยกับฉันเมื่อคุณทำเสร็จ";
+		end;
+	}
+	emotion ET_CRY;
+	mes "[ตุ๊กตาหมีมืดมน]";
+	mes "เศร้ามาก? ฉันอยู่ที่นี่คนเดียว";
+	mes "ตุ๊กตาหมีทุกตัวมีความหมายสำหรับฉัน";
+	next;
+	mes "[ตุ๊กตาหมีมืดมน]";
+	mes "ได้โปรดช่วยฉันเตะก้น!";
+	next;
+	switch(select("แน่นอน","ไม่")) {
+		case 1:
+			break;
+		case 2:
+		emotion ET_SURPRISE;
+			mes "[ตุ๊กตาหมีมืดมน]";
+			mes "คุณก็ชอบพวกเขา!";
+			mes "ปล่อยฉันไว้คนเดียว!";
+			end;
+	}
+	mes "[ตุ๊กตาหมีมืดมน]";
+	mes "อะฮ่าฮ่า!";
+	mes "คุณสามารถเลือกสีที่เหมาะกับสีของคุณได้แล้ววันนี้";
+	mes "ฉันมี ^ff0000Illusion Stone ^000000 1 ชิ้นให้คุณในภายหลัง";
+	next;
+	switch(select("Red TeddyBear","Yellow TeddyBear","Green TeddyBear","White TeddyBear","Blue TeddyBear","ขอโทษฉันทำไม่ได้")){
+		case 1:
+			if(gettimetick(2) < delay_daily_redteddybear){
+				mes "[ตุ๊กตาหมีมืดมน]";
+				mes "คุณต้องรอจนถึงวันพรุ่งนี้เพื่อรับคำท้าตามล่าอีกครั้ง";
+				mes "หรือจะเลือกตุ๊กตาหมีสีอื่นก็ได้";
+				end;
+			}
+			hunt_ID_illusionteddybear = 1;
+			goto hunt_abyssturtleisland;
+			close;
+		case 2:
+			if(gettimetick(2) < delay_daily_yellowteddybear){
+				mes "[ตุ๊กตาหมีมืดมน]";
+				mes "คุณต้องรอจนถึงวันพรุ่งนี้เพื่อรับคำท้าตามล่าอีกครั้ง";
+				mes "หรือจะเลือกตุ๊กตาหมีสีอื่นก็ได้";
+				end;
+			}
+			hunt_ID_illusionteddybear = 2;
+			goto hunt_abyssturtleisland;
+			close;
+		case 3:
+			if(gettimetick(2) < delay_daily_greenteddybear){
+				mes "[ตุ๊กตาหมีมืดมน]";
+				mes "คุณต้องรอจนถึงวันพรุ่งนี้เพื่อรับคำท้าตามล่าอีกครั้ง";
+				mes "หรือจะเลือกตุ๊กตาหมีสีอื่นก็ได้";
+				end;
+			}
+			hunt_ID_illusionteddybear = 3;
+			goto hunt_abyssturtleisland;
+			close;
+		case 4:
+			if(gettimetick(2) < delay_daily_whiteteddybear){
+				mes "[ตุ๊กตาหมีมืดมน]";
+				mes "คุณต้องรอจนถึงวันพรุ่งนี้เพื่อรับคำท้าตามล่าอีกครั้ง";
+				mes "หรือจะเลือกตุ๊กตาหมีสีอื่นก็ได้";
+				end;
+			}
+			hunt_ID_illusionteddybear = 4;
+			goto hunt_abyssturtleisland;
+			close;
+		case 5:
+			if(gettimetick(2) < delay_daily_blueteddybear){
+				mes "[ตุ๊กตาหมีมืดมน]";
+				mes "คุณต้องรอจนถึงวันพรุ่งนี้เพื่อรับคำท้าตามล่าอีกครั้ง";
+				mes "หรือจะเลือกตุ๊กตาหมีสีอื่นก็ได้";
+				end;
+			}
+			hunt_ID_illusionteddybear = 5;
+			goto hunt_abyssturtleisland;
+			close;
+		case 6:
+			emotion ET_SWEAT;
+			mes "[ตุ๊กตาหมีมืดมน]";
+			mes "คุณคืออะไร?";
+			next;
+			mes "[ตุ๊กตาหมีมืดมน]";
+			mes "ฉันเกลียดคุณ!";
+			mes "ออกไป!";
+			end;
+	}
+	
+	hunt_abyssturtleisland:
+	emotion ET_OOPS;
+	mes "[ตุ๊กตาหมีมืดมน]";
+	mes "ทางเลือกที่ดีฮ่าฮ่าฮ่า!";
+	mes "คุณเลือกล่า 25x ^009900"+.MobsName$[hunt_ID_illusionteddybear-1]+"^000000";
+	mes "คุณแน่ใจไหม?";
+	next;
+	switch(select("ใช่","ไม่")){
+		case 1: break;
+		case 2:
+			emotion ET_CRY;
+			mes "[ตุ๊กตาหมีมืดมน]";
+			mes "คุณหมายถึงอะไรโดย NO?";
+			mes "ฉันเกลียดคุณ!";
+			mes "ออกไป!";
+			end;
+		}
+	if (hunt_ID_illusionteddybear == 1){
+		setquest 95014;
+		daily_redteddybear = 1;
+		daily_yellowteddybear = 0;
+		daily_greenteddybear = 0;
+		daily_whiteteddybear = 0;
+		daily_blueteddybear = 0;
+		kill_redteddybear_count = 0;
+		}
+	if (hunt_ID_illusionteddybear == 2){
+		setquest 95015;
+		daily_redteddybear = 0;
+		daily_yellowteddybear = 1;
+		daily_greenteddybear = 0;
+		daily_whiteteddybear = 0;
+		daily_blueteddybear = 0;
+		kill_yellowteddybear_count = 0;
+		}
+	if (hunt_ID_illusionteddybear == 3){
+		setquest 95016;
+		daily_redteddybear = 0;
+		daily_yellowteddybear = 0;
+		daily_greenteddybear = 1;
+		daily_whiteteddybear = 0;
+		daily_blueteddybear = 0;
+		kill_greenteddybear_count = 0;
+		}
+	if (hunt_ID_illusionteddybear == 4){
+		setquest 95017;
+		daily_redteddybear = 0;
+		daily_yellowteddybear = 0;
+		daily_greenteddybear = 0;
+		daily_whiteteddybear = 1;
+		daily_blueteddybear = 0;
+		kill_whiteteddybear_count = 0;
+		}
+	if (hunt_ID_illusionteddybear == 5){
+		setquest 95018;
+		daily_redteddybear = 0;
+		daily_yellowteddybear = 0;
+		daily_greenteddybear = 0;
+		daily_whiteteddybear = 0;
+		daily_blueteddybear = 1;
+		kill_blueteddybear_count = 0;
+		}
+	hunt_illusionteddybear_progress = 1;
+	mes "[ตุ๊กตาหมีมืดมน]";
+	mes "ดี!";
+	mes "กลับมาหาฉันเมื่อคุณล่าพวกมันเสร็จแล้ว";
+	mes "และฉันจะให้ ^0000ffIllusion Stone ^000000";
+	next;
+	mes "[ตุ๊กตาหมีมืดมน]";
+	mes "โชคดี!";
+	close;
+	
+OnInit:
+	setarray .mobs_hunt_abyssturtleisland[0],20255,20256,20257,20258,20259;
+	//setarray .reward_hunt_abyssturtleisland[0],25271,25271,25271,25271,25271;
+	//setarray .reward_amount_hunt_abyssturtleisland[0],1,1,1,1,1;
+	setarray .MobsName$[0],"Red Teddy Bear","Yellow Teddy Bear","Green Teddy Bear","White Teddy Bear","Blue Teddy Bear";
+	end;
+	
+	OnTouch:
+	{
+		OnPCLoadMapEvent:
+			if(strcharinfo(3) == strnpcinfo(4))
+			showevent 1, 1;
+			end;
+	}
+}
+
+//Kill Daily Quest
+
+-	script	Red Teddy Bear#IllusionTeddyBear	-1,{
+	OnKill:
+		if(daily_redteddybear == 2){
+			unittalk getcharid(3),"ฉันฆ่าตุ๊กตาหมีแดง 25x แล้ว ฉันต้องคุยกับ Teddy Bear ที่มืดมน",bc_self;
+			end;
+		}
+		if(daily_redteddybear == 1){
+			kill_redteddybear_count = kill_redteddybear_count + 1;
+			if(kill_redteddybear_count > 24){
+				unittalk getcharid(3),"ฉันฆ่าตุ๊กตาหมีแดง 25x แล้ว ฉันต้องคุยกับ Teddy Bear ที่มืดมน",bc_self;
+				daily_redteddybear = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฉันฆ่าไปแล้ว "+kill_redteddybear_count+" ตุ๊กตาหมีสีแดง!",bc_self;
+			end;
+		}
+	end;
+}
+
+-	script	Yellow Teddy Bear#IllusionTeddyBear	-1,{
+	OnKill:
+		if(daily_yellowteddybear == 2){
+			unittalk getcharid(3),"ฉันฆ่าตุ๊กตาหมีเหลือง 25x แล้ว ฉันต้องคุยกับ Teddy Bear ที่มืดมน",bc_self;
+			end;
+		}
+		if(daily_yellowteddybear == 1){
+			kill_yellowteddybear_count = kill_yellowteddybear_count + 1;
+			if(kill_yellowteddybear_count > 24){
+				unittalk getcharid(3),"ฉันฆ่าตุ๊กตาหมีเหลือง 25x แล้ว ฉันต้องคุยกับ Teddy Bear ที่มืดมน",bc_self;
+				daily_yellowteddybear = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฉันฆ่าไปแล้ว "+kill_yellowteddybear_count+" ตุ๊กตาหมีสีเหลือง!",bc_self;
+			end;
+		}
+	end;
+}
+
+-	script	Green Teddy Bear#IllusionTeddyBear	-1,{
+	OnKill:
+		if(daily_greenteddybear == 2){
+			unittalk getcharid(3),"ฉันฆ่าเท็ดดี้แบร์สีเขียว 25x แล้ว ฉันต้องคุยกับ Teddy Bear ที่มืดมน",bc_self;
+			end;
+		}
+		if(daily_greenteddybear == 1){
+			kill_greenteddybear_count = kill_greenteddybear_count + 1;
+			if(kill_greenteddybear_count > 24){
+				unittalk getcharid(3),"ฉันฆ่าเท็ดดี้แบร์สีเขียว 25x แล้ว ฉันต้องคุยกับ Teddy Bear ที่มืดมน",bc_self;
+				daily_greenteddybear = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฉันฆ่าไปแล้ว "+kill_greenteddybear_count+" ตุ๊กตาหมีสีเขียว!",bc_self;
+			end;
+		}
+	end;
+}
+
+-	script	White Teddy Bear#IllusionTeddyBear	-1,{
+	OnKill:
+		if(daily_whiteteddybear == 2){
+			unittalk getcharid(3),"ฉันฆ่าตุ๊กตาหมีขาว 25x แล้ว ฉันต้องคุยกับ Teddy Bear ที่มืดมน",bc_self;
+			end;
+		}
+		if(daily_whiteteddybear == 1){
+			kill_whiteteddybear_count = kill_whiteteddybear_count + 1;
+			if(kill_whiteteddybear_count > 24){
+				unittalk getcharid(3),"ฉันฆ่าตุ๊กตาหมีขาว 25x แล้ว ฉันต้องคุยกับ Teddy Bear ที่มืดมน",bc_self;
+				daily_whiteteddybear = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฉันฆ่าไปแล้ว "+kill_whiteteddybear_count+" ตุ๊กตาหมีขาว!",bc_self;
+			end;
+		}
+	end;
+}
+
+-	script	Blue Teddy Bear#IllusionTeddyBear	-1,{
+	OnKill:
+		if(daily_blueteddybear == 2){
+			unittalk getcharid(3),"ฉันฆ่าตุ๊กตาหมีสีน้ำเงิน 25x แล้ว ฉันต้องคุยกับ Teddy Bear ที่มืดมน",bc_self;
+			end;
+		}
+		if(daily_blueteddybear == 1){
+			kill_blueteddybear_count = kill_blueteddybear_count + 1;
+			if(kill_blueteddybear_count > 24){
+				unittalk getcharid(3),"ฉันฆ่าตุ๊กตาหมีสีน้ำเงิน 25x แล้ว ฉันต้องคุยกับ Teddy Bear ที่มืดมน",bc_self;
+				daily_blueteddybear = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฉันฆ่าไปแล้ว "+kill_blueteddybear_count+" ตุ๊กตาหมีสีฟ้า!",bc_self;
+			end;
+		}
+	end;
+}
+
+ein_d02_i,191,192,3	script	Porcelain Doll Maker#teddybear	4_F_HUWOMAN,{
+	mes "Porcelain";
+	mes "สวัสดีนักผจญภัย";
+end;
+}
+
+ein_d02_i,177,158,3	script	Powerful Teddy Bear#teddybear	4_TEDDY_BEAR_W,{
+	if(illusionteddybearquest != 9){
+		mes "[ตุ๊กตาหมีทรงพลัง]";
+		mes "ฉันไม่ได้คุยกับคนแปลกหน้า";
+		close;
+	}
+	if (checkweight(1201,1) == 0) {
+		mes "ลดจำนวนรายการที่คุณมีในคลังของคุณก่อนดำเนินการต่อ";
+		end;
+	}
+	if (MaxWeight - Weight < 1000) {
+		mes "คุณมีสินค้าคงคลังมากเกินไป";
+		end;
+	}
+	disable_items;
+	mes "[ตุ๊กตาหมีทรงพลัง]";
+	mes "สวัสดี!";
+	mes "เลือกรายการที่คุณต้องการทำ";
+	next;
+	mes "[ตุ๊กตาหมีทรงพลัง]";
+	mes "FYI ฉันไม่ได้เสนอสิ่งนี้ให้กับใคร แต่สำหรับคุณเท่านั้น!";
+	mes "อ่าาาาาา ...";
+	mes "เลือกได้เลย";
+	next;
+	switch(select("Illusion Survivor's Staff[2]","Illusion Dagger Counter[2]","Illusion Gate Keeper-DD[2]","Illusion Boots[1]","Illusion Hot-blooded Headband[1]","ไว้ภายหลัง")){
+		case 1:
+			set .@location, EQI_HAND_R;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 1618;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25619;
+			.@req_item_3 = 25618;
+			.@req_item_4 = 25617;
+			.@amount_req_item_1 = 125;
+			.@amount_req_item_2 = 15;
+			.@amount_req_item_3 = 100;
+			.@amount_req_item_4 = 100;
+			.@reward = 2051;
+			goto craft;
+		case 2:
+			set .@location, EQI_HAND_R;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 1242;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25616;
+			.@req_item_3 = 25617;
+			.@req_item_4 = 0;
+			.@amount_req_item_1 = 95;
+			.@amount_req_item_2 = 75;
+			.@amount_req_item_3 = 50;
+			.@reward = 28745;
+			goto craft;
+		case 3:
+			set .@location, EQI_HAND_R;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 13167;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25617;
+			.@req_item_3 = 25615;
+			.@req_item_4 = 0;
+			.@amount_req_item_1 = 95;
+			.@amount_req_item_2 = 75;
+			.@amount_req_item_3 = 150;
+			.@reward = 28244;
+			goto craft;
+		case 4:
+			set .@location, EQI_SHOES;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 2406;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25616;
+			.@req_item_3 = 25618;
+			.@req_item_4 = 0;
+			.@amount_req_item_1 = 85;
+			.@amount_req_item_2 = 50;
+			.@amount_req_item_3 = 50;
+			.@reward = 22190;
+			goto craft;
+		case 5:
+			set .@location, EQI_HEAD_TOP;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 5070;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25619;
+			.@req_item_3 = 25617;
+			.@req_item_4 = 25615;
+			.@amount_req_item_1 = 115;
+			.@amount_req_item_2 = 5;
+			.@amount_req_item_3 = 50;
+			.@amount_req_item_4 = 100;
+			.@reward = 19344;
+			goto craft;
+		case 6:
+			emotion ET_HUK;
+			mes "[ตุ๊กตาหมีทรงพลัง]";
+			mes "ตกลง!";
+			mes "ฉันจะอยู่ที่นี่เพื่อรอคุณ!";
+			mes "อ่าาาาาา";
+			misceffect 90;
+			close;
+	}
+	craft:
+		mes "[ตุ๊กตาหมีทรงพลัง]";
+		mes "หากคุณต้องการ <ITEM>" +getitemname(.@reward)+ "<INFO>" +.@reward+"</INFO> </ITEM>";
+		mes "กรุณานำวัสดุทั้งหมดนี้มาด้วยเพื่อที่ฉันจะได้ประดิษฐ์ให้คุณ";
+		next;
+		mes "[ตุ๊กตาหมีทรงพลัง]";
+		mes "นำทั้งหมดนี้มาให้ฉัน:";
+		mes " ";
+		mes "(^009900"+.@equip_id_req+"^000000) ^ff0000 + 9 ^000000 "+getitemname(.@equip_id_req)+"";
+		mes "(^009900"+.@req_item_1+"^000000) "+.@amount_req_item_1+" ชิ้นของ "+getitemname(.@req_item_1)+"";
+		mes "(^009900"+.@req_item_2+"^000000) "+.@amount_req_item_2+" ชิ้นของ "+getitemname(.@req_item_2)+"";
+		mes "(^009900"+.@req_item_3+"^000000) "+.@amount_req_item_3+" ชิ้นของ "+getitemname(.@req_item_3)+"";
+		if(.@req_item_4 > 0){
+			mes "(^009900"+.@req_item_4+"^000000) "+.@amount_req_item_4+" ชิ้นของ "+getitemname(.@req_item_4)+"";
+		}
+		next;
+		mes "[ตุ๊กตาหมีทรงพลัง]";
+		mes "และดูเหมือนว่าคุณจะเตรียมพร้อมแล้ว";
+		mes "อย่าลืมว่าคุณต้องสวมอุปกรณ์ที่คุณต้องการแลกเปลี่ยน";
+		next;
+		switch(select("มาซื้อขายกัน!","ฉันยังไม่ได้เตรียมตัว")){
+			case 1:
+				break;
+			case 2:
+				mes "[ตุ๊กตาหมีทรงพลัง]";
+				mes "โอ๊ย ... เศร้าแค่ไหน.";
+				mes "โปรดกลับมาเมื่อคุณพร้อม!";
+				end;
+		}
+		.@refine = getequiprefinerycnt(.@location);
+		.@equip_id = getequipid(.@location);
+		if(.@equip_id_req != .@equip_id || .@refine < 9){
+			mes "[ตุ๊กตาหมีทรงพลัง]";
+			mes "ฉันต้องการ ^ff0000 + 9 ^000000 "+getitemname(.@equip_id_req)+".";
+			mes "รายการอื่น ๆ จะไม่ทำ";
+			end;
+		}
+		if(.@req_item_4 > 0){
+			if(countitem(.@req_item_1) < .@amount_req_item_1 || countitem(.@req_item_2) < .@amount_req_item_2 || countitem(.@req_item_3) < .@amount_req_item_3 || countitem(.@req_item_4) < .@amount_req_item_4 ){
+				mes "[ตุ๊กตาหมีทรงพลัง]";
+				mes "ฮ่า ๆ ๆ ๆ ...";
+				mes "คุณนำสิ่งของไม่เพียงพอ";
+				mes "ไปหาฉันบ้าง!";
+				end;
+			}
+		}
+		if(.@req_item_4 == 0){
+			if(countitem(.@req_item_1) < .@amount_req_item_1 || countitem(.@req_item_2) < .@amount_req_item_2 || countitem(.@req_item_3) < .@amount_req_item_3 ){
+				mes "[ตุ๊กตาหมีทรงพลัง]";
+				mes "ฮ่า ๆ ๆ ๆ ...";
+				mes "คุณนำสิ่งของไม่เพียงพอ";
+				mes "ไปหาฉันบ้าง!";
+				end;
+			}
+		}
+		
+		emotion ET_SMILE;
+		specialeffect2 EF_PHARMACY_OK;
+		delequip .@location;
+		if(.@req_item_4 > 0){
+			delitem .@req_item_1, .@amount_req_item_1;
+			delitem .@req_item_2, .@amount_req_item_2;
+			delitem .@req_item_3, .@amount_req_item_3;
+			delitem .@req_item_4, .@amount_req_item_4;
+		}
+		if(.@req_item_4 == 0){
+			delitem .@req_item_1, .@amount_req_item_1;
+			delitem .@req_item_2, .@amount_req_item_2;
+			delitem .@req_item_3, .@amount_req_item_3;
+		}
+		getitem .@reward, 1;
+		mes "[ตุ๊กตาหมีทรงพลัง]";
+		mes "ตกลงนั่นคือสิ่งที่คุณมาที่นี่!";
+		mes "ดูแลมันให้ดี";
+		end;
+}
+
+ein_d02_i,137,230,3	script	Hiding Teddy Bear#teddybear	CLEAR_NPC,5,5,{
+	if(illusionteddybearquest == 8){
+		emotion ET_HUK;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "คุณยังทำอะไรอยู่ที่นี่?";
+		mes "ไปคุยกับ ^ff0000Steven ^000000 ได้เลย!";
+		close;
+	}
+	if(illusionteddybearquest == 7){
+		emotion ET_HUK;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "นั่นใครน่ะ!";
+		next;
+		mes "[ "+strcharinfo(0)+" ]";
+		mes "สตีเวนส่งฉันไปหาคุณ";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "จุ๊ ๆ ๆ ....";
+		mes "ลดเสียงของคุณ!";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "มาทำให้เรื่องนี้เร็วขึ้น";
+		mes "ฉันไม่อยากถูกสิงเหมือนเท็ดดี้แบร์ตัวอื่น ๆ";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "และฉันรู้วิธีที่จะทำให้ตุ๊กตาหมีเรืองแสงยักษ์ตัวนั้นกลับมาเป็นปกติอีกครั้ง";
+		next;
+		mes "[ "+strcharinfo(0)+" ]";
+		mes "โปรดบอกฉัน.";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "จุ๊ ๆ ... ฟังฉันหน่อยสิ!";
+		mes "ถาม ^ff0000Steven ^000000 สร้างตุ๊กตาพอร์ซเลนที่ดูดีของเท็ดดี้แบร์";
+		mes "บอกเขาว่าตุ๊กตาต้องดีที่สุด";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "แล้วส่วนที่ยากก็มาถึง!";
+		mes "หลอกล่อตุ๊กตาหมีเรืองแสงยักษ์ตัวนั้นเพื่อให้เขาได้เห็นตุ๊กตาลายครามตัวนั้น";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "ถ้าเขาชอบบางทีเขาอาจจะครอบครองตุ๊กตาลายครามตัวนั้นและทิ้งร่างของเท็ดดี้แบร์";
+		mes "เพียงเท่านี้โปรดไปให้พ้น!";
+		next;
+		mes "[ หมีเท็ดดี้ ]";
+		mes "ฉันไม่อยากเจอเท็ดดี้แบร์ยักษ์ตัวนั้น";
+		illusionteddybearquest = 8;
+		close;
+	}
+	end;
+OnInit:
+	end;
+	
+	OnTouch:
+	
+	{
+		OnPCLoadMapEvent:
+		if(illusionteddybearquest != 7){
+			end;
+		}
+			if(strcharinfo(3) == strnpcinfo(4))
+			showevent 1, 1;
+			end;
+	}
+}
+
+//Warper
+ein_dun01,189,87,4	script	Distorted Space#teddybear_1	4_ENERGY_BLUE,{
+	if(illusionteddybearquest == 3){
+		mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+		mes "^00ccff ---------------------------------- ^000000";
+		mes "คุณสามารถรู้สึกแปลก ๆ ในพื้นที่นี้";
+		mes "คุณจะทำอะไร?";
+		next;
+		switch(select("เข้าไป","ออก")) {
+			case 1:
+				break;
+			case 2:
+			mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+			mes "^00ccff ---------------------------------- ^000000";
+			mes "ไม่มีอะไรเกิดขึ้น.";
+			close;
+		}
+		mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+		mes "^00ccff ---------------------------------- ^000000";
+		mes "คุณรู้สึกได้ว่ามีแรงดึงคุณเข้ามา!";
+		illusionteddybearquest = 4;
+		next;
+		warp "ein_d02_i",168,196;
+		end;
+	}
+	if(illusionteddybearquest == 6){
+		mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+		mes "^00ccff ---------------------------------- ^000000";
+		mes "คุณสามารถรู้สึกแปลก ๆ ในพื้นที่นี้";
+		mes "คุณจะทำอะไร?";
+		next;
+		switch(select("เข้าไป","ออก")) {
+			case 1:
+				break;
+			case 2:
+			mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+			mes "^00ccff ---------------------------------- ^000000";
+			mes "ไม่มีอะไรเกิดขึ้น.";
+			close;
+		}
+		mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+		mes "^00ccff ---------------------------------- ^000000";
+		mes "คุณรู้สึกได้ว่ามีแรงดึงคุณเข้ามา!";
+		next;
+		warp "ein_d02_i",168,196;
+		end;
+	}
+	if(illusionteddybearquest == 0){
+		mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+		mes "^00ccff ---------------------------------- ^000000";
+		mes "คุณไม่มีสิทธิ์ใช้สิ่งนี้";
+		close;
+	}
+	mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+	mes "^00ccff ---------------------------------- ^000000";
+	mes "คุณสามารถรู้สึกแปลก ๆ ในพื้นที่นี้";
+	mes "คุณจะทำอะไร?";
+	next;
+	switch(select("เข้าไป","ออก")) {
+		case 1:
+			   if (baselevel < 150){
+			//if (countitem(7539) < 10){
+					mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+					mes "^00ccff ---------------------------------- ^000000";
+					mes "มันเหมือนไม่มีอะไรเกิดขึ้น";
+					mes "Level 150 ขึ้นไป เท่านั้น";
+					//mes "ลองนำ Poring Coin 10 ชิ้น";
+					close;
+				}
+			
+			mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+			mes "^00ccff ---------------------------------- ^000000";
+			mes "คุณรู้สึกได้ว่ามีแรงดึงคุณเข้ามา!";
+			next;
+			//delitem 7539, 10;
+			warp "ein_d02_i",168,196;
+			close;
+		case 2:
+			mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+			mes "^00ccff ---------------------------------- ^000000";
+			mes "ไม่มีอะไรเกิดขึ้น.";
+			close;
+	}
+	end;
+}
+
+ein_d02_i,161,188,4	script	Distorted Space#teddybear_2	4_ENERGY_BLUE,{
+	mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+	mes "^00ccff ---------------------------------- ^000000";
+	mes "คุณสามารถรู้สึกแปลก ๆ ในพื้นที่นี้";
+	mes "คุณจะทำอะไร?";
+	next;
+	switch(select("เข้าไป","ออก")) {
+		case 1:
+			warp "ein_dun01",190,77;
+			close;
+		case 2:
+			mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+			mes "^00ccff ---------------------------------- ^000000";
+			mes "ไม่มีอะไรเกิดขึ้น.";
+			close;
+	}
+	end;
+}
+

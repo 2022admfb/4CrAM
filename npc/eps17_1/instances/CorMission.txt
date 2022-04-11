@@ -1,0 +1,1356 @@
+sp_cor,113,130,3	script	Rebellion#cor_02	4_M_REBELLION3,{
+	if(ep_illusion < 47){
+		mes "[ Rebellion ]";
+		mes "โอ้คุณเป็นนักผจญภัยเหรอ? มันนานเกินไปแล้ว คุณมาหาฉันหรือเปล่า?";
+		next;
+		select("รู้จักฉันไหม:ไม่ ...");
+		mes "[ Rebellion ]";
+		mes "โอ้มันเป็นนักผจญภัยที่หนาวเหน็บ หนาวเกินไป. ฉันไม่ชอบความหนาวเย็น";
+		mes "ฉันรับผิดชอบที่นี่ แต่ฉันไม่รู้จักใครเลย";
+		next;
+		mes "[ Rebellion ]";
+		mes "แต่นักผจญภัยรู้จักฉันดีขอบคุณที่ผ่านมา!";
+		mes "ฉันนำอาวุธและชุดเกราะที่เหมาะสมมาด้วยสำหรับงานนี้ฉันสวมเสื้อผ้าที่อบอุ่น ~!";
+		close;
+	}
+	switch(checkquest(16377,PLAYTIME)){
+		case -1: 
+			break;
+		case 0: 
+		case 1:
+			mes "[ Rebellion ]";
+			mes "มินะรู้สึกผ่อนคลายมากขึ้น";
+			mes "เด็ก ๆ ที่น่ารักของมินะกำลังพักผ่อน?";
+			next;
+			classchange(4_EP17_ELYUMINA,"Elyumina#os_merchant",bc_self);	
+			cutin "ep171_elyumina03",0;
+			mes "[Elyumina]";
+			mes "... อุปกรณ์รักษาความปลอดภัยที่เรียกสัตว์ประหลาดยังคงมีกำลังต่ำกว่า อย่าสัมผัสพวกเขาเพราะอาจทำให้ร้อนเกินไป";
+			npctalk "Elyumina:อ๊ะ .. ได้โปรดชื่อที่น่ารังเกียจอย่าเรียกฉันว่าอย่า!","Elyumina#os_merchant",bc_self;
+			next;
+			cutin "",255;
+			mes "[ Rebellion ]";
+			mes "หากลูกของมินะต้องการพักผ่อนคุณสามารถกลับมาได้ในตอนเช้าหลังจากรุ่งสาง!";
+			next;
+			cutin "ep171_elyumina02",0;
+			mes "[Elyumina]";
+			mes "หลังจากรุ่งสางพวกเขาจะชาร์จให้เพียงพอเพื่อให้คุณกลับไปได้!";
+			unittalk getcharid(3),strcharinfo(0) + " :เธอจัดการเรื่องนี้ได้ดีอย่างน่าประหลาด ...",bc_self;
+			close3;
+			
+		case 2:
+			erasequest 16377;
+			break;
+	}
+	switch(checkquest(16376)){
+		case -1:
+			mes "[ Rebellion ]";
+			mes "โอ้นักผจญภัย ฉันไม่ได้เจอคุณมาสักพักแล้ว! ฉันอยากจะถามคุณบางอย่าง เป็นเรื่องของมินะ ...";
+			unittalk getcharid(3),strcharinfo(0)+ " :มินะ?",bc_self;
+			next;
+			classchange(4_EP17_ELYUMINA,"Elyumina#os_merchant",bc_self);	
+			cutin "ep171_elyumina03",0;
+			mes "[Elyumina]";
+			mes "ที่นี่ฉันจะอธิบาย ลูกของฉันที่ทำร้ายคุณครั้งสุดท้ายที่คุณตามฉันมา ...";
+			npctalk "Elyumina:เฮ้อย่าเรียกฉันอย่างนั้น ช่างเป็นชื่อเล่นที่แย่มาก!","Elyumina#os_merchant",bc_self;
+			unittalk getcharid(3),strcharinfo(0)+ " :โอ้เขาหมายถึงคุณ",bc_self;
+			next;
+			cutin "",255;
+			mes "[ Rebellion ]";
+			mes "อ๋อจำลูก ๆ ของมินะที่คุณจับได้ครั้งสุดท้ายไหม พวกเขากำลังนอนหลับ";
+			next;
+			cutin "ep171_elyumina02",0;
+			mes "[Elyumina]";
+			mes "ของฉัน! เครื่องจักรและกับดัก! ในกรณีฉุกเฉินพวกเขาจะเข้าสู่โหมดซ่อนตัวและโหมดพลังงานต่ำ และพวกเขาอยู่แบบนั้นสักพัก ฉันจะกลับมาเร็ว ๆ นี้และพบกัน";
+			next;
+			cutin "",255;
+			mes "[ Rebellion ]";
+			mes "ถูกต้องมินะ ...";
+			unittalk getcharid(3),strcharinfo(0)+ " :... คุณสร้างมันขึ้นมาคุณก็สามารถปิดมันได้",bc_self;
+			next;
+			cutin "ep171_elyumina02",0;
+			mes "[Elyumina]";
+			mes "ไม่! ฉันทำไม่ได้ พวกเขามีโมดูลแมชชีนเลิร์นนิงที่ทันสมัย";
+			mes "พวกคุณในวันนั้นเป็นข้อมูลที่แข็งแกร่งที่สุดเท่าที่พวกเขาเคยเห็นมา";
+			next;
+			cutin "ep171_elyumina03",0;
+			mes "[Elyumina]";
+			mes "ดี...! ตอนนี้พวกเขาจำฉันไม่ได้ว่าเป็นนายของพวกเขา อย่างที่ฉันคาดไว้ ...";
+			mes "วิธีที่ดีที่สุดคือค่อยๆใช้พลังงานของพวกเขาลดลงอย่างช้าๆและทำให้เป็นกลาง";
+			npctalk "Rebellion:งั้นเราควรไปกับมินะ ...","",bc_self;
+			next;
+			mes "[Elyumina]";
+			mes "นั่นคือทั้งหมดที่ฉันทำได้ ... ตอนนี้คุณเป็นคนเดียวที่เอาชนะ EL1-A17T ได้ แน่นอนฉันก็มาเหมือนกัน แต่ฉันแค่จะเก็บข้อมูลเพิ่มเติมเกี่ยวกับลูก ๆ";
+			next;
+			cutin "",255;
+			mes "[ Rebellion ]";
+			mes "ฉันอยากตามไปด้วย แต่มินะก็ดื้อ เธอกังวลว่าฉันจะตกอยู่ในอันตรายหรือไม่?";
+			next;
+			cutin "ep171_elyumina03",0;
+			mes "[Elyumina]";
+			mes "อย่างไรก็ตามอาจเป็นการดีที่สุดที่คุณจะพาเพื่อนไปด้วย";
+			mes "มันจะเป็นการเดินทางที่ยากลำบากและฉันยังคงเป็นผู้ถูกคุมขัง";
+			npctalk "Elyumina:ไม่อย่างแน่นอน !!!","Elyumina#os_merchant",bc_self;
+			next;
+			cutin "",255;
+			mes "[ Rebellion ]";
+			mes "ดังนั้นจะมีฉันและมินะไปกับคุณและ ...";
+			next;
+			cutin "ep171_elyumina02",0;
+			mes "[Elyumina]";
+			mes "เดี๋ยวจะอธิบายให้ฟังด้านใน !!! บอกเลยว่าจะไป !!!";
+			mes "ได้โปรดทำก่อนที่เขาจะฆ่าฉัน!";
+			setquest 16376;
+			completequest 16376;
+			next;
+			cutin "",255;
+			break;
+			
+		
+		case 2:
+			mes "[ Rebellion ]";
+			mes "ถึงเวลาที่ลูก ๆ ของมินะต้องตื่นขึ้นมาแล้วนักผจญภัย!";
+			mes "พวกเขาจะอดทนรอเวลานี้หรือไม่?";
+			next;
+			classchange(4_EP17_ELYUMINA,"Elyumina#os_merchant",bc_self);	
+			cutin "ep171_elyumina03",0;
+			mes "[Elyumina]";
+			mes "... ไม่ใช้พลังงานต่ำอีกต่อไปและอุปกรณ์รักษาความปลอดภัยกำลังทำงานอีกครั้ง";
+			next;
+			cutin "ep171_elyumina02",0;
+			mes "[Elyumina]";
+			mes "คุณจะได้พบกับ Cor อีกครั้งและคุณจะเก็บข้อมูลเพิ่มเติมหรือไม่?";
+			mes "บอกให้ฉันรู้ฉันอยากจะหนีจากผู้ชายคนนี้";
+			next;
+			cutin "",255;
+			break;	
+	}
+	.@md_name$ = "Cor Mission";
+	.@party_id = getcharid(1);
+	.@party_name$ = getpartyname(.@party_id);
+	mes "[ Rebellion ]";
+	mes "แย่เกินไปนักผจญภัย ในการเข้าร่วมปฏิบัติการคุณต้องเตรียมงานเลี้ยง";
+	next;
+	mes "[ Rebellion ]";
+	mes "หลังจากสร้างดันเจี้ยนแห่งความทรงจำแล้วเมื่อสมาชิกปาร์ตี้ทั้งหมดเข้าสู่ปฏิบัติการนักผจญภัยสามารถเริ่มส่งสัญญาณ ~";
+	next;
+	.@s = select((!instance_id(IM_PARTY)?"สร้าง Instance":""),(!instance_id(IM_PARTY)?"":"เข้าสู่ Instance"));
+	switch(.@s){
+		case 1:
+			switch(instance_create(.@md_name$,IM_PARTY)){
+				case -1:
+					mes "^0000ff"+.@md_name$+" ^000000 - การจองล้มเหลว!";
+					mes "เกิดข้อผิดพลาดที่ไม่รู้จัก";
+					end;
+				case -2:
+					mes "[ Rebellion ]";
+					mes "ดี? มินะบอกว่ามันจะยากด้วยตัวเธอเอง กลับมาพร้อมปาร์ตี้นักผจญภัย";
+					close;
+				case -3:
+					mes "[ Rebellion ]";
+					mes "คุณมีอินสแตนซ์ที่ใช้งานอยู่แล้ว กรุณายกเลิกก่อนดำเนินการต่อ";
+					close;
+					
+				case -4:
+					mes "^0000ff"+.@md_name$+" ^000000 - การจองล้มเหลว!";
+					mes "^0000ff"+.@md_name$+" ^000000 เต็มแล้ว";
+					end;
+					
+				default:
+					mes "[ Rebellion ]";
+					mes "เอาล่ะเมื่อทุกคนพร้อมแล้ว กรุณาคุยกับฉันอีกครั้งและเลือก 'Enter'";
+					npctalk "เอ่อฉันไม่กลัวคุณ","",bc_self;
+					end;
+			}
+
+		case 2:
+			switch(instance_enter(.@md_name$)){
+				case 3:
+					mes "ข้อผิดพลาดที่ไม่รู้จักได้เกิดขึ้น.";
+					end;
+					
+				case 2:
+				case 1:
+					mes "^ff0000Character ไม่มีอินสแตนซ์ที่สงวนไว้ ^000000";
+					end;
+					
+				case 0:
+					mapannounce "sp_cor", strcharinfo(0) + " ของงานปาร์ตี้ "+ .@party_name$ +"กำลังเข้าสู่ " + .@md_name$ + ".", bc_map, "0x00FF99";
+					setquest 16363;
+					setquest 16377;
+					@mission_type = 1;
+					end;
+			}
+	}
+	end;			
+}
+
+sp_cor,180,169,3	script	Elena Bolkova#cor_op	4_F_ELENA,{
+	switch(ep_illusion){
+		case 41:
+			cutin "162elena_01",2;
+			mes "[Elena Bolkova]";
+			mes "คุณมาสายนิดหน่อย เราทุกคนมาสาย";
+			mes "Elyumina หายไป การต่อสู้รวดเร็วมากและเราก็ล้มลง";
+			mes "ไอ้เหี้ย!";
+			next;
+			mes "[Elena Bolkova]";
+			mes "ฉันจะไม่หยุดจนกว่าเราจะจับเธอได้แม้ว่าเราควรจะพักผ่อนก่อน";
+			next;
+			mes "[Elena Bolkova]";
+			mes "หลังจากคุยเรื่องนี้กับแม่ทัพกบฏเราตัดสินใจค้นหาพื้นที่โดยนำกลุ่มชนชั้นสูงทั้งหมด";
+			next;
+			mes "[Elena Bolkova]";
+			mes "ประธานาธิบดีและ Kaya ก็เห็นด้วยกับแผนของเรา";
+			next;
+			mes "[Elena Bolkova]";
+			mes "ในบรรดา USU และการกบฏมีเพียงสมาชิกชั้นยอดเท่านั้นที่ได้รับเลือกและฉันอยู่ในบังคับบัญชา ส่วนที่เหลือของกบฏจะปิดกั้นและล้อมรอบทางเข้าและพื้นที่ใกล้เคียงอื่น ๆ";
+			next;
+			mes "[Elena Bolkova]";
+			mes "แน่นอนว่าการดำเนินการนี้รวมถึงนักผจญภัยฝ่ายสนับสนุนของคุณด้วย ฉันขอแนะนำให้คุณเตรียมตัวก่อน คุณจะเข้าร่วมกับเราหรือไม่?";
+			next;
+			select("แน่นอน.");
+			mes "[Elena Bolkova]";
+			mes "ตกลง!";
+			mes "สำหรับตอนนี้ฉันได้เลือกผู้ที่สามารถแสดงคนเดียวรวมถึงตัวฉันเองด้วย";
+			mes "คุณจะต้องสร้าง ^0000FFparty จำนวน 1 ^000000 แล้วกลับมาหาฉัน";
+			ep_illusion = 42;
+			completequest 16353;
+			setquest 16354;
+			questinfo_refresh();
+			close3;
+			
+		case 42:
+			.@party_id = getcharid(1);
+			.@md_name$ = "Cor Mission";
+			.@party_name$ = getpartyname(.@party_id);
+			if(!.@party_id){
+				cutin "162elena_01",2;
+				mes "[Elena Bolkova]";
+				mes "สำหรับตอนนี้ฉันได้เลือกผู้ที่สามารถแสดงคนเดียวรวมถึงตัวฉันเองด้วย";
+				mes "คุณจะต้องสร้าง ^0000FFparty จำนวน 1 ^000000 แล้วกลับมาหาฉัน";
+				close3;
+			}
+			classchange 4_M_REBELLION3,"Rebellion#cor_ms_0",bc_self;
+			classchange 4_M_GONY,"Rebellion#cor_ms_1",bc_self;
+			classchange 4_F_REBELLION3,"Rebellion#cor_ms_2",bc_self;
+			classchange 4_F_ANYA,"Rebellion#cor_ms_3",bc_self;
+			classchange 4_M_ILYA,"Rebellion#cor_ms_4",bc_self;
+			classchange 4_F_REBELLION2,"Rebellion#cor_ms_5",bc_self;	
+			cutin "162elena_01",2;
+			mes "[Elena Bolkova]";
+			mes "การอุดตันของพื้นที่สิ้นสุดลง";
+			mes "เริ่มภารกิจกันเลย!";
+			mes "มันยังไม่สายเกินไป. สุภาพบุรุษเตรียมตัวให้พร้อม!";
+			next;
+			mes "[Elena Bolkova]";
+			mes "ดีในบรรดาหัวกะทิของกบฏผู้กล้าเป้าหมายเฉพาะของคุณคือจับนักวิจัย";
+			npctalk "Elena Bolkova:เธอเป็นคนที่เก็บข้อมูลสำคัญทั้งหมดเราต้องจับเธอให้ได้","",bc_self;
+			npctalk "ฉันพร้อมแล้ว!","Rebellion#cor_ms_0",bc_self;
+			npctalk ".....","Rebellion#cor_ms_1",bc_self;
+			npctalk "ฉันพร้อมแล้ว!","Rebellion#cor_ms_2",bc_self;
+			npctalk "ฉันพร้อมแล้ว!","Rebellion#cor_ms_3",bc_self;
+			npctalk "ฉันพร้อมแล้ว!","Rebellion#cor_ms_4",bc_self;
+			npctalk "ฉันพร้อมแล้ว!","Rebellion#cor_ms_5",bc_self;
+			next;
+			cutin "162elena_02",2;
+			mes "[Elena Bolkova]";
+			mes "นักผจญภัยเลือก 'สร้าง' และรอสักครู่เมื่อคุณต้องการไป";
+			mes "เลือก 'เข้าสู่' หลัง";
+			npctalk "Elena Bolkova:เอาล่ะพร้อมหรือยัง? ไอ้พวกนี้จะเผชิญหน้ากับเรา","",bc_self;
+			npctalk "ถ้าพวกเขาไม่รังเกียจ ...","Rebellion#cor_ms_0",bc_self;
+			npctalk ".....","Rebellion#cor_ms_1",bc_self;
+			npctalk "มันจะไม่ง่ายใช่ไหม","Rebellion#cor_ms_2",bc_self;
+			npctalk "ถึงเวลาที่เราจะอวด!","Rebellion#cor_ms_3",bc_self;
+			npctalk "ถึงเวลาที่เราจะไป!","Rebellion#cor_ms_4",bc_self;
+			npctalk "ทำไมคุณถึงยิ้ม?","Rebellion#cor_ms_5",bc_self;
+			next;
+			.@s = select((!instance_id(IM_PARTY)?"สร้าง 'Cor Mission'":""),(!instance_id(IM_PARTY)?"":"เข้าสู่ 'Cor Mission'"));
+			switch(.@s){
+				case 1:
+					switch(instance_create(.@md_name$)){
+						case -1:
+							mes "^0000ff"+.@md_name$+" ^000000 - การจองล้มเหลว!";
+							mes "เกิดข้อผิดพลาดที่ไม่รู้จัก";
+							end;
+						case -2:
+							mes "^0000ff"+.@md_name$+" ^000000 - การจองล้มเหลว!";
+							mes "ปาร์ตี้ไม่มีอยู่จริง";
+							end;
+						case -3:
+							mes "^0000ff"+.@md_name$+" ^000000 - การจองล้มเหลว!";
+							mes "ผู้เล่นมีอินสแตนซ์อยู่แล้ว";
+							end;
+							
+						case -4:
+							mes "^0000ff"+.@md_name$+" ^000000 - การจองล้มเหลว!";
+							mes "^0000ff"+.@md_name$+" ^000000 เต็มแล้ว";
+							end;
+							
+						default:
+							mes "[Elena Bolkova]";
+							mes "คุยกับฉันอีกครั้งเมื่อคุณพร้อม การดำเนินการกำลังจะเริ่มในไม่ช้า";
+							end;
+					}
+					end;
+				case 2:
+					getpartymember .@party_id,3;
+					if($@partymembercount != 1){
+						cutin "162elena_01",2;
+						mes "[Elena Bolkova]";
+						mes "สำหรับตอนนี้ฉันได้เลือกผู้ที่สามารถแสดงคนเดียวรวมถึงตัวฉันเองด้วย";
+						mes "คุณจะต้องสร้าง ^0000FFparty จำนวน 1 ^000000 แล้วกลับมาหาฉัน";
+						close3;
+					}
+					switch(instance_enter(.@md_name$)){
+						case 3:
+							mes "ข้อผิดพลาดที่ไม่รู้จักได้เกิดขึ้น.";
+							end;
+							
+						case 2:
+						case 1:
+							mes "^ff0000Character ไม่มีอินสแตนซ์ที่สงวนไว้ ^000000";
+							end;
+							
+						case 0:
+							mapannounce "sp_cor", strcharinfo(0) + " ของงานปาร์ตี้ "+ .@party_name$ +"กำลังเข้าสู่ " + .@md_name$ + ".", bc_map, "0x00FF99";
+							end;
+					}
+			}
+			end;
+			
+		case 43:
+			cutin "162elena_02",2;
+			mes "[Elena Bolkova]";
+			mes "เดือดร้อนมาก! อาฮาพวกนี้น่าเชื่อถือมาก";
+			mes "แน่นอนว่านักผจญภัยก็เช่นกัน!";
+			next;
+			cutin "162elena_01",2;
+			mes "[Elena Bolkova]";
+			mes "Elyumina ถูกจับอย่างปลอดภัย เมื่อการโจมตีหยุดลงแล้วที่นี่ควรเป็นสถานที่ที่ปลอดภัย";
+			next;
+			mes "[Elena Bolkova]";
+			mes "ปีกแห่งความลับและลัคกี้พร้อมที่จะสอบปากคำเธอ";
+			mes "ดูเหมือนว่าพวกเขากำลังจัดสถานที่นัดพบที่เราเอาชนะเครื่องจักรเศษโลหะ";
+			next;
+			mes "[Elena Bolkova]";
+			mes "ฉันไม่ได้เข้าไปเกี่ยวข้องที่นั่นเพราะฉันจะบีบเป้าหมายมากกว่าฟังสิ่งที่พวกเขาพูด ..";
+			mes "Gonie จะสังเกตการสอบสวนด้วย";
+			next;
+			mes "[Elena Bolkova]";
+			mes "เข้าร่วมกับพวกเขาใน <NAVI>[side]<INFO>sp_cor,136,210,0,101,0</INFO> </NAVI>";
+			mes "โชคดีจะถามคำถาม";
+			ep_illusion = 44;
+			completequest 16357;
+			setquest 16358;
+			getitem 25723,5;
+			getitem 25668,1;
+			questinfo_refresh();
+			close3;
+			
+		case 44: case 45:
+			cutin "162elena_01",2;
+			mes "[Elena Bolkova]";
+			mes "เข้าร่วมกับพวกเขาใน <NAVI>[side]<INFO>sp_cor,136,210,0,101,0</INFO> </NAVI>";
+			mes "โชคดีจะถามคำถาม";
+			close3;
+			
+		case 46: case 47:
+			cutin "162elena_01",2;
+			mes "[Elena Bolkova]";
+			mes "เฮ้. คุณยุ่งอยู่ใช่ไหม?";
+			mes "ฉันจะต้องผ่านหลายสิ่งหลายอย่างและจากนั้นกบฏจะกลับบ้าน";
+			next;
+			mes "[Elena Bolkova]";
+			mes "มันค่อนข้างยากที่จะจัดการกบฏโดยเฉพาะในสถานที่เช่นนี้";
+			next;
+			cutin "162elena_01",2;
+			mes "[Elena Bolkova]";
+			mes "เมื่อเหตุการณ์สงบลงมาที่ Clana Nemieri และดื่มเครื่องดื่มกันเถอะ";
+			mes "ฉันอยากจะสู้กับคุณมากกว่าเครื่องจักรนี้";
+			emotion ET_KIK;
+			close3;
+
+		default:
+			cutin "162elena_01",2;
+			mes "[Elena Bolkova]";
+			mes "ดี? นักผจญภัย. อย่าไปไกลคนเดียว ฉันรู้ว่าคุณมีฝีมือ แต่คนอื่น ๆ กังวล";
+			next;
+			mes "[Elena Bolkova]";
+			mes "อาจมีอุปกรณ์หรือหลักฐานอื่น ๆ หลงเหลือจากผู้คนที่วิ่งหนีอย่างทุลักทุเล";
+			next;
+			cutin "162elena_02",2;
+			mes "[Elena Bolkova]";
+			mes "ฉัน? ทำไมฉันถึงอยู่คนเดียว? คุณเป็นห่วงฉันไหม อะฮ่าฮ่า!";
+			close3;
+	}
+	end;
+	
+OnInit:
+	questinfo QTYPE_QUEST,QMARK_YELLOW,"ep_illusion == 41";
+	questinfo QTYPE_QUEST,QMARK_YELLOW,"ep_illusion == 42";
+	questinfo QTYPE_QUEST,QMARK_YELLOW,"ep_illusion == 43";
+	end;
+}
+
+sp_cor,177,165,1	script	Rebellion#cor_ms_0	HIDDEN_WARP_NPC,{ end; }
+sp_cor,180,165,1	script	Rebellion#cor_ms_1	HIDDEN_WARP_NPC,{ end; }
+sp_cor,183,165,1	script	Rebellion#cor_ms_2	HIDDEN_WARP_NPC,{ end; }
+sp_cor,177,163,1	script	Rebellion#cor_ms_3	HIDDEN_WARP_NPC,{ end; }
+sp_cor,180,163,1	script	Rebellion#cor_ms_4	HIDDEN_WARP_NPC,{ end; }
+sp_cor,183,163,1	script	Rebellion#cor_ms_5	HIDDEN_WARP_NPC,{ end; }
+
+1@cor,180,169,3	script	Elena Bolkova#cor_start	4_F_ELENA,4,4,{
+	if('cor_ms || is_party_leader() == false) end;
+	if(@mission_type == 0){
+		cutin "162elena_01",2;
+		mes "[Elena Bolkova]";
+		mes "ฉันจะเริ่มอธิบายการดำเนินการ อันดับแรก ...";
+		specialeffect 970;
+		sleep2 2000;
+		F_InstanceHide("Rebellion#cor_op_0",2);
+		F_InstanceHide("Rebellion#cor_op_1",2);
+		F_InstanceHide("Rebellion#cor_op_2",2);
+		F_InstanceHide("Rebellion#cor_op_3",2);
+		F_InstanceHide("Rebellion#cor_op_4",2);
+		F_InstanceHide("Rebellion#cor_op_5",2);
+		mes "... ตอนนี้ทุกคนทันเหตุการณ์";
+		next;
+		cutin "",255;
+		mes "[ Rebellion ]";
+		mes "มีบางอย่างระเบิดตรงนั้น";
+		mes "เปลวไฟลุกขึ้นจากด้านหน้า!";
+		next;
+		mes "[ Rebellion ]";
+		mes "มีการระบุตำแหน่ง 4 จุดที่ระเบิดเหล่านี้มาจาก! ฉันมี ^0000FF แสดงไว้ในแผนที่ย่อของคุณ ^000000";
+		viewpoint 1,140,79,1,0xFFFFFF;
+		viewpoint 1,162,119,2,0xFFFFFF;
+		viewpoint 1,220,170,3,0xFFFFFF;	
+		viewpoint 1,222,236,4,0xFFFFFF;
+		next;
+		cutin "162elena_01",2;
+		mes "[Elena Bolkova]";
+		mes "ฉันกำลังเปลี่ยนการดำเนินการ";
+		mes "ไม่ต้องกังวลกับคนที่อยู่ข้างหน้าพวกเขาสามารถจัดการกับทุกสถานการณ์";
+		next;
+		mes "[Elena Bolkova]";
+		mes "แบ่งออกเป็น 4 ทีมทุกคนในสถานที่ของตนเองและเริ่มปราบปรามผู้มุ่งหวัง หากทีมใดพบ Elyumina โปรดแจ้งให้เราทราบทันที";
+		next;
+		mes "[Elena Bolkova]";
+		mes "ทุกคนเพื่อตำแหน่งของคุณ! เริ่มปฏิบัติการ!";
+		npctalk "ใช่",instance_npcname("Rebellion#cor_op_0");
+		npctalk ".....",instance_npcname("Rebellion#cor_op_1");
+		npctalk "ใช่",instance_npcname("Rebellion#cor_op_2");
+		npctalk "ใช่",instance_npcname("Rebellion#cor_op_3");
+		npctalk "ใช่",instance_npcname("Rebellion#cor_op_4");
+		npctalk "ใช่",instance_npcname("Rebellion#cor_op_5");
+		next;
+		cutin "162elena_02",2;
+		mes "[Elena Bolkova]";
+		mes "ฉันขอให้คุณทำหน้าที่นักผจญภัยแยกกัน โปรดตรวจสอบ ^0000FF แผนที่ย่อของคุณ ^000000 เพื่อจัดระเบียบสถานการณ์โดยเร็วที่สุด เข้าร่วมทีมหากต้องการการสนับสนุน!";
+		'cor_ms = 1;
+		close2;
+		cutin "",255;
+		F_InstanceHide("Rebellion#cor_op_0",5);
+		F_InstanceHide("Rebellion#cor_op_1",5);
+		F_InstanceHide("Rebellion#cor_op_2",5);
+		F_InstanceHide("Rebellion#cor_op_3",5);
+		F_InstanceHide("Rebellion#cor_op_4",5);
+		F_InstanceHide("Rebellion#cor_op_5",5);
+		F_InstanceHide(strnpcinfo(0),3);
+		for(.@i = 0; .@i < 4; .@i++){
+			F_InstanceHide("Rebellion#cor_box_" + .@i,4);
+			F_InstanceHide("Box#cor_box_" + .@i,4);
+		}
+		F_InstanceHide("Rebellion#cor_box_5",4);
+		end;
+	} else {
+		'party_id = getcharid(1);
+		'mission_type = 1;
+		F_InstanceHide("Rebellion#cor_op_0",3);
+		F_InstanceHide("Rebellion#cor_op_1",3);
+		F_InstanceHide("Rebellion#cor_op_2",3);
+		F_InstanceHide("Rebellion#cor_op_3",3);
+		F_InstanceHide("Rebellion#cor_op_4",3);
+		F_InstanceHide("Rebellion#cor_op_5",3);
+		F_InstanceHide("Elyumina#cor_daily",2);
+		cutin "162elena_01",2;
+		mes "[Elena Bolkova]";
+		mes "นี่คือสถานการณ์ ... อันที่จริงคนร้ายจะบรรยายสรุปให้คุณฟัง";
+		mes "มันง่ายกว่าสำหรับเธอที่จะอธิบาย";
+		npctalk "Elena Bolkova:นี่คือสถานการณ์ ... อันที่จริงอาชญากรจะบรรยายสรุปให้คุณฟัง มันง่ายกว่าสำหรับเธอที่จะอธิบาย";
+		next;
+		cutin "ep171_elyumina04",0;
+		mes "[Elyumina]";
+		mes "อะฮะ! พวกคุณเป็นพวกนี้เหรอ? ฉันคาดว่าจะดีขึ้น อย่างน้อยให้คำอธิบาย?";
+		npctalk "อะฮะ! พวกคุณเป็นพวกนี้เหรอ? ฉันคาดว่าจะดีขึ้น อย่างน้อยให้คำอธิบาย?",instance_npcname("Elyumina#cor_daily");
+		next;
+		cutin "162elena_01",2;
+		mes "[Elena Bolkova]";
+		mes "เสียงดังมาก. เอาล่ะมาเริ่มกันเลย ตอนนี้คุณเป็นส่วนหนึ่งของ PSU แล้วหรือยัง?";
+		npctalk "เสียงดังมาก. เอาล่ะมาเริ่มกันเลย ตอนนี้คุณเป็นส่วนหนึ่งของ PSU แล้วหรือยัง?";
+		next;
+		cutin "ep171_elyumina03",0;
+		mes "[Elyumina]";		
+		mes "ใช่ฉัน ... คุณกลัวฉันไหม?";
+		mes "เฮ้ฉันจะอธิบายเพราะนั่นคือลูกของฉันที่นั่น!";
+		npctalk "ใช่ฉัน ... คุณกำลังฉ้อโกงฉันหรือเปล่า? เฮ้ฉันจะอธิบายเพราะนั่นคือลูกของฉันที่นั่น!",instance_npcname("Elyumina#cor_daily");
+		next;
+		cutin "ep171_elyumina01",0;
+		mes "[Elyumina]";
+		mes "เอาล่ะได้เวลา ...";
+		mes "ลูก ๆ จะวางกับดักไว้สี่ที่";
+		npctalk "เอาล่ะได้เวลา ... ลูก ๆ ของฉันจะวางกับดักไว้สี่ที่",instance_npcname("Elyumina#cor_daily");
+		next;
+		mes "[Elyumina]";
+		mes "ดูแผนที่ที่นี่ มันจะถูกส่งต่อไปยังสมาชิกพรรคด้วย";
+		mes "คุณไม่ได้อยู่คนเดียวใช่ไหม คุณรู้ไหมว่าลูก ๆ ของฉันมีพลัง?";
+		npctalk "ดูแผนที่ที่นี่ มันจะถูกส่งต่อไปยังสมาชิกพรรคด้วย",instance_npcname("Elyumina#cor_daily");
+		'cor_daily = 1;
+		F_InstanceEvent(strnpcinfo(0),"OnActiveView");
+		viewpoint 1,140,79,1,0xFFFFFF;
+		viewpoint 1,162,119,2,0xFFFFFF;
+		viewpoint 1,220,170,3,0xFFFFFF;	
+		viewpoint 1,222,236,4,0xFFFFFF;
+		next;
+		mes "[Elyumina]";
+		mes "ไปข้างหน้าและเรียกกับดัก ลูก ๆ ที่น่ารักของฉันจะปรากฏขึ้นเมื่อเปิดใช้งาน";
+		mes "ฉันใช้เวลากับกับดักนานมากแล้วรู้ไหม?";
+		npctalk "ไปข้างหน้าและเรียกกับดัก ลูก ๆ ที่น่ารักของฉันจะปรากฏขึ้นเมื่อเปิดใช้งาน",instance_npcname("Elyumina#cor_daily");
+		next;
+		cutin "ep171_elyumina03",0;
+		mes "[Elyumina]";
+		mes "หลังจากคุณเคลียร์กับดักทั้งสี่แล้ว EL1-A17T จะออกมา คุณจะต้องต่อสู้กับเขาในสถานที่เดียวกันครั้งที่แล้ว";
+		npctalk "หลังจากคุณเคลียร์กับดักทั้งสี่แล้ว EL1-A17T จะออกมา คุณจะต้องต่อสู้กับเขาในสถานที่เดียวกันครั้งที่แล้ว",instance_npcname("Elyumina#cor_daily");
+		next;
+		cutin "ep171_elyumina04",0;
+		mes "[Elyumina]";
+		mes "นี่คือคำอธิบาย มาตอนนี้ไปทำงาน! คุณบ้ากล้าม! อะฮะฮะ!";
+		npctalk "นี่คือคำอธิบาย มาตอนนี้ไปทำงาน! คุณบ้ากล้าม! อะฮะฮะ!",instance_npcname("Elyumina#cor_daily");
+		next;
+		cutin "162elena_01",2;
+		mes "[Elena Bolkova]";
+		mes "... ฉันจะคุยกับอาชญากรคนนี้สักหน่อย ... ยังไงก็ตามฉันไว้วางใจคุณนักผจญภัย!";
+		npctalk "... ฉันจะคุยกับอาชญากรคนนี้สักหน่อย ... ยังไงก็ตามฉันไว้วางใจคุณนักผจญภัย!";
+		close2;
+		cutin "",255;
+		F_InstanceHide("Elyumina#cor_daily",5);
+		F_InstanceHide(strnpcinfo(0),1);
+		for(.@i = 0; .@i < 4; .@i++){
+			F_InstanceHide("Elyumina#cor_box_" + .@i,4);
+			F_InstanceHide("Box#cor_box_" + .@i,4);
+		}
+		end;
+	}
+	end;
+	
+OnActiveView:
+	addrid(2,1,'party_id);
+	if(is_party_leader() == true)
+		end;
+	if(strcharinfo(3) == instance_mapname("1@cor")){
+		if(box_0 != 2)
+			viewpoint 1,140,79,1,0xFFFFFF;
+		if(box_1 != 2)
+			viewpoint 1,162,119,2,0xFFFFFF;
+		if(box_2 != 2)
+			viewpoint 1,220,170,3,0xFFFFFF;
+		if(box_3 != 2)
+			viewpoint 1,222,236,4,0xFFFFFF;
+	}
+end;
+
+OnView:
+	if(box_0 != 2)
+		viewpoint 1,140,79,1,0xFFFFFF;
+	if(box_1 != 2)
+		viewpoint 1,162,119,2,0xFFFFFF;
+	if(box_2 != 2)
+		viewpoint 1,220,170,3,0xFFFFFF;
+	if(box_3 != 2)
+		viewpoint 1,222,236,4,0xFFFFFF;	
+end;
+			
+OnInstanceInit:
+	'instance_id = instance_id();
+	'cor_map$ = instance_mapname("1@cor");
+	/*
+	if(checkwall("cor_ms_wall_1_" + 'instance_id) == true){
+		delwall "cor_ms_wall_1_" + 'instance_id;
+		setwall 'cor_map$,159,217,10,DIR_NORTH,false,"cor_ms_wall_1_" + 'instance_id;
+	} else
+		setwall 'cor_map$,159,217,10,DIR_NORTH,false,"cor_ms_wall_1_" + 'instance_id;
+	if(checkwall("cor_ms_wall_2_" + 'instance_id) == true){
+		delwall "cor_ms_wall_2_" + 'instance_id;
+		setwall 'cor_map$,98,217,10,DIR_NORTH,false,"cor_ms_wall_2_" + 'instance_id;
+	} else 
+		setwall 'cor_map$,98,217,10,DIR_NORTH,false,"cor_ms_wall_2_" + 'instance_id;
+	if(checkwall("cor_ms_wall_3_" + 'instance_id) == true){
+		delwall "cor_ms_wall_3_" + 'instance_id;
+		setwall 'cor_map$,133,240,10,DIR_EAST,false,"cor_ms_wall_3_" + 'instance_id;
+	} else
+		setwall 'cor_map$,133,240,10,DIR_EAST,false,"cor_ms_wall_3_" + 'instance_id;
+	*/
+	setcell 'cor_map$,159,216,159,225,CELL_WALKABLE,0;
+	setcell 'cor_map$,159,216,159,225,CELL_SHOOTABLE,0;
+	setcell 'cor_map$,98,216,98,225,CELL_WALKABLE,0;
+	setcell 'cor_map$,98,216,98,225,CELL_SHOOTABLE,0;	
+	setcell 'cor_map$,132,240,141,240,CELL_WALKABLE,0;
+	setcell 'cor_map$,132,240,141,240,CELL_SHOOTABLE,0;
+	end;
+	
+OnTouch:
+	if('cor_daily){
+		doevent(instance_npcname(strnpcinfo(0))+"::OnView");
+	}
+	if(!@mission_type){
+		npctalk "Elena Bolkova:ทางนี้ มารวบรวมและสรุปกองกำลังของเรา";
+	}
+	end;
+}
+
+1@cor,178,172,3	script	Elyumina#cor_daily	4_EP17_ELYUMINA,{ end; OnInstanceInit: F_InstanceHide(strnpcinfo(0),1); }
+
+1@cor,172,223,3	script	Elena Bolkova#cor_center	4_F_ELENA,{
+	if('cor_ms == 3){
+		cutin "162elena_01",2;
+		mes "[Elena Bolkova]";
+		mes "ฉันรอคุณอยู่ ฉันได้พบนักวิจัยที่บ้าคลั่ง";
+		mes "คนอื่น ๆ อยู่รอบ ๆ สถานที่";
+		next;
+		mes "[Elena Bolkova]";
+		mes "เพื่อที่จะควบคุมเครื่องจักรในลักษณะที่ดีนั้น Elyumina ต้องอยู่ใกล้ ๆ";
+		next;
+		mes "[Elena Bolkova]";
+		mes "เป็นไปได้ที่ฉันจะจัดการกับเครื่องนี้ แต่แล้วฉันก็ไม่สามารถจับ Elyumina ได้";
+		next;
+		mes "[Elena Bolkova]";
+		mes "หากคุณดูแลเครื่องฝ่ายค้นหาอื่น ๆ จะดูแลการค้นหา Elyumina";
+		next;
+		cutin "162elena_02",2;
+		mes "[Elena Bolkova]";
+		mes "ทีมกบฏมีการประสานงานที่ดีงานนี้จะเหมาะที่สุดสำหรับเรา ดังนั้นฝากงานนั้นไว้กับเรา";
+		next;
+		cutin "162elena_01",2;
+		mes "[Elena Bolkova]";
+		mes "สถานที่ที่เราจะเข้าคือเวลา 9 นาฬิกา ฉันยืนยันว่าไม่มีใครซ่อนอยู่ที่นั่นและเราได้ปิดกั้นทางออก";
+		next;
+		mes "[Elena Bolkova]";
+		mes "ให้สัญญาณฉันเมื่อคุณพร้อมที่จะเข้าฉันจะบอกให้ทีมปล่อยคุณเข้าไป";
+		next;
+		if(select("ให้สัญญาณ:ฉันยังไม่ได้ส่งสัญญาณ") == 2){
+			mes "[Elena Bolkova]";
+			mes "ใช่มันเป็นคู่ต่อสู้ที่อันตรายที่ต้องเผชิญ ฉันขอโทษที่ต้องปล่อยให้คุณต้องต่อสู้คนเดียว แจ้งให้เราทราบเมื่อคุณพร้อม";
+			close3;
+		}
+		cutin "162elena_02",2;
+		mes "[Elena Bolkova]";
+		mes "เอาล่ะระวัง! ฉันเปิดพอร์ทัลเพื่อให้คุณเข้าไปได้มันเป็นทางเข้าทางเดียวดังนั้นเตรียมตัวให้พร้อม!";
+		close2;
+		viewpoint 2,172,223,5,0xFFFFFF;
+		F_InstanceHide(strnpcinfo(0),5);
+		F_InstanceEvent("#cor_ms_center_warp","OnActive");
+	}
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,172,223,3	script	Elyumina#cor_center	4_EP17_ELYUMINA,{
+	if('cor_box < 4) end;
+	.@map$ = 'cor_map$;
+	cutin "ep171_elyumina03",0;
+	mes "[Elyumina]";
+	mes "มันเร็วมาก ... คาดว่าลูก ๆ ของฉันจะไม่ชนะ";
+	mes "มีปัญหาอีกมากมายที่เกิดขึ้นที่นั่น ~";
+	npctalk "Elyumina:มันเร็วมาก ... คาดว่าลูก ๆ ของฉันจะไม่ชนะ มีปัญหาอีกมากมายที่เกิดขึ้นที่นั่น ~";
+	next;
+	cutin "ep171_elyumina01",0;
+	mes "[Elyumina]";
+	mes "... คุณจะตรงไปหา EL1-A17T ของฉันหรือไม่?";
+	mapannounce .@map$,"Elena Bolkova:ใช่อาชญากร! ทำไมคุณไม่เปิดพอร์ทัลในตอนนี้?",bc_yellow;
+	npctalk "Elyumina:... คุณจะตรงไปหา EL1-A17T ของฉันหรือเปล่า?";
+	next;
+	if(select("เข้าไป:อย่าเข้าไปเลย") == 2){
+		cutin "ep171_elyumina02",0;
+		mes "[Elyumina]";
+		mes "มาเถอะฉันกำลังจะเปิดมัน";
+		close3;
+	}
+	cutin "ep171_elyumina04",0;
+	mes "[Elyumina]";
+	mes "ฮามาก! ใช่. ตั้งใจทำงานกันเถอะ รับข้อมูลการต่อสู้เพิ่มเติมสำหรับฉัน!";
+	npctalk "Elyumina:ฮ่าฮ่าฮ่า! ใช่. ตั้งใจทำงานกันเถอะ รับข้อมูลการต่อสู้เพิ่มเติมสำหรับฉัน!";
+	close2;
+	cutin "",255;
+	viewpoint 2,172,223,5,0xFFFFFF;
+	F_InstanceEvent("#cor_ms_center_warp","OnActive");
+	F_InstanceEvent("#cor_boss","OnDailySummon");
+	F_InstanceHide(strnpcinfo(0),5);
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,161,221,0	script	#cor_ms_center_warp	WARPNPC,1,1,{
+	end;
+	
+OnActive:
+	F_InstanceHide(strnpcinfo(0),4);
+	specialeffect 16;
+	specialeffect 35;
+	end;
+
+OnTouch:
+	if('cor_ms == 3){
+		F_InstanceEvent("#cor_boss","OnSummon");
+		'cor_ms += 1;
+	}
+	warp 'cor_map$,151,220;
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+
+
+1@cor,138,82,5	script	Rebellion#cor_box_0	4_F_ANYA,{
+	if('cor_ms){
+		mes "[ Rebellion ]";
+		mes "ฉันบอกคุณไหมว่าฉันมีความสุขมากที่ได้ทำงานกับ Secret Wing? ขอบคุณพวกเขาฉันได้รับเลือกสำหรับการดำเนินการนี้";
+		next;
+		mes "[ Rebellion ]";
+		mes "มาแสดงให้พวกเขาเห็นว่าพวกเราทั้งหมดเกี่ยวกับอะไรและพวกเราเป็นคนดี";
+		close;
+	}
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,142,82,3	script	Rebellion#cor_box_5	4_M_ILYA,{
+	if('cor_ms){
+		mes "[ Rebellion ]";
+		mes "ฉันไม่ได้เห็นคุณในขณะที่นักผจญภัย";
+		next;
+		mes "[ Rebellion ]";
+		mes "ฉันรู้จักคุณนักผจญภัยอยู่แล้ว แต่โปรดระวัง";
+		close;
+	}
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,142,82,3	script	Elyumina#cor_box_0	4_EP17_ELYUMINA,{
+	if('cor_box == 4){
+		npctalk "Elyumina:คุณรู้ไหมว่าค่ายทหารอยู่ที่ไหน? ฉันแสดงมันบนแผนที่ย่อของคุณ ฉันจะติดตามคุณเร็ว ๆ นี้";
+		viewpoint 1,172,223,5,0xFFFFFF;
+		end;
+	}
+	.@num = atoi(replacestr(strnpcinfo(2),"cor_box_",""));
+	if(getd("'box_" + .@num) == 1){
+		npctalk "Elyumina:คุณมีเวลาว่างมากคุณกำลังสนทนาระหว่างการต่อสู้เหรอ? หึหึน่ารำคาญนิดหน่อย";
+		end;
+	} else 
+	if(getd("'box_" + .@num) == 2){
+		npctalk "Elyumina:ข้อมูลการต่อสู้ดีมาก ... เอาล่ะลุยได้เลย!";
+		end;
+	}
+	if('cor_daily){
+		npctalk "Elyumina:ที่นี่ที่นี่! โปรดระวัง. แตะกล่องและจะเปิดใช้งาน";
+		end;
+	}
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,164,117,1	duplicate(Elyumina#cor_box_0)	Elyumina#cor_box_1	4_EP17_ELYUMINA
+1@cor,218,172,5	duplicate(Elyumina#cor_box_0)	Elyumina#cor_box_2	4_EP17_ELYUMINA
+1@cor,224,238,3	duplicate(Elyumina#cor_box_0)	Elyumina#cor_box_3	4_EP17_ELYUMINA
+
+
+1@cor,140,79,3	script	Box#cor_box_0	4_STEELBOX,{
+	if('cor_daily){
+		if('box_0 > 0)
+			end;
+		F_InstanceEvent(strnpcinfo(0),"OnDailySpawn");
+		end;
+	}
+	if('cor_ms){
+		mes "[ Rebellion ]";
+		mes "สวัสดีนักผจญภัย";
+		specialeffect 585;
+		next;
+		mes "[ Rebellion ]";
+		mes "เป็นเรื่องดีที่ได้เป็นส่วนหนึ่งของทีมนี้เราได้ดูแลกล่องนี้แล้ว";
+		next;
+		mes "[ Rebellion ]";
+		mes "เครื่องจักรเหล่านี้ใช้พิษจากสารเคมีโปรดใช้ความระมัดระวัง";
+		next;
+		mes "[ Rebellion ]";
+		mes "ตอนนี้เราจะทำการค้นหาจนกว่าสัญญาณจะมา นักผจญภัยระวัง!";
+		close2;
+		F_InstanceHide("Rebellion#cor_box_0",5);
+		F_InstanceHide("Rebellion#cor_box_5",5);
+		F_InstanceHide(strnpcinfo(0),5);
+		viewpoint 2,140,79,1,0xFFFFFF;
+	}
+	end;
+	
+OnDailySpawn:
+	.@map$ = 'cor_map$;
+	'box_0 = 1;
+	specialeffect 635;
+	F_InstanceHide(strnpcinfo(0),1);
+	monster .@map$,147,85,"Heart Hunter",20356,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,143,76,"Heart Hunter",20356,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,144,75,"--ja--",20343,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,145,70,"--ja--",20343,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,139,76,"--ja--",20342,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,136,75,"--ja--",20342,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,138,85,"--ja--",20342,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,138,83,"--ja--",20342,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,135,82,"--ja--",20342,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	end;
+	
+OnDailyKill:
+	.@map$ = 'cor_map$;
+	if(mobcount(.@map$,instance_npcname(strnpcinfo(0))+"::OnDailyKill") < 1){
+		'box_0 = 2;
+		'cor_box += 1;
+		if('cor_box == 4){
+			F_InstanceEvent("#cor_boss","OnDailySpawn");
+		}
+		F_InstanceHide(strnpcinfo(0),3);
+	}
+	end;
+	
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,162,117,1	script	Rebellion#cor_box_1	4_M_GONY,{
+	mes "[ Rebellion ]";
+	mes ".....";
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,162,119,3	script	Box#cor_box_1	4_STEELBOX,{
+	if('cor_daily){
+		if('box_1 > 0)
+			end;
+		F_InstanceEvent(strnpcinfo(0),"OnDailySpawn");
+		'box_1 = 1;
+		end;
+	}
+	if('cor_ms){
+		mes "[ Rebellion ]";
+		mes ".....";
+		specialeffect 585;
+		next;
+		mes "[ Rebellion ]";
+		mes ".....";
+		next;
+		mes "- ควันพวยพุ่งจากกล่องที่ดูน่าสงสัย -";
+		next;
+		select("คุณได้ทำสิ่งนี้แล้วหรือยัง:คุณยังคงเงียบ?");
+		mes "[ Rebellion ]";
+		mes ".....";
+		next;
+		mes "[ Rebellion ]";
+		mes "* พยักหน้าพยักหน้า *";
+		next;
+		mes "- ไปสนับสนุนทีมอื่นกันเถอะ -";
+		close2;
+		viewpoint 2,162,119,2,0xFFFFFF;
+		F_InstanceHide("Rebellion#cor_box_1",5);
+		F_InstanceHide(strnpcinfo(0),5);
+	}
+	end;
+	
+OnDailySpawn:
+	.@map$ = 'cor_map$;
+	'box_1 = 1;
+	specialeffect 635;
+	F_InstanceHide(strnpcinfo(0),1);
+	monster .@map$,162,124,"Heart Hunter",20350,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,156,117,"Heart Hunter",20350,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,160,120,"--ja--",20341,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,158,120,"--ja--",20341,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,156,121,"--ja--",20341,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,162,116,"--ja--",20341,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,160,125,"--ja--",20341,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	end;
+	
+OnDailyKill:
+	.@map$ = 'cor_map$;
+	if(mobcount(.@map$,instance_npcname(strnpcinfo(0))+"::OnDailyKill") < 1){
+		'box_1 = 2;
+		'cor_box += 1;
+		if('cor_box == 4){
+			F_InstanceEvent("#cor_boss","OnDailySpawn");
+		}
+		F_InstanceHide(strnpcinfo(0),3);
+	}
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,218,172,5	script	Rebellion#cor_box_2	4_F_REBELLION2,{
+	if('box_2 == 1){
+		end;
+	} else if('box_2 == 2){
+		mes "[ Rebellion ]";
+		mes "เป็นอุปกรณ์ที่น่ากลัว แต่น่าสนใจ ไม่ใช่อุปกรณ์ที่มีไว้เพื่อเรียกสัตว์ประหลาด";
+		next;
+		mes "[ Rebellion ]";
+		mes "หลังจากอัญเชิญมอนสเตอร์มันจะปล่อยพิษเคมีออกมาอย่างต่อเนื่องทำให้ยากต่อการกำจัดมอนสเตอร์";
+		next;
+		mes "[ Rebellion ]";
+		mes "หากสัมผัสพิษเคมีมันจะกระจายเหมือนระเบิด คุณไม่ควรเข้าใกล้อีก";
+		next;
+		mes "[ Rebellion ]";
+		mes "ดูเหมือนจะจบลงแล้วฉันจะไปร่วมทีมอื่น! คุณก็ควรเช่นกัน";
+		close2;
+		F_InstanceHide(strnpcinfo(0),5);
+		F_InstanceHide("Box#cor_box_2",5);
+		viewpoint 2,220,170,3,0xFFFFFF;
+		'cor_ms += 1;
+		if('cor_ms == 3){
+			viewpoint 1,172,223,5,0xFFFFFF;
+			F_InstanceEvent("#cor_boss","OnSpawn");
+			F_InstanceHide("Rebellion#cor_box_1",5);
+			F_InstanceHide("Box#cor_box_1",5);
+			F_InstanceHide("Rebellion#cor_box_0",5);
+			F_InstanceHide("Rebellion#cor_box_5",5);
+			F_InstanceHide("Box#cor_box_0",5);
+			viewpoint 2,162,119,2,0xFFFFFF;
+			viewpoint 2,140,79,1,0xFFFFFF;
+		}
+		end;
+	}
+		
+	if('cor_ms){
+		mes "[ Rebellion ]";
+		mes "เจอกล่องต้องสงสัยแล้ว! มันส่งสัญญาณที่ไม่รู้จักและฉันกำลังพยายามถอดรหัส";
+		close;
+	}
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,220,170,3	script	Box#cor_box_2	4_STEELBOX,{
+	if('cor_daily){
+		if('box_2 > 0)
+			end;
+		F_InstanceEvent(strnpcinfo(0),"OnDailySpawn");
+		'box_2 = 1;
+		end;
+	}
+	if('box_2) end;
+	if('cor_ms){
+		mes "[ Rebellion ]";
+		mes "ไม่ทราบสาเหตุของการระเบิด แต่ฉันพบกล่องที่น่าสงสัยนี้ที่ไซต์ ดูเหมือนจะเป็นกลไกบางอย่าง";
+		next;
+		mes "[ Rebellion ]";
+		mes "ข้างในมีสัญญาณ ... หือระวัง";
+		mes "มีบางอย่างเกิดขึ้น!";
+		close2;
+		specialeffect 635;
+		F_InstanceEvent(strnpcinfo(0),"OnSpawn");
+		sleep 1000;
+		F_InstanceHide("#waste_dummy_0",4);
+		F_InstanceEvent("#waste_dummy_0","OnSpawn");
+		end;
+	}
+	
+OnDailySpawn:
+	.@map$ = 'cor_map$;
+	'box_2 = 1;
+	specialeffect 635;
+	F_InstanceHide(strnpcinfo(0),1);
+	monster .@map$,217,166,"Heart Hunter",20356,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,220,172,"Heart Hunter",20356,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,215,166,"--ja--",20343,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,216,164,"--ja--",20343,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,222,163,"--ja--",20343,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,217,165,"--ja--",20342,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,220,165,"--ja--",20342,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,222,171,"--ja--",20342,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,218,177,"--ja--",20342,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,221,177,"--ja--",20342,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	end;
+	
+OnDailyKill:
+	.@map$ = 'cor_map$;
+	if(mobcount(.@map$,instance_npcname(strnpcinfo(0))+"::OnDailyKill") < 1){
+		'box_2 = 2;
+		'cor_box += 1;
+		if('cor_box == 4){
+			F_InstanceEvent("#cor_boss","OnDailySpawn");
+		}
+		F_InstanceHide(strnpcinfo(0),3);
+	}
+	end;
+	
+OnSpawn:
+	.@map$ = 'cor_map$;
+	'box_2 = 1;
+	areamonster .@map$,218,168,223,172,"--ja--",20342,3,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	end;
+
+OnMobKill:
+	.@map$ = 'cor_map$;
+	if(mobcount(.@map$,instance_npcname(strnpcinfo(0))+"::OnMobKill") < 1){
+		'box_2 = 2;
+		npctalk "พวกเขาต้องทนทุกข์ทรมาน! โปรดฟังสิ่งที่ฉันพูดก่อนช่วยทีมอื่น",instance_npcname("Rebellion#cor_box_2");
+	}
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,220,170,3	script	#waste_dummy_0	20344,{
+	end;
+OnSpawn:
+	.@map$ = 'cor_map$;
+	F_InstanceHide(strnpcinfo(0),1);
+	monster .@map$,220,170,"--ja--",20344,1,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	npctalk "พ่นขยะพิษ! หลีกเลี่ยงการเข้าไปใกล้มันแล้วเริ่มการต่อสู้ต่อไป!",instance_npcname("Rebellion#cor_box_2");
+	'mob = $@mobid[0];
+	unitstopwalk 'mob;
+	unitstopattack 'mob;
+	sleep 2000;
+	unitskilluseid 'mob,141,5;
+	sleep 5000;
+	if(unitexists('mob)){
+		unitkill 'mob;
+	}
+	end;
+	
+OnMobKill:
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,224,238,3	script	Rebellion#cor_box_3	4_M_REBELLION3,{
+	if('box_3 == 1){
+		end;
+	} else if('box_3 == 2){
+		mes "[ Rebellion ]";
+		mes "ขออภัยสำหรับการวิเคราะห์ที่ล่าช้า ไม่ใช่อุปกรณ์ในการเรียกสัตว์ประหลาด";
+		next;
+		mes "[ Rebellion ]";
+		mes "หลังจากอัญเชิญมอนสเตอร์มันจะเรียกแบตเตอรี่ชีวภาพเพื่อเพิ่มความแข็งแกร่งให้กับมอนสเตอร์และระเบิด";
+		next;
+		mes "[ Rebellion ]";
+		mes "หากต้องการจัดการก็เพียงทำลายทิ้ง เป็นเรื่องดีเพราะเป็นวิธีง่ายๆ";
+		next;
+		mes "[ Rebellion ]";
+		mes "ดูเหมือนจะจบลงแล้ว ....";
+		next;
+		mes "[ Rebellion ]";
+		mes "ดูเหมือนว่าคุณจะพบสิ่งที่น่าสนใจที่นี่ คุณควรตรวจสอบทีมอื่น ๆ !";
+		close2;
+		F_InstanceHide(strnpcinfo(0),5);
+		F_InstanceHide("Box#cor_box_3",5);
+		viewpoint 2,222,236,4,0xFFFFFF;
+		'cor_ms += 1;
+		if('cor_ms == 3){
+			viewpoint 1,172,223,5,0xFFFFFF;
+			F_InstanceEvent("#cor_boss","OnSpawn");
+			F_InstanceHide("Rebellion#cor_box_1",5);
+			F_InstanceHide("Box#cor_box_1",5);
+			F_InstanceHide("Rebellion#cor_box_0",5);
+			F_InstanceHide("Rebellion#cor_box_5",5);
+			F_InstanceHide("Box#cor_box_0",5);
+			viewpoint 2,162,119,2,0xFFFFFF;
+			viewpoint 2,140,79,1,0xFFFFFF;
+		}
+		end;		
+	}
+	if('cor_ms){
+		mes "[ Rebellion ]";
+		mes "เจอกล่องต้องสงสัยแล้ว! มันส่งสัญญาณที่ไม่รู้จักและฉันกำลังพยายามถอดรหัส";
+		close;
+	}
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,222,236,3	script	Box#cor_box_3	4_STEELBOX,{
+	if('cor_daily){
+		if('box_3 > 0)
+			end;
+		F_InstanceEvent(strnpcinfo(0),"OnDailySpawn");
+		'box_3 = 1;
+		end;
+	}
+	if('box_3) end;
+	if('cor_ms){
+		mes "[ Rebellion ]";
+		mes "ไม่ทราบสาเหตุของการระเบิด แต่ฉันพบกล่องที่น่าสงสัยนี้ที่ไซต์ ดูเหมือนจะเป็นกลไกบางอย่าง";
+		next;
+		mes "[ Rebellion ]";
+		mes "ข้างในมีสัญญาณ ... หือระวัง";
+		mes "มีบางอย่างเกิดขึ้น!";
+		close2;
+		specialeffect 635;
+		F_InstanceEvent(strnpcinfo(0),"OnSpawn");
+		sleep 1000;
+		F_InstanceHide("#waste_dummy_1",4);
+		F_InstanceEvent("#waste_dummy_1","OnSpawn");
+	}
+	end;
+	
+OnDailySpawn:
+	.@map$ = 'cor_map$;
+	'box_3 = 1;
+	specialeffect 635;
+	F_InstanceHide(strnpcinfo(0),1);
+	monster .@map$,221,238,"Heart Hunter",20350,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,224,230,"--ja--",20341,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,222,233,"--ja--",20341,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,229,233,"--ja--",20341,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,223,235,"--ja--",20341,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,221,236,"--ja--",20341,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,217,237,"--ja--",20341,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,218,248,"--ja--",20343,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	monster .@map$,219,247,"--ja--",20343,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	end;
+	
+OnDailyKill:
+	.@map$ = 'cor_map$;
+	if(mobcount(.@map$,instance_npcname(strnpcinfo(0))+"::OnDailyKill") < 1){
+		'box_3 = 2;
+		'cor_box += 1;
+		if('cor_box == 4){
+			F_InstanceEvent("#cor_boss","OnDailySpawn");
+		}
+		F_InstanceHide(strnpcinfo(0),3);
+	}
+	end;
+	
+OnSpawn:
+	.@map$ = 'cor_map$;
+	'box_3 = 1;
+	areamonster .@map$,220,235,225,240,"--ja--",20341,3,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	end;
+	
+OnMobKill:
+	.@map$ = 'cor_map$;
+	if(mobcount(.@map$,instance_npcname(strnpcinfo(0))+"::OnMobKill") < 1){
+		'box_3 = 2;
+	}
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,222,236,3	script	#waste_dummy_1	20345,{
+	end;
+OnSpawn:
+	.@map$ = 'cor_map$;
+	F_InstanceHide(strnpcinfo(0),1);
+	monster .@map$,220,170,"--ja--",2866,1,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	npctalk "ผลจากการวิเคราะห์ของฉันมันให้พลังกับมอนสเตอร์ที่ถูกอัญเชิญมา",instance_npcname("Rebellion#cor_box_3");
+	'mob = $@mobid[0];
+	unitstopwalk 'mob;
+	unitstopattack 'mob;
+	sleep 2000;
+	unitskilluseid 'mob,173,5;
+	sleep 5000;
+	if(unitexists('mob)){
+		unitkill 'mob;
+	}
+	end;
+	
+OnMobKill:
+	end;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;
+}
+
+1@cor,1,1,0	script	#cor_boss	-1,{
+	end;
+	
+OnSummon:
+	.@map$ = 'cor_map$;
+	monster .@map$,138,221,"--ja--",20340,1,instance_npcname(strnpcinfo(0))+"::OnBossKill";
+	'boss_id = $@mobid[0];
+	getunitdata 'boss_id,.@boss;
+	.@MAX_HP = .@boss[3];
+	.@DAMAGE = (.@MAX_HP/10) * 9;
+	.@HP = (.@MAX_HP - .@DAMAGE);
+	setunitdata 'boss_id,UMOB_HP,.@HP;
+	mapannounce .@map$,"Elyumina:มันเริ่มแพร่กระจาย เตรียมตัว!",bc_yellow;
+	end;
+	
+OnBossKill:
+	'cor_ms = 5;
+	F_InstanceHide("Elena Bolkova#cor_final",4);
+	F_InstanceHide("Elyumina#cor_final",4);
+	F_InstanceHide("Rebellion#final_1",4);
+	F_InstanceHide("Rebellion#final_2",4);
+	//delwall "cor_ms_wall_1_" + 'instance_id;
+	//delwall "cor_ms_wall_2_" + 'instance_id;
+	//delwall "cor_ms_wall_3_" + 'instance_id;
+	end;
+	
+OnDailySummon:
+	.@map$ = 'cor_map$;
+	monster .@map$,138,221,"--ja--",20340,1,instance_npcname(strnpcinfo(0))+"::OnDailyKill";
+	end;
+	
+OnDailyKill:
+	'cor_daily = 2;
+	F_InstanceHide("Elena Bolkova#cor_final",4);
+	F_InstanceHide("Elyumina#cor_final",4);
+	//delwall "cor_ms_wall_1_" + 'instance_id;
+	//delwall "cor_ms_wall_2_" + 'instance_id;
+	//delwall "cor_ms_wall_3_" + 'instance_id;
+	end;
+	
+OnDailySpawn:
+	.@map$ = 'cor_map$;
+	mapannounce .@map$,"Elena Bolkova:เมื่อคุณครอบคลุมทั้งหมดแล้วให้มาที่ค่ายทหารแล้ว Elyumina จะนำทางคุณ!",bc_yellow;
+	F_InstanceHide("Elyumina#cor_center",4);
+	end;	
+	
+OnSpawn:
+	.@map$ = 'cor_map$;
+	mapannounce .@map$,"Elena Bolkova:สุดยอดมากเธอออกมา! ฉันส่งสัญญาณมาที่ตำแหน่งของฉัน!",bc_yellow;
+	F_InstanceHide("Elena Bolkova#cor_center",4);
+	end;
+}
+
+1@cor,138,221,3	script	Elena Bolkova#cor_final	4_F_ELENA,{
+	if('cor_daily == 2){
+		cutin "162elena_01",2;
+		mes "[Elena Bolkova]";
+		mes "อ่าใช่ มันทรมานในครั้งนี้ สมบูรณ์แบบ! คุณใช้เวลานานแค่ไหนในการหยุดเศษโลหะนี้?";
+		next;
+		cutin "ep171_elyumina02",0;
+		mes "[Elyumina]";
+		mes "พูดแค่เศษเหล็กเหรอ! คุณแม่มด!";
+		next;
+		cutin "162elena_01",2;
+		mes "[Elena Bolkova]";
+		mes "ใช่ใช่ตอนแรกมันไม่ใช่เศษโลหะ แต่ตอนนี้มันเป็น ยังไงก็ขอบคุณสำหรับความช่วยเหลือ คุณกลับไปพักผ่อนเดี๋ยวนี้";
+		next;
+		if(select("ย้อนกลับ:พักสักครู่") == 2){
+			mes "[Elena Bolkova]";
+			mes "ได้เลยแจ้งให้เราทราบเมื่อคุณพร้อมที่จะออกไปข้างนอก";
+			close3;
+		}
+		if(checkquest(16363,HUNTING) == 2){
+			getitem 25669,1;
+			getitem 25723,1;
+			erasequest 16363;
+		}
+		warp "sp_cor",111,125;
+		end;
+	}
+		
+	if('cor_ms == 5){
+		cutin "162elena_02",2;
+		mes "[Elena Bolkova]";
+		mes "การทำงานที่ดี, " +strcharinfo(0)+ ". การดำเนินการประสบความสำเร็จ!";
+		mes "เธอกำลังวิ่งหนี แต่ฉันคิดว่าเธออารมณ์เสียเพราะคุณทำกล่องเศษเหล็กแตก";
+		next;
+		cutin "ep171_elyumina02",0;
+		mes "[Elyumina]";
+		mes "เศษโลหะ! เป็นผลงานชิ้นเอก! ลูกของฉัน!";
+		mes "คุณ! แก ... ทำร้ายลูก! ฉันจะขยี้คุณ!";
+		next;
+		cutin "162elena_02",2;
+		mes "[Elena Bolkova]";
+		mes "คุณเรียกเศษโลหะเหล่านี้ว่าลูกของคุณหรือไม่?";
+		mes "เด็ก ๆ สบายดีนะคะ เราจ่ายราคาสำหรับความผิดพลาดของบุตรหลานของเรา";
+		next;
+		cutin "162elena_01",2;
+		mes "[Elena Bolkova]";
+		mes "คุณกำลังไปทำอะไรตอนนี้ " + strcharinfo(0) + "เหรอ?";
+		next;
+		if(select("ฉันจะกลับทันที:ฉันจะอยู่ที่นี่สักหน่อย") == 2){
+			mes "[Elena Bolkova]";
+			mes "ได้เลยแจ้งให้เราทราบเมื่อคุณพร้อมที่จะออกไปข้างนอก";
+			close3;
+		}
+		mes "[Elena Bolkova]";
+		mes "การทำงานที่ดี. เราจะเคลียร์สิ่งต่างๆที่นี่คุณสามารถหยุดพักได้ ฉันจะสอบปากคำเธอ พักสมองแล้วกลับมาหาฉัน";
+		ep_illusion = 43;
+		completequest 16354;
+		setquest 16357;
+		setquest 16377;
+		close2;
+		warp "sp_cor",176,169;
+		end;
+	}
+	end;
+
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),3);
+	end;	
+}
+
+1@cor,140,221,3	script	Elyumina#cor_final	4_EP17_ELYUMINA,{ if(!'mission_type) npctalk "Elyumina:พวกแก ... ฆ่าเขาเหรอ! คุณฆ่า! เพชฌฆาต!"; end; OnInstanceInit: F_InstanceHide(strnpcinfo(0),3); end;}
+1@cor,141,223,3	script	Rebellion#final_1	4_M_ILYA,{ npctalk "เราได้จับนักวิจัย Elyumina!"; end; OnInstanceInit: F_InstanceHide(strnpcinfo(0),3); end;}
+1@cor,141,221,3	script	Rebellion#final_2	4_F_ANYA,{ npctalk "เราทำการจับภาพเสร็จสิ้นการดำเนินการสิ้นสุดลงแล้ว!"; end; OnInstanceInit: F_InstanceHide(strnpcinfo(0),3); end;}
+
+1@cor,177,165,1	script	Rebellion#cor_op_0	4_M_REBELLION3,{ end; OnInstanceInit: F_InstanceHide(strnpcinfo(0),1); end; }
+1@cor,180,165,1	script	Rebellion#cor_op_1	4_M_GONY,{ end; OnInstanceInit: F_InstanceHide(strnpcinfo(0),1); end; }
+1@cor,183,165,1	script	Rebellion#cor_op_2	4_F_REBELLION3,{ end; OnInstanceInit: F_InstanceHide(strnpcinfo(0),1); end; }
+1@cor,177,163,1	script	Rebellion#cor_op_3	4_F_ANYA,{ end; OnInstanceInit: F_InstanceHide(strnpcinfo(0),1); end; }
+1@cor,180,163,1	script	Rebellion#cor_op_4	4_M_ILYA,{ end; OnInstanceInit: F_InstanceHide(strnpcinfo(0),1); end; }
+1@cor,183,163,1	script	Rebellion#cor_op_5	4_F_REBELLION2,{ end; OnInstanceInit: F_InstanceHide(strnpcinfo(0),1); end; }
+
+1@cor,159,218,0	script	#cor_barricade_00	4_ROPEPILE,{ end; }
+1@cor,159,220,0	script	#cor_barricade_01	4_ROPEPILE,{ end; }
+1@cor,159,222,0	script	#cor_barricade_02	4_ROPEPILE,{ end; }
+1@cor,159,224,0	script	#cor_barricade_03	4_ROPEPILE,{ end; }
+1@cor,98,218,0	script	#cor_barricade_04	4_ROPEPILE,{ end; }
+1@cor,98,220,0	script	#cor_barricade_05	4_ROPEPILE,{ end; }
+1@cor,98,222,0	script	#cor_barricade_06	4_ROPEPILE,{ end; }
+1@cor,98,224,0	script	#cor_barricade_07	4_ROPEPILE,{ end; }
+1@cor,134,240,0	script	#cor_barricade_08	4_ROPEPILE,{ end; }
+1@cor,136,240,0	script	#cor_barricade_09	4_ROPEPILE,{ end; }
+1@cor,138,240,0	script	#cor_barricade_10	4_ROPEPILE,{ end; }
+1@cor,140,240,0	script	#cor_barricade_11	4_ROPEPILE,{ end; }

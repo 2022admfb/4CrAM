@@ -1,0 +1,3 @@
+-	script	WoeGuildwar	-1,{
+OnAgitStart:
+}

@@ -1,0 +1,90 @@
+// --------------------------------------------------------------
+// -                      RO - STORE                    -
+//	-					www.ro-store.in.th				-
+// --------------------------------------------------------------
+
+// ============= HOME RENT ================
+function	script	Rentshome	{
+
+Main:
+	mes "[ ผู้ดูแลบ้านเช่า ]";
+	mes "บริการวาร์ปไปสู่บ้านเช่า";
+	mes "โปรดเลือกบ้านเช่าที่เจ้าต้องการ";
+	next;
+	menu 	"บ้านเช่าหลังที่ 1-15",Rentss20,
+		    "ยังไม่มีบ้าน..!!!",k2;
+
+k2:
+	close;
+	
+Rentss20:
+mes "[ ผู้ดูแลบ้านเช่า ]";
+mes "เข้า สู่ บ้านเช่า";
+next;
+menu 	"บ้านเช่าหลังที่ 1",rent01,
+	"บ้านเช่าหลังที่ 2",rent02,
+	"บ้านเช่าหลังที่ 3",rent03,
+	"บ้านเช่าหลังที่ 4",rent04,
+	"บ้านเช่าหลังที่ 5",rent05,
+	"บ้านเช่าหลังที่ 6",rent06,
+	"บ้านเช่าหลังที่ 7",rent07,
+	"บ้านเช่าหลังที่ 8",rent08,
+	"บ้านเช่าหลังที่ 9",rent09,
+	"บ้านเช่าหลังที่ 10",rent10,
+	"บ้านเช่าหลังที่ 11",rent11,
+	"บ้านเช่าหลังที่ 12",rent12,
+	"บ้านเช่าหลังที่ 13",rent13,
+	"บ้านเช่าหลังที่ 14",rent14,
+	"บ้านเช่าหลังที่ 15",rent15;
+
+//============================= Dupication
+rent01: if($home_Guildid1==0)	goto nohome;	if(getcharid(2)==$home_Guildid1 || $open_guild1 == 1){		warp "guildhall1",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid1);	close;}end;
+rent02: if($home_Guildid2==0)	goto nohome;	if(getcharid(2)==$home_Guildid2 || $open_guild2 == 1){		warp "guildhall2",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid2);	close;}end;
+rent03: if($home_Guildid3==0)	goto nohome;	if(getcharid(2)==$home_Guildid3 || $open_guild3 == 1){		warp "guildhall3",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid3);	close;}end;
+rent04: if($home_Guildid4==0)	goto nohome;	if(getcharid(2)==$home_Guildid4 || $open_guild4 == 1){		warp "guildhall4",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid4);	close;}end;
+rent05: if($home_Guildid5==0)	goto nohome;	if(getcharid(2)==$home_Guildid5 || $open_guild5 == 1){		warp "guildhall5",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid5);	close;}end;
+rent06: if($home_Guildid6==0)	goto nohome;	if(getcharid(2)==$home_Guildid6 || $open_guild6 == 1){		warp "guildhall6",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid6);	close;}end;
+rent07: if($home_Guildid7==0)	goto nohome;	if(getcharid(2)==$home_Guildid7 || $open_guild7 == 1){		warp "guildhall7",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid7);	close;}end;
+rent08: if($home_Guildid8==0)	goto nohome;	if(getcharid(2)==$home_Guildid8 || $open_guild8 == 1){		warp "guildhall8",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid8);	close;}end;
+rent09: if($home_Guildid9==0)	goto nohome;	if(getcharid(2)==$home_Guildid9 || $open_guild9 == 1){		warp "guildhall9",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid9);	close;}end;
+rent10: if($home_Guildid10==0)	goto nohome;	if(getcharid(2)==$home_Guildid10 || $open_guild10 == 1){		warp "guildhall10",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid10);	close;}end;
+rent11: if($home_Guildid11==0)	goto nohome;	if(getcharid(2)==$home_Guildid11 || $open_guild11 == 1){		warp "guildhall11",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid11);	close;}end;
+rent12: if($home_Guildid12==0)	goto nohome;	if(getcharid(2)==$home_Guildid12 || $open_guild12 == 1){		warp "guildhall12",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid12);	close;}end;
+rent13: if($home_Guildid13==0)	goto nohome;	if(getcharid(2)==$home_Guildid13 || $open_guild13 == 1){		warp "guildhall13",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid13);	close;}end;
+rent14: if($home_Guildid14==0)	goto nohome;	if(getcharid(2)==$home_Guildid14 || $open_guild14 == 1){		warp "guildhall14",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid14);	close;}end;
+rent15: if($home_Guildid15==0)	goto nohome;	if(getcharid(2)==$home_Guildid15 || $open_guild15 == 1){		warp "guildhall15",92,42;	}		else{	mes "[ ผู้ดูแลบ้านเช่า ]";	mes "บ้านหลังนี้เป็นของ Guild "+getguildname($home_Guildid15);	close;}end;
+
+nohome:
+	mes "[ ผู้ดูแลบ้านเช่า ]";
+	mes "บ้านเช่าหลังนี้ยังไม่มีผู้ครอบครอง";
+	close;
+	
+end;
+}
+//============================== Warp Main =================================
+-	script	guardhouse	-1,{
+	mes "[ ผู้ดูแลบ้านเช่า ]";
+	mes "สวัสดี ข้ามีหน้าที่ดูแลบ้านเช่า";
+	mes "ป้องกันไม่ให้คนนอกเข้าไปยัง";
+	mes "สถานที่ที่เป็นส่วนตัวที่สุดด้วย";
+	mes "บริการเช่าของเราแห่งนี้ที่เดียว";
+	mes "เจ้าต้องการทำสิ่งใดหล่ะ";
+	next;
+	specialeffect2 561;
+			menu	
+				"• เข้าสู่บ้านเช่า [Guild Home]",Rents,
+				"• ไม่ไปดีกว่า ",cancal;
+	
+Rents:
+	callfunc	"Rentshome";
+	end;
+
+cancal:
+	mes "[ ผู้ดูแลบ้านเช่า ]";
+	mes "นั้นมันก็เรื่องของเจ้า";
+	mes "ถ้าคิดจะไปไหนอย่าลืมมาหาข้า";
+	close;
+	end;
+}
+
+auction_03,10,49,5	duplicate(guardhouse)	ผู้ดูแลบ้านเช่า#rowarp-01	10187

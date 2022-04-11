@@ -1,0 +1,1188 @@
+//===== rAthena Script =======================================
+//= Doomed Swords Quest
+//===== By:==================================================
+//= kobra_k88; L0ne_W0lf
+//===== Current Version:=====================================
+//= 1.4
+//===== Compatible With:=====================================
+//= rAthena Project
+//===== Description:=========================================
+//= [Official Conversion]
+//= Doomed Swords Quest:
+//= - Quest for Doomed Swords:Grimtooth, Mysteltain, Executioner.
+//=   Although this quest is enabled on iRO, the Mysteltainn
+//=   portion is NOT completable as the item "Young Twig" does
+//=   not drop.
+//= - Variable in use:event_magum (max 6)
+//= - Variable in use:dmdswrd_Q2 (bits 1 - 32)
+//===== Additional Comments:=================================
+//= 1.1 Fixed items count check. For all 3 swords... [Lupus]
+//= 1.3 Fixed exploit [Lupus]
+//= 1.4 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//=     Moved all non-related NPCs to their repsective files.
+//= 1.5 Added missing checkweight. [L0ne_W0lf]
+//============================================================
+
+prt_in,162,11,2	script	Ghatu#magum	86,{
+	if (event_magum == 0) {
+		if ((dmdswrd_Q2 & 1) || (dmdswrd_Q2 & 2) || (dmdswrd_Q2 & 4) || (dmdswrd_Q2 & 8) || (dmdswrd_Q2 & 16) || (dmdswrd_Q2 & 32)) {
+			mes "[Ghatu]";
+			mes "ฉันเคยได้ยินเรื่องแปลก ๆ ";
+			mes "ช่างตีเหล็กที่อาศัยอยู่";
+			mes "สันโดษอยู่ลึก ๆ ";
+			mes "Payon Forest. ผู้ชาย";
+			mes "เคยโด่งดังในเรื่องของเขา";
+			mes "ทักษะการตีเหล็กในตำนาน ... ";
+			next;
+			mes "[Ghatu]";
+			mes "มีข่าวลือว่าเขา";
+			mes "ซ่อนตัวอยู่บนภูเขา";
+			mes "เนื่องจากมีคนจำนวนมากเกินไปที่ต้องการใช้พรสวรรค์ของเขาในทางที่ผิด";
+			mes "วัตถุประสงค์เห็นได้ชัดว่าอาวุธของเขามีคุณภาพระดับเทพ ... ";
+			set event_magum,1;
+			close;
+		}
+		mes "[Ghatu]";
+		mes "จำไว้ว่าช่างตีเหล็ก";
+		mes "ฉันเล่าเรื่องครั้งที่แล้วให้ฟัง";
+		mes "ดูเหมือนว่าอาวุธของเขา";
+		mes "เป็นที่ต้องการอย่างมากเพราะ";
+		mes "เขาจะร่ายมนต์ให้พวกเขาด้วย";
+		mes "เวทมนตร์ที่ทรงพลังมหาศาล";
+		next;
+		mes "[Ghatu]";
+		mes "อย่างไรก็ตามผู้ชายคนนั้นถูกบังคับ";
+		mes "โดยอำนาจที่หิวโหยและ";
+		mes "กดขี่สร้างอาวุธ";
+		mes "สำหรับจุดจบที่เห็นแก่ตัวและผิดศีลธรรม";
+		mes "ไม่แปลกใจเลยที่เขาไป";
+		mes "ซ่อนตัวในที่สุด ... ";
+		next;
+		mes "[Ghatu]";
+		mes "มันน่าเศร้าจริงๆ";
+		mes "ช่างเหล็กคนนั้นเคยเป็น";
+		mes "เป็นผู้ชายที่ไปง่ายมาก";
+		mes "จนกว่าเขาจะถูกบังคับให้ทำงาน";
+		mes "ขัดต่อความประสงค์ของเขาช้าเขาก็มืดมนและน่ากลัว ... ";
+		next;
+		mes "[Ghatu]";
+		mes "แต่ฉันคิดว่าช่างตีเหล็ก";
+		mes "ไม่มีวันยอมแพ้";
+		mes "ค้อนถ้าคุณสามารถจัดการเพื่อ";
+		mes "หาเขาบางทีคุณอาจจะถาม";
+		mes "เขาปลอมของให้คุณ?";
+		set event_magum,5;
+		close;
+
+	}
+	else if (event_magum == 1) {
+		mes "[Ghatu]";
+		mes "จำไว้ว่าช่างตีเหล็ก";
+		mes "ฉันเล่าเรื่องครั้งที่แล้วให้ฟัง";
+		mes "ดูเหมือนว่าอาวุธของเขา";
+		mes "เป็นที่ต้องการอย่างมากเพราะ";
+		mes "เขาจะร่ายมนต์ให้พวกเขาด้วย";
+		mes "เวทมนตร์ที่ทรงพลังมหาศาล";
+		next;
+		mes "[Ghatu]";
+		mes "อย่างไรก็ตามผู้ชายคนนั้นถูกบังคับ";
+		mes "โดยอำนาจที่หิวโหยและ";
+		mes "กดขี่สร้างอาวุธ";
+		mes "สำหรับจุดจบที่เห็นแก่ตัวและผิดศีลธรรม";
+		mes "ไม่แปลกใจเลยที่เขาไป";
+		mes "ซ่อนตัวในที่สุด ... ";
+		next;
+		mes "[Ghatu]";
+		mes "มันน่าเศร้าจริงๆ";
+		mes "ช่างเหล็กคนนั้นเคยเป็น";
+		mes "เป็นผู้ชายที่ไปง่ายมาก";
+		mes "จนกว่าเขาจะถูกบังคับให้ทำงาน";
+		mes "ขัดต่อความประสงค์ของเขาช้าเขาก็มืดมนและน่ากลัว ... ";
+		next;
+		mes "[Ghatu]";
+		mes "แต่ฉันคิดว่าช่างตีเหล็ก";
+		mes "ไม่มีวันยอมแพ้";
+		mes "ค้อนถ้าคุณสามารถจัดการเพื่อ";
+		mes "หาเขาบางทีคุณอาจจะถาม";
+		mes "เขาปลอมของให้คุณ?";
+		set event_magum,5;
+		close;
+	}
+	mes "[Ghatu]";
+	mes "ช่างตีเหล็กลึกลับคนนั้น ... ";
+	mes "ฉันสงสัยว่าเขาสร้างมันขึ้นมาได้อย่างไร";
+	mes "อาวุธที่น่าหลงใหลของเขา";
+	mes "ฉันได้ยินมาว่าเขาอาจจะมี";
+	mes "ขลุกอยู่ในศาสตร์มืด";
+	mes "แต่ดูเหมือนจะไม่ถูกต้อง ... ";
+	close;
+}
+
+prontera,197,188,2	script	Veeyop#magum	50,{
+	if (dmdswrd_Q2 & 1) {
+		mes "[Veeyop]";
+		mes "รู้ไหมพูดได้";
+		mes "เกี่ยวกับ Mysteltainn และ";
+		mes "การตายของ Baldur แค่ ... ";
+		mes "มันไม่เกิดขึ้นกับฉันจนกว่า";
+		mes "ตอนนี้มันแย่แค่ไหน";
+		mes "ฟังดูใช่ฉันรู้";
+		close;
+	}
+	mes "[Veeyop]";
+	mes "คุณเคยได้ยิน";
+	mes "ตำนานของ Mysteltainn?";
+	mes "มันเป็นต้นไม้ขึ้นชื่อเรื่องความเป็น";
+	mes "สิ่งเดียวที่สามารถทำร้าย";
+	mes "Baldur เทพแห่งแสงอันที่จริง";
+	mes "แค่กิ่งไม้จากมันก็ฆ่าเขาได้";
+	next;
+	mes "[Veeyop]";
+	mes "ตอนนี้ฉันไม่แน่ใจว่าเป็นแบบนี้";
+	mes "เป็นเรื่องจริง แต่ฉันได้ยินมาว่า";
+	mes "มีคนปลอมแปลง";
+	mes "ดาบทรงพลังมาก";
+	mes "สมกับชื่อ";
+	mes "'' Mysteltainn. ''";
+	next;
+	mes "[Veeyop]";
+	mes "มีคนเดียว";
+	mes "ในโลกที่ปลอมแปลงได้";
+	mes "ดาบ Mysteltainn เล่มนั้นฉัน ... ";
+	mes "ฉันคิดว่าเขาเคยอยู่";
+	mes "พรอนเทร่า แต่แล้วเขาก็ย้าย";
+	mes "ออกไปด้วยเหตุผลแปลก ๆ ";
+	if (event_magum == 1)
+		set event_magum,5;
+	set dmdswrd_Q2,dmdswrd_Q2 | 1;
+	close;
+}
+
+morocc,281,178,2	script	Cetsu#magum	97,{
+	if (dmdswrd_Q2 & 2) {
+		mes "[Cetsu]";
+		mes "คิดถึง";
+		mes "กริมทู ธ มันเกิดขึ้น";
+		mes "สำหรับฉันที่คาถาเคย";
+		mes "เพื่อมอบกริชนั้นด้วย";
+		mes "ความแข็งแกร่งคงไม่ใช่เวทมนตร์";
+		mes "ที่เราคุ้นเคย";
+		next;
+		mes "[Cetsu]";
+		mes "มีทุกประเภท";
+		mes "เรื่องราวชวนขนลุก";
+		mes "รอบ ๆ ฉันได้ยินด้วยซ้ำ";
+		mes "ว่ากริมทู ธ ";
+		mes "อาจจะมีบ้าง";
+		mes "คำสาปแปลก ๆ ?";
+		close;
+	}
+	mes "[Cetsu]";
+	mes "รู้ไหมมี";
+	mes "เรื่องเหลือเชื่อ";
+	mes "กริชทรงพลังนั่น";
+	mes "แข็งแกร่งกว่าเหล็ก";
+	mes "ฉันคิดว่ามันถูกสร้างขึ้นมา";
+	mes "ฟันอสูร?";
+	next;
+	mes "[Cetsu]";
+	mes "อย่างไรก็ตามมันไม่ใช่แค่";
+	mes "ฟันอสูรที่ให้";
+	mes "กริชพลังของมันฉันคิดว่า";
+	mes "มันต้องเคลิ้มด้วย";
+	mes "คาถาพิเศษหรืออะไร";
+	next;
+	mes "[Cetsu]";
+	mes "มีดสั้นกริมทู ธ ";
+	mes "ทำได้เพียงคนเดียวเท่านั้น";
+	mes "ทั่วทั้งโลกผู้ชายคนนี้เคยอาศัยอยู่ใน Prontera แต่แล้วเขาก็";
+	mes "ย้ายออกไปด้วยเหตุผลบางอย่าง";
+	next;
+	mes "[Cetsu]";
+	mes "ฉันสงสัย ... ";
+	mes "เขาเข้าไป";
+	mes "ซ่อนอาวุธของเขา";
+	mes "ดูเหมือนจะสวย";
+	mes "ตอนนั้นมีความต้องการสูง ... ";
+	if (event_magum == 1)
+		set event_magum,5;
+	set dmdswrd_Q2,dmdswrd_Q2 | 2;
+	close;
+}
+
+izlude_in,173,88,2	script	Nain#magum	102,{
+	if (dmdswrd_Q2 == 4) {
+		mes "[Nain]";
+		mes "ไม่สำคัญหรอก";
+		mes "จอมพลังเพชฌฆาต";
+		mes "คือ:ถ้ามันจะลงเอยด้วย";
+		mes "มือของฉันฉันจะกำจัด";
+		mes "ของมันทันทีฉันจะไม่เสี่ยงที่จะสูญเสียจิตใจไปกับคำสาปนั้น ... ";
+		close;
+	}
+	mes "[Nain]";
+	mes "นานมาแล้วดาบเล่มเดียว";
+	mes "ถูกใช้เพื่อตัดหัวทั้งหมด";
+	mes "อาชญากรที่เคยถูก";
+	mes "ตัดสินประหารชีวิตนั่น";
+	mes "ใบมีดต้องสาปเป็นที่รู้จัก";
+	mes "เป็น Executioner";
+	next;
+	mes "[Nain]";
+	mes "ขณะที่เพชฌฆาตสังหาร";
+	mes "อาชญากรมากขึ้นความโกรธและ";
+	mes "ความกระหายเลือดของเหยื่อเริ่มขึ้น";
+	mes "สะสมบนใบมีด";
+	mes "ถึงแม้ดาบจะมีความแข็งแกร่งมาก แต่ก็มีความชั่วร้ายแปดเปื้อน";
+	next;
+	mes "[Nain]";
+	mes "คนสุดท้ายที่จะควง";
+	mes "เพชฌฆาตเกือบแพ้";
+	mes "ความคิดของเขาต่อดาบเขาช่วยตัวเองโดยมอบให้กับผู้มีความสามารถ";
+	mes "ช่างตีเหล็กที่จะทำลายมันเพื่อเขาจึงช่วยชีวิตเขาได้";
+	next;
+	mes "[Nain]";
+	mes "ช่างตีเหล็กลึกลับ";
+	mes "ไม่เคยเห็นอีกเลยใน";
+	mes "เมือง Prontera แต่มีข่าวลือ";
+	mes "ถ้าคุณสามารถหาเขาพบเขา";
+	mes "สามารถปลอมสิ่งที่ถูกสาป";
+	mes "Executioner anew ... ";
+	if (event_magum == 1)
+		set event_magum,5;
+	set dmdswrd_Q2,dmdswrd_Q2 | 4;
+	close;
+}
+
+pay_fild08,218,283,2	script	Mysterious Man#magum	89,{
+	if (checkweight(1201,1) == 0) {
+		mes "[Mysterious Man]";
+		mes "ถือมัน";
+		mes "คุณกำลังแบก";
+		mes "สินค้าเยอะเกินไป";
+		mes "กับคุณพูดกับฉัน";
+		mes "หลังจากที่คุณวาง";
+		mes "สินค้าเข้าคลังคาฟรา";
+		close;
+	}
+	if (event_magum == 0) {
+		if ((dmdswrd_Q2 & 1) || (dmdswrd_Q2 & 2) || (dmdswrd_Q2 & 4) || (dmdswrd_Q2 & 8) || (dmdswrd_Q2 & 16) || (dmdswrd_Q2 & 32)) {
+			mes "[Mysterious Man]";
+			mes "อืม ... ?";
+			mes "ห่าอะไร";
+			mes "คุณกำลังมองหา?";
+			next;
+			if (select("คุณเคยได้ยินเรื่อง Doomed Swords ไหม:ฉัน ... ฉัน ...") == 1) {
+				mes "[Mysterious Man]";
+				mes "...!";
+				mes "จะเป็นยังไง";
+				mes "ฉันรู้เรื่องนี้ไหม";
+				mes "ปล่อยฉันไว้คนเดียว!";
+				close;
+			}
+			mes "[Mysterious Man]";
+			mes "...";
+			next;
+			mes "[Mysterious Man]";
+			mes "...";
+			mes "......";
+			next;
+			mes "[Mysterious Man]";
+			mes "หลงทาง";
+			close;
+		}
+		else {
+			mes "[Mysterious Man]";
+			mes "อืม ... ?";
+			mes "ห่าอะไร";
+			mes "คุณกำลังมองหา?";
+			next;
+			if (select("Um, er...:ไม่เป็นไร, sir.") == 1) {
+				mes "[Mysterious Man]";
+				mes "อะไร ... ?!";
+				next;
+				mes "^3355FFThis guy is";
+				mes "น่ากลัวจริงๆ! ^000000";
+				close;
+			}
+			mes "[Mysterious Man]";
+			mes "ไม่มีอะไรเหรอ";
+			mes "ดีตอนนี้ฉัน";
+			mes "ดูน่ารำคาญ";
+			mes "นักผจญภัย! ออกไปที่นี่";
+			mes "แล้วปล่อยฉันไว้ที่นรกคนเดียว!";
+			close;
+		}
+	}
+	else if (event_magum == 1) {
+		mes "[Mysterious Man]";
+		mes "อืม ... ?";
+		mes "ห่าอะไร";
+		mes "คุณกำลังมองหา?";
+		next;
+		if (select("คุณบังเอิญเป็นช่างตีเหล็กเหรอ:ไม่ - ไม่มีอะไร!") == 1) {
+			mes "[Mysterious Blacksmith]";
+			mes "อืมมมมมมมม";
+			mes "เป็นคนโง่ทั้งหมดใช่";
+			mes "ฉันเคยทำโรงตีเหล็ก แต่";
+			mes "ฉันไม่ได้ทำงานง่ายๆ";
+			mes "ช่างตีเหล็กส่วนใหญ่";
+			mes "ทำได้แล้ว ... ";
+			close;
+		}
+		mes "[Mysterious Blacksmith]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Mysterious Blacksmith]";
+		mes "Get outta my sight.";
+		close;
+	}
+	else if (event_magum == 5) {
+		mes "[Mysterious Blacksmith]";
+		mes "อืม ... ?";
+		mes "ห่าอะไร";
+		mes "คุณกำลังมองหา?";
+		next;
+		if (select("ฉันต้องการให้คุณสร้างดาบวาระให้ฉัน:เอ่อไม่มีอะไร!") == 1) {
+			mes "[Mysterious Blacksmith]";
+			mes "หืม.. ไม่รู้อยู่ไหน";
+			mes "นรกที่คุณอาจเคยได้ยิน";
+			mes "ของฉัน แต่ฉันเดาว่าเป็นหนึ่งในนั้น";
+			mes "นักผจญภัยจะพบฉันเร็ว ๆ นี้";
+			mes "พอแล้วทีนี้ซึ่งถึงวาระ";
+			mes "คุณอยากมีดาบหรือเปล่า";
+			next;
+			switch(select("Mysteltainn.:Grimtooth.:Executioner.:ฉันเปลี่ยนใจแล้ว!")) {
+			case 1:
+				if (dmdswrd_Q2 & 1) {
+					mes "[Mysterious Blacksmith]";
+					mes "คุณต้องการ ... ";
+					mes "ดาบเล่มนั้น?";
+					mes "อย่าพูดของมัน";
+					mes "ชื่อเบาจัง!";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "คุณเข้าใจคำสาป";
+					mes "บนดาบนั้นหรือ The Mysteltainn";
+					mes "ได้รับอำนาจมืดจาก";
+					mes "กิ่งไม้ที่ใช้ในการฆ่า Baldur เทพเจ้าแห่งแสงขอฉันเล่าเรื่อง";
+					mes "เรื่องย่อเท่าที่จะทำได้ ... ";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ในยุคของเทพเจ้า";
+					mes "สวยบริสุทธิ์และ";
+					mes "ความสุขที่ Baldur เป็นที่รัก";
+					mes "สิ่งมีชีวิตทุกชนิดจงช่วย";
+					mes "one:โลกิเทพแห่งเล่ห์เหลี่ยม";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "เมื่อโลกิออกจากความหึงหวง";
+					mes "ตัดสินใจที่จะฆ่า Baldur";
+					mes "เทพีเฟรย์จามีความฝัน";
+					mes "เกี่ยวกับการตายของ Baldur กลัว";
+					mes "การตระหนักถึงความฝันของเธอ";
+					mes "เธอให้คำปรึกษากับเทพเจ้า";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "เพื่อปกป้องบัลดูร์เทพเจ้า";
+					mes "ตัดสินใจถอนคำสาบาน";
+					mes "จะไม่ทำร้าย Baldur จาก";
+					mes "ทุกสิ่งมีชีวิตวัตถุและ";
+					mes "พลังธรรมชาติทุกคนที่เป็น";
+					mes "ขอตกลงที่จะทำคำสาบานนี้";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ของสิ่งมีชีวิตและวัตถุทั้งหมด";
+					mes "ในจักรวาลเฟรย่าเท่านั้น";
+					mes "ละเลยที่จะขอต้นไม้ต้นหนึ่ง";
+					mes "ให้คำสาบานนี้:Mysteltainn เฟรย์จาเชื่อว่ามันไกลเกินไป";
+					mes "เล็กและไม่มีความสำคัญที่จะถาม";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "เชื่อว่าทุกอย่าง";
+					mes "ในจักรวาลได้สาบาน";
+					mes "อย่าทำร้าย Baldur เทพ";
+					mes "ทำให้เป็นงานอดิเรกใหม่";
+					mes "ขว้างมีดสั้น ๆ ใส่";
+					mes "เทพเจ้าที่อยู่ยงคงกระพันใกล้จะถึงแล้ว";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "อย่างไรก็ตามโลกิถูกกำหนด";
+					mes "เพื่อฆ่า Baldur และ, ปลอมตัว";
+					mes "ตัวเองถาม Freyja อย่างสุภาพ";
+					mes "ถ้ามีวัตถุใด ๆ ใน";
+					mes "โลกที่ไม่ได้ใช้";
+					mes "คำสาบานที่จะไม่ทำร้ายบัลดูร์";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "Freyja สงสัยว่าไม่มีอะไรและ";
+					mes "บอกโลกิเกี่ยวกับความลับของ";
+					mes "Mysteltainn ครั้งต่อไปที่เทพเจ้าเล่นเกมขว้างจักร";
+					mes "สิ่งของที่ Baldur โลกิอยู่ที่นั่นพร้อมกิ่งไม้ Mysteltainn เล็ก ๆ ";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "จากนั้นให้ผสมของเขา";
+					mes "ทรยศโลกิหลอก";
+					mes "ฮอดแฝดตาบอดของบัลดูร์";
+					mes "พี่ชายทุ่ม";
+					mes "กิ่งไม้เข้าไปในหัวใจของ Baldur และ";
+					mes "เทพเจ้าแห่งแสงจึงถูกสังหาร";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "จากนั้นให้ผสมของเขา";
+					mes "ทรยศโลกิหลอก";
+					mes "ฮอดแฝดตาบอดของบัลดูร์";
+					mes "พี่ชายทุ่ม";
+					mes "กิ่งไม้เข้าไปในหัวใจของ Baldur และ";
+					mes "เทพเจ้าแห่งแสงจึงถูกสังหาร";mes "จากนั้นให้ผสมของเขา";
+					mes "ทรโยโลกิหลอก";
+					mes "ฮอดบ้านเบาะดูร์";
+					mes "พี่ชายเครา";
+					mes "กิ่งไม้เข้าไปในหัวใจของ Baldur และ";
+					mes "หอคอยแห่งแสงเงางาม";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "อย่างไรก็ตามถ้าคุณเต็มใจ";
+					mes "เสี่ยงต่อคำสาปของดาบเล่มนั้น";
+					mes "เพื่อประโยชน์ของพลัง";
+					mes "ฉันจะปลอมให้คุณถ้าคุณ";
+					mes "สามารถนำสิ่งต่อไปนี้มาให้ฉัน";
+					mes "รายการมันจะเข้าท่า ... ";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "^0099FF1 Young Twig^000000,";
+					mes "^0099FF1 Emperium^000000,";
+					mes "^0099FF1 Loki's Whispers^000000,";
+					mes "^0099FF1 Mother's Nightmare^000000 and";
+					mes "^0099FF1 Foolishness of the Blind^000000.";
+					mes "นั่นคือสิ่งที่ฉันต้องการ";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ไม่ขออะไรมาก";
+					mes "คุณแค่นำวัตถุดิบเท่านั้น";
+					mes "วัสดุสำหรับปลอมดาบ";
+					mes "และ Emperium เพื่อพิสูจน์ความเป็นคุณ";
+					mes "คุ้มค่ากับฉันฉันจะรอ";
+					mes "สำหรับการกลับมาของคุณนักผจญภัย";
+					set dmdswrd_Q2,dmdswrd_Q2 | 8;
+					set event_magum,6;
+					close;
+				}
+				mes "[Mysterious Blacksmith]";
+				mes "เพียงแค่มองคุณ";
+				mes "ฉันบอกได้เลยว่าเธอไม่รู้";
+				mes "พอเกี่ยวกับ Mysteltainn";
+				mes "เพื่อทำความเข้าใจทั้งหมด";
+				mes "ความเสี่ยงที่มาพร้อมกับการกวัดแกว่งดาบนั่นใช่คุณเขียวเกินไป";	
+				next;
+				mes "[Mysterious Blacksmith]";
+				mes "ฉันรับความเสี่ยงไม่ได้";
+				mes "ของการสร้างที่สาปแช่ง";
+				mes "ดาบสำหรับคุณถ้าคุณไม่มี";
+				mes "เรียนรู้เรื่องนี้มามากพอแล้ว";
+				mes "เตรียมพร้อมสำหรับสิ่งใดสิ่งหนึ่ง";
+				mes "ผลที่ตามมา ... ";
+				close;
+			case 2:
+				if (dmdswrd_Q2 & 2) {
+					mes "[Mysterious Blacksmith]";
+					mes "อ่าใช่เธอต้องเป็น";
+					mes "สงสัยว่าตัวเล็กขนาดนี้";
+					mes "กริชสามารถมีพลังเช่นนี้ได้";
+					mes "มันง่ายมากฉันร่ายต้องห้าม";
+					mes "เวทย์คำสาปเพื่อฝังกริชด้วยพลังทำลายล้างที่น่ากลัว";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "คำสาปที่ฉันร่ายมันช่าง";
+					mes "ทรงพลังถ้าฉันใช้มัน";
+					mes "กริชโลหะมันจะ";
+					mes "ละลายทันที Ogre";
+					mes "ฟันเป็นวัสดุเดียวที่";
+					mes "สามารถต้านทานเวทย์คำสาปได้";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "แน่นอนมันเท่านั้น";
+					mes "ยุติธรรมเตือนคุณว่า";
+					mes "พลังแห่งคำสาป";
+					mes "เป็นเช่นนั้นยิ่งคุณ";
+					mes "ใช้ Grimtooth มันก็จะยิ่งเผาผลาญวิญญาณของคุณมากขึ้นเท่านั้น ... ";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ฉันเต็มใจที่จะปลอม";
+					mes "กริมทู ธ ถ้าคุณทำได้";
+					mes "พิสูจน์ว่าสมควรที่จะใช้มัน";
+					mes "พลังและให้ทั้งหมด";
+					mes "ฉันต้องสร้างมันขึ้นมา";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ฉันต้องการ ... ";
+					mes "^0099FF1 Emperium^000000,";
+					mes "^0099FF100 Ogre Teeth^000000,";
+					mes "^0099FF10 Blades of Darkness^000000,";
+					mes "^0099FF5 Cursed Rubies^000000 and";
+					mes "^0099FF1 Broken Sword Handle^000000.";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ฉันไม่ต้องการ";
+					mes "เอ็มพีเรียมสร้าง";
+					mes "ดาบต้องสาป แต่ฉันทำ";
+					mes "ต้องการให้คุณพิสูจน์ว่าคุณ";
+					mes "คู่ควรกับ Grimtooth's";
+					mes "พลังคุณรับมือได้จริงหรือ";
+					set dmdswrd_Q2,dmdswrd_Q2 | 16;
+					set event_magum,6;
+					close;
+				}
+				mes "[Mysterious Blacksmith]";
+				mes "Hmpf คุณไม่ได้จริงๆ";
+				mes "รู้ว่าคุณกำลังถามอะไร";
+				mes "เพื่อไหมฉันจะไม่สร้าง";
+				mes "อาวุธชนิดนั้นสำหรับใครก็ได้";
+				mes "คนโง่เขลาเรียนรู้เพิ่มเติมเกี่ยวกับ";
+				mes "กริมทู ธ ก่อนถามอีก!";
+				close;
+			case 3:
+				if (dmdswrd_Q2 & 4) {
+					mes "[Mysterious Blacksmith]";
+					mes "คุณกำลังบอกฉันว่า";
+					mes "คุณต้องการดาบที่ได้รับ";
+					mes "ถูกสาปโดยวิญญาณทั้งหมดที่มี";
+					mes "เสียชีวิตจากการตัดสินประหารชีวิตนับพันครั้ง?";
+					mes "ฮ่าฮ่าฮ่าน่าสนใจมาก!";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ใช่ ... แต่ละครั้งนี้";
+					mes "ดาบฟันคนผิด";
+					mes "อาชญากรดาบคือ";
+					mes "สาปแช่งด้วยความโกรธและ";
+					mes "เสียใจกับผู้ถูกฆ่า";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "เมื่อเวลาผ่านไปเพชฌฆาต";
+					mes "สะสมความน่ากลัวอย่างแท้จริง";
+					mes "พลังจากความเกลียดชังของคนเหล่านั้น";
+					mes "มันถูกฆ่าอย่างไรก็ตามเขาเป็นใคร";
+					mes "ใช้ดาบนี้เสี่ยงที่จะถูกใช้ไปโดยความวิกลจริตและความเกลียดชัง";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "คนสุดท้ายเพื่อใคร";
+					mes "ฉันสร้างดาบนี้ถาม";
+					mes "ฉันจะทำลายมันกลัวว่า";
+					mes "มันจะทำให้จิตใจของเขาเสียหายด้วย";
+					mes "เลือดของมัน แต่ถ้าคุณคิดว่าคุณทนได้ฉันอาจจะปลอมมัน ... ";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "แค่พามา ... ";
+					mes "^0099FF50 Amulets^000000,";
+					mes "^0099FF1 Emperium^000000,";
+					mes "^0099FF2 Executioner's Gloves^000000,";
+					mes "^0099FF10 Bloody Edges^000000 and";
+					mes "^0099FF3 Necklaces of Oblivion^000000.";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "นั่นคือของที่ฉันต้องการ";
+					mes "สร้างดาบประทับด้วย";
+					mes "พลังชั่วร้ายสำหรับ Emperium ลองพิจารณาการทดสอบของฉันดูว่าคุณ";
+					mes "มีความสามารถในการกวัดแกว่ง";
+					mes "เพชฌฆาตที่ถูกสาป ... ";
+					set dmdswrd_Q2,dmdswrd_Q2 | 32;
+					set event_magum,6;
+					close;
+				}
+				mes "[Mysterious Blacksmith]";
+				mes "คุณรู้อะไรไหม";
+				mes "คุณกำลังถามฉัน ... ?";
+				mes "Fool! Go and learn more";
+				mes "เกี่ยวกับ Executioner! แล้ว,";
+				mes "บางทีคุณอาจจะเข้าใจว่า";
+				mes "ดาบนั้นอันตรายจริงๆ!";
+				close;
+			case 4:
+				mes "[Mysterious Blacksmith]";
+				mes "หืม ... ?";
+				mes "นั่นคือความจริง?";
+				close;
+			}
+		}
+		close;
+	}
+	else if (event_magum == 6) {
+		mes "[Mysterious Blacksmith]";
+		mes "อืมม ... ";
+		mes "พามา";
+		mes "รายการที่ต้องการ?";
+		mes "หรือว่าลืมอะไรไป";
+		mes "คุณต้องพามาหาฉันไหม";
+		next;
+		switch(select("เอ่อมีของอีกแล้วเหรอ:ใช่ฉันนำของที่จำเป็นทั้งหมดมาด้วย:โอ้! อืมไม่เป็นไร!")) {
+		case 1:
+			mes "[Mysterious Blacksmith]";
+			mes "Hmpf ฉันคิดอย่างนั้น";
+			mes "ตอนนี้ดาบไหนทำ";
+			mes "คุณต้องการให้ฉันปลอม?";
+			next;
+			switch(select("Mysteltainn.:Grimtooth.:Executioner.:รอ! ฉันเพิ่งนึกออก! ")) {
+			case 1:
+				if ((dmdswrd_Q2 & 1) || (dmdswrd_Q2 & 8)) {
+					mes "[Mysterious Blacksmith]";
+					mes "^0099FF1 Young Twig^000000,";
+					mes "^0099FF1 Emperium^000000,";
+					mes "^0099FF1 Loki's Whispers^000000,";
+					mes "^0099FF1 Mother's Nightmare^000000 and";
+					mes "^0099FF1 Foolishness of the Blind^000000.";
+					mes "That is what I need.";
+					close;
+				}
+				mes "[Mysterious Blacksmith]";
+				mes "หืมคุณไม่เข้าใจ";
+				mes "พอเกี่ยวกับ Mysteltainn สำหรับ";
+				mes "ฉันยอมเสี่ยงกับการตีดาบเล่มนั้น";
+				mes "สำหรับคุณ. คิดใหม่:ซึ่ง";
+				mes "ขอให้สร้างดาบไหม";
+				close;
+			case 2:
+				if ((dmdswrd_Q2 & 2) || (dmdswrd_Q2 & 16)) {
+					mes "[Mysterious Blacksmith]";
+					mes "ฉันต้องการ ... ";
+					mes "^0099FF1 Emperium^000000,";
+					mes "^0099FF100 Ogre Teeth^000000,";
+					mes "^0099FF10 Blades of Darkness^000000,";
+					mes "^0099FF5 Cursed Rubies^000000 and";
+					mes "^0099FF1 Broken Sword Handle^000000.";
+					close;
+				}
+				mes "[Mysterious Blacksmith]";
+				mes "อืมคุณยังไม่รู้จักพอ";
+				mes "เกี่ยวกับ Grimtooth สำหรับฉัน";
+				mes "เสี่ยงต่อการปลอมเพื่อคุณเรียนรู้";
+				mes "เพิ่มเติมเกี่ยวกับกริชนั้นถ้าคุณ";
+				mes "อยากครอบครองมันจริงๆ ... ";
+				close;
+			case 3:
+				if ((dmdswrd_Q2 & 4) || (dmdswrd_Q2 & 32)) {
+					mes "[Mysterious Blacksmith]";
+					mes "แค่พามา ... ";
+					mes "^0099FF50 Amulets^000000,";
+					mes "^0099FF1 Emperium^000000,";
+					mes "^0099FF2 Executioner's Gloves^000000,";
+					mes "^0099FF10 Bloody Edges^000000 and";
+					mes "^0099FF3 Necklaces of Oblivion^000000.";
+					close;
+				}
+				mes "[Mysterious Blacksmith]";
+				mes "คุณไม่รู้อะไรเลย";
+				mes "เกี่ยวกับ Executioner เรียนรู้";
+				mes "เพิ่มเติมเกี่ยวกับดาบเล่มนั้นก่อนหน้านี้";
+				mes "คุณลองถามฉันดูสิ";
+				mes "ปลอมความชั่วร้ายนั้น";
+				close;
+			case 4:
+				mes "[Mysterious Blacksmith]";
+				mes "สบายดี";
+				mes "จากนั้นนำทั้งหมด";
+				mes "สิ่งของที่ฉันต้องการ";
+				mes "เมื่อคุณพร้อม";
+				close;
+			}
+		case 2:
+			mes "[Mysterious Blacksmith]";
+			mes "คุณก็คิดว่าคุณ";
+			mes "พร้อมแล้วตอนนี้ดาบไหน";
+			mes "อยากให้ฉันประดิษฐ์ไหม";
+			next;
+			switch(select("Mysteltainn:Grimtooth:Executioner:ฉันเปลี่ยนใจแล้ว!")) {
+			case 1:
+				if (dmdswrd_Q2 & 8) {
+					mes "[Mysterious Blacksmith]";
+					mes "Mysteltainn. หืม";
+					mes "ให้ฉันแน่ใจ";
+					mes "ที่คุณนำมา";
+					mes "ทุกสิ่งที่ฉันต้องการ";
+					mes "สร้างดาบเล่มนี้ ... ";
+					next;
+					if (countitem(7018) < 1) {
+						mes "[Mysterious Blacksmith]";
+						mes "อืมอืม.";
+						mes "ลืมไปแล้ว";
+						mes "นำ ^0099FF1 หนุ่มทวิก ^000000,";
+						mes "ศูนย์รวมของ";
+						mes "กิ่งไม้ Mysteltainn ที่ใช้ฆ่า Baldur รีบนำมา ... ";
+						close;
+					}
+					if (countitem(7019) < 1) {
+						mes "[Mysterious Blacksmith]";
+						mes "หืมคุณลืมเอามา";
+						mes "^0099FF1 Loki's Whispers ^000000 เราต้องการ";
+						mes "ที่จะฝังดาบด้วย";
+						mes "พลังชั่วร้ายมหาศาลไปและ";
+						mes "หาให้เร็วที่สุด!";
+						close;
+					}
+					if (countitem(7020) < 1) {
+						mes "[Mysterious Blacksmith]";
+						mes "หืมคุณยังต้อง";
+						mes "นำ ^0099FF1 แม่ฝันร้าย ^000000";
+						mes "เพื่อปลูกฝังพลังแห่งความทุกข์ยาก";
+						mes "และหลุมฝังศพหมายถึงดาบนี้ ... ";
+						close;
+					}
+					if (countitem(7021) < 1) {
+						mes "[Mysterious Blacksmith]";
+						mes "หืมคุณยังต้อง";
+						mes "นำ ^0099FF1 ความโง่เขลา";
+						mes "ของคนตาบอด ^000000 เพื่อปลูกฝัง";
+						mes "พลังแห่งความเสียใจที่น่าเศร้า";
+						mes "คำสาปที่ฝังอยู่ในดาบ ... ";
+						close;
+					}
+					if (countitem(714) < 1) {
+						mes "[Mysterious Blacksmith]";
+						mes "คุณมีทุกอย่าง";
+						mes "ฉันต้องการที่จะปลอม";
+						mes "Mysteltainn แต่คุณต้อง";
+						mes "พิสูจน์ตัวเองว่ามีความสามารถ";
+						mes "ของการกวัดแกว่งนำ ^0099FF1 Emperium ^000000 แล้วฉันจะรับรู้คุณค่าของคุณ";
+						close;
+					}
+					if (countitem(7018) > 0 && countitem(7019) > 0 && countitem(7020) > 0 && countitem(7021) > 0 && countitem(714) > 0) {
+						mes "[Mysterious Blacksmith]";
+						mes "ทำได้ดีนักผจญภัย";
+						mes "ทุกอย่างดูเหมือนจะพร้อม";
+						mes "ขอเวลาอัญเชิญ";
+						mes "อำนาจมืดที่จะปลอม";
+						mes "ดาบต้องห้าม Mysteltainn.";
+						next;
+						mes "[Mysterious Blacksmith]";
+						mes "ฉัน ... ฉันไม่เคยคิด";
+						mes "ฉันจะได้เห็นสิ่งนี้";
+						mes "ดาบอีกแล้วเอาสิ";
+						mes "เร็วเข้า! ฉันไม่ต้องการ";
+						mes "เพื่อสัมผัสมันถ้าฉันสามารถหลีกเลี่ยงได้";
+						delitem 7018,1; //Young_Twig
+						delitem 7019,1; //Loki's_Whispers
+						delitem 7020,1; //Mother's_Nightmare
+						delitem 7021,1; //Foolishness_Of_Blind
+						delitem 714,1; //Emperium
+						getitem 1138,1; //Mysteltainn_
+						next;
+						mes "[Mysterious Blacksmith]";
+						mes "ระวังให้มาก";
+						mes "อย่าปล่อยให้ตัวเอง";
+						mes "ถูกใช้โดย";
+						mes "พลังของดาบนั่น!";
+						mes "โดยทั้งหมดต่อต้าน";
+						mes "คำสาปอันน่าเศร้าของ Mysteltainn!";
+						close;
+					}
+				}
+				else if (dmdswrd_Q2 & 1) {
+					mes "[Mysterious Blacksmith]";
+					mes "คุณต้องการ ... ";
+					mes "ดาบเล่มนั้น?";
+					mes "อย่าพูดของมัน";
+					mes "ชื่อเบาจัง!";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "คุณเข้าใจคำสาป";
+					mes "บนดาบนั้นหรือ The Mysteltainn";
+					mes "ได้รับอำนาจมืดจาก";
+					mes "กิ่งไม้ที่ใช้ในการฆ่า Baldur เทพเจ้าแห่งแสงขอฉันเล่าเรื่อง";
+					mes "เรื่องย่อเท่าที่จะทำได้ ... ";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ในยุคของเทพเจ้า";
+					mes "สวยบริสุทธิ์และ";
+					mes "ความสุขที่ Baldur เป็นที่รัก";
+					mes "สิ่งมีชีวิตทั้งหลายจงช่วย";
+					mes "one:โลกิเทพแห่งเล่ห์เหลี่ยม";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "เมื่อโลกิออกจากความหึงหวง";
+					mes "ตัดสินใจที่จะฆ่า Baldur";
+					mes "เทพีเฟรย์จามีความฝัน";
+					mes "เกี่ยวกับการตายของ Baldur กลัว";
+					mes "ความฝันของเธอที่เป็นจริง";
+					mes "เธอให้คำปรึกษากับเทพเจ้า";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "เพื่อปกป้องบัลดูร์เทพเจ้า";
+					mes "ตัดสินใจถอนคำสาบาน";
+					mes "จะไม่ทำร้าย Baldur จาก";
+					mes "ทุกสิ่งมีชีวิตวัตถุและ";
+					mes "พลังธรรมชาติทุกคนที่เป็น";
+					mes "ขอให้ตกลงที่จะทำคำสาบานนี้";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ของสิ่งมีชีวิตและวัตถุทั้งหมด";
+					mes "ในจักรวาลเฟรย่าเท่านั้น";
+					mes "ละเลยที่จะขอต้นไม้ต้นหนึ่ง";
+					mes "ให้คำสาบานนี้:The Mysteltainn เฟรย์จาเชื่อว่ามันไกลเกินไป";
+					mes "เล็กและไม่มีความสำคัญที่จะถาม";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "เชื่อว่าทุกอย่าง";
+					mes "ในจักรวาลได้สาบาน";
+					mes "อย่าทำร้าย Baldur เทพ";
+					mes "ทำให้เป็นงานอดิเรกใหม่";
+					mes "ขว้างมีดสั้น ๆ ใส่";
+					mes "เทพเจ้าที่อยู่ยงคงกระพันที่ใกล้เข้ามาแล้ว";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "อย่างไรก็ตามโลกิถูกกำหนด";
+					mes "จะฆ่า Baldur และ, ปลอมตัว";
+					mes "ตัวเองถาม Freyja อย่างสุภาพ";
+					mes "ถ้ามีวัตถุใด ๆ ใน";
+					mes "โลกที่ไม่ได้ใช้";
+					mes "คำสาบานที่จะไม่ทำร้าย Baldur";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "Freyja สงสัยว่าไม่มีอะไรและ";
+					mes "บอกโลกิเกี่ยวกับความลับของ";
+					mes "Mysteltainn ครั้งต่อไปที่เทพเจ้าเล่นเกมขว้างจักร";
+					mes "สิ่งของที่ Baldur โลกิอยู่ที่นั่นพร้อมกิ่งไม้ Mysteltainn เล็ก ๆ ";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "จากนั้นให้ผสมของเขา";
+					mes "ทรยศโลกิหลอก";
+					mes "ฮอดแฝดคนตาบอดของบัลดูร์";
+					mes "พี่ชายทุ่ม";
+					mes "กิ่งไม้เข้าไปในหัวใจของ Baldur และ";
+					mes "เทพเจ้าแห่งแสงจึงถูกสังหาร";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ตลอดหลายปีที่ผ่านมา";
+					mes "Mysteltainn ถูกแล้ว";
+					mes "สร้างเป็นดาบ";
+					mes "ที่คุณอาจคุ้นเคย";
+					mes "ด้วยวันนี้พลังของมันคือ";
+					mes "เทพเจ้าห้ามโดยเด็ดขาด";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "อย่างไรก็ตามถ้าคุณเต็มใจ";
+					mes "เสี่ยงต่อคำสาปของดาบเล่มนั้น";
+					mes "เพื่อประโยชน์ของพลัง";
+					mes "ฉันจะปลอมให้คุณถ้าคุณ";
+					mes "สามารถนำสิ่งต่อไปนี้มาให้ฉัน";
+					mes "รายการมันจะเข้าท่า ... ";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "^0099FF1 Young Twig^000000,";
+					mes "^0099FF1 Emperium^000000,";
+					mes "^0099FF1 Loki's Whispers^000000,";
+					mes "^0099FF1 Mother's Nightmare^000000 and";
+					mes "^0099FF1 Foolishness of the Blind^000000.";
+					mes "That is what I need.";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ไม่ขออะไรมาก";
+					mes "คุณแค่นำวัตถุดิบเท่านั้น";
+					mes "วัสดุสำหรับตีดาบ";
+					mes "และ Emperium เพื่อพิสูจน์ความเป็นคุณ";
+					mes "คุ้มค่ากับฉันฉันจะรอ";
+					mes "สำหรับการกลับมาของคุณนักผจญภัย";
+					set dmdswrd_Q2,dmdswrd_Q2 | 8;
+					close;
+				}
+				mes "[Mysterious Blacksmith]";
+				mes "หืมถ้าคุณต้องการจริงๆ";
+				mes "Mysteltainn ฉันแนะนำให้คุณ";
+				mes "เพื่อเรียนรู้เพิ่มเติมคุณ";
+				mes "ต้องรู้ถึงความเสี่ยงที่เกี่ยวข้อง";
+				mes "ในการใช้พลังแบบนั้น ... ";
+				close;
+			case 2:
+				if (dmdswrd_Q2 & 16) {
+					mes "[Mysterious Blacksmith]";
+					mes "คุณต้องการฉัน";
+					mes "เพื่อปลอม Grimtooth";
+					mes "ก่อนอื่นให้ฉันตรวจสอบ";
+					mes "ถ้าคุณนำมาทั้งหมด";
+					mes "ของที่ฉันต้องการ";
+					next;
+					if (countitem(7002) < 100) {
+						mes "[Mysterious Blacksmith]";
+						mes "หืมฉันยังต้องการ";
+						mes "^0099FF100 Ogre ฟัน ^000000 ถึง";
+						mes "สร้างดาบที่สามารถ";
+						mes "ทนต่อพลังของ";
+						mes "เวทมนตร์ต้องคำสาปของกริมทู ธ ";
+						mes "ไปนำพวกเขาเร็ว ๆ นี้";
+						close;
+					}
+					if (countitem(724) < 5) {
+						mes "[Mysterious Blacksmith]";
+						mes "เพื่อที่จะวาง";
+						mes "คำสาปที่มอบให้";
+						mes "กริมทู ธ มันใหญ่โต";
+						mes "พลังฉันต้องการให้คุณนำ";
+						mes "^0099FF5 ต้องสาปทับทิม ^000000 รีบหน่อย";
+						mes "แล้วนำมาให้ฉันเร็ว ๆ นี้";
+						close;
+					}
+					if (countitem(7023) < 10) {
+						mes "[Mysterious Blacksmith]";
+						mes "หืมฉันยังต้องการ";
+						mes "^0099FF10 ใบมีดแห่งความมืด ^000000";
+						mes "เพื่อให้ฉันปลอม";
+						mes "กริมทู ธ นำพวกนั้น";
+						mes "ที่นี่โดยเร็วที่สุด";
+						close;
+					}
+					if (countitem(7022) < 1) {
+						mes "[Mysterious Blacksmith]";
+						mes "หืมเกือบได้แล้ว";
+						mes "ทุกอย่างพร้อม แต่";
+						mes "ฉันจะต้อง ^0099FF1 ดาบหัก";
+						mes "จัดการ ^000000 เพื่อปลอม";
+						mes "กริมทู ธ รีบ ๆ และ";
+						mes "นำหนึ่งในนั้น ... ";
+						close;
+					}
+					if (countitem(714) < 1) {
+						mes "[Mysterious Blacksmith]";
+						mes "คุณมีทุกอย่างที่ฉันต้องการ";
+						mes "สร้างดาบ แต่ฉันจะไม่ปลอมมันจนกว่าคุณจะพิสูจน์ว่าคุณ";
+						mes "สามารถควบคุมมันได้";
+						mes "พลังนำ 1 Emperium มาให้ฉัน";
+						mes "เพื่อพิสูจน์ความคุ้มค่าของคุณ";
+						close;
+					}
+					if (countitem(7002) > 99 && countitem(724) > 4 && countitem(7023) > 9 && countitem(7022) > 0 && countitem(714) > 0) {
+						mes "[Mysterious Blacksmith]";
+						mes "ฉันเห็นว่าคุณมี";
+						mes "เตรียมตัวให้พร้อม";
+						mes "บางทีคุณอาจจะมีหลุมฝังศพ";
+						mes "ต้องการพลังของกริมทู ธ ";
+						mes "ขอเวลาสักครู่ในขณะที่ฉันปลอม";
+						mes "ดาบต้องสาปนี้สำหรับคุณ ... ";
+						next;
+						mes "[Mysterious Blacksmith]";
+						mes "เสร็จแล้ว!";
+						mes "รีบไปเลย!";
+						mes "ฉันไม่อยากจัดการ";
+						mes "กริมทู ธ ยาวกว่า";
+						mes "ฉันต้อง! คุณจะเข้าใจ";
+						mes "เร็ว ๆ นี้เมื่อคุณใช้มัน ... ";
+						delitem 7002,100; //Ogre_Tooth
+						delitem 724,5; //Cardinal_Jewel_
+						delitem 7023,10; //Blade_Lost_In_Darkness
+						delitem 7022,1; //Old_Hilt
+						delitem 714,1; //Emperium
+						getitem 1237,1; //Grimtooth_
+						next;
+						mes "[Mysterious Blacksmith]";
+						mes "ฉันรู้ว่าเธออาจจะ";
+						mes "มีเจตนาที่ดีต่อ";
+						mes "พลังของกริมทู ธ แต่ทำ";
+						mes "อย่าประเมินค่าตัวเองสูงเกินไป!";
+						mes "ระวังกริมทู ธ ไว้เสมอ";
+						mes "และอย่าปล่อยให้มันกัดกินวิญญาณของคุณ!";
+						close;
+					}
+				}
+				else if (dmdswrd_Q2 & 2) {
+					mes "[Mysterious Blacksmith]";
+					mes "อ่าใช่เธอต้องเป็น";
+					mes "สงสัยว่าตัวเล็กขนาดนี้";
+					mes "กริชมีพลังเช่นนี้";
+					mes "มันง่ายมากฉันร่ายต้องห้าม";
+					mes "เวทย์คำสาปเพื่อฝังกริชด้วยพลังทำลายล้างที่น่ากลัว";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "คำสาปที่ฉันร่ายมันช่าง";
+					mes "ทรงพลังถ้าฉันใช้มัน";
+					mes "กริชโลหะมันจะ";
+					mes "ละลายทันที Ogre";
+					mes "ฟันเป็นวัสดุเดียวที่";
+					mes "สามารถต้านทานเวทย์คำสาปได้";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "แน่นอนมันเท่านั้น";
+					mes "ยุติธรรมเตือนคุณว่า";
+					mes "พลังแห่งคำสาป";
+					mes "เป็นเช่นนั้นยิ่งคุณ";
+					mes "ใช้ Grimtooth มันก็จะยิ่งเผาผลาญวิญญาณของคุณมากเท่านั้น ... ";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ฉันเต็มใจที่จะปลอม";
+					mes "กริมทู ธ ถ้าคุณทำได้";
+					mes "พิสูจน์ว่าสมควรที่จะใช้มัน";
+					mes "พลังและการจัดหาทั้งหมด";
+					mes "วัสดุที่ต้องสร้างมัน";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ฉันต้องการ ... ";
+					mes "^0099FF1 Emperium^000000,";
+					mes "^0099FF100 Ogre Teeth^000000,";
+					mes "^0099FF10 Blades of Darkness^000000,";
+					mes "^0099FF5 Cursed Rubies^000000 and";
+					mes "^0099FF1 Broken Sword Handle^000000.";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ฉันไม่ต้องการ";
+					mes "เอ็มพีเรียมสร้าง";
+					mes "ดาบต้องสาป แต่ฉันทำ";
+					mes "ต้องการให้คุณพิสูจน์ว่าคุณ";
+					mes "คู่ควรกับ Grimtooth's";
+					mes "พลังคุณรับมือได้จริงหรือ";
+					set dmdswrd_Q2,dmdswrd_Q2 | 16;
+					close;
+				}
+				mes "[Mysterious Blacksmith]";
+				mes "หืมฉันไม่สามารถสู้จะพิจารณา";
+				mes "ปลอม Grimtooth ให้คุณ";
+				mes "เมื่อคุณรู้น้อยมาก";
+				mes "เกี่ยวกับเรื่องนี้คุณควรเรียนรู้เพิ่มเติม";
+				mes "เกี่ยวกับดาบแค่นั้นคุณ";
+				mes "ถามฉันอีกครั้ง";
+				close;
+			case 3:
+				if (dmdswrd_Q2 & 32) {
+					mes "[Mysterious Blacksmith]";
+					mes "ดาบเพชฌฆาต";
+					mes "ให้ฉันดูว่าเธอมาไหม";
+					mes "เตรียมพร้อมที่จะใช้ดาบนั้น";
+					mes "ด้วยสองมือของคุณเอง ... ";
+					next;
+					if (countitem(7017) < 2) {
+						mes "[Mysterious Blacksmith]";
+						mes "หืมเพื่อฉัน";
+						mes "เพื่อปลอม Executioner,";
+						mes "ฉันต้องการให้คุณพาฉันมา";
+						mes "^0099FF2 Executioner's Gloves^000000.";
+						close;
+					}
+					if (countitem(7024) < 10) {
+						mes "[Mysterious Blacksmith]";
+						mes "เพื่อสร้าง";
+						mes "ใบมีดฉันต้องการอย่างน้อย";
+						mes "^0099FF10 Bloody Edges^000000. Find";
+						mes "พวกนั้นเร็วเท่าคุณ";
+						mes "สามารถนำมาให้ฉันได้";
+						close;
+					}
+					if (countitem(1008) < 3) {
+						mes "[Mysterious Blacksmith]";
+						mes "เพื่อที่จะร่ายมนต์";
+						mes "ผู้ประหารชีวิตด้วย";
+						mes "อำนาจมืดของมันฉันจะ";
+						mes "ต้องการให้คุณพาฉันมา";
+						mes "^0099FF3 Necklaces of Oblivion^000000.";
+						mes "ไปรีบไปรับ!";
+						close;
+					}
+					if (countitem(609) < 50) {
+						mes "[Mysterious Blacksmith]";
+						mes "หืมคุณลืมไปแล้ว";
+						mes "bring me ^0099FF50 Amulets^000000. I need";
+						mes "เหล่านั้นเพื่อที่จะฝัง";
+						mes "พลังที่เหลือเชื่อ";
+						mes "ให้ Executioner ของมัน";
+						mes "พลังมหาศาล ... ";
+						close;
+					}
+					if (countitem(714) < 1) {
+						mes "[Mysterious Blacksmith]";
+						mes "คุณมีทุกอย่างที่ฉันต้องการ";
+						mes "เพื่อปลอม Executioner แต่";
+						mes "ฉันยังไม่แน่ใจว่าคุณ";
+						mes "สามารถจัดการได้";
+						mes "พลังความกลัวของฉันจะหมดไป";
+						mes "ถ้าคุณนำ ^0099FF1 Emperium ^000000.";
+						close;
+					}
+					if (countitem(7017) > 1 && countitem(7024) > 9 && countitem(1008) > 2 && countitem(609) > 49 && countitem(714) > 0) {
+						mes "[Mysterious Blacksmith]";
+						mes "เยี่ยมมากฉันเห็นว่าคุณ";
+						mes "เตรียมทุกอย่างที่";
+						mes "ฉันขอเวลาสักครู่";
+						mes "ในขณะที่ฉันเรียกความมืด";
+						mes "กองกำลังที่จำเป็นในการปลอม";
+						mes "เพชฌฆาต ... ";
+						next;
+						mes "[Mysterious Blacksmith]";
+						mes "นานมากแล้ว";
+						mes "ตั้งแต่ฉันได้เห็นสิ่งนี้";
+						mes "ดาบที่น่ากลัวตอนนี้";
+						mes "เอาไป! ระวังและอย่า";
+						mes "ปล่อยให้ความกระหายเลือดผลาญคุณ!";
+						delitem 7017,2; //Executioner's_Mitten
+						delitem 7024,10; //Bloody_Edge
+						delitem 1008,3; //Frozen_Heart
+						delitem 609,50; //Amulet
+						getitem 1169,1; //Executioner_
+						close;
+					}
+				}
+				else if (dmdswrd_Q2 & 4) {
+					mes "[Mysterious Blacksmith]";
+					mes "คุณกำลังบอกฉันว่า";
+					mes "คุณต้องการดาบที่ได้รับ";
+					mes "ถูกสาปโดยวิญญาณทั้งหมดที่มี";
+					mes "เสียชีวิตจากการตัดสินประหารชีวิตนับพันครั้ง?";
+					mes "ฮ่าฮ่าฮ่าน่าสนใจมาก!";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "ใช่ ... แต่ละครั้งนี้";
+					mes "ดาบฟันคนผิด";
+					mes "อาชญากรดาบคือ";
+					mes "สาปแช่งด้วยความโกรธและ";
+					mes "เสียใจกับผู้ถูกฆ่า";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "เมื่อเวลาผ่านไปเพชฌฆาต";
+					mes "สะสมความน่ากลัวอย่างแท้จริง";
+					mes "พลังจากความเกลียดชังของคนเหล่านั้น";
+					mes "มันถูกฆ่าอย่างไรก็ตามเขาเป็นใคร";
+					mes "ใช้ดาบนี้เสี่ยงที่จะถูกใช้ไปโดยความวิกลจริตและความเกลียดชัง";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "คนสุดท้ายเพื่อใคร";
+					mes "ฉันสร้างดาบนี้ถาม";
+					mes "ฉันจะทำลายมันกลัวว่า";
+					mes "มันจะทำให้จิตใจของเขาเสียหายด้วย";
+					mes "เลือดของมัน แต่ถ้าคุณคิดว่าคุณทนได้ฉันอาจจะปลอมมัน ... ";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "แค่พามา ... ";
+					mes "^0099FF50 Amulets^000000,";
+					mes "^0099FF1 Emperium^000000,";
+					mes "^0099FF2 Executioner's Gloves^000000,";
+					mes "^0099FF10 Bloody Edges^000000 and";
+					mes "^0099FF3 Necklaces of Oblivion^000000.";
+					next;
+					mes "[Mysterious Blacksmith]";
+					mes "นั่นคือของที่ฉันต้องการ";
+					mes "สร้างดาบประทับด้วย";
+					mes "พลังชั่วร้ายสำหรับ Emperium ลองพิจารณาการทดสอบของฉันดูว่าคุณ";
+					mes "มีความสามารถในการกวัดแกว่ง";
+					mes "เพชฌฆาตที่ถูกสาป ... ";
+					set dmdswrd_Q2,dmdswrd_Q2 | 4;
+					close;
+				}
+				mes "[Mysterious Blacksmith]";
+				mes "Hmpf ฉันไม่คิดว่า";
+				mes "เข้าใจพอแล้ว";
+				mes "เกี่ยวกับ Executioner ถึง";
+				mes "ขอให้ฉันปลอมมันให้ดีกว่านี้";
+				mes "เรียนรู้เพิ่มเติมเกี่ยวกับสิ่งที่ถูกสาป";
+				mes "ดาบถ้าคุณต้องการมันจริงๆ ... ";
+				close;
+			case 4:
+				mes "[Mysterious Blacksmith]";
+				mes "หืม ... ?";
+				mes "นั่นคือความจริง?";
+				close;
+			}
+		case 3:
+			mes "[Mysterious Blacksmith]";
+			mes "Hmpf ... ";
+			mes "ถ้าอย่างนั้นก็มา";
+			mes "ย้อนกลับไปเมื่อคุณรู้";
+			mes "สิ่งที่คุณต้องการ";
+			mes "จากฉันนักผจญภัย";
+			close;
+		}
+	}
+}

@@ -1,0 +1,402 @@
+/*guildhall1,88,73,5	script	HomeKafra	-1,{
+
+	set @npc$,"^0066FF[ Kafra ]^000000";
+	set .@zeny_resetstatus,300000;
+	set .@zeny_resetskill,300000;
+
+	mes @npc$;
+	mes "ยินดีต้อนรับคุณ : ^FF0000 "+strcharinfo(0)+" ^000000"; 
+	mes "มีอะไรให้ข้าช่วยรึ ?"; 
+	next;
+	menu "- บันทึกจุดเซฟ",saves,
+	"- เก็บของ",Storages,
+	"- บริการเช่า รถเข็น นก เป็ด",Rents,
+	"- Reset Status & Skill",Resetss,
+	"- เรียกลูกกิล / ปาร์ตี้",recallgp,
+	"- เรียนสกิลเสริม",platinumskill,
+	"- Cancel",Lcancel;
+
+saves:
+	mes @npc$;
+	mes "ทำการเซฟเรียบร้อย...";
+	getmapxy (.@Map$,.@X,.@Y,0);
+	savepoint .@Map$,.@X,.@Y;
+	close2;
+	end;
+
+Storages:
+	mes @npc$;
+	mes "เปิดโกดังสำเร็จแล้ว...";
+	close2;
+	openstorage;
+	end;
+
+recallgp:
+	callfunc "recallguildparty";
+	close;
+
+Rents:
+	mes @npc$;
+	mes "เลือกสิ่งที่ต้องการเช่าค่ะ";
+	next;
+	switch (select("- Peco Peco","- Falcon","- Cart")) {
+	case 1:
+		mes @npc$;
+		if (checkriding()) {
+			mes "คุณมี Peco Peco อยู่แล้ว";
+			close2;
+		} else if ( (Class == 7) || (Class == 14) || (Class == 4008) || (Class == 4015) || (Class == 4030) || (Class == 4037) ) {
+			mes "ทำการเช่าเรียบร้อยแล้วค่ะ";
+			setriding;
+			close2;
+		} else {
+			mes "คุณไม่มีสิทธิ์เช่า Peco Peco ค่ะ";
+			close2;
+		}
+	break;
+	case 2:
+		mes @npc$;
+		if (checkfalcon()) {
+			mes "คุณมี Falcon อยู่แล้ว";
+			close2;
+		} else if ( (Class == 11) || (Class == 4012) || (Class == 4034) ) {
+			mes "ทำการเช่าเรียบร้อยแล้วค่ะ";
+			setfalcon;
+			close2;
+		} else {
+			mes "คุณไม่มีสิทธิ์เช่า Falcon ค่ะ";
+			close2;
+		}
+	break;
+	case 3:
+		mes @npc$;
+		if (checkcart()) {
+			mes "คุณมี Cart อยู่แล้ว";
+			close2;
+		} else if ( (Class == 5) || (Class == 10) || (Class == 23) || (Class == 18) 
+		|| (Class == 4006) || (Class == 4011) || (Class == 4019) || (Class == 4028) 
+		|| (Class == 4033) || (Class == 4041) || (Class == 4045) ) {
+			mes "ทำการเช่าเรียบร้อยแล้วค่ะ";
+			setcart;
+			close2;
+		} else {
+			mes "คุณไม่มีสิทธิ์เช่า Cart ค่ะ";
+			close2;
+		}
+	break;
+	}
+	end;
+
+
+Resetss:
+	mes @npc$;
+	mes "อัตราค่าบริการมีดังนี้";
+	mes "ค่ารีเซ็ทสถานะ [ "+.@zeny_resetstatus+" Zeny ]";
+	mes "ค่ารีเซ็ทสกิล    [ "+.@zeny_resetskill+" Zeny ]";
+	next;
+	if (select("- Reset Status","- Reset Skill") == 1) {
+		mes @npc$;
+		if (Zeny < .@zeny_resetstatus) {
+			mes "คุณมี Zeny ไม่พอ";
+			close2;
+			end;
+		}
+		Zeny -= .@zeny_resetstatus;
+		resetstatus;
+		mes "ทำการ Reset Status";
+		mes "เรียบร้อยแล้วค่ะ";
+		close2;
+	} else {
+		mes @npc$;
+		if (Zeny < .@zeny_resetskill) {
+			mes "คุณมี Zeny ไม่พอ";
+			close2;
+			end;
+		}
+		if (checkriding()) setriding 0;
+		if (checkfalcon()) setfalcon 0;
+		if (checkcart()) setcart 0;
+		resetskill;
+		Zeny -= .@zeny_resetskill;
+		mes "ทำการ Reset Skill";
+		mes "เรียบร้อยแล้วค่ะ";
+		close2;
+	}
+	end;
+
+platinumskill:
+	mes @npc$;
+	mes "ฉันสามารถสอนสกิลพิเศษ";
+	mes "ให้แก่คุณได้แบบฟรีๆ";
+	mes "คุณต้องการเรียนหรือไม่";
+	next;
+	if (select ("ต้องการ:ไม่เอาหล่ะ")-1)
+	{
+		emotion ET_SORRY;
+		mes @npc$;
+		mes "ถ้าเปลี่ยนใจก็บอกละกัน";
+		close;
+	}
+	mes @npc$;
+		switch(Class)
+		{
+		case 0:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Novice";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 143,1,0;
+			break;
+		case 1:
+		case 4002:
+		case 4024:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Sword Man";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 144,1,0;
+			skill 145,1,0;
+			skill 146,1,0;
+			break;
+		case 7:
+		case 4008:
+		case 4030:
+		case 4054:
+		case 4060:
+		case 4096:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Knight";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 144,1,0;
+			skill 145,1,0;
+			skill 146,1,0;
+			skill 1001,1,0;
+			break;
+		case 14:
+		case 4014:
+		case 4037:
+		case 4066:
+		case 4073:
+		case 4102:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Crusader";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 144,1,0;
+			skill 145,1,0;
+			skill 146,1,0;
+			skill 1002,1,0;
+			break;
+		case 2:
+		case 4003:
+		case 4025:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Mage";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 157,1,0;
+			break;
+		case 9:
+		case 4010:
+		case 4032:
+		case 4055:
+		case 4061:
+		case 4097:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Wizard";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 157,1,0;
+			skill 1006,1,0;
+			break;
+		case 16:
+		case 4017:
+		case 4039:
+		case 4067:
+		case 4074:
+		case 4103:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Sage";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 157,1,0;
+			skill 1007,1,0;
+			skill 1008,1,0;
+			skill 1017,1,0;
+			skill 1018,1,0;
+			skill 1019,1,0;
+			break;
+		case 3:
+		case 4004:
+		case 4026:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Archer";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			break;
+		case 11:
+		case 4012:
+		case 4034:
+		case 4056:
+		case 4062:
+		case 4098:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Hunter";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			skill 1009,1,0;
+			break;
+		case 19:
+		case 4020:
+		case 4042:
+		case 4068:
+		case 4075:
+		case 4104:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Bard";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			skill 1010,1,0;
+			break;
+		case 20:
+		case 4021:
+		case 4043:
+		case 4069:
+		case 4076:
+		case 4105:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Dancer";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 147,1,0;
+			skill 148,1,0;
+			skill 1011,1,0;
+			break;
+
+		case 4:
+		case 4005:
+		case 4027:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Acolyte";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 156,1,0;
+			break;
+		case 8:
+		case 4009:
+		case 4031:
+		case 4057:
+		case 4063:
+		case 4099:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Priest";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 156,1,0;
+			skill 1014,1,0;
+			skill 363,10,0;
+			break;
+		case 15:
+		case 4016:
+		case 4038:
+		case 4070:
+		case 4077:
+		case 4106:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Monk";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 156,1,0;
+			skill 1015,1,0;
+			skill 1016,10,0;
+			break;
+		case 5:
+		case 4006:
+		case 4028:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Merchant";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			break;
+		case 10:
+		case 4011:
+		case 4033:
+		case 4058:
+		case 4064:
+		case 4100:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Blacksmith";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			skill 1012,1,0;
+			skill 1013,1,0;
+			break;
+		case 18:
+		case 4019:
+		case 4041:
+		case 4071:
+		case 4078:
+		case 4107:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Alchemist";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 153,1,0;
+			skill 154,1,0;
+			skill 155,1,0;
+			skill 238,1,0;
+			if(alch_bock != 1) getitem 7434,1;
+			set alch_bock,1;
+			break;
+
+		case 6:
+		case 4007:
+		case 4029:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Thife";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 149,1,0;
+			skill 150,1,0;
+			skill 151,1,0;
+			skill 152,1,0;
+			break;
+		case 12:
+		case 4013:
+		case 4035:
+		case 4059:
+		case 4065:
+		case 4101:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Assassin";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 149,1,0;
+			skill 150,1,0;
+			skill 151,1,0;
+			skill 152,1,0;
+			skill 1003,1,0;
+			skill 1004,1,0;
+			break;
+		case 17:
+		case 4018:
+		case 4040:
+		case 4072:
+		case 4079:
+		case 4108:
+			mes "คุณต้องเรียนสกิลพิเศษของสายอาชีพ Rogue";
+			mes "ฉันจะสอนให้คุณเดี๋ยวนี้";
+			skill 142,1,0;
+			skill 149,1,0;
+			skill 150,1,0;
+			skill 151,1,0;
+			skill 152,1,0;
+			skill 1005,1,0;
+			break;
+		}
+		next;
+		emotion 10;
+		mes @npc$;
+		mes "เอาล่ะ จบคลอสแล้วล่ะ";
+		close;
+		
+	Lcancel:
+	mes @npc$;
+	mes "...แล้วเจอกันใหม่...";
+	close;
+}//guildhall1,88,73,5	duplicate(HomeKafra)	HomeKafra#501	894
+//prontera,83,100,5	script	พนักงานบ้านเช่าs	874,{	//-	script	kafrahome	-1,{

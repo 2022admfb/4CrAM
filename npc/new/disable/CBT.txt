@@ -1,0 +1,847 @@
+auction_03,15,50,4	script	¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁCBT	-1,{
+	set .@accid, getcharid(3);
+	query_sql  "SELECT `userid`,`take_cbt` FROM `login` WHERE `account_id` = " + .@accid + " LIMIT 1", .@idgame$, .@takenpc;
+	
+	mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+	mes "ÃÒÂÅĞàÍÕÂ´";
+	mes "1. à¡çºàÅàÇÅ¶Ö§ 140  ÃÑº¿ÃÕ 10,000 Cash";
+	mes "2. à¡çºàÅàÇÅ¶Ö§ 160  ÃÑº¿ÃÕ ¡ÃĞà»ëÒ Greed";
+	mes "3. à¡çºàÅàÇÅ¶Ö§ 175  ÃÑºà¾ÔèÁ 10,000 Cash";
+	next;
+	mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+	mes "^FF0000ÊÒÁÒÃ¶ÃÑºä´éà¾ÕÂ§¤ÃÑé§à´ÕÂÇ";
+	mes "â»Ã´¤Ô´ãËé´Õ¡èÍ¹·Õè¨ĞÃÑºÃÒ§ÇÑÅ";
+	
+	
+	next;
+	if(.@takenpc == 1){
+		mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+		mes "^FF0000¤Ø³ä´éÃÑºÃÒ§ÇÑÅä»áÅéÇ";
+		mes "^FF0000äÁèÊÒÁÒÃ¶ÃÑºä´éÍÕ¡";
+		close;
+		end;
+	}
+	else{
+		
+	switch(select("ÃÑºÃÒ§ÇÑÅ LV 140 :ÃÑºÃÒ§ÇÑÅ LV 160:ÃÑºÃÒ§ÇÑÅ LV 175:¢Í¤Ô´´Ù¡èÍ¹")){
+		case 1 : 
+		
+		if (baselevel >=140 )&&(baselevel <=159 ){
+		mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+        mes "·èÒ¹á¹èã¨áÅéÇãªèäËÁ";
+		mes "äÍ´Õà¡ÁÊì ¢Í§¤Ø³¤×Í ^FF0000"+.@idgame$+"";
+		next;
+        switch(select("á¹è¹Í¹ :äÇé¤ÃÒÇËÅÑ§")){
+        case 1 :	
+        		
+		mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+		mes "ÂÔ¹´Õ´éÇÂÃÑºÃÒ§ÇÑÅ LV 140";
+		mes "¡Ô¨¡ÃÃÁ CBT ÊÓàÃç¨";
+		mes "^FF0000àÃÒ¨´¨ÓäÍ´Õ¢Í§·èÒ¹áÅéÇ";
+		mes "àÁ×èÍ Openbeta ¡ÃØ³Òãªé äÍ´Õ´Ñ§¡ÅèÒÇ ";
+		query_sql "INSERT INTO `CBT` (`account_id`,`getitem`) VALUES  ('"+.@idgame$+"','1')";
+		query_sql "UPDATE `login` SET `take_cbt`= '1' WHERE `account_id` = " + .@accid + " LIMIT 1";
+		close;
+		end;
+		case 2 :
+		mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+		mes "¶éÒ¾ÃéÍÁáÅéÇ¡çÁÒÃÑºÃÒ§ÇÑÅä´é·Ø¡àÁ×èÍ";
+		close;
+		end;
+		 }
+		}
+		case 2 :
+		.@id = .@idgame;
+		if (baselevel >=160 )&&(baselevel <=174 ){
+		mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+        mes "·èÒ¹á¹èã¨áÅéÇãªèäËÁ";
+		mes "äÍ´Õà¡ÁÊì ¢Í§¤Ø³¤×Í ^FF0000"+.@idgame$+"";
+		next;
+        switch(select("á¹è¹Í¹:äÇé¤ÃÒÇËÅÑ§")){
+        case 1 :
+		mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+		mes "ÂÔ¹´Õ´éÇÂÃÑºÃÒ§ÇÑÅ LV 160";
+		mes "¡Ô¨¡ÃÃÁ CBT ÊÓàÃç¨";
+		mes "^FF0000àÃÒ¨´¨ÓäÍ´Õ¢Í§·èÒ¹áÅéÇ";
+		mes "àÁ×èÍ Openbeta ¡ÃØ³Òãªé äÍ´Õ´Ñ§¡ÅèÒÇ ";
+		query_sql "INSERT INTO `CBT` (`account_id`,`getitem`) VALUES ('"+.@idgame$+"','2')";
+		query_sql "UPDATE `login` SET `take_cbt`= '1' WHERE `account_id` = " + .@accid + " LIMIT 1";
+		close;
+		end;
+		case 2 :
+		mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+		mes "¶éÒ¾ÃéÍÁáÅéÇ¡çÁÒÃÑºÃÒ§ÇÑÅä´é·Ø¡àÁ×èÍ";
+		close;
+		end;
+		 }
+		}
+		case 3 :
+		if (baselevel ==175 ){
+		mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+        mes "·èÒ¹á¹èã¨áÅéÇãªèäËÁ";
+		mes "äÍ´Õà¡ÁÊì ¢Í§¤Ø³¤×Í ^FF0000"+.@idgame$+"";
+		next;
+        switch(select("á¹è¹Í¹:äÇé¤ÃÒÇËÅÑ§")){
+        case 1 :
+		mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+		mes "ÂÔ¹´Õ´éÇÂÃÑºÃÒ§ÇÑÅ LV 175";
+		mes "¡Ô¨¡ÃÃÁ CBT ÊÓàÃç¨";
+		mes "^FF0000àÃÒ¨´¨ÓäÍ´Õ¢Í§·èÒ¹áÅéÇ";
+		mes "àÁ×èÍ Openbeta ¡ÃØ³Òãªé äÍ´Õ´Ñ§¡ÅèÒÇ ";
+		query_sql "INSERT INTO `cbt` (`account_id`,`getitem`) VALUES ('"+.@idgame$+"','3')";       //SET `account_id`= " + .@accid + " `getitem` = '3'  LIMIT 1";
+		query_sql "UPDATE `login` SET `take_cbt`= '1' WHERE `account_id` = " + .@accid + " LIMIT 1";
+		close;
+		end;
+		case 2 :
+		mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+		mes "¶éÒ¾ÃéÍÁáÅéÇ¡çÁÒÃÑºÃÒ§ÇÑÅä´é·Ø¡àÁ×èÍ";
+		close;
+		end;
+		 }
+		}
+		case 4 :
+		mes "[¼Ùé´ÙáÅ¡Ô¨¡ÃÃÁ CBT]";
+		mes "¶éÒ¾ÃéÍÁáÅéÇ¡çÁÒÃÑºÃÒ§ÇÑÅä´é·Ø¡àÁ×èÍ";
+		mes "ÅÒ¡èÍ¹¹";
+		close;
+		end;
+	}
+	
+  }
+	
+	
+}
+/*-	script	sendmail	-1,{
+	
+	
+	
+	OnInit:
+		.npc_name$ = strnpcinfo(3);
+		
+		
+		bindatcmd "check",.npc_name$+"::OnAtcommand";
+		end;
+ 
+	OnAtcommand:
+		dispbottom "Accumulated "+#Time_Check_Sendmail;
+		end;
+    
+ 
+	OnUpdate:
+	    cleararray .@point[0] , 0, getarraysize(.@sendmail);
+		set .@accid, getcharid(3);
+		query_sql "SELECT `Topup`,`Total_Topup` FROM `login` WHERE `account_id` = " + .@accid + " LIMIT 1", .@sendmail, .@totalcash;
+		.@percent = 20;
+		#Time_Check_Sendmail++;
+		deltimer .npc_name$+"::OnUpdate";
+		//dispbottom ""+#Time_Check_Sendmail+"";
+		//dispbottom "ä´éÃÑº 1 Cash ÃÒ§ÇÑÅÍÍ¹äÅ¹ìà»ç¹àÇÅÒ"+#Time_Check_Sendmail+" ¹Ò·Õ (ÂÍ´¤§àËÅ×Í»Ñ¨¨ØºÑ¹ "+#CASHPOINTS+"Cash)";
+		switch ( #Time_Check_Sendmail ) 
+		    {
+			default:
+				break;
+			case 1:  
+			  //================================
+			  // Êè§·Í§ 0-499 ºÒ·
+			  //================================
+			  
+			  if (.@sendmail[0] >= 1 && .@sendmail[0] <= 499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			   }
+			  	
+			  }
+			  //================================
+			  // Êè§¨´ËÁÒÂ 500 ºÒ·
+			  //================================
+			  //¶éÒ sendmail > 1 Êè§¨´ËÁÒÂ 500 ºÒ·
+			  if (.@sendmail[0] >= 500 && .@sendmail[0] <= 999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			  
+			  
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 500 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 500;
+			 setarray .@mailitem[0], 32365;
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // Êè§¨´ËÁÒÂ 1000 ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 1000 && .@sendmail[0] <= 1499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 1,000 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 1000;
+			 setarray .@mailitem[0], 32366;
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //10, 10, 10, 10, 10, 10, 10, 40; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // Êè§¨´ËÁÒÂ 1500 ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 1500 && .@sendmail[0] <= 1999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 1,500 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 1500;
+			 setarray .@mailitem[0], 32365,32366;
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1,1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // Êè§¨´ËÁÒÂ 2000 ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 2000 && .@sendmail[0] <= 2499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 2,000 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 2000;
+			 setarray .@mailitem[0],32367; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // Êè§¨´ËÁÒÂ 2500 ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 2500 && .@sendmail[0] <= 2999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 2,500 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 2500;
+			 setarray .@mailitem[0],32367,32365; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1,1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // Êè§¨´ËÁÒÂ 3000 ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 3000 && .@sendmail[0] <= 3499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 3,000 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 3000;
+			 setarray .@mailitem[0],32367,32366; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1,1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // Êè§¨´ËÁÒÂ 3500 ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 3500 && .@sendmail[0] <= 3999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 3,500 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 3500;
+			 setarray .@mailitem[0],32367,32366,32365; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1,1,1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // Êè§¨´ËÁÒÂ 4000 ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 4000 && .@sendmail[0] <= 4499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 4,000 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 4000;
+			 setarray .@mailitem[0],32367,32367; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1,1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // Êè§¨´ËÁÒÂ 4500 ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 4500 && .@sendmail[0] <= 4999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 4,000 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 4500;
+			 setarray .@mailitem[0],32367,32367,32365; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1,1,1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //Êè§¨´ËÁÒÂ 5000ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 5000 && .@sendmail[0] <= 5499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 5,000 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 5000;
+			 setarray .@mailitem[0], 32368,32367; // Costume Golden Wing,Costume Angelwing , Reward 2000
+	         setarray .@mailamount[0], 1, 2; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //Êè§¨´ËÁÒÂ 5500ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 5500 && .@sendmail[0] <= 5999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 5,500 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 5500;
+			 setarray .@mailitem[0], 32368,32367,32365; // 5000+500
+	         setarray .@mailamount[0], 1, 1,1; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //Êè§¨´ËÁÒÂ 6000ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 6000 && .@sendmail[0] <= 6499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 6,000 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 6000;
+			 setarray .@mailitem[0], 32368,32367,32366; // 5000+1000
+	         setarray .@mailamount[0], 1, 1,1; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //Êè§¨´ËÁÒÂ 6500ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 6500 && .@sendmail[0] <= 6999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 6,500 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 6500;
+			 setarray .@mailitem[0], 32368,32367,32366,32365; // 5000+1000+500
+	         setarray .@mailamount[0], 1, 1,1,1; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //Êè§¨´ËÁÒÂ 7000ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 7000 && .@sendmail[0] <= 7499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 7,000 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 7000;
+			 setarray .@mailitem[0], 32368,32367; // Costume Golden Wing,Costume Angelwing , Reward 2000
+	         setarray .@mailamount[0], 1, 2; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //Êè§¨´ËÁÒÂ 7500ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 7500 && .@sendmail[0] <= 7999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 7,500 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 7500;
+			 setarray .@mailitem[0], 32368,32367,32365; // Costume Golden Wing,Costume Angelwing , Reward 2000
+	         setarray .@mailamount[0], 1, 2,1; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //Êè§¨´ËÁÒÂ 8000ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 8000 && .@sendmail[0] <= 8499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 8,000 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 8000;
+			 setarray .@mailitem[0], 32368,32367,32366; // Costume Golden Wing,Costume Angelwing , Reward 2000
+	         setarray .@mailamount[0], 1, 2,1; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //Êè§¨´ËÁÒÂ 8500ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 8500 && .@sendmail[0] <= 8999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 8,500 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 8500;
+			 setarray .@mailitem[0], 32368,32367,32366,32365; // 5000+2000+1000+500
+	         setarray .@mailamount[0], 1, 2,1,1; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //Êè§¨´ËÁÒÂ 9000ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 9000 && .@sendmail[0] <= 9499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 9,000 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 9000;
+			 setarray .@mailitem[0], 32368,32367; // Costume Golden Wing,Costume Angelwing , Reward 2000
+	         setarray .@mailamount[0], 1, 3; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //Êè§¨´ËÁÒÂ 9500ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 9500 && .@sendmail[0] <= 9999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 9,500 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 9500;
+			 setarray .@mailitem[0], 32368,32367,32365; // Costume Golden Wing,Costume Angelwing , Reward 2000
+	         setarray .@mailamount[0], 1, 3,1; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //Êè§¨´ËÁÒÂ 10000ºÒ·
+			  //================================
+			  if (.@sendmail[0] >= 10000 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  //add cash [Setting Cash]
+			    .@cashgame = (.@sendmail[0]*30);
+			    .@freecash = (.@cashgame*.@percent)/100;
+				.@cashvip = .@cashgame + .@freecash;
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] ¤Ø³ä´éÃÑº " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "â»ÃâÁªÑè¹àµÔÁà§Ô¹ 10,000 ºÒ·";
+	         .@body$ = "¢Íº¤Ø³·Õè Ê¹ÑºÊ¹Ø¹ à«Ô¿àÇÍÃì ¢Í§¾Ç¡àÃÒ ¢ÍãËéÊ¹Ø¡¡Ñº¡ÒÃàÅè¹à¡ÁÊì! ËÒ¡¾º»Ñ­ËÒ µÔ´µèÍ ÍÅÔª â´ÂµÃ§ä´éàÅÂ¹Ğ¤èĞ";
+	         .@zeny = 10000;
+			 setarray .@mailitem[0], 32368,32367,31491; // Costume Golden Wing,Costume Angelwing , Reward 2000 , cat
+	         setarray .@mailamount[0], 2, 4,1; // 1,1
+			 dispbottom "ä´éÃÑº¨´ËÁÒÂ ¨Ò¡¡ÒÃ àµÔÁà§Ô¹ â»Ã´µÃÇ¨ÊÍº";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  
+			   
+			   
+			   }
+				#Time_Check_Sendmail = 0;
+				//dispbottom ".@sendmail";
+				
+			
+		OnPCLoginEvent:
+		addtimer ( 60 * 1000 ), .npc_name$+"::OnUpdate";
+		if (#Time_Check_Sendmail > 2){
+		#Time_Check_Sendmail = 0;
+		}
+		end;
+
+
+
+end;
+}*/

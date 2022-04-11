@@ -1,0 +1,83 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= 1.1 Made all into functions, additional checks, etc. [Lupus]
+//= 1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================ 
+
+valkyrie,53,56,3	script	Gypsy#Valkyrie	101,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Gypsy]";
+			mes "ยินดีด้วย";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		mes "[Gypsy]";
+		mes "เลื่อนไปทางซ้าย";
+		mes "เลื่อนไปทางขวา ~!";
+		mes "แล้วก้าว ... !";
+		mes "เต้นได้";
+		mes "มากกว่างานอดิเรก";
+		mes "สำหรับฉันมันคือวิถีชีวิต ~";
+		close;
+	}
+	else if (ADVJOB == Job_Gypsy && Class == Job_Archer_High && JobLevel > 39) {
+		mes "[Gypsy]";
+		mes "ดินแดนแห่งมิดการ์ด";
+		mes "ต้องการผู้หญิงที่มีความสามารถ";
+		mes "เพื่อเปลี่ยนยอดคงเหลืออย่างละเอียด";
+		mes "ในการต่อสู้ระหว่างความดี";
+		mes "และความชั่วร้าย";
+		next;
+		mes "[Gypsy]";
+		mes "คุณพร้อมหรือยัง";
+		mes "รับบทนี้";
+		mes "แล้วกลายเป็นชาวยิปซี";
+		next;
+		if (select("No.:Yes.") == 1) {
+			mes "[Gypsy]";
+			mes "เมื่อคุณพร้อม";
+			mes "อย่าลังเลที่จะกลับมา";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Gypsy]";
+			mes "คุณยังสามารถเรียนรู้ทักษะเพิ่มเติมได้อีกโปรดใช้";
+			mes "คะแนนทักษะที่เหลือทั้งหมดของคุณก่อนที่จะกลับมาหาฉัน";
+			close;
+		}
+		jobchange Job_Gypsy;
+		set ADVJOB,0;
+		mes "[Gypsy]";
+		mes "ยินดีด้วย!";
+		mes "ในฐานะชาวยิปซีฉันรู้";
+		mes "ว่าการแสดงของคุณ";
+		mes "เขย่าหัวใจของทุกคน";
+		mes "คนที่จะดู ... ";
+		close;
+	}
+	mes "[Gypsy]";
+	mes "ยินดีต้อนรับ";
+	mes "ถึง Valhalla,";
+	mes "หอเกียรติยศ.";
+	next;
+	mes "[Gypsy]";
+	mes "กรุณาทำให้";
+	mes "สบายตัว";
+	mes "ในขณะที่คุณอยู่ที่นี่";
+	mes "ให้เกียรตินักรบ!";
+	close;
+}

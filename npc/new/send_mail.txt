@@ -1,0 +1,1104 @@
+-	script	sendmail	-1,{
+	
+	
+	
+	OnInit:
+		.npc_name$ = strnpcinfo(3);
+		
+		
+		bindatcmd "check",.npc_name$+"::OnAtcommand";
+		end;
+ 
+	OnAtcommand:
+		dispbottom "Accumulated "+#Time_Check_Sendmail;
+		end;
+    
+ 
+	OnUpdate:
+	    cleararray .@point[0] , 0, getarraysize(.@sendmail);
+		set .@accid, getcharid(3);
+		query_sql "SELECT `Topup`,`Total_Topup`,`VIP` FROM `login` WHERE `account_id` = " + .@accid + " LIMIT 1", .@sendmail, .@totalcash, .@Vip;
+		.@percent = 10;
+		.@credit1 = 10;
+		.@credit2 = 20;
+		.@cashgame = (.@sendmail[0]*60);
+				//Control Credit
+				if(#credit == 1){
+					.@percent += .@credit1;
+					.@freecash = (.@cashgame*.@percent)/100;
+					.@cashvip = .@cashgame + .@freecash;
+				}
+				else if (#credit == 2){
+					.@percent += .@credit2;
+					.@freecash = (.@cashgame*.@percent)/100;
+					.@cashvip = .@cashgame + .@freecash;
+				}
+				else {
+					.@freecash = (.@cashgame*.@percent)/100;
+					.@cashvip = .@cashgame + .@freecash;
+				}
+		#Time_Check_Sendmail++;
+		deltimer .npc_name$+"::OnUpdate";
+		//dispbottom ""+#Time_Check_Sendmail+"";
+		//dispbottom "ได้รับ 1 Cash รางวัลออนไลน์เป็นเวลา"+#Time_Check_Sendmail+" นาที (ยอดคงเหลือปัจจุบัน "+#CASHPOINTS+"Cash)";
+		switch ( #Time_Check_Sendmail ) 
+		    {
+			default:
+				break;
+			case 1:  
+			//================================
+			//  Premier Rank
+			//================================
+			if (.@totalcash >= 5000 && #getpremierrank <=0 )
+			{
+				#getpremierrank = 1;
+				.@charid = getcharid(0);
+				.@sender$ = "GM Alice";
+				.@title$ = "Reward Premier Rank";
+				.@body$ = "Thank for support Server";
+				.@zeny = 500;
+				setarray .@mailitem[0], 40004;
+				//12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+				setarray .@mailamount[0], 1;
+				//5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+				dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+				mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			}
+			//================================
+			//  VIP NETWORK Rank
+			//================================
+			//if (rentalcountitem(40001)){
+				//delitem 40001,1;
+				//#Rank = 0;
+			//}
+			if (.@Vip == 1 && #getnetworkrank <=0 )
+			{
+				#getnetworkrank = 1;
+				.@charid = getcharid(0);
+				.@sender$ = "GM Alice";
+				.@title$ = "Reward NetworkGame Rank";
+				.@body$ = "Thank for support Server";
+				.@zeny = 500;
+				setarray .@mailitem[0], 40008; // Network 5000 Credit
+				//12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+				setarray .@mailamount[0], 1;
+				//5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+				dispbottom "ได้รับจดหมาย รางวัล";
+				mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			}
+			else if (.@Vip == 2 && #getnetworkrank <=0 )
+			{
+				#getnetworkrank = 1;
+				.@charid = getcharid(0);
+				.@sender$ = "GM Alice";
+				.@title$ = "Reward NetworkGame Rank";
+				.@body$ = "Thank for support Server";
+				.@zeny = 500;
+				setarray .@mailitem[0], 40009; // Network 10000 Credit
+				//12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+				setarray .@mailamount[0], 1;
+				//5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+				dispbottom "ได้รับจดหมาย รางวัล";
+				mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			}
+			if (.@Vip == 3)
+			{
+				if(countitem(40007)){
+				#getnetworkrank = 0;
+				#usehat =0;
+				#Credit = 0;
+				delitem 40007,1;
+				dispbottom "คุณ ถูกยกเลิก จาก Credit NetworkGame Thailand";
+				query_sql "UPDATE `login` SET `VIP`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+				}
+				else{
+					dispbottom "คุณไม่มี Credit NetworkGame ในกระเป๋าของคุณ ไม่สามารถ ยกเลิก ได้";
+				}
+			}
+			if (#Rank == 1)
+			{
+				if(!rentalcountitem(40001)){
+					#Rank = 0;
+					dispbottom "Rank ถูกยกเลิกแล้ว เนื่องจากไม่พบในกระเป๋า";
+				}
+			}
+			if (#Rank == 2)
+			{
+				if(!rentalcountitem(40003)){
+					#Rank = 0;
+					dispbottom "Rank ถูกยกเลิกแล้ว เนื่องจากไม่พบในกระเป๋า";
+				}
+			}
+			if (#Rank == 3)
+			{
+				if(!rentalcountitem(40005)){
+					#Rank = 0;
+					dispbottom "Rank ถูกยกเลิกแล้ว เนื่องจากไม่พบในกระเป๋า";
+				}
+			}
+			if (#Rank == 4)
+			{
+				if (!rentalcountitem(40016)){
+					#Rank = 0;
+					dispbottom "Rank ถูกยกเลิกแล้ว เนื่องจากไม่พบในกระเป๋า";
+				}
+				
+			}
+			 //================================
+			  // Reset Home
+			  //================================
+			if ($renthometimeid1 <= 0)
+			{
+				if($home_Guildid1 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid1 +"'");
+				set $home_Guildid1,0;
+				set $rentcheck[1],0;
+				announce "บ้านเช่าหลังที่ 1 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid2 <= 0)
+			{
+				if($home_Guildid2 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid2 +"'");
+				set $home_Guildid2,0;
+				set $rentcheck[2],0;
+				announce "บ้านเช่าหลังที่ 2 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid3 <= 0)
+			{
+				if($home_Guildid3 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid3 +"'");
+				set $home_Guildid3,0;
+				set $rentcheck[3],0;
+				announce "บ้านเช่าหลังที่ 3 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid4 <= 0)
+			{
+				if($home_Guildid4 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid4 +"'");
+				set $home_Guildid4,0;
+				set $rentcheck[4],0;
+				announce "บ้านเช่าหลังที่ 4 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid5 <= 0)
+			{
+				if($home_Guildid5 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid5 +"'");
+				set $home_Guildid5,0;
+				set $rentcheck[5],0;
+				announce "บ้านเช่าหลังที่ 5 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid6 <= 0)
+			{
+				if($home_Guildid6 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid6 +"'");
+				set $home_Guildid6,0;
+				set $rentcheck[6],0;
+				announce "บ้านเช่าหลังที่ 6 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid7 <= 0)
+			{
+				if($home_Guildid7 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid7 +"'");
+				set $home_Guildid7,0;
+				set $rentcheck[7],0;
+				announce "บ้านเช่าหลังที่ 7 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid8 <= 0)
+			{
+				if($home_Guildid8 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid8 +"'");
+				set $home_Guildid8,0;
+				set $rentcheck[8],0;
+				announce "บ้านเช่าหลังที่ 8 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid9 <= 0)
+			{
+				if($home_Guildid9 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid9 +"'");
+				set $home_Guildid9,0;
+				set $rentcheck[9],0;
+				announce "บ้านเช่าหลังที่ 9 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid10 <= 0)
+			{
+				if($home_Guildid10 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid10 +"'");
+				set $home_Guildid10,0;
+				set $rentcheck[10],0;
+				announce "บ้านเช่าหลังที่ 10 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid11 <= 0)
+			{
+				if($home_Guildid11 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid11 +"'");
+				set $home_Guildid11,0;
+				set $rentcheck[11],0;
+				announce "บ้านเช่าหลังที่ 11 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid12 <= 0)
+			{
+				if($home_Guildid12 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid12 +"'");
+				set $home_Guildid12,0;
+				set $rentcheck[12],0;
+				announce "บ้านเช่าหลังที่ 12 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid13 <= 0)
+			{
+				if($home_Guildid13 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid13 +"'");
+				set $home_Guildid13,0;
+				set $rentcheck[13],0;
+				announce "บ้านเช่าหลังที่ 13 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid14 <= 0)
+			{
+				if($home_Guildid14 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid14 +"'");
+				set $home_Guildid14,0;
+				set $rentcheck[14],0;
+				announce "บ้านเช่าหลังที่ 14 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			if ($renthometimeid15 <= 0)
+			{
+				if($home_Guildid15 >= 1){
+				query_sql ("update `guild` set `rent_date` = '0',`rent_hour` = '0',`rent_minute` = '0' where `guild_id` = '"+ $home_Guildid15 +"'");
+				set $home_Guildid15,0;
+				set $rentcheck[15],0;
+				announce "บ้านเช่าหลังที่ 15 หมดเวลาแล้ว ทำการ รีเซทโดย อัติโนมัติ",bc_all,0xFFFF33;
+				}
+			}
+			//================================
+			// Total Topup // 1000
+			//================================
+			if(.@totalcash[0] >= 1000 && #Total1000 == 0){
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward Total Donate";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 1000;
+			 setarray .@mailitem[0], 40046; // 1000
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงินสะสม โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 #Total1000 = 1;
+			}
+			
+			//================================
+			// Total Topup // 3000
+			//================================
+			else if(.@totalcash[0] >= 3000 && #Total3000 == 0){
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward Total Donate";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 3000;
+			 setarray .@mailitem[0], 40047; // 1000
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงินสะสม โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 #Total3000 = 1;
+			}
+			
+			//================================
+			// Total Topup // 5000
+			//================================
+			else if(.@totalcash[0] >= 5000 && #Total5000 == 0){
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward Total Donate";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 5000;
+			 setarray .@mailitem[0], 40048; // 1000
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงินสะสม โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 #Total5000 = 1;
+			}
+			
+			//================================
+			// Total Topup // 10000
+			//================================
+			else if(.@totalcash[0] >= 10000 && #Total10000 == 0){
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward Total Donate";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 10000;
+			 setarray .@mailitem[0], 40049; // 1000
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงินสะสม โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 #Total10000 = 1;
+			}
+			
+			//================================
+			// Total Topup // 20000
+			//================================
+			else if(.@totalcash[0] >= 20000 && #Total20000 == 0){
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward Total Donate";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 20000;
+			 setarray .@mailitem[0], 40050; // 1000
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงินสะสม โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 #Total20000 = 1;
+			}
+			
+			//================================
+			// Total Topup // 30000
+			//================================
+			else if(.@totalcash[0] >= 30000 && #Total30000 == 0){
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward Total Donate";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 30000;
+			 setarray .@mailitem[0], 40051; // 1000
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงินสะสม โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 #Total30000 = 1;
+			}
+			
+			//================================
+			// Total Topup // 50000
+			//================================
+			else if(.@totalcash[0] >= 50000 && #Total50000 == 0){
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward Total Donate";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 50000;
+			 setarray .@mailitem[0], 40052; // 1000
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงินสะสม โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 #Total50000 = 1;
+			}
+			
+			  //================================
+			  // ส่งทอง 0-249 THB
+			  //================================
+			  
+			  if (.@sendmail[0] >= 1 && .@sendmail[0] <= 249 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			  query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			  query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			   }
+			  }
+			  //================================
+			  // ส่งจดหมาย 250 THB
+			  //================================
+			  //ถ้า sendmail > 1 ส่งจดหมาย 500 THB
+			  if (.@sendmail[0] >= 250 && .@sendmail[0] <= 499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 250 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 250;
+			 setarray .@mailitem[0], 40053;
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  
+			  //================================
+			  // ส่งจดหมาย 500 THB
+			  //================================
+			  //ถ้า sendmail > 1 ส่งจดหมาย 500 THB
+			  if (.@sendmail[0] >= 500 && .@sendmail[0] <= 749 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){ 
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 500 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 500;
+			 setarray .@mailitem[0], 32365;
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  
+			  //================================
+			  // ส่งจดหมาย 750 THB
+			  //================================
+			  //ถ้า sendmail > 1 ส่งจดหมาย 750 THB
+			  if (.@sendmail[0] >= 750 && .@sendmail[0] <= 999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){ 
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 750 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 750;
+			 setarray .@mailitem[0], 32365,40053;
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1,1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // ส่งจดหมาย 1000 THB
+			  //================================
+			  if (.@sendmail[0] >= 1000 && .@sendmail[0] <= 1249 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){ 
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 1,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 1000;
+			 setarray .@mailitem[0], 32366;
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1;
+			 //10, 10, 10, 10, 10, 10, 10, 40; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  
+			   //================================
+			  // ส่งจดหมาย 1250 THB
+			  //================================
+			  if (.@sendmail[0] >= 1250 && .@sendmail[0] <= 1499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){ 
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 1,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 1250;
+			 setarray .@mailitem[0], 32366,40053;
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1,1;
+			 //10, 10, 10, 10, 10, 10, 10, 40; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // ส่งจดหมาย 1500 THB
+			  //================================
+			  if (.@sendmail[0] >= 1500 && .@sendmail[0] <= 1749 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){  
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 1,500 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 1500;
+			 setarray .@mailitem[0], 32365,32366;
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1,1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  
+			  //================================
+			  // ส่งจดหมาย 1750 THB
+			  //================================
+			  if (.@sendmail[0] >= 1750 && .@sendmail[0] <= 1999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){  
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 1,750 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 1750;
+			 setarray .@mailitem[0], 32365,32366,40053;
+			 //12501,12502,12503,12504,12505,12506,12516,12971; // Str,agi,int,dex,luk,vit,small life potion,telepot
+	         setarray .@mailamount[0], 1,1,1;
+			 //5, 5, 5, 5, 5, 5, 5, 20; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // ส่งจดหมาย 2000 THB
+			  //================================
+			  if (.@sendmail[0] >= 2000 && .@sendmail[0] <= 2499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 2,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 2000;
+			 setarray .@mailitem[0],32367; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // ส่งจดหมาย 2500 THB
+			  //================================
+			  if (.@sendmail[0] >= 2500 && .@sendmail[0] <= 2999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 2,500 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 2500;
+			 setarray .@mailitem[0],32367,32365; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1,1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // ส่งจดหมาย 3000 THB
+			  //================================
+			  if (.@sendmail[0] >= 3000 && .@sendmail[0] <= 3499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 3,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 3000;
+			 setarray .@mailitem[0],32367,32366; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1,1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // ส่งจดหมาย 3500 THB
+			  //================================
+			  if (.@sendmail[0] >= 3500 && .@sendmail[0] <= 3999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){ 
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 3,500 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 3500;
+			 setarray .@mailitem[0],32367,32366,32365; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1,1,1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // ส่งจดหมาย 4000 THB
+			  //================================
+			  if (.@sendmail[0] >= 4000 && .@sendmail[0] <= 4499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){  
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 4,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 4000;
+			 setarray .@mailitem[0],32367,32367; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1,1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  // ส่งจดหมาย 4500 THB
+			  //================================
+			  if (.@sendmail[0] >= 4500 && .@sendmail[0] <= 4999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 4,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 4500;
+			 setarray .@mailitem[0],32367,32367,32365; 
+			 //12501,12502,12503,12504,12505,12506,12516,12971,12412,12411,12263,12210; // Str,agi,int,dex,luk,vit,small life potion,telepot,Battle manual , bubble gum, field manual,bubble gum
+	         setarray .@mailamount[0],1,1,1; 
+			 //20, 20, 20, 20, 20, 20, 20, 40, 5, 5, 10, 10; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //ส่งจดหมาย 5000THB
+			  //================================
+			  if (.@sendmail[0] >= 5000 && .@sendmail[0] <= 5499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			   if (.@totalcash[0] >= 10000){
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 5,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 5000;
+			 setarray .@mailitem[0], 32368,32367,32366; // Costume Golden Wing,Costume Angelwing , Reward 2000,reward 1000
+	         setarray .@mailamount[0], 1, 2,1; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //ส่งจดหมาย 5500THB
+			  //================================
+			  if (.@sendmail[0] >= 5500 && .@sendmail[0] <= 5999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 5,500 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 5500;
+			 setarray .@mailitem[0], 32368,32367,32365; // 5000+500
+	         setarray .@mailamount[0], 1, 1,1; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //ส่งจดหมาย 6000THB
+			  //================================
+			  if (.@sendmail[0] >= 6000 && .@sendmail[0] <= 6499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 6,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 6000;
+			 setarray .@mailitem[0], 32368,32367,32366; // 5000+1000
+	         setarray .@mailamount[0], 1, 1,1; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //ส่งจดหมาย 6500THB
+			  //================================
+			  if (.@sendmail[0] >= 6500 && .@sendmail[0] <= 6999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 6,500 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 6500;
+			 setarray .@mailitem[0], 32368,32367,32366,32365; // 5000+1000+500
+	         setarray .@mailamount[0], 1, 1,1,1; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //ส่งจดหมาย 7000THB
+			  //================================
+			  if (.@sendmail[0] >= 7000 && .@sendmail[0] <= 7499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 7,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 7000;
+			 setarray .@mailitem[0], 32368,32367; // Costume Golden Wing,Costume Angelwing , Reward 2000
+	         setarray .@mailamount[0], 1, 2; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //ส่งจดหมาย 7500THB
+			  //================================
+			  if (.@sendmail[0] >= 7500 && .@sendmail[0] <= 7999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 7,500 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 7500;
+			 setarray .@mailitem[0], 32368,32367,32365; // Costume Golden Wing,Costume Angelwing , Reward 2000
+	         setarray .@mailamount[0], 1, 2,1; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //ส่งจดหมาย 8000THB
+			  //================================
+			  if (.@sendmail[0] >= 8000 && .@sendmail[0] <= 8499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 8,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 8000;
+			 setarray .@mailitem[0], 32368,32367,32366; // Costume Golden Wing,Costume Angelwing , Reward 2000
+	         setarray .@mailamount[0], 1, 2,1; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //ส่งจดหมาย 8500THB
+			  //================================
+			  if (.@sendmail[0] >= 8500 && .@sendmail[0] <= 8999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 8,500 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 8500;
+			 setarray .@mailitem[0], 32368,32367,32366,32365; // 5000+2000+1000+500
+	         setarray .@mailamount[0], 1, 2,1,1; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //ส่งจดหมาย 9000THB
+			  //================================
+			  if (.@sendmail[0] >= 9000 && .@sendmail[0] <= 9499 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			 
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 9,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 9000;
+			 setarray .@mailitem[0], 32368,32367; // Costume Golden Wing,Costume Angelwing , Reward 2000
+	         setarray .@mailamount[0], 1, 3; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //ส่งจดหมาย 9500THB
+			  //================================
+			  if (.@sendmail[0] >= 9500 && .@sendmail[0] <= 9999 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			  
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 9,500 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 9500;
+			 setarray .@mailitem[0], 32368,32367,32365; // Costume Golden Wing,Costume Angelwing , Reward 2000
+	         setarray .@mailamount[0], 1, 3,1; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }
+			  //================================
+			  //ส่งจดหมาย 10000THB
+			  //================================
+			  if (.@sendmail[0] >= 10000 ){
+			  set #mailactive, #mailactive + .@sendmail[0];
+			 
+			   if (.@totalcash[0] >= 10000){
+				   
+			  #CASHPOINTS += .@cashvip;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashvip + " Cash";
+			  
+			  
+			   }
+			   else{
+			  #CASHPOINTS += .@cashgame;
+			  dispbottom "[Payment Center System] คุณได้รับ " + .@cashgame + " Cash";
+			  
+			   }
+			 .@charid = getcharid(0);
+	         .@sender$ = "GM Alice";
+	         .@title$ = "Reward 10,000 THB";
+	         .@body$ = "Thank for support Server";
+	         .@zeny = 10000;
+			 setarray .@mailitem[0], 32368,32367,31491; // Costume Golden Wing,Costume Angelwing , Reward 2000 , cat
+	         setarray .@mailamount[0], 3, 5,1; // 1,1
+			 dispbottom "ได้รับจดหมาย จากการ เติมเงิน โปรดตรวจสอบ";
+	         mail .@charid, .@sender$, .@title$, .@body$, .@zeny, .@mailitem, .@mailamount;
+			 query_sql "UPDATE `login` SET `Topup`= '0' WHERE `account_id` = " + .@accid + " LIMIT 1";
+			  }   
+		}
+				#Time_Check_Sendmail = 0;
+				//dispbottom ".@sendmail";
+				
+			
+		OnPCLoginEvent:
+		addtimer ( 60 * 1000 ), .npc_name$+"::OnUpdate";
+		if (#Time_Check_Sendmail > 2){
+		#Time_Check_Sendmail = 0;
+		}
+		end;
+
+
+
+end;
+}

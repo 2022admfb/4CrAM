@@ -1,0 +1,283 @@
+//===== rAthena Script =======================================
+//= Archer Skill Quest
+//===== By:==================================================
+//= rAthena Dev Team
+//===== Current Version:=====================================
+//= 1.7
+//===== Compatible With:===================================== 
+//= rAthena Project
+//===== Description:========================================= 
+//= Quest for skills:Arrow Crafting, Arrow Repel
+//===== Additional Comments:================================= 
+//= 1.5 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
+//= 1.6 Updated to latest available official file.
+//=     also fixed Item issue [bugreport:5607]. [Masao]
+//= 1.7 Fixed JobLevel requirements. [Euphy]
+//============================================================
+
+moc_ruins,118,99,5	script	Roberto	88,{
+	if (BaseClass == Job_Archer) {
+		if (getskilllv("AC_MAKINGARROW") == 1) {
+			mes "[ Roberto ]";
+			mes "คุณมาจากเมืองบ้านเกิดของฉัน!";
+			mes "ดีใจที่ได้พบคุณ!";
+			mes "คุณเป็นอย่างไร?";
+			mes "อา! ลูกศรนั่น!";
+			mes "คุณทำแล้วใช่ไหม!";
+			next;
+			mes "[ Roberto ]";
+			mes "ฮ่าฮ่า ... !";
+			mes "คิดว่าดีขึ้นเยอะมั้ย?";
+			mes "ฮ่าฮ่า ... ยังไงก็ดีใจ";
+			mes "กลับมาด้วยนาน ๆ ครั้ง";
+			mes "พร้อมข่าวจากที่บ้าน";
+			mes "แล้วลาก่อน ~";
+			close;
+		}
+		else if (JobLevel >= 30 || (BaseJob == Job_Hunter || BaseJob == Job_Bard || BaseJob == Job_Dancer)) {
+			mes "[ Roberto ]";
+			mes "เอ๊ะ!";
+			mes " ";
+			mes "คุณคือ...";
+			next;
+			if ((countitem(907) > 19) && (countitem(921) > 6) && (countitem(906) > 40) && (countitem(1019) > 12) && (countitem(501) > 0)) {
+				mes "[ Roberto ]";
+				mes "คุณพาพวกเขามา!";
+				mes "ขอบคุณมาก.";
+				mes "จากนั้นตามที่ฉันสัญญาไว้ฉันจะสอนทักษะให้คุณ";
+				next;
+				delitem 907,20; //Resin
+				delitem 921,7; //Mushroom_Spore
+				delitem 906,41; //Tough_Scalelike_Stem
+				delitem 1019,13; //Wooden_Block
+				delitem 501,1; //Red_Potion
+				skill "AC_MAKINGARROW",1,SKILL_PERM;
+				mes "[ Roberto ]";
+				mes "ไม่ต้องกังวลเรื่องลูกศรตอนนี้";
+				mes "โอ้และคุณได้เห็น";
+				mes "มีคนเรียก Jason ใน Payon?";
+				mes "ระวัง. เขาเป็น";
+				mes "ดุร้าย";
+				next;
+				mes "[ Roberto ]";
+				mes "คุณต้องระวัง Jason ใน Payon";
+				mes "จำไว้.";
+				mes "แล้วคุณบับอาย ~ ขอบคุณสำหรับของขวัญ ~";
+				close;
+			}
+			mes "[ Roberto ]";
+			mes "นักธนูในโมร็อกโก!?";
+			mes "ดีใจที่ได้พบคุณ! พบเพื่อน";
+			mes "นักธนูในสถานที่เช่นนี้! * ดมกลิ่น *!";
+			mes "ฉันมาโมรอคคนเดียว ..";
+			mes "แต่ฉันเป็นผู้มาใหม่และความกดดัน ... waaah ~";
+			mes "ฉันเหงามาก ~";
+			next;
+			switch (select("มันต้องยากแน่ ๆ มีความเชื่อก็โอเค:เก็บความทุกข์ไว้")) {
+			case 1:
+				mes "[ Roberto ]";
+				mes "ใช่. ขอบคุณ...";
+				mes "คุณจะต้องมีความยากลำบาก";
+				mes "เวลาอยู่ในสถานที่เช่นนี้";
+				mes "หาลูกศรไม่ยากเหรอ?";
+				mes "นั่นเป็นเหตุผลที่ฉันทำด้วยตัวเอง";
+				next;
+				select("เอ๊ะจริงเหรอ!");
+				mes "[ Roberto ]";
+				mes "ใช่ ฉันรวบรวมสิ่งของต่างๆ";
+				mes "และสร้างลูกศรโดยใช้พวกเขา";
+				mes "มันเป็นทักษะที่มีประโยชน์ที่จะช่วยฉัน";
+				mes "อยู่รอดคนเดียวในโลกที่ยากลำบากใบนี้";
+				mes "ถ้าคุณต้องการฉันสามารถสอนคุณได้";
+				next;
+				select("นั่นจะวิเศษมาก");
+				mes "[ Roberto ]";
+				mes "แต่.. ทำฟรีไม่ได้";
+				mes "ไม่มีอะไรฟรีในโลกนี้ ~";
+				mes "อืม ... แล้วนี่?";
+				mes "คุณนำสิ่งที่ฉันขอมาให้ฉัน";
+				mes "จากนั้นฉันจะสอนทักษะให้คุณ";
+				next;
+				mes "[ Roberto ]";
+				mes "ฉันเหงามากตั้งแต่ออกจากบ้านเกิด";
+				mes "ฉันต้องการรักษาอาการคิดถึงบ้าน";
+				mes "กับสิ่งต่างๆจากที่นั่น";
+				mes "นำเรซิน 20 เม็ดมาให้ฉันจากต้นไม้ใน ";
+				mes "ป่า Payon และ Red Potion 1 ขวด";
+				mes "ขายในร้าน.";
+				next;
+				mes "[ Roberto ]";
+				mes "นอกจากนี้ 13 Trunks จาก Willows นั่น";
+				mes "อาศัยอยู่ใกล้ป่า Payon";
+				mes "41 ชี้สเกล";
+				mes "7 สปอร์เห็ด";
+				mes "หากคุณนำสิ่งเหล่านี้มาให้ฉัน";
+				next;
+				mes "[ Roberto ]";
+				mes "ฉันจะสอนทักษะให้คุณ";
+				mes "แล้ว.. ฉันจะรอ";
+				mes "สำหรับข่าวจากบ้านเรา.";
+				close;
+			case 2:
+				mes "[ Roberto ]";
+				mes "... เฮ้ "+((Sex == SEX_MALE)?"มิสเตอร์":"นางสาว")+".";
+				mes "... ระวังตอนกลางคืน";
+				close;
+			}
+		}
+		mes "[ Roberto ]";
+		mes "อืม ... มั้ย";
+		mes "มีอะไรจะพูด?";
+		mes "ฉันไม่มีอะไร.";
+		mes "ความแตกต่างในระดับ";
+		mes "ตัดการสนทนา";
+		close;
+	}
+	mes "[?]";
+	mes "เอ๊ะ ... ครั้งแรกที่เห็นธนูหรืออะไร?";
+	mes "เพียงแค่ไปที่ที่คุณกำลังจะไป";
+	mes "ฉันคุยกับนักธนูระดับสูงเท่านั้น";
+	mes "จะไม่อ้าปากพูด!";
+	close;
+}
+
+payon,103,63,3	script	Jason	88,3,3,{
+	if (BaseClass == Job_Archer) {
+		if (getskilllv("AC_CHARGEARROW") == 1) {
+			mes "[ Json ]";
+			mes "เอ๊ะไว้เจอกันใหม่นะ";
+			mes "แปลกมาก";
+			mes "เมื่อใดก็ตามที่ฉันเห็นใครอีกครั้ง";
+			mes "ฉันเริ่มมากขึ้น";
+			mes "เอ๊ะ ... ยังไงก็ยินดีที่ได้พบคุณอีกครั้ง";
+			mes "ไม่ต้องมาอีกแล้ว ...";
+			close;
+		}
+		else if (JobLevel >= 35 || (BaseJob == Job_Hunter || BaseJob == Job_Bard || BaseJob == Job_Dancer)) {
+			mes "[ Json ]";
+			mes "เอ๊ย ... แผลของฉันยังไม่หายดี";
+			mes "Bleh .. ฉันประมาทเกินไป ... ";
+			mes "กลายเป็นแบบนี้.. เอ่อ ...";
+			mes "แต่ยังไงก็ทำร้ายฉันแบบนี้";
+			mes "ทำให้ฉันบาดเจ็บมากมาย ...";
+			next;
+			mes "ฉันควรทำอย่างไรกับโรแบร์โต้";
+			mes "อืมม ... อ๊า!";
+			mes "คุณ? คุณเคยอยู่ที่นั่นนานแค่ไหน?";
+			mes "อืม ... ระดับสูงมาก";
+			mes "คนอย่างคุณจะเป็นอย่างแน่นอน";
+			mes "สามารถรู้วิธีใช้ Arrow Repel";
+			next;
+			switch (select("นั่นคืออะไร:สอนฉัน")) {
+			case 1:
+				mes "[ Json ]";
+				mes "...คุณล้อเล่นใช่ไหม?";
+				mes "โอ้ฉันคุณไม่รู้ด้วยซ้ำ";
+				mes "Arrow Repel ในระดับนั้น?";
+				mes "คุณเป็นคนแปลก";
+				next;
+				mes "[ Json ]";
+				mes "(เจสันอยู่ในดินแดนลาลา)";
+				next;
+				mes "[ Json ]";
+				mes "โอเค ฉันจะสอนอะไรคุณ";
+				mes "Arrow Repel คือ";
+				next;
+				mes "[ Json ]";
+				mes "Arrow Repel เป็นทักษะที่ช่วยให้คุณสามารถ";
+				mes "ผลักคู่ต่อสู้ออกไปทันทีที่คุณโจมตี";
+				mes "คุณจะใช้ได้ก็ต่อเมื่อคุณตั้งเป้าอย่างแน่นอน";
+				mes "ที่เป้าหมาย แต่ไม่เหมือนเวทมนตร์";
+				mes "มันไม่สะกด";
+				next;
+				mes "[ Json ]";
+				mes "มีประโยชน์มากสำหรับนักธนู";
+				mes "ที่อ่อนแอในระยะประชิด";
+				mes "หากคุณต้องการเรียนรู้";
+				mes "มาหาฉันอีกครั้ง";
+				mes "มีวัสดุที่จำเป็นบางอย่าง";
+				next;
+				mes "[ Json ]";
+				mes "อันดับแรกเพราะคุณต้องปรับเปลี่ยนคันธนู";
+				mes "นำหน้าไม้ที่คุณไม่ได้ใช้";
+				mes "10 หนวด 10 บิลนก";
+				mes "3 หาง Yoyo .. พวกนี้ยืดหยุ่นมาก";
+				mes "นอกจากนี้ 2 Emeralds และสุดท้าย แต่ไม่ท้ายสุด ...";
+				mes "น้ำกล้วย 36 ขวดโดนใจ!";
+				next;
+				mes "[ Json ]";
+				mes "...... เอิ่ม!";
+				mes "หากคุณนำสิ่งเหล่านี้มาทั้งหมด";
+				mes "ฉันจะสอนคุณ Arrow Repel";
+				mes "แล้วเจอกันใหม่.";
+				mes "(ฉันจะบ้าถ้าคุณไม่เอาน้ำกล้วยมา)";
+				close;
+			case 2:
+				if ((countitem(721) > 1) && (countitem(942) > 2) && (countitem(962) > 9) && (countitem(925) > 9) && (countitem(532) > 35)) {
+					mes "[ Json ]";
+					mes "ตกลง! สมบูรณ์แบบ!";
+					mes "ฉันจะสอนคุณในระดับประเทศ";
+					mes "ทักษะที่มีชื่อเสียง Arrow Repel!";
+					next;
+					delitem 721,2; //Azure_Jewel
+					delitem 942,3; //Yoyo_Tail
+					delitem 962,10; //Tentacle
+					delitem 925,10; //Bill_Of_Birds
+					delitem 532,36; //Banana_Juice
+					skill "AC_CHARGEARROW",1,SKILL_PERM;
+					mes "[ Json ]";
+					mes "โอ้ทำงานได้ดีกว่าที่ฉันคาดไว้!";
+					mes "ไม่ต้องดัดแปลงคันธนู!";
+					mes "คุณสามารถนำสิ่งนี้กลับมาได้ ~";
+					mes "และสนุกกับการใช้งานที่สืบทอดมาใหม่ของคุณ";
+					mes "ทักษะในสนามและดันเจี้ยน!";
+					mes "เหอ ~ หึ ~!";
+					close;
+				}
+				mes "[ Json ]";
+				mes "อืม ... แย่เหมือนกัน";
+				mes "คุณกำลังพลาดบางสิ่ง";
+				mes "อีกครั้งคุณต้องมีมรกต 2 อัน";
+				mes "3 หาง Yoyo 10 หนวด";
+				mes "10 Bill of Birds และสุดท้าย แต่";
+				mes "น้ำกล้วยไม่ต่ำกว่า 36 ขวด!";
+				next;
+				mes "[ Json ]";
+				mes "ให้แน่ใจว่าคุณมีครบแล้วกลับมาอีกครั้ง!";
+				close;
+			}
+		}
+		mes "[ Json ]";
+		mes "โอ ... คุณเป็นนักธนู";
+		mes "ถ้าคุณพยายามมากขึ้นอีกนิด";
+		mes "คุณจะมีความสุข";
+		mes "ชื่อเสียงในฐานะนักธนู!";
+		mes "ออกแรง!";
+		close;
+	}
+	mes "[?]";
+	mes "ชีวิตต้องการจากอะไร";
+	mes "เด็กขี้เหงาอย่างฉัน?";
+	close;
+
+OnTouch_:
+	mes "[???]";
+	mes "เอ่อ ...";
+	close;
+}
+
+//============================================================ 
+// Old changelog
+//============================================================ 
+//= 1.0 Roberto message text is based off RO npc.  Jason message
+//=     text is custom from old version.
+//=     All items are from official quests though.[kobra_k88]
+//= 1.0a Now using functions found in "Global_Functions.txt"
+//=     for class checks.[kobra_k88]
+//= 1.2 Added Baby Class Support [Lupus]
+//= 1.3 Removed callfunc Is_####_Class in favor of baseClass [Silentdragon]
+//= 1.4 Fixed exploits [Lupus]
+//= 1.4a Fixed some typos [IVBela]
+//= 1.4b changed perm. variables to temp ones [Lupus]
+//============================================================
+

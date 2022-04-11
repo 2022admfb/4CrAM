@@ -1,0 +1,345 @@
+//===== rAthena Script =======================================
+//= Reset NPC
+//===== Description: =========================================
+//= Resets skills, stats, or both.
+//===== Additional Comments: =================================
+//= 1.0 First Version
+//= 1.1 Optimized for the greater good. [Kisuka]
+//= 1.2 Cleaning [Euphy]
+//= 1.3 All statuses removed upon skill reset. [Euphy]
+//= 1.4 Compressed Script, Added limit use option [Stolao]
+//=	Changed set -> setarray, Improved text with F_InsertPlural
+//= 1.5 Added sc_end_class to reset related status changes [sader1992]
+//============================================================
+prontera,156,283,4	script	Rino Reset	749,{
+	//	 		Skills,	Stats,	Both,	Limit  ราคารีสกิล ( 5000 ), ราคารีสเตตัส ( 5000 ), ราคารีทั้งคู่ ( 9000 ), จำนวนครั้งในการรี ( 0 )
+	setarray .@Reset,	0,	1,	2,	3, 4, 5, 3;
+	setarray .@levelstats,	40,	75,	85,	120, 149, 150;
+	mes "[Rino Reset]";
+	//set reset_limit,reset_limit -1;
+	if(.@Reset[6] && reset_limit > .@Reset[6]) {
+		mes "ขอโทษด้วยเจ้าสามารถรีได้แค่ "+callfunc("F_InsertPlural",.@Reset[6],"ครั้ง")+" เท่านั้น.";
+		close;
+	}
+	mes "สวัสดี";
+	mes "ข้าคือ Alchemist ที่";
+	mes "ยิ่งใหญ่ที่สุดในประวัติศาตร์";
+	mes "ทุกคนต่างเรียกข้า แบบนั้น !";
+	next;
+	mes "[Rino Reset]";
+	mes "อืม ดูเหมือนเจ้าจะไม่ค่อยเชื่อนะ ";
+	mes "ถ้างั้นข้าจะแสดงพลัง ";
+	mes "ให้เจ้าดูหน่อยละกัน";
+	next;
+	/*mes "ข้าคือ Reset Girl.";
+	mes "รีสเตตัส: "+ callfunc("F_InsertComma",.@Reset[1]) +"z";
+	mes "รีสกิล: "+ callfunc("F_InsertComma",.@Reset[0]) +"z";
+	mes "รีทั้งคู่: "+ callfunc("F_InsertComma",.@Reset[2]) +"z";
+	if(.@Reset[6]) mes "เจ้าสามารถรีได้แค่ "+callfunc("F_InsertPlural",.@Reset[6],"ครั้ง")+", ดังนั้นใช้ "+((.@Reset[6]>1)?"มัน":"อย่าง")+" ฉลาด.";
+	mes "กรุณาเลือกบริการที่ต้องการ:";
+	next;*/
+	set .@i,(select("> ฟังคำแนะนำ:> รีสเตตัส:> จบการสนทนา"));
+	if(.@i == 1) {
+	mes "[Rino Reset]";
+	mes "ข้ามีพลังพิเศษอย่างนึง";
+	mes "นั่นก็คือ ... สามารถช่วยเจ้า";
+	mes "รีเซ็ท ค่า สเตตัส , สกิล";
+	next;
+	mes "[Rino Reset]";
+	mes "ซึ่งนั่น น่ะ หมายถึง";
+	mes "สามารถคืนค่าทั้งหมด";
+	mes "เป็นการช่วยเจ้า";
+	mes "[ รีเซ็ท ]  Status , Skill";
+	next;
+	mes "[Rino Reset]";
+	mes "ต่อไปนี้คือข้อควรระวัง";
+	mes "ตั้งใจฟังด้วยล่ะ !";
+	next;
+	mes "[Rino Reset]";
+	mes "ถ้าอยากจะ รี เซ็ต";
+	mes "ก็มีราคาที่ต้องจ่าย";
+	mes "นำ [Reset Stone]";
+	next;
+	mes "[Rino Reset]";
+	mes "BaseLv 1 ~ 40 :^0000FF Reset Stone^000000 "+callfunc("F_InsertComma", .@Reset[0])+" ";
+	mes "BaseLv 41 ~ 75 :^0000FF Reset Stone^000000 "+callfunc("F_InsertComma", .@Reset[1])+" ";
+	mes "BaseLv 76 ~ 85 :^0000FF Reset Stone^000000 "+callfunc("F_InsertComma", .@Reset[2])+" ";
+	mes "BaseLv 86 ~ 120 :^0000FF Reset Stone^000000 "+callfunc("F_InsertComma", .@Reset[3])+" ";
+	mes "BaseLv 121 ~ 149 :^0000FF Reset Stone^000000 "+callfunc("F_InsertComma", .@Reset[4])+" ";
+	mes "BaseLv 150 ขึ้นไป : ^0000FFReset Stone^000000 "+callfunc("F_InsertComma", .@Reset[4])+" ";
+	next;
+	mes "[Rino Reset]";
+	mes "การ Reset Status";
+	mes "สามารถทำได้ ^FF0000ไม่จำกัด ^000000ครั้ง";
+	mes "การ รีเซ็ท ค่า จะต้องไม่มีของติดตัว";
+	mes "^FF0000น้ำหนัก เป็น 0";
+	mes "รถเข็น , Grand Peco , Falcon , Dragon ,Wolf ,Magic Gear";
+	mes "ก็ใช้ไม่ได้ จำเป็นต้องเอาออกก่อน";
+	next;
+	mes "[Rino Reset]";
+	mes "ถ้าน้ำหนัก รถเข็น เกิน ^FF0000 8,000";
+	mes "โปรดไปเอาออก แล้วกลับมาหาข้า อีกครั้ง";
+	mes "ขอให้โชคดี";
+	close;
+	end;
+	}
+	/*if (Zeny < .@Reset[.@i-1]) {
+		mes "ขอโทษด้วย, เจ้ามีเงินไม่พอ.";
+		close;
+	}*/
+	// reskill
+    if(.@i==3) {
+		    mes "[Rino Reset]";
+			mes "ไว้พบกันใหม่ ขอให้โชคดี";
+		    close;
+            end;			
+	}
+	
+	
+	
+	/*
+	if(.@Reset[6]){
+		mes "[Rino Reset]";
+		mes "เจ้าสามารถรีได้แค่ "+callfunc("F_InsertPlural",.@Reset[6],"ครั้ง")+" เท่านั้น, เจ้าแน่ใจไหม ?";
+		next;
+		if(select("ขอคิดดูก่อน:แน่นอน") == 1) {
+			mes "[Rino Reset]";
+			mes "กรุณาตัดสินใจให้ดี ก่อนจะมาที่นี้ หึหึ";
+			mes "ไว้พบกันใหม่ ขอให้โชคดี";
+		    close;
+            end;			
+		}*/
+			
+		
+	
+	
+	/*set Zeny, Zeny-.@Reset[.@i-1];
+	if(.@i&3){
+		sc_end_class;
+		ResetSkill;
+	}
+	if(.@i&2) ResetStatus;
+	mes "เรียบร้อย!";
+	if(.@Reset[6]) set reset_limit,reset_limit + 1;
+	close;*/
+	
+	
+	/*mes "Rino Reset";
+	mes "หากต้องการทำต่อ ต้องใช้ Reset stone = ^FF0000"+callfunc("F_InsertComma", .@Reset[0])+"^000000 ชิ้น";
+	next;*/
+	
+	
+	if(.@i==2){
+		mes "[Rino Reset]";
+		mes "เจ้าสามารถรีได้แค่ "+callfunc("F_InsertPlural",.@Reset[6],"ครั้ง")+" เท่านั้น, เจ้าแน่ใจไหม ?";
+		next;
+		if(select("ขอคิดดูก่อน:แน่นอน") == 1) {
+			mes "[Rino Reset]";
+			mes "กรุณาตัดสินใจให้ดี ก่อนจะมาที่นี้ หึหึ";
+			mes "ไว้พบกันใหม่ ขอให้โชคดี";
+		    close;
+            end;			
+		}else{
+	
+	    if (baselevel<=.@levelstats[0]){
+	     mes "[Rino Reset]";
+	     mes "หากต้องการทำต่อ ต้องใช้ .... ";
+	     mes "Reset stone ^FF0000"+callfunc("F_InsertComma", .@Reset[0])+"^000000 ชิ้น";
+	     next;
+		 if (Select ("ยืนยัน:ไม่ดีกว่า"))==2 {
+		 mes "[Rino Reset]";
+		 mes "กรุณาตัดสินใจให้ดี ก่อนจะมาที่นี้ หึหึ";
+		 mes "ไว้พบกันใหม่ ขอให้โชคดี";
+		 close2;
+		 end;
+	    }
+	    if (countitem(6320)>=.@Reset[0]){
+			mes "[Rino Reset]";
+			mes "ยินดีด้วย";
+			mes "Reset status เรียบร้อย";
+			ResetStatus;
+			skilleffect 34,0; 
+			delitem 6320,.@Reset[0];
+			if(.@Reset[6]) set reset_limit,reset_limit + 1;
+			close2;
+			end;
+		}  
+		    
+		    mes "[Rino Reset]";
+			mes "ขออภัย ไม่สามารถทำได้";
+			mes "Reset Stone ไม่เพียงพอ";
+			close2;
+			end;	
+	}
+	
+	if (baselevel<.@levelstats[1]){
+	mes "[Rino Reset]";
+	mes "หากต้องการทำต่อ ต้องใช้ .... ";
+	mes "Reset stone ^FF0000"+callfunc("F_InsertComma", .@Reset[1])+"^000000 ชิ้น";
+	next;
+	if (Select ("ยืนยัน:ไม่ดีกว่า"))==2 {
+		 mes "[Rino Reset]";
+		 mes "กรุณาตัดสินใจให้ดี ก่อนจะมาที่นี้ หึหึ";
+		 mes "ไว้พบกันใหม่ ขอให้โชคดี";
+		 close2;
+		 end;
+		
+	}
+	    if (countitem(6320)>=.@Reset[1]){
+			mes "[Rino Reset]";
+			mes "ยินดีด้วย";
+			mes "Reset status เรียบร้อย";
+			ResetStatus;
+			delitem 6320,.@Reset[1];
+			skilleffect 34,0; 
+			if(.@Reset[6]) set reset_limit,reset_limit + 1;
+			close2;
+			end;
+		}   
+		    
+		    mes "[Rino Reset]";
+			mes "ขออภัย ไม่สามารถทำได้";
+			mes "Reset Stone ไม่เพียงพอ";
+			close2;
+			end;	
+	}
+	if (baselevel<.@levelstats[2]){
+	mes "[Rino Reset]";
+	mes "หากต้องการทำต่อ ต้องใช้ .... ";
+	mes "Reset stone ^FF0000"+callfunc("F_InsertComma", .@Reset[2])+"^000000 ชิ้น";
+	next;
+	if (Select ("ยืนยัน:ไม่ดีกว่า"))==2 {
+		 mes "Rino Reset";
+		 mes "กรุณาตัดสินใจให้ดี ก่อนจะมาที่นี้ หึหึ";
+		 mes "ไว้พบกันใหม่ ขอให้โชคดี";
+		 close2;
+		 end;
+		
+	}
+	    if (countitem(6320)>=.@Reset[2]){
+			mes "[Rino Reset]";
+			mes "ยินดีด้วย";
+			mes "Reset status เรียบร้อย";
+			ResetStatus;
+			delitem 6320,.@Reset[2];
+			if(.@Reset[6]) set reset_limit,reset_limit + 1;
+			skilleffect 34,0; 
+			close2;
+			end;
+		}
+		    
+		    mes "[Rino Reset]";
+			mes "ขออภัย ไม่สามารถทำได้";
+			mes "Reset Stone ไม่เพียงพอ";
+			close2;
+			end;	
+	}
+	if (baselevel<.@levelstats[3]){
+	mes "[Rino Reset]";
+	mes "หากต้องการทำต่อ ต้องใช้ .... ";
+	mes "Reset stone ^FF0000"+callfunc("F_InsertComma", .@Reset[3])+"^000000 ชิ้น";
+	next;
+	if (Select ("ยืนยัน:ไม่ดีกว่า"))==2 {
+		 mes "Rino Reset";
+		 mes "กรุณาตัดสินใจให้ดี ก่อนจะมาที่นี้ หึหึ";
+		 mes "ไว้พบกันใหม่ ขอให้โชคดี";
+		 close2;
+		 end;
+		
+	}
+	    if (countitem(6320)>=.@Reset[3]){
+			mes "[Rino Reset]";
+			mes "ยินดีด้วย";
+			mes "Reset status เรียบร้อย";
+			sc_end_class;
+			ResetStatus;
+			delitem 6320,.@Reset[3];
+			if(.@Reset[6]) set reset_limit,reset_limit + 1;
+			skilleffect 34,0; 
+			close2;
+			end;
+		}
+		    
+		    mes "[Rino Reset]";
+			mes "ขออภัย ไม่สามารถทำได้";
+			mes "Reset Stone ไม่เพียงพอ";
+			close2;
+			end;	
+	}
+	if (baselevel<.@levelstats[4]){
+	mes "[Rino Reset]";
+	mes "หากต้องการทำต่อ ต้องใช้ .... ";
+	mes "Reset stone ^FF0000"+callfunc("F_InsertComma", .@Reset[4])+"^000000 ชิ้น";
+	next;
+	if (Select ("ยืนยัน:ไม่ดีกว่า"))==2 {
+		 mes "[Rino Reset]";
+		 mes "กรุณาตัดสินใจให้ดี ก่อนจะมาที่นี้ หึหึ";
+		 mes "ไว้พบกันใหม่ ขอให้โชคดี";
+		 close2;
+		 end;
+		
+	}
+	    if (countitem(6320)>=.@Reset[4]){
+			mes "[Rino Reset]";
+			mes "ยินดีด้วย";
+			mes "Reset status เรียบร้อย";
+			sc_end_class;
+			ResetStatus;
+			delitem 6320,.@Reset[4];
+			skilleffect 34,0; 
+			if(.@Reset[6]) set reset_limit,reset_limit + 1;
+			close2;
+			end;
+		}
+		    
+		    mes "[Rino Reset]";
+			mes "ขออภัย ไม่สามารถทำได้";
+			mes "Reset Stone ไม่เพียงพอ";
+			close2;
+			end;	
+	}
+	if (baselevel>=.@levelstats[5]){
+	mes "[Rino Reset]";
+	mes "หากต้องการทำต่อ ต้องใช้ .... ";
+	mes "Reset stone ^FF0000"+callfunc("F_InsertComma", .@Reset[5])+"^000000 ชิ้น";
+	next;
+	if (Select ("ยืนยัน:ไม่ดีกว่า"))==2 {
+		 mes "[Rino Reset]";
+		 mes "กรุณาตัดสินใจให้ดี ก่อนจะมาที่นี้ หึหึ";
+		 mes "ไว้พบกันใหม่ ขอให้โชคดี";
+		 close2;
+		 end;
+		
+	}
+	    if (countitem(6320)>=.@Reset[5]){
+			mes "[Rino Reset]";
+			mes "ยินดีด้วย";
+			mes "Reset status เรียบร้อย";
+			ResetStatus;
+			delitem 6320,.@Reset[5];
+			skilleffect 34,0; 
+			if(.@Reset[6]) set reset_limit,reset_limit + 1;
+			close2;
+			end;
+		}
+		    next;
+		    mes "[Rino Reset]";
+			mes "ขออภัย ไม่สามารถทำได้";
+			mes "Reset Stone ไม่เพียงพอ";
+			close2;
+			end;	
+	   
+	
+	    }
+		
+		mes"[Rino Reset]";
+		mes "ไม่ตรงตามเงื่อนไข";
+		close;
+		end;
+      }
+	
+
+
+	}
+}
+izlude,105,145,5	duplicate(Rino Reset)	ผู้เชี่ยวชาญวิทยาศาตร์	749

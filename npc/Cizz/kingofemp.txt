@@ -1,0 +1,620 @@
+/*==============================================================
+ * Version 1.0 : Added. King Of Emperium Mapflag
+ * Version 2.0 : Revamped to rotational KoE
+ * Version 2.1 : Added Rewards
+ * Version 2.2 : Fixed Bug where adding session not recognized
+ * Version 2.3 : Added Participation Points
+ * Version 3.0 : Added Defender Time for holding the emperium.
+ * Version 3.1 : Revamped Rewards
+ * Version 3.2 : Fixed Manage Session adding .gm_allow.
+ * Version 4.0 : Added Enable Barricade
+ * Version 4.1 : Added Enable Guardian
+ * Version 4.2 : Added Special Effect to NPC when King of Emperium is Active.
+ * Version 4.3 : Fixed KOE Points saving when logged out.
+ * Version 4.4 : Revamped rewards due to rAthena guild members sql.
+ * Version 4.5 : Added Losers Participation reward
+ *==============================================================*/
+-	script	Koe#1	-1,{
+OnMon2030:
+OnTue2030:
+OnWed2030:
+OnFri2030:
+if($KOEPointMultipile){
+$KOEPointMultipile = 2;
+announce "[ Event KOE ] KOE Point x2 เริ่มขึ้นแล้ว !!",bc_all;
+}
+end;
+
+OnPCKillEvent:
+if(strcharinfo(3) == "ra_koe")
+{
+	sleep2 2500;
+	#KOEPOINTS += 10 * $KOEPointMultipile;
+	//#KOEPOINTS += 2;
+	dispbottom "[ System ] KOE Point "+#KOEPOINTS+"";
+	announce strcharinfo(0) +" ฆ่า "+ rid2name(killedrid), bc_map;
+}
+end;
+}
+
+auction_03,19,62,5	script	King Of Emperium	3097,{
+function Add_Zero; function Add_Zero2;
+
+L_Menu1:
+mes "[ ^FF5500King of Emperium^000000 ]";
+for(.@i=0;.@i<getarraysize(.Maps$);.@i++){
+	if(getd("$@koe_"+.Maps$[.@i]+"_start")){
+		.@active = 1;
+		.@Maps$[.@x] = .Maps$[.@i];
+		.@MapsName$[.@x++] = .MapsName$[.@i];
+	}
+}
+if(.@active)
+	mes "The King of Emperium ^0055FFเริ่มแล้ว^000000.";
+else{
+	deletearray .@time[0],getarraysize(.@time);
+	for(.@i=0; .@i<.Size; .@i+=3)
+		if ((gettime(DT_DAYOFWEEK) == $KOE_CONTROL[.@i]-1 && gettime(DT_HOUR) <= $KOE_CONTROL[.@i+1]-1 ) || gettime(DT_DAYOFWEEK) < $KOE_CONTROL[.@i]-1) {
+			setarray .@time[0],$KOE_CONTROL[.@i]-1,$KOE_CONTROL[.@i+1]-1;
+		break;
+	}
+	if (!getarraysize(.@time))
+		setarray .@time[0],$KOE_CONTROL[0]-1,$KOE_CONTROL[1]-1;
+		mes "The King of Emperium ^777777ยังไม่เริ่ม^000000.";
+	if (.Size) {
+		mes " ";
+		mes "รอบต่อไปจะเริ่มขึ้น ";
+		mes "วัน ^0055FF"+.Days$[.@time[0]]+"^000000 เวลา "+Add_Zero(.@time[1])+"^000000.";
+	}
+}
+next;
+switch(select((.@active ? "^0055FF~ เข้าร่วม King of Emperium^000000":"")+":~ ^008000ตรวจสอบ^000000:"+( getgmlevel()>= .gm_allow ? "~ จัดการระบบ":"")+":~ ข้อมูล:~ ลาก่อน")){
+	case 1:
+		mes "[ King of Emperium ]";
+		mes "เลือกสถานที่จะเข้าร่วม สถานที่ไหน?.";
+		next;
+		.@menu$ = "";
+		for(.@i=0;.@i<.Size;.@i+=3)
+			if(gettime(DT_DAYOFWEEK) == $KOE_CONTROL[.@i]-1 && gettime(DT_HOUR) == $KOE_CONTROL[.@i+1]-1){
+				.@menu$ = .@menu$+"~ "+.MapsName$[$KOE_CONTROL[.@i+2]-1]+":";
+				.@sel[.@j++] = $KOE_CONTROL[.@i+2]-1;
+			}
+		.@warp = select(.@menu$)-1;
+		if(getd("$koe_"+.Maps$[.@sel[.@warp]])==getcharid(2)) //owner warps
+			explode(.@Warps$,.Warp2$[.@sel[.@warp]],",");
+		else
+			explode(.@Warps$,.Warp1$[.@sel[.@warp]],",");
+		.@warppoints = getarraysize(.@Warps$);
+		.@rand = rand(0,.@warppoints)/2;
+		warp .Maps$[.@sel[.@warp]],atoi(.@Warps$[.@rand*2]),atoi(.@Warps$[(.@rand*2)+1]);
+		end;
+	case 2:
+		callsub OnSchedule;
+		goto L_Menu1;
+	case 3:
+		L_Menu2:
+		switch(select(" ~ เพิ่มการแข่ง...: ~ ลบการแข่ง...: ~ ^777777ย้อนกลับ^000000")){
+			case 1:
+				mes "[New Session]";
+				mes "เลือกวันที่.";
+				next;
+				set .@Day, select(" ~ "+implode(.Days$,": ~ "))-1;
+				mes "[New Session]";
+				mes "จัดการเวลา เริ่มแข่ง ^0055FF"+.Days$[.@Day]+"^000000.";
+				next;
+				set .@menu$,"";
+				for(set .@i,0; .@i<24; set .@i,.@i+1)
+					set .@menu$, .@menu$+" ~ "+Add_Zero(.@i,1)+":";
+				set .@Start, select(.@menu$)-1;
+				mes "[New Session]";
+				mes "เลือกแผนที่สำหรับแข่ง ^0055FF"+.Days$[.@Day]+" ("+Add_Zero(.@Start)+")^000000.";
+				next;
+				set .@map, select(" ~ "+implode(.MapsName$,": ~ "))-1;
+				mes "[New Session]";
+				mes "ข้อมูลการเพิ่มการแข่งขัน a\nKing of Emperium.";
+				mes "กำหนดการ : \n~ ^0055FF"+.Days$[.@Day]+"^000000\n~ ^0055FF"+Add_Zero(.@Start)+"^000000\n~ ^0055FF"+.MapsName$[.@map]+"^000000";
+				next;
+				if(select(" ~ เพิ่มการแข่ง...: ~ ยกเลิก")==2)
+					goto L_Menu1;
+				mes "[New Session]";
+				mes "เพิ่มการแข่งเรียบร้อย!";
+				if(!.@Day && !.@Start && !.@map ) goto L_Menu1;
+				set $KOE_CONTROL[.Size],.@Day+1;
+				set $KOE_CONTROL[.Size+1],.@Start+1;
+				set $KOE_CONTROL[.Size+2],.@map+1;
+				set .Size,getarraysize($KOE_CONTROL);
+				next;
+				break;
+			case 2:
+				mes "[Remove Session]";
+				if (!.Size) {
+					mes "ไม่มีการกำหนดค่าการแข่ง.";
+					next;
+					break;
+				}
+				mes "เลือก การแข่งขัน ที่จะลบ.";
+				next;
+				set .@menu$,"";
+				for(set .@i,0; .@i<.Size; set .@i,.@i+3)
+					set .@menu$, .@menu$+" ~ [^0055FF"+.MapsName$[$KOE_CONTROL[.@i+2]-1]+"^000000] "+.Days$[$KOE_CONTROL[.@i]-1]+" "+Add_Zero($KOE_CONTROL[.@i+1]-1,1)+"-"+Add_Zero2($KOE_CONTROL[.@i+1]-1,1)+":";
+				set .@i, select(.@menu$)-1;
+				mes "[Remove Session]";
+				mes "ลบ ^0055FF"+.MapsName$[$KOE_CONTROL[.@i+2]-1]+" "+.Days$[$KOE_CONTROL[.@i*3]-1]+"^000000 การแข่งขัน?";
+				mes "การดำเนินการนี้ไม่สามารถยกเลิกได้.";
+				next;
+				set .@j, select(" ~ ^FF0000ลบ การแข่งขัน...^000000: ~ ^777777ยกเลิก^000000");
+				mes "[Remove Session]";
+				if (.@j == 2)
+					mes "ยกเลิกแล้ว.";
+				else {
+					deletearray $KOE_CONTROL[.@i*3],3;
+					set .Size, getarraysize($KOE_CONTROL);
+					mes "ลบการแข่งขัน เรียบร้อย.";
+				}
+				next;
+				break;
+			case 3:
+				break;
+		}
+		goto L_Menu1;
+	case 4:
+		mes "[ King of Emperium ]";
+		mes "The King of Emperium hill";
+		mes "สงคราม กิลด์";
+		mes "กิลด์ ที่แข็งแกร่งที่สุด";
+		mes "จะได้รับรางวัล มากมาย.";
+		next;
+		goto L_Menu1;
+	case 5:
+		mes "[ King of Emperium ]";
+		mes "โชคดี~";
+		mes "แล้วเจอกันใหม่~";
+		end;
+}
+end;
+
+OnStart:
+OnMinute00: //START OF KOE
+	for(.@i=0;.@i<.Size;.@i+=3)
+		if(gettime(DT_DAYOFWEEK) == $KOE_CONTROL[.@i]-1 && gettime(DT_HOUR) == $KOE_CONTROL[.@i+1]-1)
+			donpcevent "KoE#"+.Maps$[$KOE_CONTROL[.@i+2]-1]+"::OnStartKoE";
+	while(1){
+		.@active = 0;
+		for(.@i=0;.@i<getarraysize(.Maps$);.@i++)
+			if(getd("$@koe_"+.Maps$[.@i]+"_start")){
+				.@active = 1;
+				break;
+			}
+		if(!.@active) break;
+		//EF_FLOWERCAST
+		specialeffect EF_HOMUNCASTING;
+		sleep 500;
+	}
+end;
+
+OnEnd:
+OnMinute45: //END OF KOE
+	for(.@i=0;.@i<.Size;.@i+=3)
+		if(gettime(DT_DAYOFWEEK) == $KOE_CONTROL[.@i]-1 && gettime(DT_HOUR) == $KOE_CONTROL[.@i+1]-1)
+			donpcevent "KoE#"+.Maps$[$KOE_CONTROL[.@i+2]-1]+"::OnEndKoE";
+end;
+
+OnSchedule:
+	freeloop(1);
+	for(.@j=0;.@j<7;.@j++){
+		mes "[ King of Emperium ]";
+		mes "King of Emperium กำหนดการ";
+		mes "^0055FF"+.Days$[.@j]+"^000000 :";
+		for(.@i=0;.@i<.Size;.@i+=3)
+			if($KOE_CONTROL[.@i]-1==.@j)
+				mes "~ ^FF5500"+.MapsName$[$KOE_CONTROL[.@i+2]-1]+"^000000 [ "+Add_Zero($KOE_CONTROL[.@i+1]-1)+" - "+Add_Zero2($KOE_CONTROL[.@i+1]-1)+" ]";
+		next;
+	}
+	freeloop(0);
+return;
+
+OnInit:
+	.gm_allow = 99;	//Manage Sessions
+	////////////////////////////////////////////////////
+	//CONSTANTS! DO NOT TOUCH WITHOUT KNOWING ANYTHING//
+	////////////////////////////////////////////////////
+	set .Size,getarraysize($KOE_CONTROL);
+	setarray .MapsName$[0], "King of Emperium Arena";
+
+	setarray .Maps$[0], "ra_koe";
+						
+	setarray .Warp1$[0], "15,15,15,85,85,85,85,15"; //Non owner warps
+						
+	setarray .Warp2$[0], "40,40,59,59";	//Owner Warps
+						
+	setarray .Days$[0],"อาทิตย์","จันทร์","อังคาร","พุธ","พฤหัส","ศุกร์","เสาร์";
+	////////////////////////////////////////////////////
+	//CONSTANTS! DO NOT TOUCH WITHOUT KNOWING ANYTHING//
+	////////////////////////////////////////////////////
+	sleep 2000;
+	if(gettime(DT_MINUTE)<45)
+		donpcevent strnpcinfo(0)+"::OnStart";
+	else
+		donpcevent strnpcinfo(0)+"::OnEnd";
+end;
+function Add_Zero {
+	return ((getarg(0)<10)?"0":"")+getarg(0)+(getarg(1,0)?".":":")+"00";
+}
+
+function Add_Zero2 {
+	return ((getarg(0)<10)?"0":"")+getarg(0)+(getarg(1,0)?".":":")+"45";
+}
+
+//$KOE_CONTROL[0], {Day}{TIME START},{MAP}
+}
+
+//==========================KoE Engine===================//
+-	script	KoE	-1,{
+
+OnStartKoE:
+set $KOEPointMultipile,1;
+set $EventKOE,1;
+setd "$@koe_"+strnpcinfo(2)+"_start", 1;
+//============ Initilialize ============//
+.@timesize = getarraysize(getd(".koe_part_n_"+strnpcinfo(2)+"["+getarraysize(getd(".koe_part_n_"+strnpcinfo(2)))+"]"));
+deletearray getd(".koe_part_n_"+strnpcinfo(2)+"[0]"),.@timesize;
+deletearray getd(".koe_part_t_"+strnpcinfo(2)+"[0]"),.@timesize;
+setd "$koe_"+strnpcinfo(2),0;
+SetCastleData strnpcinfo(2),CD_GUILD_ID, 0;
+.@size = getarraysize(getd(".koe_"+strnpcinfo(2)+"_def"));
+deletearray getd(".koe_"+strnpcinfo(2)+"_def[0]"),.@size;
+deletearray getd(".koe_"+strnpcinfo(2)+"_time[0]"),.@size;
+setd ".koe_"+strnpcinfo(2)+"_defguild",0;
+setd ".koe_"+strnpcinfo(2)+"_deftime",0;
+//============ Initilialize ============//	
+announce "The King of Emperium Hill "+callsub(OnKoeMap)+" เริ่มแล้ว! พิสูจน์ว่าใครเแข็งแกร่งที่สุด!..", 0,0xFF8000;
+announce "The King of Emperium Hill "+callsub(OnKoeMap)+" สังหารผู้เล่น ได้รับ รางวัลเพิ่มเติม!..", 0,0xFF8000;
+announce "The King of Emperium Hill "+callsub(OnKoeMap)+" สังหารผู้เล่น ได้รับ รางวัลเพิ่มเติม!..", 0,0xFF8000;
+announce "The King of Emperium Hill "+callsub(OnKoeMap)+"ออนไลน์ ในแผนที่ ได้รับ รางวัล 300 Cash!..", 0,0xFF8000;
+announce "The King of Emperium Hill "+callsub(OnKoeMap)+"ออนไลน์ ในแผนที่ ได้รับ รางวัล 300 Cash!..", 0,0xFF8000;
+announce "The King of Emperium Hill "+callsub(OnKoeMap)+" สามารถเข้าร่วมได้ ใน NPC ใส่แว่นดำ [Item Cash Guild]!..", 0,0xFF8000;
+donpcevent "::OnRevKoE";
+maprespawnguildid strnpcinfo(2), getd("$koe_"+strnpcinfo(2)), 6;
+if(.enableBarricade)
+	callsub OnSetKoE;
+else
+	monster strnpcinfo(2),getd("."+strnpcinfo(2)+"_emp[0]"),getd("."+strnpcinfo(2)+"_emp[1]"),"EMPERIUM",1288,1,strnpcinfo(0)+"::OnEmpDead";
+end;
+
+OnWhisperGlobal: if(getgmlevel()<99) end;
+OnEndKoE:
+if(!getd("$@koe_"+strnpcinfo(2)+"_start")) end;
+$EventKOE = 0;
+announce "The King of Emperium Hill "+callsub(OnKoeMap)+" หมดเวลาแล้ว!~", 0;
+setcell strnpcinfo(2),getd(".walkable_"+strnpcinfo(2)+"[0]"),getd(".walkable_"+strnpcinfo(2)+"[1]"),getd(".walkable_"+strnpcinfo(2)+"[2]"),getd(".walkable_"+strnpcinfo(2)+"[3]"),cell_walkable,1;
+setd "$@koe_"+strnpcinfo(2)+"_start", 0;
+// DEFENDER START
+callsub OnDefTime;
+for(.@i=0;.@i<getarraysize(getd(".koe_"+strnpcinfo(2)+"_def"));.@i++){
+	if(getd(".koe_"+strnpcinfo(2)+"_deftime") < getd(".koe_"+strnpcinfo(2)+"_time["+.@i+"]")){
+		setd ".koe_"+strnpcinfo(2)+"_defguild",getd(".koe_"+strnpcinfo(2)+"_def["+.@i+"]");
+		setd ".koe_"+strnpcinfo(2)+"_deftime",getd(".koe_"+strnpcinfo(2)+"_time["+.@i+"]");
+	}
+}
+// DEFENDER END
+if(getd(".koe_"+strnpcinfo(2)+"_defguild")){
+	announce "The Guild "+getguildname(getd(".koe_"+strnpcinfo(2)+"_defguild"))+" defended the "+callsub(OnKoeMap)+" Emperium the longest. "+callsub(OnConvertTime,getd(".koe_"+strnpcinfo(2)+"_deftime")), 0;
+	// REWARD START
+	if((.Options&1)){
+		if(getd(".koe_"+strnpcinfo(2)+"_defguild") == getd("$koe_"+strnpcinfo(2)))
+			callsub OnRewardBoth,getd("$koe_"+strnpcinfo(2));
+		else{
+			callsub OnRewardDefender,getd(".koe_"+strnpcinfo(2)+"_defguild");
+			callsub OnRewardHolder,getd("$koe_"+strnpcinfo(2));
+		}
+	}
+	// REWARD END
+}
+callsub OnRewardLosers;
+killmonsterall strnpcinfo(2);
+sleep 10000;
+mapwarp strnpcinfo(2),"prontera",155,180;
+end;
+ 
+OnConvertTime:
+	.@Time = getarg(0);
+	.@Hours = .@Time / 3600000;
+	.@Time = .@Time - (.@Hours * 3600000);
+	.@Minutes = .@Time / 60000;
+	.@Time = .@Time - (.@Minutes * 60000);
+	.@Seconds = .@Time / 1000;
+	.@Time = .@Time - (.@Seconds * 1000);
+	.@timestr$ = (.@Hours ? .@Hours+"h ":"")+(.@Minutes ? .@Minutes+"m ":"")+(.@Seconds ? .@Seconds+"s ":"")+(.@Time ? .@Time+"ms ":"");
+return .@timestr$;
+
+OnEmpDead:
+if(getd("$koe_"+strnpcinfo(2)))
+	callsub OnDefTime;
+initnpctimer strnpcinfo(0);
+SetCastleData strnpcinfo(2),CD_GUILD_ID, getcharid(2);
+setd "$koe_"+strnpcinfo(2), getcharid(2);
+announce "ปัจจุบัน King of Emperium Hill ใน "+callsub(OnKoeMap)+" คือ [" + strcharinfo(2) + "] guild.", 0;
+donpcevent "::OnRevKoE";
+maprespawnguildid strnpcinfo(2), getd("$koe_"+strnpcinfo(2)), 6;
+sleep 500;
+if ( getd("$@koe_"+strnpcinfo(2)+"_start") ){
+	if(.enableBarricade){
+		sleep 1000;
+		mapwarp strnpcinfo(2),strnpcinfo(2),getd(".warpbreak_"+strnpcinfo(2)+"[0]"),getd(".warpbreak_"+strnpcinfo(2)+"[1]"),1,getd("$koe_"+strnpcinfo(2));
+		callsub OnSetKoE;
+	} else
+		monster strnpcinfo(2),getd("."+strnpcinfo(2)+"_emp[0]"),getd("."+strnpcinfo(2)+"_emp[1]"),"EMPERIUM",1288,1,strnpcinfo(0)+"::OnEmpDead";
+	if(.EnableGuardian){
+		getfreecell(strnpcinfo(2),.@x,.@y,getd("."+strnpcinfo(2)+"_emp[0]"),getd("."+strnpcinfo(2)+"_emp[1]"),7,7);
+		guardian strnpcinfo(2),.@x,.@y,"Emperium Guardian",(getd("."+strnpcinfo(2)+"_guardian") ? getd("."+strnpcinfo(2)+"_guardian"):.guardian);
+	}
+}
+end;
+
+//============================= Defender Engine ===============================//
+OnDefTime:
+	.@tick = getnpctimer(0),strnpcinfo(0);
+	.@a = inarray(getd(".koe_"+strnpcinfo(2)+"_def"),getd("$koe_"+strnpcinfo(2)));
+	if(.@a>=0)
+		setd ".koe_"+strnpcinfo(2)+"_time["+.@a+"]",getd(".koe_"+strnpcinfo(2)+"_time["+.@a+"]")+.@tick;
+	else {
+		.@size = getarraysize(getd(".koe_"+strnpcinfo(2)+"_def"));
+		setd ".koe_"+strnpcinfo(2)+"_def["+.@size+"]",getd("$koe_"+strnpcinfo(2));
+		setd ".koe_"+strnpcinfo(2)+"_time["+.@size+"]",getd(".koe_"+strnpcinfo(2)+"_time["+.@size+"]")+.@tick;
+	}
+return;
+//============================== Defender Engine ==============================//
+
+//============================= Barricade Engine ===============================//
+OnSetKoE:
+	monster strnpcinfo(2),getd("."+strnpcinfo(2)+"_emp[0]"),getd("."+strnpcinfo(2)+"_emp[1]"),"EMPERIUM",1288,1,strnpcinfo(0)+"::OnEmpDead";
+	setd ".EmpID_"+strnpcinfo(2),$@mobid[0];
+	setunitdata getd(".EmpID_"+strnpcinfo(2)),UMOB_DMGIMMUNE,1;
+	setd ".Barricade_"+strnpcinfo(2),0;
+	for(.@i=0;.@i<getarraysize(getd(".barx_"+strnpcinfo(2)));.@i++){
+		monster	strnpcinfo(2),getd(".barx_"+strnpcinfo(2)+"["+.@i+"]"),getd(".bary_"+strnpcinfo(2)+"["+.@i+"]"),"Barricade",1905,1,strnpcinfo(0)+"::OnBarDead",0;
+		setd ".Barricade_"+strnpcinfo(2),getd(".Barricade_"+strnpcinfo(2))+1;
+	}
+	setcell strnpcinfo(2),getd(".walkable_"+strnpcinfo(2)+"[0]"),getd(".walkable_"+strnpcinfo(2)+"[1]"),getd(".walkable_"+strnpcinfo(2)+"[2]"),getd(".walkable_"+strnpcinfo(2)+"[3]"),cell_walkable,0;
+return;
+
+OnBarDead:
+	setd ".Barricade_"+strnpcinfo(2),getd(".Barricade_"+strnpcinfo(2))-1;
+	if(getd(".Barricade_"+strnpcinfo(2)) <= 0){
+		mapannounce strnpcinfo(2),"สิ่งกีดขวางได้ล้มลง The Emperium ตอนนี้สามารถโจมตี!",bc_map;
+		setcell strnpcinfo(2),getd(".walkable_"+strnpcinfo(2)+"[0]"),getd(".walkable_"+strnpcinfo(2)+"[1]"),getd(".walkable_"+strnpcinfo(2)+"[2]"),getd(".walkable_"+strnpcinfo(2)+"[3]"),cell_walkable,1;
+		setunitdata getd(".EmpID_"+strnpcinfo(2)),UMOB_DMGIMMUNE,0;
+	}
+end;
+//============================= Barricade Engine ===============================//
+
+//=============================== Reward Engine ===============================//
+OnRewardLosers:
+	freeloop(1);
+		.@size = getarraysize(getd(".koe_part_n_"+strnpcinfo(2)));
+		copyarray .@aid[0],getd(".koe_part_n_"+strnpcinfo(2)+"[0]"),.@size;
+		copyarray .@time[0],getd(".koe_part_t_"+strnpcinfo(2)+"[0]"),.@size;
+		for(.@j=0;.@j<.@size;.@j+=1) {
+			if ((.Options&8) && !(.Options&4)) {
+				set .@ip$, replacestr(getcharip(.@aid[.@j]),".","a");
+				if (getd(".@ip_"+.@i+"_"+.@ip$)) continue;
+				setd ".@ip_"+.@i+"_"+.@ip$,1;
+			}
+			if(.@time[.@j] <= .timepart*6) continue;
+			if (isloggedin(.@aid[.@j])) {
+				for(set .@k,0; .@k<getarraysize(.partprize); set .@k,.@k+2)
+					getitem .partprize[.@k], .partprize[.@k+1], .@aid[.@j];
+				message rid2name(.@aid[.@j]),"คุณได้รับรางวัลสำหรับการเข้าร่วม "+.timepart+" นาที ที่ "+callsub(OnKoeMap)+" King of Emperium.";
+			}
+		}	freeloop(0);
+	return;
+
+OnRewardHolder:
+	freeloop(1);
+		.@gid = getarg(0);
+		getguildmember .@gid,1,.@cid;
+		getguildmember .@gid,2,.@aid;
+		.@size = $@guildmembercount;
+		if(.Options&4) .@size = 1;
+		for(.@j=0;.@j<.@size;.@j+=1) {
+			if ((.Options&8) && !(.Options&4)) {
+				set .@ip$, replacestr(getcharip(.@aid[.@j]),".","a");
+				if (getd(".@ip_"+.@i+"_"+.@ip$)) continue;
+				setd ".@ip_"+.@i+"_"+.@ip$,1;
+			}
+			if (isloggedin(.@aid[.@j],.@cid[.@j])) {
+				for(set .@k,0; .@k<getarraysize(.holderprize); set .@k,.@k+2)
+					getitem .holderprize[.@k], .holderprize[.@k+1], .@aid[.@j];
+				message rid2name(.@aid[.@j]),"คุณได้รับรางวัลจากการเป็นส่วนหนึ่งของกิลด์ที่ "+callsub(OnKoeMap)+" King of Emperium.";
+			}
+		}
+	return;	
+
+OnRewardDefender:
+	freeloop(1);
+		.@gid = getarg(0);
+		getguildmember .@gid,1,.@cid;
+		getguildmember .@gid,2,.@aid;
+		.@size = $@guildmembercount;
+		if(.Options&4) .@size = 1;
+		for(.@j=0;.@j<.@size;.@j+=1) {
+			if ((.Options&8) && !(.Options&4)) {
+				set .@ip$, replacestr(getcharip(.@aid[.@j]),".","a");
+				if (getd(".@ip_"+.@i+"_"+.@ip$)) continue;
+				setd ".@ip_"+.@i+"_"+.@ip$,1;
+			}
+			if (isloggedin(.@aid[.@j],.@cid[.@j])) {
+				for(set .@k,0; .@k<getarraysize(.defenderprize); set .@k,.@k+2)
+					getitem .defenderprize[.@k], .defenderprize[.@k+1], .@aid[.@j];
+				message rid2name(.@aid[.@j]),"คุณได้รับรางวัลสำหรับการปกป้อง ^FF0000Emperium^000000 ของคุณอย่างสง่างาม "+callsub(OnKoeMap)+" King of Emperium.";
+			}
+		}
+	freeloop(0);
+	return;
+	
+OnRewardBoth:
+	freeloop(1);
+		.@gid = getarg(0);
+		getguildmember .@gid,1,.@cid;
+		getguildmember .@gid,2,.@aid;
+		.@size = $@guildmembercount;
+		if(.Options&4) .@size = 1;
+		for(.@j=0;.@j<.@size;.@j+=1) {
+			if ((.Options&8) && !(.Options&4)) {
+				set .@ip$, replacestr(getcharip(.@aid[.@j]),".","a");
+				if (getd(".@ip_"+.@i+"_"+.@ip$)) continue;
+				setd ".@ip_"+.@i+"_"+.@ip$,1;
+			}
+			if (isloggedin(.@aid[.@j],.@cid[.@j])) {
+				for(set .@k,0; .@k<getarraysize(.bothprize); set .@k,.@k+2)
+					getitem .bothprize[.@k], .bothprize[.@k+1], .@aid[.@j];
+				message rid2name(.@aid[.@j]),"คุณได้รับรางวัลสำหรับการเป็นส่วนหนึ่งของกิลด์ผู้พิทักษ์ที่ดีที่สุดและ King Of Emperium Holder ที่ "+callsub(OnKoeMap)+".";
+			}
+		}
+	freeloop(0);
+	return;	
+	
+OnKoeMap:
+	for(.@i=0;.@i<getarraysize(.maps$);.@i+=2)
+		if(.maps$[.@i]==strnpcinfo(2))
+			return .maps$[.@i+1];
+return;
+//=============================== Reward Engine ===============================//
+
+OnPCLoadMapEvent:
+	if(.Participation) //Enable Participation?
+	if(@lastmap$!=strnpcinfo(2) && strcharinfo(3)==strnpcinfo(2) && getd("$@koe_"+strnpcinfo(2)+"_start")){
+		set @lastmap$,strcharinfo(3);
+		message strcharinfo(0),"เปิดใช้งานการได้รับคะแนน .";
+		addtimer 10000,strnpcinfo(0)+"::OnParticipate";
+	}
+end;
+
+OnParticipate:
+	set @lastmap$,strcharinfo(3);
+	if(@lastmap$==strnpcinfo(2) && getd("$@koe_"+strnpcinfo(2)+"_start")){
+		addtimer 10000,strnpcinfo(0)+"::OnParticipate";
+		set @KOEPOINTS,@KOEPOINTS+20;
+		.@arr = inarray(getd(".koe_part_n_"+strnpcinfo(2)),getcharid(3));
+		if(.@arr >= 0)
+			setd ".koe_part_t_"+strnpcinfo(2)+"["+.@arr+"]",getd(".koe_part_t_"+strnpcinfo(2)+"["+.@arr+"]")+1;
+		else {
+			setd ".koe_part_n_"+strnpcinfo(2)+"["+getarraysize(getd(".koe_part_n_"+strnpcinfo(2)))+"]",getcharid(3);
+			setd ".koe_part_t_"+strnpcinfo(2)+"["+getarraysize(getd(".koe_part_n_"+strnpcinfo(2)))+"]",getd(".koe_part_n_"+strnpcinfo(2)+"["+getd(".koe_part_n_"+strnpcinfo(2))+"]")+1;
+		}
+	} else
+		set @lastmap$,"";
+end;
+
+OnPCLogoutEvent:
+	set #KOEPOINTS,(#KOEPOINTS+@KOEPOINTS);
+end;
+
+OnInit:
+// -----------------------------------------------------------
+//  Reward options.
+// -----------------------------------------------------------
+//  [1] Enable rewards.
+//  [4] Only reward Guild Masters.
+//      - If not set, all guild members are rewarded.
+//      - If mailing is enabled (option 2), offline Guild Masters WILL receive rewards.
+//  [8] Duplicate IP check.
+//      - Members in a guild with the same IP address are not rewarded.
+//      - If Guild Masters is enabled (option 4), this feature is not used.
+// -----------------------------------------------------------
+	// Combine values as needed (e.g. 1|8 = 1+8 = 9).
+	set .Options, 1|8;
+	// SET PRIZES HERE
+	
+	set .timepart,15;	//Time needed to receive participation reward; // เวลา รับรางวัลเข้าร่วม
+	setarray .partprize[0],6417,5;	//Participants prize ( non winner ); // รางเข้าร้วม Silvervine x5
+	
+	setarray .defenderprize[0],16995,1;//ป้องกัน // oldhat
+	setarray .holderprize[0],16995,1;//ยืด // oldhat
+	setarray .bothprize[0],14802,1;//winner ชนะ ทั้ง ยืด และ ป้องกัน // egg
+	setarray .maps$[0],
+		"ra_koe","King of Emperium Arena";
+	setarray .ra_koe_emp[0],50,50;
+	
+	set .Participation,1;	//Enable Participation points?
+	
+	//Guardian Setup
+	set .EnableGuardian,1;	//Enable Guardian?
+	set .valkyrie_vs_guardian,1765;	//Valkyrie
+	set .payg_vs_guardian,1115;	//Eddga
+	//Default Guardian
+	set .guardian,1829;
+	
+	//Barricade Setup
+	set .enableBarricade,1;	//Enable Barricade?
+	
+	//Rachel
+	setarray .warpbreak_ra_koe[0],58,58;
+	setarray .walkable_ra_koe[0],46,53,53,46;
+	setarray .barx_ra_koe[0],45,45,48,48,51,51,54,54;
+	setarray .bary_ra_koe[0],51,48,54,45,54,45,51,48;
+	//Barricade Setup
+	
+	for(.@i=0;.@i<getarraysize(.Maps$);.@i+=2)
+		killmonsterall .Maps$[.@i];
+end;
+}
+
+-	duplicate(KoE)	KoE#ra_koe	722
+
+auction_03,24,62,3	script	KOE POINTS	3628,{
+	mes "[ King Of Emperium POINTS ]";
+	mes "คุณสามารถใช้คะแนน King Of Emperium ได้ที่นี่";
+	mes "^FFFFFF_^000000";
+	set #KOEPOINTS,(#KOEPOINTS+@KOEPOINTS);
+	set @KOEPOINTS,0;
+	mes "คะแนน ปัจจุบัน: ^0000FF"+#KOEPOINTS+"^000000";
+	callshop "KOEPOINTS",1;
+	end;
+}
+//ADD YOUR ITEMS HERE
+-	pointshop	KOEPOINTS	-1,#KOEPOINTS,40023:940,40024:940,40025:940,40026:940,40027:940,40028:940,40029:940,40030:940,40031:940,40032:940,40033:940,40034:940,40035:940,40036:940,40037:940,40038:940,40039:940,40040:940,40041:940,40042:940,40043:940,40044:940,40010:2590,40011:2590,14802:450,16770:1000,12208:50,14592:50,13585:450,12902:500,16260:2300,16261:2300,16396:2300,16394:2300,12501:20,12502:20,12503:20,12504:20,12505:20,12506:20,25464:40
+
+// Flags
+-	script	::koe_flag	GUILD_FLAG,{
+	if (!getd("$koe_"+strnpcinfo(2))) end;
+	mes "[King of Emperium Hill]";
+	mes "ปัจจุบัน King of Emperium Hill ^0055FF"+strnpcinfo(1)+"^000000 คือ [ ^0055FF"+ getguildname(getd("$koe_"+strnpcinfo(2))) +"^000000 ] guild.";
+	close;
+OnAgitInit: //Uncomment this line to make the emblem stay after @reloadscript
+OnRevKoE:
+	if(getd("$koe_"+strnpcinfo(2)))
+		flagemblem getd("$koe_"+strnpcinfo(2));
+	end;
+}
+
+auction_03,15,55,5	duplicate(koe_flag)	Rachel Arena#ra_koe	GUILD_FLAG
+guildhall1,79,60,6	duplicate(King Of Emperium)	King Of Emperium#1	3097
+guildhall2,79,60,6	duplicate(King Of Emperium)	King Of Emperium#2	3097
+guildhall3,79,60,6	duplicate(King Of Emperium)	King Of Emperium#3	3097
+guildhall4,79,60,6	duplicate(King Of Emperium)	King Of Emperium#4	3097
+guildhall5,79,60,6	duplicate(King Of Emperium)	King Of Emperium#5	3097
+guildhall6,79,60,6	duplicate(King Of Emperium)	King Of Emperium#6	3097
+guildhall7,79,60,6	duplicate(King Of Emperium)	King Of Emperium#7	3097
+guildhall8,79,60,6	duplicate(King Of Emperium)	King Of Emperium#8	3097
+guildhall9,79,60,6	duplicate(King Of Emperium)	King Of Emperium#9	3097
+guildhall10,79,60,6	duplicate(King Of Emperium)	King Of Emperium#10	3097
+guildhall11,79,60,6	duplicate(King Of Emperium)	King Of Emperium#11	3097
+guildhall12,79,60,6	duplicate(King Of Emperium)	King Of Emperium#12	3097
+guildhall13,79,60,6	duplicate(King Of Emperium)	King Of Emperium#13	3097
+guildhall14,79,60,6	duplicate(King Of Emperium)	King Of Emperium#14	3097
+guildhall15,79,60,6	duplicate(King Of Emperium)	King Of Emperium#15	3097
+
+
+
+ra_koe	mapflag	gvg
+ra_koe	mapflag	nobranch
+ra_koe	mapflag	nomemo
+ra_koe	mapflag	nopenalty
+ra_koe	mapflag	noreturn
+ra_koe	mapflag	nosave	SavePoint
+ra_koe	mapflag	noteleport
+ra_koe	mapflag	nowarp
+ra_koe	mapflag	nowarpto
+ra_koe	mapflag	kingofemp
+ra_koe	mapflag	loadevent

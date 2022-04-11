@@ -1,0 +1,47 @@
+//==================================================
+// iz_d04_i - Illusion Underwater f1
+//==================================================
+
+iz_d04_i,0,0	monster	Deep Sea Deviace	20803,45,5000,0,"iz_d04_i::OnMyMobDead"
+iz_d04_i,0,0	monster	Deep Sea Sropho	20801,45,5000,0,"iz_d04_i::OnMyMobDead"
+iz_d04_i,0,0	monster	Deep Sea Obeaune	20802,42,5000,0,"iz_d04_i::OnMyMobDead"
+iz_d04_i,0,0	monster	Deep Sea Marse	20804,42,5000,0,"iz_d04_i::OnMyMobDead"
+iz_d04_i,0,0	monster	Deep Sea Merman	20805,45,5000,0,"iz_d04_i::OnMyMobDead"
+
+iz_d04_i,0,0,0	script	iz_d04_i	-1,{
+	end;
+OnMyMobDead:
+	if ($@Izl_d04_mob_num < 400) {	// cantidad para spawn
+		$@Izl_d04_mob_num++;
+		if ($@Izl_d04_mob_num == 400) {
+			switch(rand(1,6)) {	// coorenadas random
+				case 1:  .@x = 36;  .@y = 150;  break;
+				case 2:  .@x = 213;   .@y = 78;  break;
+				case 3:  .@x = 173;  .@y = 39;   break;
+				case 4:  .@x = 229;  .@y = 247;  break;
+				case 5:  .@x = 88;  .@y = 38;  break;
+				case 6:  .@x = 145;  .@y = 252;  break;
+			}
+			setarray .@mob_list[0], 20811,20811;
+			monster "iz_d04_i",.@x,.@y,"--en--",.@mob_list[ rand(2) ],1, "iz_d04_i::OnMyMVPDead";
+			announce "El gran Kraken del mar profundo se aproxima!",bc_map,0x00CCFF,FW_NORMAL,22;
+		}
+	}
+	end;
+OnMyMVPDead:
+	killmonster "iz_d04_i", "iz_d04_i::OnMyMVPDead";
+	sleep 600000;
+	$@Izl_d04_delay = 0;
+	initnpctimer;
+	end;
+OnTimer60000:
+	$@Izl_d04_delay++;
+	if ($@Izl_d04_delay < 60) // delay de 100 minutos
+		initnpctimer;
+	else {
+		stopnpctimer;
+		$@Izl_d04_mob_num = 0;
+		$@Izl_d04_delay = 0;
+	}
+	end;
+}

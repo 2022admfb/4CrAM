@@ -1,0 +1,34 @@
+//===== Hourly Points Script =========================================
+//===== By: ==========================================================
+//= nostafu
+//===== Current Version: =============================================
+//= 1.3
+//===== Compatible With: =============================================
+//= Any eAthena Version
+//===== Description: =================================================
+//= Get Points every successful hours of gameplay, you cannot get
+//= the points even if you miss a second or a minute. A player will
+//= get a very big bonus if they played 12 hours consecutively
+//= or without logging out of the game. If the player is vending
+//= the script will then stop.
+//====================================================================
+-    script    OnlineReward#1    -1,{
+ 
+//--Start of the Script
+OnPCLoginEvent:
+attachnpctimer ""+strcharinfo(0)+"";
+initnpctimer;
+end;
+   }{
+OnTimer1:
+set @minute, @minute + 1;
+//Check for 1 Minute
+if(@minute == 1 && (strcharinfo(3) == "prontera" || strcharinfo(3) == "payon")){
+    set @minute,0;
+    set #CASHPOINTS,#CASHPOINTS+100;
+    dispbottom "You received 100 Cash Points. Current Cash Points: " + #CASHPOINTS;
+}
+stopnpctimer;
+initnpctimer;
+end;
+}

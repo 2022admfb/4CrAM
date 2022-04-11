@@ -1,0 +1,110 @@
+//===== rAthena Script ======================================= 
+//= Einbroch Airport Staff
+//===== By: ================================================== 
+//= L0ne_W0lf, Muad_Dib
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Einbroch Airport Staff
+//===== Additional Comments: ================================= 
+//= 1.0 First version.
+//============================================================ 
+
+airport,143,43,5	script	Airport Staff#airport1a::airport1	90,{
+	mes "[Airport Staff]";
+	mes "ยินดีต้อนรับสู่";
+	mes "สนามบินไอน์โบรช";
+	mes "ที่เราให้บริการไม่หยุดพัก";
+	mes "เที่ยวบินไปเมือง";
+	mes "Juno, Lighthalzen และ Hugel.";
+	next;
+	if (select("ขึ้นเรือเหาะ:ยกเลิก") == 1) {
+		mes "[Airport Staff]";
+		mes "ค่าขึ้นเรือเหาะ";
+		mes "คือ 1,200 zeny แต่ถ้าคุณ";
+		mes "ได้ตั๋วเรือเหาะฟรี";
+		mes "จะได้รับการยกเว้นค่าธรรมเนียมจะ";
+		mes "คุณขึ้นเรือเหาะเหรอ";
+		next;
+		if (select("ใช่:ยกเลิก") == 1) {
+			if (countitem(7311) > 0) {
+				delitem 7311,1; //Free_Flying_Ship_Ticket
+				warp "airport",148,51;
+				end;
+			}
+			if (Zeny >= 1200) {
+				set Zeny, Zeny - 1200;
+				warp "airport",148,51;
+				end;
+			}
+			mes "[Airport Staff]";
+			mes "ฉันขอโทษ แต่คุณไม่ทำ";
+			mes "มีตั๋วฟรีสำหรับ";
+			mes "เรือเหาะแล้วคุณไม่มี";
+			mes "zeny เพียงพอสำหรับการขึ้นเครื่อง";
+			mes "เรือเหาะจำไว้ว่า";
+			mes "ค่ากินนอน 1,200 เซน";
+			close;
+		}
+	}
+	mes "[Airport Staff]";
+	mes "ขอบคุณและ";
+	mes "มีวันที่ดี";
+	close;
+}
+
+airport,158,43,5	duplicate(airport1)	Airport Staff#airport1b	90
+airport,126,43,5	duplicate(airport1)	Airport Staff#airport1c	90
+
+airport,143,49,3	script	Arrival Staff#airport2a::airport2	90,{
+	mes "[Arrival Staff]";
+	mes "ยินดีต้อนรับสู่สนามบินไอน์โบรช";
+	mes "ถ้าคุณมาจากของคุณ";
+	mes "เที่ยวบินให้ฉันแนะนำคุณไปที่";
+	mes "อาคารผู้โดยสารหลักมิฉะนั้นโปรดขึ้นเรือเหาะเพื่อออกเดินทางไปยัง";
+	mes "Juno, Lighthalzen และ Hugel.";
+	next;
+	if (select("ออกไปยังอาคารผู้โดยสารหลัก.:ยกเลิก.") == 1) {
+		mes "[Arrival Staff]";
+		mes "เมื่อคุณอยู่ในอาคารผู้โดยสารหลักคุณจะต้องจ่ายค่าธรรมเนียมอีกครั้ง";
+		mes "ขึ้นเรือเหาะคุณควร";
+		mes "ออกเฉพาะในกรณีที่เมือง Einbroch";
+		mes "คือจุดหมายที่คุณตั้งใจไว้";
+		mes "ไปที่เทอร์มินัลหลัก?";
+		next;
+		if (select("ใช่:ยกเลิก") == 1) {
+			warp "airport",142,40;
+			end;
+		}
+	}
+	mes "[Arrival Staff]";
+	mes "ได้เลยขอบคุณ";
+	mes "เพื่อการอุปถัมภ์ของคุณ";
+	mes "และฉันหวังว่าคุณจะมี";
+	mes "เที่ยวบินสบาย ๆ ~";
+	close;
+}
+
+airport,126,51,3	duplicate(airport2)	Arrival Staff#airport2b	90
+airport,158,50,3	duplicate(airport2)	Arrival Staff#airport2c	90
+
+einbroch,94,267,3	script	Airship Staff#ein01	91,{
+	mes "[Airship Staff]";
+	mes "ยินดีต้อนรับสู่";
+	mes "สนามบินไอน์โบรช";
+	mes "กรุณาใช้ประตูนี้เพื่อ";
+	mes "ขึ้นเรือเหาะที่หยุด";
+	mes "เหนือ Juno, Lighthalzen และ";
+	mes "Hugel ในสาธารณรัฐชวาร์ซวัลด์";
+	next;
+	mes "[Airship Staff]";
+	mes "ไม่งั้นถ้า Einbroch เป็น";
+	mes "ปลายทางที่คุณตั้งใจ";
+	mes "โปรดลงบันได";
+	mes "และขอให้พนักงานต้อนรับนำ";
+	mes "ถึงอาคารผู้โดยสารหลักแล้วขอบคุณ";
+	mes "คุณและสนุกกับการเดินทางของคุณ";
+	close;
+}

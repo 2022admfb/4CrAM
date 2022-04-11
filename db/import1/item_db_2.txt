@@ -1,0 +1,81 @@
+// Items Additional Database
+//
+// Structure of Database:
+// ID,Name,Name,Type,Price,Sell,Weight,ATK[:MATK],DEF,Range,Slot,Job,Class,Gender,Loc,wLV,eLV[:maxLevel],Refineable,View,{ Script },{ OnEquip_Script },{ OnUnequip_Script }
+//
+
+6961,LargeScrap,Huge Metal Scrap,3,10,0,1000,,,,,,,,,,,,,{},{},{}
+6962,OldTank,Old Fuel,3,10,0,100,,,,,,,,,,,,,{},{},{}
+
+11620,Bearopy,Bearopy,3,0,,10,,,,,,,,,,,,,{},{},{}
+
+25259,Hunting_Stage_Flier,Recruitment Leaflet,3,0,,10,,,,,,,,,,,,,{},{},{}
+25260,Fragment_of_Purple_Ore,Fragment of Purple Ore,3,0,,0,,,,,,,,,,,,,{},{},{}
+25261,Torn_Paper_Piece,Torn Paper Piece,3,10000,465,10,,,,,,,,,,,,,{},{},{}
+25262,Well_dried_clover,Well-dried Clover,3,10000,276,10,,,,,,,,,,,,,{},{},{}
+25263,Small_Bat_Fur,Small Bat Fur,3,10000,378,10,,,,,,,,,,,,,{},{},{}
+25264,Nightmare_Clump,Nightmare Clump,3,10000,890,10,,,,,,,,,,,,,{},{},{}
+25265,Glowing_Spore,Glowing Spore,3,10000,2500,10,,,,,,,,,,,,,{},{},{}
+25266,Dried_Leaf_Of_Ygg,Dried Yggdrasil Leaf,3,10000,500,10,,,,,,,,,,,,,{},{},{}
+25267,Suspicious_Magic_Circle,Suspicious Magic Circle,3,10000,750,10,,,,,,,,,,,,,{},{},{}
+25270,Frizzle,Frizzle,3,0,,0,,,,,,,,,,,,,{},{},{}
+
+25297,Frozen_Stone_Fragment,Frozen Stone Fragment,3,0,,10,,,,,,,,,,,,,{},{},{}
+25298,Spirit_Jewel,Spirit Jewel,3,0,,10,,,,,,,,,,,,,{},{},{}
+25299,Snowball,Snowball,3,0,,10,,,,,,,,,,,,,{},{},{}
+25300,Eye_of_Ktullanux,Eye of Ktullanux,3,0,,10,,,,,,,,,,,,,{},{},{}
+
+25302,DoubleAttack_Stone,Double Attack Stone (Garment),3,20,,100,,,,,,,,,,,,,{},{},{}
+25303,Critical_Stone_Robe,Critical Stone (Garment),3,20,,100,,,,,,,,,,,,,{},{},{}
+25304,Critical_Stone_Top,Critical Stone (Upper),3,20,,100,,,,,,,,,,,,,{},{},{}
+25305,Critical_Stone_Bottom,Critical Stone (Lower),3,20,,100,,,,,,,,,,,,,{},{},{}
+25306,CastStone_Robe,Variable Casting Stone (Garment),3,20,,100,,,,,,,,,,,,,{},{},{}
+
+25311,Piece_of_Dark_Soul,Piece of Dark Soul,3,0,,10,,,,,,,,,,,,,{},{},{}
+25312,Beautiful_Old_Doll,Beautiful Old Doll,3,0,,10,,,,,,,,,,,,,{},{},{}
+25313,Old_Shell,Old Shell,3,0,,10,,,,,,,,,,,,,{},{},{}
+25314,Journal,Journal,3,0,,10,,,,,,,,,,,,,{},{},{}
+25315,Piece_of_Shell,Piece of Shell,3,0,,10,,,,,,,,,,,,,{},{},{}
+25316,Worn-out_Metal,Worn-out Metal,3,0,,10,,,,,,,,,,,,,{},{},{}
+
+25615,Nasarians_Soul_Stone,Nasarian's Soul Stone,3,0,,10,,,,,,,,,,,,,{},{},{}
+25616,Green_Bearopy,Green Bearopy,3,0,,10,,,,,,,,,,,,,{},{},{}
+25617,Fine_Chonchon_Doll,Fine Chonchon Doll,3,0,,10,,,,,,,,,,,,,{},{},{}
+25618,Gothic_Porcelain_Doll,Gothic Porcelain Doll,3,0,,10,,,,,,,,,,,,,{},{},{}
+25619,Clay_Figure,Clay Figure,3,0,,10,,,,,,,,,,,,,{},{},{}
+25633,Wootan_Token,Wootan Token,3,0,,10,,,,,,,,,,,,,{},{},{}
+25634,Wootan_Defender_Shield_Fragment,Wootan Defender's Shield Fragment,3,0,,10,,,,,,,,,,,,,{},{},{}
+25635,Wootan_Warriors_Hair,Wootan Warrior's Hair,3,0,,10,,,,,,,,,,,,,{},{},{}
+25636,Shooting_Good_Stone,Shooting Good Stone,3,0,,10,,,,,,,,,,,,,{},{},{}
+25637,Hairlike_Leaf,Hair-like Leaf,3,0,,10,,,,,,,,,,,,,{},{},{}
+25638,Megalith_Token,Megalith Token,3,0,,10,,,,,,,,,,,,,{},{},{}
+25639,Lightning_Stone_Fragment,Lightning Stone Fragment,3,0,,10,,,,,,,,,,,,,{},{},{}
+25640,Flowerpot_Stone,Flowerpot Stone,3,0,,10,,,,,,,,,,,,,{},{},{}
+25641,Solid_Clay,Solid Clay,3,0,,10,,,,,,,,,,,,,{},{},{}
+25642,Fragile_Worm,Fragile Worm,3,0,,10,,,,,,,,,,,,,{},{},{}
+
+25668,Broken_Weapon,Broken Weapon,3,798,,10,,,,,,,,,,,,,{},{},{}
+25669,Unknown_Parts,Unknown Parts,3,798,,10,,,,,,,,,,,,,{},{},{}
+
+25723,Cor_Core,Cor Core,3,798,,10,,,,,,,,,,,,,{},{},{}
+25728,Rough_Shadowdecon,Rough Shadowdecon,3,20,10,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+25729,Shadowdecon,Shadowdecon,3,20,10,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+25730,Rough_Zelunium,Rough Zelunium,3,20,10,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+25731,Zelunium,Zelunium,3,20,10,10,,,,,0xFFFFFFFF,63,2,,,,,,{},{},{}
+25772,Delicious_Juice,Delicious Juice,3,0,,10,,,,,,,,,,,,,{},{},{}
+25773,Snake_Poison,Snake Poison,3,0,,10,,,,,,,,,,,,,{},{},{}
+25774,Mantis_Flower,Mantis Flower,3,0,,10,,,,,,,,,,,,,{},{},{}
+25775,Fluffy_Cloth_Piece,Fluffy Cloth Piece,3,0,,10,,,,,,,,,,,,,{},{},{}
+25776,Very_Hard_Purple_Shell,Very Hard Purple Shell,3,0,,10,,,,,,,,,,,,,{},{},{}
+25777,Doubtful_Sap,Doubtful Sap,3,0,,10,,,,,,,,,,,,,{},{},{}
+25778,Twinkle_Jelly_Piece,Twinkle Jelly Piece,3,0,,10,,,,,,,,,,,,,{},{},{}
+25779,Short_Lasso,Short Lasso,3,0,,10,,,,,,,,,,,,,{},{},{}
+25780,Demonic_Essence,Demonic Essence,3,0,,10,,,,,,,,,,,,,{},{},{}
+25781,Small_Pretty_Candle,Small Pretty Candle,3,0,,10,,,,,,,,,,,,,{},{},{}
+25782,Medicine_Bag,Medicine Bag,3,0,,10,,,,,,,,,,,,,{},{},{}
+25783,Cold_Holy_Water,Cold Holy Water,3,0,,10,,,,,,,,,,,,,{},{},{}
+25784,Small_Flashlight,Small Flashlight,3,0,,10,,,,,,,,,,,,,{},{},{}
+
+31024,Immortal_Cursed_Knight_Card,Immortal Cursed Knight Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bAddClass,Class_All,10; bonus5 bAutoSpell,"RK_IGNITIONBREAK",5,20,BF_WEAPON,1; },{},{}
+31025,Immortal_Wind_Ghost_Card,Immortal Wind Ghost Card,6,20,,10,,,,,,,,2,,,,,{ bonus bMatkRate,10; bonus5 bAutoSpell,"SO_CLOUD_KILL",5,10,BF_MAGIC,1; },{},{}
+31026,Stephen_Jack_Ernest_Wolf_Card,Stephen Jack Ernest Wolf Card,6,20,,10,,,,,,,,64,,,,,{ bonus5 bAutoSpellWhenHit,"SO_FIREWALK",5,35,BF_WEAPON,0; bonus5 bAutoSpellWhenHit,"SO_ELECTRICWALK",5,80,BF_MAGIC,0; autobonus "{ bonus bFlee,200; }",30,10000,BF_WEAPON; autobonus "{ bonus bSpeedRate,25; }",25,10000,BF_MAGIC; /* unknown rate and specialeffect */ },{},{}

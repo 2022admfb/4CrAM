@@ -1,0 +1,152 @@
+//===== rAthena Script =======================================
+//= Hypnotist
+//===== By:==================================================
+//= Euphy
+//===== Current Version:=====================================
+//= 1.1
+//===== Compatible With:=====================================
+//= rAthena Project
+//===== Description:=========================================
+//= [Official Conversion]
+//= Stat and skill resetter for expanded first class under
+//= base level 50 and normal first class.
+//===== Additional Comments:=================================
+//= 1.0 First version, Renewal script.
+//= 1.1 Added Izlude duplicates. [Euphy]
+//============================================================
+
+// Main NPC ::resetskill_novice
+//============================================================
+izlude,127,175,3	script	Hypnotist#novice	124,{
+	mes "[Hypnotist]";
+	mes "สวัสดีนักผจญภัย";
+	mes "ฉันเป็นสมาชิกของ Hypnotist";
+	mes "Academy ส่งมาที่ Izlude";
+	mes "เพื่อให้บริการ รีเซ็ตSkill";
+	mes "ไปยังตัวละคร Class 1 ฟรี!";
+	next;
+	mes "[Hypnotist]";
+	mes "ไม่ จำกัด จำนวนครั้ง";
+	mes "Reset Status / Skill";
+	//mes "สองเงื่อนไขที่ต้องเป็น";
+	mes "อันดับแรกคุณต้อง";
+	mes "ต่ำกว่า ^FF0000Base Level 50 ^000000";
+	next;
+	mes "[Hypnotist]";
+	mes "ประการที่สองคุณต้องเป็น";
+	mes "^FF0000Swordman, Acolyte, Mage,";
+	mes "^FF0000Thief, Archer, Merchant,";
+	mes "^FF0000Taekwon Boy หรือ Taekwon Girl";
+	mes "^FF0000Gunslinger และ Ninja ^000000";
+	//mes "ลักษณะงานที่จะมีคุณสมบัติ";
+	mes "ตอนนี้คุณมีคำถามหรือไม่?";
+	next;
+	switch(select("^FF0000Stat / Skill Reset?:Reset Status:Reset Skill ^000000:ยกเลิก")) {
+	case 1:
+		mes "[Hypnotist]";
+		mes "การรีเซ็ตStat / Skillช่วยให้นักผจญภัย";
+		mes "คืนค่าเริ่มต้น";
+		//mes "ชี้หากพวกเขาไม่มีความสุข";
+		//mes "ด้วยSkillปัจจุบันของพวกเขา";
+		next;
+		mes "[Hypnotist]";
+		mes "ก่อนดำเนินการต่อด้วย";
+		mes "รีเซ็ต Stat / Skill";
+		mes "ลดน้ำหนักทั้งหมด";
+		mes "ของที่บรรทุกทั้งหมด";
+		mes "0 คุณสามารถใส่";
+		mes "ไอเท็ม ใน Kafra Storage";
+		next;
+		mes "[Hypnotist]";
+		mes "อาก็สำคัญเช่นกัน";
+		mes "ห้ามติดตั้ง ^FF0000รถเข็น ^000000 โปรดถอดออก";
+		//mes "ถ้าคุณมีอุปกรณ์";
+		//mes "มิฉะนั้นการสะกดจิตจะไม่เกิดขึ้น";
+		//mes "ทำงานหรือจะย้อนกลับ ...";
+		close;
+	case 2:
+		set .@str$,"Stat";
+	case 3:
+		if (.@str$ == "")
+			set .@str$,"Skill";
+		mes "[Hypnotist]";
+		mes "แน่ใจหรือว่าคุณ";
+		mes "ต้องการดำเนินการต่อ";
+		mes "ของฉัน ^FF0000"+.@str$+" รีเซ็ตบริการ ^000000 ไหม";
+		next;
+		if(select("ใช่:ยกเลิก") == 1)
+			break;
+	case 4:
+		mes "[Hypnotist]";
+		mes "ขอบคุณและดี";
+		mes "ขอให้โชคดีกับการผจญภัยของคุณ";
+		mes "ขอให้เดินทางโดยสวัสดิภาพ ~";
+		close;
+	}
+	if ((Class >= Job_Swordman && Class <= Job_Thief) || Class == Job_Taekwon || Class == Job_Gunslinger || Class == Job_Ninja) {
+		if (checkcart()) {
+			mes "[Hypnotist]";
+			mes "โอ้! โปรดลบไฟล์";
+			mes "Pushcart ก่อนดำเนินการต่อ";
+			mes "กับ "+.@str$+" รีเซ็ตบริการ";
+			mes "ขอบคุณที่ให้ความร่วมมือ ~";
+			close;
+		}
+		if (Weight != 0) {
+			mes "[Hypnotist]";
+			mes "หากคุณอยู่ที่นี่เพื่อ "+.@str$;
+			mes "กรุณารีเซ็ตบริการ";
+			mes "จำไว้ว่าคุณทำไม่ได้";
+			mes "รีเซ็ตไฟล์ "+.@str$+"จนถึง";
+			mes "^FF0000 น้ำหนักของสิ่งของที่คุณถือมา";
+			mes "สินค้าคงคลังของคุณลดลงเหลือ 0 ^000000";
+			next;
+			mes "[Hypnotist]";
+			mes "ทำไมคุณไม่วางไฟล์";
+			mes "สิ่งของลงใน Kafra Storage";
+			mes "สำหรับตอนนี้? ด้วยวิธีนี้คุณสามารถทำได้";
+			mes "เก็บสินค้าทั้งหมดของคุณอย่างปลอดภัย";
+			close;
+		}
+		if (BaseLevel >= 50 && (Class == Job_Taekwon || Class == Job_Gunslinger || Class == Job_Ninja)) {
+			mes "[Hypnotist]";
+			mes "ฉันขอโทษ แต่ตัวละคร";
+			mes "ด้วยระดับพื้นฐานที่สูงขึ้น";
+			mes "มากกว่า 50 ไม่มีสิทธิ์ได้รับ";
+			mes .@str$+" รีเซ็ตบริการที่ฉันให้";
+			close;
+		}
+		mes "[Hypnotist]";
+		mes "ขอบคุณที่ใช้";
+		mes "ของฉัน "+.@str$+" แจกจ่ายซ้ำ";
+		mes "บริการ. โอ้และดีที่สุด";
+		mes "ขอให้โชคดีกับคุณ";
+		mes "การเดินทางนักผจญภัย";
+		if (.@str$ == "Stat")
+			resetstatus;
+		else
+			resetskill;
+		close;
+	} else {
+		mes "[Hypnotist]";
+		mes "ฉันขอโทษ แต่ของคุณ";
+		mes "Job Class ไม่มีคุณสมบัติ";
+		mes "สำหรับ "+.@str$+" รีเซ็ตบริการ";
+		mes "ที่ฉันมีให้ ฉันทำได้เท่านั้น";
+		mes "เสนอ "+.@str$+" รีเซ็ตเป็น";
+		mes "กำลังติดตามงาน ...";
+		next;
+		mes "[Hypnotist]";
+		mes "^FF0000Swordman, Acolyte,";
+		mes "Mage, Thief, Archer,";
+		mes "Merchant,Taekwon Girl";
+		mes "Taekwon Boy";
+		mes "Gunslinder และ Ninja ^000000";
+		close;
+	}
+}
+izlude_a,127,175,3	duplicate(Hypnotist#novice)	Hypnotist#novice_a	124
+izlude_b,127,175,3	duplicate(Hypnotist#novice)	Hypnotist#novice_b	124
+izlude_c,127,175,3	duplicate(Hypnotist#novice)	Hypnotist#novice_c	124
+izlude_d,127,175,3	duplicate(Hypnotist#novice)	Hypnotist#novice_d	124
+

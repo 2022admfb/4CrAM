@@ -1,0 +1,167 @@
+/*
+Script : Bonus Time (3.0)
+Release : 2012/04/08
+Edition : 2013/09/06
+Editon By.  : SudTha [ NGL ] Over
+ 
+By : ReadyGo  & แอดมินอีเอ้กเอ้ก
+From : www.eathena-th.com
+ 
+Description : ตั้งเวลาให้ Exp x2 อัตโนมัติ
+Comment:
+v1.1 - แก้ Bug ได้ Exp ไม่ตรงตามที่ประกาศ x2
+v.2.0 - แก้ไขและเพิ่มเติมลูกเล่นเข้าไปใหม่ โดย SudTha [ NGL ] Over
+v.2.1 - แก้ไขข้อความใหม่หมด
+v.3.0 - แก้ไขตัวคูณโดยการเซ็ตแทน และแก้ไขคำอธิบายและเป็น Ver.สุดท้ายที่ทำการแก้ไขและแจกจ่าย
+ 
+# สูตรการทำ x อื่นๆ
+x0.25 : *1/4 (ได้ Exp น้อยลง 75%)
+x0.5 : *1/2 (ได้ Exp น้อยลง 50%)
+x0.75 : *3/4 (ได้ Exp น้อยลง 25%)
+x1 : *1 (ได้ Exp ปกติ)
+x1.25 : *5/4 (ได้ Exp มากขึ้น 25%)
+x1.5 : *3/2 (ได้ Exp มากขึ้น 50%)
+x1.75 : *7/4 (ได้ Exp มากขึ้น 75%)
+x2 : *2 (ได้ Exp มากขึ้น 100%)
+*/
+ 
+-	script	BonusTime	-1,{
+ 
+OnInIt:
+  //set .base_exp, getbattleflag("base_exp_rate");
+  //set .job_exp, getbattleflag("job_exp_rate");
+//  set	.item_rate_common, getbattleflag("item_rate_common");
+//  set	.item_rate_heal, getbattleflag("item_rate_heal");
+//  set	.item_rate_use, getbattleflag("item_rate_use");
+//  set	.item_rate_equip, getbattleflag("item_rate_equip");
+//  set	.item_rate_card, getbattleflag("item_rate_card");
+//  set	.item_rate_mvp, getbattleflag("item_rate_mvp");
+//  set	.item_rate_adddrop, getbattleflag("item_rate_adddrop");
+//  set	.item_rate_treasure, getbattleflag("item_rate_treasure");
+end;
+ 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+// กำหนดเวลาเริ่ม 11.00
+OnClock1100:
+ 
+  //setbattleflag("base_exp_rate", .base_exp*3/2 );
+  //setbattleflag("job_exp_rate", .job_exp*3/2 );
+  
+//  setbattleflag("item_rate_common", .item_rate_common*3/2 );
+//  setbattleflag("item_rate_heal", .item_rate_heal*3/2 );
+//  setbattleflag("item_rate_use", .item_rate_use*3/2 );
+//  setbattleflag("item_rate_equip", .item_rate_equip*3/2 );
+//  setbattleflag("item_rate_card", .item_rate_card*3/2 );
+//  setbattleflag("item_rate_mvp", .item_rate_mvp*3/2 );
+//  setbattleflag("item_rate_adddrop", .item_rate_adddrop*3/2 );
+//  setbattleflag("item_rate_treasure", .item_rate_treasure*3/2 );
+  announce "[Event Server]ข่าวสาร กิจกรรม สามารถ ดูได้ที่ป้าย กิจกรรม นะจ้า !!", bc_all,0xFF8000;
+//announce "[ Bonus Time 11.00 ] เอาละถึงเวลา Exp x1.5 !! แล้วจร้า",bc_all,0xFF8000;
+//atcommand "@reloadmobdb";
+end;
+ 
+// กำหนดเวลาเริ่ม 15.00
+OnClock1500:
+ 
+  //setbattleflag("base_exp_rate", .base_exp*3/2 );
+  //setbattleflag("job_exp_rate", .job_exp*3/2 );
+  
+//  setbattleflag("item_rate_common", .item_rate_common*3/2 );
+//  setbattleflag("item_rate_heal", .item_rate_heal*3/2 );
+//  setbattleflag("item_rate_use", .item_rate_use*3/2 );
+//  setbattleflag("item_rate_equip", .item_rate_equip*3/2 );
+//  setbattleflag("item_rate_card", .item_rate_card*3/2 );
+//  setbattleflag("item_rate_mvp", .item_rate_mvp*3/2 );
+  //setbattleflag("item_rate_adddrop", .item_rate_adddrop*3/2 );
+//  setbattleflag("item_rate_treasure", .item_rate_treasure*3/2 );
+ 
+//announce "[ Bonus Time 15.00 ] เอาละถึงเวลา Drop x1.5 !! แล้วจร้า",bc_all,0xFF8000;
+//atcommand "@reloadmobdb";
+announce "[Event Server]ข่าวสาร กิจกรรม สามารถ ดูได้ที่ป้าย กิจกรรม นะจ้า !!", bc_all,0xFF8000;
+end;
+ 
+// กำหนดเวลาเริ่ม 17.00
+OnClock1700:
+ 
+  //setbattleflag("base_exp_rate", .base_exp*3/2 );
+  //setbattleflag("job_exp_rate", .job_exp*3/2 );
+  
+//  setbattleflag("item_rate_common", .item_rate_common*3/2 );
+//  setbattleflag("item_rate_heal", .item_rate_heal*3/2 );
+//  setbattleflag("item_rate_use", .item_rate_use*3/2 );
+//  setbattleflag("item_rate_equip", .item_rate_equip*3/2 );
+//  setbattleflag("item_rate_card", .item_rate_card*3/2 );
+//  setbattleflag("item_rate_mvp", .item_rate_mvp*3/2 );
+//  setbattleflag("item_rate_adddrop", .item_rate_adddrop*3/2 );
+//  setbattleflag("item_rate_treasure", .item_rate_treasure*3/2 );
+ 
+//announce "[ Bonus Time 17.00 ] เอาละถึงเวลา Exp x1.5 !! แล้วจร้า",bc_all,0xFF8000;
+announce "[Event Server]ข่าวสาร กิจกรรม สามารถ ดูได้ที่ป้าย กิจกรรม นะจ้า !!", bc_all,0xFF8000;
+//atcommand "@reloadmobdb";
+end;
+ 
+// กำหนดเวลาเริ่ม 23.00
+OnClock2300:
+ 
+  //setbattleflag("base_exp_rate", .base_exp*3/2 );
+  //setbattleflag("job_exp_rate", .job_exp*3/2 );
+  
+//  setbattleflag("item_rate_common", .item_rate_common*3/2 );
+//  setbattleflag("item_rate_heal", .item_rate_heal*3/2 );
+//  setbattleflag("item_rate_use", .item_rate_use*3/2 );
+//  setbattleflag("item_rate_equip", .item_rate_equip*3/2 );
+//  setbattleflag("item_rate_card", .item_rate_card*3/2 );
+//  setbattleflag("item_rate_mvp", .item_rate_mvp*3/2 );
+  //dis setbattleflag("item_rate_adddrop", .item_rate_adddrop*3/2 );
+//  setbattleflag("item_rate_treasure", .item_rate_treasure*3/2 );
+ announce "[Event Server]ข่าวสาร กิจกรรม สามารถ ดูได้ที่ป้าย กิจกรรม นะจ้า !!", bc_all,0xFF8000;
+//announce "[ Bonus Time 23.00 ] อุ้ย... !! กิจกรรมกำลังจะเริ่มแล้ว",bc_all,0xFF8000;
+//atcommand "@reloadmobdb";
+end;
+OnClock2301:
+announce "[Event Server]ข่าวสาร กิจกรรม สามารถ ดูได้ที่ป้าย กิจกรรม นะจ้า !!", bc_all,0xFF8000;
+//announce "[ Bonus Time 23.01 ] เอาละถึงเวลา Drop x1.5 !! แล้วจร้า",bc_all,0xFF0080 ;
+end;
+ 
+// กำหนดเวลาหมดคูณ
+OnClock1300:
+OnClock1600:
+OnClock1900:
+OnClock0100:
+ 
+  //setbattleflag("base_exp_rate", .base_exp ); //dis
+  //setbattleflag("job_exp_rate", .job_exp ); //dis
+ 
+//  setbattleflag("item_rate_common", .item_rate_common );
+//  setbattleflag("item_rate_heal", .item_rate_heal );
+//  setbattleflag("item_rate_use", .item_rate_use );
+//  setbattleflag("item_rate_equip", .item_rate_equip );
+//  setbattleflag("item_rate_card", .item_rate_card );
+//  setbattleflag("item_rate_mvp", .item_rate_mvp );
+  //setbattleflag("item_rate_adddrop", .item_rate_adddrop ); //dis
+//  setbattleflag("item_rate_treasure", .item_rate_treasure );
+ 
+announce "[Event Server]ข่าวสาร กิจกรรม สามารถ ดูได้ที่ป้าย กิจกรรม นะจ้า !!", bc_all,0xFF8000;
+//atcommand "@reloadmobdb";
+end;
+
+
+}
+izlude,127,163,4	script	Event Sever	857,{ 
+	mes "สวัสดีท่าน .. ^0000ff"+ strcharinfo(0) +"^000000";
+	mes "^777777กิจกรรม ทางเซิฟเวอร์ จัดขึ้น";
+	mes "^9c01fe<เติมเงิน x 2>";
+	mes "^777777- ได้รับ Cash 2 เท่า";
+	mes "^9c01fe<PVP Event> ^000000ออนไลน์ ในแผนที่กิจกรรม - ^777777ได้รับ 300 Cash ทุกๆ 3 นาที";
+	mes "^777777- สังหาร ผู้เล่นอื่นได้รับ 30 แต้ม/1 ฆ่า";
+	mes "^9c01fe<KOE Event> ^000000ออนไลน์ ในแผนที่กิจกรรม - ^777777ได้รับ 300 Cash ทุกๆ 3 นาที";
+	mes "^777777- สังหาร ผู้เล่นอื่นได้รับ 30 แต้ม/1 ฆ่า";
+	//mes "^FF606023.00 - 01.00 ^000000Drop *1.5";
+	mes "------ขอให้สนุกนะค่ะ------";
+end;
+
+OnInit:
+	waitingroom "-::-กิจกรรมใหม่-::-",0;	
+	end;
+}

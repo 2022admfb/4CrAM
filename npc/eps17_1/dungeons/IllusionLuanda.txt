@@ -1,0 +1,641 @@
+//Illusion of Launda
+beach_dun2,248,254,4	script	Mystical Statue#illusionofluanda	4_ENERGY_BLUE,{
+switch(illusionofluanda){
+	case 2:
+		mes "^33cc33 [รูปปั้นลึกลับ] ^000000";
+		mes "^00ccff ---------------------------------- ^000000";
+		mes "มีบางอย่างแปลก ๆ เกี่ยวกับรูปปั้นนี้";
+		mes "คุณจะทำอะไร?";
+		next;
+		switch(select("แตะรูปปั้น","ไม่สนใจมัน")) {
+			case 1:
+				if(baselevel < 150){
+				//if (countitem(7539) < 10){
+					mes "^33cc33 [รูปปั้นลึกลับ] ^000000";
+					mes "^00ccff ---------------------------------- ^000000";
+					mes "มันเหมือนไม่มีอะไรเกิดขึ้น";
+					mes "Level 150 ขึ้นไป เท่านั้น";
+					//mes "ลองนำ Poring Coin 10 ชิ้น";
+					close;
+				}
+				mes "^33cc33 [รูปปั้นลึกลับ] ^000000";
+				mes "^00ccff ---------------------------------- ^000000";
+				mes "คุณรู้สึกได้ว่ามีแรงดึงคุณเข้ามา!";
+				next;
+				//delitem 7539, 10;
+				warp "com_d02_i",251,244;
+				close;
+			case 2:
+				mes "^33cc33 [รูปปั้นลึกลับ] ^000000";
+				mes "^00ccff ---------------------------------- ^000000";
+				mes "ไม่มีอะไรเกิดขึ้น.";
+				close;
+		}
+	default:
+		mes "^33cc33 [รูปปั้นลึกลับ] ^000000";
+		mes "^00ccff ---------------------------------- ^000000";
+		mes "ดูเหมือนคุณจะไม่มีแรงใช้รูปปั้นนี้";
+		mes "ลองคุยกับ ^ff0000Luanda Guardian ^000000 เขาอยู่นอกดันเจี้ยนนี้";
+		close;
+}
+
+end;
+}
+
+
+com_d02_i,263,73,4	script	Mysterious Crack#illusionofluanda	4_PURPLE_WARP,{
+if($@ancienttaogunka < 1){
+	if (countitem(7300) > 0) {
+		mes "[รอยแตกลึกลับ]";
+		mes "คุณรู้สึกได้ถึงการปรากฏตัวของเวทมนตร์ในพื้นที่นี้";
+		next;
+		switch(select("ทำพิธีกรรม","ก้าวออกไป")){
+			case 1:
+				break;
+			case 2:
+				mes "[รอยแตกลึกลับ]";
+				mes "การปรากฏตัวของเวทมนตร์ค่อยๆหายไป";
+				close;
+		}
+		specialeffect 99;
+		progressbar "ffff00", 10;
+		specialeffect 99;
+		mes "[รอยแตกลึกลับ]";
+		mes "^3355FF คุณถูพลอย";
+		mes "เร็วมากและมันเปล่งประกาย";
+		mes "มันเปล่งประกายมาก ^000000";
+		delitem 7300, 1;
+		hideonnpc "Mysterious Crack#illusionofluanda";
+		set $@ancienttaogunka,1;
+		donpcevent "AncientTaoGunkaBroadcast#illusionofluanda::OnStart";
+		close;
+	}
+	mes "[รอยแตกลึกลับ]";
+	mes "เมื่อคุณวาง <ITEM> หนึ่งรายการ" +getitemname(7300)+ "<INFO>" +7300+"</INFO> </ITEM> คุณสามารถทำพิธีกรรมเพื่อเรียก ^ff0000Ancient Tao Gunka ^000000";
+	close;
+}
+end;
+}
+
+//Ancient Tao Gunka
+com_d02_i,227,87,5	script	AncientTaoGunkaBroadcast#illusionofluanda	-1,{
+OnStop:
+	stopnpctimer;
+	end;
+
+OnStart:
+	initnpctimer;
+	end;
+
+OnTimer2000:
+	mapannounce "com_d02_i","มีคนทำพิธีกรรมโบราณ ... !",bc_map,0xFF6633;
+	end;
+
+OnTimer8000:
+	mapannounce "com_d02_i","ได้ยินเสียงหินดังสนั่น!",bc_map,0xFF6633;
+	end;
+
+OnTimer10000:
+	mapannounce "com_d02_i","และเสียงก็ดังขึ้นเรื่อย ๆ !",bc_map,0xFF6633;
+	end;
+
+OnTimer13000:
+	mapannounce "com_d02_i","เต๋ากุนกะโบราณปรากฏที่ด้านซ้ายของสถานที่ทำพิธีกรรม!",bc_map,0xFF6633;
+	end;
+
+OnTimer15000:
+	stopnpctimer;
+	donpcevent "AncientTaoGunkaSummon#illusionofluanda::OnStart";
+	end;	
+}
+
+com_d02_i,227,87,3	script	AncientTaoGunkaSummon#illusionofluanda	-1,{
+OnStart:
+	monster "com_d02_i",227,87,"Ancient Tao Gunka",20273,1,"AncientTaoGunkaSummon#illusionofluanda::OnMyMobDead";
+	end;
+
+OnStartTimer:
+	Initnpctimer;
+	end;
+
+OnStopTimer:
+	stopnpctimer;
+	end;
+
+OnMyMobDead:
+	mapannounce "com_d02_i","The Ancient Tao Gunka พ่ายแพ้!",bc_map,0xFF6633;
+	mapannounce "com_d02_i","เขาจะกลับมาเพื่อแก้แค้น!",bc_map,0x33FFFF;
+	donpcevent "AncientTaoGunkaSummon#illusionofluanda::OnStartTimer";
+	end;
+
+OnTimer7200000:
+	stopnpctimer;
+	set $@ancienttaogunka,0;
+	hideoffnpc "Mysterious Crack#illusionofluanda";
+	end;
+}
+
+//warp back
+com_d02_i,255,244,0	warp	luandawarp	1,1,beach_dun2,250,244
+
+// Luanda Main Quest
+comodo,171,348,5	script	Luanda Guardian#illusionofluanda	4_M_MOC_SOLDIER,9,9,{
+switch(illusionofluanda){
+	case 1:
+		if( checkquest(95003, HUNTING) < 2 || checkquest(95004, HUNTING) < 2 || checkquest(95005, HUNTING) < 2 || checkquest(95006, HUNTING) < 2 || checkquest(95007, HUNTING) < 2){
+			mes "[Luanda Guardian]";
+			mes "ตอนนี้เข้าไปในดันเจี้ยนปกติและฆ่าม็อบ 5 ตัวที่คุณจะพบได้ที่นั่น ^ff0000except ^000000 Furious Stalactic Golem";
+			next;
+			mes "[Luanda Guardian]";
+			mes "รายงานให้ฉันทราบเมื่อคุณทำเสร็จ";
+			close;
+		}
+		mes "[Luanda Guardian]";
+		mes "ตอนนี้ฉันสามารถเห็นพลังที่แท้จริงของคุณ";
+		mes "ฉันคิดว่าคุณจะสามารถอยู่รอดที่นั่นได้";
+		next;
+		mes "[Luanda Guardian]";
+		mes "แต่อย่าอวดดีที่นั่นอย่าใช้สัตว์ประหลาดมากเกินกว่าที่คุณจะเคี้ยวได้";
+		next;
+		mes "[Luanda Guardian]";
+		mes "ประหยัดดีกว่าเสียใจ";
+		next;
+		completequest 95003;
+		completequest 95004;
+		completequest 95005;
+		completequest 95006;
+		completequest 95007;
+		erasequest 95003;
+		erasequest 95004;
+		erasequest 95005;
+		erasequest 95006;
+		erasequest 95007;
+		illusionofluanda = 2;
+		//getitem 7539, 10;
+		//mes "[Luanda Guardian]";
+		//mes "ตอนนี้รับ ^ff0000Poring Coin ^000000 10 ชิ้นจากนั้นทางตะวันออกเฉียงเหนือสุดของดันเจี้ยนคุณจะพบรูปปั้นขนาดใหญ่";
+		next;
+		mes "[Luanda Guardian]";
+		mes "Level 150 ขึ้นไป ที่นั่นและคุณจะสามารถใช้รูปปั้นเป็นเครื่องวาร์ปได้";
+		//mes "โยน Poring Coin ที่นั่นและคุณจะสามารถใช้รูปปั้นเป็นเครื่องวาร์ปได้";
+		//mes "จำไว้ว่าคุณจะต้องใช้ ^ff0000Poring Coin ^000000 อีก 10 ชิ้นหากคุณต้องการไปที่นั่นอีกครั้ง";
+		next;
+		mes "[Luanda Guardian]";
+		mes "โชคดี!";
+		close;
+	case 2:
+		mes "[Luanda Guardian]";
+		mes "โชคดี!";
+		close;
+	default:
+		mes "[Luanda Guardian]";
+		mes "สวัสดีนักผจญภัย!";
+		mes "คุณรู้ไหมว่ามีสิ่งมหัศจรรย์ปรากฏบนดันเจี้ยนนี้?";
+		next;
+		emotion ET_HUK,playerattached();
+		mes "[ "+strcharinfo(0)+" ]";
+		mes "ไม่จริง";
+		next;
+		mes "[Luanda Guardian]";
+		mes "ภาพลวงตาใหม่ของดันเจี้ยนนี้เกิดขึ้นในขณะที่สิ่งนั้นเกิดขึ้น";
+		next;
+		mes "[Luanda Guardian]";
+		mes "มอนสเตอร์ตัวใหม่ที่ได้รับผลจากพลังนั้นแข็งแกร่งขึ้นกว่าเดิม";
+		mes "แต่ก็มีบางอย่างที่ดีเช่นกันคุณจะได้รับไอเทมทรงพลังขณะอยู่ที่นั่น";
+		next;
+		mes "[Luanda Guardian]";
+		mes "และถ้าคุณต้องการไปที่ดันเจี้ยนภาพลวงตาฉันสามารถแสดงวิธีให้คุณได้";
+		mes "แต่ก่อนอื่นฉันต้องให้งานง่ายๆเพื่อช่วยให้ฉันเข้าใจพลังของคุณ";
+		next;
+		mes "[Luanda Guardian]";
+		mes "คุณพร้อมสำหรับการท้าทายนี้แล้วหรือยัง?";
+		next;
+		switch(select("ใช่","ไม่")){
+			case 1:
+				break;
+			case 2:
+				mes "[Luanda Guardian]";
+				mes "ดีมาก.";
+				mes "ฉันจะไม่บังคับใครที่ไม่ต้องการ";
+				close;
+		}
+		mes "[Luanda Guardian]";
+		mes "ดีตอนนี้เข้าไปในดันเจี้ยนปกติและฆ่ามอนสเตอร์ 5 ตัวที่คุณสามารถพบได้ที่นั่น ^ff0000 ยกเว้น ^000000 โกเลมหินที่โกรธเกรี้ยว";
+		illusionofluanda = 1;
+		setquest 95003;
+		setquest 95004;
+		setquest 95005;
+		setquest 95006;
+		setquest 95007;
+		next;
+		mes "[Luanda Guardian]";
+		mes "รายงานให้ฉันทราบเมื่อคุณทำเสร็จ";
+		close;
+}
+	end;
+	
+OnTouch:
+{
+	OnPCLoadMapEvent:
+		if(strcharinfo(3) == strnpcinfo(4))
+			if(illusionofluanda > 1){
+				end;
+			}
+		//showevent 1, 1;
+		viewpoint 2,171,348,1,0xFF0000;
+		end;
+}
+}
+
+// Viewpoint at dungeon
+-	script	IllusionOfLuanda#illusionofluanda	-1,{
+	end;
+	
+OnInit:
+	end;
+	
+OnTouch:
+	{
+		OnPCLoadMapEvent:
+			if(strcharinfo(3) == strnpcinfo(4))
+			if(illusionofluanda < 1){
+				end;
+			}
+			viewpoint 1,248,253,1,0xFF0000;
+			end;
+	}
+}
+
+beach_dun2,154,25,0	duplicate(IllusionOfLuanda#illusionofluanda)	#IllusionOfLuanda_Clue1	-1,9,9
+
+// Craft NPC
+com_d02_i,242,255,4	script	Junior#illusionofluanda	4_M_THAIONGBAK,{
+	disable_items;
+	mes "[จูเนียร์]";
+	mes "สวัสดี!";
+	mes "ช่างเป็นวันที่สวยงามที่ Luanda";
+	next;
+	mes "[จูเนียร์]";
+	mes "เพียงเลือกสิ่งที่คุณต้องการสร้าง";
+	next;
+	switch(select("Illusion Tablet[2]","Illusion Hunter Bow[2]","Illusion Goibne's Helm[1]","Illusion Goibne's Armor[1]","Illusion Goibne's Greaves[1]","Illusion Goibne's Spaulders[1]")){
+		case 1:
+			set .@location, EQI_HAND_R;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 1552;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25642;
+			.@req_item_3 = 0;
+			.@req_item_4 = 0;
+			.@amount_req_item_1 = 50;
+			.@amount_req_item_2 = 100;
+			.@amount_req_item_3 = 0;
+			.@amount_req_item_4 = 0;
+			.@amount_req_item_5 = 0;
+			.@reward = 28626;
+			goto craft;
+		case 2:
+			set .@location, EQI_HAND_R;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 1718;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25636;
+			.@req_item_3 = 25640;
+			.@req_item_4 = 25637;
+			.@amount_req_item_1 = 80;
+			.@amount_req_item_2 = 50;
+			.@amount_req_item_3 = 50;
+			.@amount_req_item_4 = 50;
+			.@reward = 18174;
+			goto craft;
+		case 3:
+			set .@location, EQI_HEAD_TOP;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 5128;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25634;
+			.@req_item_3 = 25633;
+			.@req_item_4 = 0;
+			.@amount_req_item_1 = 120;
+			.@amount_req_item_2 = 30;
+			.@amount_req_item_3 = 150;
+			.@reward = 19366;
+			goto craft;
+		case 4:
+			set .@location, EQI_ARMOR;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 2354;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25641;
+			.@req_item_3 = 25638;
+			.@req_item_4 = 0;
+			.@amount_req_item_1 = 80;
+			.@amount_req_item_2 = 100;
+			.@amount_req_item_3 = 150;
+			.@reward = 15348;
+			goto craft;
+		case 5:
+			set .@location, EQI_SHOES;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 2419;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25639;
+			.@req_item_3 = 25633;
+			.@req_item_4 = 0;
+			.@amount_req_item_1 = 80;
+			.@amount_req_item_2 = 30;
+			.@amount_req_item_3 = 150;
+			.@reward = 22192;
+			goto craft;
+		case 6:
+			set .@location, EQI_GARMENT;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 2520;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25635;
+			.@req_item_3 = 25638;
+			.@req_item_4 = 0;
+			.@amount_req_item_1 = 120;
+			.@amount_req_item_2 = 100;
+			.@amount_req_item_3 = 150;
+			.@reward = 20923;
+			goto craft;
+	}
+	craft:
+		mes "[จูเนียร์]";
+		mes "หากคุณต้องการ <ITEM>" +getitemname(.@reward)+ "<INFO>" +.@reward+"</INFO> </ITEM>";
+		mes "กรุณานำวัสดุทั้งหมดนี้มาด้วยเพื่อที่ฉันจะได้สร้างอุปกรณ์ให้คุณ";
+		next;
+		mes "[จูเนียร์]";
+		mes "นำทั้งหมดนี้มาให้ฉัน:";
+		mes " ";
+		mes "(^009900"+.@equip_id_req+"^000000) ^ff0000 + 9 ^000000 "+getitemname(.@equip_id_req)+"";
+		mes "(^009900"+.@req_item_1+"^000000) "+.@amount_req_item_1+" ชิ้นของ "+getitemname(.@req_item_1)+"";
+		mes "(^009900"+.@req_item_2+"^000000) "+.@amount_req_item_2+" ชิ้นของ "+getitemname(.@req_item_2)+"";
+		if(.@req_item_3 > 0){
+			mes "(^009900"+.@req_item_3+"^000000) "+.@amount_req_item_3+" ชิ้นของ "+getitemname(.@req_item_3)+"";
+		}
+		if(.@req_item_4 > 0){
+			mes "(^009900"+.@req_item_4+"^000000) "+.@amount_req_item_4+" ชิ้นของ "+getitemname(.@req_item_4)+"";
+		}
+		next;
+		mes "[จูเนียร์]";
+		mes "และดูเหมือนว่าคุณจะเตรียมพร้อมแล้ว";
+		mes "อย่าลืมว่าคุณต้องสวมอุปกรณ์ที่คุณต้องการแลกเปลี่ยน";
+		next;
+		switch(select("มาซื้อขายกัน!","ฉันยังไม่ได้เตรียมตัว")){
+			case 1:
+				break;
+			case 2:
+				mes "[จูเนียร์]";
+				mes "โอ๊ย ... เศร้าแค่ไหน.";
+				mes "โปรดกลับมาเมื่อคุณพร้อม!";
+				end;
+		}
+		.@refine = getequiprefinerycnt(.@location);
+		.@equip_id = getequipid(.@location);
+		if(.@equip_id_req != .@equip_id || .@refine < 9){
+			mes "[จูเนียร์]";
+			mes "ฉันต้องการ ^ff0000 + 9 ^000000 <ITEM>"+getitemname(.@equip_id_req)+ "<INFO>" +.@equip_id_req+"</INFO>.</ITEM>";
+			mes "รายการอื่น ๆ จะไม่ทำ";
+			end;
+		}
+		if(.@req_item_4 > 0){
+			if(countitem(.@req_item_1) < .@amount_req_item_1 || countitem(.@req_item_2) < .@amount_req_item_2 || countitem(.@req_item_3) < .@amount_req_item_3 || countitem(.@req_item_4) < .@amount_req_item_4 ){
+				mes "[จูเนียร์]";
+				mes "ฮ่า ๆ ๆ ๆ ...";
+				mes "คุณนำสิ่งของไม่เพียงพอ";
+				mes "ไปหาฉันบ้าง!";
+				end;
+			}
+		}
+		if(.@req_item_3 > 0){
+			if(countitem(.@req_item_1) < .@amount_req_item_1 || countitem(.@req_item_2) < .@amount_req_item_2 || countitem(.@req_item_3) < .@amount_req_item_3 ){
+				mes "[จูเนียร์]";
+				mes "ฮ่า ๆ ๆ ๆ ...";
+				mes "คุณนำสิ่งของไม่เพียงพอ";
+				mes "ไปหาฉันบ้าง!";
+				end;
+			}
+		}
+		if(.@req_item_3 == 0){
+			if(countitem(.@req_item_1) < .@amount_req_item_1 || countitem(.@req_item_2) < .@amount_req_item_2){
+				mes "[จูเนียร์]";
+				mes "ฮ่า ๆ ๆ ๆ ...";
+				mes "คุณนำสิ่งของไม่เพียงพอ";
+				mes "ไปหาฉันบ้าง!";
+				end;
+			}
+		}
+		
+		emotion ET_SMILE;
+		specialeffect2 EF_PHARMACY_OK;
+		delequip .@location;
+		if(.@req_item_4 > 0){
+			delitem .@req_item_1, .@amount_req_item_1;
+			delitem .@req_item_2, .@amount_req_item_2;
+			delitem .@req_item_3, .@amount_req_item_3;
+			delitem .@req_item_4, .@amount_req_item_4;
+			getitem .@reward, 1;
+			mes "[จูเนียร์]";
+			mes "ตกลงนั่นคือสิ่งที่คุณมาที่นี่!";
+			mes "ดูแลมันให้ดี";
+			end;
+		}
+		if(.@req_item_3 > 0){
+			delitem .@req_item_1, .@amount_req_item_1;
+			delitem .@req_item_2, .@amount_req_item_2;
+			delitem .@req_item_3, .@amount_req_item_3;
+			getitem .@reward, 1;
+			mes "[จูเนียร์]";
+			mes "ตกลงนั่นคือสิ่งที่คุณมาที่นี่!";
+			mes "ดูแลมันให้ดี";
+			end;
+		}
+		if(.@req_item_3 == 0){
+			delitem .@req_item_1, .@amount_req_item_1;
+			delitem .@req_item_2, .@amount_req_item_2;
+			getitem .@reward, 1;
+			mes "[จูเนียร์]";
+			mes "ตกลงนั่นคือสิ่งที่คุณมาที่นี่!";
+			mes "ดูแลมันให้ดี";
+			end;
+		}
+		end;
+}
+
+// Daily Hunting
+com_d02_i,234,266,5	script	Adventurer#illusionofluanda	4_M_ORIENT01,{
+mes "[นักผจญภัย]";
+mes "คุณต้องการส่ง (สำเร็จ) ภารกิจล่าสัตว์ใด";
+next;
+switch(select("Ancient Tri Joint","Ancient Stalactic Golem","Ancient Megalith","Ancient Stone Shooter","Ancient Wootan Shooter","Ancient Wootan Fighter")){
+	case 1:
+		if(checkquest(95008,HUNTING) < 2){
+			mes "[นักผจญภัย]";
+			mes "คุณยังทำภารกิจล่าสัตว์ไม่สำเร็จ";
+			close;
+		}
+		mes "[นักผจญภัย]";
+		mes "เก่งมาก!";
+		mes "โปรดรับ ^ff0000Illusion Stone ^000000 1 ชิ้นนี้เป็นรางวัล";
+		getitem 25271, 1;
+		completequest 95008;
+		close;
+	case 2:
+		if(checkquest(95009,HUNTING) < 2){
+			mes "[นักผจญภัย]";
+			mes "คุณยังทำภารกิจล่าสัตว์ไม่สำเร็จ";
+			close;
+		}
+		mes "[นักผจญภัย]";
+		mes "เก่งมาก!";
+		mes "โปรดรับ ^ff0000Illusion Stone ^000000 1 ชิ้นนี้เป็นรางวัล";
+		getitem 25271, 1;
+		completequest 95009;
+		close;
+	case 3:
+		if(checkquest(95010,HUNTING) < 2){
+			mes "[นักผจญภัย]";
+			mes "คุณยังทำภารกิจล่าสัตว์ไม่สำเร็จ";
+			close;
+		}
+		mes "[นักผจญภัย]";
+		mes "เก่งมาก!";
+		mes "โปรดรับ ^ff0000Illusion Stone ^000000 1 ชิ้นนี้เป็นรางวัล";
+		getitem 25271, 1;
+		completequest 95010;
+		close;
+	case 4:
+		if(checkquest(95011,HUNTING) < 2){
+			mes "[นักผจญภัย]";
+			mes "คุณยังทำภารกิจล่าสัตว์ไม่สำเร็จ";
+			close;
+		}
+		mes "[นักผจญภัย]";
+		mes "เก่งมาก!";
+		mes "โปรดรับ ^ff0000Illusion Stone ^000000 1 ชิ้นนี้เป็นรางวัล";
+		getitem 25271, 1;
+		completequest 95011;
+		close;
+	case 5:
+		if(checkquest(95012,HUNTING) < 2){
+			mes "[นักผจญภัย]";
+			mes "คุณยังทำภารกิจล่าสัตว์ไม่สำเร็จ";
+			close;
+		}
+		mes "[นักผจญภัย]";
+		mes "เก่งมาก!";
+		mes "โปรดรับ ^ff0000Illusion Stone ^000000 1 ชิ้นนี้เป็นรางวัล";
+		getitem 25271, 1;
+		completequest 95012;
+		close;
+	case 6:
+		if(checkquest(95013,HUNTING) < 2){
+			mes "[นักผจญภัย]";
+			mes "คุณยังทำภารกิจล่าสัตว์ไม่สำเร็จ";
+			close;
+		}
+		mes "[นักผจญภัย]";
+		mes "เก่งมาก!";
+		mes "โปรดรับ ^ff0000Illusion Stone ^000000 1 ชิ้นนี้เป็นรางวัล";
+		getitem 25271, 1;
+		completequest 95013;
+		close;
+}
+end;
+}
+
+com_d02_i,238,266,3	script	Hunting Board#illusionofluanda	4_BOARD3,{
+mes "[คณะกรรมการล่าสัตว์]";
+mes "เลือกภารกิจล่าสัตว์ที่คุณต้องการทำ";
+mes "แต่ละเควสที่สำเร็จจะได้รับรางวัลเป็น ^ff0000Illusion Stone ^000000 1 ชิ้น";
+next;
+switch(select("Ancient Tri Joint","Ancient Stalactic Golem","Ancient Megalith","Ancient Stone Shooter","Ancient Wootan Shooter","Ancient Wootan Fighter")){
+	case 1:
+		if(checkquest(95008,PLAYTIME) == 0 || checkquest(95008,PLAYTIME) == 1){
+			mes "[คณะกรรมการล่าสัตว์]";
+			mes "คุณต้องรอก่อนจึงจะสามารถทำภารกิจนี้ได้";
+			close;
+		}
+		erasequest 95008;
+		setquest 95008;
+		mes "[คณะกรรมการล่าสัตว์]";
+		mes "เยี่ยมมาก!";
+		mes "ตอนนี้ล่า 30 ^ff0000Ancient Tri Joint ^000000";
+		mes "รายงานต่อนักผจญภัยเมื่อคุณล่าสัตว์เสร็จแล้ว";
+		close;
+	case 2:
+		if(checkquest(95009,PLAYTIME) == 0 || checkquest(95009,PLAYTIME) == 1){
+			mes "[คณะกรรมการล่าสัตว์]";
+			mes "คุณต้องรอก่อนจึงจะสามารถทำภารกิจนี้ได้";
+			close;
+		}
+		erasequest 95009;
+		setquest 95009;
+		mes "[คณะกรรมการล่าสัตว์]";
+		mes "เยี่ยมมาก!";
+		mes "ตอนนี้ล่า 30 ^ff0000Ancient Stalactic Golem ^000000";
+		mes "รายงานต่อนักผจญภัยเมื่อคุณล่าสัตว์เสร็จแล้ว";
+		close;
+	case 3:
+		if(checkquest(95010,PLAYTIME) == 0 || checkquest(95010,PLAYTIME) == 1){
+			mes "[คณะกรรมการล่าสัตว์]";
+			mes "คุณต้องรอก่อนจึงจะสามารถทำภารกิจนี้ได้";
+			close;
+		}
+		erasequest 95010;
+		setquest 95010;
+		mes "[คณะกรรมการล่าสัตว์]";
+		mes "เยี่ยมมาก!";
+		mes "ตอนนี้ล่า 30 ^ff0000Ancient Megalith ^000000";
+		mes "รายงานต่อนักผจญภัยเมื่อคุณล่าสัตว์เสร็จแล้ว";
+		close;
+	case 4:
+		if(checkquest(95011,PLAYTIME) == 0 || checkquest(95011,PLAYTIME) == 1){
+			mes "[คณะกรรมการล่าสัตว์]";
+			mes "คุณต้องรอก่อนจึงจะสามารถทำภารกิจนี้ได้";
+			close;
+		}
+		erasequest 95011;
+		setquest 95011;
+		mes "[คณะกรรมการล่าสัตว์]";
+		mes "เยี่ยมมาก!";
+		mes "ตอนนี้ล่า 30 ^ff0000Ancient Stone Shooter ^000000";
+		mes "รายงานต่อนักผจญภัยเมื่อคุณล่าสัตว์เสร็จแล้ว";
+		close;
+	case 5:
+		if(checkquest(95012,PLAYTIME) == 0 || checkquest(95012,PLAYTIME) == 1){
+			mes "[คณะกรรมการล่าสัตว์]";
+			mes "คุณต้องรอก่อนจึงจะสามารถทำภารกิจนี้ได้";
+			close;
+		}
+		erasequest 95012;
+		setquest 95012;
+		mes "[คณะกรรมการล่าสัตว์]";
+		mes "เยี่ยมมาก!";
+		mes "ตอนนี้ล่า 30 ^ff0000A Ancient Wootan Shooter ^000000";
+		mes "รายงานต่อนักผจญภัยเมื่อคุณล่าสัตว์เสร็จแล้ว";
+		close;
+	case 6:
+		if(checkquest(95013,PLAYTIME) == 0 || checkquest(95013,PLAYTIME) == 1){
+			mes "[คณะกรรมการล่าสัตว์]";
+			mes "คุณต้องรอก่อนจึงจะสามารถทำภารกิจนี้ได้";
+			close;
+		}
+		erasequest 95013;
+		setquest 95013;
+		mes "[คณะกรรมการล่าสัตว์]";
+		mes "เยี่ยมมาก!";
+		mes "ตอนนี้ล่า 30 ^ff0000Ancient Wootan Fighter ^000000";
+		mes "รายงานต่อนักผจญภัยเมื่อคุณล่าสัตว์เสร็จแล้ว";
+		close;
+}
+end;
+}

@@ -1,0 +1,122 @@
+//===== rAthena Script =======================================
+//= Acolyte Skill Quest
+//===== By:==================================================
+//= kobra_k88
+//===== Current Version:=====================================
+//= 1.8
+//===== Compatible With:===================================== 
+//= rAthena Project
+//===== Description:========================================= 
+//= Quest for skills:Holy Light
+//===== Additional Comments:================================= 
+//= 1.5 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
+//= 1.6 Fixed a typo in job check. (Bugreport:1531) [L0ne_W0lf]
+//= 1.7 Updated to latest available official file. [Masao]
+//= 1.8 Fixed JobLevel requirements. [Euphy]
+//============================================================
+
+prt_church,173,23,4	script	Cleric	79,{
+	mes "[Acolyte Klift]";
+	mes "อ่า พี่น้อง! ทำหน้าที่ของ";
+	mes "ดูแลแกะที่หายไป";
+	mes "และเบื่อคุณ?";
+	mes "ฉันอยู่ที่นี่เพื่อช่วยเหลือคุณ";
+	next;
+	switch (select("^3355FF'เกี่ยวกับความสามารถที่ซ่อนอยู่ของนักบวช' ^000000 .. :^3355FF'แสงศักดิ์สิทธิ์' ^000000 การฝึก:จบการสนทนา")) {
+	case 1:
+		mes "[Acolyte Klift]";
+		mes "สมาชิกคณะสงฆ์ของเรา";
+		mes "เรียนรู้ทักษะตามธรรมชาติเป็น";
+		mes "เมื่อโตเต็มที่ เมื่อพวกเขาเข้าใกล้";
+		mes "ปีสุดท้ายของพวกเขาในฐานะศิษย์เก่า";
+		mes "ทักษะพิเศษนี้";
+		next;
+		mes "[Acolyte Klift]";
+		mes "ต้องเผชิญกับอันตรายครั้งใหญ่และ";
+		mes "การต่อสู้กับความชั่วร้ายไม่มีที่สิ้นสุด";
+		mes "พี่น้องของเราต้องการความช่วยเหลือมาก";
+		mes "^3355FF 'Holy Light' ^000000 คือทักษะนั้น";
+		mes "เพื่อรับความสามารถนี้ด้วยตัวคุณเอง";
+		mes "ทำงานบางอย่าง";
+		next;
+		mes "[Acolyte Klift]";
+		mes "คุณต้องหาไอเท็มเหล่านี้เพื่อเพิ่มทักษะ";
+		mes "^FF33551 Opal^000000";
+		mes "^FF33551 Crystal Blue^000000";
+		mes "^FF33551 Rosary^000000 ";
+		next;
+		mes "[Acolyte Klift]";
+		mes "เพื่อที่จะสามารถใช้ทักษะนี้ได้";
+		mes "ต้องมีประสบการณ์เพียงพอ";
+		mes "^FF3355ระดับงาน 30 ^000000";
+		mes "จำเป็นต้องเรียนรู้ทักษะนี้";
+		next;
+		mes "[Acolyte Klift]";
+		mes "สำหรับนักบวชเพราะพวกเขา";
+		mes "ประสบการณ์มากมาย";
+		mes "พวกเขาสามารถได้รับทักษะนี้ได้ทุกเมื่อ";
+		mes "ระดับงาน.";
+		close;
+	case 2:
+		if (getskilllv("AL_HOLYLIGHT") == 1) {
+			mes "[Acolyte Klift]";
+			mes "พี่ชายคุณมีแล้ว";
+			mes "ทักษะของ `` แสงศักดิ์สิทธิ์ ''";
+			mes "คุณไม่สามารถได้รับทักษะที่คุณ";
+			mes "ได้ครอบครองแล้ว ..";
+			mes "ฉันขอภาวนาให้คุณใช้";
+			mes "ทักษะนี้เพื่อการทำงานที่ดี .";
+			close;
+		}
+		if ((countitem(727) > 0) && (countitem(991) > 0) && (countitem(2608) > 0) && (JobLevel > 29 || (BaseJob == Job_Priest || BaseJob == Job_Monk)) && (BaseClass == Job_Acolyte)) {
+			mes "[Acolyte Klift]";
+			mes "ความเชื่อของคุณได้รับการพิสูจน์แล้วว่ามีค่า";
+			mes "เพื่อให้คุณได้รับทักษะ 'แสงศักดิ์สิทธิ์'";
+			mes "ทักษะของคุณเพียงพอ";
+			mes "เพื่อใช้ทักษะนี้";
+			mes "ใช้อย่างชาญฉลาด . .";
+			next;
+			delitem 727,1; //White_Jewel
+			delitem 991,1; //Crystal_Blue
+			delitem 2608,1; //Rosary
+			skill "AL_HOLYLIGHT",1,SKILL_PERM;
+			mes "[Acolyte Klift]";
+			mes "ตอนนี้คุณรู้จัก 'Holy Light' แล้ว";
+			mes "ขอให้คุณใช้ทักษะนี้เฉพาะในไฟล์";
+			mes "ความประพฤติที่ดีที่สุด . . . .";
+			close;
+		}
+		mes "[Acolyte Klift]";
+		mes "โอ้มันชัดเจน . .";
+		mes "คุณยังไม่พร้อมที่จะ";
+		mes "รับทักษะ 'แสงศักดิ์สิทธิ์'";
+		next;
+		mes "[Acolyte Klift]";
+		mes "คุณควรตั้งใจฟังสิ่งที่";
+		mes "จำเป็นสำหรับทักษะนี้";
+		mes "หากคุณฟังอย่างใกล้ชิด";
+		mes "คุณอาจเรียนรู้สิ่งที่คุณขาด";
+		mes "เพื่อที่คุณจะได้ปรับปรุงตัวเอง";
+		close;
+	case 3:
+		mes "[Acolyte Klift]";
+		mes ". . . . .";
+		mes "ฉันเข้าใจความกระตือรือร้นของคุณ";
+		mes "คุณยังมีเวลาอีกมาก";
+		mes "ฝึกฝนและเพิ่มพูนประสบการณ์";
+		mes "พรกับคุณ . . . .";
+		close;
+	}
+}
+
+//============================================================ 
+// Old changelog
+//============================================================ 
+//= 1.0a Now using functions found in "Global_Functions.txt"
+//=     for class checks.
+//= 1.2 Added Baby Class Support [Lupus]
+//= 1.3 Removed callfunc Is_####_Class in favor of baseClass [Silentdragon]
+//= 1.4 Fixed an exploit [Lupus]
+//= 1.4a changed perm. variables to temp ones [Lupus]
+//============================================================
+

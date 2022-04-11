@@ -1,0 +1,154 @@
+//===== rAthena Script =======================================
+//= Merchant Skills Quests
+//===== Description:=========================================
+//= [Official Conversion]
+//- NPC for skills Pushcart Decoration.
+//===== Changelogs:==========================================
+//= 1.0 First version. [Capuche]
+//============================================================
+
+alberta,47,37,5	script	Cart Remodel Expert	4_M_REPAIR,{
+	.@max_skill_lvl = 1;
+	if (cart_remodel == 0) {
+		mes "[Jason]";
+		mes "รถเข็นคันเดิมสวย!";
+		next;
+		mes "[Jason]";
+		mes "รถเข็นสีเทาทึบ";
+		next;
+		mes "[Jason]";
+		mes "ฉันสามารถสร้างใหม่เป็นแบบน่ารัก ๆ ได้";
+		next;
+		switch( select( "Pushcart Decoration คืออะไร?", "เรียนรู้การตกแต่งรถเข็น", "สิ้นสุดกล่องโต้ตอบ" ) ) {
+		case 1:
+			mes "[Jason]";
+			mes "ฉันต้องการสร้างรถเข็น ที่น่าสงสารขึ้นมาใหม่ทั้งหมด";
+			next;
+			mes "[Jason]";
+			mes "การสร้างแบบจำลองเพียงเล็กน้อย ไม่เพียงพอ คุณเห็นด้วยหรือไม่?";
+			next;
+			mes "[Jason]";
+			mes "ดังนั้นฉันจึงได้ คิดค้น การออกแบบใหม่ ๆ";
+			next;
+			mes "[Jason]";
+			mes "น่ารัก และ สดชื่น!";
+			close;
+		case 2:
+			if (BaseClass != Job_Merchant) {
+				mes "[Jason]";
+				mes "ทำไมคุณถึงต้องการเรียนรู้การตกแต่ง Pushcart? อย่ามารบกวนฉัน!";
+				close;
+			}
+			if (countitem(6606) == 0) {
+				mes "[Jason]";
+				mes "เป็นการยากที่จะเรียนรู้การตกแต่งรถเข็น";
+				next;
+				mes "[Jason]";
+				mes "ฉันจะสอนคุณถ้าคุณนำ ^3131FFCute Cart Remodel Coupon ^000000 มาให้ฉัน";
+				close;
+			}
+			mes "[Jason]";
+			mes "คุณได้นำคูปองสร้างรถเข็นสุดน่ารัก แน่ใจหรือว่าต้องการเรียน Pushcart Decoration?";
+			next;
+			if (select("ใช่", "ไม่") == 2) {
+				mes "[Jason]";
+				mes "มาอีกครั้งหลังจากที่คุณเปลี่ยนใจ!";
+				close;
+			}
+			mes "[Jason]";
+			mes "ได้เลย! ปฏิบัติตามฉัน.";
+			next;
+			mes "[Jason]";
+			mes "การออกแบบนี้";
+			mes "ต้องจับรถเข็น ...";
+			next;
+			mes "[Jason]";
+			mes "การออกแบบนี้";
+			mes "ต้องจับรถเข็น";
+			mes "แล้วเพิ่มสิ่งนี้ ....";
+			mes "...";
+			next;
+			mes "[Jason]";
+			mes "คุณคืออัจฉริยะ! คุณได้เรียนรู้แล้ว!";
+			next;
+			mes "[Jason]";
+			mes "ตอนนี้เป็นตาของคุณที่จะทำ";
+			mes "กด Alt + S เพื่อเปลี่ยนรถเข็นของคุณ!";
+			next;
+			mes "[Jason]";
+			mes "นี่คือรถเข็นดีไซน์ใหม่น่ารัก คุณเป็นหนึ่งในครอบครัวของเราตอนนี้ ... !";
+			delitem 6606,1;	// P_Cart_C
+			cart_remodel = 1;
+			skill "MC_CARTDECORATE",1,SKILL_PERM;
+			close;
+		case 3:
+			close;
+		}
+	}
+	mes "[Jason]";
+	mes "คุณตกแต่งรถเข็นหรือยัง?";
+	next;
+	switch( select( "มีอะไรให้เรียนรู้อีกไหม?", "ฉันลืมวิธีการตกแต่งรถเข็นของฉัน" ) ) {
+	case 1:
+		if (cart_remodel == .@max_skill_lvl) {
+			mes "[Jason]";
+			mes "ไม่ฉันยังคงสำรวจการออกแบบใหม่ ๆ ฉันจะสอนคุณเมื่อฉันได้เรียนรู้แล้ว";
+			close;
+		}
+		mes "[Jason]";
+		mes "ฉันมีอะไรจะสอนคุณอยากเรียนไหม?";
+		next;
+		mes "[Jason]";
+		mes "ฉันต้องการ ^3131FFC คูปองสร้างรถเข็นน่ารัก ^000000";
+		next;
+		if (select("ฉันต้องการที่จะเรียนรู้", "ไม่") == 2) {
+			mes "[Jason]";
+			mes "คุณสามารถกลับมาได้ตลอดเวลา";
+			close;
+		}
+		if (countitem(6606) < 0) {
+			mes "[Jason]";
+			mes "คุณไม่มีคูปองสร้างรถเข็นน่ารัก ๆ หรือไม่?";
+			close;
+		}
+		mes "[Jason]";
+		mes "โอเคเริ่มกันเลย!";
+		next;
+		mes "[Jason]";
+		mes "ทำไปเรื่อย ๆ แบบนี้ดีกว่า";
+		mes "ทำอย่างนั้นอย่างนี้เช่นกัน ...";
+		next;
+		mes "[Jason]";
+		mes "....";
+		mes "ลงมือทำกันเลย!";
+		next;
+		mes "[Jason]";
+		mes "ฉันได้สอนทักษะให้คุณแล้วคุณสามารถลองได้เลย";
+		delitem 6606,1;	// P_Cart_C
+		cart_remodel++;
+		skill "MC_CARTDECORATE", cart_remodel ,SKILL_PERM;
+		close;
+	case 2:
+		mes "[Jason]";
+		mes "โอ้? ให้ฉันดู.";
+		next;
+		if (BaseClass != Job_Merchant) {
+			mes "[Jason]";
+			mes "โปรดกลับมาอีกครั้งหลังจากที่คุณสามารถใช้รถเข็นได้!";
+			close;
+		}
+		mes "[Jason]";
+		mes "คุณจำสิ่งที่ฉันสอนคุณไม่ได้เหรอ?";
+		mes "ฉันได้สอนวิธีนี้ให้คุณแล้ว";
+		next;
+		mes "[Jason]";
+		mes "คุณลืมไปแล้วเหรอ?";
+		mes "มานึกย้อนไปตอนนี้!";
+		next;
+		mes "[Jason]";
+		mes "คิดให้ดีคุณจะจำได้อีกครั้ง";
+		skill "MC_CARTDECORATE",1,SKILL_PERM;
+		close;
+	}
+}
+

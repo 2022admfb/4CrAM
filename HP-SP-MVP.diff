@@ -1,0 +1,356 @@
+diff --git a/src/map/clif.cpp b/src/map/clif.cpp
+index 3a9241fb6cfeb038fd8b77ece123d31730011493..4807b2131ad8c1820a0f653760c607d2e5485146 100644
+--- a/src/map/clif.cpp
++++ b/src/map/clif.cpp
+@@ -1187,13 +1187,13 @@ static int clif_set_unit_idle(struct block_list* bl, unsigned char* buffer, bool
+ 	WBUFW(buf,53) = (sd ? sd->status.font : 0);
+ #endif
+ #if PACKETVER >= 20120221
+-	if ( battle_config.monster_hp_bars_info && !map_getmapflag(bl->m, MF_HIDEMOBHPBAR) && bl->type == BL_MOB && (status_get_hp(bl) < status_get_max_hp(bl)) ) {
+-		WBUFL(buf,55) = status_get_max_hp(bl);		// maxHP
+-		WBUFL(buf,59) = status_get_hp(bl);		// HP
+-	} else {
++	//if ( battle_config.monster_hp_bars_info && !map_getmapflag(bl->m, MF_HIDEMOBHPBAR) && bl->type == BL_MOB && (status_get_hp(bl) < status_get_max_hp(bl)) ) {
++	//	WBUFL(buf,55) = status_get_max_hp(bl);		// maxHP
++	//	WBUFL(buf,59) = status_get_hp(bl);		// HP
++	//} else {
+ 		WBUFL(buf,55) = -1;		// maxHP
+ 		WBUFL(buf,59) = -1;		// HP
+-	}
++	//}
+ 
+ 	WBUFB(buf,63) = ( bl->type == BL_MOB && (((TBL_MOB*)bl)->db->mexp > 0) ) ? 1 : 0;		// isBoss
+ #endif
+@@ -1333,13 +1333,13 @@ static int clif_set_unit_walking(struct block_list* bl, struct unit_data* ud, un
+ 	WBUFW(buf,60) = (sd ? sd->status.font : 0);
+ #endif
+ #if PACKETVER >= 20120221
+-	if ( battle_config.monster_hp_bars_info && !map_getmapflag(bl->m, MF_HIDEMOBHPBAR) && bl->type == BL_MOB && (status_get_hp(bl) < status_get_max_hp(bl)) ) {
+-		WBUFL(buf,62) = status_get_max_hp(bl);		// maxHP
+-		WBUFL(buf,66) = status_get_hp(bl);		// HP
+-	} else {
++	//if ( battle_config.monster_hp_bars_info && !map_getmapflag(bl->m, MF_HIDEMOBHPBAR) && bl->type == BL_MOB && (status_get_hp(bl) < status_get_max_hp(bl)) ) {
++	//	WBUFL(buf,62) = status_get_max_hp(bl);		// maxHP
++	//	WBUFL(buf,66) = status_get_hp(bl);		// HP
++	//} else {
+ 		WBUFL(buf,62) = -1;		// maxHP
+ 		WBUFL(buf,66) = -1;		// HP
+-	}
++	//}
+ 
+ 	WBUFB(buf,70) = ( bl->type == BL_MOB && (((TBL_MOB*)bl)->db->mexp > 0) ) ? 1 : 0;		// isBoss
+ #endif
+@@ -3493,7 +3493,21 @@ void clif_updatestatus(struct map_session_data *sd,int type)
+ 			}
+ 			break;
+ 		case SP_HP:
+-			if( map_getmapdata(sd->bl.m)->hpmeter_visible ){
++			{
++
++			struct map_data *mapdata = map_getmapdata(sd->bl.id);
++			int fd;
++			int percent_hp = sd->battle_status.hp * 100 / sd->battle_status.max_hp;
++			int HP_effects[] = { 20,20,20,20,20,19,19,19,19,19,18,18,18,18,18,17,17,17,17,17,16,16,16,16,16,15,15,15,15,15,14,14,14,14,14,13,13,13,13,13,12,12,12,12,12,11,11,11,11,11,10,10,10,10,10,9,9,9,9,9,8,8,8,8,8,7,7,7,7,7,6,6,6,6,6,5,5,5,5,5,4,4,4,4,4,3,3,3,3,3,2,2,2,2,2,1,1,1,1,1 };
++
++			if (sd->lastEffectID > 0) {
++				clif_hat_effect_single2(&sd->bl, sd->lastEffectID, false);
++			}
++			clif_hat_effect_single2(&sd->bl, HP_effects[max(0, min(percent_hp, 99))], true);
++			sd->lastEffectID = HP_effects[max(0, min(percent_hp, 99))];
++			fd = sd->fd;
++
++			if (map_getmapdata(sd->bl.m)->hpmeter_visible) {
+ 				clif_hpmeter(sd);
+ 			}
+ 			if( !battle_config.party_hp_mode && sd->status.party_id ){
+@@ -3502,7 +3516,26 @@ void clif_updatestatus(struct map_session_data *sd,int type)
+ 			if( sd->bg_id ){
+ 				clif_bg_hp(sd);
+ 			}
+-			break;
++		}
++		break;
++			
++
++		case SP_SP:
++		{
++			struct map_data *mapdata = map_getmapdata(sd->bl.id);
++			int percent_sp = sd->battle_status.sp * 100 / sd->battle_status.max_sp;
++			int fd;
++			int SP_effects[] = { 193,193,193,193,193,194,194,194,194,194,194,194,194,194,194,194,194,194,194,194,195,195,195,195,195,195,195,195,195,195,196,196,196,196,196,196,196,196,196,196,197,197,197,197,197,197,197,197,197,197,198,198,198,198,198,198,198,198,198,198,199,199,199,199,199,199,199,199,199,199,200,200,200,200,200,200,200,200,200,200,201,201,201,201,201,201,201,201,201,201,202,202,202,202,202,202,202,202,203,203 };
++
++			if (sd->lastEffectID2 > 0) {
++				clif_hat_effect_single2(&sd->bl, sd->lastEffectID2, false);
++			}
++			clif_hat_effect_single2(&sd->bl, SP_effects[max(0, min(percent_sp, 99))], true);
++			sd->lastEffectID2 = SP_effects[max(0, min(percent_sp,99))];
++			fd = sd->fd;
++			
++		}
++		break;
+ 	}
+ }
+ 
+@@ -4826,7 +4859,7 @@ void clif_getareachar_unit(struct map_session_data* sd,struct block_list *bl)
+ 				int i;
+ 				for(i = 0; i < DAMAGELOG_SIZE; i++)// must show hp bar to all char who already hit the mob.
+ 					if( md->dmglog[i].id == sd->status.char_id )
+-						clif_monster_hp_bar(md, sd->fd);
++						clif_monster_hp_bar(md, sd);
+ 			}
+ #endif
+ 
+@@ -19132,17 +19165,44 @@ void clif_snap( struct block_list *bl, short x, short y ) {
+ 		clif_send(buf,packet_len(0x8d2),bl, AREA);
+ }
+ 
+-/// 0977 <id>.L <HP>.L <maxHP>.L (ZC_HP_INFO).
+-void clif_monster_hp_bar( struct mob_data* md, int fd ) {
++#define status_has_mode(status,md) (((status)->mode&(md)) == (md))
++void clif_monster_hp_bar(struct mob_data* md, struct map_session_data *sd) {
++	
++	int percent_hp = md->status.hp * 100 / md->status.max_hp;
++	int fd;
++    bool is_mvp = status_has_mode(&md->db->status, MD_MVP);
++    bool is_boss = (md->status.class_ == CLASS_BOSS);
++	//mob
++	int effects[] = { 171,171,171,170,170,170,170,170,170,170,169,169,169,169,169,168,168,168,168,168,167,167,167,167,167,166,166,166,166,166,165,165,165,165,165,164,164,164,164,164,163,163,163,163,163,162,162,162,162,162,161,161,161,161,161,160,160,160,160,160,159,159,159,159,159,158,158,158,158,158,157,157,157,157,157,156,156,156,156,156,155,155,155,155,155,154,154,154,154,154,153,153,153,153,153,152,152,152,152,151 };
++
++	//mvp
++	int effects2[] = { 192,192,192,191,191,191,190,190,190,190,189,189,189,189,189,188,188,188,188,188,187,187,187,187,187,186,186,186,186,186,185,185,185,185,185,184,184,184,184,184,183,183,183,183,183,182,182,182,182,182,181,181,181,181,181,180,180,180,180,180,179,179,179,179,179,178,178,178,178,178,177,177,177,177,177,176,176,176,176,176,175,175,175,175,175,174,174,174,174,174,173,173,173,173,173,173,173,172,172,172 };
++
++
++	if (md->lastEffectID > 0){
++		clif_hat_effect_single(&md->bl, md->lastEffectID, false);
++	}
++
++	if (is_mvp || is_boss) {
++
++		clif_hat_effect_single(&md->bl, effects2[max(0, min(percent_hp, 99))], true);
++		md->lastEffectID = effects2[max(0, min(percent_hp, 99))];
++
++	}
++	else {
++
++		clif_hat_effect_single(&md->bl, effects[max(0, min(percent_hp, 99))], true);
++		md->lastEffectID = effects[max(0, min(percent_hp, 99))];
++	}
++	fd = sd->fd;
++	
+ #if PACKETVER >= 20120404
+-	WFIFOHEAD(fd,packet_len(0x977));
++	//WFIFOHEAD(fd,packet_len(0x977));
+ 
+-	WFIFOW(fd,0)  = 0x977;
+-	WFIFOL(fd,2)  = md->bl.id;
+-	WFIFOL(fd,6)  = md->status.hp;
+-	WFIFOL(fd,10) = md->status.max_hp;
++	//WFIFOW(fd,0)  = 0x977;
++	//WFIFOL(fd,2)  = md->bl.id;
++	//WFIFOL(fd,6)  = md->status.hp;
++	//WFIFOL(fd,10) = md->status.max_hp;
+ 
+-	WFIFOSET(fd,packet_len(0x977));
++	//WFIFOSET(fd,packet_len(0x977));
+ #endif
+ }
+ 
+@@ -20512,17 +20572,31 @@ void clif_hat_effects( struct map_session_data* sd, struct block_list* bl, enum
+
+ 
+-void clif_hat_effect_single( struct map_session_data* sd, uint16 effectId, bool enable ){
++void clif_hat_effect_single(struct block_list* bl, uint16 effectId, bool enable) {
+ #if PACKETVER >= 20150513
+ 	unsigned char buf[13];
+ 
+ 	WBUFW(buf,0) = 0xa3b;
+ 	WBUFW(buf,2) = 13;
+-	WBUFL(buf,4) = sd->bl.id;
++	WBUFL(buf,4) = bl->id;
+ 	WBUFB(buf,8) = enable;
+ 	WBUFL(buf,9) = effectId;
+ 
+-	clif_send(buf,13,&sd->bl,AREA);
++	clif_send(buf,13,bl,AREA);
++#endif
++}
++
++void clif_hat_effect_single2(struct block_list* bl, uint16 effectId, bool enable) {
++#if PACKETVER >= 20150513
++	unsigned char buf[13];
++ 
++	WBUFW(buf, 0) = 0xa3b;
++	WBUFW(buf, 2) = 13;
++	WBUFL(buf, 4) = bl->id;
++	WBUFB(buf, 8) = enable;
++	WBUFL(buf, 9) = effectId;
++
++	clif_send(buf, 13, bl, SELF);
+ #endif
+ }
+ 
+diff --git a/src/map/clif.hpp b/src/map/clif.hpp
+index 76b06ae1b152b8e80459b0d08035efce3e657813..577b3ed89b351be88b5d9aafb7bd94ee8c138422 100644
+--- a/src/map/clif.hpp
++++ b/src/map/clif.hpp
+@@ -757,7 +757,8 @@ void clif_item_repaireffect(struct map_session_data *sd, int idx, int flag);
+ void clif_item_damaged(struct map_session_data* sd, unsigned short position);
+ void clif_item_refine_list(struct map_session_data *sd);
+ void clif_hat_effects( struct map_session_data* sd, struct block_list* bl, enum send_target target );
+-void clif_hat_effect_single( struct map_session_data* sd, uint16 effectId, bool enable );
++void clif_hat_effect_single(struct block_list* bl, uint16 effectId, bool enable);
++void clif_hat_effect_single2(struct block_list* bl, uint16 effectId, bool enable);
+ 
+ void clif_item_skill(struct map_session_data *sd,uint16 skill_id,uint16 skill_lv);
+ 
+@@ -1055,7 +1056,7 @@ void clif_elemental_updatestatus(struct map_session_data *sd, int type);
+ void clif_spiritcharm(struct map_session_data *sd);
+ 
+ void clif_snap( struct block_list *bl, short x, short y );
+-void clif_monster_hp_bar( struct mob_data* md, int fd );
++void clif_monster_hp_bar(struct mob_data* md, struct map_session_data *sd);
+ 
+ // Clan System
+ void clif_clan_basicinfo( struct map_session_data *sd );
+diff --git a/src/map/mob.cpp b/src/map/mob.cpp
+index 94cf6ff502e8f1cd2b33a05372a62fb865c052b1..e5aa48db166032a92f122dab9f3a07a3b0a761b5 100644
+--- a/src/map/mob.cpp
++++ b/src/map/mob.cpp
+@@ -2450,7 +2450,7 @@ void mob_damage(struct mob_data *md, struct block_list *src, int damage)
+ 		for(i = 0; i < DAMAGELOG_SIZE; i++){ // must show hp bar to all char who already hit the mob.
+ 			struct map_session_data *sd = map_charid2sd(md->dmglog[i].id);
+ 			if( sd && check_distance_bl(&md->bl, &sd->bl, AREA_SIZE) ) // check if in range
+-				clif_monster_hp_bar(md, sd->fd);
++				clif_monster_hp_bar(md, sd);
+ 		}
+ 	}
+ #endif
+@@ -3358,7 +3358,7 @@ void mob_heal(struct mob_data *md,unsigned int heal)
+ 			if( md->dmglog[i].id ) {
+ 				struct map_session_data *sd = map_charid2sd(md->dmglog[i].id);
+ 				if( sd && check_distance_bl(&md->bl, &sd->bl, AREA_SIZE) ) // check if in range
+-					clif_monster_hp_bar(md, sd->fd);
++					clif_monster_hp_bar(md, sd);
+ 			}
+ 	}
+ #endif
+diff --git a/src/map/mob.hpp b/src/map/mob.hpp
+index 79c32419d5a69fcd96a2c431139c614e89d1c14c..3c9c5209eeae100d36ae0afdbbfc050a847f069a 100644
+--- a/src/map/mob.hpp
++++ b/src/map/mob.hpp
+@@ -244,6 +244,9 @@ struct mob_data {
+ 	 * MvP Tombstone NPC ID
+ 	 **/
+ 	int tomb_nid;
++	
++	int lastEffectID;
++	int lastEffectID2;
+ };
+ 
+ enum e_mob_skill_target {
+diff --git a/src/map/pc.hpp b/src/map/pc.hpp
+index 6eef561e461099c24216623d3be1413e85e1e0d6..1ec410fb20d0678cc353e63c777661a5bcac6199 100644
+--- a/src/map/pc.hpp
++++ b/src/map/pc.hpp
+@@ -776,7 +776,8 @@ struct map_session_data {
+ 	uint32* hatEffectIDs;
+ 	uint8 hatEffectCount;
+ #endif
+-
++	int lastEffectID;
++	int lastEffectID2;
+ 	// [CreativeSD]: Queue System
+ 	unsigned int queue_id;
+ 	int queue_lock_timer;
+diff --git a/src/map/script.cpp b/src/map/script.cpp
+index 48cb29528d16b43dd34d60ddc838921d826c328f..0aeb1239af6b15f36851f6d828ac6af055b1eaed 100644
+--- a/src/map/script.cpp
++++ b/src/map/script.cpp
+@@ -22978,52 +22978,61 @@ BUILDIN_FUNC(recalculatestat) {
+ 	return SCRIPT_CMD_SUCCESS;
+ }
+ 
+-BUILDIN_FUNC(hateffect){
++BUILDIN_FUNC(hateffect) {
+ #if PACKETVER >= 20150513
+ 	struct map_session_data* sd;
++	struct block_list* bl;
+ 	bool enable;
+ 	int i, effectID;
+ 
+-	if( !script_rid2sd(sd) )
++	if (script_hasdata(st, 4))
++	{
++		sd = map_id2sd(script_getnum(st, 4));
++
++		if (!sd)
++			return SCRIPT_CMD_FAILURE;
++	}
++	else if (!script_rid2sd(sd))
+ 		return SCRIPT_CMD_FAILURE;
+ 
+-	effectID = script_getnum(st,2);
+-	enable = script_getnum(st,3) ? true : false;
++	effectID = script_getnum(st, 2);
++	enable = script_getnum(st, 3) ? true : false;
+ 
+-	if( effectID <= HAT_EF_MIN || effectID >= HAT_EF_MAX ){
+-		ShowError( "buildin_hateffect: unsupported hat effect id %d\n", effectID );
++	if (effectID <= HAT_EF_MIN || effectID >= HAT_EF_MAX) {
++		ShowError("buildin_hateffect: unsupported hat effect id %d\n", effectID);
+ 		return SCRIPT_CMD_FAILURE;
+ 	}
+ 
+-	ARR_FIND( 0, sd->hatEffectCount, i, sd->hatEffectIDs[i] == effectID );
++	ARR_FIND(0, sd->hatEffectCount, i, sd->hatEffectIDs[i] == effectID);
+ 
+-	if( enable ){
+-		if( i < sd->hatEffectCount ){
++	if (enable) {
++		if (i < sd->hatEffectCount) {
+ 			return SCRIPT_CMD_SUCCESS;
+ 		}
+ 
+-		RECREATE(sd->hatEffectIDs,uint32,sd->hatEffectCount+1);
++		RECREATE(sd->hatEffectIDs, uint32, sd->hatEffectCount + 1);
+ 		sd->hatEffectIDs[sd->hatEffectCount] = effectID;
+ 		sd->hatEffectCount++;
+-	}else{
+-		if( i == sd->hatEffectCount ){
++	}
++	else {
++		if (i == sd->hatEffectCount) {
+ 			return SCRIPT_CMD_SUCCESS;
+ 		}
+ 
+-		for( ; i < sd->hatEffectCount - 1; i++ ){
+-			sd->hatEffectIDs[i] = sd->hatEffectIDs[i+1];
++		for (; i < sd->hatEffectCount - 1; i++) {
++			sd->hatEffectIDs[i] = sd->hatEffectIDs[i + 1];
+ 		}
+ 
+ 		sd->hatEffectCount--;
+ 
+-		if( !sd->hatEffectCount ){
++		if (!sd->hatEffectCount) {
+ 			aFree(sd->hatEffectIDs);
+ 			sd->hatEffectIDs = NULL;
+ 		}
+ 	}
+ 
+-	if( !sd->state.connect_new ){
+-		clif_hat_effect_single( sd, effectID, enable );
++	if (!sd->state.connect_new) {
++		clif_hat_effect_single(&sd->bl, effectID, enable);
+ 	}
+ 
+ #endif
+@@ -25600,7 +25609,7 @@ struct script_function buildin_func[] = {
+ 	BUILDIN_DEF(costume, "i"),
+ 	BUILDIN_DEF(getcostumeitem, "v"),
+ 	BUILDIN_DEF(recalculatestat,""),
+-	BUILDIN_DEF(hateffect,"ii"),
++	BUILDIN_DEF(hateffect,"ii?"),
+ 	BUILDIN_DEF(getrandomoptinfo, "i"),
+ 	BUILDIN_DEF(getequiprandomoption, "iii?"),
+ 	BUILDIN_DEF(setrandomoption,"iiiii?"),

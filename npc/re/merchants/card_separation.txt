@@ -1,0 +1,367 @@
+//===== rAthena Script ======================================= 
+//= Card Separation System
+//===== By: ================================================== 
+//= Muad_Dib
+//===== Current Version: ===================================== 
+//= 1.1
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= [Official Conversion]
+//= Separates cards from equipment.
+//===== Additional Comments: ================================= 
+//= 1.0 First Version. [Euphy]
+//= 1.1 Added "Richard" NPC. [Euphy]
+//============================================================ 
+
+-	script	::CardSeparation_mal	-1,{
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "คุณมีวัตถุหลายชนิดเกินไปลองทำต่อไปหลังจากลดขนาดวัตถุเหล่านั้นลง";
+		close;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "ไปต่อไม่ได้เพราะคุณมีของหนักมากเกินไปลองทำต่อไปหลังลดน้ำหนัก";
+		close;
+	}
+	if (strnpcinfo(1) == "Jeremy") {
+		set .@Jeremy,1;
+		set .@n$, "[Jeremy]";
+		setarray .@equip_name$[0],  "Armor",  "Shoes",  "Garment", "Upper Hat";
+		setarray .@equip_slot[0], EQI_ARMOR,EQI_SHOES,EQI_GARMENT,EQI_HEAD_TOP;
+
+		mes .@n$;
+		mes "ไม่เจอกันนานเลย ~";
+		mes "ฉันได้เรียนรู้ทักษะใหม่ที่แยกการ์ดออกจากชุดเกราะรองเท้าเสื้อผ้าและหมวกคุณอยากลองไหม";
+	} else {
+		set .@Jeremy,0;
+		set .@n$, "[Richard]";
+		setarray .@equip_name$[0], "Left hand", "Right hand";
+		setarray .@equip_slot[0],   EQI_HAND_L,   EQI_HAND_R;
+
+		mes .@n$;
+		mes "Silly Jeremy ไม่ต้องการสัมผัสอาวุธและโล่เพราะเลือกการ์ดหลายใบที่อาจเสียหายนั่นคือเหตุผลที่ฉันเตรียมสกิลแยกการ์ดสำหรับอาวุธและโล่ ... ";
+	}
+	next;
+	mes .@n$;
+	mes "โดยทั่วไปค่าธรรมเนียมจะอยู่ที่ 1,000,000 Zeny ในระหว่างการแยกการ์ดคุณสามารถใช้ ^990000 ไอเทมพิเศษที่ลดอัตราการทำลายอุปกรณ์หรือการ์ด ^000000 เราไม่คิดค่า zeny เพิ่มเติมสำหรับสิ่งนี้";
+	next;
+	mes .@n$;
+	mes "มีความเป็นไปได้ที่จะทำลายพวกมันแม้จะใช้ไอเทมพิเศษก็ตาม ^ff0000 ระดับการปรับแต่งอาจหายไป ^000000 คุณมีอุปกรณ์แยกชิ้นไหม";
+	next;
+
+	for(set .@i,0; .@i<getarraysize(.@equip_slot); set .@i,.@i+1) {
+		if (getequipisequiped(.@equip_slot[.@i]))
+			set .@menu$, .@menu$+getequipname(.@equip_slot[.@i])+":";
+		else
+			set .@menu$, .@menu$+"^999999"+.@equip_name$[.@i]+" (empty)^000000:";
+	}
+
+	set .@i, select("หยุดการทำงาน:"+((.@Jeremy)?"เป็นไปได้ยังไง?":"")+":"+.@menu$);
+	switch(.@i) {
+	case 1:
+		mes .@n$;
+		mes "เมื่อใดก็ตามที่คุณต้องการงานแวะมาหาฉันที่นี่";
+		close;
+	case 2:
+		mes .@n$;
+		mes "คุณสงสัยว่าอะไรพิเศษมากฉันไม่ชอบที่จะให้แค่ไกด์ดังนั้นฉันจะเล่าเรื่องให้คุณฟัง ... ";
+		next;
+		mes "^000099Jeremy กำลังยืดไหล่และมือของเขา เขาอาจกำลังรอให้ใครบางคนคุยด้วย.^000000";
+		next;
+		mes .@n$;
+		mes "คุณรู้หรือไม่ว่าความพิเศษของ Malangdo คืออาหารกระป๋อง";
+		next;
+		select("ฉันรู้ดีมัน พิเศษ ขนาดนั้นเลยเหรอ?");
+		mes .@n$;
+		mes "อิอิ ... ใคร ๆ ก็รัก แต่ก่อนหน้านี้มีปัญหากัน";
+		next;
+		select("มีปัญหาหรือไม่มีปลา...ผิดปกติหรือไม่?");
+		mes .@n$;
+		mes "ไม่ครับปลาไม่มีปัญหาปัญหาคือน้ำมันปลาจำนวนมากที่ผลิตหลังการแปรรูปนั่นคือขยะอุตสาหกรรม";
+		next;
+		mes .@n$;
+		mes "อย่างไรก็ตามหลังจากผ่านกระบวนการกลั่นน้ำมันปลาชนิดนี้ก็มีค่าสำหรับการดูแลอุปกรณ์เก่าและน้ำมันหล่อลื่นอุตสาหกรรม";
+		next;
+		mes .@n$;
+		mes "นอกจากนี้น้ำมันนี้ยังมีประโยชน์มากในการแยกวัตถุโบราณออกจากอาวุธที่ติดตั้งซึ่งเราไม่สามารถซื้อน้ำมันหล่อลื่นระดับพรีเมียมและน้ำมันหล่อลื่นธรรมดาที่มี Zeny ได้";
+		next;
+		mes .@n$;
+		mes "ไม่ต้องกังวลเรื่องเงินแน่ ๆ น้ำมันหล่อลื่นพรีเมี่ยมแพงแน่ ๆ ถ้าคุณจ่าย zeny ฉันจะให้น้ำมันหล่อลื่นที่ถูกกว่านี้ได้";
+		next;
+		mes .@n$;
+		mes "ฉันไม่แน่ใจเกี่ยวกับคุณภาพของความสำเร็จอย่างไรก็ตามมันถูกมากใช่มั้ย?";
+		close;
+	default:
+		set .@equip_num, .@equip_slot[.@i-3];
+		if (!getequipisequiped(.@equip_num)) {
+			mes .@n$;
+			if (.@Jeremy)
+				mes "ในส่วนนี้ไม่มีอะไร?";
+			else
+				mes "ไม่มีอะไรในส่วนนั้น?";
+			close;
+		}
+		break;
+	}
+
+	setarray .@check_equip_card[0], getequipcardid(.@equip_num,0),getequipcardid(.@equip_num,1),getequipcardid(.@equip_num,2),getequipcardid(.@equip_num,3);
+	setarray .@equip_card[0], .@check_equip_card[0], .@check_equip_card[1], .@check_equip_card[2], .@check_equip_card[3];
+	set .@mvp_list$,
+		"|4408|4128|4456|4168|4142"+  //Gloom_Under_Night_Card, Golden_Bug_Card, Nidhogg_Shadow_Card, Dark_Lord_Card, Doppelganger_Card
+		"|4134|4137|4386|4407|4357"+  //Dracula_Card, Drake_Card, Detale_Card, Randgris_Card, B_Seyren_Card
+		"|4146|4132|4147|4372|4145"+  //Maya_Card, Mistress_Card, Baphomet_Card, Bacsojin_Card, Berzebub_Card
+		"|4374|4352|4367|4236|4425"+  //Apocalips_H_Card, B_Ygnizem_Card, B_Shecil_Card, Amon_Ra_Card, Atroce_Card
+		"|4359|4123|4144|4135|4143"+  //B_Eremes_Card, Eddga_Card, Osiris_Card, Orc_Load_Card, Orc_Hero_Card
+		"|4263|4131|4430|4276|4419"+  //Incant_Samurai_Card, Moonlight_Flower_Card, Ifrit_Card, Lord_Of_Death_Card, Ktullanux_Card
+		"|4403|4399|4376|4441|4302"+  //Kiel_Card, Thanatos_Card, Lady_Tanee_Card, Fallen_Bishop_Card, Tao_Gunka_Card
+		"|4305|4148|4318|4121|4365"+  //Turtle_General_Card, Pharaoh_Card, Knight_Windstorm_Card, Phreeoni_Card, B_Katrinn_Card
+		"|4363|4324|4361|4330|4342|"; //B_Magaleta_Card, Garm_Card, B_Harword_Card, Dark_Snake_Lord_Card, Rsx_0806_Card
+
+	if (.@Jeremy) {
+		for ( .@i = 0; .@i < MAX_SLOTS; .@i++ ) {
+			if (callfunc("F_IsCharm",.@equip_card[.@i]) == true)
+				.@equip_card[.@i] = 0;// Armor Enchant System
+		}
+		if (!getarraysize(.@equip_card)) {
+			mes .@n$;
+			mes "ไม่ได้ติดตั้งการ์ดต้องการตรวจสอบอีกครั้งหรือไม่";
+			close;
+		}
+		if ((.@equip_card[0] && compare(.@mvp_list$,"|"+.@equip_card[0]+"|")) ||
+			(.@equip_card[1] && compare(.@mvp_list$,"|"+.@equip_card[1]+"|")) ||
+			(.@equip_card[2] && compare(.@mvp_list$,"|"+.@equip_card[2]+"|")) ||
+			(.@equip_card[3] && compare(.@mvp_list$,"|"+.@equip_card[3]+"|")))
+			set .@boss_chk,1;
+	} else {
+		// Official "Richard" script uses a hardcoded list including every possible item.
+		//if (!getequipisequiped(.@equip_num)) {
+		//	mes "[Richard]";
+		//	mes "I'm sorry. We don't provide that equipment yet.";
+		//	close;
+		//}
+
+		mes "[Richard]";
+		mes "ซ็อกเก็ตหมายเลขใดที่คุณต้องการแยกการ์ดออกจากซ็อกเก็ตด้านซ้ายจะเรียงลำดับ 1,2,3,4";
+		next;
+		set .@menu$,"";
+		for ( .@i = 0; .@i < MAX_SLOTS; .@i++ ) {
+			if (.@equip_card[.@i] && callfunc("F_IsCharm",.@equip_card[.@i]) == false) // Armor Enchant System
+				.@menu$ = .@menu$ + "Socket " + (.@i+1) + " - " + getitemname(.@equip_card[.@i])+":";
+			else {
+				.@menu$ = .@menu$ + "^777777Socket " + (.@i+1) + " - No card^000000:";
+			}
+		}
+		set .@i, select("หยุดการทำงาน:"+.@menu$);
+		switch(.@i) {
+		case 1:
+			mes .@n$;
+			mes "เมื่อใดก็ตามที่คุณต้องการทำงานโปรดมาหาฉันด้วย";
+			close;
+		default:
+			set .@slot, .@i-2;
+			if (.@equip_card[.@slot] == 0 || callfunc("F_IsCharm",.@equip_card[.@slot]) == true) {
+				mes .@n$;
+				mes "ซ็อกเก็ตนี้ไม่มีการ์ดใด ๆ ทำไมคุณไม่ตรวจสอบอีกครั้ง";
+				close;
+			}
+			break;
+		}
+		if (compare(.@mvp_list$,"|"+.@equip_card[.@slot]+"|"))
+			set .@boss_chk,1;
+	}
+	if (.@boss_chk == 0) {
+		mes .@n$;
+		if (.@Jeremy)
+			mes "ถอดการ์ด ^ff0000 เอฟเฟกต์ที่น่าหลงใหลทั้งหมดจะหายไป ^000000 หากคุณตกลงตามนี้โปรดเลือกประเภทงาน:";
+		else
+			mes "กรุณาเลือกค่าดำเนินการ";
+		next;
+		set .@menu$,
+			"Next time...:"+
+			((Zeny >= 1000000)?"Use 1,000,000z (Do not use special item):":"^999999Use 1,000,000z (Insufficient)^000000:")+
+			((countitem(6441))?"Use Premium Lubricant:":"^999999Premium Lubricant (Insufficient)^000000:")+
+			((countitem(6440))?"Use Ordinary Lubricant":"^999999Ordinary Lubricant (Insufficient)^000000");
+		switch(select(.@menu$)) {
+		case 1:
+			mes .@n$;
+			mes "เมื่อใดก็ตามที่คุณต้องการงานแวะมาหาฉันที่นี่";
+			close;
+		case 2:
+			if (Zeny < 1000000) {
+				mes .@n$;
+				mes "คุณมี zeny ไม่พอกรุณากลับมาพร้อมกับค่าธรรมเนียมที่เพียงพอ";
+				close;
+			}
+			mes .@n$;
+			mes "นี่เป็นอุปกรณ์เก่า ๆ มีการทำลายการ์ดหรืออุปกรณ์ในอัตราที่สูงคุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ";
+			next;
+			if(select("ไว้คราวหน้า... ...:ดำเนินการต่อ") == 1) {
+				mes .@n$;
+				mes "เมื่อใดก็ตามที่คุณต้องการงานโปรดมาเยี่ยมฉันที่นี่";
+				close;
+			}
+			set .@sf_c_num,150;
+			set .@sf_r_num,150;
+			set .@sf_w_num,150;
+			set Zeny, Zeny - 1000000;
+			break;
+		case 3:
+			if (countitem(6441) == 0) {
+				mes .@n$;
+				mes "คุณไม่มี Premium Lubricant.";
+				close;
+			}
+			mes .@n$;
+			mes "หากคุณใช้ Premium Lubricant, อัตราการทำลายจะลดลงอย่างมาก แต่ฉันไม่สามารถรับประกันได้ 100% คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?";
+			next;
+			if(select("ไว้คราวหน้า...:ดำเนินการต่อ") == 1) {
+				mes .@n$;
+				mes "เมื่อใดก็ตามที่คุณต้องการงานโปรดมาเยี่ยมฉันที่นี่";
+				close;
+			}
+			set .@sf_c_num,75;
+			set .@sf_r_num,75;
+			set .@sf_w_num,75;
+			delitem 6441,1; //High_RankLubricant
+			break;
+		case 4:
+			if (countitem(6440) == 0) {
+				mes .@n$;
+				mes "คุณไม่มีน้ำมันหล่อลื่นธรรมดา";
+				close;
+			}
+			mes .@n$;
+			mes "ถ้าคุณใช้น้ำมันหล่อลื่นธรรมดาอัตราการทำลายล้างจะลดลงอย่างมาก แต่ฉันไม่สามารถรับประกันได้ 100% คุณแน่ใจหรือว่าต้องการดำเนินการต่อ";
+			next;
+			if(select("ครั้งต่อไป ...:ดำเนินการต่อ") == 1) {
+				mes .@n$;
+				mes "เมื่อใดก็ตามที่คุณต้องการงานโปรดมาเยี่ยมฉันที่นี่";
+				close;
+			}
+			set .@sf_c_num,75;
+			set .@sf_r_num,150;
+			set .@sf_w_num,150;
+			delitem 6440,1; //General_Lubricant
+			break;
+		}
+	} else if (.@boss_chk == 1) {
+		mes .@n$;
+		mes "อุปกรณ์นี้มีการ์ด MVP อันล้ำค่าการ์ดใบนี้ไม่สามารถแยกออกจากกันได้ด้วยน้ำมันหล่อลื่นถ้าคุณนำสารลดแรงตึงผิวพิเศษมาด้วย ^0000ffSillit Pong ^000000 ฉันจะทำงานได้";
+		next;
+		switch(select("ครั้งต่อไป...:ฉันมี Sillit Pong.")) {
+		case 1:
+			mes .@n$;
+			mes "เมื่อใดก็ตามที่คุณต้องการงานแวะมาหาฉันที่นี่";
+			close;
+		case 2:
+			if (countitem(6443) == 0) {
+				mes .@n$;
+				mes "ไม่มี Sillit Pong.";
+				close;
+			}
+			break;
+		}
+		mes .@n$;
+		if (.@Jeremy) {
+			mes "ถอดการ์ด ^ff0000 เอฟเฟกต์ที่น่าหลงใหลทั้งหมดจะหายไป ^000000 หากคุณตกลงตามนี้โปรดเลือกประเภท:";
+			set .@menu$,"เอาล่ะมาทำกัน!";
+		} else {
+			mes "ขอฉันทำต่อ";
+			set .@menu$,"ฉันเข้าใจแล้ว. เพียงแค่ทำอย่างรวดเร็ว!";
+		}
+		next;
+		switch(select("ครั้งต่อไป ....:"+.@menu$)) {
+		case 1:
+			mes .@n$;
+			mes "เมื่อใดก็ตามที่คุณต้องการงานแวะมาหาฉันที่นี่";
+			close;
+		case 2:
+			set .@sf_c_num,60;
+			set .@sf_r_num,60;
+			set .@sf_w_num,60;
+			delitem 6443,1; //Sillit_Pong_Bottle
+			break;
+		}
+	}
+
+	set .@equip_id, getequipid(.@equip_num);
+	set .@equip_refine, getequiprefinerycnt(.@equip_num);
+
+	// anti-hack
+	if (callfunc("F_IsEquipCardHack", .@equip_num, .@check_equip_card[0], .@check_equip_card[1], .@check_equip_card[2], .@check_equip_card[3]))
+		close;
+
+	delequip .@equip_num;
+
+	// Chance of retaining refine level.
+	if (rand(1,.@sf_r_num) >= 61)
+		set .@equip_refine,0;
+
+	if (.@Jeremy) {
+		// Chance of retaining equipment.
+		if (rand(1,.@sf_w_num) < 61) {
+			set .@equip_safe,1;
+			getitem2 .@equip_id,1,1,.@equip_refine,0,0,0,0,0;
+		}
+
+		// Chance of retaining cards.
+		for(set .@i,0; .@i<4; set .@i,.@i+1) {
+			if (.@equip_card[.@i]) {
+				if (rand(1,.@sf_c_num) < 61)
+					getitem .@equip_card[.@i],1;
+				else
+					set .@card_break,1;
+			}
+		}
+	} else {
+		set .@card, .@equip_card[.@slot];
+		set .@check_equip_card[.@slot],0;
+
+		// Chance of retaining equipment (all enchantments are preserved).
+		if (rand(1,.@sf_w_num) < 61) {
+			set .@equip_safe,1;
+			getitem2 .@equip_id,1,1,.@equip_refine,0,.@check_equip_card[0],.@check_equip_card[1],.@check_equip_card[2],.@check_equip_card[3];
+		}
+
+		// Chance of retaining card.
+		if (rand(1,.@sf_c_num) < 61)
+			getitem .@card,1;
+		else
+			set .@card_break,1;
+	}
+
+	// Display corresponding effect.
+	if (!.@equip_safe && .@card_break)
+		specialeffect2 EF_LORD;
+	else if (.@equip_safe && .@card_break)
+		specialeffect2 EF_SUI_EXPLOSION;
+	else if (!.@equip_safe && !.@card_break)
+		specialeffect2 EF_FIREPILLAR;
+	else
+		specialeffect2 EF_MAXPOWER;
+
+	// Output results.
+	mes "-- ผลการถอดการ์ด --";
+	if (.@equip_safe) {
+		mes "ไม่เกิดรอยแตกระหว่างกระบวนการแยกการ์ด";
+		mes "^0000FF การแยกอุปกรณ์เป็นเรื่องปกติ ^000000";
+	} else {
+		mes "เกิดรอยแตกระหว่างขั้นตอนการแยกการ์ด";
+		mes "อุปกรณ์ได้รับความเสียหาย ^ff0000 ไม่สามารถกู้คืนได้ ^000000";
+	}
+	mes "-------------------";
+	if (!.@card_break) {
+		mes "ไม่เกิดการสึกกร่อนของพื้นผิวในระหว่างกระบวนการแยกการ์ด";
+		mes "^0000ffCard แยกสำเร็จแล้ว ^000000";
+	} else {
+		mes "เกิดการสึกกร่อนของพื้นผิวระหว่างกระบวนการแยกการ์ด";
+		mes "การ์ดเสียหาย ^ff0000 ไม่สามารถกู้คืนได้ ^000000";
+	}
+	next;
+	mes .@n$;
+	mes "นั่นคือทั้งหมดสำหรับผลลัพธ์ของการแยกการ์ดโปรดมาอีกครั้ง";
+	close;
+}
+malangdo,215,166,4	duplicate(CardSeparation_mal)	Jeremy#pa0829	553	// Armors :: mal_yong
+malangdo,208,166,6	duplicate(CardSeparation_mal)	Richard#pa0829	559	// Weapons :: soc_weapon

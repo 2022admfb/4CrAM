@@ -1,0 +1,87 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= 1.1 Made all into functions, additional checks, etc. [Lupus]
+//= 1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================ 
+
+valkyrie,53,42,3	script	Champion#Valkyrie	52,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Champion]";
+			mes "ยินดีด้วย";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		mes "[Champion]";
+		mes "Skill.";
+		mes "Speed.";
+		mes "Strength.";
+		mes "Agility.";
+		next;
+		mes "[Champion]";
+		mes "แชมป์เปี้ยน";
+		mes "ได้รับประโยชน์จากทุกคน";
+		mes "สิ่งเหล่านี้ แต่";
+		mes "หนึ่งเดียวเท่านั้นที่สามารถควบคุม";
+		mes "มากมายในชีวิต ... ";
+		close;
+	}
+	else if (ADVJOB == Job_Champion && Class == Job_Acolyte_High && JobLevel > 39) {
+		mes "[Champion]";
+		mes "ถึงเวลาแล้ว";
+		mes "เวลาสำหรับวีรบุรุษผู้ยิ่งใหญ่";
+		mes "ยืนหยัดต่อสู้";
+		mes "กองกำลังแห่งความชั่วร้ายที่ทำให้เกิดภัยพิบัติ";
+		mes "โลกแห่งมิดการ์ด!";
+		next;
+		mes "[Champion]";
+		mes "คุณต้องการ";
+		mes "จะเป็น Champion?";
+		next;
+		if (select("No.:Yes.") == 1) {
+			mes "[Champion]";
+			mes "เมื่อคุณพร้อม";
+			mes "อย่าลังเลที่จะกลับมา";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Champion]";
+			mes "คุณยังสามารถเรียนรู้ทักษะเพิ่มเติมได้อีกโปรดใช้";
+			mes "คะแนนทักษะที่เหลือทั้งหมดของคุณก่อนที่จะกลับมาหาฉัน";
+			close;
+		}
+		jobchange Job_Champion;
+		set ADVJOB,0;
+		mes "[Champion]";
+		mes "ยินดีด้วย!";
+		mes "อยู่ในฐานะแชมป์";
+		mes "และนำแสงสว่างเข้ามา";
+		mes "โลกผ่าน";
+		mes "แรงหมัด";
+		close;
+	}
+	mes "[Champion]";
+	mes "ยินดีต้อนรับ";
+	mes "ถึง Valhalla,";
+	mes "หอเกียรติยศ.";
+	next;
+	mes "[Champion]";
+	mes "กรุณาทำให้";
+	mes "สบายตัว";
+	mes "ในขณะที่คุณอยู่ที่นี่";
+	mes "ให้เกียรตินักรบ!";
+	close;
+}

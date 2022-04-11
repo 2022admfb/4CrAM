@@ -1,0 +1,2553 @@
+//===== rAthena Script ======================================= 
+//= Knight Job Quest
+//===== By:================================================== 
+//= PGRO TEAM (Aegis).
+//= Converted by kobra_k88
+//= Further bugfixed and tested by Lupus
+//===== Current Version:===================================== 
+//= 3.3
+//===== Compatible With:===================================== 
+//= rAthena Project
+//===== Description:========================================= 
+//= [Official Conversion]
+//= Job Change quest for Knight class.
+//===== Additional Comments:================================= 
+//= 1.0 Fully working.  Please comment out any pre-existing warps for the
+//= test rooms in any other files so that the ones specified here can work.
+//= 1.1 Fixed a major bug.  Now using the initnpctimer command,
+//= donpcevent, and new waitingroom event commands.  No more addtimer
+//= spamming.  No longer have to talk to the npc to take the test.  Just enter the chat room.
+//= 1.2 More bug fixes.  Changed global variable names to unique ones.
+//= Added second set of items to first test. Added Awake pots award for job change.
+//= 1.3 Added Baby Class support [Lupus]
+//= 1.5 Fixed possible EXP abuse [Lupus]
+//= 1.6 Added a func which prevent advanced classes passing
+//= 2nd Job Quests again. It also guides adv classes where
+//= to go. [Lupus]
+//= 2.0 Changed numbers to constants. [Vicious]
+//= 2.1 Merged JFunc [Lupus]
+//= 2.2 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//= 2.3 Several bugfixes with the help of Barron-Monster. [L0ne_W0lf]
+//= 2.4 Minor fixes to timer#knt. [L0ne_W0lf]
+//= 2.5 Fixes a small bug with making claymores. [L0ne_W0lf]
+//=     Corrected usages of killmonster and killmonsterall.
+//= 2.6 Corrected an improper areawarp destination. [L0ne_W0lf]
+//= 2.7 Deleted unused variables. [Samuray22]
+//= 2.7a Corrected a Typo error ";;". [Samuray22]
+//= 2.8 Now uses enable and disable waitingroomevent. [L0ne_W0lf]
+//= 2.9 Added Quest Log commands. [Kisuka]
+//= 3.0 Removed the need for use of 'goto.' [L0ne_W0lf]
+//= 3.1 Modified the quest to renewal. [Vali] (Thanks to Muad_Dib for the necessary info).
+//= 3.2 More Renewal updates and some optimization. [Euphy]
+//= 3.3 Fixed missing changequest. [Joseph]
+//============================================================ 
+
+prt_in,88,101,4	script	Chivalry Captain#knt	56,{
+	mes "[Captain Herman]";
+	if (Upper == 1) {
+		mes "หืม? คุณ ... มันเกี่ยวอะไรกับคุณ? ฉันได้รับเกียรติ  Knight เป็นเวลานาน แต่ ฉันไม่เข้าใจความรู้สึกนี้ที่ได้รับจากคุณ ...";
+		next;
+		mes "[Captain Herman]";
+		mes "ขอพระเจ้าอวยพรร่างกายและจิตวิญญาณของนักรบ ฉันหวังว่าคุณจะแสดงความกล้าหาญของคุณและปกป้องผู้ที่อ่อนแอกว่าคุณ";
+		close;
+	}
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "อา, สมาชิกของอัศวินของเรา.";
+			mes "ฉันหวังว่าคุณจะทำตามความคาดหวังของฉัน ...";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "ยินดีต้อนรับ,";
+			mes "นี้เป็น";
+			mes "Prontera Chivalry.";
+			mes "คุณมาทำอะไร";
+			next;
+			switch(select("ฉันต้องการเปลี่ยนอาชีพเป็น Swordman:ฉันต้องการเปลี่ยนอาชีพ Knight:ไปเยี่ยมชม.")) {
+			case 1:
+				mes "[Captain Herman]";
+				mes "อะฮ่า";
+				mes "คุณพูดว่า Swordman?";
+				mes "ฉันขอโทษ, "+((Sex==SEX_MALE)?"lad":"lass")+", แต่คุณ";
+				mes "มาผิดที่!";
+				next;
+				mes "[Captain Herman]";
+				mes "นี่ไม่ใช่กิลด์ Swordsman แต่เป็น Prontera Chivalry! หากคุณต้องการเป็น Swordman โปรดไปที่ Swordman Guild ที่ตั้งอยู่ใน Izlude";
+				close;
+			case 2:
+				mes "[Captain Herman]";
+				mes "อาฉันเห็นว่าคุณมีความทะเยอทะยานมาก แต่ก่อนอื่นคุณต้องเป็น Swordman ก่อนที่จะเป็น";
+				mes "อัศวิน หนึ่งขั้นในเวลา...";
+				next;
+				mes "[Captain Herman]";
+				mes "ก่อนอื่นไปที่กิลด์ Swordsman ใน Izlude จากนั้นกลับมาเยี่ยมเราอีกครั้งเมื่อคุณกลายเป็นนักดาบที่มีประสบการณ์สูง";
+				close;
+			case 3:
+				mes "[Captain Herman]";
+				mes "อะฮ่า ~";
+				mes "คุณต้องมีเวลาว่างมาก ๆ ทำไมคุณไม่ไปล่าสัตว์ประหลาดสักตัวแทนที่จะเดินไปมาอย่างไร้จุดหมายล่ะ?";
+				close;
+			}
+		}
+		else {
+			mes "ยินดีต้อนรับ. พวกเราอัศวินผู้ภาคภูมิใจของ Prontera Chivalry จะมอบชีวิตของเราเพื่อกษัตริย์และประเทศ! ขอให้มีความสุขกับการเข้าพัก";
+			close;
+		}
+	}
+	if (KNIGHT_Q == 0) {
+		mes "ยินดีต้อนรับ";
+		mes "Prontera Chivalry.";
+		//mes "What brings you here?";
+		next;
+		if (select("ฉันต้องการเปลี่ยนอาชีพเป็น Knight.:ยกเลิก.") == 1) {
+			mes "[Captain Herman]";
+			mes "โอ้โห ...";
+			mes "เด็กหนุ่ม"+((Sex==SEX_MALE)?"man":"lady")+" ที่ปรารถนา";
+			mes "ที่จะกลายเป็นอัศวิน!";
+			mes "Prontera Chivalry ของเรา";
+			mes "จะช่วยเหลือคุณ";
+			next;
+			mes "[Captain Herman]";
+			mes "ก่อนอื่น ฉันเป็นกัปตันของ Prontera Chivalry, Herman Phon Efesirsus ฉันยินดีที่ได้พบคนหนุ่มสาว ที่กระตือรือร้นที่จะเข้าร่วม Prontera Chivalry";
+			next;
+			mes "[Captain Herman]";
+			mes "เรารับเฉพาะ Swordsmen";
+			mes "ที่เป็นอย่างน้อย Job Level 40.";
+			mes "เราไม่สามารถพิจารณาผู้สมัครที่ยังไม่มีประสบการณ์เพียงพอที่จะเป็น Kinghts ";
+			next;
+			mes "[Captain Herman]";
+			mes "เมื่อคุณสมัครแล้วเราพบว่า";
+			mes "คุณมีสิทธิ์ เราจะเริ่มขั้นตอนการเปลี่ยนอาชีพ คุณจะะ";
+			mes "ร้องขอ สมัครเลย?";
+			next;
+			if (select("ใช่ฉันต้องการสมัคร:ฉันอยากจะคิดเกี่ยวกับเรื่องนี้") == 1) {
+				mes "[Captain Herman]";
+				if (JobLevel < 40) {
+					mes "คุณยังไม่พร้อมที่จะ เป็นอัศวิน! ฉันไม่ได้พูดถึง  Job Level 40 ความต้องการ?";
+					next;
+					mes "[Captain Herman]";
+					mes "แน่นอนฉันเข้าใจความปรารถนาดีของคุณที่จะเข้าร่วมกับเรา แต่ตอนนี้ไม่ใช่เวลา ออกไปต่อสู้กับสัตว์ประหลาดเพิ่มเติม เราจะรออยู่ที่นี่";
+					close;
+				}
+				if (SkillPoint) {
+					mes "อา...!";
+					mes "คุณไม่สามารถเปลี่ยนงานได้หากคุณมีคะแนนทักษะที่ไม่ได้ใช้เหลืออยู่ คืนเมื่อคุณใช้";
+					mes "คะแนนทักษะทั้งหมดของคุณ";
+					close;
+				}
+			//new
+		mes "[Captain Herman]";
+		mes "สุดท้าย...";
+		mes "Gray. ฉันต้องการ";
+		mes "เพื่อฟังความคิดของคุณ.";
+		next;
+		mes "[Gray]";
+		mes "เด็กหนุ่ม"+((Sex==SEX_MALE)?"gentleman":"lady")+" มาที่นี่ด้วยความมุ่งมั่นที่จะเป็นอัศวินก็เพียงพอแล้ว ...";
+		next;
+		mes "[Captain Herman]";
+		mes "ทุกคน";
+		mes "ได้รับการอนุมัติ";
+		mes "ไม่มีใครคัดค้าน";
+		mes "แล้วฉันจะบอก";
+		mes "คุณความคิดเห็นของฉัน";
+		next;
+		mes "[Captain Herman]";
+		mes "การตัดสินใจของฉันคือ ...";
+		next;
+		mes "[Captain Herman]";
+		mes "ฉันเห็นด้วย.";
+		mes "คุณอาจยังทำแบบทดสอบไม่เสร็จสมบูรณ์ แต่คุณมีคุณสมบัติที่จำเป็นทั้งหมด";
+		mes "อัศวิน.";
+		next;
+		setquest 9012;
+		completequest 9012;
+		callfunc "Job_Change",Job_Knight;
+		callfunc "F_ClearJobVar"; // Clears all job variables for the current player
+		mes "[Captain Herman]";
+		mes "ขอประกาศ";
+		mes "คุณเป็นสมาชิกของ";
+		mes "ผู้กล้าแห่งพรอนเทรา";
+		mes "ปกป้องผู้อ่อนแอและ";
+		mes "อยู่อย่างมีเกียรติ";
+		next;
+		getitem 656,7; //Awakening_Potion
+		mes "[Captain Herman]";
+		mes "โอ้ ... ";
+		mes "เราได้เตรียมของขวัญเล็ก ๆ น้อย ๆ เพื่อแสดงความยินดีกับการเปลี่ยนงานของคุณโปรดใช้เมื่อคุณอยู่ในสนามรบเพื่อปกป้องผู้อื่นด้วยเกียรติ";
+		next;
+		mes "[Captain Herman]";
+		mes "ออกไป!";
+		mes "อนาคตของ";
+		mes "รูน - มิดการ์ท";
+		mes "อยู่กับคุณ";
+		//mes "shoulders!";
+		close;
+			}
+				/*
+				set KNIGHT_Q,1;
+				setquest 9000;
+				mes "ให้ฉันดู...";
+				mes "ชื่อของคุณ";
+				mes strcharinfo(0) + "...";
+				mes "นั่นถูกต้องใช่ไหม?";
+				next;
+				mes "[Captain Herman]";
+				mes "ให้ฉันอธิบายขั้นตอนการเปลี่ยนงาน คุณต้องเยี่ยมชมชุดอัศวินและผ่านแต่ละคน";
+				mes "of their tests.";
+				next;
+				mes "[Captain Herman]";
+				mes "เมื่อการทดสอบทั้งหมดเสร็จสิ้นอัศวินทุกคนที่เกี่ยวข้องกับการทดสอบของคุณจะรวบรวมและพูดคุยเกี่ยวกับประสิทธิภาพของคุณ.";
+				next;
+				mes "[Captain Herman]";
+				mes "อัศวินจะต้องอนุมัติเป็นเอกฉันท์จากคุณก่อนจึงจะสามารถเข้าร่วม Prontera Chivalry ได้ หากมีเพียงคนเดียวคัดค้านคุณต้อง";
+				mes "เริ่มต้นใหม่.";
+				next;
+				mes "[Captain Herman]";
+				mes "แต่ฉันเชื่อว่าถ้าคุณยังคงมีหัวใจที่จริงจังคุณจะได้รับการยอมรับจากอัศวินและในที่สุดก็ยอมรับว่าเป็นสมาชิกของอัศวินของเรา.";
+				next;
+				mes "[Captain Herman]";
+				mes "ดังนั้นอย่าเสียเวลาคุยกันอีกต่อไป! ไปพบอัศวินเหล่านี้และเริ่มการทดสอบของพวกเขา เมื่อคุณทำแบบทดสอบทั้งหมดเสร็จแล้วให้กลับมาหาฉัน.";
+				close;
+			}*/
+			mes "[Captain Herman]";
+			mes "โอ้ ... !";
+			mes "ฉันไม่ต้องการกดดันคุณ ใช้เวลาของคุณและคิดทบทวน กลับมาเมื่อคุณพร้อม";
+			mes "เปลี่ยนอาชีพ เพราะเราจะรอ";
+			close;
+		}
+		mes "[Captain Herman]";
+		mes "ลองคิดดูสิคุณไม่ใช่นักดาบเหรอ? ดูเหมือนว่าคุณจะเจอศัตรูมากมายในสนามรบ.";
+		next;
+		mes "[Captain Herman]";
+		mes "คุณควรพิจารณาเปลี่ยนงานเป็นอัศวิน มาคุยกับฉันถ้าคุณสนใจ";
+		next;
+		mes "[Captain Herman]";
+		mes "กรุณาใช้";
+		mes "เวลาของคุณใน";
+		mes "มองไปรอบ ๆ.";
+		mes "ขอให้เป็นวันที่ดี.";
+		close;
+	}
+	else if (KNIGHT_Q == 1) {
+		mes "อืม?";
+		mes strcharinfo(0) + ",";
+		mes "ฉันจะทำอะไรให้คุณได้?";
+		mes "อ่าคุณไม่รู้";
+		mes "ใครไปเยี่ยม?";
+		next;
+		mes "[Captain Herman]";
+		mes "ฉันเชื่อว่าอัศวินที่รับผิดชอบการทดสอบได้กำหนดลำดับที่คุณต้องไปเยี่ยมพวกเขา ฉันคิดว่ามันช่วยกระบวนการทดสอบ";
+		next;
+		mes "[Captain Herman]";
+		mes "ก่อนอื่นไปเยี่ยมชม";
+		mes "Sir Andrew สำหรับการทดสอบครั้งแรกของคุณ อย่ากังวลเกินไปเขาจะอธิบายทุกอย่างเมื่อคุณคุยกับเขา.";
+		close;
+	}
+	else if (KNIGHT_Q == 2) callsub L_Mission,0;
+	else if (KNIGHT_Q == 3) callsub L_Mission,0;
+	else if (KNIGHT_Q == 4) {
+		callsub L_Mission,1;
+		mes "It appears that you have finished one test. Let's see. Sir Andrew, who must this Swordman visit next?";
+		next;
+		mes "[Sir Andrew]";
+		mes "ฉันพูดกับ";
+		mes "เยี่ยมชม Sir Siracuse";
+		mes "ตลกดีฉันคิดว่าฉันบอก";
+		mes "คุณ. ฉันลืมไปหรือเปล่า ...?";
+		next;
+		mes "[Captain Herman]";
+		mes "คุณได้ยินไหม?";
+		mes "ไปหา Sir Siracuse และทำการทดสอบของเขา เมื่อคุณทำแบบทดสอบเสร็จแล้วอย่าลืมว่าคุณควรไปเยี่ยมใครเป็นคนต่อไป";
+		close;
+	}
+	else if (KNIGHT_Q == 5) callsub L_Mission,0;
+	else if (KNIGHT_Q == 6) {
+		callsub L_Mission,1;
+		mes "มาดูกัน...";
+		mes "คุณได้ทำการทดสอบสองครั้งแล้ว.";
+		mes "Sir Siracuse Swordman คนนี้ต้องไปเยี่ยมใคร";
+		next;
+		mes "[Sir Siracuse]";
+		mes "โอ้ ... !";
+		mes "อืมคนต่อไป ... ?";
+		mes "Right! Sir Windsor!";
+		next;
+		mes "[Captain Herman]";
+		mes "ตรงไปที่";
+		mes "Sir Windsor สำหรับการทดสอบครั้งต่อไปของคุณ ตั้งใจฟังอัศวินที่รับผิดชอบการทดสอบเพื่อที่คุณจะได้ไม่รู้สึกหลงทางเอาล่ะ?";
+		close;
+	}
+	else if (KNIGHT_Q == 7) callsub L_Mission,0;
+	else if (KNIGHT_Q == 8) {
+		callsub L_Mission,1;
+		mes "Sir Windor...?";
+		mes "ต้องนี้ใคร";
+		mes "เยี่ยมชมนักดาบ";
+		mes "ต่อไป?";
+		next;
+		mes "[Sir Windsor]";
+		mes "...";
+		next;
+		mes "[Sir Windsor]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Sir Windsor]";
+		mes "...Amy Beatrice.";
+		next;
+		mes "[Captain Herman]";
+		mes "อะไปเยี่ยมเลย";
+		mes "เลดี้เอมี่และทำการทดสอบของเธอ ตรวจสอบให้แน่ใจว่าคุณให้ความสำคัญกับผู้ที่คุณต้องไปเพื่อทดสอบครั้งต่อไป.";
+		close;
+	}
+	else if (KNIGHT_Q == 9) callsub L_Mission,0;
+	else if (KNIGHT_Q == 10) {
+		callsub L_Mission,1;
+		mes "มาดูกัน...";
+		mes "Lady Amy, ใคร";
+		mes "ต้อง Swordsman คนนี้";
+		mes "เยี่ยมชมต่อไป?";
+		next;
+		mes "[Lady Amy]";
+		mes "โอ้ ...";
+		mes "ฉันบอกว่าจะไปเยี่ยม";
+		mes "Sir Edmond!";
+		mes "Tee hee~";
+		next;
+		mes "[Captain Herman]";
+		mes "ตอนนี้ไปพูด";
+		mes "ถึง Sir Edmond. เขาจะ";
+		mes "อยู่ในความดูแลของคุณ";
+		mes "การทดสอบครั้งต่อไป.";
+		close;
+	}
+	else if (KNIGHT_Q == 11) callsub L_Mission,0;
+	else if (KNIGHT_Q == 12) {
+		callsub L_Mission,1;
+		mes "คุณไม่ต้องไปเยี่ยมชมคนเดียวอีกหรือ? อัศวินใน";
+		mes "ค่าใช้จ่ายในการทดสอบขั้นสุดท้าย";
+		mes "คือ Sir Gray Prospheiro.";
+		next;
+		mes "[Sir Edmond]";
+		mes "โลกนี้ดำเนินไปตาม";
+		mes "กฎแห่งเหตุและผล";
+		mes "ทั้งหมดจะเปิดเผยในตอนท้าย.";
+		next;
+		mes "[Captain Herman]";
+		mes "ตื่นตัวและทำ";
+		mes "ที่ดีที่สุดของคุณเช่นนี้";
+		mes "เป็นการทดสอบครั้งสุดท้าย";
+		next;
+		mes "[Captain Herman]";
+		mes "กลับมาหาฉัน";
+		mes "หลังจากที่คุณมี";
+		mes "เสร็จสิ้น";
+		mes "ทดสอบครั้งสุดท้าย.";
+		close;
+	}
+	else if (KNIGHT_Q == 13) {
+		mes "เสร็จสิ้นการทดสอบครั้งสุดท้าย";
+		mes "เมื่อเสร็จสิ้นอัศวินทั้งหมดที่เกี่ยวข้องกับการทดสอบของคุณจะมารวมตัวกันและเราจะประเมินประสิทธิภาพของคุณ.";
+		close;
+	}
+	else if (KNIGHT_Q == 14) {
+		if (SkillPoint) {
+			mes "โอ้ ... !";
+			mes "คุณไม่สามารถเปลี่ยนอาชีพได้ หากคุณมีคะแนนทักษะที่ไม่ได้ใช้เหลืออยู่ กลับมาเมื่อคุณกระจายคะแนนทักษะทั้งหมดของคุณแล้ว.";
+			close;
+		}
+		mes "โอ้คุณทำแบบทดสอบทั้งหมดแล้วหรือยัง? แต่ไม่ใช่ทุกคนที่ทำแบบทดสอบเสร็จสมบูรณ์สามารถทำได้";
+		mes "กลายเป็นอัศวิน.";
+		next;
+		mes "[Captain Herman]";
+		mes "ในระหว่างการทดสอบเราจะเห็นว่าคุณซื่อสัตย์มีเกียรติและเข้มแข็งเพียงใด นอกจากนี้เรายังดูด้วยว่าคุณเป็นคนสุภาพเรียบร้อยหรือไม่และคุณรู้คุณค่าของความสุภาพเรียบร้อยและความคารวะ.";
+		next;
+		mes "[Captain Herman]";
+		mes "Through this process, I have also observed your actions. All seven of our opinions will be reflected in the decision of your job change.";
+		next;
+		mes "[Captain Herman]";
+		mes "จากนั้น ...";
+		mes "เราจะฟัง...";
+		mes "ถึงความคิดของทุกคน!";
+		mes "Andrew,  คุณคิดอย่างไร?";
+		next;
+		mes "[Sir Andrew]";
+		if (JobLevel == 50) {
+			mes "ฉันจะว่าอย่างไรได้?";
+			mes "ฉันเห็นด้วย!";
+			mes "มีชีวิตเป็น";
+			mes "นักดาบขึ้นไป";
+			mes "จนถึงตอนนี้";
+			mes "ก็เพียงพอแล้ว";
+		}
+		else {
+			mes "อันนี้มี";
+			mes "รวบรวมรายการ";
+			mes "ที่ลำบาก";
+			mes "ที่จะได้รับ. ฉันเห็นด้วย!";
+			mes "ฉันเชื่อ "+((Sex==SEX_MALE)?"":"s")+"เขาจะยังคงภักดีต่อไปหลังจากกลายเป็น Knight.";
+		}
+		next;
+		mes "[Captain Herman]";
+		mes "อืม.";
+		mes "เป็นอะไรที่น่ารีวิว.";
+		mes "Siracuse คุณคิดยังไง?";
+		next;
+		mes "[Sir Siracuse]";
+		mes "เฮ้ดีมาก ไม่ค่อยเป็นอะไร";
+		mes "ฉันต้องการ แต่หวังว่าจะดีขึ้นในอนาคต";
+		next;
+		mes "[Sir Siracuse]";
+		mes "หลังจากกลายเป็นอัศวินคุณต้องสร้างชื่อเสียงที่ดีด้วยเกียรติยศ เอ่อ ... ฉันเห็นด้วย.";
+		next;
+		mes "[Captain Herman]";
+		mes "ตกลง...";
+		mes "Windsor,";
+		mes "แล้วคุณล่ะ?";
+		next;
+		mes "[Sir Windsor]";
+		mes "...";
+		next;
+		mes "[Sir Windsor]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Sir Windsor]";
+		mes ".... อนุมัติแล้ว.";
+		next;
+		mes "[Captain Herman]";
+		mes "ฉันไม่คิดว่า";
+		mes "เขาไม่อนุมัติ ";
+		mes "แล้วเรามาฟังกัน";
+		mes "ความคิดเห็นของ Amy";
+		next;
+		mes "[Lady Amy]";
+		if (Sex == SEX_MALE) {
+			mes "อืม ~ เขาสุภาพมาก!";
+			mes "เขาจะเติบโตเป็นอัศวินที่ยอดเยี่ยม และเขาก็มีแก้มที่น่ารักแบบนี้ ~ ฮิฮิ!";
+		}
+		else {
+			mes "อืม ~ เธอควรจะดีมาก!";
+			mes "เธอเป็นคนสุภาพและน่ารักมากดังนั้นคะแนนอีกสองสามข้อ! เฮ้ ~";
+			mes "ฉันไม่ควรพูดเรื่องแบบนี้!";
+		}
+		next;
+		mes "[Captain Herman]";
+		mes "ดี...";
+		mes "รีวิวแปลก ๆ,";
+		mes "แต่ฉันเชื่อ";
+		mes "เธออนุมัติ";
+		mes "เอ็ดมันด์, พูด";
+		mes "ความคิดของคุณ.";
+		next;
+		mes "[Sir Edmond]";
+		if (Sex == SEX_MALE) {
+			mes "ดูเหมือนเขาจะหยาบเล็กน้อย แต่มีบางอย่างที่สดใสส่องประกายอยู่ในตัวเขา ด้วยการขัดเกลาและความประณีตคุณค่าที่แท้จริงของเขาจะเปล่งประกายออกมา";
+			mes "เป็นดวงอาทิตย์.";
+		}
+		else {
+			mes "เป็นเรื่องยากที่จะมองเห็น แต่มีความงามทางจิตวิญญาณภายในตัวเธอ ด้วยการขัดเกลาและความประณีตคุณค่าที่แท้จริงของเธอจะเปล่งประกายเจิดจรัส";
+			mes "ดั่งดวงจันทร์";
+		}
+		next;
+		mes "[Captain Herman]";
+		mes "สุดท้าย...";
+		mes "Gray. ฉันต้องการ";
+		mes "เพื่อฟังความคิดของคุณ.";
+		next;
+		mes "[Gray]";
+		mes "เด็กหนุ่ม"+((Sex==SEX_MALE)?"gentleman":"lady")+" มาที่นี่ด้วยความมุ่งมั่นที่จะเป็นอัศวินก็เพียงพอแล้ว ...";
+		next;
+		mes "[Captain Herman]";
+		mes "ทุกคน";
+		mes "ได้รับการอนุมัติ";
+		mes "ไม่มีใครคัดค้าน";
+		mes "แล้วฉันจะบอก";
+		mes "คุณความคิดเห็นของฉัน";
+		next;
+		mes "[Captain Herman]";
+		mes "การตัดสินใจของฉันคือ ...";
+		next;
+		mes "[Captain Herman]";
+		mes "ฉันเห็นด้วย.";
+		mes "You may not have finished all the tests perfectly, but you have all the necessary qualities to become";
+		mes "a Knight.";
+		next;
+		completequest 9012;
+		callfunc "Job_Change",Job_Knight;
+		callfunc "F_ClearJobVar"; // Clears all job variables for the current player
+		mes "[Captain Herman]";
+		mes "ขอประกาศ";
+		mes "คุณเป็นสมาชิกของ";
+		mes "ผู้กล้าแห่งพรอนเทรา";
+		mes "ปกป้องผู้อ่อนแอและ";
+		mes "อยู่อย่างมีเกียรติ";
+		next;
+		getitem 656,7; //Awakening_Potion
+		mes "[Captain Herman]";
+		mes "โอ้ ... ";
+		mes "เราได้เตรียมของขวัญเล็ก ๆ น้อย ๆ เพื่อแสดงความยินดีกับการเปลี่ยนงานของคุณโปรดใช้เมื่อคุณอยู่ในสนามรบเพื่อปกป้องผู้อื่นด้วยเกียรติ";
+		next;
+		mes "[Captain Herman]";
+		mes "ออกไป!";
+		mes "อนาคตของ";
+		mes "รูน - มิดการ์ท";
+		mes "อยู่กับคุณ";
+		mes "shoulders!";
+		close;
+	}
+L_Mission:
+	mes "อืม?";
+	mes "Swordman " + strcharinfo(0) + ".";
+	mes "การทดสอบเป็นอย่างไรบ้าง";
+	if (getarg(0)) {
+		mes "อา ~ เธอไม่รู้";
+		mes "ใครจะไปเที่ยวต่อ";
+		next;
+		mes "[Captain Herman]";
+		return;
+	} else {
+		mes "มันอาจจะยาก";
+		mes "แต่ทำให้ดีที่สุด";
+		close;
+	}
+}
+
+prt_in,75,107,4	script	Sir Andrew#knt	65,{
+	mes "[Sir Andrew]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "คุณต้องเป็น";
+			mes "สมาชิกของ";
+			mes "ผู้กล้าหาญ";
+			mes "เป็นไงบ้าง";
+			next;
+			mes "[Sir Andrew]";
+			mes "คุณต้องทำงานอย่างขยันขันแข็งเพื่อรวบรวมอาหารและประหยัดเงินเพื่อซื้ออุปกรณ์ช่วยชีวิตคุณทุกอย่าง";
+			mes "พบในการต่อสู้แม้กระทั่ง Jellopy ที่เล็กที่สุด";
+			next;
+			mes "[Sir Andrew]";
+			mes "แต่มันไม่ดี";
+			mes "โลภเกินไป";
+			mes "หลังจากนั้นเราก็คืออัศวิน";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "นี่ไง";
+			mes "นักผจญภัยตัวน้อย.";
+			mes "ยินดีต้อนรับสู่";
+			mes "Prontera Chivalry.";
+			next;
+			mes "[Sir Andrew]";
+			mes "คุณอาจจะเป็น";
+			mes "ตอนนี้อ่อนแอ แต่สักวัน";
+			mes "คุณจะแข็งแกร่งขึ้น";
+			next;
+			mes "[Sir Andrew]";
+			mes "ฝันถึงอนาคตที่สดใสและมองไปข้างหน้าบนเส้นทางที่คุณเลือก";
+			close;
+		}
+		else {
+			mes "พวกเราสมาชิกของ";
+			mes "Prontera Chivalry กำลังพยายามอย่างเต็มที่ในการปกป้องสันติภาพในโลกนี้";
+			next;
+			mes "[Sir Andrew]";
+			mes "แม้ในระหว่างการต่อสู้ที่เราเผชิญอยู่ทุกวันเราก็ฝันถึง";
+			mes "อนาคตที่สดใสที่กำลังจะมาถึง";
+			close;
+		}
+	}
+	if (KNIGHT_Q == 0) {
+		mes "พวกเราสมาชิกของ";
+		mes "Prontera Chivalry กำลังพยายามอย่างเต็มที่ในการปกป้องสันติภาพในโลกนี้";
+		next;
+		mes "[Sir Andrew]";
+		mes "แม้ในระหว่างการต่อสู้ที่เราเผชิญอยู่ทุกวันเราก็ฝันถึง";
+		mes "อนาคตที่สดใสที่กำลังจะมาถึง";
+		close;
+	}
+	else if (KNIGHT_Q == 1) {
+		mes "สวัสดีครับ";
+		mes "ให้ฉันช่วย";
+		mes "กับอะไร";
+		next;
+		if (select("I would like to take the test.:Oh, nothing.") == 1) {
+			mes "[Sir Andrew]";
+			mes "อา ... ";
+			mes "คุณปรารถนา";
+			mes "อยากเป็นอัศวิน";
+			mes "ชื่อของคุณคือ";
+			mes strcharinfo(0) + ",";
+			mes "ถูกต้อง?";
+			next;
+			mes "[Sir Andrew]";
+			mes "ฉันคืออัศวินแห่ง";
+			mes "ผู้กล้าแห่ง Prontera,";
+			mes "Andrew Shylock.";
+			mes "ฉันรับผิดชอบ";
+			mes "การทดสอบครั้งแรกของคุณ";
+			next;
+			mes "[Sir Andrew]";
+			mes "ฉันจะทดสอบความรู้สึกภักดีของคุณอัศวินทุกคนต้องมีคุณธรรมนี้สำหรับการสอบนี้คุณจะได้รับรางวัลจาก";
+			mes "สนามรบ";
+			next;
+			if (JobLevel == 50) {
+				mes "[Sir Andrew]";
+				mes "อืม ... ?";
+				mes "รอก่อนนะ";
+				mes "คุณดูเหมือนเธอ";
+				mes "ความเป็นอยู่";
+				mes "นักดาบ";
+				next;
+				mes "[Sir Andrew]";
+				mes "ประทับใจ ... !";
+				mes "ในความคิดที่สอง";
+				mes "ฉันไม่คิดว่าของคุณ";
+				mes "ความภักดีที่ต้องการ";
+				mes "ถูกทดสอบ";
+				next;
+				mes "[Sir Andrew]";
+				mes "โปรดไปที่อัศวินเพื่อนของฉันเซอร์ Siracuse เพราะเขาจะให้การทดสอบครั้งต่อไปของคุณทำได้ดีมากในการฝึกฝนอาชีพ Swordman";
+				set KNIGHT_Q,4;
+				changequest 9000,9003;
+				close;
+			}
+			mes "[Sir Andrew]";
+			mes "ไม่มี";
+			mes "ความกังวลใจต่อไป";
+			mes "มาเริ่มกันเลย!";
+			mes "ไปรวบรวม";
+			mes "รายการต่อไปนี้ ... ";
+			next;
+			mes "[Sir Andrew]";
+			switch(rand(1,2)) {
+			//Elder_Pixie's_Beard, Wing_Of_Red_Bat, Orcish_Voucher, Moth_Dust, Reptile_Tongue, Wild_Boar's_Mane
+			case 1:setarray .@items[0], 1040,5, 7006,5, 931,5, 1057,5, 903,5, 1028,5, 2; break;
+			//Short_Leg, Heart_Of_Mermaid. Blossom_Of_Maneater, Flesh_Of_Clam, Old_Frying_Pan, Snail's_Shell
+			case 2:setarray .@items[0], 1042,5, 950,5, 1032,5, 966,5, 7031,5, 946,5, 3; break;
+			}
+			set KNIGHT_Q,.@items[12];
+			if (KNIGHT_Q == 2) changequest 9000,9001;
+			else changequest 9000,9002;
+			mes "^236B8E"+.@items[1]+" "+getitemname(.@items[0])+"^000000,";
+			mes "^236B8E"+.@items[3]+" "+getitemname(.@items[2])+"^000000,";
+			mes "^236B8E"+.@items[5]+" "+getitemname(.@items[4])+"^000000,";
+			mes "^236B8E"+.@items[7]+" "+getitemname(.@items[6])+"^000000,";
+			mes "^236B8E"+.@items[9]+" "+getitemname(.@items[8])+"^000000 and";
+			mes "^236B8E"+.@items[11]+" "+getitemname(.@items[10])+"^000000,";
+			next;
+			mes "[Sir Andrew]";
+			mes "ฉันจะเป็น";
+			mes "รออยู่ที่นี่";
+			mes "คุณต้องนำ";
+			mes "รายการที่ฉันระบุไว้";
+			mes "เจอกันเร็ว ๆ นี้ ~";
+			close;
+		}
+		else {
+			mes "[Sir Andrew]";
+			mes "ถ้าอย่างนั้น ... ";
+			mes "สวัสดีครับ";
+			close;
+		}
+	}
+	else if (KNIGHT_Q == 2 || KNIGHT_Q == 3) {
+		mes "ยินดีต้อนรับกลับ ~";
+		mes "รวมตัวกัน";
+		mes "ของทั้งหมด?";
+		mes "ลองตรวจดู ... ";
+		next;
+		switch(KNIGHT_Q) {
+		//Elder_Pixie's_Beard, Wing_Of_Red_Bat, Orcish_Voucher, Moth_Dust, Reptile_Tongue, Wild_Boar's_Mane
+		case 2:setarray .@items[0], 1040,5, 7006,5, 931,5, 1057,5, 903,5, 1028,5, 0; break;
+		//Short_Leg, Heart_Of_Mermaid. Blossom_Of_Maneater, Flesh_Of_Clam, Old_Frying_Pan, Snail's_Shell
+		case 3:setarray .@items[0], 1042,5, 950,5, 1032,5, 966,5, 7031,5, 946,5, 0; break;
+		}
+		if (countitem(.@items[0]) >= .@items[1] && countitem(.@items[2]) >= .@items[3] && countitem(.@items[4]) >= .@items[5] && countitem(.@items[6]) >= .@items[7] && countitem(.@items[8]) >= .@items[9] && countitem(.@items[10]) >= .@items[11]) {
+			mes "[Sir Andrew]";
+			mes "สมบูรณ์แบบ! ขอขอบคุณสำหรับความพยายามของคุณในการรวบรวมไอเทมเหล่านี้พวกนี้จะถูกใช้เพื่อสนับสนุนการเงินของ Chivalry";
+			next;
+			delitem .@items[0],.@items[1];
+			delitem .@items[2],.@items[3];
+			delitem .@items[4],.@items[5];
+			delitem .@items[6],.@items[7];
+			delitem .@items[8],.@items[9];
+			delitem .@items[10],.@items[11];
+			if (KNIGHT_Q == 2) changequest 9001,9003;
+			else changequest 9002,9003;
+			set KNIGHT_Q,4;
+			mes "[Sir Andrew]";
+			mes "โปรดไปเยี่ยมอัศวินท่านเซอร์ซิรากูซเพื่อนของฉันและทำการทดสอบต่อไปด้วยความทุ่มเทและความภักดีที่คุณได้แสดงให้ฉันเห็นในวันนี้";
+			close;
+		}
+		mes "[Sir Andrew]";
+		mes "เดี๋ยวก่อนรอ ... ";
+		mes "ฉันคิดว่าคุณ";
+		mes "ยังขาดอยู่บ้าง";
+		mes "รายการในกรณีที่คุณ";
+		mes "ลืมไปเถอะ";
+		mes "เตือนคุณ ... ";
+		next;
+		mes "[Sir Andrew]";
+		mes "^236B8E"+.@items[1]+" "+getitemname(.@items[0])+"^000000,";
+		mes "^236B8E"+.@items[3]+" "+getitemname(.@items[2])+"^000000,";
+		mes "^236B8E"+.@items[5]+" "+getitemname(.@items[4])+"^000000,";
+		mes "^236B8E"+.@items[7]+" "+getitemname(.@items[6])+"^000000,";
+		mes "^236B8E"+.@items[9]+" "+getitemname(.@items[8])+"^000000 and";
+		mes "^236B8E"+.@items[11]+" "+getitemname(.@items[10])+"^000000,";
+		next;
+		mes "[Sir Andrew]";
+		mes "ตอนนี้โปรดทำการทดสอบนี้อย่างจริงจังและจริงใจด้วย";
+		mes "ตอนนี้ฉันจะรอคุณ";
+		mes "เพื่อทำงานนี้ให้เสร็จ";
+		close;
+	}
+	else if (KNIGHT_Q == 4) {
+		mes "คุณมีบางอย่างที่ต้องการจะถามฉันหรือไม่คุณควรไปทำการทดสอบต่อไปรีบเลยเซอร์ซิรากูซกำลังรอคุณอยู่ ~";
+		close;
+	}
+	else if (KNIGHT_Q == 14) {
+		mes "คุณต้องทำแบบทดสอบทั้งหมดเสร็จแล้วเยี่ยมมาก! คุณควรไปพบกัปตันของเราเพื่อที่เราทุกคนจะได้ทำการประเมินของเรา";
+		close;
+	}
+	else {
+		mes "คุณมีบางอย่างที่ต้องการจะถามฉันไหมคุณควรไปทดสอบครั้งต่อไปทำให้ดีที่สุด";
+		mes "ฉันรู้ว่าเธอทำได้!";
+		close;
+	}
+}
+
+prt_in,71,91,0	script	Sir Siracuse#knt	65,{
+	mes "[Sir Siracuse]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "นี่ไง!";
+			mes "เป็นไงบ้าง";
+			mes "The Chivalry's been";
+			mes "ทำได้ดีทีเดียว";
+			next;
+			mes "[Sir Siracuse]";
+			mes "เราเคยไป";
+			mes "ทดสอบสมาชิกใหม่";
+			mes "แต่ไม่ใช่ทั้งหมด";
+			mes "แสดงสัญญาให้มาก";
+			mes "เป็นคุณ";
+			next;
+			mes "[Sir Siracuse]";
+			mes "ฉันหวังว่าพนักงานใหม่เหล่านี้จะประพฤติตัวเองและไม่ทำ";
+			mes "นำความอัปยศมาสู่อัศวิน";
+			next;
+			mes "[Sir Siracuse]";
+			mes "ถ้าคุณจับได้ว่ามีผู้ชายหน้าใหม่ที่แสดงท่าทีเป็นอัศวินโดยไม่ได้รับอนุญาตโปรดด่าว่าพวกเขาได้ไหม";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "โอ้?";
+			mes "What is a Novice";
+			mes "มาทำอะไรที่นี่";
+			next;
+			mes "[Sir Siracuse]";
+			mes "คุณสนใจที่จะเป็นอัศวินหรือไม่คุณไม่สามารถเปลี่ยนเป็นอัศวินจากสามเณรได้หรอก";
+			next;
+			mes "[Sir Siracuse]";
+			mes "ก่อนอื่นคุณมี";
+			mes "กลายเป็นบ่อน้ำ";
+			mes "นักดาบที่มีประสบการณ์";
+			mes "ก่อนจะพิจารณา";
+			mes "กลายเป็นอัศวิน";
+			close;
+		}
+		else {
+			mes "ความผิดและการป้องกัน";
+			mes "มีวิธีที่จะมีทั้งสองอย่างโดยไม่ประนีประนอมอย่างใดอย่างหนึ่งหรือไม่";
+			next;
+			mes "[Sir Siracuse]";
+			mes "อาวุธสองมืออย่างมาก";
+			mes "ปรับปรุงการรุกของคุณ แต่ลดการป้องกันของคุณมีอะไรที่สามารถเอาชนะจุดอ่อนนี้ได้หรือไม่";
+			next;
+			mes "[Sir Siracuse]";
+			mes "อาวุธหรือบางประเภท";
+			mes "ของเทคนิคแบบนั้น";
+			mes "จะช่วยอัศวินได้มาก ... ";
+			close;
+		}
+	}
+	if (KNIGHT_Q == 0) {
+		mes "ความผิดและการป้องกัน";
+		mes "มีวิธีที่จะมีทั้งสองอย่างโดยไม่ประนีประนอมอย่างใดอย่างหนึ่งหรือไม่";
+		next;
+		mes "[Sir Siracuse]";
+		mes "อาวุธสองมืออย่างมาก";
+		mes "ปรับปรุงการรุกของคุณ แต่ลดการป้องกันของคุณมีอะไรที่สามารถเอาชนะจุดอ่อนนี้ได้หรือไม่";
+		next;
+		mes "[Sir Siracuse]";
+		mes "อาวุธหรือบางประเภท";
+		mes "เทคนิคแบบนั้น";
+		mes "จะช่วยอัศวินได้มาก ... ";
+		close;
+	}
+	else if (KNIGHT_Q == 1) {
+		mes "เอ๋?";
+		mes "คุณมี";
+		mes "บางสิ่งบางอย่างเพื่อ";
+		mes "ถามหน่อย";
+		next;
+		if (select("I would like to take the test to change jobs.:Oh, nothing.") == 1) {
+			mes "[Sir Siracuse]";
+			mes "โอ้กลายเป็น";
+			mes "อัศวินมาหา";
+			mes "คิดว่าไม่ใช่";
+			mes "you the "+((Sex==SEX_MALE)?"guy":"girl")+" that";
+			mes "เพิ่งสมัคร";
+			next;
+			mes "[Sir Siracuse]";
+			mes "ลองดู ... ";
+			mes "ชื่อของคุณคือ";
+			mes strcharinfo(0) + ".";
+			next;
+			mes "[Sir Siracuse]";
+			mes "แต่ก่อนที่คุณจะมาหาฉันคุณต้องไปเยี่ยมคนอื่นก่อนทาง";
+			mes "ฉันเข้าใจแล้วคุณยังไม่ได้พิสูจน์ว่าคุณรู้พื้นฐาน แต่ฉันจะ";
+			mes "พิจารณาใหม่เมื่อคุณ";
+			mes "ผ่านการทดสอบครั้งแรก";
+			close;
+		}
+		mes "[Sir Siracuse]";
+		mes "หืมม ... ?";
+		mes "ได้เลย";
+		mes "ก็แค่นั้นเอง";
+		mes "คุณมีสิ่งนั้น";
+		mes "ดูของคุณ";
+		mes "หน้า";
+		close;
+	}
+	else if (KNIGHT_Q == 2 || KNIGHT_Q == 3) {
+		mes "เอ๋?";
+		mes "คุณมี";
+		mes "บางสิ่งบางอย่างเพื่อ";
+		mes "ถามหน่อย";
+		next;
+		if (select("ฉันต้องการสอบเพื่อเปลี่ยนงาน:โอ้ไม่มีอะไร.") == 1) {
+			mes "[Sir Siracuse]";
+			mes "ฮ่า ๆ ๆ ~!";
+			mes "คุณควรจะสอบแอนดรูว์ไม่ใช่เหรอคุณข้ามไปไม่ได้หรอกรู้มั้ย! การทดสอบทั้งหมดของเราสำคัญมาก";
+			next;
+			mes "[Sir Siracuse]";
+			mes "คุยกับเซอร์แอนดรูก่อน";
+			mes "การทดสอบของฉันสำหรับคุณจะเกิดขึ้นหลังจากคุณทำแบบทดสอบของเขาเสร็จแล้ว";
+			close;
+		}
+		mes "[Sir Siracuse]";
+		mes "หืมม ... ?";
+		mes "ได้เลย";
+		mes "ก็แค่นั้นเอง";
+		mes "คุณมีสิ่งนั้น";
+		mes "ดูของคุณ";
+		mes "หน้า";
+		close;
+	}
+	else if (KNIGHT_Q == 4 || KNIGHT_Q == 5) {
+		if (KNIGHT_Q == 4) {
+			mes "โอ้?";
+			mes "คุณมี";
+			mes "บางสิ่งบางอย่างเพื่อ";
+			mes "ถามหน่อย";
+			next;
+			if (select("Sir Andrew ส่งฉันไปทดสอบของคุณ:โอ้ไม่มีอะไร.") == 1) {
+				mes "[Sir Siracuse]";
+				mes "ฉันเห็นว่าคุณผ่านการทดสอบครั้งแรกแล้วดีมากฉันจะเผื่อเวลาไว้ให้ฉันแนะนำตัวฉันชื่อ James Siracuse";
+				next;
+				mes "[Sir Siracuse]";
+				mes "การทดสอบนี้จะวัดว่าคุณรู้จัก Knighthood มากแค่ไหนที่สำคัญฉันอยากรู้ความคิดของคุณเกี่ยวกับเกียรติยศ";
+				next;
+				mes "[Sir Siracuse]";
+				mes "อย่าประหม่าฉันจะไม่เก็บเธอไว้นานเกินไปคำถามเหล่านี้จะเป็นคำถามที่รวดเร็วนอกจากนี้คุณยังต้องเห็นคนอื่น ๆ อีกใช่ไหม";
+				next;
+				mes "[Sir Siracuse]";
+				mes "ถ้าอย่างนั้น";
+				mes "มาเริ่มกันเลย";
+				mes "กรุณาตอบ";
+				mes "ทันที";
+				next;
+			}
+			else {
+				mes "[Sir Siracuse]";
+				mes "หืมม ... ?";
+				mes "ได้เลย";
+				mes "ก็แค่นั้นเอง";
+				mes "คุณมีสิ่งนั้น";
+				mes "ดูของคุณ";
+				mes "หน้า";
+				close;
+			}
+		}
+		else if (KNIGHT_Q == 5) {
+			mes "อะไร ... ";
+			mes "อีกแล้วเหรอ";
+			next;
+			if (select("I wish to take the test again.:Oh, nothing.") == 1) {
+				mes "[Sir Siracuse]";
+				mes "หืมม ... ?";
+				mes "คุณแน่ใจหรือว่าคุณ";
+				mes "เตรียมเวลานี้?";
+				next;
+				mes "[Sir Siracuse]";
+				mes "ได้เลย";
+				mes "ไปกันใหม่ ... ";
+				next;
+			}
+			else {
+				mes "[Sir Siracuse]";
+				mes "หืมม ... ?";
+				mes "ได้เลย";
+				mes "ก็แค่นั้นเอง";
+				mes "คุณมีสิ่งนั้น";
+				mes "ดูของคุณ";
+				mes "หน้า";
+				close;
+			}
+		}
+		mes "[Sir Siracuse]";
+		mes "อัศวินต้องมีความแข็งแกร่งการป้องกันความเร็วและทักษะในการใช้ดาบสองมืออาวุธใดต่อไปนี้ที่ไม่ได้รับผลกระทบจากสกิล Two Hand Quicken";
+		next;
+		if (select("Katana:Slayer:Broadsword:Flamberge") != 4) {
+			set KNIGHT_Q,5;
+			mes "[Sir Siracuse]";
+			mes "ผิด!";
+			mes "นั่นคือดาบสองมือ!";
+			mes "แน่ใจเหรอว่าอยากเป็นอัศวินไม่รู้พื้นฐาน ... ";
+			next;
+			mes "[Sir Siracuse]";
+			mes "ถ้าคุณไม่แน่ใจเกี่ยวกับอะไรก็ตามให้เข้าไปในเมืองและถาม Knight คุณต้องเรียนรู้เพิ่มเติมเกี่ยวกับ Knights ก่อนสมัครงาน!";
+			close;
+		}
+		mes "[Sir Siracuse]";
+		mes "ดีครับผมขอถามเกี่ยวกับทักษะใดต่อไปนี้ที่ไม่จำเป็นในการเรียน Bowling Bash";
+		next;
+		if (select("Two Handed Sword Mastery Lv.5:Magnum Break Lv.3:Provoke Lv.10:Bash Lv.10") != 3) {
+			set KNIGHT_Q,5;
+			mes "[Sir Siracuse]";
+			mes "ผิด!";
+			mes "คุณต้องการสิ่งนั้นเพื่อเรียน Bowling Bash! คุณควรเรียนรู้เพิ่มเติมเกี่ยวกับคลาส Knight ก่อนสมัครงาน!";
+			close;
+		}
+		mes "[Sir Siracuse]";
+		mes "Knights ยังสามารถใช้ Spears ได้ซึ่งแตกต่างจากงานอื่น ๆ และมีทักษะที่เกี่ยวข้องกับ Spears เช่นกันทักษะใดที่ไม่จำเป็นในการเรียนรู้ทักษะ Brandish Spear";
+		next;
+		if (select("Pierce Lv.5:Spear Stab Lv.3:Spear Boomerang Lv.3:Peco Peco Ride Lv.1") != 3) {
+			set KNIGHT_Q,5;
+			mes "[Sir Siracuse]";
+			mes "ผิด! คุณต้องเรียนรู้สิ่งนั้นเพื่อเรียน Brandish Spear! คุณจะไม่รู้เกี่ยวกับ Knights ได้อย่างไรถ้าคุณต้องการเป็นหนึ่งเดียวกัน";
+			next;
+			mes "[Sir Siracuse]";
+			mes "ถ้าคุณไม่แน่ใจอะไรให้เข้าไปในเมืองและถามอัศวินคนใดก็ได้";
+			mes "เพื่อขอความช่วยเหลือกลับมาหลังจากที่คุณได้เรียนรู้เพิ่มเติมเกี่ยวกับ Knights แล้ว";
+			close;
+		}
+		mes "[Sir Siracuse]";
+		mes "หอกบางตัวมีคุณสมบัติเวทย์มนตร์เช่นเดียวกับคาถาสิ่งต่อไปนี้ที่สามารถโจมตี Nightmare ซึ่งมีคุณสมบัติ Ghost";
+		next;
+		if (select("Zephyrus:Lance:Bill Guisarme:Crescent Scythe") != 1) {
+			set KNIGHT_Q,5;
+			mes "[Sir Siracuse]";
+			mes "ผิด! คุณจะไม่สร้างความเสียหายกับหอกประเภทนั้นอย่างแน่นอน! กลับมาหลังจากที่คุณได้เรียนรู้เพิ่มเติมเกี่ยวกับอัศวินแล้ว!";
+			next;
+			mes "[Sir Siracuse]";
+			mes "หากคุณมีคำถามเพียงแค่ถามอัศวินคนใดก็ได้ในเมืองนี่เป็นความรู้พื้นฐานสำหรับเรา!";
+			close;
+		}
+		mes "[Sir Siracuse]";
+		mes "เมื่อคุณกลายเป็นอัศวินคุณสามารถขี่ Peco Peco ได้อย่างไรก็ตามความเร็วในการโจมตีของคุณจะลดลงเมื่อคุณติดตั้งบน Peco Peco";
+		next;
+		mes "[Sir Siracuse]";
+		mes "แต่คุณสามารถตอบโต้การลดความเร็วนี้ได้เมื่อคุณเรียนรู้ทักษะ Cavalier Mastery คุณจะมีความเร็วในการโจมตีปกติกี่เปอร์เซ็นต์หลังจากเรียนรู้ Cavalier Mastery ระดับ 3";
+		next;
+		if (select("70% ของความเร็วโจมตีปกติ:80% ของความเร็วโจมตีปกติ:90% ของความเร็วโจมตีปกติ:100% ของความเร็วโจมตีปกติ") != 2) {
+			set KNIGHT_Q,5;
+			mes "[Sir Siracuse]";
+			mes "ผิด!";
+			mes "อย่ากังวลกับการขี่ Peco Peco ถ้าคุณไม่รู้เกี่ยวกับ Cavalier Mastery!";
+			next;
+			mes "[Sir Siracuse]";
+			mes "กลับมาดีกว่าหลังจากได้เรียนรู้เรื่อง Knights มากขึ้น!";
+			close;
+		}
+		mes "[Sir Siracuse]";
+		mes "ดีดี ... ";
+		mes "ฉันค่อนข้างแน่ใจว่าคุณรู้เรื่อง Knights อยู่พอสมควรตอนนี้ขอถามคำถามส่วนตัวเกี่ยวกับ Knights กับคุณหน่อย";
+		next;
+		mes "[Sir Siracuse]";
+		mes "คุณจะทำอย่างไรเมื่อพบนักผจญภัยขอความช่วยเหลือในเมือง";
+		next;
+		switch(select("อกผู้เริ่มต้นถึงพื้นที่ล่าสัตว์ที่เหมาะสม:ปล่อยให้สามเณรต่อสู้ในขณะที่คุณได้รับความเสียหาย:มอบ Zeny และไอเท็มจำนวนมากให้กับนักผจญ.")) {
+		case 1:
+			mes "[Sir Siracuse]";
+			mes "แน่นอนว่าแม้แต่สามเณรก็ต้องเรียนรู้วิธีการเป็นอิสระการให้คำแนะนำที่ดีแก่นักผจญภัยก็เป็นสิ่งที่ดีที่สุดอย่างหนึ่งที่เราทำได้";
+			next;
+			break;
+		case 2:
+			set KNIGHT_Q,5;
+			mes "[Sir Siracuse]";
+			mes "คุณมีความคิดที่ผิดคุณเชื่อจริงๆหรือว่ากำลังช่วยสามเณรให้ปลาเขาจะกินสักวันสอนเขาตกปลาเขาจะกินไปตลอดชีวิต!";
+			close;
+		case 3:
+			set KNIGHT_Q,5;
+			mes "[Sir Siracuse]";
+			mes "คุณเชื่อหรือไม่ว่าสิ่งนี้จะช่วยเหล่าสามเณรผู้ยากไร้ได้อย่างแท้จริงเป็นคนใจกว้าง แต่พวกเขาจะไม่รู้คุณค่าที่แท้จริงของ zeny และสิ่งของจนกว่าพวกเขาจะได้รับมันเอง";
+			close;
+		}
+		mes "[Sir Siracuse]";
+		mes "เอาล่ะ ... ";
+		mes "ตอนนี้ควรทำอย่างไร";
+		mes "คุณทำภายใน";
+		mes "งานเลี้ยง?";
+		next;
+		switch(select("ปกป้องทุกคนในด้านหน้าของการต่อสู้:รวบรวมมอนสเตอร์และทำลายพวกมันในครั้งเดียว:รับไอเท็มให้มากที่สุดเท่าที่จะเป็นไปได้โดยเสียค่าใช้จ่ายทั้งหมด.")) {
+		case 1:
+			mes "[Sir Siracuse]";
+			mes "แค่นั้นเอง! ความแข็งแกร่งและการโจมตีของเราสำคัญมากในปาร์ตี้อัศวินทุกคนควรเข้าร่วมการต่อสู้ด้วยความคิดนั้น";
+			next;
+			break;
+		case 2:
+			set KNIGHT_Q,5;
+			mes "[Sir Siracuse]";
+			mes "คุณบ้าเหรอคุณไม่ตระหนักถึงข้อบกพร่องของความคิดแบบนั้นคุณไม่สามารถควบคุมฝูงชนขนาดใหญ่ได้ถ้าพวกเขาฆ่าคุณจะเป็นอย่างไรใครจะปกป้องผู้บริสุทธิ์?";
+			close;
+		case 3:
+			set KNIGHT_Q,5;
+			mes "[Sir Siracuse]";
+			mes "ฉันเห็นความโลภของคุณและเราจะไม่มีเลยที่นี่ดูเหมือนคุณจะไม่สนใจคนอื่นจริงๆ!";
+			mes "หลงทาง!";
+			close;
+		}
+		mes "[Sir Siracuse]";
+		mes "สุดท้ายนี้ ... ";
+		mes "มากที่สุด";
+		mes "มูลค่าที่สำคัญ";
+		mes "อัศวินต้องมี?";
+		next;
+		switch(select("เกียรติยศ:ความมั่งคั่ง:สถานะ")) {
+		case 1:
+			mes "[Sir Siracuse]";
+			mes "เหนือสิ่งอื่นใดอัศวินต้องมีเกียรติเรามีชีวิตและตายเพื่อเกียรติยศจงระลึกไว้เสมอ";
+			next;
+			break;
+		case 2:
+			set KNIGHT_Q,5;
+			mes "[Sir Siracuse]";
+			mes "คุณเป็นขยะ! คุณพยายามที่จะเป็นอัศวินเพื่อความมั่งคั่งส่วนตัวหรือไม่หลงทาง! เราจะไม่รับคนแบบคุณเข้าร่วมในอัศวินของเรา!";
+			close;
+		case 3:
+			set KNIGHT_Q,5;
+			mes "[Sir Siracuse]";
+			mes "คุณพยายามจะมีชื่อเสียงผ่านทางอัศวินหรือเปล่าช่างน่าสมเพชเราจะไม่ยอมรับคนแบบคุณในอัศวินของเรา!";
+			close;
+		}
+		set KNIGHT_Q,6;
+		changequest 9003,9004;
+		mes "[Sir Siracuse]";
+		mes "ถ้าอย่างนั้น";
+		mes "นี่คือ";
+		mes "สิ้นสุดการทดสอบของฉัน";
+		next;
+		mes "[Sir Siracuse]";
+		mes "ต่อไป";
+		mes "ทดสอบกรุณาไป";
+		mes "ดูเซอร์วินด์เซอร์";
+		mes "เขาเงียบมาก";
+		mes "แต่อย่าให้เป็นอย่างนั้น";
+		mes "ไปหาคุณ";
+		close;
+	}
+	else if (KNIGHT_Q == 6) {
+		mes "โอ้?";
+		mes "คุณมี";
+		mes "บางสิ่งบางอย่างเพื่อ";
+		mes "ถามหน่อย";
+		next;
+		if (select("ฉันต้องการสอบเพื่อเปลี่ยนงาน:โอ้ไม่มีอะไร.") == 1) {
+			mes "[Sir Siracuse]";
+			mes "เฮ้ ... ";
+			mes "คุณทำแบบทดสอบของฉันไปแล้วใช่ไหมคุณทำเสร็จแล้วคุณควรไปเยี่ยมเซอร์วินด์เซอร์เดี๋ยวนี้ ... ";
+			close;
+		}
+		mes "[Sir Siracuse]";
+		mes "หืมม ... ?";
+		mes "ได้เลย";
+		mes "ก็แค่นั้นเอง";
+		mes "คุณมีสิ่งนั้น";
+		mes "ดูของคุณ";
+		mes "หน้า";
+		close;
+	}
+	else if (KNIGHT_Q == 14) {
+		mes "อืม ... ?";
+		mes "เสร็จแล้ว";
+		mes "ของคนอื่น";
+		mes "ทดสอบด้วย?";
+		next;
+		mes "[Sir Siracuse]";
+		mes "ถ้าอย่างนั้น";
+		mes "ไปดู";
+		mes "กัปตันเราทุกคน";
+		mes "อยู่ที่นั่นเพื่อประเมิน";
+		mes "การแสดงของคุณ";
+		close;
+	}
+	else {
+		mes "เฮ้อีกแล้ว";
+		mes "คุณต้องการอะไร?";
+		mes "ขออภัยตอนนี้ฉันไม่ว่างคุณควรไปทำแบบทดสอบที่เหลือให้เสร็จ";
+		close;
+	}
+}
+
+prt_in,79,94,4	script	Sir Windsor#knt	733,{
+	mes "[Sir Windsor]";
+	mes "...";
+	next;
+	mes "[Sir Windsor]";
+	mes "...";
+	mes "......";
+	next;
+	mes "[Sir Windsor]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) mes "Protect.";
+		else if (BaseClass == Job_Novice) {
+			mes "... ไปเล่น";
+			mes "ข้างนอก";
+		}
+		else mes "...Hmpf.";
+		close;
+	}
+	if (KNIGHT_Q == 0) {
+		mes "... อะไร?";
+		close;
+	}
+	else if (KNIGHT_Q >= 1 && KNIGHT_Q <= 5) {
+		mes "... อะไร";
+		next;
+		if (select("ฉันต้องการสอบเพื่อเปลี่ยนงาน:โอ้ไม่มีอะไร.") == 1) {
+			mes "[Sir Windsor]";
+			mes "...";
+			next;
+			mes "[Sir Windsor]";
+			mes "...";
+			mes "......";
+			next;
+			mes "[Sir Windsor]";
+			mes "... ยังไม่ถึงตาฉัน";
+			close;
+		}
+		mes "[Sir Windsor]";
+		mes "...";
+		close;
+	}
+	else if (KNIGHT_Q == 6 || KNIGHT_Q == 7) {
+		if (KNIGHT_Q == 6) {
+			set .@mes$,"ท่าน Siracuse ส่งฉันมาให้คุณ:โอ้ไม่มีอะไร";
+			mes "..... อะไร";
+			next;
+		}
+		else {
+			set .@mes$,"ฉันอยากลองอีกครั้ง!:... ";
+			next;
+		}
+		if (select(.@mes$) == 1) {
+			mes "[Sir Windsor]";
+			mes "...";
+			next;
+			set KNIGHT_Q,7;
+			if (checkquest(9004) != -1) {
+				changequest 9004,9005;
+			}
+			mes "[Sir Windsor]";
+			mes "...";
+			mes "......";
+			next;
+			mes "[Sir Windsor]";
+			if (KNIGHT_Q == 6) 
+				mes "... ตามมาเลย";
+			else {
+				mes "... สบายดี";
+				next;
+				mes "[Sir Windsor]";
+				mes "... ทางนี้";
+			}
+			close2;
+			if(checkquest(9006) == -1) changequest 9005,9006;
+			warp "job_knt",89,101;
+			end;
+		}
+		mes "[Sir Windsor]";
+		mes "...";
+		close;
+	}
+	else if (KNIGHT_Q == 14) {
+		mes "... คุยกับ";
+		mes "ผู้กอง";
+		close;
+	}
+	else {
+		mes "... คุณ";
+		mes "เสร็จแล้ว";
+		close;
+	}
+}
+
+// Test 2 part 1
+//==========================================================
+job_knt,89,106,4	script	Knight Windsor#knt	733,{
+	mes "[Sir Windsor]";
+	mes "...";
+	next;
+	mes "[Sir Windsor]";
+	mes "...";
+	mes "......";
+	next;
+	mes "[Sir Windsor]";
+	mes "... คำถาม?";
+	next;
+	set .@i, select("นี่คือการทดสอบแบบไหน:ฉันจะทำแบบทดสอบได้อย่างไร:ฉันต้องการจะออก:ไม่.");
+	mes "[Sir Windsor]";
+	mes "...";
+	if (.@i == 4) close;
+	next;
+	mes "[Sir Windsor]";
+	mes "...";
+	mes "......";
+	switch(.@i) {
+	case 1:
+		next;
+		mes "[Sir Windsor]";
+		mes "... คุณต่อสู้กับสัตว์ประหลาด";
+		next;
+		mes "[Sir Windsor]";
+		mes "... ฆ่าพวกมันให้หมด";
+		next;
+		mes "[Sir Windsor]";
+		mes "...";
+		next;
+		mes "[Sir Windsor]";
+		mes "... สามด่าน";
+		mes "เอาชนะมันให้หมด";
+		next;
+		mes "[Sir Windsor]";
+		mes "...... 3 นาที";
+		mes "for each stage.";
+		next;
+		mes "[Sir Windsor]";
+		mes "..........";
+		close;
+	case 2:
+		next;
+		mes "[Sir Windsor]";
+		mes "... เข้าไป";
+		mes "ห้องรอ.";
+		next;
+		mes "[Sir Windsor]";
+		mes "... แล้วมัน";
+		mes "จะเริ่ม";
+		next;
+		mes "[Sir Windsor]";
+		mes "...";
+		next;
+		mes "[Sir Windsor]";
+		mes "... ต้องรอ";
+		mes "ถ้ามีคนกำลังทดสอบ";
+		next;
+		mes "[Sir Windsor]";
+		mes "... เข้าไปได้เลย";
+		mes "ตามหลังคนนั้น";
+		next;
+		mes "[Sir Windsor]";
+		mes "...";
+		close;
+	case 3:
+		close2;
+		warp "prt_in",80,100;
+		end;
+	}
+}
+
+job_knt,89,106,4	script	Windsor Benedict#knt	733,{
+	end;
+
+OnInit:
+	disablenpc "Windsor Benedict#knt";
+	waitingroom "Waiting Room",20,"Windsor Benedict#knt::OnStartArena",1;
+	enablewaitingroomevent;
+	end;
+
+OnStartArena:
+	killmonster "job_knt", "Knight1::OnMyMobDead";
+	killmonster "job_knt", "Knight2::OnMyMobDead";
+	killmonster "job_knt", "Knight3::OnMyMobDead";
+	warpwaitingpc "job_knt",43,146;
+	donpcevent "Knight1::OnEnable";
+	disablewaitingroomevent;
+	end;
+
+OnStart:
+	enablewaitingroomevent;
+	end;
+}
+
+-	script	Knight1	-1,{
+OnInit:
+	disablenpc "Knight1";
+	end;
+
+OnEnable:
+	enablenpc "Knight1";
+	if (!checkre(0)) {
+		set .MyMobs,12;
+		monster "job_knt",39,150,"Dustiness",1114,1,"Knight1::OnMyMobDead";
+		monster "job_knt",47,150,"Dustiness",1114,1,"Knight1::OnMyMobDead";
+		monster "job_knt",39,142,"Dustiness",1114,1,"Knight1::OnMyMobDead";
+		monster "job_knt",47,142,"Dustiness",1114,1,"Knight1::OnMyMobDead";
+	}
+	else
+		set .MyMobs,8;
+	monster "job_knt",43,137,"Piere",1160,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,137,"Andre",1095,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,137,"Deniro",1105,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,155,"Piere",1160,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,155,"Andre",1095,1,"Knight1::OnMyMobDead";
+	monster "job_knt",43,155,"Deniro",1105,1,"Knight1::OnMyMobDead";
+	monster "job_knt",35,146,"Argos",1100,1,"Knight1::OnMyMobDead";
+	monster "job_knt",52,146,"Argos",1100,1,"Knight1::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt", "Knight1::OnMyMobDead";
+	disablenpc "Knight1";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mes "[Sir Windsor]";
+		mes "...";
+		next;
+		mes "[Sir Windsor]";
+		mes "... ต่อไป";
+		mes "ระดับต่อไป";
+		close2;
+		warp "job_knt",43,52;
+		donpcevent "Knight1::OnDisable";
+		donpcevent "Knight2::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer180000:
+	donpcevent "Knight1::OnDisable";
+	end;
+
+OnTimer181000:
+	areawarp "job_knt", 24, 126, 63, 165, "prt_in",80,100;
+	end;
+
+OnTimer182000:
+	stopnpctimer;
+	donpcevent "Knight1::OnDisable";
+	donpcevent "Windsor Benedict#knt::OnStart";
+	end;
+}
+
+// Test 2 part 2
+//==========================================================
+-	script	Knight2	-1,{
+OnInit:
+	disablenpc "Knight2";
+	end;
+
+OnEnable:
+	enablenpc "Knight2";
+	if (!checkre(0)) {
+		set .MyMobs,12;
+		monster "job_knt",43,42,"Desert Wolf",1106,1,"Knight2::OnMyMobDead";
+		monster "job_knt",43,62,"Desert Wolf",1106,1,"Knight2::OnMyMobDead";
+		monster "job_knt",60,68,"Anacondaq",1030,1,"Knight2::OnMyMobDead";
+		monster "job_knt",27,68,"Anacondaq",1030,1,"Knight2::OnMyMobDead";
+		monster "job_knt",60,35,"Anacondaq",1030,1,"Knight2::OnMyMobDead";
+		monster "job_knt",27,35,"Anacondaq",1030,1,"Knight2::OnMyMobDead";
+	}
+	else
+		set .MyMobs,6;
+	monster "job_knt",53,52,"Frilldora",1119,1,"Knight2::OnMyMobDead";
+	monster "job_knt",34,52,"Frilldora",1119,1,"Knight2::OnMyMobDead";
+	monster "job_knt",58,52,"Drainliar",1111,1,"Knight2::OnMyMobDead";
+	monster "job_knt",58,52,"Drainliar",1111,1,"Knight2::OnMyMobDead";
+	monster "job_knt",29,52,"Drainliar",1111,1,"Knight2::OnMyMobDead";
+	monster "job_knt",29,52,"Drainliar",1111,1,"Knight2::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt", "Knight2::OnMyMobDead";
+	disablenpc "Knight2";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mes "[Sir Windsor]";
+		mes "... หืม";
+		next;
+		mes "[Sir Windsor]";
+		mes "... เหลือเวทีเดียว";
+		close2;
+		warp "job_knt",143,152;
+		donpcevent "Knight2::OnDisable";
+		donpcevent "Knight3::OnEnable";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer180000:
+	donpcevent "Knight2::OnDisable";
+	end;
+
+OnTimer181000:
+	areawarp "job_knt", 24, 32, 63, 71, "prt_in",80,100;
+	end;
+
+OnTimer182000:
+	stopnpctimer;
+	donpcevent "Knight2::OnDisable";
+	donpcevent "Windsor Benedict#knt::OnStart";
+	end;
+}
+
+// Test 2 part 3
+//==========================================================
+-	script	Knight3	-1,{
+OnInit:
+	disablenpc "Knight3";
+	end;
+
+OnEnable:
+	enablenpc "Knight3";
+	if (!checkre(0)) {
+		set .MyMobs,7;
+		monster "job_knt",147,167,"Goblin Archer",1258,1,"Knight3::OnMyMobDead";
+		monster "job_knt",136,158,"Steam Goblin",1280,1,"Knight3::OnMyMobDead";
+	}
+	else
+		set .MyMobs,5;
+	monster "job_knt",136,152,"Goblin",1122,1,"Knight3::OnMyMobDead";
+	monster "job_knt",150,152,"Goblin",1123,1,"Knight3::OnMyMobDead";
+	monster "job_knt",143,145,"Goblin",1124,1,"Knight3::OnMyMobDead";
+	monster "job_knt",143,167,"Goblin",1125,1,"Knight3::OnMyMobDead";
+	monster "job_knt",139,167,"Goblin",1126,1,"Knight3::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt", "Knight3::OnMyMobDead";
+	disablenpc "Knight3";
+	end;
+
+OnMyMobDead:
+	set .MyMobs,.MyMobs-1;
+	if (.MyMobs < 1) {
+		mes "[Sir Windsor]";
+		mes "...";
+		next;
+		mes "[Sir Windsor]";
+		mes "... ดีมาก";
+		next; 
+		mes "[Sir Windsor]";
+		mes "... ไปคุยกับ";
+		mes "ตอนนี้ Amy Beatrice .";
+		close2;
+		set KNIGHT_Q,8;
+		if(checkquest(9007) == -1) {
+			changequest 9006,9007;
+		}
+		warp "prt_in",80,100;
+		donpcevent "Knight3::OnDisable";
+		donpcevent "Windsor Benedict#knt::OnStart";
+		stopnpctimer;
+	}
+	end;
+
+OnTimer180000:
+	donpcevent "Knight3::OnDisable";
+	end;
+
+OnTimer181000:
+	areawarp "job_knt", 124, 132, 163, 171, "prt_in",80,100;
+	end;
+
+OnTimer182000:
+	stopnpctimer;
+	donpcevent "Knight3::OnDisable";
+	donpcevent "Windsor Benedict#knt::OnStart";
+	end;
+}
+
+// Test 3 (Manners)
+//==========================================================
+prt_in,69,107,6	script	Lady Amy#knt	728,{
+	mes "[Lady Amy]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "โอ้ ... !";
+			mes "ฉันสงสัยทำไม";
+			mes "มาแล้วหรอ";
+			mes "ไปเยี่ยมฉันไหม";
+			next;
+			mes "[Lady Amy]";
+			mes "คุณไม่มี";
+			mes "ปัญหาในฐานะอัศวิน";
+			mes "เหรอฉันคิดว่า";
+			mes "สบายดีนะครับ ~";
+			next;
+			mes "[Lady Amy]";
+			mes "แน่นอน ~";
+			mes "คุณเป็นสมาชิกของ";
+			mes "ผู้กล้าแห่ง Prontera ~";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "อ๊าว ~";
+			mes "ช่างน่ารัก";
+			mes "นักผจญภัยตัวน้อย";
+			mes "น่ารักจัง!";
+			next;
+			mes "[Lady Amy]";
+			mes "หึหึ ... ";
+			mes "คุณสนใจ";
+			mes "ในการเป็นอัศวิน";
+			mes "ต่อไปคุณจะเป็น";
+			mes "อัศวินผู้ยิ่งใหญ่ ~";
+			next;
+			mes "[Lady Amy]";
+			mes "จำไว้ว่าคุณ";
+			mes "จะเป็นอัศวิน";
+			mes "เป็นไรไหมสัญญา?";
+			close;
+		}
+		else {
+			mes "ยินดีต้อนรับสู่";
+			mes "ผู้กล้าแห่ง Prontera ~";
+			next;
+			mes "[Lady Amy]";
+			mes "เราเป็นเพียงอัศวินเท่านั้น";
+			mes "แต่หวังว่าคุณจะสนุก";
+			mes "พักที่นี่";
+			mes "หึหึ ~";
+			close;
+		}
+	}
+	if (KNIGHT_Q == 0) {
+		mes "โอเธอ";
+		mes "นักดาบ ... ?";
+		mes "คุณมาที่";
+		mes "เปลี่ยนอาชีพเป็น";
+		mes "Knights?";
+		next;
+		mes "[Lady Amy]";
+		mes "สมัครพูดคุย";
+		mes "ถึงกัปตัน";
+		mes "ตลอดทาง";
+		mes "นั่นไงฮิฮิ ~";
+		close;
+	}
+	else if (KNIGHT_Q >= 1 && KNIGHT_Q <= 7) {
+		mes "หืม?";
+		mes "ทำไมถึงทำ";
+		mes "มาหาเอมี่?";
+		next;
+		if (select("ฉันต้องการสอบเพื่อเปลี่ยนงาน:โอ้ไม่มีอะไร.") == 1) {
+			mes "[Lady Amy]";
+			mes "อื้ม ~";
+			mes "คุณสมัครเพื่อเปลี่ยนงานโอเค! เร็ว ๆ นี้คุณจะได้เป็นอัศวินด้วยความมุ่งมั่นแบบนั้น!";
+			next;
+			mes "[Lady Amy]";
+			mes "แต่ ... ";
+			mes "ต้องไปแล้ว";
+			mes "กับอัศวินคนอื่น ๆ ";
+			mes "ก่อนคุยกับเอมี่";
+			next;
+			mes "[Lady Amy]";
+			mes "อยากทดสอบ";
+			mes "คุณจากจุดเริ่มต้น";
+			mes "แต่ฉันไม่ได้รับอนุญาต";
+			mes "ฮิฮิ ~";
+			close;
+		}
+		mes "[Lady Amy]";
+		mes "อ๊าว ~";
+		mes "เอาล่ะ ... ";
+		close;
+	}
+	else if ((KNIGHT_Q == 8) || (KNIGHT_Q == 9)){
+		if (KNIGHT_Q == 8) {
+			mes "หืม?";
+			mes "ทำไมถึงทำ";
+			mes "มาหาเอมี่?";
+			next;
+			if (select("Sir Windsorบอกให้ฉัน -:โอ้ไม่มีอะไร.") == 1) {
+				if(checkquest(9008) == -1) changequest 9007,9008;
+				mes "[Lady Amy]";
+				mes "โอ้!";
+				mes "ไม่ต้องพูด";
+				mes "มีอะไรอีก";
+				mes "ยินดีต้อนรับถึงเวลา";
+				mes "สอบเอมี่!";
+				next;
+				mes "[Lady Amy]";
+				mes "ฉันชื่อเอมี่ เบียทริซ";
+				mes "อัศวินแห่งความภาคภูมิใจของ Prontera Chivalry การทดสอบของ Amy จะทดสอบมารยาทของคุณในฐานะอัศวิน ~";
+				next;
+				mes "[Lady Amy]";
+				mes "ฉันจะเล่าเรื่องให้คุณฟังและคุณจะเลือกคำตอบทุกเมื่อ";
+				mes "ฉันถามคำถามมารยาทของคุณจะตัดสินตามคำตอบของคุณ";
+				next;
+				mes "[Lady Amy]";
+				mes "ตั้งใจฟัง";
+				mes "และตอบราวกับว่าคุณ";
+				mes "เป็นอัศวินแล้วใช่ไหม";
+				next;
+				mes "[Lady Amy]";
+				mes "ถ้าอย่างนั้น";
+				mes "มาเริ่มกันเลย!";
+				next;
+			}
+			else {
+				mes "[Lady Amy]";
+				mes "อ๊าว ... ";
+				mes "เอาล่ะ ~";
+				close;
+			}
+		}
+		else if (KNIGHT_Q == 9) {
+			mes "หืม?";
+			mes "ทำไมถึงทำ";
+			mes "มาหาเอมี่?";
+			next;
+			if (select("ฉันต้องการสอบเพื่อเปลี่ยนงาน:โอ้ไม่มีอะไร.") == 1) {
+				mes "[Lady Amy]";
+				mes "อืม ~?";
+				mes "เรียนแล้ว";
+				mes "สิ่งที่คุณทำผิด";
+				mes "ครั้งสุดท้ายถ้าคุณ";
+				mes "ล้มเหลวอีกแล้วฉันจะไป";
+				mes "จะบ้า!";
+				next;
+				mes "[Lady Amy]";
+				mes "ตั้งใจฟัง";
+				mes "และตอบราวกับว่าคุณ";
+				mes "เป็นอัศวิน";
+				mes "ถ้าอย่างนั้น";
+				mes "มาเริ่มกันเลย!";
+				next;
+				mes "[Lady Amy]";
+				mes "คุณคืออัศวิน และคุณกำลังมองหาปาร์ตี้ใน Morocc.";
+				mes "คุณจะทำเช่นนั้นได้อย่างไร";
+				next;
+			}
+			else {
+				mes "[Lady Amy]";
+				mes "อ๊าว ... ";
+				mes "เอาล่ะ ~";
+				close;
+			}
+		}
+		mes "คุณคืออัศวินและคุณกำลังมองหาปาร์ตี้ใน Morocc.";
+		mes "คุณจะทำเช่นนั้นได้อย่างไร";
+		next;
+		if (select("ตะโกนว่าคุณกำลังมองหาปาร์ตี้:เปิดห้องสนทนาแล้วรอ:มองหาคนที่กำลังมองหาอัศวิน.") != 1)
+			set .@knight_t,.@knight_t+10;
+		mes "[Lady Amy]";
+		mes "คุณได้จัดตั้งปาร์ตี้ที่มีผู้เล่นที่มีเลเวลเท่ากันมี Priest, Wizard, Hunter, Assassin และ Blacksmith ... ";
+		next;
+		mes "[Lady Amy]";
+		mes "พวกคุณทั้งหกคนตัดสินใจออกล่าและตัดสินใจไปที่ปิรามิด";
+		next;
+		mes "[Lady Amy]";
+		mes "คุณถึงระดับ 4 แล้ว";
+		mes "ของปิรามิด";
+		mes "กับปาร์ตี้ของคุณ";
+		mes "คุณควรทำอย่างไร";
+		next;
+		if (select("ตรวจสอบพื้นที่และวางแผนล่วงหน้า:รวบรวมมอนสเตอร์สำหรับสมาชิกในปาร์ตี้ของคุณ:นำปาร์ตี้ไปที่ด้านหน้าอย่างช้าๆ.") != 2)
+			set .@knight_t,.@knight_t+10;
+		mes "[Lady Amy]";
+		mes "แต่ผู้เล่นที่หยาบคายบางคนมาพร้อมกับสัตว์ประหลาดกลุ่มหนึ่งและหายตัวไป! คุณควรทำอย่างไร?";
+		next;
+		if (select("ป้องกันไม่ให้มอนสเตอร์เข้าถึงปาร์ตี้:ปกป้องในขณะที่ปาร์ตี้ล่าถอย:วิ่งหนีไปที่ Peco Peco ของคุณ.") != 3)
+			set .@knight_t,.@knight_t+10;
+		mes "[Lady Amy]";
+		mes "โชคดีที่คุณทุกคนผ่านวิกฤตมาได้ แต่เมื่อคุณเดินไปคุณก็พบว่ามีคนที่ไม่ได้อยู่ในปาร์ตี้ของคุณทรุดตัวลงกับพื้น";;
+		next;
+		mes "[Lady Amy]";
+		mes "บุคคลนั้นกำลังขอความช่วยเหลืออย่างสุภาพคุณควรทำอย่างไร";
+		next;
+		if (select("ขอให้นักบวชในปาร์ตี้ของคุณช่วย:บอกว่าคุณจะช่วย Zeny.:I ไม่สนใจและก้าวต่อไป.") == 1)
+			set .@knight_t,.@knight_t+10;
+		mes "[Lady Amy]";
+		mes "คุณต้องอำลาสมาชิกปาร์ตี้ของคุณเพราะคุณต้องไปที่อื่น";
+		next;
+		mes "[Lady Amy]";
+		mes "แต่คุณพบ";
+		mes "สินค้าหายากในช่วง";
+		mes "การต่อสู้อะไร";
+		mes "คุณควรทำอย่างไร";
+		next;
+		if(select("มอบให้กับผู้ที่สมควรได้รับมากที่สุด:แกล้งทำเป็นเหมือนไม่มีอะไรเกิดขึ้นและเก็บไว้:ตัดสินใจกับฝ่ายที่ได้รับ.") != 2)
+			set .@knight_t,.@knight_t+10;
+		mes "[Lady Amy]";
+		mes "คุณจบลงด้วยไอเท็มและคุณไปที่ Prontera เพื่อขายมันมีร้านค้าและห้องแชทเปิดขายไอเทมมากมาย";
+		next;
+		mes "[Lady Amy]";
+		mes "คุณควรทำอะไร";
+		mes "ทำเพื่อขายสินค้าของคุณ?";
+		next;
+		if (select("ตะโกนดัง ๆ ถึงทุกคน:เปิดห้องแชทแล้วรอ:สอบถามว่ามีใครสนใจบ้าง.") != 1)
+			set .@knight_t,.@knight_t+10;
+		mes "[Lady Amy]";
+		mes "ในขณะที่คุณกำลังรอ";
+		mes "มีคนมาขอ";
+		mes "สำหรับไอเท็มและ zeny";
+		mes "คุณทำอะไร";
+		next;
+		if (select("ให้ Zeny และไอเทมบางส่วน:เพียงแค่เพิกเฉยพวกเขา:ให้คำแนะนำสถานที่ล่าสัตว์.") == 3)
+			set .@knight_t,.@knight_t+10;
+		mes "[Lady Amy]";
+		mes "ตอนนี้คุณตัดสินใจที่จะไปที่ Hidden Temple ด้วยตัวเองคุณนั่ง Peco Peco ของคุณอย่างมีความสุข";;
+		next;
+		mes "[Lady Amy]";
+		mes "แต่คุณเจอ";
+		mes "คนที่หลงทาง";
+		mes "คุณควรทำอย่างไร";
+		next;
+		if(select("บอกคนอื่นว่าจะไปถึงทางออกอย่างไร:นำบุคคลนั้นไปที่ทางออก:ให้ปีกผีเสื้อ.") != 3)
+			set .@knight_t,.@knight_t+10;
+		mes "[Lady Amy]";
+		mes "คุณล่าสัตว์มาสักพักแล้วและตอนนี้ HP เหลือน้อย!";
+		mes "ตอนนี้มันเป็นสีแดงซึ่งอันตรายมาก";
+		next;
+		mes "[Lady Amy]";
+		mes "อาแล้วก็เป็นพระ";
+		mes "เกิดขึ้นเพื่อเดินผ่าน";
+		mes "จะถามยังไง";
+		mes "นักบวชรักษา?";
+		next;
+		if (select("ขอฮีลเป็นไปได้ไหม:ขอฮีลได้ไหม:รักษานะ !!!!") == 1)
+			set .@knight_t,.@knight_t+10;
+		mes "[Lady Amy]";
+		mes "ตอนนี้คุณสบายมาก";
+		mes "หมดเวลาแล้ว";
+		mes "กลับเข้าเมือง";
+		next;
+		mes "[Lady Amy]";
+		mes "แล้วคุณจะพบ";
+		mes "สินค้าหายากบน";
+		mes "ถนน";
+		mes "สิ่งที่ควร";
+		mes "คุณทำ?";
+		next;
+		if (select("หยิบและเก็บไว้:ถามไปรอบ ๆ เพื่อหาเจ้าของ:เดินผ่าน.") != 1)
+			set .@knight_t,.@knight_t+10;
+		mes "[Lady Amy]";
+		mes "โอเค";
+		mes "นั่นคือ";
+		mes "สิ้นสุดการทดสอบของฉัน!";
+		next;
+		mes "[Lady Amy]";
+		if (.@knight_t == 100) {
+			set KNIGHT_Q,10;
+			changequest 9008,9009;
+			mes "ทำได้ดีอัศวินแบบนั้นจำเป็นสำหรับการทดสอบครั้งต่อไปโปรดไปที่ Sir Edmond ได้โปรด ~";
+			next;
+			mes "[Lady Amy]";
+			mes "ฉันจะมีความคิดเห็นดีๆเกี่ยวกับคุณสำหรับกัปตันทำแบบทดสอบที่คุณทิ้งไว้ได้ดีไหม";
+			close;
+		}
+		else if (.@knight_t == 90) {
+			set KNIGHT_Q,10;
+			changequest 9008,9009;
+			mes "มันไม่สมบูรณ์แบบ";
+			mes "แต่ฉันคิดว่าคุณคงพอ";
+			mes "เกี่ยวกับมารยาทในการเป็น";
+			mes "อัศวินที่ดี";
+			next;
+			mes "[Lady Amy]";
+			mes "ตอนนี้ถึงเวลาที่คุณต้องไปหาเซอร์เอ็ดมันด์สำหรับการทดสอบครั้งต่อไปแล้วทำแบบทดสอบที่เหลือให้ดีสัญญาดีกว่า ~";
+			close;
+		}
+		set KNIGHT_Q,9;
+		mes "อืม ... ";
+		mes "พูดตามตรงฉันไม่คิดว่าทัศนคติของคุณดีพอที่จะเป็นอัศวินได้เลย";
+		next;
+		mes "[Lady Amy]";
+		mes "ถ้าคุณทำแบบนั้นจริงๆทุกคนจะคิดว่าอัศวินเป็นคนหยาบคายลองคิดดูว่าคุณตอบคำถามของฉันยังไงแล้วค่อยมาใหม่ทีหลัง";
+		next;
+		mes "[Lady Amy]";
+		mes "ถ้าคุณต้องการ";
+		mes "ฉันจะปล่อยเธอ";
+		mes "สอบใหม่โอเคไหม";
+		close;
+	}
+	else if (KNIGHT_Q == 10) {
+		mes "หืม?";
+		mes "ทำไมถึงทำ";
+		mes "มาหาเอมี่?";
+		next;
+		mes "[เลดี้เอมี่]";
+		mes "ต้องไป";
+		mes "เซอร์เอ็ดมันด์เพื่อคุณ";
+		mes "การทดสอบครั้งต่อไปโอเคไหม";
+		close;
+	}
+	else if (KNIGHT_Q == 14) {
+		mes "ว้าว ~";
+		mes "ถึงเวลาแล้ว";
+		mes "ทุกคนต้องตัดสินใจ";
+		mes "เมื่อคุณเปลี่ยนอาชีพ!";
+		next;
+		mes "[เลดี้เอมี่]";
+		mes "ไปคุยกับเราเถอะ";
+		mes "กัปตันอย่ากังวล";
+		mes "มากเกินไปมันควรจะ";
+		mes "ไม่เป็นไร";
+		close;
+	}
+	else {
+		mes "หืม?";
+		mes "ทำไมถึงทำ";
+		mes "มาหาเอมี่?";
+		next;
+		mes "[เลดี้เอมี่]";
+		mes "คุณยังมี";
+		mes "ต้องทำแบบทดสอบอื่น ๆ ";
+		mes "รีบ ๆ จบ ~";
+		close;
+	}
+}
+
+// Test 4 (patience)
+//==========================================================
+prt_in,70,99,6	script	Sir Edmond#knt	734,{
+	mes "[Sir Edmond]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "คิดถึงของคุณ";
+			mes "จิตใจราวกับว่ามันเป็น";
+			mes "น้ำไหล";
+			next;
+			mes "[Sir Edmond]";
+			mes "น้ำไหล";
+			mes "หลีกเลี่ยงอุปสรรค";
+			mes "กำลังไป ... ";
+			next;
+			mes "[เซอร์เอ็ดมันด์]";
+			mes "อัศวินต้องเป็น";
+			mes "สามารถผ่านสิ่งต่างๆได้";
+			mes "เหมือนน้ำนิ่งใน";
+			mes "สถานการณ์ใด ๆ ";
+			close;
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "ต้นไม้ที่มีรากลึกจะไม่พลิ้วไหวไปกับสายลมความจริงที่ว่าทักษะที่ทรงพลังต้องสร้างขึ้นจากพื้นฐานที่แข็งแกร่งนั้นไม่สามารถเปลี่ยนแปลงได้ ... ";
+			next;
+			mes "[เซอร์เอ็ดมันด์]";
+			mes "อนาคตของคุณ";
+			mes "สามารถเป็นได้";
+			mes "ตัดสินใจแล้ว ... ";
+			close;
+		}
+		else {
+			mes "ทุกสิ่งในโลกนี้ดำรงอยู่อย่างกลมกลืนการมีชีวิตอยู่โดยไม่ขัดขวางความสามัคคีนี้เป็นวิธีที่ถูกต้องในการดำเนินชีวิต ... ";
+			close;
+		}
+	}
+	if (KNIGHT_Q == 0) {
+		mes "คนที่มีความคิดลางสังหรณ์จะฝันแบบนั้นเท่านั้นดีกว่าที่จะไม่มีความฝันเลยดีไปกว่าการฝันถึงความเศร้าและความสิ้นหวัง";
+		close;
+	}
+	else if (KNIGHT_Q >= 1 && KNIGHT_Q <= 9) {
+		mes "มันคืออะไร ... ";
+		mes "นักดาบพเนจร?";;
+		next;
+		if (select("ฉันต้องการสอบเพื่อเปลี่ยนงาน:โอ้ไม่มีอะไร.") == 1) {
+			mes "[Sir Edmond]";
+			mes "ต้องเอาเมล็ดมาวางก่อน";
+			mes "ในแผ่นดินก่อนที่เมล็ดจะงอกจากนั้นต้นอ่อนจะต้องผลิใบก่อนที่ตาของมันจะผลิดอกออกมา ... ";
+			next;
+			mes "[Sir Edmond]";
+			mes "ถ้าไม่ ... ";
+			mes "ดอกไม้จะบาน";
+			mes "ไม่สมบูรณ์";
+			next;
+			mes "[Sir Edmond]";
+			mes "ไปหาคนอื่น";
+			mes "ก่อนอื่นคุณ";
+			mes "อาจพบเส้นทางของคุณ ... ";
+			close;
+		}
+		mes "[Sir Edmond]";
+		mes "ชีวิตที่คุณ";
+		mes "อีกไม่นานอยากจะเป็น";
+		mes "ต่อหน้าต่อตา";
+		mes "ทุกอย่างจะ";
+		mes "มาอย่างสมบูรณ์แบบ";
+		mes "สั่ง.";
+		close;
+	}
+	else if (KNIGHT_Q == 10) {
+		mes "มันคืออะไร ... ";
+		mes "นักดาบพเนจร";
+		next;
+		if (select("เลดี้เอมี่ส่งมาให้ฉัน:โอ้ไม่มีอะไร.") == 1) {
+			mes "[Sir Edmond]";
+			mes "ได้เวลาทำแบบทดสอบของฉันแล้วโปรดทำให้ดีที่สุดเหมือนที่คุณได้ทำในการทดสอบอื่น ๆ ";
+			next;
+			mes "[Sir Edmond]";
+			mes "ฉันชื่อ";
+			mes "Edmond Groster.";
+			mes "ฉันเป็นสมาชิกของ";
+			mes "ผู้กล้าแห่งพรอนเทรา";
+			next;
+			mes "[Sir Edmond]";
+			mes "อัศวินอยู่ในฐานะที่จะให้คนอื่นทำตามดังนั้นคุณต้องคิดถึงระเบียบของโลกอย่างถ่อมตัวและมีบุคลิกที่เหมาะสมกับบทบาทที่คุณจะเล่น";
+			next;
+			mes "[Sir Edmond]";
+			mes "คุณต้องไม่ตัดสินใจโดยประมาทเจตจำนงของคุณควรโค้งงอเหมือนต้นอ้อหรือมั่นคงเหมือนหินเมื่อสถานการณ์เรียกร้อง";
+			next;
+			mes "[Sir Edmond]";
+			mes "คุณต้องไม่ฆ่าสัตว์ประหลาดโดยไม่มีเหตุผลและอย่ามีความสุขในการทำเช่นนั้นใช้เวลานี้ในการคิดเรื่องนี้ด้วยตัวเองอย่างเงียบ ๆ ... ";
+			next;
+			mes "[Sir Edmond]";
+			mes "ถ้าอย่างนั้นเราจะ";
+			mes "เริ่มการทดสอบ";
+			mes "โปรดทราบ";
+			mes "คุณภาพของ";
+			mes "คารวะ.";
+			close2;
+			set KNIGHT_Q,11;
+			changequest 9009,9010;
+			warp "job_knt",143,57;
+			end;
+		}
+		mes "[Sir Edmond]";
+		mes "ชีวิตที่คุณต้องการ";
+		mes "อีกไม่นานจะถึงก่อน";
+		mes "ดวงตาของคุณ";
+		close;
+	}
+	else if (KNIGHT_Q == 11) {
+		mes "มันคืออะไร ... ";
+		mes "นักดาบพเนจร?";
+		next;
+		if (select("ฉันขอโทษฉันไม่ได้ตั้งใจจะ ... :โอ้ไม่มีอะไร.") == 1) {
+			mes "[Sir Edmond]";
+			mes "คุณประมาทเกินไปในการทดสอบครั้งล่าสุดดาบของอัศวินมีไว้เพื่อปกป้องผู้อื่นไม่ใช่เพื่อทรมานสัตว์ประหลาดที่อ่อนแอกว่า";
+			next;
+			mes "[Sir Edmond]";
+			mes "ในโลกที่ทุกสิ่งดำรงอยู่อย่างกลมกลืนคุณไม่สามารถให้มนุษย์ทำลายได้อย่างต่อเนื่องโดยไม่มีจุดมุ่งหมายหลักการนี้ใช้ได้กับโลกแห่งความเป็นจริงไม่ใช่กับการทดสอบนี้เพียงอย่างเดียว";
+			next;
+			mes "[Sir Edmond]";
+			mes "การทดสอบ";
+			mes "จะเริ่ม";
+			mes "แสดงของคุณ";
+			mes "อดทน ... ";
+			close2;
+			warp "job_knt",143,57;
+			end;
+		}
+		mes "[Sir Edmond]";
+		mes "ชีวิตที่คุณ";
+		mes "อีกไม่นานอยากจะเป็น";
+		mes "ต่อหน้าต่อตา";
+		mes "ทุกอย่างจะ";
+		mes "มาอย่างสมบูรณ์แบบ";
+		mes "สั่ง.";
+		close;
+	}
+	else if (KNIGHT_Q == 12 || KNIGHT_Q == 13) {
+		mes "ฉันได้เห็นนิสัยของคุณด้วยตัวของฉันเองตอนนี้ถึงเวลาที่คุณต้องทำแบบทดสอบครั้งสุดท้ายแล้วไปพูดกันเถอะ";
+		mes "ถึงเซอร์เกรย์ ... ";
+		close;
+	}
+	else {
+		mes "ไปพูด";
+		mes "ถึงกัปตันของเรา";
+		mes "ถึงเวลาแล้ว";
+		mes "สำหรับเราทุกคน";
+		mes "ประเมินของคุณ";
+		mes "ประสิทธิภาพ";
+		close;
+	}
+}
+
+job_knt,1,1,1	script	Timer#knt	107,{
+OnTimer300000:
+	enablenpc "Warp#knt";
+	end;
+
+OnTimer300500:
+	donpcevent "Timer#knt::OnDisable";
+	disablenpc "Warp#knt";
+	end;
+
+OnTimer301500:
+	stopnpctimer;
+	donpcevent "Timer#knt::OnEnable";
+	end;
+
+OnInit:
+OnEnable:
+	enablenpc "Timer#knt";
+	monster "job_knt",141,57,"Poring",1002,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",145,57,"Poring",1002,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",143,55,"Poring",1002,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",143,59,"Poring",1002,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",141,55,"Lunatic",1063,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",141,59,"Lunatic",1063,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",145,55,"Lunatic",1063,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",145,59,"Lunatic",1063,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",139,57,"Chonchon",1011,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",147,57,"Chonchon",1011,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",143,53,"Chonchon",1011,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",143,61,"Chonchon",1011,1,"Timer#knt::OnMyMobDead";
+	//These monsters were out of bounds. Adjusted to put them in bounds.
+	monster "job_knt",165,54,"Mushroom",1182,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",165,57,"Mushroom",1182,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",122,54,"Mushroom",1182,1,"Timer#knt::OnMyMobDead";
+	monster "job_knt",122,57,"Mushroom",1182,1,"Timer#knt::OnMyMobDead";
+	initnpctimer;
+	end;
+
+OnDisable:
+	killmonster "job_knt","Timer#knt::OnMyMobDead";
+	disablenpc "Timer#knt";
+	disablenpc "Warp#knt";
+	end;
+
+OnMyMobDead:
+	warp "prt_fild05",353,251;
+	end;
+}
+
+job_knt,143,57,1	script	Warp#knt	107,22,22,{
+OnInit:
+	disablenpc "Warp#knt";
+	end;
+OnTouch_:
+	set KNIGHT_Q,12;
+	changequest 9010,9011;
+	warp "prt_in",80,100;
+	end;
+}
+
+// Test 5, and creates Claymores for knights
+//==========================================================
+prt_in,87,92,4	script	Sir Gray#knt	119,{
+	mes "[Sir Gray]";
+	if (BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Knight) {
+			mes "แสงแวววาว";
+			mes "ที่ส่องออกมาจากดาบนี้ไม่สามารถถ่ายทอดออกมาเป็นคำพูดได้นี่คืออาวุธที่อัศวินทุกคนต้องมี";
+			next;
+			mes "[Sir Gray]";
+			mes "ครับ ... ";
+			mes "^3355FFClaymore^000000!";
+			mes "อัศวินทุกคน";
+			mes "อยากได้!";
+			next;
+			switch(select("About ^3355FFClaymore^000000:Buy Claymore:End Conversation")) {
+			case 1:
+				mes "[Sir Gray]";
+				mes "เคลย์มอร์หนึ่งในดาบที่มีชื่อเสียงที่สุดที่คุณสามารถหาได้ในพรอนเทราของรูน - มิดการ์ท !! มูลค่าของมันไม่มีค่าเมื่อพิจารณาโดยอัศวิน";
+				next;
+				mes "[Sir Gray]";
+				mes "ตอนนี้ Prontera Chivalry กำลังสร้าง Claymores ที่ยอดเยี่ยมเหล่านี้สำหรับ Knights พวกเขามีเพียง ^3355FF74,000 ^000000 Zeny";
+				next;
+				mes "[Sir Gray]";
+				mes "แต่ไม่เพียงแค่นั้นคุณต้อง";
+				mes "1 ^3355FFSteel ^000000 เพราะลักษณะของ Claymore ถ้าคุณชอบฉันสามารถสร้างให้คุณได้เพื่อเกียรติของ Prontera Chivalry!";
+				close;
+			case 2:
+				if (MaxWeight - Weight < 1800) {
+					mes "[Sir Gray]";
+					mes "โอ้ไม่ ... ";
+					mes "ดูเหมือนว่าคุณจะบรรทุกสิ่งของมากเกินไปคุณไม่มีพื้นที่เพียงพอสำหรับเคลย์มอร์ที่มีน้ำหนักมากในคลังของคุณ";
+					next;
+					mes "[Sir Gray]";
+					mes "ทำไมไม่ทำ";
+					mes "ไปจัดระเบียบ";
+					mes "รายการของคุณก่อน";
+					close;
+				}
+				else {
+					if ((Zeny > 73999) && (countitem(999) > 0) && (BaseJob == Job_Knight)) {
+						mes "[Sir Gray]";
+						mes "พร้อมแล้ว!";
+						mes "คุณต้องรู้";
+						mes "มูลค่าที่แท้จริงของ";
+						mes "a Claymore!";
+						mes "ฉันจะทำให้";
+						mes "ได้แล้ว !!";
+						next;
+						mes "[Sir Gray]";
+						mes "พื้นฐานของ";
+						mes " ทำ Claymore";
+						mes "ง่ายนิดเดียวชม ~!";
+						next;
+						mes "^3355FF*Stir Stir*^000000";
+						mes "^3355FF*Ooncha Ooncha*^000000";
+						next;
+						mes "[Sir Gray]";
+						mes "โอเคพร้อมแล้ว!";
+						mes "ความภาคภูมิใจของอัศวินทุกคน:";
+						mes "a fine ^3355FFClaymore^000000.";
+						mes "คุณได้รับของที่เชื่อถือได้";
+						mes "มันจะเป็นเพื่อนที่ดีในการผจญภัยของคุณ";
+						delitem 999,1; //Steel
+						set Zeny, Zeny - 74000;
+						getitem 1163,1; //Claymore
+						close;
+					}
+					mes "[Sir Gray]";
+					mes "ฉันรู้ว่าคุณอาจต้องการเคลย์มอร์จริงๆ แต่ฉันไม่สามารถทำมันได้หากไม่มีวัสดุ";
+					mes "^3355FF74,000 zeny^000000 and ^3355FF1 Steel!^000000.";
+					next;
+					mes "[Sir Gray]";
+					mes "กลับมาเมื่อไหร่";
+					mes "คุณมีทุกอย่าง";
+					mes "พร้อมแล้วฉันจะเป็น";
+					mes "รอ ... ";
+					close;
+				}
+			case 3:
+				mes "[Sir Gray]";
+				mes "อัศวินทุกคนควรจะสามารถใช้ Claymore ราวกับว่ามันเป็นส่วนเสริมของร่างกายของพวกเขาฉันเคยตั้งหน้าตั้งตารอคอยที่จะประลองเคลย์มอร์ของฉันในการต่อสู้ ...";
+				close;
+			}
+		}
+		else if (BaseClass == Job_Novice) {
+			mes "เชื่อสิ";
+			mes "หรือเปล่าฉันเป็น";
+			mes "ครั้งเป็น Novice";
+			mes "เช่นกัน";
+			next;
+			mes "[Sir Gray]";
+			mes "ฉันไม่เคยวางแผนที่จะเป็นอัศวิน แต่ฉันตัดสินใจที่จะเป็นคนที่แข็งแกร่งอย่างไรก็ตามตลอดการเดินทางของฉันฉันลงเอยด้วยการเข้าร่วม Prontera Chivalry ฮ่าฮ่าฮ่า!";
+			close;
+		}
+		mes "น้องหนึ่ง";
+		mes "ใช้เวลาของคุณ";
+		mes "อย่างชาญฉลาด";
+		next;
+		mes "[Sir Gray]";
+		mes "ไม่มีจุดหมาย";
+		mes "เก็บงำความเสียใจ";
+		mes "เมื่อเวลาผ่านไป";
+		close;
+	}
+	if (KNIGHT_Q == 0) {
+		mes "น้องหนึ่ง";
+		mes "ใช้เวลาของคุณ";
+		mes "อย่างชาญฉลาด";
+		next;
+		mes "[Sir Gray]";
+		mes "ไม่มีจุดหมาย";
+		mes "เก็บงำความเสียใจ";
+		mes "เมื่อเวลาผ่านไป";
+		close;
+	}
+	else if ((KNIGHT_Q == 12) || (KNIGHT_Q == 13)) {
+		if (KNIGHT_Q == 12) {
+			mes "โอ้ ... ";
+			mes "นักดาบหนุ่ม";
+			mes "ใช่อะไรทำได้";
+			mes "ฉันทำเพื่อเธอ?";
+			next;
+			if (select("ฉันต้องการสอบเพื่อเปลี่ยนงาน:โอ้ไม่มีอะไร.") == 1) {
+				mes "[Sir Gray]";
+				mes "ฉันเข้าใจแล้ว";
+				mes "งั้นก็เอา";
+				mes "ของคนอื่น";
+				mes "ทดสอบ?";
+				next;
+				mes "[Sir Gray]";
+				mes "แล้วจะต้อง";
+				mes "เราจะเริ่มของฉัน?";
+				mes "มันไม่จริง";
+				mes "การทดสอบ.";
+				next;
+				mes "[Sir Gray]";
+				mes "มาคุยกัน";
+				mes "ลวก";
+				mes "เราจะ?";
+				next;
+				mes "[Sir Gray]";
+				mes "เฟิร์ส ...";
+				mes "ทำไมถึงทำ";
+				mes "ตัดสินใจที่จะเป็นe";
+				mes "อัศวิน?";
+				next;
+			}
+			else {
+				mes "[Sir Gray]";
+				mes "ดูแล!!";
+				close;
+			}
+		}
+		else if (KNIGHT_Q == 13) {
+			mes "อ๊ะ, คุณอีกแล้ว.";
+			mes "อะไรทำให้คุณ";
+			mes "ถึงฉัน?";
+			next;
+			if (select("I've been thinking a lot.:Oh, nothing.") == 1) {
+				mes "[Sir Gray]";
+				mes "งั้นเหรอ ... ";
+				mes "ฉันสงสัยว่าคุณ";
+				mes "มี ... ";
+				next;
+				mes "[Sir Gray]";
+				mes "ถ้าอย่างนั้น ... ";
+				mes "เหมือนครั้งที่แล้ว,";
+				mes "ฉันจะถามอีกครั้ง..";
+				next;
+				mes "[Sir Gray]";
+				mes "เฟิร์ส ...";
+				mes "ทำไมถึงทำ";
+				mes "ตัดสินใจที่จะเป็น";
+				mes "อัศวิน?";
+				next;
+			}
+			else {
+				mes "[Sir Gray]";
+				mes "ดูแล!";
+				mes "สุขภาพคือ";
+				mes "ผู้ชายทุกคน";
+				mes "สมบัติ!";
+				close;
+			}
+		}
+		switch(select("เพื่อให้แข็งแกร่งขึ้น ... :เพื่อช่วยกิลด์ของฉัน ... :เพราะฉันไม่พอใจตัวเองในตอนนี้ ...")) {
+		case 1:
+			mes "[Sir Gray]";
+			mes "จะแข็งแรงขึ้นมั้ย?";
+			mes "ใช่อัศวินแข็งแกร่งมาก.";
+			mes "แต่ทำไมต้องมีกำลัง";
+			next;
+			mes "[Sir Gray]";
+			mes "เป็นการอวดคนอื่นเพื่อให้มีชื่อเสียงหรือคุณมีเหตุผลที่แตกต่างกันคุณคิดว่าอะไรคือสิ่งที่ดีในการได้รับความแข็งแกร่งในฐานะอัศวิน?";
+			next;
+			switch(select("Gได้รับความมั่งคั่งและชื่อเสียง:ฉันปกป้องตัวเองได้:ฉันปกป้องคนอื่นได้.")) {
+			case 1:
+				set .@knight_t,.@knight_t+10;
+				mes "[Sir Gray]";
+				mes "แน่นอนความมั่งคั่งและชื่อเสียงมีที่มาที่ไปในโลก แต่พวกเราในฐานะอัศวินต้องมีชีวิตอยู่เพื่อคุณธรรมที่สูงกว่า.";
+				next;
+				break;
+			case 2:
+				mes "[Sir Gray]";
+				mes "คิดดีก่อนอื่นคุณต้องสามารถปกป้องตัวเองเพื่อปกป้องผู้อื่นด้วยเหตุนี้คุณต้องฝึกฝนอย่างต่อเนื่องและอย่ายอมแพ้กับความเกียจคร้าน.";
+				next;
+				break;
+			case 3:
+				mes "[Sir Gray]";
+				mes "อาเป็นความคิดที่ยอดเยี่ยมต้องใช้กำลังของอัศวินเพื่อปกป้องผู้อ่อนแอและปกป้องความชอบธรรม.";
+				next;
+				mes "[Sir Gray]";
+				mes "น่าเศร้าที่มีอัศวินไม่กี่คนที่ทำให้เราอับอายโดยลืมอุดมคติที่ควรจะเป็นพื้นฐานของการเป็นอัศวิน ... ";
+				next;
+				break;
+			}
+			break;
+		case 2:
+			mes "[Sir Gray]";
+			mes "อ่าเพื่อช่วยกิลด์ของคุณหรืออาจจะเป็นงานปาร์ตี้ของคุณราชาทริสแทรมที่ 3 ที่ฉลาดและมีเมตตากรุณาของเราให้คำพูดที่เป็นทองแก่พวกเรา";
+			next;
+			mes "[Sir Gray]";
+			mes "^^8B7500 เหนือแม่น้ำที่เงียบสงบยังเป็นน้ำตกที่อันตรายดังนั้นคุณต้องเตรียมพร้อมสำหรับทุกสิ่งเสมอ ... ^000000";
+			next;
+			mes "[Sir Gray]";
+			mes "แล้วคุณล่ะ";
+			mes "คิดว่าทำได้";
+			mes "ช่วยกิลด์ของคุณ?";
+			next;
+			switch(select("กิลด์ของฉันต้องการฉัน:ฉันสามารถช่วยรวบรวมเงินสำหรับกิลด์ของฉันได้:ฉันสามารถปกป้องสมาชิกกิลด์ของฉันได้")) {
+			case 1:
+				mes "[Sir Gray]";
+				mes "ทุกคนทุกที่ในโลกนี้";
+				mes "มีสถานที่ที่พวกเขาต้องการอย่าละเลยคนที่ต้องการแม้ว่าเขาจะไม่ใช่สมาชิกกิลด์ก็ตาม";
+				next;
+				break;
+			case 2:
+				set .@knight_t,.@knight_t+10;
+				mes "[Sir Gray]";
+				mes "ความมั่งคั่งเป็นสิ่งสำคัญแน่นอน";
+				mes "แต่พวกเราอัศวินต้องอยู่เพื่อคุณธรรมที่สูงกว่า";
+				next;
+				break;
+			case 3:
+				mes "[Sir Gray]";
+				mes "อาเป็นความคิดที่ยอดเยี่ยมต้องใช้ความแข็งแกร่งของอัศวินเพื่อปกป้องผู้อ่อนแอและปกป้องความชอบธรรม";
+				next;
+				mes "[Sir Gray]";
+				mes "น่าเศร้าที่มีอัศวินไม่กี่คนที่ทำให้เราอับอายโดยลืมอุดมคติที่ควรจะเป็นพื้นฐานของการเป็นอัศวิน ...";
+				next;
+				break;
+			}
+			break;
+		case 3:
+			set .@knight_t,.@knight_t+5;
+			mes "[Sir Gray]";
+			mes "ความพอใจที่คุณพูด.";
+			mes "ดูเหมือนว่าคุณจะเป็น";
+			mes "ป็นนักดาบที่ดีอยู่แล้ว";
+			mes "มีเหตุผลอะไรที่ทำให้คุณอยากเป็นอัศวิน?";
+			next;
+			mes "[Sir Gray]";
+			mes "ไม่รู้เรื่อง";
+			mes "Swordmen แต่อัศวินไม่ยอมให้ปล่อยตัวเองมีพวกที่หมกมุ่นอยู่กับการได้รับความแข็งแกร่งจนควบคุมตัวเองไม่ได้";
+			next;
+			mes "[Sir Gray]";
+			mes "งั้น ... ";
+			mes "ส่วนไหนของตัวเอง";
+			mes "ไม่พอใจ";
+			mes "ด้วยตอนนี้?";
+			next;
+			switch(select("Skills.:Goal.:Appearance.")) {
+			case 1:
+				set .@knight_t,.@knight_t+5;
+				mes "[Sir Gray]";
+				mes "ทักษะคือสิ่งที่คุณได้รับจากประสบการณ์ในฐานะอัศวินมันไม่สามารถเป็นเป้าหมายสูงสุดของคุณได้มิฉะนั้นคุณจะไม่มีทางพอใจในฐานะอัศวิน.";
+				next;
+				break;
+			case 2:
+				set .@knight_t,.@knight_t-5;
+				mes "[Sir Gray]";
+				mes "ฉันเห็น ...";
+				mes "การมีเป้าหมายอยู่เสมอเป็นสิ่งสำคัญมากคุณอาจเต็มไปด้วยความคิดที่จะเป็นอัศวิน แต่นั่นอาจเปลี่ยนแปลงไปตามกาลเวลา.";
+				next;
+				break;
+			case 3:
+				set .@knight_t,.@knight_t+5;
+				mes "[Sir Gray]";
+				mes "โอ้ไม่ ...";
+				mes "สิ่งที่คุณเห็นไม่ใช่สิ่งที่นับได้จริงๆ Swordman อาจแข็งแกร่งกว่าอัศวินและแม้แต่อัศวินก็อาจอ่อนแอลงหากเขาขี้เกียจ.";
+				next;
+				break;
+			}
+			break;
+		}
+		mes "[Sir Gray]";
+		mes "ฉันเข้าใจความคิดของคุณ.";
+		mes "แต่มีผู้ที่ต้องการ";
+		mes "กลายเป็นอัศวินโดยไม่ต้องคิด";
+		next;
+		mes "[Sir Gray]";
+		mes "คนเหล่านั้นเป็นผู้ยุยงให้เกิดปัญหาและทำให้เกียรติของอัศวินต้องอับอายซึ่งนำมาซึ่งผลลัพธ์ที่เปลี่ยนแปลงไม่ได้";
+		next;
+		mes "[Sir Gray]";
+		mes "เช่นเดียวกันกับคุณเช่นกันเมื่อคุณกลายเป็นอัศวินคุณจะไม่สามารถเป็น Swordman ได้อีกหน้าที่และความรับผิดชอบของอัศวินจะอยู่กับคุณตลอดไป";
+		next;
+		mes "[Sir Gray]";
+		mes "ถ้าคุณกลายเป็นอัศวินทันทีคุณจะทำอะไรก่อน?";
+		next;
+		switch(select("ฉันจะไปรบทันที:มีคนที่รอฉันอยู่:ฉันจะเรียนรู้เพิ่มเติมเกี่ยวกับ Knights.")) {
+		case 1:
+			mes "[Sir Gray]";
+			mes "ศึก ... ?";
+			mes "แล้ว?";
+			next;
+			switch(select("ฉันจะเติบโตภายในระยะเวลาสั้น ๆ :ฉันต้องการทดสอบความสามารถของตัวเองในฐานะอัศวิน:ฉันอยากไปที่ที่ท้าทายกว่านี้.")) {
+			case 1:
+				set .@knight_t,.@knight_t+10;
+				mes "[Sir Gray]";
+				mes "อย่ารีบร้อนเกินไปที่จะเข้มแข็งแม้ว่าคุณจะกลายเป็นe";
+				mes "อัศวินคุณยังคงเป็นตัวของตัวเอง";
+				next;
+				break;
+			case 2:
+				mes "[Sir Gray]";
+				mes "การทดสอบตัวเองเป็นสิ่งที่ดีการมีความสุขกับการเปลี่ยนแปลงของตัวเอง แต่อย่าลืมคุณสมบัติที่แท้จริงของการเป็นอัศวิน.";
+				next;
+				break;
+			case 3:
+				mes "[Sir Gray]";
+				mes "แม้ว่าคุณจะกลายเป็นอัศวิน แต่คุณก็ไม่ได้เปลี่ยนแปลงตัวเองภายในของคุณไม่จำเป็นต้องทำงานหนักเกินไป.";
+				mes "ผ่อนคลายและทำสิ่งต่างๆทีละขั้นตอน.";
+				next;
+				break;
+			}
+			break;
+		case 2:
+			mes "[Sir Gray]";
+			mes "ใครคือ";
+			mes "รอคุณอยู่?";
+			next;
+			switch(select("My friends.:My Guild members.:My Lover.")) {
+			case 1:
+				mes "[Sir Gray]";
+				mes "ฉันเห็นแล้วพวกเขาจะมีส่วนร่วมในความสุขกับความสำเร็จของคุณอย่าเสียน้ำใจและให้ความช่วยเหลือเพื่อนของคุณเสมอ.";
+				next;
+				break;
+			case 2:
+				mes "[Sir Gray]";
+				mes "ผู้ที่จะแบ่งปันความสุขและความยากลำบากของคุณในฐานะอัศวินคุณต้องปกป้องพวกเขาเสมอ";
+				next;
+				break;
+			case 3:
+				mes "[Sir Gray]";
+				mes "โอ้เยาวชน!";
+				mes "กลายเป็นอัศวินt";
+				mes "เพื่อที่รัก!";
+				mes "ปกป้องเสมอ"+((Sex==SEX_MALE)?"her":"him")+"...";
+				mes "แม้กระทั่งการเสียสละ";
+				mes "ชีวิตของคุณเอง!";
+				next;
+				mes "[Sir Gray]";
+				mes "นอกจากนี้ ... ";
+				mes "รักพวกเขาตลอดไป.";
+				mes "ความรักที่จริงใจ";
+				mes "หายาก.";
+				next;
+				break;
+			}
+			break;
+		case 3:
+			mes "[Sir Gray]";
+			mes "ทัศนคติที่ดี ... ";
+			mes "คุณมีแผนอะไร";
+			mes "เรียน?";
+			next;
+			switch(select("สถานที่ที่สะดวกสบายสำหรับอัศวินไป ... :เส้นทางที่แตกต่างของอัศวิน ... :วิธีรับเงินมากขึ้นในฐานะอัศวิน ... ")) {
+			case 1:
+				set .@knight_t,.@knight_t+5;
+				mes "[Sir Gray]";
+				mes "มีสถานที่มากมายที่สะดวกสบายหรือไม่สบายใจในโลกนี้อย่างไรก็ตาม Knights ต้อง";
+				mes "สามารถอยู่รอดได้ทุกที่.";
+				next;
+				break;
+			case 2:
+				mes "[Sir Gray]";
+				mes "มีอัศวินที่คล้ายกันมากมายอยู่นอกโลกคิดว่าพวกเขาเป็นรุ่นพี่ของคุณและถามคำถามมากมาย.";
+				next;
+				break;
+			case 3:
+				set .@knight_t,.@knight_t+15;
+				mes "[Sir Gray]";
+				mes "โอ้ไม่. คุณถือความมั่งคั่งเป็นสำคัญของการเป็นอัศวินหรือไม่เราไม่ได้ตั้งใจจะเป็นอย่างนั้นมาอีกครั้งเมื่อคุณคิดว่า";
+				mes "เพิ่มเติมเกี่ยวกับเรื่องนี้ ... ";
+				next;
+				break;
+			}
+			break;
+		}
+		mes "[Sir Gray]";
+		mes "โอ้ไม่เราเคยไปแล้ว";
+		mes "พูดมากเกินไป ...";
+		mes "ฉันขอโทษ";
+		mes "ทำให้คุณอยู่ที่นี่";
+		mes "นานมาก";
+		next;
+		if (.@knight_t == 0) {
+			set KNIGHT_Q,14;
+			changequest 9011,9012;
+			mes "[Sir Gray]";
+			mes "ฉันสนุกกับการพูดคุยกับคุณคุณทำให้ฉันนึกถึงตัวเองตอนเป็นหนุ่มสาวเราจะคุยกับกัปตันและตัดสินใจเลือกคุณ";
+			mes "เปลี่ยนอาชีพ?";
+			next;
+			mes "[Sir Gray]";
+			mes "ไม่ต้องกังวลเหมือนกัน";
+			mes "มากฉันมีมาก";
+			mes "ความคิดเห็นของคุณสูง.";
+			mes "ไปเลย ~";
+			close;
+		}
+		else if (.@knight_t == 5) {
+			set KNIGHT_Q,14;
+			changequest 9011,9012;
+			mes "[Sir Gray]";
+			mes "ฉันสนุกกับการพูดคุยกับคุณคุณสามารถคิดถึงหลักการของ Knighthood ได้มากขึ้นเมื่อคุณกลายเป็นอัศวิน";
+			next;
+			mes "[Sir Gray]";
+			mes "ถ้าอย่างนั้นเราจะไปหากัปตันและตัดสินใจเกี่ยวกับการเปลี่ยนงานของคุณหรือไม่อย่ากังวลมากเกินไปคุณดีพอที่จะเป็นอัศวิน!!";
+			close;
+		}
+		else if (.@knight_t == 10) {
+			set KNIGHT_Q,14;
+			changequest 9011,9012;
+			mes "[Sir Gray]";
+			mes "ฉันมีความสุขกับการพูดคุยกับคุณแม้ว่าจะมีบางส่วน";
+			mes "สิ่งที่กวนใจฉัน ...";
+			next;
+			mes "[Sir Gray]";
+			mes "คุณควรไป";
+			mes "ถึง กัปตัน";
+			mes "เพื่อที่เราจะได้ตัดสินใจ";
+			mes "เมื่อคุณเปลี่ยนอาชีพ.";
+			next;
+			mes "[Sir Gray]";
+			mes "Don't worry too much, coming to take my test means the others have acknowledged you as well.";
+			mes "Go now...!";
+			close;
+		}
+		else {
+			set KNIGHT_Q,13;
+			mes "[Sir Gray]";
+			mes "สนทนา";
+			mes "กับคนหนุ่มสาว";
+			mes "สนุกได้ตลอด ... ";
+			next;
+			mes "[Sir Gray]";
+			mes "แต่ดูเหมือนว่าความฝันของคุณจะอยู่ที่อื่นหรือว่าโฟกัสของคุณมัวใช้เวลาให้มากขึ้นในฐานะ Swordman แล้วจะกลับมา";
+			mes "ถึงฉันทีหลัง";
+			next;
+			mes "[Sir Gray]";
+			mes "หากคุณต้องการเป็นอัศวินอย่างแท้จริงคุณต้องเปลี่ยนมุมมองของคุณก่อนจากนั้นเราจะเห็น.";
+			close;
+		}
+	}
+	else if (KNIGHT_Q == 14) {
+		mes "ฉันบอกคุณแล้ว";
+		mes "ไปที่";
+		mes "ผู้กอง.";
+		next;
+		mes "[Sir Gray]";
+		mes "ทุกคนจะ";
+		mes "ทำอย่างระมัดระวัง";
+		mes "การตัดสินใจของพวกเขา,";
+		mes "ไปเลย!";
+		close;
+	}
+	else {
+		mes "โอ้ ...";
+		mes "นักดาบหนุ่ม.";
+		mes "ให้ฉันทำอะไรให้?";
+		next;
+		if (select("ฉันต้องการสอบเพื่อเปลี่ยนงาน:โอ้ไม่มีอะไร.") == 1) {
+			mes "[Sir Gray]";
+			mes "โฮโฮ ~";
+			mes "มีมากมาย";
+			mes "น้องคนอื่น";
+			mes "อัศวินในนี้";
+			next;
+			mes "[Sir Gray]";
+			mes "ถ้าคุณพูด";
+			mes "ถึงพวกเขาทั้งหมด";
+			mes "ฉันอาจทบทวน";
+			mes "คุณเช่นกัน.";
+			close;
+		}
+		mes "[Sir Gray]";
+		mes "ดูแล!";
+		mes "สุขภาพคือ";
+		mes "ผู้ชายทุกคน";
+		mes "สมบัติ!";
+		close;
+	}
+}

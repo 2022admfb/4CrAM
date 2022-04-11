@@ -1,0 +1,80 @@
+//===== rAthena Script =======================================
+//= Milk Trader
+//===== By: ==================================================
+//= kobra_k88; L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.5
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= [Official Conversion]
+//= Trades bottles for milk
+//===== Additional Comments: =================================
+//= Fully working
+//= 1.1 Negative input bug fixed [Lupus]
+//= 1.2 Raised the price to close zeny exploit [Lupus]
+//= 1.2a Switched to Lupus's "loopless" technique.[kobra_k88]
+//= 1.3 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//= 1.4 Implemented checkweight. [L0ne_W0lf]
+//= 1.5 Fixed missed variable. (bugreport:1523) [L0ne_W0lf]
+//============================================================
+
+prontera,73,140,0	script	Milk Vendor	86,{
+	if (checkweight(1201,1) == 0) {
+		mes "^3355FFแป๊บเดียว!";
+		mes "ฉันไม่สามารถเสนออะไรได้เลย";
+		mes "บริการให้คุณเพราะ";
+		mes "คุณแบกของมากเกินไป";
+		mes "ของใส่ของพิเศษของคุณ";
+		mes "คาฟร้าเก็บของแล้วมาใหม่ ~";
+		close;
+	}
+	mes "[Milk Vendor]";
+	//mes "Hey, hey...";
+	//mes "If you bring me";
+	mes "1 Empty Bottle และ";
+	mes "15 Zeny, ฉันจะแลกเปลี่ยน";
+	mes "สำหรับ 1 Milk.";
+	//mes "does that sound?";
+	next;
+	if (select("แลกเปลี่ยนทั้งหมด.:ยกเลิก") == 1) {
+		if (countitem(713) <= 0) {
+			mes "[Milk Vendor]";
+			mes "เฮ้ ... ";
+			mes "ไม่มี";
+			mes "ขวดเปล่า ๆ ";
+			mes "ฉันให้คุณไม่ได้จริงๆ";
+			//mes "นมนี้ ๆ ๆ ๆ ";
+			//mes "ทางคุณก็รู้ ... ";
+			close;
+		}
+		set .@bottles,countitem(713);
+		set .@total_weight,.@bottles * 50;
+		set .@total_cost,.@bottles * 15;
+		if (Zeny < .@Total_cost) {
+			mes "[Milk Vendor]";
+			//mes "โอ้โว้ย ~!";
+			mes "คุณมีไม่พอ";
+			mes "zeny แลกทั้งหมด";
+			mes "ขวดเปล่าสำหรับ";
+			mes "นมต้องมี";
+			mes "อย่างน้อย" + .@total_cost + " zeny.";
+			close;
+		}
+		if (MaxWeight - Weight < .@total_weight) {
+			mes "[Milk Vendor]";
+			mes "น้ำหนักเต็ม";
+			//mes "Would you make";
+			//mes "a little more room";
+			//mes "in your inventory";
+			//mes "before I give you";
+			//mes "all of this milk?";
+			close;
+		}
+		set Zeny, Zeny-.@total_cost;
+		delitem 713,.@bottles; //Empty Bottles
+		getitem 519,.@bottles; //Milk
+		close;
+	}
+	close;
+}

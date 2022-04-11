@@ -1,0 +1,214 @@
+diff --git npc/Cizz/Fake_Player.txt npc/Cizz/Fake_Player.txt
+index ba8bb3a26..bc888a96e 100644
+--- npc/Cizz/Fake_Player.txt
++++ npc/Cizz/Fake_Player.txt
+@@ -27,7 +27,7 @@ set @np$,"^00B2EE[Fake Player]^000000";
+ 
+ mes @np$;
+ mes "¤Ø³ÍÂÒ¡·ÓÍÐäÃ";
+-switch(select("^3CB371[»]^000000 Invocação Personalizada:^3CB371[»]^000000 Invocação Programada:^ff0000[»]^000000 Sair")){
++switch(select("^3CB371[1]^000000 ÊÃéÒ§µÑÇÅÐ¤Ã :^3CB371[2]^000000 ÊÃéÒ§·Ñ¹·Õ :^ff0000[3]^000000 Â¡àÅÔ¡")){
+ 
+ case 1:
+ 	next;
+@@ -59,19 +59,19 @@ case 1:
+ 	input .@sex;
+ 	next;
+ 	mes @np$;
+-	mes "ãÊè·Ã§¼Á:";
++	mes "ãÊè·Ã§¼Á 1-:";
+ 	input .@hairstyle;
+ 	next;
+ 	mes @np$;
+-	mes "ãÊèÊÕ¼Á:";
++	mes "ãÊèÊÕ¼Á 1-:";
+ 	input .@haircolor;
+ 	next;
+ 	mes @np$;
+-	mes "ãÊè ID ÍÒÇØ¸:";
++	mes "ãÊè ID ÍÒÇØ¸ 0-:";
+ 	input .@weapon;
+ 	next;
+ 	mes @np$;
+-	mes "»éÍ¹ÃËÑÊâÅè:";
++	mes "»éÍ¹ÃËÑÊâÅè 0-:";
+ 	input .@shield;
+ 	next;
+ 	mes @np$;
+@@ -87,7 +87,7 @@ case 1:
+ 	input .@lowhead;
+ 	next;
+ 	mes @np$;
+-	mes "ãÊèÊÕàÊ×éÍ¼éÒ¢Í§µÑÇÅÐ¤Ã:";
++	mes "ãÊèÊÕàÊ×éÍ¼éÒ¢Í§µÑÇÅÐ¤Ã 1-:";
+ 	input .@dye;
+ 	next;
+ 	mes @np$;
+@@ -98,14 +98,14 @@ case 1:
+ case 2:
+ 	next;
+ 	mes @np$;
+-	mes "Prontinho! Invoquei seus falsos jogadores programados.";
+-	.@monster_gid = fakeplayer( "prontera", 156, 191, "João", 4012, 1, 1, 2, 0, 0, 1, 5022, 0, 0, 1 );
+-	.@monster_gid = fakeplayer( "prontera", 156, 191, "Maria", 4013, 0, 1, 2, 0, 0, 1, 5025, 0, 0, 1 );
+-	.@monster_gid = fakeplayer( "prontera", 156, 191, "Ciclano", 4008, 1, 1, 2, 0, 0, 1, 5016, 0, 0, 1 );
+-	.@monster_gid = fakeplayer( "prontera", 156, 191, "Fulano", 4009, 1, 1, 2, 0, 0, 1, 0, 0, 0, 1 );
+-	.@monster_gid = fakeplayer( "prontera", 156, 191, "Sasha", 4011, 0, 1, 2, 0, 0, 1, 0, 0, 0, 1 );
+-	.@monster_gid = fakeplayer( "prontera", 156, 191, "Enzo", 4016, 1, 1, 2, 0, 0, 1, 0, 0, 0, 1 );
+-	.@monster_gid = fakeplayer( "prontera", 156, 191, "Valentina", 4017, 0, 1, 2, 0, 0, 1, 0, 0, 0, 1 );	
++	mes "¾ÃéÍÁáÅéÇ! ©Ñ¹àÃÕÂ¡â»Ãá¡ÃÁ»ÅÍÁ¢Í§¤Ø³ÁÒàÅè¹.";
++	.@monster_gid = fakeplayer( "izlude", 126, 142, "stefen", 4044, 1, 1, 2, 0, 0, 1, 5022, 0, 0, 1 );
++	.@monster_gid = fakeplayer( "izlude", 126, 142, "stavejob", 4044, 0, 1, 2, 0, 0, 1, 5025, 0, 0, 1 );
++	.@monster_gid = fakeplayer( "izlude", 126, 142, "olaha", 4044, 1, 1, 2, 0, 0, 1, 5016, 0, 0, 1 );
++	.@monster_gid = fakeplayer( "izlude", 126, 142, "abana", 4044, 1, 1, 2, 0, 0, 1, 0, 0, 0, 1 );
++	.@monster_gid = fakeplayer( "izlude", 126, 142, "evill", 4044, 0, 1, 2, 0, 0, 1, 0, 0, 0, 1 );
++	.@monster_gid = fakeplayer( "izlude", 126, 142, "duduee", 4044, 1, 1, 2, 0, 0, 1, 0, 0, 0, 1 );
++	.@monster_gid = fakeplayer( "izlude", 126, 142, "Melude", 4044, 0, 1, 2, 0, 0, 1, 0, 0, 0, 1 );	
+     close;
+ 
+ case 3:
+diff --git src/custom/script.inc src/custom/script.inc
+index 9e3bdd2d5..760c256be 100644
+--- src/custom/script.inc
++++ src/custom/script.inc
+@@ -53,7 +53,64 @@
+  
+ //========================================================
+  
++ BUILDIN_FUNC(addplayer)
++{
++    const char* mapn = script_getstr(st, 2);
++	int x = script_getnum(st, 3);
++	int y = script_getnum(st, 4);
+ 
++	const char* name = script_getstr(st, 5);
++	int sprite = script_getnum(st, 6);
++	int sex = script_getnum(st, 7);
++	int hair_style = script_getnum(st, 8);
++	int hair_color = script_getnum(st, 9);
++	int weapon = script_getnum(st, 10);
++	int shield = script_getnum(st, 11);
++	int head_top = script_getnum(st, 12);
++	int head_mid = script_getnum(st, 13);
++	int head_bottom = script_getnum(st, 14);
++	int option = script_getnum(st, 15);
++	int cloth_color = script_getnum(st, 16);
++	int mobid = script_getnum(st, 17);
++
++	int16 m;
++	struct mob_data* md = nullptr;
++
++	m = map_mapname2mapid(mapn);
++
++	// usa id do monstro para pegar a AI
++	md = mob_once_spawn_sub(NULL, m, x, y, name, mobid, "", SZ_SMALL, AI_NONE);
++
++
++	if (!md)
++		return SCRIPT_CMD_FAILURE;
++
++	md->addPlayer = true;
++	//md->ud.immune_attack = 0;
++
++	//diz ao emulador que se tiver mapflag pvpon fica ativo a morte dos fakeplayers caso contrario, fica desativado.
++	md->ud.immune_attack = map_getmapflag(m, MF_PVP) ? 0 : 1;
++
++	md->vd->class_ = sprite;
++
++	md->vd->sex = sex;
++	md->vd->hair_style = hair_style;
++	md->vd->hair_color = hair_color;
++	md->vd->weapon = weapon;
++	md->vd->shield = shield;
++	md->vd->head_top = head_top;
++	md->vd->head_mid = head_mid;
++	md->vd->head_bottom = head_bottom;
++	md->vd->cloth_color = cloth_color;
++
++	mob_spawn(md);
++	script_pushint(st, md->bl.id);
++	return SCRIPT_CMD_SUCCESS;
++}
++
++
++
++	
+ 
+ //BUILDIN_FUNC(example)
+ //{
+diff --git src/map/battle.cpp src/map/battle.cpp
+index b68efa3e8..d3cc2b9ba 100644
+--- src/map/battle.cpp
++++ src/map/battle.cpp
+@@ -8081,6 +8081,23 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
+ 				break;
+ 		}
+ 	}
++		// se o Mapflag PVP nÃ£o tiver ativo no mapa os "bots" nÃ£o atacam, caso contrÃ¡rio atacarÃ£o players tambÃ©m
++		if (!map_getmapflag(m, MF_PVP))
++		 if (src->type == BL_MOB && (BL_CAST(BL_MOB, src)->addPlayer) && target->type == BL_PC)
++		 return 0;
++	
++			//Habilita para atacar todos atÃ© do mesmo id
++			//if (src->type == BL_MOB && BL_CAST(BL_MOB, src)->mob_id == 1001 && target->type == BL_MOB && src->id != target->id)
++			//return 1;
++		
++			// verifica se o mob Ã© do id 1001, se nao for ele Ã© atacado pelos inimigos.
++		if (src->type == BL_MOB && target->type == BL_MOB && (BL_CAST(BL_MOB, target)->addPlayer) && !(BL_CAST(BL_MOB, src)->addPlayer))
++		 return 1;
++	
++			//Habilita para atacar todos (player + mobs do mapa e nao ataca amigos do mesmo id 1001)
++		if (src->type == BL_MOB && (BL_CAST(BL_MOB, src)->addPlayer) && target->type == BL_MOB && !(BL_CAST(BL_MOB, target)->addPlayer) && src->id != target->id)
++	 return 1;
++	
+ 
+ 	struct map_data *mapdata = map_getmapdata(m);
+ 
+diff --git src/map/clif.cpp src/map/clif.cpp
+index 29d7c3962..48d17ad42 100644
+--- src/map/clif.cpp
++++ src/map/clif.cpp
+@@ -11403,7 +11403,16 @@ void clif_parse_Emotion(int fd, struct map_session_data *sd)
+ /// 00c2 <count>.L
+ void clif_user_count(struct map_session_data* sd, int count)
+ {
++	struct s_mapiterator* iter;
++	struct mob_data* md;
++
+ 	int fd = sd->fd;
++	iter = mapit_geteachmob();
++	for (md = (TBL_MOB*)mapit_first(iter); mapit_exists(iter); md = (TBL_MOB*)mapit_next(iter)) {
++		if (md && md->addPlayer)
++			 count++;
++		
++	}
+ 
+ 	WFIFOHEAD(fd,packet_len(0xc2));
+ 	WFIFOW(fd,0) = 0xc2;
+diff --git src/map/mob.hpp src/map/mob.hpp
+index f9d27fbfb..829839f70 100644
+--- src/map/mob.hpp
++++ src/map/mob.hpp
+@@ -196,6 +196,7 @@ struct mob_data {
+ 	struct unit_data  ud;
+ 	struct view_data *vd;
+ 	bool vd_changed;
++	bool addPlayer;
+ 	struct status_data status, *base_status; //Second one is in case of leveling up mobs, or tiny/large mobs.
+ 	struct status_change sc;
+ 	struct mob_db *db;	//For quick data access (saves doing mob_db(md->mob_id) all the time) [Skotlex]
+diff --git src/map/script.cpp src/map/script.cpp
+index b6c606381..fde26ccc0 100644
+--- src/map/script.cpp
++++ src/map/script.cpp
+@@ -25284,6 +25284,10 @@ struct script_function buildin_func[] = {
+ 	BUILDIN_DEF(deactivatepset,"i"), // Deactive a pattern set [MouseJstr]
+ 	BUILDIN_DEF(deletepset,"i"), // Delete a pattern set [MouseJstr]
+ 	BUILDIN_DEF(fakeplayer, "siisiiiiiiiiiii"),
++		//frost
++	BUILDIN_DEF(addplayer, "siisiiiiiiiiiiii"),
++		// NPC interaction
++		BUILDIN_DEF(mes, "s*"),
+ #endif
+ 	BUILDIN_DEF(preg_match,"ss?"),
+ 	BUILDIN_DEF(dispbottom,"s??"), //added from jA [Lupus]

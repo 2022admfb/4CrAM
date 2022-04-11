@@ -1,0 +1,121 @@
+Header:
+  Type: ITEM_DB
+  Version: 1
+
+Body:
+  - Id: 7940
+    AegisName: Special_Alloy_Trap
+    Name: Special Alloy Trap
+    Type: Etc
+    Buy: 300
+    Weight: 2
+  - Id: 100371
+    AegisName: Homunculus_Supplement
+    Name: Homunculus Supplement
+    Type: Usable
+    Buy: 20
+    Weight: 10
+    Classes:
+      All: false
+    Gender: Female
+  - Id: 1000275
+    AegisName: Beaker
+    Name: Beaker
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000276
+    AegisName: Flame_Acid_Bottle
+    Name: Flame Acid Bottle
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000277
+    AegisName: Earth_Acid_Bottle
+    Name: Earth Acid Bottle
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000278
+    AegisName: Gale_Acid_Bottle
+    Name: Gale Acid Bottle
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000279
+    AegisName: Icicle_Acid_Bottle
+    Name: Icicle Acid Bottle
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000280
+    AegisName: High_Coating_Bottle
+    Name: High Coating Bottle
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000281
+    AegisName: High_Plant_Bottle
+    Name: High Plant Bottle
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000289
+    AegisName: Device_Capsule
+    Name: Device Capsule
+    Type: Etc
+    Buy: 20
+    Weight: 5
+  - Id: 1000290
+    AegisName: Auto_Battle_Capsule
+    Name: Auto Battle Capsule
+    Type: Etc
+    Buy: 20
+    Weight: 10
+  - Id: 1000291
+    AegisName: Wind_Stone_4th
+    Name: Wind Stone 4th
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000292
+    AegisName: Earth_Stone_4th
+    Name: Earth Stone 4th
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000293
+    AegisName: Flame_Stone_4th
+    Name: Flame Stone 4th
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000294
+    AegisName: Poison_Stone_4th
+    Name: Poison Stone 4th
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000295
+    AegisName: Ice_Stone_4th
+    Name: Ice Stone 4th
+    Type: Etc
+    Buy: 20
+    Weight: 1
+  - Id: 1000311
+    AegisName: Hawk_Flute
+    Name: Hawk Flute
+    Type: Etc
+    Buy: 20
+  - Id: 1000346
+    AegisName: 4th_Job_Guide
+    Name: 4th Job Guide
+    Type: Etc
+    Buy: 20
+  - Id: 1000352
+    AegisName: Device_Creation_Guide
+    Name: Device Creation Guide
+    Type: Etc
+    Buy: 20
+    Weight: 10
+    

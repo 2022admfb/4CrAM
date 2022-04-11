@@ -1,0 +1,84 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= 1.1 Made all into functions, additional checks, etc. [Lupus]
+//= 1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================ 
+
+valkyrie,44,39,5	script	Lord Knight#Valkyrie	56,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Lord Knight]";
+			mes "ยินดีด้วย";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		mes "[Lord Knight]";
+		mes "พวกเราอัศวินมี";
+		mes "ความรับผิดชอบที่น่ากลัว ... ";
+		mes "เพื่อรับใช้และปกป้อง";
+		next;
+		mes "[Lord Knight]";
+		mes "แม้จะเสียค่าใช้จ่าย";
+		mes "ชีวิตของเราเอง";
+		mes "เราต้องปกป้อง";
+		mes "ความเป็นอยู่ที่ดีของสหายของเรา";
+		close;
+	}
+	else if (ADVJOB == Job_Lord_Knight && Class == Job_Swordman_High && JobLevel > 39) {
+		mes "[Lord Knight]";
+		mes "ถึงเวลาแล้ว!";
+		mes "โลกนี้ยังต้องการคุณ";
+		mes "โปรดใช้ชีวิตต่อไป";
+		mes "เป็นฮีโร่ที่มีรูปร่างหน้าตาใหม่";
+		next;
+		mes "[Lord Knight]";
+		mes "คุณต้องการ";
+		mes "จะกลายเป็น Lord Knight?";
+		next;
+		if (select("No.:Yes.") == 1) {
+			mes "[Lord Knight]";
+			mes "เมื่อคุณพร้อม";
+			mes "อย่าลังเลที่จะกลับมา";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Lord Knight]";
+			mes "คุณยังสามารถเรียนรู้ทักษะเพิ่มเติมได้อีกโปรดใช้";
+			mes "คะแนนทักษะที่เหลือทั้งหมดของคุณก่อนที่จะกลับมาหาฉัน";
+			close;
+		}
+		jobchange Job_Lord_Knight;
+		set ADVJOB,0;
+		mes "[Lord Knight]";
+		mes "ยินดีด้วย!";
+		mes "ในฐานะอัศวินผู้เป็นลอร์ด";
+		mes "ฉันหวังว่าคุณจะเป็น";
+		mes "ระดับแนวหน้าของการต่อสู้";
+		mes "และนำพันธมิตรของคุณไปสู่ชัยชนะ!";
+		close;
+	}
+	mes "[Lord Knight]";
+	mes "ยินดีต้อนรับ";
+	mes "ถึง Valhalla,";
+	mes "หอเกียรติยศ.";
+	next;
+	mes "[Lord Knight]";
+	mes "กรุณาทำให้";
+	mes "สบายตัว";
+	mes "ในขณะที่คุณอยู่ที่นี่";
+	mes "ให้เกียรตินักรบ!";
+	close;
+}

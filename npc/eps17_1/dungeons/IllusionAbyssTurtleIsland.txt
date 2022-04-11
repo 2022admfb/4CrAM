@@ -1,0 +1,653 @@
+// Narin 
+tur_d03_i,139,186,3	script	Narin#abyssturtleisland	4_F_NARIN,7,3,{
+	if(daily_ominousheater == 2){
+		emotion ET_CONGRATULATION;
+		mes "[Narin]";
+		mes "คุณทำได้ดีมาก!";
+		mes "คุณตามล่าพวกมันทั้งหมด!";
+		next;
+		mes "[Narin]";
+		mes "ตอนนี้ได้รับ ^0000ffIllusion Stone ^000000";
+		hunt_abyssturtleisland_progress = 0;
+		daily_ominousheater = 0;
+		delay_daily_ominousheater = gettimetick(2)+86400;
+		adventurer_abyssturtleisland = 1;
+		getitem 25271,1;
+		completequest 95039;
+		next;
+		mes "[Narin]";
+		mes "คุณสามารถรับคำท้าตามล่าอีกครั้งได้หากต้องการ แต่คุณต้องรอ 1 วันสำหรับความท้าทายเดียวกัน";
+		mes "ดูแล!";
+		end;
+	}
+	if(daily_ominoussolider == 2){
+		emotion ET_CONGRATULATION;
+		mes "[Narin]";
+		mes "คุณทำได้ดีมาก!";
+		mes "คุณตามล่าพวกมันทั้งหมด!";
+		next;
+		mes "[Narin]";
+		mes "ตอนนี้ได้รับ ^0000ffIllusion Stone ^000000";
+		hunt_abyssturtleisland_progress = 0;
+		daily_ominoussolider = 0;
+		delay_daily_ominoussolider = gettimetick(2)+86400;
+		adventurer_abyssturtleisland = 1;
+		getitem 25271,1;
+		completequest 95040;
+		next;
+		mes "[Narin]";
+		mes "คุณสามารถรับคำท้าตามล่าอีกครั้งได้หากต้องการ แต่คุณต้องรอ 1 วันสำหรับความท้าทายเดียวกัน";
+		mes "ดูแล!";
+		end;
+	}
+	if(daily_ominousfreezer == 2){
+		emotion ET_CONGRATULATION;
+		mes "[Narin]";
+		mes "คุณทำได้ดีมาก!";
+		mes "คุณตามล่าพวกมันทั้งหมด!";
+		next;
+		mes "[Narin]";
+		mes "ตอนนี้ได้รับ ^0000ffIllusion Stone ^000000";
+		hunt_abyssturtleisland_progress = 0;
+		daily_ominousfreezer = 0;
+		delay_daily_ominousfreezer = gettimetick(2)+86400;
+		adventurer_abyssturtleisland = 1;
+		getitem 25271,1;
+		completequest 95041;
+		next;
+		mes "[Narin]";
+		mes "คุณสามารถรับคำท้าตามล่าอีกครั้งได้หากต้องการ แต่คุณต้องรอ 1 วันสำหรับความท้าทายเดียวกัน";
+		mes "ดูแล!";
+		end;
+	}
+	if(daily_ominouspermeter == 2){
+		emotion ET_CONGRATULATION;
+		mes "[Narin]";
+		mes "คุณทำได้ดีมาก!";
+		mes "คุณตามล่าพวกมันทั้งหมด!";
+		next;
+		mes "[Narin]";
+		mes "ตอนนี้ได้รับ ^0000ffIllusion Stone ^000000";
+		hunt_abyssturtleisland_progress = 0;
+		daily_ominouspermeter = 0;
+		delay_daily_ominouspermeter = gettimetick(2)+86400;
+		adventurer_abyssturtleisland = 1;
+		getitem 25271,1;
+		completequest 95042;
+		next;
+		mes "[Narin]";
+		mes "คุณสามารถรับคำท้าตามล่าอีกครั้งได้หากต้องการ แต่คุณต้องรอ 1 วันสำหรับความท้าทายเดียวกัน";
+		mes "ดูแล!";
+		end;
+	}
+	if(daily_ominousassulter == 2){
+		emotion ET_CONGRATULATION;
+		mes "[Narin]";
+		mes "คุณทำได้ดีมาก!";
+		mes "คุณตามล่าพวกมันทั้งหมด!";
+		next;
+		mes "[Narin]";
+		mes "ตอนนี้ได้รับ ^0000ffIllusion Stone ^000000";
+		hunt_abyssturtleisland_progress = 0;
+		daily_ominousassulter = 0;
+		delay_daily_ominousassulter = gettimetick(2)+86400;
+		adventurer_abyssturtleisland = 1;
+		getitem 25271,1;
+		completequest 95043;
+		next;
+		mes "[Narin]";
+		mes "คุณสามารถรับคำท้าตามล่าอีกครั้งได้หากต้องการ แต่คุณต้องรอ 1 วันสำหรับความท้าทายเดียวกัน";
+		mes "ดูแล!";
+		end;
+	}
+	if(hunt_abyssturtleisland_progress > 0){
+		mes "[Narin]";
+		mes "คุณต้องฆ่า 30x ^009900"+.MobsName$[hunt_ID_abyssturtleisland-1]+"^000000";
+		mes "คุยกับฉันเมื่อคุณทำเสร็จ";
+		end;
+	}
+	mes "[Narin]";
+	mes "คุณพร้อมที่จะสำรวจสถานที่นี้หรือไม่?";
+	next;
+	switch(select("ใช่","ไม่")) {
+		case 1:
+			break;
+		case 2:
+		emotion ET_SURPRISE;
+			mes "[Narin]";
+			mes "แล้วคุณมาทำอะไรที่นี่?";
+			mes "ฉันไม่เข้าใจคุณคน!";
+			end;
+	}
+	mes "[Narin]";
+	mes "ดีมาก!";
+	mes "ในขณะที่คุณสำรวจสถานที่นี้ช่วยฉันฆ่าสัตว์ประหลาดในสถานที่นี้";
+	next;
+	mes "[ "+strcharinfo(0)+" ]";
+	mes "ชัวร์!";
+	mes "ฉันไม่กลัวอะไร!";
+	mes "ฉันมั่นใจ!";
+	next;
+	mes "[Narin]";
+	mes "อ่าาาาาา ...";
+	mes "ตกลงตกลงฉันเชื่อคุณ";
+	mes "ตอนนี้เลือกสัตว์ประหลาดที่คุณต้องการล่า";
+	next;
+	switch(select("Ominous Heater","Ominous Solider","Ominous Freezer","Ominous Permeter","Ominous Assulter","ฉันเปลี่ยนใจ.")){
+		case 1:
+			if(gettimetick(2) < delay_daily_ominousheater){
+				mes "[Narin]";
+				mes "คุณต้องรอจนถึงวันพรุ่งนี้เพื่อรับคำท้าตามล่าอีกครั้ง";
+				end;
+			}
+			hunt_ID_abyssturtleisland = 1;
+			goto hunt_abyssturtleisland;
+			close;
+		case 2:
+			if(gettimetick(2) < delay_daily_ominoussolider){
+				mes "[Narin]";
+				mes "คุณต้องรอจนถึงวันพรุ่งนี้เพื่อรับคำท้าตามล่าอีกครั้ง";
+				end;
+			}
+			hunt_ID_abyssturtleisland = 2;
+			goto hunt_abyssturtleisland;
+			close;
+		case 3:
+			if(gettimetick(2) < delay_daily_ominousfreezer){
+				mes "[Narin]";
+				mes "คุณต้องรอจนถึงวันพรุ่งนี้เพื่อรับคำท้าตามล่าอีกครั้ง";
+				end;
+			}
+			hunt_ID_abyssturtleisland = 3;
+			goto hunt_abyssturtleisland;
+			close;
+		case 4:
+			if(gettimetick(2) < delay_daily_ominouspermeter){
+				mes "[Narin]";
+				mes "คุณต้องรอจนถึงวันพรุ่งนี้เพื่อรับคำท้าตามล่าอีกครั้ง";
+				end;
+			}
+			hunt_ID_abyssturtleisland = 4;
+			goto hunt_abyssturtleisland;
+			close;
+		case 5:
+			if(gettimetick(2) < delay_daily_ominousassulter){
+				mes "[Narin]";
+				mes "คุณต้องรอจนถึงวันพรุ่งนี้เพื่อรับคำท้าตามล่าอีกครั้ง";
+				end;
+			}
+			hunt_ID_abyssturtleisland = 5;
+			goto hunt_abyssturtleisland;
+			close;
+		case 6:
+			emotion ET_SWEAT;
+			mes "[Narin]";
+			mes "คุณมีอะไร";
+			next;
+			mes "อ่าาาาาา ...";
+			mes "ไม่เป็นไรคุณอาจไม่ใช่สิ่งที่คุณเพิ่งพูดไปก่อนหน้านี้";
+			mes "ออกไป!";
+			end;
+	}
+	
+	hunt_abyssturtleisland:
+	mes "[Narin]";
+	mes "ทางเลือกที่ดี!";
+	mes "คุณเลือกล่า 30x ^009900"+.MobsName$[hunt_ID_abyssturtleisland-1]+"^000000";
+	mes "คุณแน่ใจไหม?";
+	next;
+	switch(select("ใช่","ไม่")){
+		case 1: break;
+		case 2:
+			emotion ET_SWEAT;
+			mes "[Narin]";
+			mes "แล้วคุณมาทำอะไรที่นี่?";
+			mes "ฉันไม่เข้าใจคุณคน!";
+			end;
+		}
+	if (hunt_ID_abyssturtleisland == 1){
+		daily_ominousheater = 1;
+		daily_ominoussolider = 0;
+		daily_ominousfreezer = 0;
+		daily_ominouspermeter = 0;
+		daily_ominousassulter = 0;
+		erasequest 95039;
+		setquest 95039;
+		kill_ominousheater_count = 0;
+		}
+	if (hunt_ID_abyssturtleisland == 2){
+		daily_ominousheater = 0;
+		daily_ominoussolider = 1;
+		daily_ominousfreezer = 0;
+		daily_ominouspermeter = 0;
+		daily_ominousassulter = 0;
+		erasequest 95040;
+		setquest 95040;
+		kill_ominoussolider_count = 0;
+		}
+	if (hunt_ID_abyssturtleisland == 3){
+		daily_ominousheater = 0;
+		daily_ominoussolider = 0;
+		daily_ominousfreezer = 1;
+		daily_ominouspermeter = 0;
+		daily_ominousassulter = 0;
+		erasequest 95041;
+		setquest 95041;
+		kill_ominousfreezer_count = 0;
+		}
+	if (hunt_ID_abyssturtleisland == 4){
+		daily_ominousheater = 0;
+		daily_ominoussolider = 0;
+		daily_ominousfreezer = 0;
+		daily_ominouspermeter = 1;
+		daily_ominousassulter = 0;
+		erasequest 95042;
+		setquest 95042;
+		kill_ominouspermeter_count = 0;
+		}
+	if (hunt_ID_abyssturtleisland == 5){
+		daily_ominousheater = 0;
+		daily_ominoussolider = 0;
+		daily_ominousfreezer = 0;
+		daily_ominouspermeter = 0;
+		daily_ominousassulter = 1;
+		erasequest 95043;
+		setquest 95043;
+		kill_ominousassulter_count = 0;
+		}
+	hunt_abyssturtleisland_progress = 1;
+	mes "[Narin]";
+	mes "ดี!";
+	mes "กลับมาหาฉันเมื่อคุณล่าพวกมันเสร็จแล้ว";
+	mes "และฉันจะให้ ^0000ffIllusion Stone ^000000";
+	next;
+	mes "[Narin]";
+	mes "โชคดี!";
+	close;
+	
+OnInit:
+	setarray .mobs_hunt_abyssturtleisland[0],3799,3780,3781,3782,3783;
+	//setarray .reward_hunt_abyssturtleisland[0],25271,25271,25271,25271,25271;
+	//setarray .reward_amount_hunt_abyssturtleisland[0],1,1,1,1,1;
+	setarray .MobsName$[0],"Ominous Heater","Ominous Solider","Ominous Freezer","Ominous Permeter","Ominous Assulter";
+	end;
+	
+	OnTouch:
+	{
+		OnPCLoadMapEvent:
+			if(strcharinfo(3) == strnpcinfo(4))
+			showevent 1,1;
+			end;
+	}
+}
+
+// Adventurer Create Equip
+tur_d03_i,125,186,5	script	Adventurer#abyssturtleisland	4_f_job_assassin,{
+	if(adventurer_abyssturtleisland < 1){
+		mes "[นักผจญภัย]";
+		mes "ฉันรู้ว่าทำไมคุณถึงมาที่นี่";
+		mes "แต่ฉันไม่สามารถให้บริการ ของฉันได้ก่อนที่คุณจะพิสูจน์ตัวเองให้ฉันเห็นว่าคุณแข็งแกร่งพอที่จะจัดการกับสิ่งที่ฉันมี";
+		next;
+		mes "[นักผจญภัย]";
+		mes "คุยกับNarinและจบหนึ่งในความท้าทายของเธอ";
+		mes "จากนั้นฉันจะให้โอกาสคุณแลกเปลี่ยนกับของสะสมที่ฉันมี";
+		end;
+	}
+	if (checkweight(1201,1) == 0) {
+		mes "ลดจำนวนรายการที่คุณมีในคลังของคุณก่อนดำเนินการต่อ";
+		end;
+	}
+	if (MaxWeight - Weight < 1000) {
+		mes "คุณมีสินค้าคงคลังมากเกินไป";
+		end;
+	}
+	disable_items;
+	mes "[นักผจญภัย]";
+	mes "ฮ่าฮ่าฮ่า.. ฉันรู้ว่าเธอเข้มแข็งพอ";
+	mes "ตอนนี้คุณสามารถมีหนึ่งในคอลเลกชันที่มีค่าของฉัน";
+	next;
+	mes "[นักผจญภัย]";
+	mes "คุณต้องการชิ้น ไหนมากที่สุด?";
+	next;
+	switch(select("Illusion Immaterial Sword[2]","Illusion War Axe[2]","Illusion Pole Axe[2]","Illusion Wing Shuriken[2]","Illusion Iron Driver [2]","Illusion Fancy Flower [1]","ยกเลิก")){
+		case 1:
+			set .@location,EQI_HAND_R;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 1141;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25314;
+			.@amount_req_item_1 = 100;
+			.@amount_req_item_2 = 50;
+			.@reward = 13469;
+			goto craft;
+		case 2:
+			set .@location,EQI_HAND_R;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 1306;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25311;
+			.@amount_req_item_1 = 100;
+			.@amount_req_item_2 = 200;
+			.@reward = 1326;
+			goto craft;
+		case 3:
+			set .@location,EQI_HAND_R;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 1417;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25311;
+			.@amount_req_item_1 = 100;
+			.@amount_req_item_2 = 200;
+			.@reward = 32005;
+			goto craft;
+		case 4:
+			set .@location,EQI_HAND_R;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 13300;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25313;
+			.@amount_req_item_1 = 100;
+			.@amount_req_item_2 = 200;
+			.@reward = 13338;
+			goto craft;
+		case 5:
+			set .@location,EQI_HAND_R;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 1529;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25313;
+			.@amount_req_item_1 = 100;
+			.@amount_req_item_2 = 200;
+			.@reward = 16065;
+			goto craft;
+		case 6:
+			set .@location,EQI_HEAD_TOP;
+			.@refine = getequiprefinerycnt(.@location);
+			.@equip_id = getequipid(.@location);
+			.@equip_id_req = 2207;
+			.@req_item_1 = 25271;
+			.@req_item_2 = 25312;
+			.@amount_req_item_1 = 100;
+			.@amount_req_item_2 = 50;
+			.@reward = 19247;
+			goto craft;
+		case 7:
+			emotion ET_HUK;
+			mes "[นักผจญภัย]";
+			mes "อะไร?";
+			mes "ไม่มีอะไร?";
+			mes "ไม่มีอะไร - ???";
+			end;
+	}
+	craft:
+		mes "[นักผจญภัย]";
+		mes "หากคุณต้องการ <ITEM>" +getitemname(.@reward)+ "<INFO>" +.@reward+"</INFO> </ITEM>";
+		mes "ถ้าอย่างนั้นคุณต้องเอาของตอบแทนมาให้ฉัน";
+		mes "ไม่มีอะไรฟรีในโลกนี้ฮ่าฮ่าฮ่า";
+		next;
+		mes "[นักผจญภัย]";
+		mes "นำทั้งหมดนี้มาให้ฉัน:";
+		mes " ";
+		mes "(^009900"+.@equip_id_req+"^000000) ^ff0000 + 9 ^000000 "+getitemname(.@equip_id_req)+"";
+		mes "(^009900"+.@req_item_1+"^000000) "+.@amount_req_item_1+" ชิ้นของ "+getitemname(.@req_item_1)+"";
+		mes "(^009900"+.@req_item_2+"^000000) "+.@amount_req_item_2+" ชิ้นของ "+getitemname(.@req_item_2)+"";
+		next;
+		mes "[นักผจญภัย]";
+		mes "คุณสามารถรับไอเทมบางอย่างจากดันเจี้ยนนี้";
+		mes "และดูเหมือนว่าคุณจะเตรียมพร้อมแล้ว";
+		mes "อย่าลืมว่าคุณต้องสวมอุปกรณ์ที่คุณต้องการแลกเปลี่ยน";
+		next;
+		switch(select("มาซื้อขายกัน!","ฉันยังไม่ได้เตรียมตัว")){
+			case 1:
+				break;
+			case 2:
+				mes "[นักผจญภัย]";
+				mes "โอ๊ย ... เศร้าแค่ไหน.";
+				mes "โปรดกลับมาเมื่อคุณพร้อม!";
+				end;
+		}
+		.@refine = getequiprefinerycnt(.@location);
+		.@equip_id = getequipid(.@location);
+		if(.@equip_id_req != .@equip_id || .@refine < 9){
+			mes "[นักผจญภัย]";
+			mes "ฉันต้องการ ^ff0000 + 9 ^000000 "+getitemname(.@equip_id_req)+".";
+			mes "ฉันจะไม่ยอมรับสิ่งของอื่น ๆ";
+			end;
+		}
+		if(countitem(.@req_item_1) < .@amount_req_item_1 || countitem(.@req_item_2) < .@amount_req_item_2 ){
+			mes "[นักผจญภัย]";
+			mes "ฮ่า ๆ ๆ ๆ ...";
+			mes "คุณนำสิ่งของไม่เพียงพอ";
+			mes "ไปหาฉันบ้าง!";
+			end;
+		}
+		emotion ET_SMILE;
+		specialeffect2 EF_PHARMACY_OK;
+		delequip .@location;
+		delitem .@req_item_1,.@amount_req_item_1;
+		delitem .@req_item_2,.@amount_req_item_2;
+		getitem .@reward,1;
+		mes "[นักผจญภัย]";
+		mes "ตกลงนั่นคือสิ่งที่คุณมาที่นี่!";
+		mes "สนุกกับของเล่นใหม่ของคุณ!";
+		mes "ดูแลมันให้ดี";
+		end;
+}
+
+//Kill Daily Quest
+
+-	script	Ominous Heater#abyssturtleisland	-1,{
+	OnKill:
+		if(daily_ominousheater == 2){
+			unittalk getcharid(3),"ฉันฆ่า Ominous Heater ไปแล้ว 30x ฉันต้องคุยกับNarin",bc_self;
+			end;
+		}
+		if(daily_ominousheater == 1){
+			kill_ominousheater_count = kill_ominousheater_count + 1;
+			if(kill_ominousheater_count > 29){
+				unittalk getcharid(3),"ฉันฆ่า Ominous Heater ไปแล้ว 30x ฉันต้องคุยกับ Narin",bc_self;
+				daily_ominousheater = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฉันฆ่าไปแล้ว "+kill_ominousheater_count+" Ominous Heater!",bc_self;
+			end;
+		}
+	end;
+}
+
+-	script	Ominous Solider#abyssturtleisland	-1,{
+	OnKill:
+		if(daily_ominoussolider == 2){
+			unittalk getcharid(3),"ฉันฆ่า Ominous Solider 30x แล้ว ฉันต้องคุยกับ Narin",bc_self;
+			end;
+		}
+		if(daily_ominoussolider == 1){
+			kill_ominoussolider_count = kill_ominoussolider_count + 1;
+			if(kill_ominoussolider_count > 29){
+				unittalk getcharid(3),"ฉันฆ่า Ominous Solider 30x แล้ว ฉันต้องคุยกับ Narin",bc_self;
+				daily_ominoussolider = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฉันฆ่าไปแล้ว "+kill_ominoussolider_count+"Ominous Solider!",bc_self;
+			end;
+		}
+	end;
+}
+
+-	script	Ominous Freezer#abyssturtleisland	-1,{
+	OnKill:
+		if(daily_ominousfreezer == 2){
+			unittalk getcharid(3),"ฉันฆ่า Ominous Freezer 30x แล้ว ฉันต้องคุยกับ Narin",bc_self;
+			end;
+		}
+		if(daily_ominousfreezer == 1){
+			kill_ominousfreezer_count = kill_ominousfreezer_count + 1;
+			if(kill_ominousfreezer_count > 29){
+				unittalk getcharid(3),"ฉันฆ่า Ominous Freezer 30x แล้ว ฉันต้องคุยกับ Narin",bc_self;
+				daily_ominousfreezer = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฉันฆ่าไปแล้ว "+kill_ominousfreezer_count+"Ominous Freezer!",bc_self;
+			end;
+		}
+	end;
+}
+
+-	script	Ominous Permeter#abyssturtleisland	-1,{
+	OnKill:
+		if(daily_ominouspermeter == 2){
+			unittalk getcharid(3),"ฉันฆ่า 30x Ominous Permeter แล้ว ฉันต้องคุยกับ Narin",bc_self;
+			end;
+		}
+		if(daily_ominouspermeter == 1){
+			kill_ominouspermeter_count = kill_ominouspermeter_count + 1;
+			if(kill_ominouspermeter_count > 29){
+				unittalk getcharid(3),"ฉันฆ่า 30x Ominous Permeter แล้ว ฉันต้องคุยกับ Narin",bc_self;
+				daily_ominouspermeter = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฉันฆ่าไปแล้ว "+kill_ominouspermeter_count+" Ominous Permeter!",bc_self;
+			end;
+		}
+	end;
+}
+
+-	script	Ominous Assulter#abyssturtleisland	-1,{
+	OnKill:
+		if(daily_ominousassulter == 2){
+			unittalk getcharid(3),"ฉันฆ่า Ominous Assulter 30x แล้ว ฉันต้องคุยกับ Narin",bc_self;
+			end;
+		}
+		if(daily_ominousassulter == 1){
+			kill_ominousassulter_count = kill_ominousassulter_count + 1;
+			if(kill_ominousassulter_count > 29){
+				unittalk getcharid(3),"ฉันฆ่า Ominous Assulter 30x แล้ว ฉันต้องคุยกับ Narin",bc_self;
+				daily_ominousassulter = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฉันฆ่าไปแล้ว "+kill_ominousassulter_count+" Ominous Assulter!",bc_self;
+			end;
+		}
+	end;
+}
+
+// NPC
+tur_d03_i,147,169,3	script	Suspicious Men#abyssturtleisland	4_M_URGENT_MAN,{
+	end;
+	
+	OnTalk:
+		npctalk "ที่นี่ดูไม่ออกว่าควรจะเป็นยังไง!";
+		sleep 2000;
+		npctalk "ฉันหาทางออกได้ดีกว่า!";
+		sleep 2000;
+		npctalk "วิ่ง! วิ่ง! วิ่ง! วิ่ง! วิ่ง!";
+		sleep 500;
+		donpcevent "Suspicious Men#abyssturtleisland::OnHide";
+	end;
+	
+	OnHide:
+	hideonnpc "Suspicious Men#abyssturtleisland";
+	sleep 10000;
+	hideoffnpc "Suspicious Men#abyssturtleisland";
+	donpcevent "Suspicious Men#abyssturtleisland::OnTalk";
+	end;
+	
+	OnInit:
+		donpcevent strnpcinfo(3) + "::OnTalk";
+}
+
+tur_d04_i,76,35,3	script	Keen Soldier#abyssturtleisland	4_M_KEEN_SOLDIER,{
+	end;
+	
+	OnTalk:
+		npctalk "ฉันได้ยินมาว่าที่นี่มีเต่ายักษ์!";
+		sleep 3000;
+		npctalk "ฉันไม่รู้ว่ามันเป็นเรื่องจริง แต่มันฟังดูน่ากลัว";
+		sleep 5000;
+		npctalk "เอ๊ะ ~! ฉันควรกลับไปทำงาน!";
+		sleep 3000;
+		emotion ET_SURPRISE;
+		npctalk "อย่ารบกวนฉันเพียงแค่คำนึงถึงธุรกิจของคุณเอง!";
+		sleep 500;
+		donpcevent "Keen Soldier#abyssturtleisland::OnHide";
+	end;
+	
+	OnHide:
+	hideonnpc "Keen Soldier#abyssturtleisland";
+	sleep 10000;
+	hideoffnpc "Keen Soldier#abyssturtleisland";
+	donpcevent "Keen Soldier#abyssturtleisland::OnTalk";
+	end;
+	
+	OnInit:
+		donpcevent strnpcinfo(3) + "::OnTalk";
+}
+
+tur_d04_i,96,111,1	script	Sloppy Woman#abyssturtleisland	4_F_SLOPPY_WOMAN,{
+	mes "[ผู้หญิงเลอะเทอะ]";
+	mes "ฉันไม่รู้ว่าทำไมฉันถึงมาที่นี่";
+	mes "ปล่อยฉันไว้คนเดียว!";
+	end;
+}
+
+tur_dun01,157,173,4	script	Distorted Space#abyssturtleisland_1	4_ENERGY_BLUE,{
+	mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+	mes "^00ccff ---------------------------------- ^000000";
+	mes "มีบางอย่างไม่ถูกต้องเกี่ยวกับแสงนี้";
+	mes "คุณจะทำอะไร?";
+	next;
+	switch(select("เข้าไป","ออก")) {
+		case 1:
+			if(Baselevel <= 160){
+			//if (countitem(7539) < 10){
+				mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+				mes "^00ccff ---------------------------------- ^000000";
+				mes "มันเหมือนไม่มีอะไรเกิดขึ้น";
+				//mes "ลองนำ Poring Coin 10 ชิ้น";
+				mes "จำกัด Level 150 ขึ้นไปเท่านั้น !!";
+				close;
+			}
+			mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+			mes "^00ccff ---------------------------------- ^000000";
+			mes "คุณรู้สึกได้ว่ามีแรงดึงคุณเข้ามา!";
+			next;
+			//delitem 7539,10;
+			warp "tur_d03_i",132,185;
+			close;
+		case 2:
+			mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+			mes "^00ccff ---------------------------------- ^000000";
+			mes "ไม่มีอะไรเกิดขึ้น.";
+			close;
+	}
+	end;
+}
+
+tur_d03_i,132,194,4	script	Distorted Space#abyssturtleisland_2	4_ENERGY_BLUE,{
+	mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+	mes "^00ccff ---------------------------------- ^000000";
+	mes "คุณสามารถรู้สึกแปลก ๆ ในพื้นที่นี้";
+	mes "คุณจะทำอะไร?";
+	next;
+	switch(select("เข้าไป","ออก")) {
+		case 1:
+			warp "tur_dun01",161,174;
+			close;
+		case 2:
+			mes "^33cc33 [พื้นที่บิดเบี้ยว] ^000000";
+			mes "^00ccff ---------------------------------- ^000000";
+			mes "ไม่มีอะไรเกิดขึ้น.";
+			close;
+	}
+	end;
+}
+
+// Warp
+tur_d03_i,218,70,0	warp	3_to_4#abyssturtleisland	2,2,tur_d04_i,100,190
+tur_d04_i,100,196,0	warp	4_to_3#abyssturtleisland	2,2,tur_d03_i,218,81
+

@@ -1,0 +1,161 @@
+-	script	hourly_point_main	-1,{
+	
+	OnPCLogoutEvent:
+	#autoattack = 0;
+	end;
+	 
+		/*set .@accid, getcharid(3);
+		query_sql  "SELECT `userid`,`last_unique_id`,`last_ip` FROM `login` WHERE `account_id` = " + .@accid + " LIMIT 1", .@idgame$, .@lastunique ,.@lastip$ ;
+	    
+		query_sql  "SELECT `last_uniqueid`,`now` FROM `onlinecash` WHERE `last_uniqueid` = '"+.@lastunique+"'", .@ipunique_update, .@now;
+		if (.@lastunique == .@ipunique_update)&&(.@now = 1)
+		{ 
+			query_sql "DELETE FROM `onlinecash` WHERE `last_uniqueid` = '"+.@lastunique+"' ";
+		
+	}*/
+ 
+	OnInit:
+	    
+		.npc_name$ = strnpcinfo(3);
+		
+		bindatcmd "check",.npc_name$+"::OnAtcommand";
+		end;
+ 
+	OnAtcommand:
+		dispbottom "Accumulated "+#daily_minute_count;
+		end;
+    
+ 
+	OnUpdate:
+	    set .@accid, getcharid(3);
+		query_sql  "SELECT `userid`,`last_unique_id`,`last_ip` FROM `login` WHERE `account_id` = " + .@accid + " LIMIT 1", .@idgame$, .@lastunique ,.@lastip$ ;
+	    
+		query_sql  "SELECT `last_uniqueid`,`now` FROM `onlinecash` WHERE `last_uniqueid` = '"+.@lastunique+"'", .@ipunique_update, .@now;
+		
+	
+		#daily_minute_count++;
+		deltimer .npc_name$+"::OnUpdate";
+		//dispbottom ""+#daily_minute_count+"";
+		//dispbottom "ä´éÃÑº 1 Cash ÃÒ§ÇÑÅÍÍ¹äÅ¹ìà»ç¹àÇÅÒ"+#daily_minute_count+" ¹Ò·Õ (ÂÍ´¤§àËÅ×Í»Ñ¨¨ØºÑ¹ "+#CASHPOINTS+"Cash)";
+		switch ( #daily_minute_count ) 
+		    {
+			default:
+				break;
+				
+				
+				
+				
+				
+			//disable
+			case 1: 
+			if(#autoattack == 1)
+			{
+				if (#timeauto >= 180){
+					useatcmd "@autoattack 2";
+					#autoattack = 0;
+					dispbottom "[ Auto System ] ËÁ´àÇÅÒãªé§Ò¹ »Ô´ÃĞºº ÍÑµÔâ¹ÁÑµÔ ";
+				}
+				else{
+					#timeauto += 1;
+					dispbottom "[ Auto System ] ¤Ø³ãªéàÇÅÒ ä»·Ñé§ËÁ´ "+#timeauto+" ¹Ò·Õ ";
+				}
+			}
+			case 3:
+					/*if(#autoattack == 1)
+				{
+					if (#timeauto >= 180){
+						useatcmd "@autoattack 2";
+						#autoattack = 0;
+						dispbottom "[ Auto System ] ËÁ´àÇÅÒãªé§Ò¹ »Ô´ÃĞºº ÍÑµÔâ¹ÁÑµÔ ";
+					}
+					else{
+						#timeauto += 2;
+						//dispbottom "[ Auto System ] ¤Ø³ãªéàÇÅÒ ä»·Ñé§ËÁ´ "+#timeauto+" ¹Ò·Õ ";
+					}
+				}*/
+				
+				if (checkvending() == 0)
+				{
+					//if (getgroupid() == 5)
+					//{
+				      // if (Baselevel >= 99)
+					   //{
+						  //if(#cashfrees == 0){
+							//#CASHPOINTS += 1000;
+							//dispbottom "[ Event System ] ä´éÃÑº ÃÒ§ÇÑÅ ¡Ô¨¡ÃÃÁ 1,000 Cash ";
+							//announce "[ Event System ] ¼ÙéàÅè¹ ä´éÃÑºÃÒ§ÇÑÅ ¡Ô¨¡ÃÃÁª´àªÂ 1,000 Cash", 0,0xFF8000;
+							//#cashfrees = 1;
+							//}
+							//else{
+								
+								//dispbottom "[ Event System ] ä´éÃÑº ÃÒ§ÇÑÅ ¡Ô¨¡ÃÃÁ ä»áÅéÇ ";
+							//}
+						//if(strcharinfo(3) != "pvp_y_8-2"){
+							 //#CASHPOINTS += 300;
+							 //dispbottom " [ System Event ] ä´éÃÑº 300 Cash";
+						//}
+						if($EventKOE == 1 && strcharinfo(3) == "ra_koe"){
+							#CASHPOINTS += 300;
+							dispbottom " [ System ] ä´éÃÑº 300 Cash Event KOE";
+						}
+						else if($EventPVP == 1 && strcharinfo(3) == "pvp_y_8-2"){
+							#CASHPOINTS += 300;
+							dispbottom " [ System ] ä´éÃÑº 300 Cash Event PVP";
+						}
+						else{
+					     #CASHPOINTS += 10;
+					     #daily_minute_count = 0;
+					     dispbottom " [ System ] ä´éÃÑº 10 Cash";
+						}
+				       //}
+			        //}.
+				} 
+				else if (Baselevel >= 50){
+					
+						 #CASHPOINTS += 2;
+					     #daily_minute_count = 0;
+					     dispbottom " [ System ] ä´éÃÑº 2 Cash";
+				//else {
+					//dispbottom " [ System ] äÁèä´éÃÑº Cash à¹×èÍ§¨Ò¡¤Ø³µÑé§ÃéÒ¹";
+				}else{
+					dispbottom " [ System ] äÁèä´éÃÑº Cash à¹×èÍ§¨Ò¡ Lv äÁè¶Ö§ 50";
+				}
+				
+			}
+		
+		OnPCLoginEvent:
+		
+		/*set .@accid, getcharid(3);
+		
+		query_sql  "SELECT `userid`,`last_unique_id`,`last_ip` FROM `login` WHERE `account_id` = " + .@accid + " LIMIT 1", .@idgame$, .@lastunique ,.@lastip$ ;
+	    query_sql  "SELECT `last_uniqueid`,`now` FROM `onlinecash` WHERE `last_uniqueid` = '"+.@lastunique+"'", .@ipunique_update, .@now;
+		if(baselevel >= 99)&&(.@ipunique_update != .@lastunique) {
+			query_sql "INSERT INTO `onlinecash` (`last_uniqueid`,`account_id`,`now`) VALUES  ('"+.@lastunique+"','"+.@accid+"',1)";
+			dispbottom "[Event System]ÃĞºº ÍÍ¹äÅ¹ì ¿ÃÕ Cash àÃÔèÁ·Ó§Ò¹ áÅéÇ";
+		}*/
+		
+		
+		
+		addtimer ( 60 * 1000 ), .npc_name$+"::OnUpdate";
+		if (#daily_minute_count > 2){
+		#daily_minute_count = 0;
+		}
+		
+		
+			
+		
+		
+		//set .@a,1;}
+		//}
+		//if (.@a==1){
+			
+		
+		  //  }
+		//}
+	    
+		
+		
+		
+		
+		end;
+}

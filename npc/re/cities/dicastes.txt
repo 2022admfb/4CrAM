@@ -1,0 +1,717 @@
+//===== rAthena Script ======================================= 
+//= El Dicastes Town
+//===== By: ================================================== 
+//= Gennosuke Kouga, Muad_Dib
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= [Official Conversion]
+//= El Dicastes Town Script
+//===== Additional Comments: ================================= 
+//= 1.0 First version.
+//= 1.1 Standardized. [Euphy]
+//= 1.2 Updated to match the official script. [Joseph]
+//= 1.2a Moved Guide to a separate file. [Euphy]
+//= 1.3 Updated to match official script. [SkittleNugget]
+//============================================================
+
+dicastes01,194,159,5	script	Excited Galten#a	492,{
+	mes "[Excited Galten]";
+	if (isequipped(2782)) {
+		mes "ฉันไม่สามารถได้รับความสวยงาม";
+		mes "ภาพมันติดอยู่ในหัวของฉัน.";
+		emotion ET_THROB;
+		mes "ตราบใดที่เรายังมีเขา";
+		mes "มันจะเป็นเพียงเรื่องของเวลาก่อนที่สัปดา";
+		mes "จะครองดินแดนนี้";
+		close; 
+	}
+	mes "....";
+	//mes "ก๗ก๘ก๑ กü กü";
+	//mes "ก๙ขฒขณ ขฒ";
+	//mes "ก๓ก๕ก๔ ขฃ กะก๛กü ก๒ ก๐ก๖ขฃ";
+	//mes "ขคก๕กþ ก๗ ก๑";
+	close;
+}
+
+dicastes01,202,86,3	script	Sentinel#a	4_MAN_GALTUN,{
+	mes "[Sentinel]";
+	if (isequipped(2782)) {
+		mes "เอลดิคาสเตส";
+		mes "เมืองหลวงของเมืองสะพา";
+		mes "ที่ดินสวย";
+		mes "หยาบมากคนนอกเข้าไม่ได้ฮ่าฮ่า";
+		next;
+		mes "[Sentinel]";
+		mes "...";
+		next;
+		mes "[Sentinel]";
+		mes "เฮ้คุณเป็นคนนอก!";
+		close; 
+	}
+	mes "....";
+	mes "...";
+	//mes "ก๕ก๓กะ ขณ กะก๕ขฃ ก๛ ก๚ก๏";
+	//next;
+	//mes "[Sentinel]";
+	//mes "ก๙";
+	//next;
+	//mes "[Sentinel]";
+	//mes "ก๑ก๖ก๏ ก๚ ก๓ขณก๔";
+	close;	
+}
+
+dicastes01,194,95,5	script	Sentinel#b	450,{
+	mes "[Sentinel]";
+	if (isequipped(2782)) {
+		mes "ฉันอนุญาตให้คุณเข้ามา";
+		mes "แต่ถ้าเจ้ากล้าก่อปัญหา";
+		mes "คุณจะไม่รู้ว่าอะไรโดนคุณระวัง!";
+		close; 
+	}
+	mes "...";
+	//mes "ก๘ก๏ก๛ ก๓ ก๛ขคขฒ ก๗ ขฃ";
+	//mes "ขคก๔ก๘ ขณ ก๗ก๛ก๖ ก๕ ก๘";
+	close;
+}
+
+dicastes01,234,158,0	script	Training Galten#a	450,{
+	mes "[Training Galten]";
+	if (isequipped(2782)) {
+		mes "ฉันจะพร้อมสำหรับทุกสิ่ง";
+		mes "ถ้าฉันหมั่นฝึกฝนทุกวัน";
+		close;
+	}
+	mes "๘ก๔กü กก๘ก๔กü ก๘";
+	mes "๔ ก๘";
+	next;
+	mes "ไม่รู้ความหมาย";
+	close;
+}
+
+dicastes01,244,166,0	script	Training Galten#b	450,{
+	mes "[Training Galten]";
+	if (isequipped(2782)) {
+		mes "ฉันสงสัยว่า Ahat รู้ได้อย่างไร";
+		mes "ฉันกำลังฝึกอย่างหนัก";
+		close; 
+	}
+	mes "ก๘ก๔กü ก๘";
+	mes "ก๘ก๔กü ก๘ ก๘ก๔กü ก๘ ก๘ก๔กü ก๘";
+	next;
+	mes "ไม่รู้ความหมาย";
+	close;
+}
+
+dicastes01,272,166,0	script	Training Galten#c	450,{
+	mes "[Training Galten]";
+	if (isequipped(2782)) {
+		mes "[Training Galten]";
+		mes "ฉันคือนักรบซาฟา";
+		mes "ฉันไม่เคยขี้เกียจกับการฝึกของฉันเลย";
+		close;
+	}
+	mes "ก๘ก๔กü ก๘ ก๘ก๔กü ก๘";
+	mes "ก๘ก๔กü ก๘";
+	next;
+	mes "ไม่รู้ความหมาย";
+	close;
+}
+
+dicastes01,248,129,0	script	Training Galten#d	450,{
+	mes "[Training Galten]";
+	if (isequipped(2782)) {
+		mes "[Training Galten]";
+		mes "ฉันได้ยินมาว่านี่ไม่ใช่การฝึก";
+		mes "อุปกรณ์ แต่เป็นเครื่องนวด";
+		mes "สำหรับเด็กฝึกหัดอย่างฉัน";
+		close; 
+	}
+	mes "ก๘ก๔กü ก๘ ก๘ก๔กü";
+	mes "ก๘ก๔กü ก๘ก ๘ก๔กü ก๘";
+	next;
+	mes "ไม่รู้ความหมาย";
+	close;
+}
+
+/*
+dicastes01,271,152,0	script	Training Galten#e	450,{
+	mes "[Training Galten]";
+	if (isequipped(2782)) {
+		mes "I will get great results";
+		mes "if I do my best, right?";
+		close;
+	}
+	mes "ก๘ขฒก๛ ก๔ ขฃขณก๔";
+	mes "กüก๔";
+	close;
+}
+*/
+
+dic_in01,349,282,4	script	Waiting Galten#in_1	492,{
+	if (isequipped(2782)) {
+		mes "[Waiting Galten]";
+		mes "ที่นี่คือ Battle Station";
+		mes "พวกเราทุกคนต่างตึงเครียดที่จะพร้อมสำหรับการดำเนินการ";
+		close;	 
+	}
+	mes "[ขฒกะก๛ ก๙ กะ]";
+	mes "ก๑ก๕กü ขฃ ก๓";
+	mes "ขคก๓ก๕ ขฃ ขฃก๒ก๔ ก๖ ก๚ขคก๚ ขค ก๒ก๖ก๕ ขค ";
+	close;
+}
+
+dic_in01,370,261,1	script	Waiting Galten#in_2	492,{
+	if (isequipped(2782)) {
+		mes "[Waiting Galten]";
+		mes "น่าเบื่อ";
+		close; 
+	}
+	mes "[ขฒกะก๛ ก๙ กะ]";
+	mes "ก๙ขคขฑ";
+	close;
+}
+
+dic_in01,381,261,1	script	Waiting Galten#in_3	492,{
+	if (isequipped(2782)) {
+		mes "[Waiting Galten]";
+		mes "Zzzzz...";
+		close; 
+	}
+	mes "[ขฒกะก๛ ก๙ กะ]";
+	mes "ก๚ก๔";
+	close;
+}
+
+dic_in01,370,282,4	script	Waiting Galten#in_4	492,{
+	if (isequipped(2782)) {
+		mes "[Waiting Galten]";
+		mes "El Dicastes เป็นสถานที่ที่เงียบสงบที่สุดในโลกตราบเท่าที่ฉันอยู่ที่นี่";
+		close; 
+	}
+	mes "[ขฒกะก๛ ก๙ กะ]";
+	mes "ก๏ก๏ขณ กþ ก๖ขณขฃ ขฑ ขณก๛ก๕ ก๘ กþก๏ก๏ ก๘ ก๛";
+	close;
+}
+
+dic_in01,354,219,4	script	Resting Galten#in_5	492,{
+	if (isequipped(2782)) {
+		mes "[Resting Galten]";
+		mes "การพักผ่อนช่างแสนหวาน";
+		close; 
+	}
+	mes "[ก๕ก๘ก๒ กü ขค]";
+	mes "ก๏ก๕ก๙ ก๖ ก๒ก๐ขฒ ขณ ก๖";
+	close;
+}
+
+dic_in01,365,197,1	script	Resting Galten#in_6	492,{
+	if (isequipped(2782)) {
+		mes "[Resting Galten]";
+		mes "กัลเทนพักผ่อนได้ด้วยในขณะที่ยืนขึ้นแบบนี้";
+		next;
+		mes "[Resting Galten]";
+		mes "คุณบอกว่าฉันดูเหมือนฉันไม่ได้พักผ่อนเหรอ แต่ฉันชินกับเรื่องนี้แล้ว";
+		close; 
+	}
+	mes "[ก๕ก๘ก๒ กü ขค]";
+	mes "ก๔ก๏ขค ก๖ ก๙ก๐ก๑ กü ก๓ก๛ก๛";
+	mes "ก๏ขฃก๓ ก๙ ขณก๔ก๐ ขฃ กะก๛ก๔ ก๔ กะก๚ก๙ ก๔ ก๓";
+	close;
+}
+
+dic_in01,87,102,5	script	Resting Piom#01	454,{
+	end;
+}
+
+dic_in01,29,119,4	script	Resting Piom#04	489,{
+	if (isequipped(2782)) {
+		mes "[Resting Piom]";
+		mes "ทำไมเสียงดังจังตอนที่ฉันกำลังพยายามพักผ่อน";
+		close; 
+	}
+	mes "[ขฃก๙ก๒ ขค ก๙]";
+	mes "กüขฒก๐ กะ ก๒ก๘ขฒ ก๔ ขฒก๕";
+	close;
+}
+
+dic_in01,91,113,5	script	Suspicious Piom#a	489,{
+	mes "[Suspicious Piom]";
+	if (isequipped(2782)) {
+		mes "คุณเคยได้ยินเรื่อง";
+		mes "ข่าวลือเกี่ยวกับ Ahat?";
+		next;
+		if(select("ยกเลิก!:คุณเล่าก่อน.") == 1) {
+			mes "[Suspicious Piom]";
+			mes "ไม่เป็นไร";
+			close; 
+		}
+		mes "[Suspicious Piom]";
+		mes "โอ้ดูเหมือนจะรู้ไหม";
+		mes "ฉันต้องการรวบรวมข้อมูล";
+		mes "คุณมาก่อน";
+		mes "คุณเคยได้ยินข่าวลือใช่ไหม";
+		next;
+		if(select("มีอะไร?:........!") == 1) {
+			mes "[Suspicious Piom]";
+			mes "ฉันแค่อยากรู้อยากเห็นมาก";
+			mes "ธรรมดา";
+			close; 
+		}
+		mes "[Suspicious Piom]";
+		mes "ฉันจะไม่พูดอะไรทั้งนั้น!";
+		close; 
+	}
+	mes "ก๓ขณก๓ ก๓ ก๓กþก๖";
+	mes "ก๕ ขณขฒก๗ ก๓ก๓";
+	next;
+	if(select("ไม่สามารถบอกได้ว่าหมายถึงอะไร:คำสาปหรือไม่??") == 2) {
+		mes "[Suspicious Piom]";
+		mes "เสียดายจัง";
+		close; 
+	}
+	mes "[Suspicious Piom]";
+	mes "อยู่กับคุณ";
+	//mes "way, shoo";
+	close;
+}
+
+dic_in01,168,116,5	script	Tired Piom#c	491,{
+	mes "[Tired Piom]";
+	if (isequipped(2782)) {
+		mes "ถ้าคุณต้องการ";
+		mes "ข้อมูลดีกว่า";
+		mes "โชคดีกับพ่อค้าแมวมากกว่าเดินมาแถวนี้";
+		mes "แต่แน่นอนว่าคุณจะต้องจ่ายในราคา";
+		close; 
+	}
+	mes "กþก๕ก๐ ขณ ขณกþ";
+	mes "กþก๘ก๐ ก๖ ก๑ก๚ก๐ ก๒";
+	mes "ก๏ก๑ก๚ ก๔ ก๖ก๖ก๒ ก๛ ก๓ขคก๘ ก๘ ขฒ ก๘";
+	mes "ขคขฒก๘ ก๒ ก๚ก๓ขฑ";
+	close;
+}
+
+dic_in01,149,104,5	script	Tired Piom#b	455,{
+	mes "[Tired Piom]";
+	if (isequipped(2782)) {
+		mes "ฉันรู้สึกแข็งมาก ... ";
+		mes "ฉันต้องการแบรดเดียมอีกครั้ง";
+		mes "ฉันคิดว่าเอฟเฟกต์อ่อนลงกว่าเดิม";
+		mes "หรือว่าเป็นแค่ฉัน";
+		emotion ET_QUESTION;
+		close; 
+	}
+	mes "ก๐กะก๚ ก๘ ขฒ";
+	mes "ก๖ก๕ก๓ ขค ก๒ก๒ขณ ก๔ ก๔ก๓ก๑";
+	mes "ขฃก๑กþ กü ขฒก๛ก๓ ก๒ ก๐กþ";
+	mes "ก๖ก๚ก๑ ขณ";
+	emotion ET_QUESTION;
+	close;
+}
+
+dic_in01,341,113,3	script	Tired Piom#a	491,{
+	mes "[Tired Piom]";
+	if (isequipped(2782)) {
+		mes "[Tired Piom]";
+		mes "ฉันคิดว่าฉันดูดีกว่าใน";
+		mes "เสื้อคลุมยาวกว่าหนัง";
+		mes "ฉันอาจจะต้องเปลี่ยนเป็นถักไหมพรม";
+		mes "แต่การขุดดูเหมือนจะเหมาะกับฉัน";
+		next;
+		mes "[Tired Piom]";
+		mes "...";
+		next;
+		emotion ET_SWEAT;
+		mes "[Tired Piom]";
+		mes "ฉันจะถูกปฏิเสธอีกแล้วใช่ไหม";
+		close; 
+	}
+	mes "ก๗ก๒ก๛ ก๓ ก๓กะขฑ";
+	mes "ก๓ก๕ก๙ กþ ก๒ขฑก๑ ก๕ ขฃ";
+	mes "กüก๐ขค ก๙ ก๒ก๔ก๕ ก๒ ก๑";
+	mes "ขณก๚ขณ กะ ก๑ก๕ก๙ ก๗ ก๗ขฑ";
+	next;
+	mes "[Tired Piom]";
+	mes "กþ";
+	next;
+	emotion ET_SWEAT;
+	mes "[Tired Piom]";
+	mes "ก๘ก๚ก๘ ขฑ ก๖ก๒";
+	close;
+}
+
+dic_in01,252,103,3	script	Eating Adventurer#tre	711,{
+	mes "[Eating Adventurer]";
+	mes "เฮ้คุณมีอาหารฉุกเฉินจากมิดการ์ดหรือเปล่า";
+	next;
+	mes "[Eating Adventurer]";
+	mes "ฉันมาที่นี่ด้วยความหิวเพราะได้ยินว่ามีผับ Midgard แต่ฉันไม่เคยชิมอาหารนี้ที่ไหนเลยใน Midgard";
+	next;
+	mes "[Eating Adventurer]";
+	mes "ไม่ฉันแน่ใจว่าไม่มีใครในมิดการ์ดอยากลองทำแบบนี้";
+	next;
+	mes "[Eating Adventurer]";
+	mes "ฉันอยากกินร้อน ๆ จริงๆ";
+	mes "ฉันไปร้านอาหารเล็ก ๆ ที่ดีในเมือง Geffen บ่อยๆและตอนนี้ฉันคิดถึงที่นั่นจริงๆ";
+	close;
+}
+
+dic_in01,32,54,5	script	Venknick#el_01	449,{
+	if (isequipped(2782)) {
+		mes "[Venknick]";
+		mes "โอ้รู้สึกสดชื่นจัง";
+		mes "แบรดเดียมที่ผ่านการกลั่นแล้วดีที่สุดคุณอยากลองไหม";
+		close; 
+	}
+	mes "[ก๓ก๒ก๐]";
+	mes "ก๙ก๓ขค ขฑ ขฃ";
+	mes "ก๕กþก๏ ขฃ ก๗ก๗ขค ก๚ ก๓ก๑ก๖ ขฒ กþขฒขค ขฒ ขฃ?";
+	close;
+}
+
+dic_in01,372,116,3	script	Thrilled Piom#a	490,{
+	mes "[Thrilled Piom]";
+	if (isequipped(2782)) {
+		mes "Ahat เป็นหนึ่งเดียว";
+		mes "และมี แต่ความภาคภูมิใจของ Sapha";
+		mes "เรามี Bradium มากมาย";
+		mes "เพราะเขา!";
+		next;
+		mes "[Thrilled Piom]";
+		mes "...";
+		next;
+		mes "[Thrilled Piom]";
+		mes "คุณไม่รู้สึกถึงเขา";
+		mes "พร?";
+		close;
+	}
+	mes "ก๒ก๕ขณ ก๕ ก๔";
+	mes "ขฃก๓ก๘ ขฒ ก๔ก๗";
+	mes "ก๒ก๔ขณ ก๙ ขฑก๓ขฑ ก๕";
+	mes "ก๓กüกะ ก๘ ขฒกüกะ ก๕ ก๏";
+	next;
+	mes "[Thrilled Piom]";
+	mes "ขฃ";
+	next;
+	mes "[Thrilled Piom]";
+	mes "กะขคก๙ ขฃ ก๓ก๓";
+	mes "ก๙ก๓ก๗ ก๛ กþก๔";
+	close;
+}
+
+dic_in01,360,125,5	script	Serious Venknicka	449,{
+	mes "[Serious Venknick]";
+	if (isequipped(2782)) {
+		mes "การผลิตแบรดเดียมเพิ่มขึ้นอย่างกะทันหัน";
+		mes "ทำไม";
+		mes "ฉันจะต้องทำงานให้มากขึ้น";
+		close; 
+	}
+	mes "ก๛ก๕ก๑ ขฒ ขฒขคกะ ขฒ กüก๑ก๕";
+	mes "กþก๓ก๖ ขฒ";
+	mes "ก๖ก๗ก๛ ก๚ ก๗กะขณ ขณ";
+	close;
+}
+
+dic_in01,42,250,5	script	Guide#diel_1	489,{
+	if (isequipped(2782)) {
+		if (ep13_3_invite > 5) {		
+			mes "[Guide]";
+			mes "ฉันชื่อ Dior ไกด์ใจดีของคุณ El Dicastes";
+			mes "มีอะไรให้ช่วยไหม";
+			next;
+			mes "[Guide]";
+			mes "คุณสามารถยื่นเรื่องร้องเรียนทางแพ่งได้ที่นี่";
+			mes "ส่วนราชการและโซน El Dicastes ได้รับการจัดการในห้องสถานการณ์ชั้นบน";
+			next;
+			mes "[Guide]";
+			mes "สำนักงานบริหารตั้งอยู่ชั้นบนสุดและจัดการเรื่องสำคัญมาก";
+			mes "ห้องเก็บเอกสารอยู่ชั้นล่างซึ่งคุณสามารถรับข้อมูลจำนวนมากได้";
+			next;
+			mes "[Guide]";
+			mes "ยังไงก็ตามคุณอาจใช้ลิฟต์ที่อยู่ด้านหลังเพื่อไปชั้นอื่น ๆ ";
+			next;
+			mes "[Guide]";
+			mes "โอ้คุณไม่ได้ถาม?";
+			mes "แต่เนื่องจากฉันเป็น Dior ไกด์ใจดีเขาเขา";
+			close; 
+		}
+		mes "- ไกด์มองคุณด้วยสีหน้าตื่นตัว. -";
+		close;
+	}
+	mes "[ขณก๑]";
+	mes "ก๕ขฃก๓ กะ ก๕ก๑ก๒ ขค ก๘ก๘ขฃ ขฑ ขฒขณก๗ ขฑ";
+	mes "ก๖ก๒ก๐ ก๓ ก๔ก๔?";
+	next;
+	mes "[ขณก๑]";
+	mes "กะก๙ก๓ ก๙ กüขฒกะ ขฑ ก๗ก๖กþ";
+	mes "ก๑กþขฒ ก๘ ก๓ก๏ก๏ ก๙ ก๐ก๑กะ ก๙ ขณก๒กþ ก๙ ก๘ก๐ก๕ ก๕ ขค";
+	next;
+	mes "[ขณก๑]";
+	mes "ก๛ก๙ก๔ ก๘ ก๐กþก๗ ขณ กþก๙ก๑ ก๚ กüขคก๒ ก๚ ก๔ขฃ";
+	mes "ก๗ก๒ขค ก๘ ก๛ขณ";
+	next;
+	mes "[ขณก๑]";
+	mes "ก๔ก๐ก๑ ขค ก๓ก๗ขณ กþ ก๓ก๕ก๗ ก๖ ก๓ ก๖";
+	next;
+	mes "[ขณก๑]";
+	mes "ก๒ก๔ก๘ ก๗ ก๕ก๘ก๐ ก๓ ขคกะก๔ ก๘ ก๑ก๑ก๑ ก๘ ก๚ก๖ก๘ กü";
+	mes "ก๏ขณก๐ ขค ก๐ก๖ขฃ ขฑ ก๔ก๘";
+	close;
+}
+
+dic_in01,335,34,5	script	Talkative Piom#a	490,{
+	mes "[Talkative Piom]";
+	if (isequipped(2782)) {	
+		mes "ที่โรงงานของฉัน";
+		mes "เราไม่เพียง แต่ปรับแต่งแบรดเดียมเท่านั้น";
+		mes "แต่เรายังผลิตได้หลากหลาย";
+		mes "เครื่องมือสำหรับใช้ในชีวิตประจำวัน";
+		mes "เราผลิตเสบียงสงคราม";
+		mes "ที่นี่ด้วย";
+		close; 
+	}
+	mes "กüก๙ขฑ ขณ";
+	mes "ก๗ก๘ก๏ กþ ก๓ก๓";
+	mes "ก๑ก๕ก๒ ก๓ ก๗กüก๙ ก๖";
+	mes "ก๑ก๘กü ก๚ ก๔";
+	mes "กþก๚ก๒ ขฑ ก๛ก๒ก๒ ก๙ ก๗";
+	mes "ขณก๒ก๒ ก๙ ขฑขฃก๒";
+	close;
+}
+
+dic_in01,387,30,1	script	Manuk Piom#a	454,{
+	mes "[Manuk Piom]";
+	if (isequipped(2782)) {
+		mes "คุณ! เราเจอกันที่ Manuk เราไม่ใช่เหรอ";
+		mes "มารับอาวุธที่สั่งมา";
+		close; 
+	}
+	mes "กüก๓กþ ก๓ ก๏ก๐ขค กü ก๐ขฑ";
+	mes "ก๙ก๔ก๏ ก๚ ก๑ก๙ขณ ก๓ ก๒ก๖ก๓ ก๔ก๔";
+	close;
+}
+
+dicastes01,282,210,4	script	Free Knit#a	453,{
+	mes "[Free Knit]";
+	if (isequipped(2782)) {
+		mes "ตราบใดที่เรามีความมั่นคง";
+		mes "อุปทานของแบรดเดียม";
+		mes "สัพพัสอยู่ได้ตลอดไป";
+		mes "วัยเด็กของเรากินเวลา 10 ปี";
+		mes "ซึ่งสั้น";
+		close; 
+	}
+	mes "ก๑กþก๐ ก๓ กüก๒ก๖ ก๗";
+	mes "ขณก๐ก๏ ขฃ ก๙ก๔ก๒ ก๔ ก๓กþก๑ ขฒ ก๑ก๛ขฃ ขฒ";
+	mes "ก๔ก๓ก๐ กþ ขฃก๐ขค ก๕ ก๛ขณกü";
+	mes "ก๓ขณก๒ ขฑ ก๔ขฃขฒ ก๗ ก๗ก๑";
+	mes "ก๒ขฒก๏ ขฃ ก๖ก๖";
+	close;
+}
+
+dicastes01,246,210,3	script	Free Venknick#a	449,{
+	mes "[Free Venknick]";
+	if (isequipped(2782)) {
+		mes "อย่างน้อยเราก็มี Bradium มากมาย";
+		mes "ดู";
+		mes "คุณสามารถเห็น Bradium";
+		mes "ทุกที่ที่ไป";
+		next;
+		mes "[Free Venknick]";
+		mes "?";
+		next;
+		mes "[Free Venknick]";
+		mes "สิ่งที่กลิ้งไปมาคืออัญมณี";
+		mes "แต่ทำไมถึงสนใจมัน";
+		close; 
+	}
+	mes "ก๔ก๏ขฃ ขค ก๗ก๕ขฑ กü ก๑ก๕";
+	mes "กüขณ";
+	mes "ก๖ก๙ขค ขฒ ก๙ก๓ก๔";
+	mes "กüขฃขณ ก๘ ก๛ก๐กü ก๕";
+	next;
+	mes "[Free Venknick]";
+	mes "ก๙";
+	next;
+	mes "[Free Venknick]";
+	mes "กþขคขฃ ขฑ ก๓ก๒ขณ กü ก๑ก๐";
+	mes "ขฑก๛ขฃ ก๖ กüก๒ก๗ ก๛ ก๕ก๒ก๗ ขฒขฒ";
+	close;
+}
+
+dicastes01,235,245,4	script	Excited Piom#a	490,{
+	if (isequipped(2782)) {
+		mes "[Excited Piom]";
+		mes "คุณเคยเห็น Ahat ไหม";
+		emotion ET_DELIGHT;
+		mes "ความนิยมของเขาที่นี่ใน El Discastes นั้นยอดเยี่ยมมาก!";
+		close; 
+	}
+	mes "[Excited Piom]";
+	mes "ก๚กþก๓ ขณ กüขฒก๑ ขฑ";
+	emotion ET_DELIGHT;
+	mes "ขณก๓ก๑ ก๕ ก๐ก๔กþ ก๗ ก๚ก๒ก๕ ก๘ ขฒ ก๘";
+	close;
+}
+
+dicastes01,284,262,3	script	Favorable Knit#a	453,{
+	mes "[Favorable Knit]";
+	if (isequipped(2782)) {
+		mes "ไม่เหมือน Laphine เรา Saphas";
+		mes "เป็นชุมชนที่ใกล้ชิดกันมาก";
+		mes "เราเริ่มต้นด้วยการอยู่ร่วมกันในสิ่งอำนวยความสะดวกทั่วไปหลังจากที่เราเกิด";
+		mes "นั่นคือเหตุผลว่าทำไม Saphas จึงเป็นเหมือนครอบครัว";
+		mes "เราไม่เคยทะเลาะกันระหว่างเรียนเลย";
+		close; 
+	}
+	mes "ก๔ขฑก๓ ก๕ ก๚ก๗กะ ก๕";
+	mes "กüก๏กะ ก๕ ก๔ก๓กü ก๓ ขณ";
+	mes "ก๑ก๔กü กþ ขคก๑ขค ก๔ ก๛ก๏ก๙";
+	mes "ก๚ก๖ก๔ ก๓ ขฃก๚กþ ก๘ ก๘ก๒";
+	mes "ขฒขณก๛ ขค ก๚ก๑ก๙ ก๛ ขณก๒ก๘ ก๕ก๕";
+	close;
+}
+
+dicastes01,164,180,4	script	Limpy Piom#a	489,{
+	mes "[Limpy Piom]";
+	if (isequipped(2782)) {
+		mes "พวกเขาบอกว่ามี";
+		mes "สงครามที่เกิดขึ้นกับ Splendide ใน Manuk";
+		mes "ฉันหวังว่าทุกอย่างจะเป็นไปด้วยดี";
+		mes "ฉันหวังว่ามันจะไม่มาทั้งหมด";
+		mes "ทางไปเมืองหลวงที่นี่.";
+		emotion ET_THINK;
+		close; 
+	}
+	mes "ขฒก๔กþ ก๙ ก๕กะ";
+	mes "ขณก๔ก๛ ก๚ ก๘";
+	mes "ขณกþขค ก๓ ก๕ก๗กะ";
+	mes "ก๑ก๒กü กü ก๙กþขฑ";
+	mes "ขคก๒กþ ขค ขฃก๑ ขค ขฃก๑";
+	emotion ET_THINK;
+	close;
+}
+
+dicastes01,191,202,4	script	Complaining Galten#fihs	450,{
+	if (isequipped(2782)) {
+		mes "[Complaining Galten]";
+		mes "Vanknick บ้านั่นตลอด";
+		mes "พูดถึงตำนานของรูปปั้นนั้น";
+		next;
+		mes "[Complaining Galten]";
+		mes "เคยคุย";
+		mes "กับเขา?";
+		next;
+		if(select("ไม่:ใช่") == 1) {
+			mes "[Complaining Galten]";
+			mes "ถ้าอย่างนั้นคุณไม่รู้เกี่ยวกับตำนานเบื้องหลังรูปปั้นเหรอ?";
+			mes "ถ้าอย่างนั้นฉันไม่รู้จะคุยอะไรกับคุณ";
+			close; 
+		}
+		emotion ET_KIK, getnpcid(0, "Crazy Venknick#fihsing1");
+		mes "[Complaining Galten]";
+		mes "คุณตกหลุมรักคนบ้าคนนั้นด้วย";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ใช่";
+		emotion ET_CRY, playerattached();
+		next;
+		mes "[Complaining Galten]";
+		mes "ลืมมันให้เร็วเพื่อประโยชน์ของตัวเอง";
+		close;
+	}
+	mes "[ก๕ขฃก๖ ก๚ ]";
+	mes "ก๕ก๒ก๛ ก๒ ขฃก๛ก๗ ก๗ ";
+	mes "ก๛ก๙ก๛ ก๗ กüกþก๛ ขณ ก๓";
+	next;
+	mes "[ก๕ขฃก๖ ก๚ ]";
+	mes "ก๐ขฑกü ก๛ ก๕ก๗ขค";
+	mes "ขคกþก๘ ขฒ ก๗";
+	next;
+	mes "ไม่รู้ความหมาย";
+	close;
+}
+
+dicastes01,202,197,4	script	Crazy Venknick#fihsing1	449,{
+	if (isequipped(2782)) {
+		mes "[Crazy Venknick]";
+		mes "เพียง 5,000 Zeny";
+		mes "ฉันจะเล่าตำนานอันน่าเศร้าเบื้องหลังรูปปั้นนั้นให้ฟัง";
+		next;
+		if(select("ให้ 5000 Zeny.:ไม่จ่าย 5000 Zeny.") == 2) {
+			mes "[Crazy Venknick]";
+			mes "อย่ากลับมาพร้อมความเสียใจ";
+			close; 
+		}
+		if (Zeny < 5000) {
+			mes "[Crazy Venknick]";
+			mes "ฉันมี";
+			mes "ไม่มีตำนานที่จะแบ่งปันด้วย";
+			mes "คนยากจน";
+			close;
+			close; 
+		}
+		set Zeny, Zeny-5000;
+		mes "[Crazy Venknick]";
+		mes "ขอบคุณ";
+		emotion ET_KIK, getnpcid(0, "Complaining Galten#fihs");
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "ตำนานที่น่าเศร้าคืออะไร";
+		next;
+		emotion ET_THINK;
+		mes "["+strcharinfo(0)+"]";
+		mes "ฉันถามว่าตำนานที่น่าเศร้าเกี่ยวกับอะไร!";
+		next;
+		mes "[Crazy Venknick]";
+		mes "ฉันไม่เชื่อในตำนาน";
+		next;
+		emotion ET_THINK, playerattached();
+		mes "["+strcharinfo(0)+"]";
+		mes "โดนหลอกหรือเปล่า";
+		sc_start SC_Blind,20000,0;
+		next;
+		mes "คุณรู้สึกเจ็บใจที่ถูกหลอก";
+		close; 
+	}
+	mes "[ก๖ก๚ก๙ ขณ ]";
+	mes "ขฒก๛ก๓ ก๓ ก๙ขคก๘";
+	mes "ขคก๐ขฒ ขฑ ก๑ก๖ขฒ ก๘ ก๏ก๖กü";
+	next;
+	mes "ไม่รู้ความหมาย";
+	close;
+}
+
+dic_in01,98,110,5	script	Worried Piom#a	489,{
+	if (isequipped(2782)) {
+		mes "[Worried Piom]";
+		mes "ฉันไม่ได้เจอเพื่อนในช่วงสองสามชั่วโมงที่ผ่านมา";
+		mes "ถึงเวลาที่ต้องมี";
+		mes "Bradium ของพวกเขาอืม .. ";
+		close;
+	}
+	mes "[Worried Piom]";
+	mes "ก๛ขฑก๗ ขฒ ก๏กþก๒ กü ก๏ก๛ขฒ";
+	mes "ก๏ก๗ขค กะ ก๏ก๏กะ ขค ขฃ";
+	mes "ก๗กþก๐ ก๓ ก๑";
+	close;
+}
+
+dic_in01,98,96,3	script	Lost Galten#a	492,{
+	if (isequipped(2782)) {
+		mes "[Lost Galten]";
+		mes "ฉันอยู่ในฐานะพี่โอมมานานเกินไป";
+		mes "ตอนนี้มันเหมือนนิสัยไม่ดี";
+		mes "และฉันพบว่าตัวเองอยู่ที่นี่ตลอดเวลา";
+		close;
+	}
+	mes "[Lost Galten]";
+	mes "ก๓ก๔ก๏ ก๛ ขณก๚";
+	mes "กüก๘ก๑ ขฃ ";
+	mes "ก๖ก๏ขฒ ก๛ ก๖ก๓";
+	close;
+}

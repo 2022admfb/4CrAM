@@ -1,0 +1,93 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= 1.1 Made all into functions, additional checks, etc. [Lupus]
+//= 1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//============================================================ 
+
+valkyrie,53,47,3	script	Scholar#Valkyrie	743,{
+	if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Scholar]";
+			mes "ยินดีด้วย";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		mes "[Scholar]";
+		mes "ใช้เวลาตลอดชีวิต ... ";
+		mes "แท้จริงตลอดชีวิต";
+		mes "เพื่อสะสมความรู้";
+		mes "จำเป็นต้องกลายเป็น";
+		mes "นักวิชาการ ... ";
+		next;
+		mes "[Scholar]";
+		mes "มันล้นมาก";
+		mes "ยิ่งเรียนรู้มากเท่าไหร่";
+		mes "คุณค้นพบอะไรมากขึ้น";
+		mes "อย่างอื่นที่คุณไม่รู้";
+		mes "ไม่มีที่สิ้นสุด";
+		mes "กระบวนการเรียนรู้ ... ";
+		close;
+	}
+	else if (ADVJOB == Job_Professor && Class == Job_Mage_High && JobLevel > 39) {
+		mes "[Scholar]";
+		mes "มิดการ์ด";
+		mes "มีนักวิชาการเพียงพอที่จะ";
+		mes "ช่วยนำสู่ยุคใหม่";
+		mes "แห่งความเจริญรุ่งเรือง The";
+		mes "โลกต้องการคุณ ... ";
+		next;
+		mes "[Scholar]";
+		mes "จะเอาไหม";
+		mes "ความรับผิดชอบที่น่ากลัว?";
+		mes "คุณจะรับใช้มิดการ์ด";
+		mes "ในฐานะ Scholar?";
+		next;
+		if (select("No.:Yes.") == 1) {
+			mes "[Scholar]";
+			mes "เมื่อคุณพร้อม";
+			mes "อย่าลังเลที่จะกลับมา";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Scholar]";
+			mes "คุณยังสามารถเรียนรู้ทักษะเพิ่มเติมได้อีกโปรดใช้";
+			mes "คะแนนทักษะที่เหลือทั้งหมดของคุณก่อนที่จะกลับมาหาฉัน";
+			close;
+		}
+		jobchange Job_Professor;
+		set ADVJOB,0;
+		mes "[Scholar]";
+		mes "ยินดีด้วย!";
+		mes "ในฐานะศาสตราจารย์ฉันหวังว่า";
+		mes "ที่คุณจะใช้";
+		mes "มีส่วนร่วมในการนำ";
+		mes "แสงแห่งความรู้";
+		mes "ที่ที่มีความมืด";
+		close;
+	}
+	mes "[Scholar]";
+	mes "ยินดีต้อนรับ";
+	mes "ถึง Valhalla,";
+	mes "หอเกียรติยศ.";
+	next;
+	mes "[Scholar]";
+	mes "กรุณาทำให้";
+	mes "สบายตัว";
+	mes "ในขณะที่คุณอยู่ที่นี่";
+	mes "ให้เกียรตินักรบ!";
+	close;
+}
+

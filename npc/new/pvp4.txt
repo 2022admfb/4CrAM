@@ -1,0 +1,205 @@
+/*izlude,135,169,4	script	PVP 4vs4	-1,{
+	//izlude,135,169,4	script	PVP 4vs4	626,{
+set .@n$,"[^FF0000PVP Manager^000000]";
+set .@charid,getcharid(0);
+
+mes .@n$;
+mes "คุณต้องการลงทะเบียนสำหรับการต่อสู้ 4vs4 PVP ?";
+next;
+menu "ตกลง",-,"ไม่",L_cancel;
+if(getmapusers("guild_vs1") > 0) { mes .@n$; mes "ดูเหมือนจะมีการแข่งขันในเซสชันนี้ โปรดกลับมาตรวจสอบในอีกสักครู่."; close; end; }
+mes .@n$;
+mes "คุณต้องการเข้าร่วมเวทีด้านใด?";
+next;
+menu "North ("+$pvp4nA+"/4)",L_north,"South ("+$pvp4nB+"/4)",L_south,"East ("+$pvp4nC+"/4)",L_east,"West ("+$pvp4nD+"/4)",L_west,"Cancel",L_cancel;
+
+L_north:
+if(.@charid == $pvp4nAchar1 || .@charid == $pvp4nAchar2 || .@charid == $pvp4nAchar3 || .@charid == $pvp4nAchar4 || .@charid == $pvp4nBchar1 || .@charid == $pvp4nBchar2 || .@charid == $pvp4nBchar3 || .@charid == $pvp4nBchar4 || .@charid == $pvp4nCchar1 || .@charid == $pvp4nCchar2 || .@charid == $pvp4nCchar3 || .@charid == $pvp4nCchar4 || .@charid == $pvp4nDchar1 || .@charid == $pvp4nDchar2 || .@charid == $pvp4nDchar3 || .@charid == $pvp4nDchar4) { mes .@n$; mes "คุณสามารถลงทะเบียนได้เพียงครั้งเดียวต่อรอบ."; close; end; }
+if($pvp4nA < 4) {
+set $pvp4nA,$pvp4nA+1;
+if($pvp4nA == 1) { set $pvp4nAchar1,getcharid(0); }
+if($pvp4nA == 2) { set $pvp4nAchar2,getcharid(0); }
+if($pvp4nA == 3) { set $pvp4nAchar3,getcharid(0); }
+if($pvp4nA == 4) { set $pvp4nAchar4,getcharid(0); }
+if($pvp4nA == 1 || $pvp4nB == 1 || $pvp4nC == 1 || $pvp4nD == 1) { if($pvp4timer == 0 ) { initnpctimer; set $pvp4timer,1; } }
+mes .@n$;
+mes "คุณได้เข้าร่วมทีมที่เลือกแล้ว เมื่ออีกสี่ทีมเต็มแล้วคุณจะถูกย้ายเข้าสู่เวที PVP โดยอัตโนมัติ หากทั้งสี่ทีมไม่เติมเต็มภายใน 30 วินาทีถัดไปเซสชันนี้จะถูกล้าง.";
+npctalk strcharinfo(0)+" ได้เข้าสู่สนาม North side.";
+if($pvp4nA == 4 && $pvp4nB == 4 && $pvp4nC == 4 && $pvp4nD == 4) { stopnpctimer; goto L_begin;}
+close;
+end;
+}
+
+goto L_full;
+
+L_south:
+if(.@charid == $pvp4nAchar1 || .@charid == $pvp4nAchar2 || .@charid == $pvp4nAchar3 || .@charid == $pvp4nAchar4 || .@charid == $pvp4nBchar1 || .@charid == $pvp4nBchar2 || .@charid == $pvp4nBchar3 || .@charid == $pvp4nBchar4 || .@charid == $pvp4nCchar1 || .@charid == $pvp4nCchar2 || .@charid == $pvp4nCchar3 || .@charid == $pvp4nCchar4 || .@charid == $pvp4nDchar1 || .@charid == $pvp4nDchar2 || .@charid == $pvp4nDchar3 || .@charid == $pvp4nDchar4) { mes .@n$; mes "คุณสามารถลงทะเบียนได้เพียงครั้งเดียวต่อรอบ."; close; end; }
+if($pvp4nB < 4) {
+set $pvp4nB,$pvp4nB+1;
+if($pvp4nB == 1) { set $pvp4nBchar1,getcharid(0); }
+if($pvp4nB == 2) { set $pvp4nBchar2,getcharid(0); }
+if($pvp4nB == 3) { set $pvp4nBchar3,getcharid(0); }
+if($pvp4nB == 4) { set $pvp4nBchar4,getcharid(0); }
+if($pvp4nA == 1 || $pvp4nB == 1 || $pvp4nC == 1 || $pvp4nD == 1) { if($pvp4timer == 0 ) { initnpctimer; } else {set $pvp4timer,1; } }
+mes .@n$;
+mes "คุณได้เข้าร่วมทีมที่เลือกแล้ว เมื่ออีกสี่ทีมเต็มแล้วคุณจะถูกย้ายเข้าสู่เวที PVP โดยอัตโนมัติ หากทั้งสี่ทีมไม่เติมเต็มภายใน 30 วินาทีถัดไปเซสชันนี้จะถูกล้าง.";
+npctalk strcharinfo(0)+" ได้เข้าสู่สนาม South side.";
+if($pvp4nA == 4 && $pvp4nB == 4 && $pvp4nC == 4 && $pvp4nD == 4) { stopnpctimer; goto L_begin;}
+close;
+end;
+}
+
+goto L_full;
+
+L_east:
+if(.@charid == $pvp4nAchar1 || .@charid == $pvp4nAchar2 || .@charid == $pvp4nAchar3 || .@charid == $pvp4nAchar4 || .@charid == $pvp4nBchar1 || .@charid == $pvp4nBchar2 || .@charid == $pvp4nBchar3 || .@charid == $pvp4nBchar4 || .@charid == $pvp4nCchar1 || .@charid == $pvp4nCchar2 || .@charid == $pvp4nCchar3 || .@charid == $pvp4nCchar4 || .@charid == $pvp4nDchar1 || .@charid == $pvp4nDchar2 || .@charid == $pvp4nDchar3 || .@charid == $pvp4nDchar4) { mes .@n$; mes "คุณสามารถลงทะเบียนได้เพียงครั้งเดียวต่อรอบ."; close; end; }
+if($pvp4nC < 4) {
+set $pvp4nC,$pvp4nC+1;
+if($pvp4nC == 1) { set $pvp4nCchar1,getcharid(0); }
+if($pvp4nC == 2) { set $pvp4nCchar2,getcharid(0); }
+if($pvp4nC == 3) { set $pvp4nCchar3,getcharid(0); }
+if($pvp4nC == 4) { set $pvp4nCchar4,getcharid(0); }
+if($pvp4nA == 1 || $pvp4nB == 1 || $pvp4nC == 1 || $pvp4nD == 1) { if($pvp4timer == 0 ) { initnpctimer; } else {set $pvp4timer,1; } }
+mes .@n$;
+mes "คุณได้เข้าร่วมทีมที่เลือกแล้ว เมื่ออีกสี่ทีมเต็มแล้วคุณจะถูกย้ายเข้าสู่เวที PVP โดยอัตโนมัติ หากทั้งสี่ทีมไม่เติมเต็มภายใน 30 วินาทีถัดไปเซสชันนี้จะถูกล้าง.";
+npctalk strcharinfo(0)+" ได้เข้าสู่สนาม East side.";
+if($pvp4nA == 4 && $pvp4nB == 4 && $pvp4nC == 4 && $pvp4nD == 4) { stopnpctimer; goto L_begin;}
+close;
+end;
+}
+
+goto L_full;
+
+L_west:
+if(.@charid == $pvp4nAchar1 || .@charid == $pvp4nAchar2 || .@charid == $pvp4nAchar3 || .@charid == $pvp4nAchar4 || .@charid == $pvp4nBchar1 || .@charid == $pvp4nBchar2 || .@charid == $pvp4nBchar3 || .@charid == $pvp4nBchar4 || .@charid == $pvp4nCchar1 || .@charid == $pvp4nCchar2 || .@charid == $pvp4nCchar3 || .@charid == $pvp4nCchar4 || .@charid == $pvp4nDchar1 || .@charid == $pvp4nDchar2 || .@charid == $pvp4nDchar3 || .@charid == $pvp4nDchar4) { mes .@n$; mes "คุณสามารถลงทะเบียนได้เพียงครั้งเดียวต่อรอบ."; close; end; }
+if($pvp4nD < 4) {
+set $pvp4nD,$pvp4nD+1;
+if($pvp4nD == 1) { set $pvp4nDchar1,getcharid(0); }
+if($pvp4nD == 2) { set $pvp4nDchar2,getcharid(0); }
+if($pvp4nD == 3) { set $pvp4nDchar3,getcharid(0); }
+if($pvp4nD == 4) { set $pvp4nDchar4,getcharid(0); }
+if($pvp4nA == 1 || $pvp4nB == 1 || $pvp4nC == 1 || $pvp4nD == 1) { if($pvp4timer == 0 ) { initnpctimer; } else {set $pvp4timer,1; } }
+mes .@n$;
+mes "คุณได้เข้าร่วมทีมที่เลือกแล้ว เมื่ออีกสี่ทีมเต็มแล้วคุณจะถูกย้ายเข้าสู่เวที PVP โดยอัตโนมัติ หากทั้งสี่ทีมไม่เติมเต็มภายใน 30 วินาทีถัดไปเซสชันนี้จะถูกล้าง.";
+npctalk strcharinfo(0)+" ได้เข้าสู่สนาม West side.";
+if($pvp4nA == 4 && $pvp4nB == 4 && $pvp4nC == 4 && $pvp4nD == 4) { stopnpctimer; goto L_begin;}
+close;
+end;
+}
+
+goto L_full;
+
+L_full:
+mes .@n$;
+mes "ขออภัยทีมนี้เต็ม โปรดลองทีมอื่น.";
+close;
+end;
+
+L_begin:
+npctalk "เต็มทั้งสี่ทีมแล้ว ผู้เข้าร่วมทั้งหมดที่ลงชื่อเข้าใช้จะถูกย้ายไปที่สนามประลองภายในสิบวินาที.";
+sleep2 10000;
+set .@x,0;
+L_warploop:
+	while (.@x < 16) {
+		if (.@x == 0)
+			{ warpchar "guild_vs1",49,92,$pvp4nAchar1; }
+		else if (.@x == 1)
+			{ warpchar "guild_vs1",49,92,$pvp4nAchar2; }
+		else if (.@x == 2)
+			{ warpchar "guild_vs1",49,92,$pvp4nAchar3; }
+		else if (.@x == 3)
+			{ warpchar "guild_vs1",49,92,$pvp4nAchar4; }
+		else if (.@x == 4)
+			{ warpchar "guild_vs1",49,8,$pvp4nBchar1; }
+		else if (.@x == 5)
+			{ warpchar "guild_vs1",49,8,$pvp4nBchar2; }
+		else if (.@x == 6)
+			{ warpchar "guild_vs1",49,8,$pvp4nBchar3; }
+		else if (.@x == 7)
+			{ warpchar "guild_vs1",49,8,$pvp4nBchar4; }
+		else if (.@x == 8)
+			{ warpchar "guild_vs1",92,50,$pvp4nCchar1; }
+		else if (.@x == 9)
+			{ warpchar "guild_vs1",92,50,$pvp4nCchar2; }
+		else if (.@x == 10)
+			{ warpchar "guild_vs1",92,50,$pvp4nCchar3; }
+		else if (.@x == 11)
+			{ warpchar "guild_vs1",92,50,$pvp4nCchar4; }
+		else if (.@x == 12)
+			{ warpchar "guild_vs1",7,50,$pvp4nDchar1; }
+		else if (.@x == 13)
+			{ warpchar "guild_vs1",7,50,$pvp4nDchar2; }
+		else if (.@x == 14)
+			{ warpchar "guild_vs1",7,50,$pvp4nDchar3; }
+		else if (.@x == 15)
+			{ warpchar "guild_vs1",7,50,$pvp4nDchar4; }
+		else
+			{   //new
+		        goto L_clear;
+				npctalk "กำลังเริ่มอยู่."; goto L_clear;}
+	set .@x, .@x + 1;
+	}
+goto L_warploop;
+
+
+
+end;
+
+L_cancel:
+mes .@n$;
+mes "กลับมาถ้าคุณเปลี่ยนใจ.";
+close;
+end;
+
+OnTimer10000:
+npctalk "ผ่านไปสิบวินาที การเข้าสู่รอบนี้จะสิ้นสุดใน 20 วินาที.";
+end;
+
+OnTimer20000:
+npctalk "เวลาผ่านไปยี่สิบวินาที การเข้าสู่รอบจะสิ้นสุดใน 10 วินาที.";
+end;
+
+OnTimer30000:
+npctalk "ผ่านไปสามสิบวินาทีฉันผู้เล่นไม่เพียงพอจึงยกเลิกรอบนี้.";
+stopnpctimer;
+goto L_clear;
+
+L_clear:
+set $pvp4timer,0;
+set $pvp4nA,0;
+set $pvp4nB,0;
+set $pvp4nC,0;
+set $pvp4nD,0;
+set $pvp4nAchar1,0;
+set $pvp4nAchar2,0;
+set $pvp4nAchar3,0;
+set $pvp4nAchar4,0;
+set $pvp4nBchar1,0;
+set $pvp4nBchar2,0;
+set $pvp4nBchar3,0;
+set $pvp4nBchar4,0;
+set $pvp4nCchar1,0;
+set $pvp4nCchar2,0;
+set $pvp4nCchar3,0;
+set $pvp4nCchar4,0;
+set $pvp4nDchar1,0;
+set $pvp4nDchar2,0;
+set $pvp4nDchar3,0;
+set $pvp4nDchar4,0;
+end;
+}
+
+-	script	pvp4vs4#1	-1,{
+OnPCDieEvent:
+getmapxy (.@map$, .@x, .@y, 0); 
+if(.@map$ == "guild_vs1") { warp "SavePoint",0,0;}
+end;
+
+OnPCKillEvent:
+getmapxy (.@map$, .@x, .@y, 0); 
+if( .@map$ == "guild_vs1") { 
+set .@tempn1$,strcharinfo(0);
+set .@tempn2$,rid2name(killedrid);
+mapannounce "guild_vs1",""+.@tempn1$+" has killed "+.@tempn2$+".",1,0xD6A4E6;}
+end;
+}*/

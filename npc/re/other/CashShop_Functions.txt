@@ -1,0 +1,42 @@
+//===== rAthena Script =======================================
+//= Cash Shop Functions
+//===== Description: =========================================
+//= Functions related to the VIP system.
+//===== Changelogs: ==========================================
+//= 1.0 Moved VIP_Third_Class function
+//=		from other/CashShop_Functions. [Capuche]
+//============================================================
+
+// VIP Functions
+//============================================================
+function	script	VIP_Third_Class	{
+	if (!vip_status(VIP_STATUS_ACTIVE)) {
+		mes "[เสียงจากที่ไหน]";
+		mes "การเข้าถึงเนื้อหาพรีเมียมมีให้เฉพาะผู้ที่มี Reset Stones 1 ชิ้นเท่านั้น";
+		next;
+		if (countitem(6320) < 1) {
+			mes "[เสียงจากที่ไหน]";
+			mes "ในการเปลี่ยนเป็นคลาสที่สามคุณต้องนำ 1 ^0000CCReset Stone ^000000 หรือมีบัญชีพรีเมียม";
+			//mes "กรุณาเยี่ยมชม iShop ของเราเพื่อซื้อ ^0000CCReset Stone ^000000";
+			close;
+		} else {
+			mes "[เสียงจากที่ไหน]";
+			mes "คุณต้องการรีเซ็ต < Status >";
+			mes "จ่าย 1 ^0000CCReset Stone ^000000 หรือไม่?";
+			next;
+			switch(select("ใช่:ไม่ใช่")) {
+			case 1:
+				mes "[เสียงจากที่ไหน]";
+				mes "ขอให้โชคดีนักผจญภัย";
+				delitem 6320,1; //Premium_Reset_Stone
+				next;
+				break;
+			case 2:
+				mes "[เสียงจากที่ไหน]";
+				mes "ดีมาก.";
+				close;
+			}
+		}
+	}
+	return;
+}

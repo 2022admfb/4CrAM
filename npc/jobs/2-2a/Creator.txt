@@ -1,0 +1,139 @@
+//===== rAthena Script ======================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== By: ==================================================
+//= Nana
+//= finished, optimized and tested by Lupus
+//===== Current Version: ===================================== 
+//= 1.3
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Advance Class jobchanger after kRO Normals.
+//===== Additional Comments: ================================= 
+//= 1.1 Made all into functions, additional checks, etc. [Lupus]
+//= 1.2 Made numbers into constants. [Vicious]
+//= 1.3 Now saves/restores all the quest skills [Lupus]
+//= 1.4 Creators did not get their homunculus skills [Lemongrass]
+//============================================================ 
+
+valkyrie,53,50,3	script	Biochemist#Valkyrie	122,{
+	if (Class == Job_Creator && bioeth == 13 && getskilllv("AM_BIOETHICS") == 0) {
+		mes "[Biochemist]";
+		mes "คุณมาที่นี่หรือยัง";
+		mes "เรียกคืนความทรงจำ";
+		mes "หลงทางใช่เธอ";
+		mes "ต้องอยู่ที่นี่เพื่อ";
+		mes "ความลับของชีวิตที่";
+		mes "ครั้งหนึ่งเคยเป็นของคุณ ... ";
+		next;
+		if (select("Yes:No") == 1) {
+			mes "[Biochemist]";
+			mes "หลับตาแล้ว";
+			mes "ทำใจให้นิ่ง";
+			mes "เราจะกลับไปหาคุณ";
+			mes "อดีตเพื่อระลึกถึง";
+			mes "ชิ้นส่วนของคุณที่หายไป";
+			mes "ความทรงจำ";
+			next;
+			mes "[Biochemist]";
+			mes "เมื่อคุณลืมตา";
+			mes "จำได้ชัดเจน";
+			mes "ความลับของชีวิตคุณจะ";
+			mes "จำน้ำหนักของ";
+			mes "ความรับผิดชอบในการใช้สิ่งเหล่านี้";
+			mes "เคล็ดลับความถูกต้องจบลง ... ";
+			next;
+			skill "AM_BIOETHICS",1,SKILL_PERM;
+			mes "[Biochemist]";
+			mes "ลืมตา ... ";
+			mes "ได้แล้ว";
+			mes "จำวิธีการ";
+			mes "สร้างชีวิตเทียมฉันเท่านั้น";
+			mes "ขอให้คุณรักษาทั้งหมดของคุณ";
+			mes "สร้างสรรค์ด้วยความเคารพ";
+			close;
+		}
+		mes "[Biochemist]";
+		mes "ถ้าคุณต้องการ";
+		mes "เรียกคืนของคุณที่หายไป";
+		mes "ได้โปรด";
+		mes "กลับมาหาฉัน";
+		mes "ความลับในการสร้าง";
+		mes "ชีวิตไม่ใช่เรื่องน่าเบื่อ ... ";
+		close;
+	}
+	else if (ADVJOB == 0 || Upper != 1) {
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "[Biochemist]";
+			mes "ยินดีด้วย";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		mes "[Biochemist]";
+		mes "มันแปลกตรงที่";
+		mes "คนอย่างฉันอยู่ที่นี่แล้ว";
+		mes "แต่ยังมีคนที่มีทักษะ";
+		mes "ในทางวิทยาศาสตร์";
+		mes "สามารถเป็นฮีโร่ได้";
+		next;
+		mes "[Biochemist]";
+		mes "ในกรณีนี้";
+		mes "มันไม่จำเป็น";
+		mes "วิธีที่ฉันใช้ แต่";
+		mes "สิ้นสุดที่ฉัน";
+		mes "การต่อสู้ที่ทำให้ฉันได้รับ";
+		mes "สถานที่ในวัลฮัลล่า ... ";
+		close;
+	}
+	else if (ADVJOB == Job_Creator && Class == Job_Merchant_High && JobLevel > 39) {
+		mes "[Biochemist]";
+		mes "ครับ ... ";
+		mes "ถึงเวลาแล้ว";
+		mes "เราต้องการอัจฉริยะมากกว่านี้";
+		mes "เหมือนคุณใน Midgard";
+		next;
+		mes "[Biochemist]";
+		mes "คุณต้องการที่จะ";
+		mes "เป็นนักชีวเคมี?";
+		next;
+		if (select("No.:Yes.") == 1) {
+			mes "[Biochemist]";
+			mes "เมื่อคุณพร้อม";
+			mes "อย่าลังเลที่จะกลับมา";
+			mes "ให้เกียรตินักรบ!";
+			close;
+		}
+		if (SkillPoint) {
+			mes "[Biochemist]";
+			mes "คุณยังสามารถเรียนรู้ทักษะเพิ่มเติมได้อีกโปรดใช้";
+			mes "คะแนนทักษะที่เหลือทั้งหมดของคุณก่อนที่จะกลับมาหาฉัน";
+			close;
+		}
+		jobchange Job_Creator;
+		if (bioeth == 13)
+			skill "AM_BIOETHICS",1,SKILL_PERM;
+		set ADVJOB,0;
+		mes "[Biochemist]";
+		mes "ยินดีด้วย!";
+		mes "ในฐานะนักชีวเคมี";
+		mes "ฉันหวังว่าคุณจะใช้ของคุณ";
+		mes "ความรู้มากมายสำหรับ";
+		mes "วัตถุประสงค์ที่ถูกต้อง";
+		close;
+	}
+	else {
+		mes "[Biochemist]";
+		mes "ยินดีต้อนรับ";
+		mes "ถึง Valhalla,";
+		mes "หอเกียรติยศ.";
+		next;
+		mes "[Biochemist]";
+		mes "กรุณาทำให้";
+		mes "สบายตัว";
+		mes "ในขณะที่คุณอยู่ที่นี่";
+		mes "ให้เกียรตินักรบ!";
+		close;
+	}
+}
+

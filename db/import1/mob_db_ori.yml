@@ -1,0 +1,7431 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2021 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Monster Database
+###########################################################################
+#
+# Monster Settings
+#
+###########################################################################
+# - Id                      Monster ID.
+#   AegisName               Server name to reference the monster in scripts and lookups, should use no spaces.
+#   Name                    Name in English.
+#   JapaneseName            Name in Japanese. (Default: 'Name' value)
+#   Level                   Level. (Default: 1)
+#   Hp                      Total HP. (Default: 1)
+#   Sp                      Total SP. (Default: 1)
+#   BaseExp                 Base experience gained. (Default: 0)
+#   JobExp                  Job experience gained. (Default: 0)
+#   MvpExp                  MVP experience gained. (Default: 0)
+#   Attack                  Minimum attack in pre-renewal and base attack in renewal. (Default: 0)
+#   Attack2                 Maximum attack in pre-renewal and base magic attack in renewal. (Default: 0)
+#   Defense                 Physical defense of the monster, reduces melee and ranged physical attack/skill damage. (Default: 0)
+#   MagicDefense            Magic defense of the monster, reduces magical skill damage. (Default: 0)
+#   Str                     Strength which affects attack. (Default: 1)
+#   Agi                     Agility which affects flee. (Default: 1)
+#   Vit                     Vitality which affects defense. (Default: 1)
+#   Int                     Intelligence which affects magic attack. (Default: 1)
+#   Dex                     Dexterity which affects hit rate. (Default: 1)
+#   Luk                     Luck which affects perfect dodge/lucky flee/lerfect flee/lucky dodge rate. (Default: 1)
+#   AttackRange             Attack range. (Default: 0)
+#   SkillRange              Skill cast range. (Default: 0)
+#   ChaseRange              Chase range. (Default: 0)
+#   Size                    Size. (Default: Small)
+#   Race                    Race. (Default: Formless)
+#   RaceGroups:             List of secondary groups the monster may be part of. (Optional)
+#     <group>: <value>      Group to toggle.
+#   Element                 Element. (Default: Neutral)
+#   ElementLevel            Level of element. (Default: 1)
+#   WalkSpeed               Walk speed. (Default: DEFAULT_WALK_SPEED)
+#   AttackDelay             Attack speed. (Default: 0)
+#   AttackMotion            Attack animation speed. (Default: 0)
+#   DamageMotion            Damage animation speed. (Default: 0)
+#   DamageTaken             Rate at which the monster will receive incoming damage. (Default: 100)
+#   Ai                      Aegis monster type AI behavior. (Default: 06)
+#   Class                   Aegis monster class. (Default: Normal)
+#   Modes:                  List of unique behavior not defined by AI, Class, or Attribute. (Optional)
+#     <mode>: <value>       Mode to toggle.
+#   MvpDrops:               List of possible MVP prize items. Max of MAX_MVP_DROP. (Optional)
+#     - Item                Item name.
+#       Rate                Drop rate of item.
+#       RandomOptionGroup   Random Option Group applied to item on drop. (Default: None)
+#       Index               Index used for overwriting item. (Optional)
+#   Drops:                  List of possible normal item drops. Max of MAX_MOB_DROP. (Optional)
+#     - Item                Item name.
+#       Rate                Drop rate of item.
+#       StealProtected      If the item is shielded from TF_STEAL. (Default: false)
+#       RandomOptionGroup   Random Option Group applied to item on drop. (Default: None)
+#       Index               Index used for overwriting item. (Optional)
+###########################################################################
+
+Header:
+  Type: MOB_DB
+  Version: 2
+
+Body:
+  - Id: 25000
+    AegisName: fk_aprendiz
+    Name: fk_aprendiz
+    Level: 9
+    Hp: 25000
+    Sp: 500
+    Attack: 30
+    Attack2: 150
+    Defense: 120
+    MagicDefense: 120
+    Agi: 10
+    Vit: 86
+    Int: 49
+    Dex: 50
+    Luk: 5
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Fire
+    ElementLevel: 3
+    WalkSpeed: 170
+    AttackDelay: 200
+    AttackMotion: 600
+    DamageMotion: 288
+    Ai: 09
+    Modes:
+      Looter: true
+      Detector: true
+  - Id: 25001
+    AegisName: fk_sinx
+    Name: fk_sinx
+    Level: 140
+    Hp: 2500
+    BaseExp: 10329
+    JobExp: 6846
+    Attack: 3055
+    Attack2: 1171
+    Defense: 122
+    MagicDefense: 12
+    Str: 145
+    Agi: 87
+    Vit: 59
+    Int: 67
+    Dex: 127
+    Luk: 76
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Poison
+    ElementLevel: 4
+    WalkSpeed: 180
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    Ai: 09
+    Modes:
+      Detector: true
+  - Id: 25002
+    AegisName: fk_ferreiro
+    Name: fk_ferreiro
+    Level: 142
+    Hp: 348100
+    BaseExp: 10854
+    JobExp: 7241
+    Attack: 2762
+    Attack2: 1282
+    Defense: 131
+    MagicDefense: 10
+    Str: 138
+    Agi: 79
+    Vit: 62
+    Int: 53
+    Dex: 82
+    Luk: 48
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 180
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    Ai: 09
+  - Id: 25003
+    AegisName: fk_priest
+    Name: fk_priest
+    Level: 140
+    Hp: 220800
+    BaseExp: 9895
+    JobExp: 7421
+    Attack: 1277
+    Attack2: 3554
+    Defense: 108
+    MagicDefense: 93
+    Str: 126
+    Agi: 74
+    Vit: 71
+    Int: 123
+    Dex: 99
+    Luk: 65
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 3
+    WalkSpeed: 180
+    AttackDelay: 1152
+    AttackMotion: 384
+    DamageMotion: 288
+    Ai: 20
+    Modes:
+      Looter: true
+  - Id: 25004
+    AegisName: fk_sniper
+    Name: fk_sniper
+    Level: 141
+    Hp: 190255
+    BaseExp: 10103
+    JobExp: 7577
+    Attack: 3737
+    Attack2: 1248
+    Defense: 76
+    MagicDefense: 15
+    Str: 121
+    Agi: 126
+    Vit: 67
+    Int: 80
+    Dex: 165
+    Luk: 42
+    AttackRange: 14
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 3
+    WalkSpeed: 180
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    Ai: 09
+  - Id: 25005
+    AegisName: fk_mago
+    Name: fk_mago
+    Level: 141
+    Hp: 250
+    BaseExp: 9207
+    JobExp: 6905
+    Attack: 1089
+    Attack2: 3123
+    Defense: 77
+    MagicDefense: 74
+    Str: 108
+    Agi: 78
+    Vit: 55
+    Int: 144
+    Dex: 139
+    Luk: 49
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Ghost
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 1152
+    AttackMotion: 384
+    DamageMotion: 288
+    Ai: 20
+  - Id: 20367
+    AegisName: RAYDRIC_H
+    Name: Contaminated Raydric
+    Level: 185
+    Hp: 2372683
+    BaseExp: 207609
+    JobExp: 145326
+    Attack: 5720
+    Attack2: 6680
+    Defense: 494
+    MagicDefense: 101
+    Str: 129
+    Agi: 87
+    Vit: 56
+    Int: 32
+    Dex: 76
+    Luk: 27
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Dark
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 824
+    AttackMotion: 780
+    DamageMotion: 420
+    Ai: 09
+    Drops:
+      - Item: Rough_Zelunium
+        Rate: 5
+      - Item: Royal_Knight's_Lance
+        Rate: 1
+      - Item: Patriotism_Marks
+        Rate: 500
+      - Item: Brigan
+        Rate: 505
+      - Item: Contaminated_Raydric_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20368
+    AegisName: RAYDRIC_ARCHER_H
+    Name: Contaminated Raydric Archer
+    Level: 184
+    Hp: 2355718
+    BaseExp: 197881
+    JobExp: 138516
+    Attack: 1081
+    Attack2: 96
+    Defense: 412
+    MagicDefense: 101
+    Str: 53
+    Agi: 24
+    Vit: 40
+    Int: 15
+    Dex: 112
+    Luk: 30
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demihuman
+    Element: Dark
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 1152
+    AttackMotion: 1152
+    DamageMotion: 480
+    Ai: 09
+    Drops:
+      - Item: Incisive_Arrow
+        Rate: 500
+      - Item: Brigan
+        Rate: 4850
+      - Item: Rough_Zelunium
+        Rate: 5
+      - Item: Contaminated_Raydric_Archer_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20369
+    AegisName: GARGOYLE_H
+    Name: Frozen Gargoyle
+    Level: 186
+    Hp: 2377139
+    BaseExp: 216321
+    JobExp: 151424
+    Attack: 3830
+    Attack2: 4720
+    Defense: 333
+    MagicDefense: 105
+    Str: 100
+    Agi: 61
+    Vit: 60
+    Int: 57
+    Dex: 100
+    Luk: 70
+    AttackRange: 9
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Water
+    ElementLevel: 3
+    WalkSpeed: 200
+    AttackDelay: 1020
+    AttackMotion: 720
+    DamageMotion: 480
+    Ai: 05
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Zargon
+        Rate: 250
+      - Item: Petite_DiablOfs_Wing
+        Rate: 200
+      - Item: Silence_Arrow
+        Rate: 100
+      - Item: Rough_Zelunium
+        Rate: 5
+      - Item: Silence_Arrow
+        Rate: 1000
+      - Item: Frozen_Gargoyle_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20370
+    AegisName: STING_H
+    Name: Contaminated Sting
+    Level: 180
+    Hp: 2297907
+    BaseExp: 160854
+    JobExp: 112597
+    Attack: 3055
+    Attack2: 3390
+    Defense: 276
+    MagicDefense: 100
+    Str: 108
+    Agi: 49
+    Vit: 68
+    Int: 34
+    Dex: 99
+    Luk: 24
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Formless
+    Element: Earth
+    ElementLevel: 3
+    WalkSpeed: 300
+    AttackDelay: 528
+    AttackMotion: 500
+    DamageMotion: 240
+    Ai: 21
+    Drops:
+      - Item: Mud_Lump
+        Rate: 4850
+      - Item: Stone_Arrow
+        Rate: 1500
+      - Item: Coal
+        Rate: 130
+      - Item: Great_Nature
+        Rate: 25
+      - Item: Rough_Zelunium
+        Rate: 5
+      - Item: Explosive_Powder
+        Rate: 800
+      - Item: Contaminated_Sting_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20371
+    AegisName: RAGGED_ZOMBIE_H
+    Name: Prison Breaker
+    Level: 186
+    Hp: 2375279
+    BaseExp: 216151
+    JobExp: 151305
+    Attack: 4050
+    Attack2: 4700
+    Defense: 297
+    MagicDefense: 105
+    Str: 81
+    Agi: 50
+    Vit: 64
+    Int: 56
+    Dex: 127
+    Luk: 23
+    AttackRange: 9
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Undead
+    Element: Undead
+    ElementLevel: 2
+    WalkSpeed: 150
+    AttackDelay: 1960
+    AttackMotion: 576
+    DamageMotion: 420
+    Ai: 21
+    Drops:
+      - Item: Clattering_Skull
+        Rate: 3000
+      - Item: Tidal_Shoes
+        Rate: 15
+      - Item: Mementos
+        Rate: 1500
+      - Item: Skel_Bone
+        Rate: 4500
+      - Item: Expert_Ring
+        Rate: 2
+      - Item: Wasteland_Outlaw
+        Rate: 10
+      - Item: Carnium
+        Rate: 150
+      - Item: Nab_Ring
+        Rate: 100
+        StealProtected: true
+      - Item: Prisoner_Diary
+        Rate: 1
+        StealProtected: true
+      - Item: Prison_Breaker_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20379
+    AegisName: ICE_GHOST_H
+    Name: Ice Ghost
+    Level: 189
+    Hp: 2418315
+    BaseExp: 228531
+    JobExp: 159972
+    Attack: 2600
+    Attack2: 1750
+    Defense: 64
+    MagicDefense: 51
+    Str: 62
+    Agi: 27
+    Vit: 25
+    Int: 55
+    Dex: 85
+    Luk: 20
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Water
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 1056
+    AttackMotion: 1056
+    DamageMotion: 480
+    Ai: 21
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Zargon
+        Rate: 4559
+      - Item: Skel_Bone
+        Rate: 6000
+      - Item: Skull
+        Rate: 500
+      - Item: Arc_Wand_
+        Rate: 8
+      - Item: Rough_Wind
+        Rate: 100
+      - Item: Bone_Wand
+        Rate: 1
+      - Item: Icicle_Staff
+        Rate: 1
+        StealProtected: true
+      - Item: Rough_Zelunium
+        Rate: 1
+        StealProtected: true
+      - Item: Ice_Ghost_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20380
+    AegisName: FLAME_GHOST_H
+    Name: Flame Ghost
+    Level: 189
+    Hp: 2410282
+    BaseExp: 227772
+    JobExp: 159440
+    Attack: 2600
+    Attack2: 1650
+    Defense: 237
+    MagicDefense: 118
+    Str: 62
+    Agi: 27
+    Vit: 25
+    Int: 55
+    Dex: 85
+    Luk: 20
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Fire
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 1056
+    AttackMotion: 1056
+    DamageMotion: 480
+    Ai: 21
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Zargon
+        Rate: 4559
+      - Item: Skel_Bone
+        Rate: 6000
+      - Item: Skull
+        Rate: 500
+      - Item: Wind_Scroll_1_5
+        Rate: 100
+      - Item: Arc_Wand_
+        Rate: 8
+      - Item: Rough_Wind
+        Rate: 100
+      - Item: Bone_Wand
+        Rate: 1
+      - Item: Hellfire_Staff
+        Rate: 1
+        StealProtected: true
+      - Item: Rough_Zelunium
+        Rate: 5
+        StealProtected: true
+      - Item: Flame_Ghost_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20420
+    AegisName: WANDER_MAN_H
+    Name: Contaminated Wanderer
+    Level: 187
+    Hp: 2387582
+    BaseExp: 236908
+    JobExp: 165836
+    Attack: 7110
+    Attack2: 8160
+    Defense: 289
+    MagicDefense: 102
+    Str: 118
+    Agi: 92
+    Vit: 36
+    Int: 15
+    Dex: 107
+    Luk: 33
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Wind
+    ElementLevel: 2
+    WalkSpeed: 100
+    AttackDelay: 672
+    AttackMotion: 500
+    DamageMotion: 480
+    Ai: 10
+    Modes:
+      CanMove: true
+      Angry: true
+      Detector: true
+    Drops:
+      - Item: Skull
+        Rate: 100
+      - Item: Old_Card_Album
+        Rate: 1
+      - Item: Royal_Knight's_Broadsword
+        Rate: 1
+      - Item: Leaf_Of_Yggdrasil
+        Rate: 10
+      - Item: Rough_Zelunium
+        Rate: 5
+      - Item: Contaminated_Wanderer_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20372
+    AegisName: BLAZZER_H
+    Name: Rigid Blazer
+    Level: 178
+    Hp: 1522580
+    BaseExp: 138416
+    JobExp: 96891
+    Attack: 2864
+    Attack2: 2330
+    Defense: 397
+    MagicDefense: 70
+    Str: 97
+    Agi: 96
+    Vit: 73
+    Int: 131
+    Dex: 131
+    Luk: 67
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 180
+    AttackDelay: 1732
+    AttackMotion: 1332
+    DamageMotion: 480
+    Ai: 09
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Burning_Heart
+        Rate: 100
+      - Item: Live_Coal
+        Rate: 50
+      - Item: White_Herb
+        Rate: 200
+      - Item: Rough_Shadowdecon
+        Rate: 5
+      - Item: Lava_Leather_Armor
+        Rate: 1
+      - Item: Lava_Leather_Suit
+        Rate: 1
+      - Item: Rigid_Blazer_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20373
+    AegisName: NIGHTMARE_TERROR_H
+    Name: Rigid Nightmare Terror
+    Level: 179
+    Hp: 1523377
+    BaseExp: 138489
+    JobExp: 96942
+    Attack: 2434
+    Attack2: 3251
+    Defense: 242
+    MagicDefense: 75
+    Str: 81
+    Agi: 149
+    Vit: 21
+    Int: 186
+    Dex: 129
+    Luk: 61
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demon
+    Element: Dark
+    ElementLevel: 3
+    WalkSpeed: 165
+    AttackDelay: 1216
+    AttackMotion: 816
+    DamageMotion: 480
+    Ai: 04
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Burning_Horse_Shoe
+        Rate: 150
+      - Item: Blue_Potion
+        Rate: 100
+      - Item: Blue_Herb
+        Rate: 200
+      - Item: Lava_Leather_Robe
+        Rate: 1
+      - Item: Lava_Leather_Boots
+        Rate: 1
+      - Item: Rough_Shadowdecon
+        Rate: 5
+      - Item: Rigid_Nightmare_Terror_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20374
+    AegisName: DELETER1_H
+    Name: Rigid Sky Deleter
+    Level: 174
+    Hp: 1486915
+    BaseExp: 135174
+    JobExp: 94622
+    Attack: 3317
+    Attack2: 1396
+    Defense: 363
+    MagicDefense: 64
+    Str: 116
+    Agi: 109
+    Vit: 63
+    Int: 76
+    Dex: 119
+    Luk: 47
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Dragon
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 175
+    AttackDelay: 1020
+    AttackMotion: 720
+    DamageMotion: 480
+    Ai: 13
+    Drops:
+      - Item: Dragon's_Skin
+        Rate: 250
+      - Item: Dragon_Canine
+        Rate: 300
+      - Item: Dragon_Train
+        Rate: 300
+      - Item: Dragon_Scale
+        Rate: 250
+      - Item: Rough_Shadowdecon
+        Rate: 5
+      - Item: Lava_Leather_Shoes
+        Rate: 1
+      - Item: Rigid_Sky_Deleter_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20375
+    AegisName: DELETER2_H
+    Name: Rigid Earth Deleter
+    Level: 173
+    Hp: 1478369
+    BaseExp: 134397
+    JobExp: 94078
+    Attack: 3299
+    Attack2: 1724
+    Defense: 362
+    MagicDefense: 66
+    Str: 116
+    Agi: 137
+    Vit: 63
+    Int: 97
+    Dex: 126
+    Luk: 29
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Dragon
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 175
+    AttackDelay: 1024
+    AttackMotion: 624
+    DamageMotion: 480
+    Ai: 13
+    Drops:
+      - Item: Dragon's_Skin
+        Rate: 250
+      - Item: Dragon_Canine
+        Rate: 200
+      - Item: Dragon_Train
+        Rate: 125
+      - Item: Dragon_Scale
+        Rate: 100
+      - Item: Lava_Leather_Sandals
+        Rate: 1
+      - Item: Rough_Shadowdecon
+        Rate: 5
+      - Item: Rigid_Earth_Deleter_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20376
+    AegisName: EXPLOSION_H
+    Name: Rigid Explosion
+    Level: 171
+    Hp: 1457859
+    BaseExp: 132533
+    JobExp: 92773
+    Attack: 2542
+    Attack2: 2322
+    Defense: 288
+    MagicDefense: 68
+    Str: 89
+    Agi: 117
+    Vit: 39
+    Int: 136
+    Dex: 97
+    Luk: 69
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Brute
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 165
+    AttackDelay: 1260
+    AttackMotion: 960
+    DamageMotion: 480
+    Ai: 04
+    Drops:
+      - Item: Wing_Of_Red_Bat
+        Rate: 300
+      - Item: Burning_Heart
+        Rate: 100
+      - Item: Hot_Hair
+        Rate: 100
+      - Item: Rough_Shadowdecon
+        Rate: 5
+      - Item: Fruit_Of_Mastela
+        Rate: 125
+      - Item: Lava_Leather_Manteau
+        Rate: 1
+      - Item: Rigid_Explosion_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20377
+    AegisName: KAHO_H
+    Name: Rigid Kaho
+    Level: 173
+    Hp: 1473468
+    BaseExp: 133952
+    JobExp: 93766
+    Attack: 2760
+    Attack2: 2555
+    Defense: 260
+    MagicDefense: 70
+    Str: 96
+    Agi: 130
+    Vit: 29
+    Int: 149
+    Dex: 112
+    Luk: 51
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Formless
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 150
+    AttackDelay: 1700
+    AttackMotion: 1000
+    DamageMotion: 480
+    Ai: 04
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Flame_Heart
+        Rate: 200
+      - Item: Coal
+        Rate: 250
+      - Item: Burning_Heart
+        Rate: 200
+      - Item: Rough_Shadowdecon
+        Rate: 5
+      - Item: Red_Gemstone
+        Rate: 300
+      - Item: Alchol
+        Rate: 125
+      - Item: Lava_Leather_Muffler
+        Rate: 1
+      - Item: Rigid_Kaho_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20378
+    AegisName: LAVA_GOLEM_H
+    Name: Rigid Lava Golem
+    Level: 177
+    Hp: 1529661
+    BaseExp: 139060
+    JobExp: 97342
+    Attack: 3510
+    Attack2: 1419
+    Defense: 714
+    MagicDefense: 63
+    Str: 121
+    Agi: 67
+    Vit: 179
+    Int: 76
+    Dex: 97
+    Luk: 45
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 400
+    AttackDelay: 2040
+    AttackMotion: 2190
+    DamageMotion: 480
+    Ai: 09
+    Drops:
+      - Item: Cold_Magma
+        Rate: 125
+      - Item: Burning_Heart
+        Rate: 100
+      - Item: White_Herb
+        Rate: 300
+      - Item: Black_Powder
+        Rate: 100
+      - Item: Lava_Leather_Hood
+        Rate: 1
+      - Item: Rough_Shadowdecon
+        Rate: 5
+      - Item: Rigid_Lava_Golem_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20419
+    AegisName: MUSPELLSKOLL_H
+    Name: Rigid Muspellskoll
+    Level: 188
+    Hp: 48530254
+    BaseExp: 9706050
+    JobExp: 6794235
+    MvpExp: 494377
+    Attack: 6583
+    Attack2: 3438
+    Defense: 791
+    MagicDefense: 331
+    Str: 219
+    Agi: 132
+    Vit: 201
+    Int: 188
+    Dex: 177
+    Luk: 66
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demon
+    Element: Fire
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 420
+    AttackMotion: 384
+    DamageMotion: 480
+    Ai: 09
+    Class: Boss
+    Modes:
+      ChangeChase: true
+      Mvp: true
+    MvpDrops:
+      - Item: Yggdrasilberry
+        Rate: 50
+      - Item: Cold_Magma
+        Rate: 3
+    Drops:
+      - Item: Shadowdecon
+        Rate: 20
+      - Item: Zelunium
+        Rate: 20
+  - Id: 20604
+    AegisName: ANGELGOLT_MJ
+    Name: Angelgiold
+    Level: 191
+    Hp: 3810950
+    BaseExp: 5067900
+    JobExp: 4580900
+    Attack: 5814
+    Attack2: 8562
+    Defense: 145
+    MagicDefense: 145
+    Str: 120
+    Agi: 200
+    Vit: 65
+    Int: 256
+    Dex: 225
+    Luk: 75
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Angel
+    Element: Holy
+    ElementLevel: 2
+    WalkSpeed: 160
+    AttackDelay: 790
+    AttackMotion: 1000
+    DamageMotion: 500
+    Ai: 09
+    Class: Boss
+    Drops:
+      - Item: Soft_Feather
+        Rate: 1500
+      - Item: Rune_Of_Darkness
+        Rate: 250
+      - Item: Angel_Dream
+        Rate: 30
+      - Item: Angelgolt_Card
+        Rate: 1
+      - Item: Stone_Of_Intelligence_
+        Rate: 150
+  - Id: 20605
+    AegisName: ANGELGOLT2_MJ
+    Name: Angelgiold
+    Level: 191
+    Hp: 3810950
+    BaseExp: 5067900
+    JobExp: 4580900
+    Attack: 5814
+    Attack2: 8263
+    Defense: 145
+    MagicDefense: 145
+    Str: 155
+    Agi: 158
+    Vit: 65
+    Int: 256
+    Dex: 225
+    Luk: 75
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Angel
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 160
+    AttackDelay: 790
+    AttackMotion: 1000
+    DamageMotion: 500
+    Ai: 09
+    Class: Boss
+    Drops:
+      - Item: Soft_Feather
+        Rate: 1500
+      - Item: Rune_Of_Darkness
+        Rate: 250
+      - Item: Angel_Dream
+        Rate: 30
+      - Item: Angelgolt_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20606
+    AegisName: HOLY_SKOGUL_MJ
+    Name: Nordic Skogul
+    Level: 193
+    Hp: 4289555
+    BaseExp: 2300160
+    JobExp: 1860100
+    Attack: 6891
+    Attack2: 10420
+    Defense: 315
+    MagicDefense: 125
+    Str: 176
+    Agi: 148
+    Vit: 69
+    Int: 192
+    Dex: 246
+    Luk: 87
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Angel
+    Element: Holy
+    ElementLevel: 3
+    WalkSpeed: 160
+    AttackDelay: 788
+    AttackMotion: 1000
+    DamageMotion: 500
+    Ai: 09
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Brigan
+        Rate: 500
+      - Item: Soft_Feather
+        Rate: 1500
+      - Item: Rune_Of_Darkness
+        Rate: 250
+      - Item: Angel_Dream
+        Rate: 30
+      - Item: Holy_Frus_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20607
+    AegisName: HOLY_FRUS_MJ
+    Name: Nordic Frus
+    Level: 202
+    Hp: 4105030
+    BaseExp: 2300160
+    JobExp: 1860160
+    Attack: 6790
+    Attack2: 10241
+    Defense: 349
+    MagicDefense: 101
+    Str: 179
+    Agi: 197
+    Vit: 73
+    Int: 201
+    Dex: 245
+    Luk: 27
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Angel
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 160
+    AttackDelay: 800
+    AttackMotion: 1000
+    DamageMotion: 500
+    Ai: 09
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Brigan
+        Rate: 500
+      - Item: Soft_Feather
+        Rate: 1500
+      - Item: Rune_Of_Darkness
+        Rate: 250
+      - Item: Angel_Dream
+        Rate: 30
+      - Item: Holy_Skogul_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20610
+    AegisName: REGINLEIF_MJ
+    Name: Valkyrie Reginleif
+    Level: 207
+    Hp: 79249813
+    BaseExp: 38748867
+    JobExp: 17263977
+    MvpExp: 6500000
+    Attack: 7924
+    Attack2: 11630
+    Defense: 588
+    MagicDefense: 506
+    Str: 281
+    Agi: 199
+    Vit: 147
+    Int: 298
+    Dex: 201
+    Luk: 101
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Angel
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 130
+    AttackDelay: 500
+    AttackMotion: 1000
+    DamageMotion: 500
+    Ai: 09
+    Class: Boss
+    Modes:
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Violet_Box
+        Rate: 2000
+      - Item: Old_Blue_Box
+        Rate: 5000
+      - Item: Old_Card_Album
+        Rate: 2000
+    Drops:
+      - Item: Reginleif_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20611
+    AegisName: INGRID_MJ
+    Name: Valkyrie Ingrid
+    Level: 207
+    Hp: 75393148
+    BaseExp: 38748867
+    JobExp: 17263977
+    MvpExp: 6500000
+    Attack: 7311
+    Attack2: 10721
+    Defense: 588
+    MagicDefense: 506
+    Str: 297
+    Agi: 185
+    Vit: 135
+    Int: 315
+    Dex: 259
+    Luk: 156
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Angel
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 130
+    AttackDelay: 500
+    AttackMotion: 1000
+    DamageMotion: 500
+    Ai: 09
+    Class: Boss
+    Modes:
+      Mvp: true
+    MvpDrops:
+      - Item: Old_Violet_Box
+        Rate: 2000
+      - Item: Old_Blue_Box
+        Rate: 5000
+      - Item: Old_Card_Album
+        Rate: 2000
+    Drops:
+      - Item: Ingrid_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20340
+    AegisName: MD_EL_A17T
+    Name: EL-A17T
+    Level: 118
+    Hp: 16412000
+    BaseExp: 5279658
+    JobExp: 4585648
+    MvpExp: 560000
+    Attack: 1525
+    Attack2: 2142
+    Defense: 355
+    MagicDefense: 42
+    Str: 173
+    Agi: 143
+    Vit: 77
+    Int: 148
+    Dex: 202
+    Luk: 84
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 4
+    WalkSpeed: 220
+    AttackDelay: 125
+    AttackMotion: 1104
+    DamageMotion: 240
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    Drops:
+      - Item: Old_Steel_Plate
+        Rate: 1000
+      - Item: Unknown_Parts
+        Rate: 1000
+      - Item: Broken_Weapon
+        Rate: 1000
+      - Item: Cor_Core
+        Rate: 1000
+      - Item: Crushed_Can_Iron_Plate
+        Rate: 1000
+      - Item: EL_A17T_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20341
+    AegisName: MD_E_EA1L
+    Name: E-EA1L
+    Level: 116
+    Hp: 24810
+    BaseExp: 5376
+    JobExp: 4906
+    Attack: 1029
+    Attack2: 1446
+    Defense: 75
+    MagicDefense: 37
+    Str: 80
+    Agi: 46
+    Vit: 45
+    Int: 71
+    Dex: 95
+    Luk: 32
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 3
+    WalkSpeed: 155
+    AttackDelay: 741
+    AttackMotion: 1536
+    DamageMotion: 480
+    Ai: 09
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Needle_Pouch
+        Rate: 1000
+      - Item: Unknown_Parts
+        Rate: 5
+      - Item: Scarlet_Dyestuffs
+        Rate: 5
+      - Item: E_EA1L_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20342
+    AegisName: MD_E_EA2S
+    Name: E-EA2S
+    Level: 117
+    Hp: 26200
+    BaseExp: 5448
+    JobExp: 4790
+    Attack: 1085
+    Attack2: 1514
+    Defense: 101
+    MagicDefense: 37
+    Str: 110
+    Agi: 75
+    Vit: 47
+    Int: 49
+    Dex: 86
+    Luk: 61
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 3
+    WalkSpeed: 165
+    AttackDelay: 1152
+    AttackMotion: 1152
+    DamageMotion: 336
+    Ai: 09
+    Drops:
+      - Item: Burnt_Parts
+        Rate: 500
+      - Item: Unknown_Parts
+        Rate: 5
+      - Item: Seal_Of_Witch
+        Rate: 700
+      - Item: E_EA2S_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20343
+    AegisName: MD_E_13EN0
+    Name: E-13EN0
+    Level: 118
+    Hp: 26840
+    BaseExp: 5570
+    JobExp: 4992
+    Attack: 1078
+    Attack2: 1551
+    Defense: 72
+    MagicDefense: 29
+    Str: 95
+    Agi: 76
+    Vit: 38
+    Int: 76
+    Dex: 86
+    Luk: 61
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Fish
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 180
+    AttackDelay: 680
+    AttackMotion: 576
+    DamageMotion: 240
+    Ai: 09
+    Drops:
+      - Item: Sticky_Mucus
+        Rate: 500
+      - Item: Sticky_Poison
+        Rate: 700
+      - Item: Fluorescent_Liquid
+        Rate: 700
+      - Item: Elunium_Stone
+        Rate: 5
+      - Item: Elunium
+        Rate: 5
+      - Item: Cor_Core
+        Rate: 1
+  - Id: 20344
+    AegisName: MD_VENOM_BUG
+    Name: Chemical Bug
+    Level: 117
+    Hp: 10000
+    BaseExp: 5488
+    JobExp: 4790
+    Attack: 1027
+    Attack2: 1427
+    Defense: 101
+    MagicDefense: 37
+    Str: 110
+    Agi: 75
+    Vit: 47
+    Int: 49
+    Dex: 500
+    Luk: 61
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 1000
+    AttackDelay: 720
+    AttackMotion: 360
+    DamageMotion: 360
+    Class: Guardian
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+      KnockBackImmune: true
+  - Id: 20345
+    AegisName: MD_CONSTANT
+    Name: Chemical Bomb
+    Level: 117
+    Hp: 30000
+    BaseExp: 5488
+    JobExp: 4790
+    Attack: 1027
+    Attack2: 1427
+    Defense: 101
+    MagicDefense: 37
+    Str: 110
+    Agi: 75
+    Vit: 47
+    Int: 49
+    Dex: 500
+    Luk: 61
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 1000
+    AttackDelay: 720
+    AttackMotion: 360
+    DamageMotion: 360
+    Class: Guardian
+    Modes:
+      Assist: true
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+      KnockBackImmune: true
+  - Id: 20346
+    AegisName: MD_MIGUEL
+    Name: Miguel
+    Level: 115
+    Hp: 8600000
+    BaseExp: 2400000
+    JobExp: 1800000
+    MvpExp: 900000
+    Attack: 3787
+    Attack2: 5527
+    Defense: 216
+    MagicDefense: 95
+    Str: 192
+    Agi: 115
+    Vit: 28
+    Int: 66
+    Dex: 179
+    Luk: 85
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 300
+    AttackDelay: 1480
+    AttackMotion: 670
+    DamageMotion: 240
+    Ai: 09
+    Class: Boss
+    Modes:
+      Mvp: true
+    Drops:
+      - Item: Tiger's_Skin
+        Rate: 1000
+      - Item: Unknown_Parts
+        Rate: 1000
+      - Item: Broken_Weapon
+        Rate: 1000
+      - Item: Cor_Core
+        Rate: 1000
+      - Item: Miguel_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20347
+    AegisName: MD_MIGUEL_G
+    Name: Miguel
+    Level: 115
+    Hp: 8600000
+    MvpExp: 1
+    Attack: 3787
+    Attack2: 5527
+    Defense: 216
+    MagicDefense: 95
+    Str: 192
+    Agi: 115
+    Vit: 28
+    Int: 66
+    Dex: 179
+    Luk: 85
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 4
+    WalkSpeed: 300
+    AttackDelay: 1480
+    AttackMotion: 670
+    DamageMotion: 240
+    Ai: 09
+    Class: Boss
+    Modes:
+      Mvp: true
+  - Id: 20348
+    AegisName: MD_A013_CAPUT
+    Name: Incomplete Twin Caput
+    Level: 110
+    Hp: 31000
+    BaseExp: 520
+    JobExp: 500
+    Attack: 945
+    Attack2: 1305
+    Defense: 79
+    MagicDefense: 40
+    Str: 115
+    Agi: 85
+    Vit: 81
+    Int: 92
+    Dex: 121
+    Luk: 47
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 150
+    AttackDelay: 1180
+    AttackMotion: 480
+    DamageMotion: 360
+    Ai: 09
+    Drops:
+      - Item: Rune_Of_Darkness
+        Rate: 1000
+      - Item: Piece_Of_Darkness
+        Rate: 450
+      - Item: Tooth_Of_
+        Rate: 200
+      - Item: Tendon
+        Rate: 1000
+      - Item: Cor_Core
+        Rate: 1
+  - Id: 20349
+    AegisName: MD_A013_DOLOR
+    Name: Incomplete Dolor
+    Level: 111
+    Hp: 31000
+    BaseExp: 5300
+    JobExp: 4800
+    Attack: 856
+    Attack2: 1176
+    Defense: 42
+    MagicDefense: 65
+    Str: 105
+    Agi: 45
+    Vit: 42
+    Int: 88
+    Dex: 180
+    Luk: 65
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Poison
+    ElementLevel: 3
+    WalkSpeed: 180
+    AttackDelay: 1640
+    AttackMotion: 380
+    DamageMotion: 210
+    Ai: 09
+    Drops:
+      - Item: Tough_Scalelike_Stem
+        Rate: 200
+      - Item: Sticky_Poison
+        Rate: 600
+      - Item: Wooden_Block
+        Rate: 500
+      - Item: Cor_Core
+        Rate: 1
+      - Item: Bloody_Rune
+        Rate: 400
+  - Id: 20350
+    AegisName: MD_A013_BELLARE
+    Name: Incomplete Bellare
+    Level: 112
+    Hp: 38000
+    BaseExp: 6500
+    JobExp: 6000
+    Attack: 1131
+    Attack2: 1587
+    Defense: 76
+    MagicDefense: 15
+    Str: 107
+    Agi: 82
+    Vit: 44
+    Int: 29
+    Dex: 148
+    Luk: 62
+    AttackRange: 9
+    SkillRange: 10
+    ChaseRange: 14
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 160
+    AttackDelay: 761
+    AttackMotion: 210
+    DamageMotion: 140
+    Ai: 09
+    Drops:
+      - Item: Heart_Hunter_Seal
+        Rate: 600
+      - Item: Elunium_Stone
+        Rate: 50
+      - Item: Elunium
+        Rate: 50
+      - Item: Crude_Ammo
+        Rate: 75
+      - Item: Explosive_Powder
+        Rate: 75
+      - Item: Unknown_Parts
+        Rate: 1
+  - Id: 20351
+    AegisName: MD_MANHOLE2
+    Name: Ghost
+    Level: 1
+    Hp: 10000
+    BaseExp: 25
+    JobExp: 25
+    Attack: 402
+    Attack2: 602
+    Defense: 200
+    MagicDefense: 10
+    Dex: 500
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Insect
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 1000
+    AttackDelay: 330
+    AttackMotion: 20
+    DamageMotion: 20
+    Ai: 10
+    Class: Boss
+    Modes:
+      NoRandomWalk: true
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+  - Id: 20352
+    AegisName: MD_POMPOM
+    Name: PomPom
+    Level: 112
+    Hp: 35000
+    Attack: 859
+    Attack2: 1201
+    Defense: 85
+    MagicDefense: 42
+    Str: 63
+    Agi: 84
+    Vit: 12
+    Int: 55
+    Dex: 138
+    Luk: 12
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Formless
+    Element: Poison
+    ElementLevel: 3
+    WalkSpeed: 350
+    AttackDelay: 768
+    AttackMotion: 1440
+    DamageMotion: 672
+    Ai: 17
+    Modes:
+      Aggressive: true
+  - Id: 20353
+    AegisName: MD_CROB
+    Name: Failed Experiment
+    Level: 111
+    Hp: 3441000
+    BaseExp: 2350800
+    JobExp: 1174000
+    Attack: 2991
+    Attack2: 4351
+    Defense: 42
+    MagicDefense: 65
+    Str: 160
+    Agi: 77
+    Vit: 100
+    Int: 40
+    Dex: 235
+    Luk: 55
+    AttackRange: 5
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 1640
+    AttackMotion: 380
+    DamageMotion: 210
+    Ai: 09
+    Class: Boss
+  - Id: 20355
+    AegisName: EP17_1_BELLARE1
+    Name: Bellare
+    Level: 120
+    Hp: 29619
+    BaseExp: 6582
+    JobExp: 5266
+    Attack: 848
+    Attack2: 1184
+    Defense: 146
+    MagicDefense: 27
+    Str: 56
+    Agi: 72
+    Vit: 43
+    Int: 53
+    Dex: 131
+    Luk: 67
+    AttackRange: 9
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 160
+    AttackDelay: 761
+    AttackMotion: 210
+    DamageMotion: 140
+    Ai: 09
+    Drops:
+      - Item: Heart_Hunter_Seal
+        Rate: 700
+      - Item: Elunium_Stone
+        Rate: 50
+      - Item: Elunium
+        Rate: 10
+      - Item: Cor_Core
+        Rate: 5
+      - Item: Unknown_Parts
+        Rate: 20
+      - Item: Explosive_Powder
+        Rate: 10
+      - Item: Bellare_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20356
+    AegisName: EP17_1_BELLARE2
+    Name: Greater Bellare
+    Level: 165
+    Hp: 473302
+    BaseExp: 86054
+    JobExp: 60238
+    Attack: 2247
+    Attack2: 3228
+    Defense: 263
+    MagicDefense: 37
+    Str: 119
+    Agi: 101
+    Vit: 90
+    Int: 79
+    Dex: 172
+    Luk: 93
+    AttackRange: 9
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 3
+    WalkSpeed: 160
+    AttackDelay: 761
+    AttackMotion: 210
+    DamageMotion: 140
+    Ai: 09
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Elunium_Stone
+        Rate: 50
+      - Item: Elunium
+        Rate: 10
+      - Item: Explosive_Powder
+        Rate: 10
+      - Item: Heart_Hunter_Seal
+        Rate: 700
+      - Item: Unknown_Parts
+        Rate: 150
+      - Item: Cor_Core
+        Rate: 150
+      - Item: High_Bellare_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20357
+    AegisName: EP17_1_SANARE1
+    Name: Sanare
+    Level: 120
+    Hp: 30159
+    BaseExp: 6702
+    JobExp: 5362
+    Attack: 783
+    Attack2: 1089
+    Defense: 200
+    MagicDefense: 27
+    Str: 51
+    Agi: 51
+    Vit: 70
+    Int: 63
+    Dex: 117
+    Luk: 77
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Angel
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 160
+    AttackDelay: 962
+    AttackMotion: 362
+    DamageMotion: 240
+    Ai: 09
+    Drops:
+      - Item: Crude_Ammo
+        Rate: 500
+      - Item: Heart_Hunter_Seal
+        Rate: 600
+      - Item: Oridecon
+        Rate: 10
+      - Item: Oridecon_Stone
+        Rate: 50
+      - Item: Unknown_Parts
+        Rate: 20
+      - Item: Explosive_Powder
+        Rate: 20
+      - Item: Sanare_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20358
+    AegisName: EP17_1_SANARE2
+    Name: Greater Sanare
+    Level: 168
+    Hp: 482327
+    BaseExp: 87696
+    JobExp: 61388
+    Attack: 2108
+    Attack2: 3023
+    Defense: 276
+    MagicDefense: 41
+    Str: 109
+    Agi: 97
+    Vit: 96
+    Int: 141
+    Dex: 139
+    Luk: 77
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Angel
+    Element: Dark
+    ElementLevel: 3
+    WalkSpeed: 160
+    AttackDelay: 962
+    AttackMotion: 362
+    DamageMotion: 240
+    Ai: 09
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Heart_Hunter_Seal
+        Rate: 1000
+      - Item: Elunium_Stone
+        Rate: 50
+      - Item: Elunium
+        Rate: 10
+      - Item: Cor_Core
+        Rate: 200
+      - Item: Explosive_Powder
+        Rate: 5
+      - Item: Unknown_Parts
+        Rate: 200
+      - Item: High_Sanare_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20359
+    AegisName: EP17_1_PLAGA1
+    Name: Plaga
+    Level: 164
+    Hp: 466948
+    BaseExp: 84900
+    JobExp: 59430
+    Attack: 2669
+    Attack2: 3850
+    Defense: 160
+    MagicDefense: 38
+    Str: 144
+    Agi: 60
+    Vit: 39
+    Int: 113
+    Dex: 125
+    Luk: 70
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Dragon
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 250
+    AttackDelay: 1280
+    AttackMotion: 1080
+    DamageMotion: 240
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Fluorescent_Liquid
+        Rate: 1000
+      - Item: Solid_Shell
+        Rate: 350
+      - Item: Dragon's_Skin
+        Rate: 600
+      - Item: Azure_Jewel
+        Rate: 50
+      - Item: Cor_Core
+        Rate: 50
+      - Item: Plaga_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20360
+    AegisName: EP17_1_PLAGA2
+    Name: Mutant Plaga
+    Level: 178
+    Hp: 760548
+    BaseExp: 138282
+    JobExp: 96798
+    Attack: 3881
+    Attack2: 5634
+    Defense: 215
+    MagicDefense: 71
+    Str: 197
+    Agi: 93
+    Vit: 63
+    Int: 134
+    Dex: 172
+    Luk: 90
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Dragon
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 250
+    AttackDelay: 1280
+    AttackMotion: 1080
+    DamageMotion: 240
+    Ai: 09
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Fluorescent_Liquid
+        Rate: 1000
+      - Item: Solid_Shell
+        Rate: 350
+      - Item: Dragon's_Skin
+        Rate: 600
+      - Item: Azure_Jewel
+        Rate: 50
+      - Item: Cor_Core
+        Rate: 150
+      - Item: Mutant_Plaga_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20361
+    AegisName: EP17_1_DOLOR1
+    Name: Dolor
+    Level: 122
+    Hp: 40204
+    BaseExp: 8934
+    JobExp: 7148
+    Attack: 1099
+    Attack2: 1550
+    Defense: 227
+    MagicDefense: 28
+    Str: 74
+    Agi: 71
+    Vit: 83
+    Int: 69
+    Dex: 111
+    Luk: 2
+    AttackRange: 5
+    SkillRange: 10
+    ChaseRange: 14
+    Size: Medium
+    Race: Demihuman
+    Element: Poison
+    ElementLevel: 2
+    WalkSpeed: 180
+    AttackDelay: 1640
+    AttackMotion: 380
+    DamageMotion: 210
+    Ai: 09
+    Drops:
+      - Item: Tough_Scalelike_Stem
+        Rate: 600
+      - Item: Sticky_Poison
+        Rate: 500
+      - Item: Wooden_Block
+        Rate: 500
+      - Item: Cor_Core
+        Rate: 20
+      - Item: Bloody_Rune
+        Rate: 375
+      - Item: Dolor_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20362
+    AegisName: EP17_1_DOLOR2
+    Name: Mutant Dolor
+    Level: 173
+    Hp: 742501
+    BaseExp: 135000
+    JobExp: 94500
+    Attack: 3266
+    Attack2: 4728
+    Defense: 305
+    MagicDefense: 68
+    Str: 169
+    Agi: 103
+    Vit: 109
+    Int: 121
+    Dex: 161
+    Luk: 6
+    AttackRange: 5
+    SkillRange: 10
+    ChaseRange: 14
+    Size: Medium
+    Race: Brute
+    Element: Poison
+    ElementLevel: 3
+    WalkSpeed: 180
+    AttackDelay: 1640
+    AttackMotion: 380
+    DamageMotion: 210
+    Ai: 09
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Tough_Scalelike_Stem
+        Rate: 1000
+      - Item: Sticky_Poison
+        Rate: 1000
+      - Item: Wooden_Block
+        Rate: 1000
+      - Item: Cor_Core
+        Rate: 150
+      - Item: Bloody_Rune
+        Rate: 1000
+      - Item: Mt_Dolor_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20363
+    AegisName: EP17_1_VENENUM1
+    Name: Venenum
+    Level: 123
+    Hp: 40720
+    BaseExp: 9048
+    JobExp: 7240
+    Attack: 1146
+    Attack2: 1619
+    Defense: 242
+    MagicDefense: 27
+    Str: 77
+    Agi: 37
+    Vit: 90
+    Int: 39
+    Dex: 103
+    Luk: 3
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Poison
+    ElementLevel: 2
+    WalkSpeed: 180
+    AttackDelay: 680
+    AttackMotion: 576
+    DamageMotion: 240
+    Ai: 09
+    Drops:
+      - Item: Sticky_Mucus
+        Rate: 500
+      - Item: Sticky_Poison
+        Rate: 500
+      - Item: Fluorescent_Liquid
+        Rate: 400
+      - Item: Elunium_Stone
+        Rate: 50
+      - Item: Elunium
+        Rate: 10
+      - Item: Cor_Core
+        Rate: 20
+      - Item: Venenum_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20364
+    AegisName: EP17_1_VENENUM2
+    Name: Mutant Venenum
+    Level: 176
+    Hp: 755670
+    BaseExp: 137394
+    JobExp: 96176
+    Attack: 3486
+    Attack2: 5025
+    Defense: 314
+    MagicDefense: 69
+    Str: 177
+    Agi: 91
+    Vit: 113
+    Int: 119
+    Dex: 193
+    Luk: 9
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 3
+    WalkSpeed: 180
+    AttackDelay: 680
+    AttackMotion: 576
+    DamageMotion: 240
+    Ai: 09
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Tooth_Of_
+        Rate: 500
+      - Item: Tendon
+        Rate: 400
+      - Item: Piece_Of_Darkness
+        Rate: 500
+      - Item: Rune_Of_Darkness
+        Rate: 500
+      - Item: Cor_Core
+        Rate: 150
+      - Item: Mt_Venenum_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20365
+    AegisName: EP17_1_TWIN_CAPUT1
+    Name: Twin Caput
+    Level: 125
+    Hp: 41735
+    BaseExp: 9274
+    JobExp: 7420
+    Attack: 1029
+    Attack2: 1448
+    Defense: 269
+    MagicDefense: 27
+    Str: 67
+    Agi: 45
+    Vit: 103
+    Int: 49
+    Dex: 90
+    Luk: 30
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 150
+    AttackDelay: 1180
+    AttackMotion: 480
+    DamageMotion: 360
+    Ai: 09
+    Drops:
+      - Item: Tooth_Of_
+        Rate: 350
+      - Item: Tendon
+        Rate: 400
+      - Item: Piece_Of_Darkness
+        Rate: 400
+      - Item: Rune_Of_Darkness
+        Rate: 500
+      - Item: Cor_Core
+        Rate: 20
+      - Item: Caput_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20366
+    AegisName: EP17_1_TWIN_CAPUT2
+    Name: Mutant Twin Caput
+    Level: 175
+    Hp: 750501
+    BaseExp: 136454
+    JobExp: 95518
+    Attack: 3634
+    Attack2: 5271
+    Defense: 290
+    MagicDefense: 68
+    Str: 187
+    Agi: 90
+    Vit: 101
+    Int: 121
+    Dex: 143
+    Luk: 45
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 1180
+    AttackMotion: 480
+    DamageMotion: 360
+    Ai: 09
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Rune_Of_Darkness
+        Rate: 500
+      - Item: Piece_Of_Darkness
+        Rate: 400
+      - Item: Tooth_Of_
+        Rate: 350
+      - Item: Tendon
+        Rate: 400
+      - Item: Cor_Core
+        Rate: 150
+      - Item: Mt_Caput_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20381
+    AegisName: REP17_1_R4885_BESTIA
+    Name: R48-85-BESTIA
+    Level: 174
+    Hp: 8885000
+    BaseExp: 8003000
+    JobExp: 6009000
+    MvpExp: 3000000
+    Attack: 4010
+    Attack2: 5818
+    Defense: 855
+    MagicDefense: 124
+    Str: 220
+    Agi: 244
+    Vit: 72
+    Int: 118
+    Dex: 255
+    Luk: 95
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Brute
+    Element: Neutral
+    ElementLevel: 4
+    WalkSpeed: 180
+    AttackDelay: 564
+    AttackMotion: 221
+    DamageMotion: 210
+    Ai: 04
+    Class: Boss
+    Modes:
+      CastSensorIdle: true
+      Mvp: true
+    Drops:
+      - Item: Piece_Of_Bone_Armor
+        Rate: 1000
+      - Item: Unknown_Parts
+        Rate: 1000
+      - Item: Zelunium
+        Rate: 1000
+      - Item: Yggdrasilberry
+        Rate: 1000
+      - Item: R48_85_Bestia_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20382
+    AegisName: G_TWIN_CAPUT2
+    Name: Twin Caput
+    Level: 175
+    Hp: 603341
+    BaseExp: 9274
+    JobExp: 7420
+    Attack: 1907
+    Attack2: 2726
+    Defense: 269
+    MagicDefense: 27
+    Str: 96
+    Agi: 55
+    Vit: 147
+    Int: 70
+    Dex: 128
+    Luk: 39
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 1080
+    AttackMotion: 480
+    DamageMotion: 360
+    Ai: 09
+    Modes:
+      Assist: true
+      Detector: true
+  - Id: 3750
+    AegisName: ILL_DRAINLIAR
+    Name: Illusion Drainliar
+    Level: 131
+    Hp: 42246
+    BaseExp: 3928
+    JobExp: 3769
+    Attack: 1711
+    Attack2: 1214
+    Defense: 150
+    MagicDefense: 45
+    Str: 91
+    Agi: 129
+    Vit: 96
+    Int: 92
+    Dex: 168
+    Luk: 90
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Brute
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 250
+    AttackDelay: 1276
+    AttackMotion: 576
+    DamageMotion: 384
+    Ai: 09
+    Modes:
+      Detector: true
+    MvpDrops:
+      - Item: Carnium
+        Rate: 500
+    Drops:
+      - Item: Tooth_Of_Bat
+        Rate: 1000
+      - Item: Wing_Of_Red_Bat
+        Rate: 1000
+      - Item: Sticky Bloods
+        Rate: 1000
+      - Item: Well-dried_Clover
+        Rate: 5
+      - Item: Small_Bat_Fur
+        Rate: 750
+      - Item: MattDrainliar_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3751
+    AegisName: ILL_ZOMBIE_C
+    Name: Illusion Zombie Cursed
+    Level: 133
+    Hp: 53926
+    BaseExp: 4189
+    JobExp: 3947
+    Attack: 2042
+    Attack2: 898
+    Defense: 90
+    MagicDefense: 24
+    Str: 175
+    Agi: 90
+    Vit: 192
+    Int: 14
+    Dex: 184
+    Luk: 14
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Undead
+    Element: Undead
+    ElementLevel: 1
+    WalkSpeed: 400
+    AttackDelay: 2612
+    AttackMotion: 912
+    DamageMotion: 288
+    Ai: 04
+    Modes:
+      CastSensorIdle: true
+    Drops:
+      - Item: Well-dried_Clover
+        Rate: 5
+        StealProtected: true
+      - Item: Suspicious_Pentacles
+        Rate: 500
+        StealProtected: true
+      - Item: LivingDead_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3752
+    AegisName: ILL_ZOMBIE
+    Name: Illusion Zombie
+    Level: 130
+    Hp: 40984
+    BaseExp: 3621
+    JobExp: 3177
+    Attack: 1726
+    Attack2: 763
+    Defense: 60
+    MagicDefense: 20
+    Str: 150
+    Agi: 70
+    Vit: 160
+    Int: 7
+    Dex: 150
+    Luk: 7
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Undead
+    Element: Undead
+    ElementLevel: 1
+    WalkSpeed: 400
+    AttackDelay: 2612
+    AttackMotion: 912
+    DamageMotion: 288
+    Ai: 04
+    Modes:
+      CastSensorIdle: true
+    Drops:
+      - Item: Torn_Paper_Piece
+        Rate: 5
+      - Item: Poison_Herb_Rantana
+        Rate: 100
+      - Item: Suspicious_Pentacles
+        Rate: 500
+      - Item: Dried_Leaf_Of_Ygg
+        Rate: 500
+      - Item: LivingDead_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3753
+    AegisName: ILL_GHOUL
+    Name: Illusion Ghoul
+    Level: 136
+    Hp: 67379
+    BaseExp: 4422
+    JobExp: 3937
+    Attack: 1987
+    Attack2: 972
+    Defense: 90
+    MagicDefense: 30
+    Str: 156
+    Agi: 42
+    Vit: 109
+    Int: 101
+    Dex: 99
+    Luk: 30
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Undead
+    Element: Undead
+    ElementLevel: 2
+    WalkSpeed: 360
+    AttackDelay: 2612
+    AttackMotion: 912
+    DamageMotion: 288
+    Ai: 04
+    Modes:
+      CastSensorIdle: true
+    MvpDrops:
+      - Item: Torn_Paper_Piece
+        Rate: 5
+    Drops:
+      - Item: Ghoul_Leg
+        Rate: 5
+      - Item: Bradium
+        Rate: 10
+      - Item: Suspicious_Pentacles
+        Rate: 100
+      - Item: Dried_Leaf_Of_Ygg
+        Rate: 350
+      - Item: Skul_Ring
+        Rate: 30
+      - Item: LivingDead_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3754
+    AegisName: ILL_NIGHTMARE
+    Name: Illusion Nightmare
+    Level: 135
+    Hp: 61334
+    BaseExp: 1851
+    JobExp: 866
+    Attack: 5327
+    Attack2: 8851
+    Defense: 116
+    MagicDefense: 30
+    Str: 144
+    Agi: 94
+    Vit: 84
+    Int: 50
+    Dex: 189
+    Luk: 68
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demon
+    Element: Ghost
+    ElementLevel: 2
+    WalkSpeed: 165
+    AttackDelay: 1216
+    AttackMotion: 816
+    DamageMotion: 432
+    Ai: 04
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Horseshoe
+        Rate: 1000
+      - Item: Nightmare_Clump
+        Rate: 1000
+      - Item: Carnium
+        Rate: 10
+      - Item: Infiltrator
+        Rate: 50
+      - Item: Frizzle
+        Rate: 25
+      - Item: SweetNightM_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3755
+    AegisName: ILL_BLACK_MUSHROOM
+    Name: Illusion Black Mushroom
+    Level: 130
+    Hp: 150000
+    BaseExp: 2437
+    JobExp: 2284
+    Attack: 3131
+    Attack2: 9933
+    Defense: 418
+    MagicDefense: 76
+    Vit: 150
+    Int: 103
+    Dex: 500
+    Luk: 88
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1000
+    AttackMotion: 800
+    DamageMotion: 400
+    Ai: 10
+    Class: Guardian
+    Modes:
+      KnockBackImmune: true
+    Drops:
+      - Item: Alchol
+        Rate: 50
+      - Item: Detrimindexta
+        Rate: 50
+      - Item: Dew_Laden_Moss
+        Rate: 20
+      - Item: Feather
+        Rate: 2000
+      - Item: Crystal_Blue
+        Rate: 800
+      - Item: Mushroom_Spore
+        Rate: 5500
+      - Item: Mushroom_Spore
+        Rate: 5500
+      - Item: Glowing_Spore
+        Rate: 100
+        StealProtected: true
+      - Item: Mushroom Saps
+        Rate: 5000
+        StealProtected: true
+      - Item: Poison_Spore
+        Rate: 1000
+        StealProtected: true
+  - Id: 3756
+    AegisName: ILL_BOMI
+    Name: Bream
+    Level: 137
+    Hp: 3785100
+    Sp: 10
+    BaseExp: 15034
+    JobExp: 13533
+    Attack: 4677
+    Attack2: 2206
+    Defense: 60
+    MagicDefense: 60
+    Str: 90
+    Agi: 87
+    Vit: 40
+    Int: 140
+    Dex: 199
+    Luk: 91
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Demihuman
+    Element: Undead
+    ElementLevel: 2
+    WalkSpeed: 120
+    AttackDelay: 1238
+    AttackMotion: 576
+    DamageMotion: 648
+    Ai: 04
+    Modes:
+      Assist: true
+      CastSensorIdle: true
+      Detector: true
+      KnockBackImmune: true
+    MvpDrops:
+      - Item: Torn_Paper_Piece
+        Rate: 25
+      - Item: Fragment_Of_Crystal
+        Rate: 100
+    Drops:
+      - Item: Caviar_Pancake
+        Rate: 100
+      - Item: Robe_Of_Casting
+        Rate: 1
+      - Item: Dead_Tree_Cane
+        Rate: 1
+      - Item: Gold
+        Rate: 5
+      - Item: C_Vampire_Hairband
+        Rate: 1
+      - Item: Torn_Paper_Piece
+        Rate: 100
+      - Item: Bomi_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3757
+    AegisName: ILL_DRACULA
+    Name: Illusion Dracula
+    Level: 139
+    Hp: 6909690
+    BaseExp: 2682753
+    JobExp: 1817882
+    MvpExp: 567040
+    Attack: 8009
+    Attack2: 3665
+    Defense: 252
+    MagicDefense: 146
+    Str: 195
+    Agi: 239
+    Vit: 174
+    Int: 201
+    Dex: 270
+    Luk: 195
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demon
+    Element: Dark
+    ElementLevel: 4
+    WalkSpeed: 145
+    AttackDelay: 1290
+    AttackMotion: 1140
+    DamageMotion: 576
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    MvpDrops:
+      - Item: Vampire's_Servant
+        Rate: 10
+      - Item: Blood_Thirst
+        Rate: 100
+      - Item: Yggdrasilberry
+        Rate: 100
+    Drops:
+      - Item: Well-dried_Clover
+        Rate: 10000
+      - Item: Enriched_Elunium
+        Rate: 5
+      - Item: Enriched_Oridecon
+        Rate: 5
+      - Item: Cape_Of_Ancient_Lord
+        Rate: 100
+      - Item: Ring_
+        Rate: 100
+      - Item: Book_Of_The_Apocalypse
+        Rate: 100
+  - Id: 3758
+    AegisName: ILL_MOONLIGHT
+    Name: Angry Moonlight
+    Level: 118
+    Hp: 4287803
+    BaseExp: 1403238
+    JobExp: 962759
+    MvpExp: 19146705
+    Attack: 4186
+    Attack2: 6137
+    Defense: 254
+    MagicDefense: 81
+    Str: 166
+    Agi: 205
+    Vit: 100
+    Int: 167
+    Dex: 290
+    Luk: 240
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Fire
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 1276
+    AttackMotion: 576
+    DamageMotion: 288
+    Ai: 04
+    Class: Boss
+    Modes:
+      Looter: true
+      CastSensorChase: true
+      CastSensorIdle: true
+      ChangeChase: true
+      Mvp: true
+    MvpDrops:
+      - Item: White_Potion
+        Rate: 100
+      - Item: Fox_Tail
+        Rate: 50
+      - Item: Golden_Jewel
+        Rate: 20
+    Drops:
+      - Item: Bloody_Love_Letter
+        Rate: 25
+      - Item: Bradium
+        Rate: 2500
+      - Item: Spectral_Spear
+        Rate: 1000
+      - Item: Moonlight_Sword
+        Rate: 1000
+      - Item: Long_Mace
+        Rate: 1000
+      - Item: Staff_Of_Bordeaux
+        Rate: 1000
+      - Item: Hazy_Dream_Fragment
+        Rate: 25
+      - Item: Silver_Knife_Of_Chaste
+        Rate: 250
+        StealProtected: true
+      - Item: AngerMoonlight_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3759
+    AegisName: ILL_NINE_TAIL
+    Name: Angry Nine Tail
+    Level: 116
+    Hp: 721875
+    BaseExp: 9890
+    JobExp: 27110
+    Attack: 1009
+    Attack2: 1395
+    Defense: 95
+    MagicDefense: 40
+    Str: 121
+    Agi: 73
+    Vit: 64
+    Int: 42
+    Dex: 512
+    Luk: 100
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Brute
+    Element: Fire
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 840
+    AttackMotion: 540
+    DamageMotion: 504
+    Ai: 04
+    Modes:
+      Assist: true
+      CastSensorIdle: true
+    Drops:
+      - Item: Fox_Tail
+        Rate: 500
+      - Item: Glass_Bead
+        Rate: 125
+      - Item: Branch_Of_Dead_Tree
+        Rate: 50
+      - Item: Carnium
+        Rate: 50
+      - Item: Illusion_Gemstone
+        Rate: 25
+      - Item: Hazy_Dream_Fragment
+        Rate: 25
+      - Item: AngerNineTail_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3760
+    AegisName: ILL_MUNAK
+    Name: Resentful Munak
+    Level: 110
+    Hp: 717728
+    BaseExp: 315
+    JobExp: 670
+    Attack: 722
+    Attack2: 977
+    Defense: 77
+    MagicDefense: 15
+    Str: 103
+    Agi: 18
+    Vit: 18
+    Int: 50
+    Dex: 666
+    Luk: 20
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Undead
+    Element: Undead
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 2468
+    AttackMotion: 768
+    DamageMotion: 288
+    Ai: 04
+    Drops:
+      - Item: HazyMooncake
+        Rate: 25
+      - Item: HazyMooncake
+        Rate: 25
+      - Item: Salty_Rice_Cake
+        Rate: 25
+      - Item: Munak_Turban
+        Rate: 10
+      - Item: Danggie
+        Rate: 1000
+      - Item: Amulet
+        Rate: 50
+      - Item: BitterMunak_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3761
+    AegisName: ILL_BON_GUN
+    Name: Resentful Bongun
+    Level: 112
+    Hp: 719077
+    BaseExp: 394
+    JobExp: 718
+    Attack: 897
+    Attack2: 1228
+    Defense: 88
+    MagicDefense: 5
+    Str: 125
+    Agi: 52
+    Vit: 49
+    Int: 22
+    Dex: 788
+    Luk: 40
+    Size: Medium
+    Race: Undead
+    Element: Undead
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 720
+    AttackMotion: 500
+    DamageMotion: 420
+    Ai: 04
+    Modes:
+      Assist: true
+    Drops:
+      - Item: HazyMooncake
+        Rate: 25
+      - Item: Bongun_Hat
+        Rate: 20
+      - Item: Light_Granule
+        Rate: 25
+      - Item: Amulet
+        Rate: 100
+      - Item: Munak_Doll
+        Rate: 50
+      - Item: Old_Portrait
+        Rate: 100
+      - Item: BitterBonGun_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3762
+    AegisName: ILL_SOHEE
+    Name: Resentful Sohee
+    Level: 114
+    Hp: 722414
+    BaseExp: 380
+    JobExp: 988
+    Attack: 859
+    Attack2: 1170
+    Defense: 83
+    MagicDefense: 84
+    Str: 122
+    Agi: 49
+    Vit: 49
+    Int: 40
+    Dex: 884
+    Luk: 56
+    Size: Medium
+    Race: Demon
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 120
+    AttackDelay: 2112
+    AttackMotion: 912
+    DamageMotion: 576
+    Ai: 04
+    Modes:
+      CastSensorIdle: true
+    Drops:
+      - Item: Bloody_Love_Letter
+        Rate: 25
+      - Item: Skirt_Of_Virgin
+        Rate: 100
+      - Item: Nurse_Cap
+        Rate: 2
+      - Item: Puente_Robe
+        Rate: 2
+      - Item: Hearty_Rice_Cake
+        Rate: 25
+      - Item: Poison_Herb_Nerium
+        Rate: 25
+      - Item: BitterSohee_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3763
+    AegisName: ILL_ARCHER_SKELETON
+    Name: Resentful Soldier
+    Level: 115
+    Hp: 720843
+    BaseExp: 419
+    JobExp: 1117
+    Attack: 788
+    Attack2: 1095
+    Defense: 47
+    MagicDefense: 10
+    Str: 60
+    Agi: 61
+    Vit: 30
+    Int: 20
+    Dex: 701
+    Luk: 12
+    AttackRange: 9
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Undead
+    Element: Undead
+    ElementLevel: 1
+    WalkSpeed: 250
+    AttackDelay: 2456
+    AttackMotion: 912
+    DamageMotion: 504
+    Ai: 04
+    Drops:
+      - Item: Broken_Arrow
+        Rate: 25
+      - Item: Poison_Herb_Amoena
+        Rate: 500
+      - Item: Fire_Arrow
+        Rate: 20
+      - Item: Fire_Arrow
+        Rate: 50
+      - Item: Fire_Arrow
+        Rate: 100
+      - Item: Carnium
+        Rate: 25
+      - Item: Apple_Of_Archer
+        Rate: 2
+      - Item: BitterArcherSk_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3764
+    AegisName: ILL_HIGHWIZARD
+    Name: Wizard of Truth
+    Level: 118
+    Hp: 2121847
+    Sp: 10
+    BaseExp: 8599
+    JobExp: 7695
+    Attack: 1800
+    Attack2: 2591
+    Defense: 20
+    MagicDefense: 90
+    Str: 101
+    Agi: 89
+    Vit: 60
+    Int: 405
+    Dex: 555
+    Luk: 124
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Undead
+    Element: Dark
+    ElementLevel: 1
+    WalkSpeed: 100
+    AttackDelay: 1425
+    AttackMotion: 576
+    DamageMotion: 648
+    Ai: 04
+    Modes:
+      Assist: true
+      CastSensorIdle: true
+      Detector: true
+      KnockBackImmune: true
+    Drops:
+      - Item: Red_Gemstone
+        Rate: 100
+      - Item: Yellow_Gemstone
+        Rate: 100
+      - Item: Vermilion_10_Scroll
+        Rate: 100
+      - Item: Meteor_10_Scroll
+        Rate: 100
+      - Item: Storm_10_Scroll
+        Rate: 100
+      - Item: Fire_Scroll_1_3
+        Rate: 100
+      - Item: CandyCaneRod
+        Rate: 1
+      - Item: WizardOfVeritas_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3765
+    AegisName: ILL_FURY_HERO
+    Name: Deranged Adventurer
+    Level: 117
+    Hp: 1240780
+    BaseExp: 966
+    JobExp: 1301
+    Attack: 1660
+    Attack2: 3010
+    Defense: 340
+    MagicDefense: 20
+    Str: 180
+    Agi: 42
+    Vit: 126
+    Int: 66
+    Dex: 449
+    Luk: 50
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Undead
+    Element: Undead
+    ElementLevel: 3
+    WalkSpeed: 170
+    AttackDelay: 176
+    AttackMotion: 384
+    DamageMotion: 288
+    Ai: 04
+    Modes:
+      CastSensorIdle: true
+      KnockBackImmune: true
+    Drops:
+      - Item: Recruitment_Leaflet
+        Rate: 25
+      - Item: Light_Granule
+        Rate: 125
+      - Item: Runstone_Quality
+        Rate: 25
+      - Item: Runstone_Rare
+        Rate: 25
+      - Item: Empty_Potion
+        Rate: 125
+      - Item: Rotten_Bandage
+        Rate: 250
+      - Item: FuryHero_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3792
+    AegisName: ILL_GAZETI
+    Name: Angry Gazeti
+    Level: 126
+    Hp: 325695
+    BaseExp: 6755
+    JobExp: 6454
+    Attack: 1150
+    Attack2: 4995
+    Defense: 141
+    MagicDefense: 42
+    Str: 125
+    Agi: 54
+    Vit: 64
+    Int: 56
+    Dex: 244
+    Luk: 62
+    AttackRange: 10
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Water
+    ElementLevel: 1
+    WalkSpeed: 190
+    AttackDelay: 576
+    AttackMotion: 370
+    DamageMotion: 270
+    Ai: 20
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Ice_Heart
+        Rate: 3000
+      - Item: Ice_Piece
+        Rate: 3000
+      - Item: Elunium
+        Rate: 20
+      - Item: Frozen_Bow
+        Rate: 1
+      - Item: Cold_Ice
+        Rate: 100
+      - Item: Ice_Fragment
+        Rate: 200
+      - Item: Frozen_Stone_Fragment
+        Rate: 25
+        StealProtected: true
+      - Item: AngerGazeti_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3793
+    AegisName: ILL_SNOWIER
+    Name: Angry Snowier
+    Level: 129
+    Hp: 326450
+    BaseExp: 7106
+    JobExp: 6711
+    Attack: 1325
+    Attack2: 3825
+    Defense: 195
+    MagicDefense: 78
+    Str: 136
+    Agi: 88
+    Vit: 98
+    Int: 78
+    Dex: 203
+    Luk: 71
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 200
+    AttackDelay: 836
+    AttackMotion: 520
+    DamageMotion: 420
+    Ai: 04
+    Drops:
+      - Item: Ice_Heart
+        Rate: 3000
+      - Item: Ice_Piece
+        Rate: 1000
+      - Item: Elunium_Stone
+        Rate: 100
+      - Item: Blue_Herb
+        Rate: 50
+      - Item: White_Herb
+        Rate: 500
+      - Item: Icicle_Fist
+        Rate: 3
+      - Item: Crystal_Blue
+        Rate: 100
+      - Item: Snowball
+        Rate: 25
+        StealProtected: true
+      - Item: AngerSnowier_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3794
+    AegisName: ILL_ICE_TITAN
+    Name: Angry Ice Titan
+    Level: 133
+    Hp: 688280
+    BaseExp: 5190
+    JobExp: 7132
+    Attack: 1237
+    Attack2: 2935
+    Defense: 644
+    MagicDefense: 44
+    Str: 181
+    Agi: 70
+    Vit: 119
+    Int: 61
+    Dex: 224
+    Luk: 56
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Water
+    ElementLevel: 3
+    WalkSpeed: 250
+    AttackDelay: 861
+    AttackMotion: 560
+    DamageMotion: 144
+    Ai: 04
+    Drops:
+      - Item: Ice_Heart
+        Rate: 5000
+      - Item: Ice_Piece
+        Rate: 3000
+      - Item: Frozen_Rose
+        Rate: 100
+      - Item: Oridecon
+        Rate: 100
+      - Item: Elunium
+        Rate: 30
+      - Item: Cold_Ice
+        Rate: 500
+      - Item: Mistic_Frozen
+        Rate: 100
+      - Item: Spirit_Jewel
+        Rate: 25
+        StealProtected: true
+      - Item: AngerIceTitan_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3795
+    AegisName: ILL_ICEICLE
+    Name: Solid Iceicle
+    Level: 100
+    Hp: 100012
+    BaseExp: 164
+    JobExp: 122
+    Attack: 1000
+    Attack2: 2000
+    Defense: 50
+    MagicDefense: 35
+    Str: 199
+    Dex: 244
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 1000
+    AttackDelay: 1344
+    Ai: 10
+    Drops:
+      - Item: Ice_Piece
+        Rate: 1000
+      - Item: Ice_Piece
+        Rate: 1000
+      - Item: Ice_Crystal
+        Rate: 500
+      - Item: Ice_Piece
+        Rate: 500
+      - Item: Ice_Piece
+        Rate: 500
+      - Item: Ice_Piece
+        Rate: 500
+      - Item: Ice_Piece
+        Rate: 500
+      - Item: Frozen_Stone_Fragment
+        Rate: 25
+        StealProtected: true
+      - Item: Ice_Piece
+        Rate: 500
+        StealProtected: true
+  - Id: 3796
+    AegisName: ILL_KTULLANUX
+    Name: Awaken Ktullanux
+    Level: 135
+    Hp: 40564326
+    BaseExp: 2777284
+    JobExp: 1937023
+    MvpExp: 2777284
+    Attack: 5589
+    Attack2: 13589
+    Defense: 129
+    MagicDefense: 78
+    Str: 125
+    Agi: 156
+    Vit: 70
+    Int: 165
+    Dex: 262
+    Luk: 142
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Brute
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 400
+    AttackDelay: 432
+    AttackMotion: 840
+    DamageMotion: 216
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    MvpDrops:
+      - Item: Yggdrasilberry
+        Rate: 5500
+      - Item: Old_Violet_Box
+        Rate: 5000
+      - Item: Old_Violet_Box
+        Rate: 5000
+    Drops:
+      - Item: Ice_Scale
+        Rate: 9000
+      - Item: Old_Card_Album
+        Rate: 3000
+      - Item: Clack_Of_Servival
+        Rate: 3000
+      - Item: Herald_Of_GOD
+        Rate: 5000
+      - Item: Old_Violet_Box
+        Rate: 5000
+      - Item: Yggdrasilberry
+        Rate: 5000
+      - Item: Eye_of_Ktullanux
+        Rate: 100
+      - Item: AwakenKtullanux_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3799
+    AegisName: ILL_ASSULTER
+    Name: Ominous Assulter
+    Level: 160
+    Hp: 1185016
+    BaseExp: 54213
+    JobExp: 48375
+    Attack: 5558
+    Attack2: 7996
+    Defense: 669
+    MagicDefense: 82
+    Str: 180
+    Agi: 161
+    Vit: 60
+    Int: 44
+    Dex: 214
+    Luk: 30
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Wind
+    ElementLevel: 2
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 21
+    Drops:
+      - Item: Turtle_Shell
+        Rate: 4413
+      - Item: Broken_Armor_Piece
+        Rate: 1200
+      - Item: Rust_Suriken
+        Rate: 840
+      - Item: Smoke_Powder
+        Rate: 200
+      - Item: Zargon
+        Rate: 1240
+      - Item: Huuma_Bird_Wing
+        Rate: 5
+      - Item: Old_Blue_Box
+        Rate: 1
+      - Item: Doram_Only_Cape
+        Rate: 1
+        StealProtected: true
+      - Item: Worn-out_Metal
+        Rate: 25
+        StealProtected: true
+      - Item: Ominous_Assaulter_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3800
+    AegisName: ILL_PERMETER
+    Name: Ominous Permeter
+    Level: 157
+    Hp: 1016710
+    BaseExp: 50806
+    JobExp: 41661
+    Attack: 5184
+    Attack2: 7460
+    Defense: 288
+    MagicDefense: 100
+    Str: 159
+    Agi: 60
+    Vit: 135
+    Int: 90
+    Dex: 120
+    Luk: 60
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Brute
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 250
+    AttackDelay: 1100
+    AttackMotion: 483
+    DamageMotion: 528
+    Ai: 17
+    Drops:
+      - Item: Turtle_Shell
+        Rate: 4413
+      - Item: Coconut_Fruit
+        Rate: 200
+      - Item: Elder_Branch
+        Rate: 100
+      - Item: Red_Herb
+        Rate: 2450
+      - Item: Zargon
+        Rate: 1240
+      - Item: Fruit_Of_Mastela
+        Rate: 25
+      - Item: Anodyne
+        Rate: 1
+      - Item: Piece_of_Shell
+        Rate: 25
+        StealProtected: true
+      - Item: Ominous_Permeter_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3801
+    AegisName: ILL_FREEZER
+    Name: Ominous Freezer
+    Level: 159
+    Hp: 1098142
+    BaseExp: 54892
+    JobExp: 43913
+    Attack: 5306
+    Attack2: 7646
+    Defense: 146
+    MagicDefense: 80
+    Str: 154
+    Agi: 111
+    Vit: 120
+    Int: 100
+    Dex: 142
+    Luk: 60
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Brute
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 170
+    AttackDelay: 1260
+    AttackMotion: 960
+    DamageMotion: 672
+    Ai: 21
+    Drops:
+      - Item: Turtle_Shell
+        Rate: 4413
+      - Item: Broken_Shell
+        Rate: 850
+      - Item: Ice_Piece
+        Rate: 1250
+      - Item: Zargon
+        Rate: 1800
+      - Item: Royal_Jelly
+        Rate: 160
+      - Item: Ice_Fragment
+        Rate: 200
+      - Item: Cold_Scroll_1_5
+        Rate: 100
+      - Item: Piece_of_Dark_Soul
+        Rate: 25
+        StealProtected: true
+      - Item: Ominous_Freezer_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3802
+    AegisName: ILL_SOLIDER
+    Name: Ominous Solider
+    Level: 161
+    Hp: 1184620
+    BaseExp: 59190
+    JobExp: 49128
+    Attack: 5638
+    Attack2: 8140
+    Defense: 406
+    MagicDefense: 116
+    Str: 155
+    Agi: 100
+    Vit: 170
+    Int: 42
+    Dex: 133
+    Luk: 50
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Brute
+    Element: Earth
+    ElementLevel: 2
+    WalkSpeed: 250
+    AttackDelay: 1452
+    AttackMotion: 483
+    DamageMotion: 528
+    Ai: 17
+    Drops:
+      - Item: Turtle_Shell
+        Rate: 4413
+      - Item: Broken_Shell
+        Rate: 64
+      - Item: Stone_Piece
+        Rate: 850
+      - Item: Yellow_Herb
+        Rate: 2100
+      - Item: Zargon
+        Rate: 1240
+      - Item: Honey
+        Rate: 850
+      - Item: Doram_Only_Shoes
+        Rate: 100
+      - Item: Old_Shell
+        Rate: 25
+        StealProtected: true
+      - Item: Ominous_Solider_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3803
+    AegisName: ILL_HEATER
+    Name: Ominous Heater
+    Level: 162
+    Hp: 1054780
+    BaseExp: 52699
+    JobExp: 44794
+    Attack: 5876
+    Attack2: 8474
+    Defense: 400
+    MagicDefense: 100
+    Str: 177
+    Agi: 95
+    Vit: 120
+    Int: 100
+    Dex: 212
+    Luk: 89
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Brute
+    Element: Fire
+    ElementLevel: 2
+    WalkSpeed: 250
+    AttackDelay: 1452
+    AttackMotion: 483
+    DamageMotion: 528
+    Ai: 21
+    Drops:
+      - Item: Turtle_Shell
+        Rate: 4413
+      - Item: Broken_Shell
+        Rate: 750
+      - Item: Fire_Scroll_2_5
+        Rate: 100
+      - Item: Gun_Powder
+        Rate: 1000
+      - Item: Royal_Jelly
+        Rate: 140
+      - Item: Brigan
+        Rate: 600
+      - Item: Burn_Tree
+        Rate: 1250
+      - Item: Doram_Only_Suit
+        Rate: 1
+        StealProtected: true
+      - Item: Journal
+        Rate: 25
+        StealProtected: true
+      - Item: Ominous_Heater_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3804
+    AegisName: ILL_TURTLE_GENERAL
+    Name: Ominous Turtle General
+    Level: 165
+    Hp: 23257098
+    BaseExp: 933120
+    JobExp: 748440
+    MvpExp: 466560
+    Attack: 5512
+    Attack2: 8069
+    Defense: 796
+    MagicDefense: 246
+    Str: 232
+    Agi: 246
+    Vit: 302
+    Int: 189
+    Dex: 424
+    Luk: 180
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Brute
+    Element: Earth
+    ElementLevel: 2
+    WalkSpeed: 200
+    AttackDelay: 900
+    AttackMotion: 1000
+    DamageMotion: 500
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    MvpDrops:
+      - Item: Turtle_Shell
+        Rate: 5500
+      - Item: Yggdrasilberry
+        Rate: 1500
+      - Item: Old_Violet_Box
+        Rate: 2000
+    Drops:
+      - Item: Iron_Driver
+        Rate: 1000
+      - Item: War_Axe
+        Rate: 1000
+      - Item: Pole_Axe
+        Rate: 1000
+      - Item: Broken_Shell
+        Rate: 5335
+      - Item: Immaterial_Sword
+        Rate: 1000
+      - Item: Union_Of_Tribe
+        Rate: 1
+      - Item: Beautiful_Old_Doll
+        Rate: 50
+        StealProtected: true
+      - Item: Ominous_Turtle_General_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20255
+    AegisName: ILL_TEDDY_BEAR_R
+    Name: Red Teddy Bear
+    Level: 155
+    Hp: 984216
+    BaseExp: 39944
+    JobExp: 45006
+    Attack: 2597
+    Attack2: 3752
+    Defense: 212
+    MagicDefense: 88
+    Str: 132
+    Agi: 100
+    Vit: 155
+    Int: 132
+    Dex: 133
+    Luk: 132
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Fire
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 20
+    Drops:
+      - Item: Bearopy
+        Rate: 25
+      - Item: Nasarians_Soul_Stone
+        Rate: 25
+      - Item: Iron_Ore
+        Rate: 100
+      - Item: Oridecon
+        Rate: 100
+      - Item: Boots_
+        Rate: 2
+      - Item: Colorful_Teddy_Bear_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20256
+    AegisName: ILL_TEDDY_BEAR_Y
+    Name: Yellow Teddy Bear
+    Level: 115
+    Hp: 882132
+    BaseExp: 38768
+    JobExp: 46330
+    Attack: 2296
+    Attack2: 3335
+    Defense: 200
+    MagicDefense: 112
+    Str: 102
+    Agi: 132
+    Vit: 102
+    Int: 182
+    Dex: 155
+    Luk: 102
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Wind
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 20
+    Drops:
+      - Item: Bearopy
+        Rate: 25
+      - Item: Nasarians_Soul_Stone
+        Rate: 25
+      - Item: Screw
+        Rate: 100
+      - Item: Elunium
+        Rate: 100
+      - Item: Survival_Rod
+        Rate: 2
+      - Item: Colorful_Teddy_Bear_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20257
+    AegisName: ILL_TEDDY_BEAR_G
+    Name: Green Teddy Bear
+    Level: 157
+    Hp: 995880
+    BaseExp: 43292
+    JobExp: 50234
+    Attack: 3400
+    Attack2: 3907
+    Defense: 227
+    MagicDefense: 110
+    Str: 129
+    Agi: 128
+    Vit: 141
+    Int: 173
+    Dex: 158
+    Luk: 129
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Poison
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 20
+    Drops:
+      - Item: Green_Bearopy
+        Rate: 25
+      - Item: Nasarians_Soul_Stone
+        Rate: 25
+      - Item: Bearopy
+        Rate: 25
+      - Item: Green_Herb
+        Rate: 200
+      - Item: Colorful_Teddy_Bear_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20258
+    AegisName: ILL_TEDDY_BEAR_W
+    Name: White Teddy Bear
+    Level: 155
+    Hp: 935523
+    BaseExp: 40668
+    JobExp: 47190
+    Attack: 2544
+    Attack2: 3678
+    Defense: 213
+    MagicDefense: 103
+    Str: 121
+    Agi: 120
+    Vit: 133
+    Int: 162
+    Dex: 149
+    Luk: 121
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 20
+    Drops:
+      - Item: Bearopy
+        Rate: 25
+      - Item: Nasarians_Soul_Stone
+        Rate: 25
+      - Item: Oridecon_Hammer
+        Rate: 100
+      - Item: Survival_Rod
+        Rate: 1
+      - Item: Steel
+        Rate: 100
+      - Item: Colorful_Teddy_Bear_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20259
+    AegisName: ILL_TEDDY_BEAR_B
+    Name: Blue Teddy Bear
+    Level: 152
+    Hp: 841971
+    BaseExp: 36600
+    JobExp: 42470
+    Attack: 2302
+    Attack2: 3232
+    Defense: 192
+    MagicDefense: 93
+    Str: 109
+    Agi: 108
+    Vit: 120
+    Int: 146
+    Dex: 134
+    Luk: 109
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Water
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 20
+    Drops:
+      - Item: Bearopy
+        Rate: 25
+      - Item: Screw
+        Rate: 100
+      - Item: Iron
+        Rate: 100
+      - Item: Blue_Herb
+        Rate: 100
+      - Item: Fine_Chonchon_Doll
+        Rate: 25
+      - Item: Colorful_Teddy_Bear_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20260
+    AegisName: ILL_TEDDY_BEAR_S
+    Name: Shining Teddy Bear
+    Level: 160
+    Hp: 21449748
+    BaseExp: 3586888
+    JobExp: 3237228
+    MvpExp: 360000
+    Attack: 3672
+    Attack2: 5339
+    Defense: 313
+    MagicDefense: 152
+    Str: 178
+    Agi: 176
+    Vit: 195
+    Int: 238
+    Dex: 219
+    Luk: 178
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 20
+    Modes:
+      Detector: true
+      KnockBackImmune: true
+      Mvp: true
+    MvpDrops:
+      - Item: Gold
+        Rate: 200
+      - Item: Elunium
+        Rate: 300
+      - Item: Oridecon
+        Rate: 500
+    Drops:
+      - Item: Screw
+        Rate: 3800
+      - Item: Elunium
+        Rate: 100
+      - Item: Oridecon
+        Rate: 100
+      - Item: Counter_Dagger
+        Rate: 1000
+      - Item: Clay_Figure
+        Rate: 50
+      - Item: Shiny_Teddy_Bear_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20261
+    AegisName: ILL_PITMAN
+    Name: Hardworking Pitman
+    Level: 154
+    Hp: 916815
+    BaseExp: 25000
+    JobExp: 20000
+    Attack: 2494
+    Attack2: 3605
+    Defense: 209
+    MagicDefense: 101
+    Str: 118
+    Agi: 117
+    Vit: 130
+    Int: 159
+    Dex: 146
+    Luk: 118
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demon
+    Element: Earth
+    ElementLevel: 2
+    WalkSpeed: 180
+    AttackDelay: 960
+    AttackMotion: 336
+    DamageMotion: 300
+    Ai: 17
+    Modes:
+      Aggressive: true
+      Detector: true
+    Drops:
+      - Item: Old_Pick
+        Rate: 3000
+      - Item: Old_Steel_Plate
+        Rate: 500
+      - Item: Gun_Powder
+        Rate: 900
+      - Item: Steel
+        Rate: 500
+      - Item: Coal
+        Rate: 100
+      - Item: Lantern
+        Rate: 1000
+      - Item: Headlamp
+        Rate: 80
+      - Item: Hardworking_Pitman_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20262
+    AegisName: ILL_MINERAL
+    Name: Vicious Soul Fragment
+    Level: 153
+    Hp: 870972
+    BaseExp: 37862
+    JobExp: 43934
+    Attack: 2377
+    Attack2: 3432
+    Defense: 198
+    MagicDefense: 96
+    Str: 113
+    Agi: 112
+    Vit: 124
+    Int: 151
+    Dex: 139
+    Luk: 113
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 2
+    WalkSpeed: 250
+    AttackDelay: 648
+    AttackMotion: 480
+    DamageMotion: 360
+    Ai: 17
+    Drops:
+      - Item: Fragment_Of_Crystal
+        Rate: 3000
+      - Item: Golden_Jewel
+        Rate: 500
+      - Item: Emperium
+        Rate: 2
+      - Item: Oridecon
+        Rate: 100
+      - Item: Emveretarcon
+        Rate: 800
+      - Item: Yellow_Gemstone
+        Rate: 100
+      - Item: Gold
+        Rate: 2
+      - Item: Gothic_Porcelain_Doll
+        Rate: 25
+        StealProtected: true
+      - Item: Soul_Fragment_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20263
+    AegisName: ILL_OBSIDIAN
+    Name: Haunted Obsidian
+    Level: 156
+    Hp: 955779
+    BaseExp: 37250
+    JobExp: 35602
+    Attack: 2596
+    Attack2: 3755
+    Defense: 217
+    MagicDefense: 106
+    Str: 124
+    Agi: 122
+    Vit: 136
+    Int: 166
+    Dex: 152
+    Luk: 124
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Earth
+    ElementLevel: 2
+    WalkSpeed: 350
+    AttackDelay: 720
+    AttackMotion: 864
+    DamageMotion: 504
+    Ai: 04
+    Drops:
+      - Item: Dark_Crystal_Fragment
+        Rate: 3000
+      - Item: Crystal_Jewel
+        Rate: 500
+      - Item: Coal
+        Rate: 500
+      - Item: Elunium
+        Rate: 100
+      - Item: Steel
+        Rate: 500
+      - Item: Unholy_Touch
+        Rate: 10
+      - Item: Haunted_Obsidian_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20264
+    AegisName: G_ILL_TEDDY_BEAR_R
+    Name: Red Teddy Bear
+    Level: 155
+    Hp: 928560
+    BaseExp: 39944
+    JobExp: 45006
+    Attack: 2597
+    Attack2: 3752
+    Defense: 212
+    MagicDefense: 88
+    Str: 132
+    Agi: 100
+    Vit: 155
+    Int: 132
+    Dex: 133
+    Luk: 132
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Fire
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 20
+  - Id: 20265
+    AegisName: G_ILL_TEDDY_BEAR_Y
+    Name: Yellow Teddy Bear
+    Level: 115
+    Hp: 882132
+    BaseExp: 38768
+    JobExp: 46330
+    Attack: 1669
+    Attack2: 2376
+    Defense: 200
+    MagicDefense: 112
+    Str: 102
+    Agi: 132
+    Vit: 102
+    Int: 182
+    Dex: 155
+    Luk: 102
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Wind
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 20
+  - Id: 20266
+    AegisName: G_ILL_TEDDY_BEAR_G
+    Name: Green Teddy Bear
+    Level: 157
+    Hp: 995880
+    BaseExp: 43292
+    JobExp: 50234
+    Attack: 2700
+    Attack2: 3907
+    Defense: 227
+    MagicDefense: 110
+    Str: 129
+    Agi: 128
+    Vit: 141
+    Int: 173
+    Dex: 158
+    Luk: 129
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Poison
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 20
+  - Id: 20267
+    AegisName: G_ILL_TEDDY_BEAR_W
+    Name: White Teddy Bear
+    Level: 155
+    Hp: 935523
+    BaseExp: 40668
+    JobExp: 47190
+    Attack: 2544
+    Attack2: 3678
+    Defense: 213
+    MagicDefense: 103
+    Str: 121
+    Agi: 120
+    Vit: 133
+    Int: 162
+    Dex: 149
+    Luk: 121
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 20
+  - Id: 20268
+    AegisName: G_ILL_TEDDY_BEAR_B
+    Name: Blue Teddy Bear
+    Level: 152
+    Hp: 841971
+    BaseExp: 36600
+    JobExp: 42470
+    Attack: 2302
+    Attack2: 3323
+    Defense: 192
+    MagicDefense: 93
+    Str: 109
+    Agi: 108
+    Vit: 120
+    Int: 146
+    Dex: 134
+    Luk: 109
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Water
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 512
+    AttackMotion: 780
+    DamageMotion: 504
+    Ai: 20
+  - Id: 20270
+    AegisName: ILL_TRI_JOINT
+    Name: Ancient Tri Joint
+    Level: 164
+    Hp: 1041750
+    BaseExp: 151678
+    JobExp: 113760
+    Attack: 3742
+    Attack2: 5444
+    Defense: 144
+    MagicDefense: 5
+    Str: 174
+    Agi: 88
+    Vit: 70
+    Int: 55
+    Dex: 145
+    Luk: 20
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Insect
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 860
+    AttackMotion: 660
+    DamageMotion: 624
+    Ai: 17
+    Modes:
+      CastSensorChase: true
+      ChangeChase: true
+      ChangeTargetMelee: true
+      ChangeTargetChase: true
+      Detector: true
+    Drops:
+      - Item: Cyfar
+        Rate: 100
+      - Item: Solid_Shell
+        Rate: 380
+      - Item: Aloebera
+        Rate: 200
+      - Item: Yellow_Live
+        Rate: 160
+      - Item: Sparkling_Dust
+        Rate: 140
+      - Item: Megalith_Token
+        Rate: 25
+      - Item: Elunium_Stone
+        Rate: 106
+      - Item: Fragile_Worm
+        Rate: 25
+        StealProtected: true
+      - Item: Ancient_Tri_Joint_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20271
+    AegisName: ILL_STALACTIC_GOLEM
+    Name: Ancient Stalactic Golem
+    Level: 167
+    Hp: 1088100
+    BaseExp: 158428
+    JobExp: 118820
+    Attack: 3947
+    Attack2: 5738
+    Defense: 412
+    MagicDefense: 5
+    Str: 198
+    Agi: 98
+    Vit: 122
+    Int: 45
+    Dex: 158
+    Luk: 55
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 4
+    WalkSpeed: 200
+    AttackDelay: 1264
+    AttackMotion: 864
+    DamageMotion: 288
+    Ai: 17
+    MvpDrops:
+      - Item: Megalith_Token
+        Rate: 25
+      - Item: Clay_Figure
+        Rate: 25
+    Drops:
+      - Item: Mud_Lump
+        Rate: 2000
+      - Item: Brigan
+        Rate: 4850
+      - Item: Star_Crumb
+        Rate: 250
+      - Item: Great_Nature
+        Rate: 30
+      - Item: Elunium_Stone
+        Rate: 250
+      - Item: Round_Buckler
+        Rate: 5
+      - Item: Elunium
+        Rate: 175
+      - Item: Megalith_Token
+        Rate: 25
+        StealProtected: true
+      - Item: Ancient_Stalactic_Golem_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20272
+    AegisName: ILL_MEGALITH
+    Name: Ancient Megalith
+    Level: 167
+    Hp: 1062750
+    BaseExp: 154736
+    JobExp: 116052
+    Attack: 4091
+    Attack2: 5969
+    Defense: 168
+    MagicDefense: 18
+    Str: 169
+    Agi: 111
+    Vit: 89
+    Int: 55
+    Dex: 214
+    Luk: 40
+    AttackRange: 9
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 4
+    WalkSpeed: 200
+    AttackDelay: 1332
+    AttackMotion: 1332
+    DamageMotion: 672
+    Ai: 10
+    Drops:
+      - Item: Zargon
+        Rate: 100
+      - Item: Stone
+        Rate: 1000
+      - Item: Old_Violet_Box
+        Rate: 1
+      - Item: Flowerpot_Stone
+        Rate: 25
+      - Item: Megalith_Token
+        Rate: 25
+      - Item: Elunium
+        Rate: 100
+      - Item: Elunium_Stone
+        Rate: 207
+      - Item: Ancient_Megalith_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20273
+    AegisName: ILL_TAO_GUNKA
+    Name: Ancient Tao Gunka
+    Level: 169
+    Hp: 19280000
+    BaseExp: 8003504
+    JobExp: 6002628
+    MvpExp: 450000
+    Attack: 6081
+    Attack2: 8914
+    Defense: 905
+    MagicDefense: 143
+    Str: 245
+    Agi: 216
+    Vit: 100
+    Int: 111
+    Dex: 212
+    Luk: 42
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demon
+    Element: Neutral
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 1020
+    AttackMotion: 288
+    DamageMotion: 144
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    MvpDrops:
+      - Item: Oridecon
+        Rate: 6000
+      - Item: Old_Violet_Box
+        Rate: 3000
+      - Item: Blue_Potion
+        Rate: 6000
+    Drops:
+      - Item: Gemstone
+        Rate: 4850
+      - Item: Stone_Piece
+        Rate: 4850
+      - Item: Golden_Jewel
+        Rate: 1000
+      - Item: Binoculars
+        Rate: 400
+      - Item: White_Potion
+        Rate: 3000
+      - Item: Runstone_Rare
+        Rate: 200
+      - Item: Gemmed_Sallet_
+        Rate: 5
+      - Item: Lightning_Stone_Fragment
+        Rate: 1000
+        StealProtected: true
+      - Item: Megalith_Token
+        Rate: 50
+        StealProtected: true
+      - Item: Ancient_Tao_Gunka_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20274
+    AegisName: ILL_STONE_SHOOTER
+    Name: Ancient Stone Shooter
+    Level: 166
+    Hp: 1038750
+    BaseExp: 151242
+    JobExp: 113432
+    Attack: 3997
+    Attack2: 5828
+    Defense: 184
+    MagicDefense: 15
+    Str: 170
+    Agi: 86
+    Vit: 68
+    Int: 44
+    Dex: 215
+    Luk: 54
+    AttackRange: 10
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Plant
+    Element: Fire
+    ElementLevel: 3
+    WalkSpeed: 175
+    AttackDelay: 2413
+    AttackMotion: 1248
+    DamageMotion: 768
+    Ai: 04
+    MvpDrops:
+      - Item: Wootan_Token
+        Rate: 25
+      - Item: Hairlike_Leaf
+        Rate: 25
+    Drops:
+      - Item: Solid_Twig
+        Rate: 5000
+      - Item: Log
+        Rate: 5000
+      - Item: Browny_Root
+        Rate: 1000
+      - Item: Wooden_Block
+        Rate: 2000
+      - Item: Oridecon_Stone
+        Rate: 100
+      - Item: Stone
+        Rate: 1000
+      - Item: Hairlike_Leaf
+        Rate: 25
+      - Item: Wootan_Token
+        Rate: 25
+        StealProtected: true
+      - Item: Ancient_Stone_Shooter_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20275
+    AegisName: ILL_WOOTAN_SHOOTER
+    Name: Ancient Wootan Shooter
+    Level: 164
+    Hp: 1053150
+    BaseExp: 153338
+    JobExp: 115004
+    Attack: 4117
+    Attack2: 6008
+    Defense: 142
+    MagicDefense: 21
+    Str: 171
+    Agi: 97
+    Vit: 74
+    Int: 53
+    Dex: 220
+    Luk: 45
+    AttackRange: 10
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Earth
+    ElementLevel: 2
+    WalkSpeed: 200
+    AttackDelay: 857
+    AttackMotion: 1056
+    DamageMotion: 576
+    Ai: 04
+    Drops:
+      - Item: Air_Rifle
+        Rate: 4500
+      - Item: Flexible_String
+        Rate: 3500
+      - Item: Elder_Branch
+        Rate: 100
+      - Item: Cacao
+        Rate: 100
+      - Item: Shooting_Good_Stone
+        Rate: 25
+      - Item: Wootan_Token
+        Rate: 25
+        StealProtected: true
+      - Item: Ancient_Wootan_Shooter_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20276
+    AegisName: ILL_WOOTAN_FIGHTER
+    Name: Ancient Wootan Fighter
+    Level: 167
+    Hp: 1088250
+    BaseExp: 158450
+    JobExp: 118836
+    Attack: 4007
+    Attack2: 5828
+    Defense: 205
+    MagicDefense: 8
+    Str: 198
+    Agi: 115
+    Vit: 90
+    Int: 42
+    Dex: 158
+    Luk: 42
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Fire
+    ElementLevel: 2
+    WalkSpeed: 200
+    AttackDelay: 912
+    AttackMotion: 1344
+    DamageMotion: 480
+    Ai: 04
+    Drops:
+      - Item: Meat
+        Rate: 4500
+      - Item: Shoulder_Protection
+        Rate: 4000
+      - Item: Waghnakh
+        Rate: 3
+      - Item: Finger_
+        Rate: 1
+      - Item: Elder_Branch
+        Rate: 100
+      - Item: Great_Leaf
+        Rate: 1000
+      - Item: Banana_Hat
+        Rate: 5
+      - Item: Wootan_Warriors_Hair
+        Rate: 25
+        StealProtected: true
+      - Item: Wootan_Token
+        Rate: 25
+        StealProtected: true
+      - Item: Ancient_Wootan_Fighter_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20277
+    AegisName: ILL_WOOTAN_DEFENDER
+    Name: Ancient Wootan Defender
+    Level: 169
+    Hp: 20154000
+    BaseExp: 1860
+    JobExp: 5985
+    MvpExp: 450000
+    Attack: 6225
+    Attack2: 9143
+    Defense: 874
+    MagicDefense: 143
+    Str: 220
+    Agi: 198
+    Vit: 102
+    Int: 105
+    Dex: 215
+    Luk: 165
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demihuman
+    Element: Fire
+    ElementLevel: 4
+    WalkSpeed: 200
+    AttackDelay: 912
+    AttackMotion: 1344
+    DamageMotion: 480
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    Drops:
+      - Item: Meat
+        Rate: 4500
+      - Item: Shoulder_Protection
+        Rate: 4000
+      - Item: Wootan_Defender_Shield_Fragment
+        Rate: 50
+      - Item: Goibne's_Helmet
+        Rate: 5
+      - Item: Elder_Branch
+        Rate: 100
+      - Item: Great_Leaf
+        Rate: 1000
+      - Item: Goibne's_Combat_Boots
+        Rate: 5
+      - Item: Wootan_Warriors_Hair
+        Rate: 1000
+        StealProtected: true
+      - Item: Wootan_Token
+        Rate: 50
+        StealProtected: true
+      - Item: Ancient_Wootan_Defender_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20278
+    AegisName: G_ILL_MEGALITH
+    Name: Ancient Megalith
+    Level: 167
+    Hp: 1062750
+    BaseExp: 154736
+    JobExp: 116052
+    Attack: 4091
+    Attack2: 5969
+    Defense: 168
+    MagicDefense: 18
+    Str: 169
+    Agi: 111
+    Vit: 89
+    Int: 55
+    Dex: 214
+    Luk: 40
+    AttackRange: 9
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 4
+    WalkSpeed: 200
+    AttackDelay: 1332
+    AttackMotion: 1332
+    DamageMotion: 672
+    Ai: 10
+  - Id: 20279
+    AegisName: G_ILL_WOOTAN_SHOOTER
+    Name: Ancient Wootan Shooter
+    Level: 164
+    Hp: 1648600
+    BaseExp: 153338
+    JobExp: 115004
+    Attack: 4117
+    Attack2: 6008
+    Defense: 142
+    MagicDefense: 21
+    Str: 171
+    Agi: 97
+    Vit: 74
+    Int: 53
+    Dex: 220
+    Luk: 45
+    AttackRange: 10
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Earth
+    ElementLevel: 2
+    WalkSpeed: 200
+    AttackDelay: 857
+    AttackMotion: 1056
+    DamageMotion: 576
+    Ai: 04
+  - Id: 20280
+    AegisName: G_ILL_WOOTAN_FIGHTER
+    Name: Ancient Wootan Fighter
+    Level: 167
+    Hp: 1528500
+    BaseExp: 158450
+    JobExp: 118836
+    Attack: 4007
+    Attack2: 5828
+    Defense: 205
+    MagicDefense: 8
+    Str: 198
+    Agi: 115
+    Vit: 90
+    Int: 42
+    Dex: 158
+    Luk: 42
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Fire
+    ElementLevel: 2
+    WalkSpeed: 200
+    AttackDelay: 912
+    AttackMotion: 1344
+    DamageMotion: 480
+    Ai: 04
+  - Id: 20520
+    AegisName: ILL_BAPHOMET
+    Name: Chaotic Baphomet
+    Level: 178
+    Hp: 21278744
+    BaseExp: 2308530
+    JobExp: 1502320
+    MvpExp: 198262
+    Attack: 3150
+    Attack2: 8260
+    Defense: 343
+    MagicDefense: 122
+    Str: 180
+    Agi: 175
+    Vit: 230
+    Int: 136
+    Dex: 200
+    Luk: 135
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demon
+    Element: Dark
+    ElementLevel: 3
+    WalkSpeed: 100
+    AttackDelay: 768
+    AttackMotion: 768
+    DamageMotion: 576
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    MvpDrops:
+      - Item: Yggdrasilberry
+        Rate: 2000
+      - Item: Baphomet_Doll
+        Rate: 500
+      - Item: Evil_Horn
+        Rate: 5000
+    Drops:
+      - Item: Crescent_Scythe
+        Rate: 500
+      - Item: Magestic_Goat
+        Rate: 5000
+      - Item: Crescent_Scythe_
+        Rate: 500
+      - Item: Emperium
+        Rate: 500
+      - Item: Magestic_Goat_
+        Rate: 3000
+      - Item: Elunium
+        Rate: 5432
+      - Item: Oridecon
+        Rate: 4171
+      - Item: Demonic_Essence
+        Rate: 1000
+        StealProtected: true
+  - Id: 20521
+    AegisName: ILL_ANDREA
+    Name: Chaotic Andrea
+    Level: 177
+    Hp: 1057547
+    BaseExp: 54860
+    JobExp: 40545
+    Attack: 3500
+    Attack2: 4125
+    Defense: 330
+    MagicDefense: 110
+    Str: 139
+    Agi: 165
+    Vit: 65
+    Int: 200
+    Dex: 156
+    Luk: 129
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 2
+    WalkSpeed: 130
+    AttackDelay: 576
+    AttackMotion: 432
+    DamageMotion: 288
+    Ai: 04
+    Class: Boss
+    Modes:
+      CastSensorIdle: true
+    Drops:
+      - Item: Armlet_Of_Prisoner
+        Rate: 500
+      - Item: Biretta_
+        Rate: 5
+      - Item: Saint_Robe_
+        Rate: 5
+      - Item: Scapulare_
+        Rate: 10
+      - Item: Spike
+        Rate: 1
+      - Item: Cold_Holy_Water
+        Rate: 50
+        StealProtected: true
+      - Item: Small_Flashlight
+        Rate: 25
+        StealProtected: true
+      - Item: Chaotic_Acolyte_Card
+        Rate: 100
+        StealProtected: true
+  - Id: 20522
+    AegisName: ILL_ANES
+    Name: Chaotic Anes
+    Level: 177
+    Hp: 1057444
+    BaseExp: 54860
+    JobExp: 40545
+    Attack: 2800
+    Attack2: 4525
+    Defense: 297
+    MagicDefense: 110
+    Str: 98
+    Agi: 125
+    Vit: 120
+    Int: 299
+    Dex: 156
+    Luk: 129
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 2
+    WalkSpeed: 130
+    AttackDelay: 576
+    AttackMotion: 432
+    DamageMotion: 288
+    Ai: 04
+    Class: Boss
+    Modes:
+      CastSensorIdle: true
+    Drops:
+      - Item: Armlet_Of_Prisoner
+        Rate: 500
+      - Item: Biretta_
+        Rate: 5
+      - Item: Saint_Robe_
+        Rate: 5
+      - Item: Scapulare_
+        Rate: 10
+      - Item: Spike
+        Rate: 1
+      - Item: Cold_Holy_Water
+        Rate: 50
+        StealProtected: true
+      - Item: Small_Flashlight
+        Rate: 25
+        StealProtected: true
+      - Item: Chaotic_Acolyte_Card
+        Rate: 100
+        StealProtected: true
+  - Id: 20523
+    AegisName: ILL_SILVANO
+    Name: Chaotic Silvano
+    Level: 177
+    Hp: 1057650
+    BaseExp: 54860
+    JobExp: 40545
+    Attack: 4210
+    Attack2: 4758
+    Defense: 297
+    MagicDefense: 111
+    Str: 138
+    Agi: 166
+    Vit: 111
+    Int: 170
+    Dex: 120
+    Luk: 139
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 2
+    WalkSpeed: 130
+    AttackDelay: 576
+    AttackMotion: 432
+    DamageMotion: 288
+    Ai: 04
+    Class: Boss
+    Modes:
+      CastSensorIdle: true
+    Drops:
+      - Item: Armlet_Of_Prisoner
+        Rate: 500
+      - Item: Biretta_
+        Rate: 5
+      - Item: Saint_Robe_
+        Rate: 5
+      - Item: Scapulare_
+        Rate: 10
+      - Item: Spike
+        Rate: 1
+      - Item: Cold_Holy_Water
+        Rate: 50
+        StealProtected: true
+      - Item: Small_Flashlight
+        Rate: 25
+        StealProtected: true
+      - Item: Chaotic_Acolyte_Card
+        Rate: 100
+        StealProtected: true
+  - Id: 20524
+    AegisName: ILL_CECILIA
+    Name: Chaotic Cecilia
+    Level: 177
+    Hp: 1056411
+    BaseExp: 54860
+    JobExp: 40545
+    Attack: 2870
+    Attack2: 4725
+    Defense: 297
+    MagicDefense: 111
+    Str: 130
+    Agi: 135
+    Vit: 110
+    Int: 299
+    Dex: 156
+    Luk: 129
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 2
+    WalkSpeed: 130
+    AttackDelay: 576
+    AttackMotion: 432
+    DamageMotion: 288
+    Ai: 04
+    Class: Boss
+    Modes:
+      CastSensorIdle: true
+    Drops:
+      - Item: Armlet_Of_Prisoner
+        Rate: 500
+      - Item: Biretta_
+        Rate: 5
+      - Item: Saint_Robe_
+        Rate: 5
+      - Item: Scapulare_
+        Rate: 10
+      - Item: Spike
+        Rate: 1
+      - Item: Cold_Holy_Water
+        Rate: 50
+        StealProtected: true
+      - Item: Small_Flashlight
+        Rate: 25
+        StealProtected: true
+      - Item: Chaotic_Acolyte_Card
+        Rate: 100
+        StealProtected: true
+  - Id: 20525
+    AegisName: ILL_BAPHOMET_J
+    Name: Chaotic Baphomet Jr.
+    Level: 177
+    Hp: 1057444
+    BaseExp: 56000
+    JobExp: 55000
+    Attack: 2500
+    Attack2: 3300
+    Defense: 327
+    MagicDefense: 108
+    Str: 150
+    Agi: 133
+    Vit: 90
+    Int: 99
+    Dex: 120
+    Luk: 136
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Demon
+    Element: Dark
+    ElementLevel: 1
+    WalkSpeed: 100
+    AttackDelay: 868
+    AttackMotion: 480
+    DamageMotion: 120
+    Ai: 21
+    Drops:
+      - Item: Evil_Horn
+        Rate: 3000
+      - Item: Oridecon
+        Rate: 100
+      - Item: Halberd_
+        Rate: 2
+      - Item: Yggdrasilberry
+        Rate: 50
+      - Item: Leaf_Of_Yggdrasil
+        Rate: 100
+      - Item: Yellow_Herb
+        Rate: 1300
+      - Item: Boots
+        Rate: 50
+      - Item: Fluffy_Cloth_Piece
+        Rate: 25
+        StealProtected: true
+      - Item: Small_Flashlight
+        Rate: 25
+        StealProtected: true
+      - Item: Chaotic_Baphomet_Junior_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20526
+    AegisName: ILL_SIDE_WINDER
+    Name: Chaotic Side Winder
+    Level: 176
+    Hp: 967531
+    BaseExp: 11890
+    JobExp: 9075
+    Attack: 3780
+    Attack2: 5151
+    Defense: 341
+    MagicDefense: 108
+    Str: 152
+    Agi: 200
+    Vit: 55
+    Int: 99
+    Dex: 130
+    Luk: 124
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Brute
+    Element: Poison
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 1576
+    AttackMotion: 576
+    DamageMotion: 576
+    Ai: 09
+    Drops:
+      - Item: Shining_Scales
+        Rate: 5335
+      - Item: Zargon
+        Rate: 1400
+      - Item: Oridecon_Stone
+        Rate: 134
+      - Item: Tsurugi_
+        Rate: 2
+      - Item: Posionous_Canine
+        Rate: 2500
+      - Item: Scale_Of_Snakes
+        Rate: 5000
+      - Item: White_Herb
+        Rate: 1000
+      - Item: Snake_Poison
+        Rate: 25
+        StealProtected: true
+      - Item: Medicine_Bag
+        Rate: 25
+        StealProtected: true
+      - Item: Chaotic_Sidewinder_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20527
+    AegisName: ILL_HUNTER_FLY
+    Name: Chaotic Hunter Fly
+    Level: 175
+    Hp: 1045087
+    BaseExp: 20585
+    JobExp: 15100
+    Attack: 2700
+    Attack2: 4800
+    Defense: 313
+    MagicDefense: 107
+    Str: 230
+    Agi: 174
+    Vit: 89
+    Int: 78
+    Dex: 200
+    Luk: 125
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Insect
+    Element: Wind
+    ElementLevel: 2
+    WalkSpeed: 150
+    AttackDelay: 676
+    AttackMotion: 576
+    DamageMotion: 480
+    Ai: 04
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Rough_Wind
+        Rate: 30
+      - Item: Steel
+        Rate: 100
+      - Item: Solid_Shell
+        Rate: 5335
+      - Item: Zargon
+        Rate: 1300
+      - Item: Oridecon_Stone
+        Rate: 129
+      - Item: Mini_Propeller
+        Rate: 1
+      - Item: Damascus_
+        Rate: 2
+      - Item: Twinkle_Jelly_Piece
+        Rate: 25
+        StealProtected: true
+      - Item: Small_Pretty_Candle
+        Rate: 25
+        StealProtected: true
+      - Item: Chaotic_Hunter_Fly_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20528
+    AegisName: ILL_MANTIS
+    Name: Chaotic Mantis
+    Level: 174
+    Hp: 1039216
+    BaseExp: 17560
+    JobExp: 15010
+    Attack: 2247
+    Attack2: 3170
+    Defense: 315
+    MagicDefense: 71
+    Str: 155
+    Agi: 133
+    Vit: 102
+    Int: 59
+    Dex: 146
+    Luk: 151
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Insect
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 1528
+    AttackMotion: 660
+    DamageMotion: 432
+    Ai: 09
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Yellow_Live
+        Rate: 110
+      - Item: Limb_Of_Mantis
+        Rate: 9000
+      - Item: Scell
+        Rate: 1400
+      - Item: Elunium_Stone
+        Rate: 70
+      - Item: Solid_Shell
+        Rate: 250
+      - Item: Azure_Jewel
+        Rate: 10
+      - Item: Red_Herb
+        Rate: 650
+      - Item: Mantis_Flower
+        Rate: 25
+        StealProtected: true
+      - Item: Delicious_Juice
+        Rate: 25
+        StealProtected: true
+      - Item: Chaotic_Mantis_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20529
+    AegisName: ILL_GHOSTRING
+    Name: Chaotic Ghostring
+    Level: 173
+    Hp: 1033446
+    BaseExp: 24305
+    JobExp: 14467
+    Attack: 3500
+    Attack2: 5512
+    Defense: 320
+    MagicDefense: 71
+    Str: 166
+    Agi: 185
+    Vit: 99
+    Int: 166
+    Dex: 120
+    Luk: 143
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 300
+    AttackDelay: 1220
+    AttackMotion: 1080
+    DamageMotion: 648
+    Ai: 21
+    Class: Boss
+    Drops:
+      - Item: Transparent_Cloth
+        Rate: 5335
+      - Item: Ghost_Bandana
+        Rate: 100
+      - Item: Thief_Clothes_
+        Rate: 50
+      - Item: Branch_Of_Dead_Tree
+        Rate: 500
+      - Item: Old_Blue_Box
+        Rate: 10
+      - Item: Emperium
+        Rate: 30
+      - Item: Ghost_Scroll_1_5
+        Rate: 100
+      - Item: Medicine_Bag
+        Rate: 25
+        StealProtected: true
+  - Id: 20530
+    AegisName: ILL_KILLER_MANTIS
+    Name: Chaotic Killer Mantis
+    Level: 177
+    Hp: 1058167
+    BaseExp: 21485
+    JobExp: 10674
+    Attack: 4500
+    Attack2: 5050
+    Defense: 348
+    MagicDefense: 72
+    Str: 182
+    Agi: 156
+    Vit: 102
+    Int: 75
+    Dex: 169
+    Luk: 140
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Insect
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 175
+    AttackDelay: 1528
+    AttackMotion: 660
+    DamageMotion: 432
+    Ai: 21
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Limb_Of_Mantis
+        Rate: 4550
+      - Item: Solid_Shell
+        Rate: 2500
+      - Item: Azure_Jewel
+        Rate: 10
+      - Item: White_Herb
+        Rate: 15
+      - Item: Grape
+        Rate: 25
+      - Item: Nail_Of_Loki
+        Rate: 1
+      - Item: Mirror_Shield_
+        Rate: 1
+      - Item: Delicious_Juice
+        Rate: 50
+        StealProtected: true
+      - Item: Chaotic_Killer_Mantis_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20531
+    AegisName: ILL_POPORING
+    Name: Chaotic Poporing
+    Level: 173
+    Hp: 1032638
+    BaseExp: 10495
+    JobExp: 10680
+    Attack: 3260
+    Attack2: 3788
+    Defense: 296
+    MagicDefense: 70
+    Str: 170
+    Agi: 133
+    Vit: 120
+    Int: 98
+    Dex: 136
+    Luk: 105
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Plant
+    Element: Poison
+    ElementLevel: 1
+    WalkSpeed: 300
+    AttackDelay: 1672
+    AttackMotion: 672
+    DamageMotion: 480
+    Ai: 02
+    Drops:
+      - Item: Sticky_Mucus
+        Rate: 5500
+      - Item: Garlet
+        Rate: 1500
+      - Item: Green_Herb
+        Rate: 500
+      - Item: Grape
+        Rate: 200
+      - Item: Apple
+        Rate: 5
+      - Item: Main_Gauche
+        Rate: 5
+      - Item: Wing_Of_Fly
+        Rate: 250
+      - Item: Doubtful_Sap
+        Rate: 25
+        StealProtected: true
+      - Item: Chaotic_Poporing_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20532
+    AegisName: ILL_STEM_WORM
+    Name: Chaotic Stem Worm
+    Level: 172
+    Hp: 1027071
+    BaseExp: 12970
+    JobExp: 11105
+    Attack: 2780
+    Attack2: 4110
+    Defense: 307
+    MagicDefense: 70
+    Str: 155
+    Agi: 137
+    Vit: 125
+    Int: 100
+    Dex: 184
+    Luk: 130
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Plant
+    Element: Wind
+    ElementLevel: 1
+    WalkSpeed: 300
+    AttackDelay: 1956
+    AttackMotion: 756
+    DamageMotion: 528
+    Ai: 09
+    Drops:
+      - Item: Tough_Scalelike_Stem
+        Rate: 5335
+      - Item: White_Herb
+        Rate: 1800
+      - Item: Jump_Rope
+        Rate: 10
+      - Item: Oridecon_Stone
+        Rate: 115
+      - Item: Great_Nature
+        Rate: 5
+      - Item: Small_Pretty_Candle
+        Rate: 25
+      - Item: Seed_Of_Yggdrasil
+        Rate: 45
+      - Item: Very_Hard_Purple_Shell
+        Rate: 25
+        StealProtected: true
+      - Item: Short_Lasso
+        Rate: 25
+        StealProtected: true
+      - Item: Chaotic_Stem_Worm_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20533
+    AegisName: G_ILL_BAPHOMET_J
+    Name: Chaotic Baphomet Jr.
+    Level: 177
+    Hp: 1057444
+    BaseExp: 56000
+    JobExp: 55000
+    Attack: 2500
+    Attack2: 3300
+    Defense: 327
+    MagicDefense: 108
+    Str: 150
+    Agi: 133
+    Vit: 90
+    Int: 99
+    Dex: 120
+    Luk: 136
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Demon
+    Element: Dark
+    ElementLevel: 1
+    WalkSpeed: 100
+    AttackDelay: 868
+    AttackMotion: 480
+    DamageMotion: 120
+    Ai: 21
+  - Id: 20801
+    AegisName: ILL_SROPHO
+    Name: Illusion Sropho
+    Level: 147
+    Hp: 456823
+    BaseExp: 65000
+    JobExp: 32000
+    Attack: 2571
+    Attack2: 1843
+    Defense: 224
+    MagicDefense: 81
+    Str: 221
+    Agi: 110
+    Vit: 60
+    Int: 90
+    Dex: 115
+    Luk: 50
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Fish
+    Element: Water
+    ElementLevel: 3
+    WalkSpeed: 135
+    AttackDelay: 700
+    AttackMotion: 600
+    DamageMotion: 360
+    Ai: 21
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Fin
+        Rate: 7000
+      - Item: Light_Granule
+        Rate: 500
+      - Item: Oridecon_Stone
+        Rate: 250
+      - Item: Crystal_Arrow_Container
+        Rate: 25
+      - Item: Electric_Wire
+        Rate: 25
+      - Item: Electric_Eel
+        Rate: 10
+      - Item: E_Abyss1
+        Rate: 15
+      - Item: aegis_25893
+        Rate: 120
+        StealProtected: true
+      - Item: ILL_Sropho_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20802
+    AegisName: ILL_OBEAUNE
+    Name: Deep Sea Obeaune
+    JapaneseName: Deep sea Obeaune
+    Level: 149
+    Hp: 450238
+    BaseExp: 62475
+    JobExp: 28774
+    Attack: 2504
+    Attack2: 2311
+    Defense: 255
+    MagicDefense: 90
+    Str: 166
+    Agi: 87
+    Vit: 101
+    Int: 233
+    Dex: 196
+    Luk: 55
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 200
+    AttackDelay: 1872
+    AttackMotion: 672
+    DamageMotion: 288
+    Ai: 21
+    Modes:
+      Detector: true
+    Drops:
+      - Item: E_Abyss1
+        Rate: 10
+      - Item: Heart_Of_Mermaid
+        Rate: 4500
+      - Item: Saint_Robe_
+        Rate: 5
+      - Item: Skyblue_Jewel
+        Rate: 5
+      - Item: Fin
+        Rate: 250
+      - Item: Witherless_Rose
+        Rate: 15
+      - Item: aegis_25894
+        Rate: 120
+        StealProtected: true
+      - Item: ILL_Obeaune_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20803
+    AegisName: ILL_DEVIACE
+    Name: Deep Sea Deviace
+    Level: 150
+    Hp: 488355
+    BaseExp: 49989
+    JobExp: 27288
+    Attack: 2168
+    Attack2: 1245
+    Defense: 274
+    MagicDefense: 91
+    Str: 157
+    Agi: 126
+    Vit: 32
+    Int: 64
+    Dex: 112
+    Luk: 75
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Fish
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 400
+    AttackDelay: 1680
+    AttackMotion: 480
+    DamageMotion: 384
+    Ai: 21
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Mistic_Frozen
+        Rate: 25
+      - Item: Tooth_Of_Ancient_Fish
+        Rate: 9000
+      - Item: Lip_Of_Ancient_Fish
+        Rate: 1000
+      - Item: Antenna
+        Rate: 2
+      - Item: Detrimindexta
+        Rate: 200
+      - Item: Katar_Of_Cold_Icicle
+        Rate: 3
+      - Item: Oridecon_Stone
+        Rate: 161
+      - Item: aegis_25892
+        Rate: 120
+        StealProtected: true
+      - Item: E_Abyss1
+        Rate: 15
+        StealProtected: true
+      - Item: ILL_Deviace_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20804
+    AegisName: ILL_MARSE
+    Name: Deep Sea Marse
+    Level: 149
+    Hp: 475141
+    BaseExp: 52500
+    JobExp: 27300
+    Attack: 2470
+    Attack2: 1840
+    Defense: 288
+    MagicDefense: 100
+    Str: 133
+    Agi: 37
+    Vit: 85
+    Int: 156
+    Dex: 133
+    Luk: 60
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Fish
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 300
+    AttackDelay: 1956
+    AttackMotion: 756
+    DamageMotion: 528
+    Ai: 21
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Chinese_Ink
+        Rate: 4500
+      - Item: Tentacle
+        Rate: 1500
+      - Item: Skyblue_Jewel
+        Rate: 5
+      - Item: Mistic_Frozen
+        Rate: 6
+      - Item: Penetration
+        Rate: 3
+      - Item: Grape
+        Rate: 150
+      - Item: aegis_25895
+        Rate: 120
+        StealProtected: true
+      - Item: E_Abyss1
+        Rate: 15
+        StealProtected: true
+      - Item: ILL_Marse_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20805
+    AegisName: ILL_MERMAN
+    Name: Deep Sea Merman
+    Level: 148
+    Hp: 467534
+    BaseExp: 37940
+    JobExp: 14030
+    Attack: 2132
+    Attack2: 1432
+    Defense: 268
+    MagicDefense: 75
+    Str: 97
+    Agi: 84
+    Vit: 46
+    Int: 74
+    Dex: 96
+    Luk: 110
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Water
+    ElementLevel: 3
+    WalkSpeed: 220
+    AttackDelay: 916
+    AttackMotion: 816
+    DamageMotion: 336
+    Ai: 21
+    Modes:
+      Detector: true
+    Drops:
+      - Item: Lip_Of_Ancient_Fish
+        Rate: 1300
+      - Item: Plate_Armor_
+        Rate: 2
+      - Item: Yggdrasilberry
+        Rate: 40
+      - Item: Skyblue_Jewel
+        Rate: 40
+      - Item: Mistic_Frozen
+        Rate: 35
+      - Item: Zephyrus
+        Rate: 3
+      - Item: Oridecon_Stone
+        Rate: 203
+      - Item: aegis_25896
+        Rate: 120
+        StealProtected: true
+      - Item: E_Abyss1
+        Rate: 15
+        StealProtected: true
+      - Item: ILL_Merman_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20806
+    AegisName: ILL_SEDORA
+    Name: Deep Sea Sedora
+    Level: 199
+    Hp: 3075143
+    BaseExp: 264887
+    JobExp: 122457
+    Attack: 3758
+    Attack2: 1475
+    Defense: 274
+    MagicDefense: 100
+    Str: 221
+    Agi: 74
+    Vit: 61
+    Int: 101
+    Dex: 227
+    Luk: 105
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Fish
+    Element: Wind
+    ElementLevel: 3
+    WalkSpeed: 120
+    AttackDelay: 504
+    AttackMotion: 960
+    DamageMotion: 576
+    Ai: 20
+    Class: Boss
+    Drops:
+      - Item: Tentacle
+        Rate: 2500
+      - Item: Tidal_Shoes
+        Rate: 3
+      - Item: Ice_Fragment
+        Rate: 15
+      - Item: Elder_Branch
+        Rate: 15
+      - Item: Chinese_Ink
+        Rate: 1500
+      - Item: Old_Blue_Box
+        Rate: 5
+      - Item: Crystal_Blue
+        Rate: 25
+      - Item: aegis_25892
+        Rate: 300
+        StealProtected: true
+      - Item: E_Abyss1
+        Rate: 30
+        StealProtected: true
+      - Item: ILL_Sedora_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20807
+    AegisName: ILL_SWORD_FISH
+    Name: Deep Sea Swordfish
+    Level: 199
+    Hp: 3197411
+    BaseExp: 258447
+    JobExp: 125874
+    Attack: 3849
+    Attack2: 2413
+    Defense: 288
+    MagicDefense: 71
+    Str: 185
+    Agi: 256
+    Vit: 215
+    Int: 122
+    Dex: 247
+    Luk: 105
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Fish
+    Element: Water
+    ElementLevel: 3
+    WalkSpeed: 200
+    AttackDelay: 1968
+    AttackMotion: 768
+    DamageMotion: 384
+    Ai: 20
+    Class: Boss
+    Drops:
+      - Item: Mistic_Frozen
+        Rate: 5
+      - Item: Sharp_Scale
+        Rate: 4500
+      - Item: Oridecon_Stone
+        Rate: 17
+      - Item: Snowy_Horn
+        Rate: 1
+      - Item: Elunium_Stone
+        Rate: 25
+      - Item: Electronic_Guitar
+        Rate: 2
+      - Item: Gill
+        Rate: 300
+      - Item: E_Abyss1
+        Rate: 30
+        StealProtected: true
+      - Item: aegis_25893
+        Rate: 300
+        StealProtected: true
+      - Item: ILL_Sword_Fish_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20808
+    AegisName: ILL_STROUF
+    Name: Deep Sea Strouf
+    Level: 201
+    Hp: 3267419
+    BaseExp: 262447
+    JobExp: 129478
+    Attack: 4124
+    Attack2: 2245
+    Defense: 277
+    MagicDefense: 80
+    Str: 221
+    Agi: 176
+    Vit: 121
+    Int: 282
+    Dex: 273
+    Luk: 146
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Fish
+    Element: Water
+    ElementLevel: 3
+    WalkSpeed: 150
+    AttackDelay: 1872
+    AttackMotion: 672
+    DamageMotion: 384
+    Ai: 20
+    Class: Boss
+    Drops:
+      - Item: Fin
+        Rate: 2668
+      - Item: Oridecon_Stone
+        Rate: 58
+      - Item: Brionac
+        Rate: 1
+      - Item: Feather
+        Rate: 1500
+      - Item: Skyblue_Jewel
+        Rate: 10
+      - Item: Gill
+        Rate: 750
+      - Item: aegis_25895
+        Rate: 300
+        StealProtected: true
+      - Item: E_Abyss1
+        Rate: 30
+        StealProtected: true
+      - Item: ILL_Strouf_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20809
+    AegisName: ILL_PHEN
+    Name: Deep Sea Phen
+    Level: 199
+    Hp: 3097158
+    BaseExp: 256475
+    JobExp: 128447
+    Attack: 2948
+    Attack2: 1245
+    Defense: 219
+    MagicDefense: 90
+    Str: 246
+    Agi: 112
+    Vit: 95
+    Int: 117
+    Dex: 246
+    Luk: 144
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Fish
+    Element: Water
+    ElementLevel: 2
+    WalkSpeed: 150
+    AttackDelay: 864
+    AttackMotion: 400
+    DamageMotion: 150
+    Ai: 20
+    Class: Boss
+    Drops:
+      - Item: Meat
+        Rate: 1200
+      - Item: E_Abyss1
+        Rate: 30
+      - Item: aegis_25894
+        Rate: 300
+      - Item: Fin
+        Rate: 700
+        StealProtected: true
+      - Item: Sharp_Scale
+        Rate: 580
+        StealProtected: true
+      - Item: ILL_Phen_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20810
+    AegisName: ILL_KING_DRAMOH
+    Name: Deep Sea King Dramoh
+    Level: 205
+    Hp: 3215698
+    BaseExp: 248447
+    JobExp: 122458
+    Attack: 3324
+    Attack2: 2457
+    Defense: 330
+    MagicDefense: 40
+    Str: 274
+    Agi: 86
+    Vit: 224
+    Int: 116
+    Dex: 297
+    Luk: 106
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Fish
+    Element: Water
+    ElementLevel: 3
+    WalkSpeed: 140
+    AttackDelay: 576
+    AttackMotion: 720
+    DamageMotion: 720
+    Ai: 20
+    Class: Boss
+    Drops:
+      - Item: Ice_Fragment
+        Rate: 50
+      - Item: Nipper
+        Rate: 2500
+      - Item: Solid_Shell
+        Rate: 2500
+      - Item: Morrigane's_Belt
+        Rate: 3
+      - Item: Light_Granule
+        Rate: 100
+      - Item: Mistic_Frozen
+        Rate: 25
+      - Item: Crystal_Blue
+        Rate: 25
+      - Item: aegis_25896
+        Rate: 300
+        StealProtected: true
+      - Item: E_Abyss1
+        Rate: 30
+        StealProtected: true
+      - Item: ILL_King_Dramoh_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20811
+    AegisName: ILL_KRAKEN
+    Name: Deep Sea Kraken
+    Level: 204
+    Hp: 14342360
+    BaseExp: 3470448
+    JobExp: 1445748
+    MvpExp: 491666
+    Attack: 5427
+    Attack2: 2475
+    Defense: 335
+    MagicDefense: 271
+    Str: 268
+    Agi: 192
+    Vit: 221
+    Int: 234
+    Dex: 301
+    Luk: 180
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Fish
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 150
+    AttackDelay: 768
+    AttackMotion: 768
+    DamageMotion: 576
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    MvpDrops:
+      - Item: Yggdrasilberry
+        Rate: 5500
+      - Item: Old_Violet_Box
+        Rate: 2250
+      - Item: Magic_Card_Album
+        Rate: 1000
+    Drops:
+      - Item: Tentacle
+        Rate: 9000
+      - Item: Hunting_Spear
+        Rate: 1000
+      - Item: Cardo
+        Rate: 500
+      - Item: Ice_Falchon
+        Rate: 300
+      - Item: Water_Sprits_Armor_
+        Rate: 100
+      - Item: Treasure_Box
+        Rate: 5000
+      - Item: E_Abyss1
+        Rate: 1000
+        StealProtected: true
+      - Item: aegis_7324
+        Rate: 1000
+        StealProtected: true
+      - Item: ILL_Kraken_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20843
+    AegisName: ILL_ABYSMAL_WITCH
+    Name: Deep Sea Witch
+    Level: 205
+    Hp: 75746433
+    BaseExp: 4870445
+    JobExp: 2457448
+    MvpExp: 491666
+    Attack: 4624
+    Attack2: 2764
+    Defense: 452
+    MagicDefense: 81
+    Str: 176
+    Agi: 154
+    Vit: 177
+    Int: 247
+    Dex: 309
+    Luk: 122
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demon
+    Element: Water
+    ElementLevel: 4
+    WalkSpeed: 200
+    AttackDelay: 1020
+    AttackMotion: 500
+    DamageMotion: 768
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    Drops:
+      - Item: Magic_Card_Album
+        Rate: 1000
+      - Item: E_Abyss1
+        Rate: 1000
+      - Item: E_Abyss1
+        Rate: 1000
+      - Item: E_Abyss1
+        Rate: 1000
+        StealProtected: true
+      - Item: Crown_Of_Witch
+        Rate: 1000
+        StealProtected: true
+      - Item: ILL_Abysmal_Witch_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3473
+    AegisName: AS_RAGGED_GOLEM
+    Name: Stefan J.E Wolf
+    Level: 160
+    Hp: 10000000
+    Attack: 2800
+    Attack2: 3200
+    Defense: 100
+    MagicDefense: 68
+    Str: 100
+    Agi: 50
+    Vit: 100
+    Int: 100
+    Dex: 110
+    Luk: 50
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Undead
+    Element: Undead
+    ElementLevel: 4
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+    Drops:
+      - Item: Oridecon
+        Rate: 5000
+      - Item: Elunium
+        Rate: 5000
+  - Id: 3474
+    AegisName: AS_BLOODY_KNIGHT
+    Name: Immortal Cursed Knight
+    Level: 160
+    Hp: 10000000
+    BaseExp: 7513
+    JobExp: 8457
+    Attack: 4785
+    Attack2: 4977
+    Defense: 138
+    MagicDefense: 53
+    Str: 102
+    Agi: 104
+    Vit: 72
+    Int: 57
+    Dex: 98
+    Luk: 57
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+    Drops:
+      - Item: Elunium
+        Rate: 500
+  - Id: 3475
+    AegisName: AS_WIND_GHOST
+    Name: Immortal Wind Ghost
+    Level: 160
+    Hp: 10000000
+    BaseExp: 9086
+    JobExp: 17532
+    Attack: 2513
+    Attack2: 3315
+    Defense: 105
+    MagicDefense: 41
+    Str: 100
+    Agi: 63
+    Vit: 35
+    Int: 99
+    Dex: 106
+    Luk: 61
+    AttackRange: 5
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+    Drops:
+      - Item: Oridecon
+        Rate: 5000
+      - Item: Elunium
+        Rate: 5000
+  - Id: 3476
+    AegisName: AS_ZOMBIE
+    Name: Immortal Zombie Soldier
+    Level: 160
+    Hp: 405694
+    BaseExp: 10570
+    JobExp: 10100
+    Attack: 1504
+    Attack2: 1625
+    Defense: 128
+    MagicDefense: 84
+    Str: 5
+    Agi: 99
+    Vit: 39
+    Int: 48
+    Dex: 30
+    Luk: 24
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+  - Id: 3477
+    AegisName: AS_IMMORTAL_CORPS
+    Name: Immortal Fortress Legion
+    Level: 160
+    Hp: 405694
+    BaseExp: 11040
+    JobExp: 10730
+    Attack: 1851
+    Attack2: 2022
+    Defense: 103
+    MagicDefense: 25
+    Str: 109
+    Agi: 76
+    Vit: 61
+    Int: 53
+    Dex: 98
+    Luk: 30
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+    Drops:
+      - Item: Sinister_Dagger
+        Rate: 50
+      - Item: Sinister_Katar
+        Rate: 50
+  - Id: 3478
+    AegisName: AS_ZOMBIE_SLAUGHTER
+    Name: Immortal Fortress Key Keeper
+    Level: 160
+    Hp: 423332
+    BaseExp: 11040
+    JobExp: 10730
+    Attack: 1851
+    Attack2: 2022
+    Defense: 103
+    MagicDefense: 25
+    Str: 109
+    Agi: 76
+    Vit: 61
+    Int: 53
+    Dex: 98
+    Luk: 30
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+    Drops:
+      - Item: Air_Stronghold_Key
+        Rate: 10000
+      - Item: Sinister_Book
+        Rate: 50
+      - Item: Sinister_Huuma
+        Rate: 50
+  - Id: 3479
+    AegisName: AS_ZOMBIE_MASTER
+    Name: Immortal Zombie Assaulter
+    Level: 160
+    Hp: 405694
+    BaseExp: 11500
+    JobExp: 10100
+    Attack: 1653
+    Attack2: 3274
+    Defense: 140
+    MagicDefense: 44
+    Str: 155
+    Agi: 126
+    Vit: 89
+    Int: 108
+    Dex: 213
+    Luk: 76
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+    Drops:
+      - Item: Sinister_Book
+        Rate: 50
+      - Item: Sinister_Fist
+        Rate: 50
+      - Item: Sinister_Staff
+        Rate: 50
+  - Id: 3480
+    AegisName: AS_CURSED_SOLDIER
+    Name: Immortal Cursed Zombie
+    Level: 160
+    Hp: 405694
+    BaseExp: 10101
+    JobExp: 10003
+    Attack: 1850
+    Attack2: 3451
+    Defense: 81
+    MagicDefense: 87
+    Str: 119
+    Agi: 87
+    Vit: 86
+    Int: 60
+    Dex: 94
+    Luk: 55
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+    Drops:
+      - Item: Sinister_Bow
+        Rate: 100
+      - Item: Sinister_Revolver
+        Rate: 50
+      - Item: Sinister_Twohand_Sword
+        Rate: 50
+  - Id: 3481
+    AegisName: AS_EVIL_SHADOW1
+    Name: Immortal Nightmare Shadow
+    Level: 160
+    Hp: 423330
+    BaseExp: 6666
+    JobExp: 7332
+    Attack: 1444
+    Attack2: 1944
+    Defense: 106
+    MagicDefense: 44
+    Str: 44
+    Agi: 166
+    Vit: 44
+    Int: 44
+    Dex: 166
+    Luk: 44
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+    Drops:
+      - Item: Elunium
+        Rate: 10000
+      - Item: Sinister_Lance
+        Rate: 50
+      - Item: Sinister_Twohand_Axe
+        Rate: 50
+  - Id: 3482
+    AegisName: AS_EVIL_SHADOW2
+    Name: Immortal Angry Shadow
+    Level: 160
+    Hp: 388054
+    BaseExp: 279836
+    JobExp: 260199
+    Attack: 2730
+    Attack2: 3990
+    Defense: 80
+    MagicDefense: 180
+    Str: 155
+    Agi: 88
+    Vit: 110
+    Int: 135
+    Dex: 154
+    Luk: 59
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+    Drops:
+      - Item: Sinister_Viollin
+        Rate: 50
+      - Item: Sinister_Mace
+        Rate: 50
+      - Item: Sinister_Wire
+        Rate: 50
+  - Id: 3483
+    AegisName: AS_EVIL_SHADOW3
+    Name: Immortal Death Shadow
+    Level: 160
+    Hp: 423330
+    BaseExp: 280009
+    JobExp: 267592
+    Attack: 3020
+    Attack2: 4265
+    Defense: 80
+    MagicDefense: 150
+    Str: 165
+    Agi: 82
+    Vit: 110
+    Int: 122
+    Dex: 154
+    Luk: 52
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demon
+    Element: Dark
+    ElementLevel: 2
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+    Drops:
+      - Item: Sinister_Rod
+        Rate: 50
+      - Item: Sinister_Saber
+        Rate: 50
+      - Item: Sinister_Spear
+        Rate: 50
+  - Id: 3484
+    AegisName: AS_D_RAGGED_GOLEM
+    Name: Stefan J.E Wolf
+    Level: 160
+    Hp: 20000000
+    BaseExp: 2800090
+    JobExp: 2675920
+    Attack: 4500
+    Attack2: 6500
+    Defense: 100
+    MagicDefense: 68
+    Str: 200
+    Agi: 100
+    Vit: 200
+    Int: 200
+    Dex: 220
+    Luk: 100
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Undead
+    Element: Undead
+    ElementLevel: 4
+    WalkSpeed: 500
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 04
+    Class: Boss
+    MvpDrops:
+      - Item: Old_Blue_Box
+        Rate: 2500
+    Drops:
+      - Item: Lindy_Hop
+        Rate: 1
+      - Item: Katar_170
+        Rate: 1
+      - Item: Yggdrasilberry
+        Rate: 1000
+      - Item: Seed_Of_Yggdrasil
+        Rate: 1000
+      - Item: Oridecon
+        Rate: 2500
+      - Item: Elunium
+        Rate: 2500
+      - Item: Staff_170
+        Rate: 1
+      - Item: Stephen_Jack_Ernest_Wolf_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3514
+    AegisName: POPE_MD_E_BISHOP
+    Name: Angry Bishop
+    Level: 121
+    Hp: 2500000
+    BaseExp: 100000
+    JobExp: 50000
+    Attack: 1250
+    Attack2: 1350
+    Defense: 230
+    MagicDefense: 162
+    Str: 191
+    Agi: 223
+    Vit: 187
+    Int: 155
+    Dex: 241
+    Luk: 163
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Formless
+    Element: Ghost
+    ElementLevel: 3
+    WalkSpeed: 200
+    AttackDelay: 444
+    AttackMotion: 1520
+    DamageMotion: 176
+    Ai: 04
+    Class: Boss
+    Modes:
+      CastSensorChase: true
+      CastSensorIdle: true
+      ChangeChase: true
+  - Id: 3522
+    AegisName: POPE_MD_H_BISHOP
+    Name: Angry Pope Bishop
+    Level: 105
+    Hp: 100000
+    BaseExp: 75000
+    JobExp: 37500
+    Attack: 1234
+    Attack2: 300
+    Defense: 150
+    MagicDefense: 80
+    Str: 64
+    Agi: 24
+    Vit: 70
+    Int: 110
+    Dex: 93
+    Luk: 24
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Demihuman
+    Element: Holy
+    ElementLevel: 3
+    WalkSpeed: 160
+    AttackDelay: 600
+    AttackMotion: 400
+    DamageMotion: 420
+    Ai: 04
+    Class: Boss
+    Modes:
+      CastSensorChase: true
+      CastSensorIdle: true
+      ChangeChase: true
+  - Id: 3599
+    AegisName: AB_ARTHUR
+    Name: Abyss Arthur
+    Level: 150
+    Hp: 800000000
+    BaseExp: 100000
+    JobExp: 100000
+    MvpExp: 100000
+    Attack: 11000
+    Attack2: 4000
+    Defense: 333
+    MagicDefense: 222
+    Str: 200
+    Agi: 200
+    Vit: 200
+    Int: 200
+    Dex: 200
+    Luk: 200
+    AttackRange: 3
+    SkillRange: 12
+    ChaseRange: 12
+    Size: Large
+    Race: Angel
+    Element: Holy
+    ElementLevel: 4
+    WalkSpeed: 130
+    AttackDelay: 1250
+    AttackMotion: 550
+    DamageMotion: 250
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    Drops:
+      - Item: Donation_Card
+        Rate: 10000
+      - Item: Bloody_Dead_Branch
+        Rate: 10000
+      - Item: Unbreakable_Def
+        Rate: 10000
+      - Item: Unbreakable_Weap
+        Rate: 10000
+      - Item: Poring_Coin
+        Rate: 10000
+        StealProtected: true
+  - Id: 3731
+    AegisName: SCATLETON
+    Name: Scatleton
+    Level: 14
+    Hp: 140
+    BaseExp: 10
+    JobExp: 5
+    Attack: 50
+    Attack2: 24
+    Defense: 140
+    MagicDefense: 240
+    Str: 10
+    Agi: 12
+    Vit: 8
+    Int: 5
+    Dex: 17
+    Luk: 7
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 10
+    Size: Small
+    Race: Demon
+    Element: Dark
+    ElementLevel: 1
+    WalkSpeed: 140
+    AttackDelay: 670
+    AttackMotion: 360
+    DamageMotion: 400
+    Ai: 17
+    Modes:
+      Aggressive: true
+      Angry: true
+      Detector: true
+  - Id: 3786
+    AegisName: E_TURPECO
+    Name: Turkey Peco Peco
+    Level: 100
+    Hp: 25000
+    BaseExp: 162
+    JobExp: 183
+    Attack: 76
+    Attack2: 83
+    Defense: 48
+    Str: 21
+    Agi: 10
+    Vit: 13
+    Int: 5
+    Dex: 28
+    Luk: 5
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Brute
+    Element: Fire
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 1564
+    AttackMotion: 864
+    DamageMotion: 576
+    Ai: 03
+    Drops:
+      - Item: Bill_Of_Birds
+        Rate: 9000
+      - Item: Sandals_
+        Rate: 20
+      - Item: Yellow_Herb
+        Rate: 200
+      - Item: Red_Herb
+        Rate: 900
+      - Item: Wand
+        Rate: 100
+      - Item: Orange
+        Rate: 1000
+  - Id: 3805
+    AegisName: E_HAPPY_EGG
+    Name: Happy Egg
+    Level: 7
+    Hp: 1000
+    BaseExp: 54
+    JobExp: 41
+    Attack: 1
+    Attack2: 1
+    Defense: 16
+    MagicDefense: 5
+    Str: 4
+    Agi: 10
+    Vit: 22
+    Int: 8
+    Dex: 10
+    Luk: 5
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 3
+    WalkSpeed: 1000
+    AttackDelay: 1001
+    AttackMotion: 1
+    DamageMotion: 1
+    Drops:
+      - Item: Apple
+        Rate: 200
+      - Item: Aloebera
+        Rate: 100
+        StealProtected: true
+      - Item: Unbreakable_Def
+        Rate: 5
+        StealProtected: true
+  - Id: 3806
+    AegisName: E_STRANGE_EGG
+    Name: Strange Egg
+    Level: 7
+    Hp: 2500
+    BaseExp: 54
+    JobExp: 41
+    Attack: 1
+    Attack2: 1
+    Defense: 16
+    MagicDefense: 5
+    Str: 4
+    Agi: 10
+    Vit: 22
+    Int: 8
+    Dex: 10
+    Luk: 5
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 3
+    WalkSpeed: 1000
+    AttackDelay: 1001
+    AttackMotion: 1
+    DamageMotion: 1
+    Drops:
+      - Item: Apple
+        Rate: 200
+      - Item: Aloebera
+        Rate: 100
+        StealProtected: true
+      - Item: Unbreakable_Weap
+        Rate: 5
+        StealProtected: true
+  - Id: 3810
+    AegisName: MD_KING_PORING
+    Name: King Poring
+    Level: 1
+    Hp: 60
+    BaseExp: 27
+    JobExp: 20
+    Attack: 8
+    Attack2: 1
+    Defense: 2
+    MagicDefense: 5
+    Str: 6
+    Dex: 6
+    Luk: 5
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Plant
+    Element: Water
+    ElementLevel: 1
+    WalkSpeed: 400
+    AttackDelay: 1872
+    AttackMotion: 672
+    DamageMotion: 480
+    Ai: 02
+    Drops:
+      - Item: Jellopy
+        Rate: 7000
+      - Item: Knife_
+        Rate: 100
+      - Item: Sticky_Mucus
+        Rate: 400
+      - Item: Apple
+        Rate: 1000
+      - Item: Empty_Bottle
+        Rate: 1500
+      - Item: Apple
+        Rate: 150
+      - Item: Unripe_Apple
+        Rate: 20
+      - Item: Poring_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 3960
+    AegisName: MISTRESS_MJ
+    Name: Mistress
+    Level: 100
+    Hp: 99999999
+    Defense: 90
+    MagicDefense: 90
+    Str: 90
+    Agi: 90
+    Vit: 90
+    Int: 90
+    Dex: 90
+    Luk: 50
+    ChaseRange: 200
+    Size: Medium
+    Race: Demihuman
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 200
+    Class: Event
+    Modes:
+      NoCast: true
+      Looter: true
+      CastSensorChase: true
+      CastSensorIdle: true
+      TeleportBlock: true
+      Detector: true
+  - Id: 3971
+    AegisName: SKELION
+    Name: Skelion
+    Level: 14
+    Hp: 140
+    BaseExp: 10
+    JobExp: 5
+    Attack: 50
+    Attack2: 24
+    Defense: 140
+    MagicDefense: 240
+    Str: 10
+    Agi: 12
+    Vit: 8
+    Int: 5
+    Dex: 17
+    Luk: 7
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 10
+    Size: Small
+    Race: Demon
+    Element: Dark
+    ElementLevel: 1
+    WalkSpeed: 140
+    AttackDelay: 670
+    AttackMotion: 360
+    DamageMotion: 400
+    Ai: 17
+    Modes:
+      Aggressive: true
+      Angry: true
+      Detector: true
+  - Id: 20269
+    AegisName: GUILD_SKILL_FLAG
+    Name: Guild Flag
+    Level: 90
+    Hp: 650
+    Attack: 1
+    Attack2: 2
+    Defense: 160
+    MagicDefense: 99
+    Size: Large
+    Race: Formless
+    Element: Neutral
+    ElementLevel: 1
+    WalkSpeed: 300
+    AttackDelay: 1288
+    AttackMotion: 288
+    DamageMotion: 384
+    Class: Boss
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+  - Id: 20390
+    AegisName: MD_GH_WHITEKNIGHT
+    Name: White Knight
+    Level: 122
+    Hp: 23297
+    BaseExp: 4779
+    JobExp: 4013
+    Attack: 810
+    Attack2: 1002
+    Defense: 102
+    MagicDefense: 50
+    Str: 121
+    Agi: 55
+    Vit: 68
+    Int: 70
+    Dex: 97
+    Luk: 37
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demihuman
+    Element: Dark
+    ElementLevel: 4
+    WalkSpeed: 300
+    AttackDelay: 1500
+    AttackMotion: 500
+    DamageMotion: 1000
+    Ai: 21
+    Drops:
+      - Item: Reins
+        Rate: 5335
+      - Item: Blade_Lost_In_Darkness
+        Rate: 5
+      - Item: Clothes_Of_The_Lord
+        Rate: 1
+      - Item: Battle_Hook
+        Rate: 25
+      - Item: Elunium
+        Rate: 369
+      - Item: Ebone_Armor
+        Rate: 10
+      - Item: Knight_Of_Abyss_Card
+        Rate: 1
+        StealProtected: true
+  - Id: 20423
+    AegisName: BACSOJIN2
+    Name: White Lady
+    Level: 1
+    Attack: 1
+    Attack2: 1
+    Defense: 121
+    MagicDefense: 79
+    Str: 400
+    Agi: 160
+    Vit: 161
+    Int: 100
+    Dex: 380
+    Luk: 140
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 150
+    AttackDelay: 76
+    AttackMotion: 864
+    Ai: 21
+    Class: Boss
+  - Id: 20424
+    AegisName: MOONLIGHT2
+    Name: Moonlight
+    Level: 1
+    Attack: 1
+    Attack2: 1
+    Defense: 121
+    MagicDefense: 79
+    Str: 400
+    Agi: 160
+    Vit: 161
+    Int: 100
+    Dex: 380
+    Luk: 140
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 150
+    AttackDelay: 76
+    AttackMotion: 864
+    Ai: 21
+    Class: Boss
+  - Id: 20425
+    AegisName: PHREEONI2
+    Name: Phreeoni
+    Level: 1
+    Attack: 1
+    Attack2: 1
+    Defense: 121
+    MagicDefense: 79
+    Str: 400
+    Agi: 160
+    Vit: 161
+    Int: 100
+    Dex: 380
+    Luk: 140
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 150
+    AttackDelay: 76
+    AttackMotion: 864
+    Ai: 21
+    Class: Boss
+  - Id: 20534
+    AegisName: G_REGINLEIF
+    Name: Valkyrie Reginleif
+    Level: 170
+    Hp: 800000000
+    BaseExp: 1000000
+    JobExp: 1000000
+    MvpExp: 1000000
+    Attack: 8250
+    Attack2: 8350
+    Defense: 321
+    MagicDefense: 265
+    Str: 229
+    Agi: 182
+    Vit: 15
+    Int: 301
+    Dex: 402
+    Luk: 99
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Angel
+    Element: Neutral
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 398
+    AttackMotion: 384
+    DamageMotion: 288
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    Drops:
+      - Item: Unbreakable_Def
+        Rate: 10000
+      - Item: Unbreakable_Weap
+        Rate: 10000
+      - Item: Bloody_Dead_Branch
+        Rate: 10000
+  - Id: 20541
+    AegisName: MD_ED_LGTHIGHGUARD
+    Name: Beautiful Officer
+    Level: 150
+    Hp: 750000000
+    Sp: 1000
+    BaseExp: 100000
+    JobExp: 5000
+    MvpExp: 1000000
+    Attack: 9150
+    Attack2: 3125
+    Defense: 340
+    MagicDefense: 79
+    Str: 135
+    Agi: 211
+    Vit: 198
+    Int: 156
+    Dex: 197
+    Luk: 97
+    AttackRange: 7
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demihuman
+    Element: Poison
+    ElementLevel: 4
+    WalkSpeed: 120
+    AttackDelay: 411
+    AttackMotion: 510
+    DamageMotion: 410
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    Drops:
+      - Item: Poring_Coin
+        Rate: 10000
+      - Item: C_Pure_White_Marching_Hat
+        Rate: 10000
+      - Item: Donation_Card
+        Rate: 10000
+  - Id: 20542
+    AegisName: MD_ED_LGTGUARD
+    Name: Guard
+    Level: 177
+    Hp: 1057444
+    BaseExp: 56000
+    JobExp: 55000
+    Attack: 2500
+    Attack2: 3300
+    Defense: 327
+    MagicDefense: 108
+    Str: 150
+    Agi: 133
+    Vit: 90
+    Int: 99
+    Dex: 120
+    Luk: 136
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Small
+    Race: Demon
+    Element: Dark
+    ElementLevel: 1
+    WalkSpeed: 100
+    AttackDelay: 868
+    AttackMotion: 480
+    DamageMotion: 120
+    Ai: 21
+  - Id: 20543
+    AegisName: MD_ED_M_SCIENCE
+    Name: Crazy Scientist
+    Level: 189
+    Hp: 750000000
+    BaseExp: 100000
+    JobExp: 100000
+    MvpExp: 1000
+    Attack: 9820
+    Attack2: 2800
+    Defense: 641
+    MagicDefense: 98
+    Str: 210
+    Agi: 200
+    Vit: 156
+    Int: 100
+    Dex: 321
+    Luk: 120
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Demihuman
+    Element: Poison
+    ElementLevel: 4
+    WalkSpeed: 100
+    AttackDelay: 76
+    AttackMotion: 384
+    DamageMotion: 288
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+    Drops:
+      - Item: Manteau_Of_Fallen
+        Rate: 10000
+      - Item: Pieces_Of_Grudge
+        Rate: 10000
+      - Item: Pieces_Of_Sentiment
+        Rate: 10000
+      - Item: Cursed_Crystal
+        Rate: 10000
+        StealProtected: true
+  - Id: 20570
+    AegisName: SAECOM
+    Name: Saecom
+    Level: 175
+    Hp: 750000000
+    BaseExp: 100000
+    JobExp: 100000
+    MvpExp: 1000
+    Attack: 5670
+    Attack2: 1510
+    Defense: 514
+    MagicDefense: 19
+    Str: 150
+    Agi: 143
+    Vit: 120
+    Int: 211
+    Dex: 218
+    Luk: 66
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Angel
+    Element: Poison
+    ElementLevel: 4
+    WalkSpeed: 120
+    AttackDelay: 212
+    AttackMotion: 504
+    DamageMotion: 432
+    Ai: 26
+    Class: Boss
+    Modes:
+      Mvp: true
+    Drops:
+      - Item: Unbreakable_Weap
+        Rate: 10000
+      - Item: Poring_Coin
+        Rate: 10000
+      - Item: Donation_Card
+        Rate: 10000
+      - Item: Unbreakable_Def
+        Rate: 10000
+      - Item: Bloody_Dead_Branch
+        Rate: 10000
+  - Id: 20571
+    AegisName: ORK_HERO2
+    Name: Orc Hero
+    Level: 1
+    Hp: 20571
+    Attack: 1
+    Attack2: 1
+    Defense: 121
+    MagicDefense: 79
+    Str: 400
+    Agi: 160
+    Vit: 161
+    Int: 100
+    Dex: 380
+    Luk: 140
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Ghost
+    ElementLevel: 4
+    WalkSpeed: 150
+    AttackDelay: 76
+    AttackMotion: 864
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+  - Id: 20619
+    AegisName: GLOOMUNDERNIGHT2
+    Name: Gloom Under Night
+    Level: 139
+    Hp: 3005000
+    MvpExp: 1080000
+    Attack: 1000
+    Attack2: 1000
+    Defense: 479
+    MagicDefense: 262
+    Str: 191
+    Agi: 223
+    Vit: 187
+    Int: 155
+    Dex: 241
+    Luk: 163
+    AttackRange: 3
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Formless
+    Element: Ghost
+    ElementLevel: 3
+    WalkSpeed: 200
+    AttackDelay: 1344
+    AttackMotion: 2880
+    DamageMotion: 576
+    Ai: 21
+    Class: Boss
+    Modes:
+      Mvp: true
+  - Id: 3982
+    AegisName: AB_MOB_056
+    Name: Crystal
+    Level: 1
+    Hp: 20
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    Luk: 90
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Holy
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Blue_Herb
+        Rate: 5500
+      - Item: Yellow_Herb
+        Rate: 1000
+      - Item: White_Herb
+        Rate: 1000
+      - Item: Illusion_Flower
+        Rate: 5
+      - Item: Seed_Of_Yggdrasil
+        Rate: 20
+      - Item: Light_Granule
+        Rate: 500
+      - Item: Yggdrasilberry
+        Rate: 50
+      - Item: Emperium
+        Rate: 1
+        StealProtected: true

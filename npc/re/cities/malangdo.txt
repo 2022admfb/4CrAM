@@ -1,0 +1,435 @@
+//===== rAthena Script ======================================= 
+//= Malangdo Town
+//===== By: ================================================== 
+//= Muad_Dib
+//===== Current Version: ===================================== 
+//= 1.5
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= [Official Conversion]
+//= Malangdo Town Script
+//===== Additional Comments: ================================= 
+//= 1.0 First version. [Euphy]
+//= 1.1 Added entrance scripts.
+//= 1.2 Moved "Odgnalam" coordinates.
+//= 1.3 Fixed dialogues.
+//= 1.4 Dialogue edits, source iRO.
+//= 1.5 Added Izlude duplicates.
+//============================================================
+
+// Malangdo Transportation :: malangdo_go
+//============================================================
+-	script	Dolangmal	-1,{
+	if (checkquest(5091) == -1) {
+		mes "[Dolangmal]";
+		mes "เฮ้ ~! หวัดดีมนุษย์ ~ นี่นาย~";
+		next;
+		mes "[Dolangmal]";
+		mes "เราถูกส่งมาที่นี่เพื่อพาคุณไปสวรรค์ของแมว, ^A2314BMalangdo^000000.";
+		next;
+		mes "[Dolangmal]";
+		set .@s$,"ทำไมคุณไม่ไปที่ ^A2314BMalangdo^000000?";
+		switch(atoi(strnpcinfo(2))) {
+			case 1: mes "เป็นอย่างไรเมือง Prontera แออัดก็ดี, แต่ทำไมคุณไม่ไปสวรรค์ของแมว, ^A2314BMalangdo^000000?"; break;
+			case 2: mes "ทำไมคุณไม่ไป ^A2314BMalangdo^000000? ล่ะสถานที่นั้นดีกว่า Geffen ที่มี แต่ฝูงพ่อมดผู้ซื่อสัตย์ธรรมดา ๆ."; break;
+			case 3: mes "อากาศบริสุทธิ์ของ Payon ไม่เลว แต่ทำไมคุณไม่ไปที่ที่ดีกว่าเหมือนสวรรค์ของแมว, ^A2314BMalangdo^000000?"; break;
+			case 4: mes .@s$+"สถานที่ที่สวยงามและเงียบสงบดีกว่า Aldebaran ตรงที่มีเสียงดังด้วยเสียงติ๊ก ๆ ของนาฬิกา."; break;
+			case 5: mes .@s$+"สถานที่ที่สวยงามและเงียบสงบดีกว่าโมรอคด้วยความร้อนและพายุทราย."; break;
+			case 6: mes .@s$+"สถานที่สวยงามดีกว่า Juno ที่เต็มไปด้วยหนังสือและเรื่องน่าปวดหัว."; break;
+			case 7: mes .@s$+"สถานที่ที่ซับซ้อนดีกว่าราเชลตรงที่มันเงียบเกินไป."; break;
+			case 8: mes .@s$+"ที่ปลอดภัยดีกว่า Lighthalzen ซึ่งอันตรายเกินไป."; break;
+			case 9: mes .@s$+"กลิ่นของทะเลแห่งนี้ดีกว่า Mora ซึ่งเต็มไปด้วยกลิ่นหญ้า."; break;
+		}
+		next;
+		if(select("ยกเลิก:^A2314BMalangdo^000000~ ไป ไป~") == 1) {
+			mes "[Dolangmal]";
+			mes "อะไรนะ!? คุณไม่อยากไป  ^A2314BMalangdo^000000? !";
+			next;
+			mes "[Dolangmal]";
+			mes "คุณเป็นผู้ชายที่น่ารำคาญถ้าคุณไม่ไป ทำไมคุณถึงพูดกับฉัน ... แต่ .....";
+			next;
+			mes "[Dolangmal]";
+			mes "^9E1837พลเรือเอกโทมัส^000000 กล่าวว่าจะลักพาตัวมนุษย์ ...";
+			//next;
+			//mes "[Dolangmal]";
+			//mes "Anyway, I got you. Whenever you want to go, just tell me.";
+			close;
+		}
+		mes "[Dolangmal]";
+		mes "โอเค! ฉันชอบทัศนคติของคุณเต็มไปด้วยความหลงใหล";
+		next;
+		mes "[Dolangmal]";
+		mes "เอาล่ะก่อนไป ^A2314BMalangdo^000000, ขอเตือนหน่อยนะ.";
+		next;
+		mes "[Dolangmal]";
+		mes "อันดับแรก !! เป็นเรื่องธรรมดาที่เมื่อคุณมาถึง ^A2314BMalangdo ^000000 คุณควรแจ้ง ^9E1837 พลเรือเอกโทมัส ^000000 ว่าคุณอยู่ที่นี่";
+		next;
+		mes "[Dolangmal]";
+		mes "ถ้าคุณไม่ทำเช่นนั้นคุณอาจถูกโจมตีโดยแมวที่น่ากลัวและดุร้ายเมื่อคุณเดินผ่านถนนมืด";
+		next;
+		mes "[Dolangmal]";
+		mes "ประการที่สอง !! ^A2314BMalangdo ^000000 คือเกาะแมวของเราแม้ว่าเราจะเปิดให้มนุษย์เข้าชมก็ตาม";
+		next;
+		mes "[Dolangmal]";
+		mes "เรามีบุคลิก ... ไม่ ... ไม่ ... เคารพเราเหมือนแมวตัวหนึ่งเพราะเราเป็นแมว";
+		next;
+		mes "[Dolangmal]";
+		mes "และอันต่อไปคือ ... ";
+		next;
+		mes "Dolangmal ดำเนินการและให้คำเตือนหลายร้อยครั้ง";
+		next;
+		mes "[Dolangmal]";
+		mes "โอเค! ทั้งหมดนี้คือคำเตือน !! ง่ายแสนง่าย ... จำได้ไหม";
+		next;
+		switch(select("จำคำเตือนของเขา:จำไม่ได้")) {
+		case 1:
+			mes "[Dolangmal]";
+			mes "โอเค! อย่ากัดหนูสองตัวด้วยปากเดียว ^9E1837พลเรือเอกโทมัส ^000000 ตั้งอยู่ที่ ^A2314Bcenter ของเรือใน Malangdo ^000000";
+			next;
+			mes "[Dolangmal]";
+			mes "อย่าลืมแจ้งให้เขาทราบถึงการมาถึงของคุณ";
+			next;
+			mes "[Dolangmal]";
+			mes "เอาล่ะไปสวรรค์ของแมวกันเถอะ ^A2314BMalangdo ^000000 ~";
+			setquest 5091;
+			completequest 5091;
+			warp "malangdo",217,85;
+			close;
+		case 2:
+			mes "[Dolangmal]";
+			mes "อะไรนะ!? คุณรักษากฎง่ายๆแบบนี้ไม่ได้เหรอ Chet!";
+			next;
+			mes "[Dolangmal]";
+			mes "คุณเป็นผู้ชายที่น่ารำคาญถ้าคุณไม่สามารถรักษาสิ่งเหล่านี้ทำไมคุณไม่บอกฉันในระหว่างการสนทนาของเราฉันบอกคุณทุกอย่าง ... แต่ .. ";
+			next;
+			mes "[Dolangmal]";
+			mes "^9E1837พลเรือเอกโทมัส ^000000 กล่าวว่าจะลักพาตัวมนุษย์ ... ไม่ ... นำพวกมันอย่างสุภาพ?";
+			next;
+			mes "[Dolangmal]";
+			mes "ยังไงฉันก็มีเธอบอกฉันได้ทุกเมื่อที่คุณอยากไป";
+			close;
+		}
+	}
+	mes "[Dolangmal]";
+	mes "เอ่อ? คุณต้องเป็นคนที่มาจากครั้งที่แล้ว ... ? เอาล่ะคุณไปที่ ^A2314BMalangdo ^000000 หรือไม่";
+	next;
+	switch(select("พาฉันไป ^A2314BMalangdo^000000 อีกครั้ง:ฉันไปเยี่ยมแล้ว")) {
+	case 1:
+		mes "[Dolangmal]";
+		mes "ฉันอยากส่งคุณไปที่นั่นจริงๆ แต่ทำไม่ได้เพราะนโยบายมันยากที่จะส่งคนที่เคยไปมาแล้ว ^A2314BMalangdo ^000000 แล้ว";
+		next;
+		mes "[Dolangmal]";
+		mes "แล้วก็ประมาณนั้น ... มันควรจะเป็นกฎ 53 ... ";
+		next;
+		mes "[Dolangmal]";
+		mes "อันที่จริงขอบอกกฎข้อ 53. ฉันเป็นแมวที่ตามใจ";
+		next;
+		mes "[Dolangmal]";
+		mes "ถ้าคุณต้องการกลับไปที่ ^A2314BMalangdo ^000000 ขึ้นเรือที่ Izlude หรือ Alberta";
+		next;
+		mes "[Dolangmal]";
+		mes "ถ้าคุณสนุกกับการเที่ยวทะเลคุณจะไปถึงสวรรค์ของแมว ^A2314BMalangdo ^000000";
+		next;
+		mes "[Dolangmal]";
+		mes "ง่ายมากเลยเหรอไม่งั้นลาก่อน ~";
+		close;
+	case 2:
+		mes "[Dolangmal]";
+		mes "เป็นยังไงบ้างชอบมั้ยฉันรู้แล้วคากะ ~";
+		next;
+		mes "[Dolangmal]";
+		mes "อ๊ะ! ฉันแค่อยากแน่ใจว่า ... ";
+		next;
+		mes "[Dolangmal]";
+		mes "อีกครั้งถ้าคุณต้องการกลับไปที่ ^A2314BMalangdo ^000000 คุณรู้หรือไม่ว่าจะขึ้นเรือที่ Izlude หรือ Alberta ได้ที่ไหน";
+		next;
+		mes "[Dolangmal]";
+		mes "หืม ~ คุณอาจจะรู้เพราะคุณเป็นคนฉลาดแล้วเจอกันใหม่นะ ~";
+		close;
+	}
+}
+prontera,114,77,6	duplicate(Dolangmal)	Dolangmal#1	553
+geffen,109,61,6	duplicate(Dolangmal)	Dolangmal#2	553
+payon,200,106,4	duplicate(Dolangmal)	Dolangmal#3	553
+aldebaran,170,104,4	duplicate(Dolangmal)	Dolangmal#4	553
+morocc,168,275,4	duplicate(Dolangmal)	Dolangmal#5	553
+yuno,165,122,4	duplicate(Dolangmal)	Dolangmal#6	553
+rachel,121,126,4	duplicate(Dolangmal)	Dolangmal#7	553
+lighthalzen,254,83,5	duplicate(Dolangmal)	Dolangmal#8	553
+mora,57,150,4	duplicate(Dolangmal)	Dolangmal#9	553
+
+-	script	::Odgnalam	-1,{
+	mes "แมวตัวนี้กำลังนอนอยู่ในที่อุ่น"+((strnpcinfo(2) == "albe")?"Alberta":"Izlude")+" sun.";
+	next;
+	if(select("ปล่อยให้เขานอน:Talk คุยกับเขา") == 1) close;
+	mes "[Odgnalam]";
+	mes "เหมียวหือ?";
+	next;
+	if (ep13_yong1 == 0) {
+		set .@price,1000;
+		set .@s1$,"หึ! คุณน่ารำคาญมากให้ฉันส่งคุณไปที่ ^A2314BMalangdo^000000 สำหรับ ^0000FF1000 Zeny^000000.";
+		set .@s2$,"เงินเหรอเงินอยู่ไหนคุณไม่สามารถไปไหนได้เลยถ้าไม่มีเงิน.";
+	} else if (ep13_yong1 < 60) {
+		set .@price,999;
+		set .@s1$,"คุณมีความสัมพันธ์เล็กน้อยกับกองเรือของแมวฉันจะให้ราคาส่วนลดพิเศษ ^0000FF999 Zeny^000000 ถึง ^A2314BMalangdo^000000, เพราะคุณมีความสัมพันธ์กับกองเรือ.";
+		set .@s2$,"เงินอยู่ไหนคุณไม่มีเกียรติ.";
+	} else if (ep13_yong1 > 59 && ep13_yong1 < 80) {
+		set .@price,500;
+		set .@s1$,"คุณให้ความช่วยเหลือหลายอย่างกับฝูงแมวของเราดังนั้นขอฉันให้พิเศษกับคุณด้วยราคาส่วนลด 50% ^0000FF500 Zeny^000000. ฉันจะส่งคุณไปที่ ^A2314BMalangdo^000000.";
+		set .@s2$,"คุณไม่มีเงินจ่ายราคาลด 50% เหรอไม่อยากจะเชื่อเลย.";
+	} else {
+		mes "[Odgnalam]";
+		mes "คุณคือฮีโร่ของกองเรือแมวกิจกรรมของคุณคือตำนานระหว่างเรา";
+		next;
+		mes "[Odgnalam]";
+		mes "ในฐานะที่คุณเป็นฮีโร่ของกองเรือแมวให้ฉันส่งคุณไปที่ ^A2314BMalangdo^000000 ฟรี.";
+		next;
+		if(select("ส่งฉันไปที่ Malangdo!:ยกเลิก.") == 1) {
+			mes "[Odgnalam]";
+			mes "เที่ยวให้สบาย ... เอาล่ะไปกันเถอะ ~";
+			warp "malangdo",217,85;
+		}
+		close;
+	}
+	mes "[Odgnalam]";
+	mes .@s1$;
+	next;
+	if(select("ส่งฉันไปที่ Malangdo!:ยกเลิก.") == 2) close;
+	if (Zeny < .@price) {
+		mes "[Odgnalam]";
+		mes "เงินหรือเงินอยู่ที่ไหนคุณไม่สามารถไปไหนได้ถ้าไม่มีเงิน.";
+		close;
+	}
+	set Zeny, Zeny - .@price;
+	mes "[Odgnalam]";
+	mes "ไปส่งทันทีไปกันเถอะ";
+	warp "malangdo",217,85;
+	close;
+}
+alberta,200,151,4	duplicate(Odgnalam)	Odgnalam#albe	554
+izlude,182,218,4	duplicate(Odgnalam)	Odgnalam#iz	554	// Old coordinates: (182,192)
+izlude_a,182,218,4	duplicate(Odgnalam)	Odgnalam#iz_a	554
+izlude_b,182,218,4	duplicate(Odgnalam)	Odgnalam#iz_b	554
+izlude_c,182,218,4	duplicate(Odgnalam)	Odgnalam#iz_c	554
+izlude_d,182,218,4	duplicate(Odgnalam)	Odgnalam#iz_d	554
+
+malangdo,219,86,4	script	Kong#malang	545,{
+	mes "[Kong]";
+	mes "สนุกมั้ย Malangdo?";
+	mes "กองเรือมีบริการไป Izlude และ Alberta.";
+	next;
+	if (ep13_yong1 == 0) {
+		set .@price,1000;
+		set .@s1$, "1000 zeny";
+		set .@s2$, "มีความสุขใน Malangdo.";
+		set .@no_money$, "ยาก สำหรับ ฟรี.";
+		set .@yes_money$, "เที่ยวให้สนุกนะ.";
+		mes "[Kong]";
+		mes "ค่าเรือแค่ 1,000 1000 zeny, จะไปไหนดี?";
+		next;
+	} else if (ep13_yong1 < 60) {
+		set .@price,999;
+		set .@s1$,"999 zeny";
+		set .@s2$, "มีความสุขใน Malangdo";
+		set .@no_money$, "มันยากแม้ว่าคุณจะมีความสัมพันธ์กับกองทัพเรือก็ตาม.";
+		set .@yes_money$, "ขอบคุณครับมีการเดินทางที่ยอดเยี่ยม.";
+		mes "[Kong]";
+		mes "คุณมีความเชื่อมโยงกับฝูงบิน ของเราสมัคร ราคาพิเศษ 999 zeny คุณต้องการไปที่ไหน";
+		next;
+	} else if (ep13_yong1 > 59 && ep13_yong1 < 80) {
+		set .@price,500;
+		set .@s1$,"500 zeny";
+		set .@s2$, "มีโชคและแจ็คพอต ใน Malangdo.";
+		set .@no_money$, "โอ้พระเจ้าคุณไม่มี 500 zeny เหรอ.";
+		set .@yes_money$, "เที่ยวให้สนุกนะครับแล้วมาใหม่.";
+		mes "[Kong]";
+			mes "ว้าว ~ คุณมีส่วนช่วยให้กองเรือของเราเยอะมากเอาล่ะ !! ราคาลดพิเศษ 500 zeny อยากไปไหน";
+		next;
+	} else {
+		set .@price,0;
+		set .@s1$,"ฟรีสำหรับฮีโร่ของกองทัพเรือเรา!!";
+		set .@s2$, "ไม่มีใครคัดค้านฮีโร่ของกองเรือของเราที่อยู่ใน Malangdo .";
+		mes "[Kong]";
+		mes "อ่า ... คุณคือฮีโร่ในตำนานของกองเรือแมวของเรา";
+		next;
+		mes "[Kong]";
+		mes "เราไม่สามารถเรียกเก็บเงินจากฮีโร่ของกองเรือของเราได้จุดหมายปลายทางของคุณคืออะไร";
+		next;
+	}
+	set .@i, select("- Izlude destination --- "+.@s1$+":- Alberta destination --- "+.@s1$+":- Stay on Malangdo");
+	mes "[Kong]";
+	if (.@i == 3) {
+		mes .@s2$;
+		close;
+	}
+	if (ep13_yong1 > 80) {
+		mes "เที่ยวให้สบายนะครับ.";
+		if (.@i == 1)
+			warp "izlude",195,212; // Old coordinates: (194,180)
+		else
+			warp "alberta",192,150;
+		close;
+	}
+	if (Zeny < .@price) {
+		mes .@no_money$;
+		close;
+	}
+	set Zeny, Zeny - .@price;
+	mes .@yes_money$;
+	if (.@i == 1)
+		warp "izlude",195,212;
+	else
+		warp "alberta",192,150;
+	close;
+}
+
+// Generic Malangdo NPCs :: malang_tre
+//============================================================
+malangdo,147,117,3	script	Innkeeper#malang	554,{
+	mes "เห็นแมวขี้เกียจยืนบนเก้าอี้";
+	mes "คุณเดาว่านี่คือ Innkeeper";
+	next;
+	switch(select("อืม ... ขอพักที่นี่ได้ไหม?:ฉันบันทึกที่นี่ได้ไหม?:ออก.")) {
+	case 1:
+		mes "[Innkeeper]";
+		mes "เอ๋?";
+		mes "ได้ถ้าคุณให้ฉัน ^FF00005 Malangdo Cans ^000000";
+		next;
+		switch(select("ไปเลย.:ไม่เป็นไร.")) {
+		case 1:
+			if (countitem(12636) > 4) {
+				delitem 12636,5; //Malang_Sp_Can
+				percentheal 100,100;
+				specialeffect2 EF_HEALSP;
+				mes "[Innkeeper]";
+				mes "พักผ่อนได้แล้ว.";
+				emotion ET_CHUP;
+				next;
+				warp "malangdo",140,121;
+				close;
+			}
+			mes "[Innkeeper]";
+			mes "นี่ไม่ใช่การกุศล";
+			close;
+		case 2:
+			mes "[Innkeeper]";
+			mes "แจ้งให้เราทราบหากคุณต้องการพักผ่อน";
+			close;
+		}
+	case 2:
+		mes "[Innkeeper]";
+		mes "บันทึกตำแหน่งแล้ว~";
+		savepoint "malangdo",142,118,1,1;
+		close;
+	case 3:
+		mes "[Innkeeper]";
+		mes "บางครั้งคุณก็ต้องผ่อนคลาย";
+		next;
+		mes "- ว้าวนี่เป็นแมวที่ขี้เกียจที่สุดเลย -";
+		close;
+	}
+	close;
+}
+
+malangdo,151,120,3	script	Minstrel#mal	479,{
+	mes "[Minstrel]";
+	mes "เด็กแมวขี้เกียจตัวนั้นทำให้ฉันอยากงีบทั้งวัน";
+	next;
+	mes "[Minstrel]";
+	mes "เขาทำให้ชีวิตดูเรียบง่าย";
+	close;
+}
+
+malangdo,149,120,5	script	Wanderer#mal	485,5,1,{
+	mes "[Wanderer]";
+	mes "แมวที่อาศัยอยู่ที่นี่มีพลังมาก";
+	mes "แปลกมั้ยที่มันทำให้ฉันอยากเต้นทั้งวัน";
+	//mes "La di dah di dah ~!";
+	close;
+OnTouch:
+	switch(rand(5)) {
+	case 0:
+		soundeffect "ring_of_nibelungen.wav",0;
+		break;
+	case 1:
+		soundeffect "dont_forget_me_not.wav",0;
+		break;
+	case 2:
+		soundeffect "humming.wav",0;
+		break;
+	case 3:
+		soundeffect "assassin_of_sunset.wav",0;
+		break;
+	case 4: 
+		emotion ET_DELIGHT;
+		emotion ET_DELIGHT, getnpcid(0, "Minstrel#mal");
+		break;
+	}
+	end;
+}
+
+malangdo,216,168,3	script	Cat Trainer#mal1	558,0,8,{
+	emotion ET_COOL;
+	mes "[Cat Trainer]";
+	mes "อุ๊ย ~ หางฟูขนนุ่มนิ่ม ~";
+	mes "ทนไม่ไหวแล้วนี่สวรรค์ ~~ !!";
+	next;
+	emotion ET_KIK;
+	mes "[Cat Trainer]";
+	mes "^FF0000Silvervine Fruit^000000, สามารถทำให้แมวทุกตัวใน Malangdo เป็นทาสของฉันได้ ~ ฮ่าฮ่า!";
+	next;
+	select("^FF0000Silvervine Fruit^000000?");
+	mes "[Cat Trainer]";
+	mes "มันช่างเป็นของหายาก!";
+	//mes "รับแทบไม่ได้เลย";
+	mes "แต่แมวน่ารักพวกนี้ไม่สามารถต้านทานมันได้ ~";
+	next;
+	select("ฉันจะได้รับ ^FF0000Silvervine Fruit^000000 ที่ไหน?");
+	mes "[Cat Trainer]";
+	mes "ทำไมฉันจะบอกคุณในเมื่อฉันแทบจะไม่เข้าใจ";
+	mes "ฉันจะไม่บอกคุณด้วยซ้ำสำหรับ zeny ทั้งหมดในโลก ~!";
+	next;
+	emotion ET_KIK;
+	mes "[Cat Trainer]";
+	mes "แมว malangdo ทั้งหมดเป็นของฉัน ~!";
+	//mes "Muahahahaha~";
+	mes "^FF0000Silvervine Fruit^000000 ฉันจะเป็นราชินีได้ที่ Malangdo~ !!!";
+	close;
+OnTouch:
+	emotion ET_SPARK;
+	end;
+}
+
+malangdo,164,203,3	script	Cat Trainer#mal2	853,{
+	emotion ET_COOL;
+	mes "[Cat Trainer]";
+	mes "อุ๊ย ~ หางฟูขนนุ่มนิ่ม ~";
+	mes "ทนไม่ไหวแล้วนี่สวรรค์ ~~ !!";
+	next;
+	emotion ET_KIK;
+	mes "[Cat Trainer]";
+	mes "นี่คือความลับเล็ก ๆ น้อย ๆ ของฉันที่ชื่อว่า";
+	mes "^FF0000Silvervine Fruit^000000. สามารถใช้";
+	mes "มันทำให้แมว Malangdo เป็นของฉัน";
+	//mes "slaves~ muahahahaha~!";
+	next;
+	select("^FF0000Silvervine Fruit^000000?");
+	mes "[Cat Trainer]";
+	mes "อืมฉันเดาว่าไม่น่าแปลกใจเลยที่คุณไม่รู้";
+	mes "แมว Malangdo พวกนี้ไม่สามารถต้านทานมันได้";
+	mes "แต่มันหายากเกินกว่าจะหามาได้ดังนั้นคุณไม่ควรพยายามหามัน";
+	next;
+	select("ฉันจะหา ^FF0000Silvervine Fruit^000000 ได้ที่ไหน?");
+	mes "[Cat Trainer]";
+	mes "ที่จริงมันง่ายมากคุณก็แค่ ... ";
+	next;
+	mes "[Cat Trainer]";
+	mes "เฮ้คุณเกือบจะบอกความลับของฉันแล้ว";
+	next;
+	emotion ET_KIK;
+	mes "[Cat Trainer]";
+	mes "สักวันแมวพวกนี้จะเป็นของฉัน";
+	mes "ฉันจะเป็นราชาใน Malangdo~~!";
+	close;
+}

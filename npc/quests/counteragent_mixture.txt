@@ -1,0 +1,595 @@
+//===== rAthena Script ======================================= 
+//= Counteragent and Mixture Quest(Morgenstein)
+//===== By:================================================== 
+//= kobra_k88
+//= added some dialogs for Morgenstein by Komurka
+//===== Current Version:===================================== 
+//= 2.2b
+//===== Compatible With:===================================== 
+//= rAthena Project
+//===== Description:========================================= 
+//= [Official Conversion]
+//= Counteragent and Mixtures for making dyes & Alchemist Job Quest
+//===== Additional Comments:================================= 
+//= 2.2 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//= 2.2a A few minor fixes. (bugreport:1122) [L0ne_W0lf]
+//= 2.2b Follow up fixes to bugreport:1122 [L0ne_W0lf]
+//============================================================ 
+
+alberta_in,133,55,3	script	Louitz#cm	84,{
+	if (molgenstain == 2) {
+		mes "[Merchant Louitz]";
+		mes "โอ้คุณอีกแล้ว";
+		mes "ลองหาดูไหม";
+		mes "นักวิทยาศาสตร์ผู้น่ารักคนนั้น";
+		mes "ใครอาศัยอยู่ใน Geffen?";
+		next;
+		if (select("พูดคุยเกี่ยวกับ Molgenstein:ยกเลิก ") == 1) {
+			mes "[Merchant Louitz]";
+			mes "คุณรู้ว่าเขาอยู่ที่ไหน";
+			mes "แต่ไม่ได้ตรวจสอบเหรอเฮ้";
+			mes "เขาอาจจะไม่ชอบโยกตัว แต่";
+			mes "ฉันเดาว่าอัจฉริยะส่วนใหญ่เป็น";
+			mes "อย่างนั้นฉันคิดว่าคงเป็น ^FFFFFFss ^000000 เป็นความคิดที่ดีถ้าคุณเห็นเขา";
+			next;
+			mes "[Merchant Louitz]";
+			mes "ฉันหมายถึง ... ";
+			mes "เป็นเรื่องเป็นราว";
+			mes "ของเวลาจนกว่าคนฉลาด";
+			mes "เหมือนที่สร้างบางสิ่ง";
+			mes "อัศจรรย์จริงใช่ไหม";
+			close;
+		}
+		mes "[Merchant Louitz]";
+		mes "... สวัสดี?";
+		mes "เฮลลูโอ? เฮ้.";
+		mes "เฮ้ฉันกำลังพูด";
+		mes "ถึงคุณ! ผู้ชายฉันเกลียด";
+		mes "เมื่อคุณเป็นนักผจญภัย";
+		mes "แค่หุบปากแล้วเว้นวรรค ... ";
+		close;
+	}
+	mes "[Merchant Louitz]";
+	mes "เฮย่า.";
+	mes "ว่าไง";
+	next;
+	if (countitem(971) > 0 && countitem(972) > 0) {
+		switch(select("พูดคุย:พูดคุยเกี่ยวกับแนวทางแก้ไข.:ยกเลิก")) {
+		case 1:
+			mes "[พ่อค้าหลุยส์]";
+			mes "เมื่อฉันอยู่ที่เมืองเกฟเฟน";
+			mes "มองหาของวิเศษ,";
+			mes "ฉันได้ยินข่าวลือเรื่องนี้จริงๆ";
+			mes "นักวิทยาศาสตร์บ้าๆผมก็เลย";
+			mes "สงสัยถามไปรอบ ๆ และ";
+			mes "ในที่สุดก็เจอผู้ชายคนนี้";
+			next;
+			mes "[Merchant Louitz]";
+			mes "เด็กเอ๊ยเด็กผู้ชายคนนี้คือ";
+			mes "กรูไม่รู้ด้วยซ้ำ";
+			mes "ฉันอยู่ที่นั่นตลอดเวลาและ";
+			mes "เอาแต่บ่นพึมพำนี้";
+			mes "จัมโบ้ขณะทำงานของเขา";
+			mes "การทดลองคำแบบอืม ... ";
+			next;
+			mes "[Merchant Louitz]";
+			mes "ใช่เขาเอาแต่บ่น";
+			mes "คำเหมือน '' Karvodailnirol ''";
+			mes "และ '' Detrimindexta. '' The";
+			mes "ครั้งแรกที่ฉันได้ยินฉันคิดว่า";
+			mes "มันแค่พูดบ้าๆรู้มั้ย";
+			next;
+			mes "[Merchant Louitz]";
+			mes "แต่ปรากฎว่า";
+			mes "Karvodailnirol นี้";
+			mes "และ Detrimindexta จริง";
+			mes "มีอยู่จริงฉันคิดว่ามันพิเศษ";
+			mes "ของเหลวที่ไม่ค่อยได้ผล";
+			mes "เหมือนของเหลวที่เราคุ้นเคย";
+			close;
+		case 2:
+			set molgenstain,1;
+			mes "[Merchant Louitz]";
+			mes "นี่คือหนึ่งใน";
+			mes "วิธีแก้ปัญหาเหล่านั้น";
+			mes "นักวิทยาศาสตร์ยังคงกล่าวถึง";
+			mes "คุณสามารถหาได้";
+			mes "ของพวกนี้หือตอนนี้ฉันมี";
+			mes "ไม่รู้จะทำยังไงกับพวกมัน ... ";
+			next;
+			mes "[Merchant Louitz]";
+			mes "อ๊ะ แต่มันบ้า";
+			mes "นักวิทยาศาสตร์คงรู้";
+			mes "จำไม่ค่อยได้";
+			mes "เขาอยู่ที่ไหน แต่ฉันรู้";
+			mes "เขาอยู่ในเมือง Geffen และเป็นของเขา";
+			mes "ชื่อคือ ^0000FFMolgenstein ^000000";
+			next;
+			mes "[Merchant Louitz]";
+			mes "อืม ... ดีกว่า";
+			mes "ไปรอบ ๆ Geffen และ";
+			mes "รอบแรกฉันรู้เพื่อ";
+			mes "ถามรอบก่อนฉันรู้เพื่อ";
+			mes "แน่ใจว่ามีคนรู้";
+			mes "ที่คุณจะพบ Molgenstein";
+			close;
+		case 3:
+			mes "[Merchant Louitz]";
+			mes "อืม ... ";
+			mes "พูดเก่ง";
+			mes "ถึงคุณเพื่อนเอ่อ";
+			mes "เจอกันรอบรับ";
+			mes "ดูแลตัวเองด้วย";
+			close;
+		}
+	}
+	if (countitem(972) > 0) {
+		switch(select("การพูดคุย:พูดคุยเกี่ยวกับ Karvodailnirol:ยกเลิก")) {
+		case 1:
+			mes "[Merchant Louitz]";
+			mes "เมื่อฉันอยู่ที่เมืองเกฟเฟน";
+			mes "มองหาของวิเศษ,";
+			mes "ฉันได้ยินข่าวลือเรื่องนี้จริงๆ";
+			mes "นักวิทยาศาสตร์บ้าๆผมก็เลย";
+			mes "สงสัยถามไปรอบ ๆ และ";
+			mes "ในที่สุดก็เจอผู้ชายคนนี้";
+			next;
+			mes "[Merchant Louitz]";
+			mes "เด็กเอ๊ยเด็กผู้ชายคนนี้คือ";
+			mes "กรูไม่รู้ด้วยซ้ำ";
+			mes "ฉันอยู่ที่นั่นตลอดเวลาและ";
+			mes "เอาแต่บ่นพึมพำนี้";
+			mes "จัมโบ้ขณะทำงานของเขา";
+			mes "การทดลองคำแบบอืม ... ";
+			next;
+			mes "[Merchant Louitz]";
+			mes "ใช่เขาเอาแต่บ่น";
+			mes "คำเหมือน '' Karvodailnirol ''";
+			mes "และ '' Detrimindexta. '' The";
+			mes "ครั้งแรกที่ฉันได้ยินฉันคิดว่า";
+			mes "มันแค่พูดบ้าๆรู้มั้ย";
+			next;
+			mes "[Merchant Louitz]";
+			mes "แต่ปรากฎว่า";
+			mes "Karvodailnirol นี้";
+			mes "และ Detrimindexta จริง";
+			mes "มีอยู่จริงฉันคิดว่ามันพิเศษ";
+			mes "ของเหลวที่ไม่ค่อยได้ผล";
+			mes "เหมือนของเหลวที่เราคุ้นเคย";
+			close;
+		case 2:
+			set molgenstain,1;
+			mes "[Merchant Louitz]";
+			mes "โอ้นี่คือสิ่งนั้น";
+			mes "Karvodailnirol ว่าน";
+			mes "นักวิทยาศาสตร์เก่ากำลังพูด";
+			mes "เกี่ยวกับฮะแน่นอนเท่านั้น";
+			mes "คนแบบนั้นจะ";
+			mes "รู้ว่าจะทำอย่างไรกับมัน ... ";
+			next;
+			mes "[Merchant Louitz]";
+			mes "เฮ้ทำไมไม่ไป";
+			mes "แล้วถามเขาเกี่ยวไหม";
+			mes "จำไม่ค่อยได้";
+			mes "เขาอยู่ที่ไหน แต่ฉันรู้";
+			mes "เขาอยู่ในเมือง Geffen และเป็นของเขา";
+			mes "ชื่อคือ ^0000FFMolgenstein ^000000";
+			next;
+			mes "[Merchant Louitz]";
+			mes "อืม ... ดีกว่า";
+			mes "ไปรอบ ๆ Geffen และ";
+			mes "รอบแรกฉันรู้เพื่อ";
+			mes "ถามรอบก่อนฉันรู้เพื่อ";
+			mes "แน่ใจว่ามีคนรู้";
+			mes "ที่คุณจะพบ Molgenstein";
+			close;
+		case 3:
+			mes "[Merchant Louitz]";
+			mes "อืม ... ";
+			mes "พูดเก่ง";
+			mes "ถึงคุณเพื่อนเอ่อ";
+			mes "เจอกันรอบรับ";
+			mes "ดูแลตัวเองดีไหม";
+			close;
+		}
+	}
+	if (countitem(971) > 0) {
+		switch(select("พูดคุย:พูดคุยเกี่ยวกับ Detrimindexta:ยกเลิก")) {
+		case 1:
+			mes "[Merchant Louitz]";
+			mes "เมื่อฉันอยู่ที่เมืองเกฟเฟน";
+			mes "มองหาของวิเศษ,";
+			mes "ฉันได้ยินข่าวลือเรื่องนี้จริงๆ";
+			mes "นักวิทยาศาสตร์บ้าๆผมก็เลย";
+			mes "สงสัยถามไปรอบ ๆ และ";
+			mes "ในที่สุดก็เจอผู้ชายคนนี้";
+			next;
+			mes "[Merchant Louitz]";
+			mes "เด็กเอ๊ยเด็กผู้ชายคนนี้คือ";
+			mes "กรูไม่รู้ด้วยซ้ำ";
+			mes "ฉันอยู่ที่นั่นตลอดเวลาและ";
+			mes "เอาแต่บ่นพึมพำนี้";
+			mes "จัมโบ้ขณะทำงานของเขา";
+			mes "การทดลองคำแบบอืม ... ";
+			next;
+			mes "[Merchant Louitz]";
+			mes "ใช่เขาเอาแต่บ่น";
+			mes "คำเหมือน '' Karvodailnirol ''";
+			mes "และ '' Detrimindexta. '' The";
+			mes "ครั้งแรกที่ฉันได้ยินฉันคิดว่า";
+			mes "มันแค่พูดบ้าๆรู้มั้ย";	
+			next;
+			mes "[Merchant Louitz]";
+			mes "แต่ปรากฎว่า";
+			mes "Karvodailnirol นี้";
+			mes "และ Detrimindexta จริง";
+			mes "มีอยู่จริงฉันคิดว่ามันพิเศษ";
+			mes "ของเหลวที่ไม่ค่อยได้ผล";
+			mes "เหมือนของเหลวที่เราคุ้นเคย";
+			close;
+		case 2:
+			set molgenstain,1;
+			mes "[Merchant Louitz]";
+			mes "โอ้นี่คือสิ่งนั้น";
+			mes "Detrimindexta ที่";
+			mes "นักวิทยาศาสตร์เก่ากำลังพูด";
+			mes "เกี่ยวกับฮะแน่นอนเท่านั้น";
+			mes "คนแบบนั้นจะ";
+			mes "รู้ว่าจะทำอย่างไรกับมัน ... ";
+			next;
+			mes "[Merchant Louitz]";
+			mes "เฮ้ทำไมไม่ไป";
+			mes "แล้วถามเขาเกี่ยวไหม";
+			mes "จำไม่ค่อยได้";
+			mes "เขาอยู่ที่ไหน แต่ฉันรู้";
+			mes "เขาอยู่ในเมือง Geffen และเป็นของเขา";
+			mes "ชื่อคือ ^0000FFMolgenstein ^000000";
+			next;
+			mes "[Merchant Louitz]";
+			mes "อืม ... ดีกว่า";
+			mes "ไปรอบ ๆ Geffen และ";
+			mes "รอบแรกฉันรู้เพื่อ";
+			mes "ถามรอบก่อนฉันรู้เพื่อ";
+			mes "แน่ใจว่ามีคนรู้";
+			mes "ที่คุณจะพบ Molgenstein";
+			close;
+		case 3:
+			mes "[Merchant Louitz]";
+			mes "อืม ... ";
+			mes "พูดเก่ง";
+			mes "ถึงคุณเพื่อนเอ่อ";
+			mes "เจอกันรอบรับ";
+			mes "ดูแลตัวเองด้วย";
+			close;
+		}
+	}
+	if (select("พูดคุย:ยกเลิก") == 1) {
+		mes "[Merchant Louitz]";
+		mes "เมื่อฉันอยู่ที่เมืองเกฟเฟน";
+		mes "มองหาของวิเศษ,";
+		mes "ฉันได้ยินข่าวลือเรื่องนี้จริงๆ";
+		mes "นักวิทยาศาสตร์บ้าๆผมก็เลย";
+		mes "สงสัยถามไปรอบ ๆ และ";
+		mes "ในที่สุดก็เจอผู้ชายคนนี้";
+		next;
+		mes "[Merchant Louitz]";
+		mes "เด็กเอ๊ยเด็กผู้ชายคนนี้คือ";
+		mes "กรูไม่รู้ด้วยซ้ำ";
+		mes "ฉันอยู่ที่นั่นตลอดเวลาและ";
+		mes "เอาแต่บ่นพึมพำนี้";
+		mes "จัมโบ้ขณะทำงานของเขา";
+		mes "การทดลองคำแบบอืม ... ";
+		next;
+		mes "[Merchant Louitz]";
+		mes "ใช่เขาเอาแต่บ่น";
+		mes "คำเหมือน '' Karvodailnirol ''";
+		mes "และ '' Detrimindexta. '' The";
+		mes "ครั้งแรกที่ฉันได้ยินฉันคิดว่า";
+		mes "มันแค่พูดบ้าๆรู้มั้ย";
+		next;
+		mes "[Merchant Louitz]";
+		mes "แต่ปรากฎว่า";
+		mes "Karvodailnirol นี้";
+		mes "และ Detrimindexta จริง";
+		mes "มีอยู่จริงฉันคิดว่ามันพิเศษ";
+		mes "ของเหลวที่ไม่ค่อยได้ผล";
+		mes "เหมือนของเหลวที่เราคุ้นเคย";
+		close;
+	}
+	mes "[Merchant Louitz]";
+	mes "อืม ... ";
+	mes "พูดเก่ง";
+	mes "ถึงคุณเพื่อนเอ่อ";
+	mes "เจอกันรอบรับ";
+	mes "ดูแลตัวเองด้วย";
+	close;
+}
+
+geffen,181,114,3	script	Aure Dupon#cm	82,{
+	if (molgenstain == 2) {
+		mes "[Aure Dupon]";
+		mes "ดูเหมือนว่าของเรา";
+		mes "เส้นทางยังข้ามอีก";
+		mes "บังเอิญมากกว่า";
+		mes "กว่านั้นนี่คือ ^0000FFfate ^000000";
+		next;
+		if (select("พูดคุยเกี่ยวกับ Molgenstein:ยกเลิก") == 1) {
+			mes "[Aure Dupon]";
+			mes "ยังไม่เจอ";
+			mes "Molgenstein หรือยังเขา";
+			mes "อยู่ชั้นสอง";
+			mes "of the Forge แม้ว่าเราจะ";
+			mes "เพิ่งเจอฉันต้องเตือนคุณไม่ได้";
+			mes "เข้าใกล้เขามากเกินไป ... ";
+			close;
+		}
+		mes "[Aure Dupon]";
+		mes "ไปแล้วและ";
+		mes "ขอให้กระแสน้ำ";
+		mes "โชคชะตานำพาคุณ";
+		mes "ไปยังที่ที่คุณต้องไป";
+		close;
+	}
+	mes "[Aure Dupon]";
+	mes "เวลาผ่านไปอย่างแผ่วเบา";
+	mes "และละเอียด แต่ไม่";
+	mes "แรงในโลกนี้";
+	mes "อาจจะหยุดมันได้";
+	mes "มนุษย์ไม่ได้เป็น";
+	mes "มอดในโครงการใหญ่";
+	next;
+	if (molgenstain > 0) {
+		switch(select("พูดคุย:ถามเกี่ยวกับ Molgenstein:ยกเลิก")) {
+		case 1:
+			mes "[Aure Dupon]";
+			mes "มีเป้าหมายและโฟกัส";
+			mes "ก็ดี แต่จะครอบงำ";
+			mes "เกี่ยวกับสิ่งเดียวได้";
+			mes "ทำลายล้างมากผ่อนคลายว่างเปล่า";
+			mes "ความคิดของคุณและปล่อยให้ตัวเองเป็น";
+			mes "ถูกกระแสน้ำแห่งโชคชะตาพัดพา";
+			close;
+		case 2:
+			set molgenstain,2;
+			mes "[Aure Dupon]";
+			mes "โมลเกนสไตน์ ... ?";
+			mes "ผู้ชายหลง";
+			mes "กับการพิชิตกองกำลัง";
+			mes "ที่ควบคุมโลกของเรา แต่";
+			mes "ดูเหมือนคุณจะอยากรู้อยากเห็น";
+			mes "เขาด้วยเหตุผลบางอย่างอืม ... ";
+			next;
+			mes "[Aure Dupon]";
+			mes "มันจะดีที่สุดถ้าคุณ";
+			mes "ได้เห็น Molgenstein";
+			mes "และตัดสินตัวละครของเขาสำหรับ";
+			mes "ด้วยตัวคุณเองคุณอาจพบเขาใน";
+			mes "ชั้นสองของ Geffen";
+			mes "Forge ไป:มันคือโชคชะตาของคุณ";
+			close;
+		case 3:
+			mes "[Aure Dupon]";
+			mes "ไปแล้วและ";
+			mes "ขอให้กระแสน้ำ";
+			mes "โชคชะตานำพาคุณ";
+			mes "ไปยังที่ที่คุณต้องไป";
+			close;
+		}
+	}
+	if (select("พูดคุย:ยกเลิก") == 1) {
+		mes "[Aure Dupon]";
+		mes "มีเป้าหมายและโฟกัส";
+		mes "ก็ดี แต่จะครอบงำ";
+		mes "เกี่ยวกับสิ่งเดียวได้";
+		mes "ทำลายล้างมากผ่อนคลายว่างเปล่า";
+		mes "ความคิดของคุณและปล่อยให้ตัวเองเป็น";
+		mes "ถูกกระแสน้ำแห่งโชคชะตาพัดพา";
+		close;
+	}
+	mes "[Aure Dupon]";
+	mes "ไปแล้วและ";
+	mes "ขอให้กระแสน้ำ";
+	mes "โชคชะตานำพาคุณ";
+	mes "ไปยังที่ที่คุณต้องไป";
+	close;
+}
+
+geffen_in,141,140,3	script	Molgenstein#cm	121,{
+	if (checkweight(1201,1) == 0) {
+		mes "- เดี๋ยวก่อน !! -";
+		mes "- ตอนนี้คุณกำลังแบก -";
+		mes "- มีของกับคุณมากเกินไป -";
+		mes "- โปรดลองอีกครั้ง -";
+		mes "- หลังจากที่คุณลดน้ำหนักลง -";
+		close;
+	}
+	if (MISC_QUEST & 4) {
+		mes "[Chemist Molgenstein]";
+		mes ".....";
+		mes "ยินดีต้อนรับ";
+		mes "ฮิฮิ ฮิฮิ .... ";
+		mes "ฮีฮี ฮีฮีฮี .... ";
+		next;
+		switch(select("ถามเกี่ยวกับงานวิจัยของเขา:ขอให้เขาแก้ปัญหาใหม่:ยกเลิก ")) {
+		case 1:
+			mes "[Chemist Molgenstein]";
+			mes "ฮีฮี ฮีฮี ... ";
+			mes "คุณคงเคยได้ยินข่าวลือเกี่ยวกับการวิจัยของฉันใช่! แต่เนื่องจากคุณคงรู้แล้วฉันจะบอกคุณโดยไม่ต้องปิดบังฉันหมายความว่าไม่มีอะไรต้องปิดบัง";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "จริงๆแล้วคุณสามารถพูดได้ว่างานวิจัยของฉันเสร็จสมบูรณ์แล้ว! ไม่มีอะไรเป็นไปไม่ได้สำหรับอัจฉริยะของฉัน! บั๊วะฮ่า ๆ ๆ ๆ ๆ ๆ ๆ ๆ ๆ ๆ!";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "คุณยังอยู่ที่นี่ใช่ไหมคุณอยากรู้เกี่ยวกับงานวิจัยของฉันจริงๆแล้วมันง่ายมากฉันแค่พยายามประดิษฐ์ซุปเปอร์ของเหลวที่สามารถละลายทุกอย่างได้!";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "ไม่น่าสนใจเหรอ ไม่ว่าคุณจะแข็งแกร่งแค่ไหนคุณก็ไม่สามารถแยกหินหรือเหล็กออกจากกันได้ แต่ด้วยของเหลวใหม่ของฉันคุณสามารถละลายสิ่งเหล่านั้นทำให้มันนุ่ม เหมือนพุดดิ้ง!";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "มันยังละลายทุกอย่างไม่ได้ แต่ฉันพบว่าคุณสามารถรวมสิ่งที่คุณไม่เคยผสมกับสิ่งประดิษฐ์ของฉันมาก่อนได้ฮิฮิฮิฮี ~!";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "คุณสามารถทำสิ่งต่างๆมากมายที่คุณไม่เคยคิดว่าจะเป็นไปได้! ฉันสามารถทำให้คุณมีสิ่งใหม่ ๆ มากมายที่คุณไม่เคยคิดมาก่อนโดยใช้วิธีนี้ ... ตราบเท่าที่คุณต้องการ !!";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "สารเอ็นดอร์ฟินวิ่งมาที่ใบหน้าของฉันเร็วกว่าอัตราปกติอย่างน้อย 2.1 เท่าอ๊ะ! ฉันตื่นเต้นมากฉัน ... ฉันซ่อนมันไม่ได้!";
+			close;
+		case 2:
+			mes "[Chemist Molgenstein]";
+			mes "งั้น ... ";
+			mes "คุณอยากให้ฉันทำอะไรใหม่ ๆ เลยเหรอ Heh Hehehe ฉันชอบความรู้สึกของการผจญภัยทางวิทยาศาสตร์!";
+			next;
+			switch(select("เคาน์เตอร์:สารผสม")) {
+			case 1:
+				mes "[Chemist Molgenstein]";
+				mes "โอ ... !";
+			mes "อยากเป็น Counteragent เหรอ Hohohohoho มาดูกันว่าเราต้องการอะไร ... ";
+				next;
+				mes "[Chemist Molgenstein]";
+				mes "โอ้ฉันจำได้ใช่แอลกอฮอล์และอืมเอ้อ Detrimindexta และขวดเปล่าที่จะใส่มันทั้งหมดแค่สามรายการนี้กับ 3000 zeny";
+				next;
+				mes "[Chemist Molgenstein]";
+				mes "Bwahahahah!";
+				mes "โอ้ฉันแทบรอไม่ไหวแล้ว! คุณพร้อมที่จะเริ่มหรือยัง";
+				next;
+				if (select("ทำ:ยกเลิก") == 1) {
+					if (countitem(970) == 0 || countitem(971) == 0 || countitem(713) == 0 || Zeny < 3000) {
+						mes "[Chemist Molgenstein]";
+						mes "Heuheuheuheuh .... ไม่พอ ... ไม่พอ.. ฮ่าฮ่า ... ฮ่า ... ไป ..... เอาของเหลือ!";
+						mes "เราจะเลื่อนความสนุกออกไปจนกว่าจะถึงเวลานั้น ... Heuheuheuheuheuh";
+						close;
+					}
+					mes "[Chemist Molgenstein]";
+					mes "Ooooooooh ...... heeheeheeheehee ...... ใช่ ... แบบนั้น ...... ใช่ ... อีก ... อีก ........ heeheeheehee.";
+					mes ".... อะอะ .... อะ ... ฮ่า .... ahahooooooooohoh!";
+					next;
+					if (countitem(970) < 1 || countitem(971) < 1 || countitem(713) < 1) {
+						mes "[Chemist Molgenstein]";
+						mes "Hohohohoho .... ไม่พอ ... ไม่พอ ... haah ... haah ... ไป ..... ไปเอาวัสดุที่เหลือ !!";
+						close;
+					}
+					delitem 970,1; //Alchol
+					delitem 971,1; //Detrimindexta
+					delitem 713,1; //Empty_Bottle
+					set Zeny, Zeny-3000;
+					getitem 973,1; //Counteragent
+					mes "[Chemist Molgenstein]";
+					mes "ฮีฮีฮี ... ";
+					mes "ฮ่าาาาาา ...... ";
+					mes "โอ้เราเสร็จแล้วเหรอ!";
+					close;
+				}
+				mes "[Chemist Molgenstein]";
+				mes "ฮี ฮี ฮี ... !";
+				mes "กลับมาเมื่อไหร่";
+				mes "พร้อมแล้ว ~";
+				close;
+			case 2:
+				mes "[Chemist Molgenstein]";
+				mes "โอ ... !";
+				mes "คุณต้องการสร้าง Mixture หรือไม่ Hohohohoho มาดูกันว่าเราต้องการอะไร ... ";
+				next;
+				mes "[Chemist Molgenstein]";
+				mes "โอฉันจำได้แล้วใช่แอลกอฮอล์และอืมเอ้อ Karvodailnirol และขวดเปล่าที่จะใส่ทั้งหมดนี้มีเพียงสามรายการนี้และ 4000 zeny";
+				next;
+				mes "[Chemist Molgenstein]";
+				mes "Bwahahahah!";
+				mes "โอ้ฉันแทบรอไม่ไหวแล้ว! คุณพร้อมที่จะเริ่มหรือยัง";
+				next;
+				if (select("Make:Cancel") == 1) {
+					if (countitem(970) == 0 || countitem(972) == 0 || countitem(713) == 0 || Zeny < 4000) {
+						mes "[Chemist Molgenstein]";
+						mes "Hohohohoho .... ไม่พอ ... ไม่พอ ... haah ... haah ... ไป ..... ไปเอาวัสดุที่เหลือ !!";
+						mes "เราจะต้องเลื่อนความสนุกออกไปก่อน ... ฮิฮิฮิฮิ";
+						close;
+					}
+					mes "[Chemist Molgenstein]";
+					mes "Ooooooooh ... heehee ...... ใช่ ... เช่นนั้น ...... ใช่ ... มากกว่า ... อีก ........ heeheeheehee";
+					mes ".... อะอะ .... อะ ... ฮา .... อ๊า ... โอวววว !!! ... !!!!!!";
+					next;
+					if (countitem(970) < 1 || countitem(972) < 1 || countitem(713) < 1) {
+						mes "[Chemist Molgenstein]";
+						mes "Hohohohoho .... ไม่พอ ... ไม่พอ ... ฮ่าฮ่า ... ฮ่า ... ไป ..... ไปเอาวัสดุที่เหลือ !!";
+						close;
+					}
+					delitem 970,1; //Alchol
+					delitem 972,1; //Karvodailnirol
+					delitem 713,1; //Empty_Bottle
+					set Zeny, Zeny-4000;
+					getitem 974,1; //Mixture
+					mes "[Chemist Molgenstein]";
+					mes "ฮีฮีฮี ... ";
+					mes "ฮ่าาาาาา ...... ";
+					mes "โอ้เราเสร็จแล้วเหรอ!";
+					close;
+				}
+				mes "[Chemist Molgenstein]";
+				mes "[Chemist Molgenstein]";
+				mes "ฮีฮีฮี ... !";
+				mes "กลับมาเมื่อไหร่";
+				mes "พร้อมแล้ว ~";
+				mes "เหอ ... heuheuheuheh .... ";
+				close;
+			}
+		case 3:
+			mes "[Chemist Molgenstein]";
+			mes "ฮิฮิ .... ฮิฮิฮิ .... ";
+			close;
+		}
+	}
+	if (molgenstain == 2) {
+		set MISC_QUEST,MISC_QUEST | 4;
+		set molgenstain,0;
+		mes "[Chemist Molgenstein]";
+		mes "ฮิฮิฮิฮิ .... ยินดีต้อนรับฮิฮิฮิฮิ .... ฮีฮีฮีฮี .... ";
+		next;
+		mes "[Chemist Molgenstein]";
+		mes "อะ ... ?!";
+		mes "ขอโทษนะถ้าฉันทำให้เธอประหลาดไปก็แค่ ... ฉันไม่ได้เห็นคนมีชีวิตมานานแล้วเอ่อฉันจะทำยังไงให้คุณ ??";
+		next;
+		if (select("ถามเกี่ยวกับงานวิจัยของเขา:ยกเลิก") == 1) {
+			mes "[Chemist Molgenstein]";
+			mes "ฮีฮีฮีฮี ... ";
+			mes "คุณคงเคยได้ยินข่าวลือเกี่ยวกับการวิจัยของฉันใช่! แต่เนื่องจากคุณคงรู้แล้วฉันจะบอกคุณโดยไม่ต้องปิดบังฉันหมายความว่าไม่มีอะไรต้องปิดบัง";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "ที่จริงคุณสามารถพูดได้ว่าการวิจัยของฉันเสร็จสมบูรณ์แล้วไม่มีอะไรที่เป็นไปไม่ได้สำหรับอัจฉริยะของฉัน! Bwahaha มันเป็นเรื่องของเวลา!";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "คุณยังอยู่ที่นี่ใช่ไหมคุณอยากรู้เกี่ยวกับงานวิจัยของฉันจริงๆแล้วมันง่ายมากฉันแค่พยายามประดิษฐ์ซุปเปอร์ของเหลวที่สามารถละลายทุกอย่างได้!";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "มันไม่น่าสนใจเหรอไม่ว่าคุณจะแข็งแกร่งแค่ไหนคุณก็ไม่สามารถแยกหินหรือเหล็กออกจากกันได้ แต่ด้วยของเหลวใหม่ของฉันคุณสามารถละลายสิ่งเหล่านั้นทำให้มันนุ่มเหมือนพุดดิ้ง!";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "มันยังละลายทุกอย่างไม่ได้ แต่ฉันพบว่าคุณสามารถรวมสิ่งที่คุณไม่เคยผสมมาก่อนกับสิ่งประดิษฐ์ของฉันได้";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "ฉันสามารถทำให้คุณมีสิ่งใหม่ ๆ มากมายที่คุณไม่เคยคิดมาก่อนด้วยวิธีนี้ ... ตราบเท่าที่คุณต้องการ !!";
+			next;
+			mes "[Chemist Molgenstein]";
+			mes "สารเอ็นดอร์ฟินวิ่งมาที่ใบหน้าของฉันเร็วกว่าอัตราปกติอย่างน้อย 2.1 เท่าอ๊ะ! ฉันตื่นเต้นมากฉัน ... ฉันซ่อนมันไม่ได้!";
+			close;
+		}
+		close;
+	}
+	mes "[Chemist Molgenstein]";
+	mes "ฮีฮีฮีฮี ... ";
+	mes "คุณไม่ได้มาที่นี่เพื่อเป็นผู้ทดสอบใช่ไหมอาจจะไม่ว่าไม่ใช่เพราะ 'อุบัติเหตุ' เล็กน้อยของฉัน ฮี่ฮี่ฮี่ ~! ";
+	close;
+}
+
+//============================================================ 
+// Old changelog
+//============================================================ 
+//= 1.0 Fully working
+//= 1.1 Update for Alchemist Quest.
+//= 1.2 added check for Empty Bottle [Lupus]
+//= 1.3 Fixed some lil thingys [Darkchild]
+//= 1.4 More li'l thing, added comments for items IDs [Lupus]
+//= 1.5 Fixed Spelling mistakes. [Nexon]
+//= 1.6 Fixed some bugs, also related to Alch Job quest [Lupus]
+//= 1,7 Fixed exploit
+//= 1.8 Got rid of 'al_morgen' var [Lupus]
+//= 2.1 now uses (MISC_QUEST & 4) bit instead of al_morgen [Lupus]
+//============================================================ 

@@ -1,0 +1,1296 @@
+//===== Crazyarashi Services =====================================|
+//= Episode 17.1 Illusion - Regenschirm                          =|
+//===== By:======================================================|
+//= crazyarashi                                                  =|
+//===== Current Version:=========================================|
+//= 1.0 Initial Version                                          =|
+//================================================================|
+//= Episode 17.1 Instance Regenschirm                            =|
+//================================================================|
+//= 51,Regenschirm,7200,300,1@rgsr,127,38 ========================|
+//================================================================|
+
+lighthalzen,55,278,3	script	Rekenber Guard Oscar#171_light	4_M_LGTGUARD,{
+	if(ep_illusion < 11){
+		npctalk "Rekenber Guard:สถานที่นี้ถูก จำกัด","",bc_self;
+		end;
+	}
+	switch(ep_illusion){
+		case 11:
+			mes "[Oscar]";
+			mes "ทางเข้าห้องแล็บมีล็อคสองชั้น";
+			mes "มันปิดจากด้านใน";
+			mes "มันจะยากที่จะได้รับมัน";
+			next;
+			mes "[Oscar]";
+			mes "ฉันไม่ค่อยแน่ใจเกี่ยวกับตัวล็อคที่อยู่ด้านในดังนั้นฉันจึงยังไม่รู้";
+			mes "มารักษาความปลอดภัย 'Regenschirm' และค้นหา";
+			mes "คุณพร้อมไหม?";
+			next;
+			.@md_name$ = "Regenschirm";
+			.@party_id = getcharid(1);
+			if(!.@party_id){
+				mes "[Oscar]";
+				mes "คุณจะต้องสร้างปาร์ตี้เพื่อเข้าสู่นักผจญภัยและ ...";
+				mes "คุณไม่สามารถพาคนอื่นไปได้นอกจากตัวคุณเองมันอันตราย!";
+				close;
+			}
+			getpartymember .@party_id,3;
+			if($@partymembercount != 1){
+				mes "[Oscar]";
+				mes "พาคนอื่นไปไม่ได้นอกจากตัวเองข้างในมันอันตราย!";
+				close;
+			}
+			.@party_name$ = getpartyname(.@party_id);
+			.@s = select((!instance_id(IM_PARTY)?"สร้าง 'Regenschirm'":""),(!instance_id(IM_PARTY)?"":"เข้าสู่ 'Regenschirm'"));
+			switch(.@s){
+				case 1:
+					switch(instance_create(.@md_name$)){
+						case -1:
+							mes "[Oscar]";
+							mes "^0000CD"+.@md_name$+" ^000000 - การจองล้มเหลว!";
+							mes "เกิดข้อผิดพลาดที่ไม่รู้จัก";
+							end;
+						case -2:
+							mes "[Oscar]";
+							mes "- คุณต้องมีปาร์ตี้เพื่อเข้าสู่ดันเจี้ยนแห่งความทรงจำนี้";
+							end;
+							
+						case -3:
+							mes "[Oscar]";
+							mes "ดูเหมือนว่าคุณมีอินสแตนซ์อยู่แล้ว กรุณายกเลิกก่อนดำเนินการต่อ";
+							end;
+							
+						case -4:
+							mes "[Oscar]";
+							mes "^0000CD"+.@md_name$+" ^000000 - การจองล้มเหลว!";
+							mes "^0000CD"+.@md_name$+" ^000000 เต็มแล้ว";
+							mes "ลองสร้างอีกครั้งในภายหลัง";
+							end;
+							
+						default:
+							mes "[Oscar]";
+							mes "หากคุณพร้อมโปรดป้อน";
+							mes "Ashley เป็นคนจัดการล็อคด้านใน";
+							end;
+					}
+					
+				case 2:
+					switch(instance_enter(.@md_name$)){
+						case IE_OTHER:
+							mes "ข้อผิดพลาดที่ไม่รู้จักได้เกิดขึ้น.";
+							end;
+							
+						case IE_NOINSTANCE:
+							mes "^ff0000Character ไม่มีอินสแตนซ์ที่สงวนไว้ ^000000";
+							end;
+							
+						case IE_OK:
+							mapannounce "lighthalzen", strcharinfo(0) + " ของงานปาร์ตี้ "+ .@party_name$ +"กำลังเข้าสู่ " + .@md_name$ + ".", bc_map, "0x00FF99";
+							end;
+					}	
+			}
+			end;
+			
+		case 12:
+			mes "[Oscar]";
+			mes "คุณมีข้อความจาก Tess กลับมาที่ Cat on Bullet";
+			mes "เขาจะพบคุณเร็ว ๆ นี้";
+			close;
+	}
+	end;	
+		
+OnInit:
+	questinfo(QTYPE_QUEST,QMARK_YELLOW,"ep_illusion == 11");
+	end;
+}
+
+1@rgsr,1,1,0	script	#171_rgsr_init	HIDDEN_WARP_NPC,{
+	OnInstanceInit:
+		'rgsr$ = instance_mapname("1@rgsr");
+		F_InstanceHide("Oscar#171_rgsr",3);
+		F_InstanceHide("Ashley#171_rgsr",3);
+		F_InstanceHide("Access Controller#rgsr_kitchen",3);
+		F_InstanceHide("Researcher#rgsr_ev_1",1);
+		F_InstanceHide("Erst#rgsr_conf",3);
+		F_InstanceHide("Access Controller#rgsr_conf",3);
+		F_InstanceHide("Ashley#rgsr_lab",3);
+		F_InstanceHide("Central Room#rgsr_cen_in",3);
+		F_InstanceHide("Ashley#171_rgsr_cen_in",3);
+		
+		F_InstanceHide("Ashley#171_rgsr_cen",1);
+		F_InstanceHide("Gonie#rgsr_cen_in",1);
+		F_InstanceHide("Erst#rgsr_cen_in",1);
+		
+		F_InstanceHide("Researcher#rgsr_dum_1",3);
+		F_InstanceHide("Researcher#rgsr_dum_2",3);
+		F_InstanceHide("Researcher#rgsr_dum_3",3);
+		F_InstanceHide("Researcher#rgsr_dum_4",3);
+		F_InstanceHide("Researcher#rgsr_dum_5",3);
+		F_InstanceHide("Researcher#rgsr_dum_6",3);
+		F_InstanceHide("Detained Researcher#rgsr_res_1",3);
+		F_InstanceHide("Detained Researcher#rgsr_res_2",3);
+		F_InstanceHide("Detained Researcher#rgsr_res_3",3);
+		
+		F_InstanceHide("Rebellion Crew#rgsr_dum_1",3);
+		F_InstanceHide("Rebellion Crew#rgsr_dum_2",3);
+		F_InstanceHide("Rebellion Crew#rgsr_dum_3",3);
+		
+		F_InstanceHide("Heart Hunter#rgsr_mob_1",3);
+		F_InstanceHide("Heart Hunter#rgsr_mob_2",3);
+		F_InstanceHide("#rgsr_mob_1",3);
+		F_InstanceHide("#rgsr_mob_2",3);
+		F_InstanceHide("#rgsr_gas_left",3);
+		F_InstanceHide("#rgsr_gas_right",3);
+		F_InstanceHide("Restrained Specimen#rgsr_boss",3);
+		
+		F_InstanceHide("#rgsr_kitchen_out",3);
+		F_InstanceHide("#rgsr_conf_in_1",3);
+		F_InstanceHide("#rgsr_conf_in_2",3);
+		F_InstanceHide("#rgsr_conf_out_1",3);
+		F_InstanceHide("#rgsr_conf_out_2",3);
+		F_InstanceHide("#rgsr_lab_in_1",3);
+		F_InstanceHide("#rgsr_lab_in_2",3);
+		F_InstanceHide("#rgsr_lab_in_3",3);
+		F_InstanceHide("#rgsr_lab_in_4",3);
+		F_InstanceHide("#rgsr_lab_in_5",3);
+		F_InstanceHide("#rgsr_lab_out_1",3);
+		F_InstanceHide("#rgsr_lab_out_2",3);
+		F_InstanceHide("#rgsr_lab_out_3",3);
+		F_InstanceHide("#rgsr_lab_out_4",3);
+        F_InstanceHide("#rgsr_lab_out_5",3);
+		end;
+}
+
+1@rgsr,123,42,5	script	Oscar#171_rgsr	4_M_LGTGUARD,{
+	mes "[Oscar]";
+	mes "กัปตันแอบอยู่ในห้องแผงควบคุม";
+	mes "ย้ายอย่างเงียบ ๆ";
+	close;
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),4);
+	end;
+}
+
+1@rgsr,131,58,3	script	Ashley#171_rgsr	4_EP17_AS,{
+	switch('rgsr){
+		case 0:
+			cutin "ep171_as02",1;
+			mes "[Ashley]";
+			mes "ปกติประตูจะล็อคด้วยระบบรักษาความปลอดภัยดังนั้นฉันต้องอยู่ที่นั่นและทำงานกับคอนโทรลเลอร์";
+			mes "ดังที่คุณเห็นทางเข้าส่วนใหญ่ถูกปิดกั้นไปแล้ว";
+			next;
+			mes "[Ashley]";
+			mes "จะต้องใช้เวลาพอสมควรในการตรวจสอบทีละรายการ";
+			mes "ฉันจะช่วยคุณผ่านทางอินเตอร์คอม";
+			next;
+			mes "[Ashley]";
+			mes "คุณจะต้องผ่านร้านอาหารไปถึงโถงทางเดิน";
+			mes "Erst จะดำเนินการโดยลำพัง";
+			next;
+			mes "[Ashley]";
+			mes "หากมีความวุ่นวาย Erst อาจก่อให้เกิดขึ้น ดังนั้นโปรดตรวจสอบกับเธอก่อนดำเนินการต่อ";
+			next;
+			mes "[Ashley]";
+			mes "คุณควรไปตอนนี้นักผจญภัย ฉันจะพยายามรักษาตัวควบคุมความปลอดภัยต่อไป";
+			mes "อาจมีResearcherถูกกักขังอยู่ภายใน";
+			next;
+			mes "[Ashley]";
+			mes "โปรดคำนึงถึงความปลอดภัยของพวกเขาเป็นอันดับแรก";
+			mes "ตอนนี้ไปข้างหน้า";
+			'rgsr = 1;
+			close2;
+			cutin "",255;
+			F_InstanceEvent("#rgsr_mob_1","OnMobSpawn");
+			F_InstanceHide("Heart Hunter#rgsr_mob_1",4);
+			F_InstanceHide("Heart Hunter#rgsr_mob_2",4);
+			F_InstanceHide("Researcher#rgsr_dum_1",4);
+			F_InstanceHide("Researcher#rgsr_dum_2",4);
+			F_InstanceHide("Researcher#rgsr_dum_3",4);
+			F_InstanceHide("Access Controller#rgsr_kitchen",4);
+			warp 'rgsr$,127,67;
+			end;
+			
+		case 1:
+			cutin "ep171_as02",1;
+			mes "[Ashley]";
+			mes "คุณควรไปตอนนี้นักผจญภัย ฉันจะพยายามรักษาตัวควบคุมความปลอดภัยต่อไป";
+			mes "อาจมีResearcherถูกกักขังอยู่ภายใน";
+			next;
+			mes "[Ashley]";
+			mes "โปรดคำนึงถึงความปลอดภัยของพวกเขาเป็นอันดับแรก";
+			mes "ตอนนี้ไปข้างหน้า";
+			warp 'rgsr$,127,67;
+			close3;
+	}
+	
+OnInstanceInit:
+	F_InstanceHide(strnpcinfo(0),4);
+	end;
+}
+
+1@rgsr,60,138,0	script	Access Controller#rgsr_kitchen	4_ENERGY_WHITE,{
+	if('guard_count != 0) end;
+	F_InstanceHide("Researcher#rgsr_ev_1",2);
+	if(!'clicked){
+		'clicked = 1;
+		npctalk "ขอการสื่อสาร";
+		sleep2 3000;
+		npctalk "การวิเคราะห์สัญญาณ";
+		sleep2 3000;
+		npctalk "การเปิดใช้งานการส่งเสียง ...";
+		sleep2 3000;
+		npctalk "คุณเชื่อมต่อหรือไม่? มันคือAshley";
+		sleep2 3000;
+		npctalk "ฉันได้รับการควบคุมระบบรักษาความปลอดภัยบางส่วน แต่ฉันยังไม่สามารถเข้าถึงได้ทั้งหมด";
+		sleep2 3000;
+		npctalk "สัญญาณเตือนภัยหรืออุปกรณ์รักษาความปลอดภัยจะไม่ทำงานเว้นแต่จะมีสิ่งรบกวนมาก";
+		sleep2 3000;
+		npctalk "ฉันคิดว่าคุณควรเปิดประตูนี้เพื่อเปิดโถงทางเดิน";
+		sleep2 3000;
+		npctalk "ขอให้Rebellion Crewวางมือบนอุปกรณ์";
+		sleep2 3000;
+		npctalk "... * แซ่บ ??* ....";
+		sleep2 3000;
+		npctalk "สิ้นสุดการส่งเสียงแล้ว";
+		sleep2 3000;
+		F_InstanceHide(strnpcinfo(0),5);
+		npctalk "Researcher:คุณรังเกียจไหมถ้าฉันเปิดประตู",instance_npcname("Researcher#rgsr_ev_1");
+		'rgsr = 2;
+	}
+	end;
+}
+
+1@rgsr,59,132,7	script	Researcher#rgsr_ev_1	4_M_NFMAN,{
+	switch('rgsr){
+		case 1:end;
+		
+		case 2:
+			mes "[ Researcher ]";
+			mes "การสแกนไบโอเมตริกซ์ยังคงใช้งานได้ฉันจะอยู่ที่นี่เพื่อเปิดประตูไว้";
+			mes "หากคุณกำลังรีบโปรดไป ...";
+			dispbottom "การควบคุม:ยืนยันตัวตน";
+			F_InstanceHide("#rgsr_kitchen_out",4);
+			'rgsr = 3;
+			F_InstanceEvent("#rgsr_mob_2","OnMobSpawn");
+			F_InstanceEvent("#rgsr_gas_left","OnMobSpawn");
+			F_InstanceHide("#rgsr_conf_in_1",4);
+			F_InstanceHide("#rgsr_conf_in_2",4);
+			F_InstanceHide("#rgsr_conf_out_1",4);
+			F_InstanceHide("#rgsr_conf_out_2",4);
+			F_InstanceHide("#rgsr_lab_in_1",4);
+			F_InstanceHide("#rgsr_lab_in_2",4);
+			F_InstanceHide("#rgsr_lab_in_3",4);
+			F_InstanceHide("#rgsr_lab_in_4",4);
+			F_InstanceHide("#rgsr_lab_in_5",4);
+			F_InstanceHide("#rgsr_lab_out_1",4);
+			F_InstanceHide("#rgsr_lab_out_2",4);
+			F_InstanceHide("#rgsr_lab_out_3",4);
+			F_InstanceHide("#rgsr_lab_out_4",4);
+			F_InstanceHide("#rgsr_lab_out_5",4);
+			
+			close2;
+			sleep2 1000;
+			npctalk "ผู้วิจัย:... ฮะ ... นี่มันอะไรกัน ...";
+			end;
+			
+		default:
+			mes "[ Researcher ]";
+			mes "Researcherบางคนวิ่งหนีไปพร้อมกับเอกสารการวิจัย";
+			mes "ทหารองครักษ์ใต้ก็เปลี่ยนไปเช่นกัน";
+			next;
+			mes "[ Researcher ]";
+			mes "ต่อไปจะมีคนมาเพิ่มอีก";
+			mes "โปรดระวัง!";
+			end;	
+	}
+	end;
+}
+
+1@rgsr,36,211,3	script	Erst#rgsr_conf	4_F_ESTLOVELOY,{
+	switch('rgsr){
+		case 3:
+			cutin "ep162_est03",2;
+			mes "[Erst]";
+			mes "คุณเป็นคนที่เอาก๊าซพิษออกไปข้างนอกหรือเปล่า?";
+			mes "คุณมาถึงในช่วงเวลาที่ดี";
+			mes "เพราะแก๊สประตูจึงถูกบังคับให้ล็อค!";
+			next;
+			cutin "ep162_est01",2;
+			mes "[Erst]";
+			mes "Ashley ต้องใช้เวลาในการแฮ็กคอนโทรลเลอร์และปล่อยก๊าซ";
+			mes "ฉันจะทำมันเอง";
+			next;
+			cutin "ep162_est02",2;
+			mes "[Erst]";
+			mes "ยามที่นี่สวมเสื้อผ้าแบบเดียวกับ Heart Hunters ที่เราเห็นมาก่อน";
+			mes "ฉันไม่คิดว่าฉันจะช่วยชีวิตResearcherทุกคนได้ด้วยตัวคนเดียว";
+			next;
+			mes "[Erst]";
+			mes "ดูเหมือนว่าเราได้รวบรวมส่วนใหญ่ไว้ที่นี่แล้ว";
+			mes "มาจัดระเบียบกลยุทธ์ต่อไป";
+			next;
+			cutin "ep162_est01",2;
+			mes "[Erst]";
+			mes "มีห้องปฏิบัติการอยู่อีกด้านหนึ่งและน่าจะเป็นระเบียบ";
+			mes "สงสัยจะทะเลาะกันใหญ่";
+			next;
+			mes "[Erst]";
+			mes "จากนี้ไปกองกำลังพิเศษของกลุ่มกบฏจะจัดลำดับความสำคัญในการช่วยเหลือResearcherที่ถูกคุมขัง";
+			mes "ถ้าคุณได้รับมันย้ายเร็ว!";
+			next;
+			mes "[Erst]";
+			mes "เอาล่ะนักผจญภัยค้นหาอุปกรณ์สื่อสารและติดต่อกับ Ashley โดยใช้รหัส 0315";
+			next;
+			mes "[Erst]";
+			mes "คุณต้องเปิดทางเข้าของห้องทดลองส่วนตัว";
+			'rgsr = 4;
+			close3;
+			
+		case 4:
+			cutin "ep162_est03",2;
+			mes "[Erst]";
+			mes "คุณเป็นคนที่เอาก๊าซพิษออกไปข้างนอกหรือเปล่า?";
+			mes "คุณมาถึงในช่วงเวลาที่ดี";
+			mes "เพราะแก๊สประตูจึงถูกบังคับให้ล็อค!";
+			next;
+			cutin "ep162_est01",2;
+			mes "[Erst]";
+			mes "Ashley ต้องใช้เวลาในการแฮ็กคอนโทรลเลอร์และปล่อยก๊าซ";
+			mes "ฉันจะทำมันเอง";
+			next;
+			cutin "ep162_est02",2;
+			mes "[Erst]";
+			mes "ยามที่นี่สวมเสื้อผ้าแบบเดียวกับ Heart Hunters ที่เราเห็นมาก่อน";
+			mes "ฉันไม่คิดว่าฉันจะช่วยชีวิตResearcherทุกคนได้ด้วยตัวคนเดียว";
+			next;
+			mes "[Erst]";
+			mes "ดูเหมือนว่าเราได้รวบรวมส่วนใหญ่ไว้ที่นี่แล้ว";
+			mes "มาจัดระเบียบกลยุทธ์ต่อไป";
+			next;
+			cutin "ep162_est01",2;
+			mes "[Erst]";
+			mes "มีห้องปฏิบัติการอยู่อีกด้านหนึ่งและน่าจะเป็นระเบียบ";
+			mes "สงสัยจะทะเลาะกันใหญ่";
+			next;
+			mes "[Erst]";
+			mes "จากนี้ไปกองกำลังพิเศษของกลุ่มกบฏจะจัดลำดับความสำคัญในการช่วยเหลือResearcherที่ถูกคุมขัง";
+			mes "ถ้าคุณได้รับมันย้ายเร็ว!";
+			next;
+			mes "[Erst]";
+			mes "เอาล่ะนักผจญภัยค้นหาอุปกรณ์สื่อสารและติดต่อกับ Ashley โดยใช้รหัส 0315";
+			next;
+			mes "[Erst]";
+			mes "คุณต้องเปิดทางเข้าของห้องทดลองส่วนตัว";
+			close3;
+		
+		default:
+			cutin "ep162_est02",2;
+			mes "[Erst]";
+			mes "ฮะ. เราจะเน้นไปที่การช่วยชีวิตตัวประกันก่อน";
+			mes "มองหาห้องของรปภ. ที่ Ashley พูดถึง";
+			close3;
+			
+	}
+}
+
+1@rgsr,26,219,0	script	Access Controller#rgsr_conf	4_ENERGY_WHITE,{
+	switch('rgsr){
+		case 4:
+			mes "มีตัวควบคุมที่มีฟังก์ชันการสื่อสาร";
+			next;
+			switch(select("1103:4885:0315:7561")){
+				case 3:
+					mes "เชื่อมต่อการส่งเสียงแล้ว";
+					'rgsr = 5;
+					F_InstanceEvent("#rgsr_gas_right","OnMobSpawn");
+					close2;
+					npctalk "กำลังรอการสื่อสารตอบกลับ ...";
+					sleep2 3000;
+					npctalk "Ashley:ผู้บัญชาการ Erst? เราปิดล็อคห้องโถง แต่ปัญหาคืออะไร?";
+					sleep2 3000;
+					npctalk "Ashley:โอ้คุณคือนักผจญภัย ฉันจะรายงานให้คุณ ฉันยังไม่ได้ครอบครองระบบควบคุมความปลอดภัยทั้งหมด";
+					sleep2 3000;
+					npctalk "Ashley:ดูเหมือนว่าจะใช้เวลาพอสมควร แต่ฉันได้ควบคุมโมดูลการตรวจสอบส่วนใหญ่แล้ว";
+					sleep2 3000;
+					npctalk "Ashley:กองกำลังศัตรูส่วนใหญ่อยู่ในล็อบบี้และพื้นที่พักผ่อนดังนั้นพื้นที่ห้องทดลองจึงมีการป้องกันน้อยกว่า";
+					sleep2 3000;
+					npctalk "Ashley:อย่างไรก็ตามเพื่อที่จะรักษาความปลอดภัยในห้องควบคุมกลางคุณต้องผ่าน Guard's Room ที่ตรวจพบผู้ทดสอบหลายคน";
+					sleep2 3000;
+					npctalk "Ashley:ลำดับความสำคัญควรอยู่ที่การรักษาความปลอดภัยในห้องปฏิบัติการและจากนั้น Guard Room .... * คลิก *";
+					sleep2 2000;
+					npctalk "Erst:เอ๊ะนั่นอะไรน่ะ?",instance_npcname("Erst#rgsr_conf");
+					end;
+					
+				default:
+					mes "รหัสไม่ทำงาน";
+					mes "การสื่อสารถูกยกเลิก";
+					close;
+			}
+					
+		default:
+			mes "มีตัวควบคุมที่มีฟังก์ชันการสื่อสาร";
+			close;
+	}
+}
+
+1@rgsr,235,44,5	script	Ashley#rgsr_lab	4_EP17_AS,{
+	switch('rgsr){
+		case 5:
+			explode(.@T$,'rescued$,":");
+			if(atoi(.@T$[0]) == 1 && atoi(.@T$[1]) == 1 && atoi(.@T$[2]) == 1){
+				.@unfinished = 0;
+			} else {
+				.@unfinished = 1;
+			}
+			if(.@unfinished){
+				cutin "ep171_as02",2;
+				mes "[Ashley]";
+				mes "เฮ้คุณตรวจแล็บทั้งหมดหรือยัง";
+				mes "โปรดตรวจสอบว่ายังมีRebellion Crewอยู่หรือไม่";
+				close3;
+			}
+			cutin "ep171_as02",1;
+			mes "[Ashley]";
+			mes "มาสเตอร์คีย์สำรองยังคงอยู่";
+			mes "ถ้าไม่มีฉันจะไม่สามารถควบคุมระบบรักษาความปลอดภัยได้ คุณสบายดีไหม?";
+			next;
+			mes "[Ashley]";
+			mes "ตอนนี้คุณต้องตรวจสอบห้องกลางเท่านั้น";
+			mes "คุณพูดว่า Heart Hunters?";
+			mes "ผู้ทรยศจาก Schlein ได้หลบหนีไปแล้ว";
+			next;
+			mes "[Ashley]";
+			mes "เราให้ความสำคัญกับห้องนั้น";
+			mes "นั่นคือแนวคิดหลัก";
+			mes "เอิร์ทอยู่ไหน?";
+			next;
+			cutin "16go_01",0;
+			mes "[Gonie]";
+			mes "... ... ...";
+			next;
+			cutin "ep171_as02",1;
+			mes "[Ashley]";
+			mes "คุณต้องมองหาResearcherทั้งหมดหรือไม่?";
+			mes "นั่นเป็นสิ่งที่จำเป็นฉันเข้าใจ";
+			next;
+			mes "[Ashley]";
+			mes "นักผจญภัยเรามุ่งหน้าไปที่ห้องกลาง";
+			mes "พบกับฉันที่นั่น";
+			F_InstanceHide("Central Room#rgsr_cen_in",4);
+			'rgsr = 6;
+			close3;
+			
+		case 6:
+			mes "[Ashley]";
+			mes "นักผจญภัยเรามุ่งหน้าไปที่ห้องกลาง";
+			mes "พบกับฉันที่นั่น";
+			end;
+	}
+}
+
+1@rgsr,127,164,3	script	Ashley#171_rgsr_cen_in	4_EP17_AS,{
+	if('rgsr = 10){
+		cutin "ep171_as01",2;
+		mes "[Ashley]";
+		mes "Erst จัดการทุกอย่างที่อยู่ภายใน";
+		mes "ขออภัยที่ไม่สามารถช่วยเหลือคุณได้เลย";
+		next;
+		mes "[Ashley]";
+		mes "กลับไปที่ Einbroch กันเถอะ";
+		mes "ฉันจะ ... ฉันจะไปที่ทำงานและไปกับคุณ";
+		ep_illusion = 12;
+		next;
+		switch(select("ย้ายไปที่ Einbroch:ย้ายไปที่ Lighthalzen:อย่าออก")){
+			case 1:
+				mes "[Ashley]";
+				mes "เราจะรอคุณอยู่ใน Cat on Bullet";
+				mes "โปรดไปที่นั่นและพบกับเราในสำนักงานใหญ่";
+				warp "einbroch",301,324;
+				end;
+				
+			case 2:
+				mes "[Ashley]";
+				mes "เราจะรอคุณอยู่ใน Cat on Bullet";
+				mes "โปรดไปที่นั่นและพบกับเราในสำนักงานใหญ่";
+				warp "lighthalzen",54,272;
+				end;
+				
+			case 3:
+				cutin "ep171_as02",2;
+				mes "[Ashley]";
+				mes "คุณมีอะไรให้ตรวจสอบอีกไหม?";
+				mes "ฉันจะรอที่นี่";
+				close3;
+		}
+	}
+}
+
+1@rgsr,128,157,3	script	Ashley#171_rgsr_cen	4_EP17_AS,{
+	switch('rgsr){
+		case 7:
+			.@ashley$ = instance_npcname("Ashley#171_rgsr_cen");
+			.@gonie$ = instance_npcname("Gonie#rgsr_cen_in");
+			.@erst$ = instance_npcname("Erst#rgsr_cen_in");
+			npctalk "Ashley:ห้องกลางดูเหมือนจะว่างเปล่า ฉันจะเข้าไปดู",.@ashley$;
+			sleep2 3000;
+			npctalk "Erst:ฉันจะนำResearcherออกไปจากที่นี่ จะโอเคไหม?",.@erst$;
+			sleep2 3000;
+			npctalk "Ashley:ใช่ ไม่มีสิ่งอื่นใดถูกตรวจพบในระบบ ด้วยความก้าวหน้าของเราจนถึงขณะนี้ศัตรูทั้งหมดถูกยับยั้ง",.@ashley$;
+			sleep2 3000;
+			npctalk "Erst:คุณกลัวอะไรอีกล่ะ? ฉันจะกลับแล้ว!",.@erst$;
+			sleep2 3000;
+			npctalk "Gonie:... ฉันด้วย",.@gonie$;
+			sleep2 3000;
+			npctalk "Erst:มีResearcherสองคนเหลืออยู่ในห้องทดลองฉันจะพาพวกเขาไป ฉันจะรอ.",.@erst$;
+			sleep2 3000;
+			npctalk "Erst:เอาล่ะ Gonie คุณไปที่ล็อบบี้หลักก่อนและยึดถนน ฉันจะพาคนอื่น ๆ ไปที่ห้องประชุม",.@erst$;
+			sleep2 3000;
+			npctalk "Gonie:* พยักหน้า *",.@gonie$;
+			sleep2 3000;
+			F_InstanceHide("Gonie#rgsr_cen_in",5);
+			F_InstanceHide("Erst#rgsr_cen_in",5);
+			npctalk "Ashley:นักผจญภัยไปดูห้องกลางกันเถอะ",.@ashley$;
+			'rgsr = 8;
+			end;
+			
+		case 8:
+			cutin "ep171_as02",1;
+			mes "[Ashley]";
+			mes "นั่นคือห้องกลางตรงหน้า";
+			next;
+			if(select("Enter.:รอ.") == 2){
+				mes "[Ashley]";
+				mes "โปรดพูดกับฉันเมื่อคุณพร้อม";
+				mes "ไม่รู้ทำไม แต่ปิดแน่นหนา;. ต้องใช้เวลาพอสมควรในการรักษาการเข้าถึง";
+				next;
+				mes "[Ashley]";
+				mes "ตามที่ระบบรักษาความปลอดภัยยืนยันไม่พบสิ่งใดอยู่ภายใน ...";
+				mes "ฉันยังคงต้องการยืนยันภายในห้องโดยไม่คำนึงถึง";
+				close3;
+			}
+			mes "[Ashley]";
+			mes "ก่อนอื่นฉันต้องปิดกลไกการล็อคอัตโนมัติแล้วฉันจะทำตามทันที";
+			'rgsr = 9;
+			close2;
+			cutin "",255;
+			F_InstanceHide("Restrained Specimen#rgsr_boss",4);
+			F_InstanceHide("Control Device#rgsr_blue",4);
+			F_InstanceHide("Control Device#rgsr_red",4);
+			F_InstanceHide("Control Device#rgsr_white",4);
+			F_InstanceHide("Control Device#rgsr_yellow",4);
+			warp 'rgsr$,126,164;
+			end;
+			
+		default:
+			cutin "ep171_as02",1;
+			mes "[Ashley]";
+			mes "นั่นคือห้องกลางตรงหน้า";
+			next;
+			if(select("Enter.:รอ.") == 2){
+				mes "[Ashley]";
+				mes "โปรดพูดกับฉันเมื่อคุณพร้อม";
+				mes "ไม่รู้ทำไม แต่ปิดแน่นหนา;. ต้องใช้เวลาพอสมควรในการรักษาการเข้าถึง";
+				next;
+				mes "[Ashley]";
+				mes "ตามที่ระบบรักษาความปลอดภัยยืนยันไม่พบสิ่งใดอยู่ภายใน ...";
+				mes "ฉันยังคงต้องการยืนยันภายในห้องโดยไม่คำนึงถึง";
+				close3;
+			}
+			mes "[Ashley]";
+			mes "ก่อนอื่นฉันต้องปิดกลไกการล็อคอัตโนมัติแล้วฉันจะทำตามทันที";
+			close2;
+			cutin "",255;	
+			warp 'rgsr$,126,164;			
+			end;
+	}
+}
+
+1@rgsr,124,152,5	script	Gonie#rgsr_cen_in	4_M_GONY,{
+	cutin "16go_01",0;
+	mes "[Gonie]";
+	mes "... ... ...";
+	close3;
+}
+
+1@rgsr,125,154,5	script	Erst#rgsr_cen_in	4_F_ESTLOVELOY,{
+	cutin "ep162_est01",2;
+	mes "[Erst]";
+	mes "ฉันไม่เชื่อว่ามีศัตรูเหลืออยู่ข้างในฉันจะดึงออกมา";
+	mes "แค่ตรวจสอบห้องกลางแล้วออกไป";
+	close3;
+}
+
+1@rgsr,125,157,0	script	Central Room#rgsr_cen_in	4_ENERGY_BLUE,{
+	switch('rgsr){
+		case 6:
+			.@ashley$ = instance_npcname("Ashley#171_rgsr_cen");
+			.@gonie$ = instance_npcname("Gonie#rgsr_cen_in");
+			.@erst$ = instance_npcname("Erst#rgsr_cen_in");
+			F_InstanceHide("Ashley#171_rgsr_cen",2);
+			F_InstanceHide("Gonie#rgsr_cen_in",2);
+			F_InstanceHide("Erst#rgsr_cen_in",2);
+			'rgsr = 7;
+			npctalk "ฉันสายหรือเปล่า?",.@ashley$;
+			sleep2 2000;
+			npctalk "ไม่มีคุณมาทันเวลา",.@erst$;
+			end;
+			
+		default:
+			mes "อุปกรณ์ไม่ทำงาน";
+			end;	
+	}
+	end;
+}
+
+1@rgsr,144,180,0	script	Control Device#rgsr_blue	4_ENERGY_BLUE,{
+	if(!'boss_trigger){
+		mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+		mes "มีปุ่มสี่ปุ่มในห้อง";
+		close;
+	}
+	if('buttons == 0){
+		mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+		mes "มีปุ่มสี่ปุ่มในห้อง";
+		next;
+		if(select("ปุ่มสีแดง:ปุ่มสีน้ำเงิน:ปุ่มสีขาว:ปุ่มสีเหลือง") != 2){
+			F_InstanceEvent("Restrained Specimen#rgsr_boss","OnFail");
+		}
+		specialeffect 55,AREA,instance_npcname("Restrained Specimen#rgsr_boss");
+		mapannounce 'rgsr$,"การปรับควบคุมแรงโน้มถ่วง ... เสร็จสิ้น ... เหลืออีกสามเฟส",bc_map,0x0D98BA;
+		'buttons  = 1;
+		end;
+	} else if('buttons > 0){
+		mes "เปิดใช้งานอุปกรณ์นี้แล้ว";
+		close;
+	}
+	mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+	mes "มีปุ่มสี่ปุ่มในห้อง";
+	next;
+	select("กดปุ่ม.");
+	F_InstanceEvent("Restrained Specimen#rgsr_boss","OnFail");
+	end;
+}
+
+1@rgsr,108,168,0	script	Control Device#rgsr_red	4_ENERGY_RED,{
+	if(!'boss_trigger){
+		mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+		mes "มีปุ่มสี่ปุ่มในห้อง";
+		close;
+	}
+	if('buttons == 1){
+		mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+		mes "มีปุ่มสี่ปุ่มในห้อง";
+		next;
+		if(select("ปุ่มสีแดง:ปุ่มสีน้ำเงิน:ปุ่มสีขาว:ปุ่มสีเหลือง") != 1){
+			F_InstanceEvent("Restrained Specimen#rgsr_boss","OnFail");
+		}
+		specialeffect 55,AREA,instance_npcname("Restrained Specimen#rgsr_boss");
+		mapannounce 'rgsr$,"การปรับควบคุมแรงโน้มถ่วง ... เสร็จสิ้น ... เหลืออีกสองเฟส",bc_map,0x0D98BA;
+		'buttons  = 2;
+		end;
+	} else if('buttons > 1){
+		mes "เปิดใช้งานอุปกรณ์นี้แล้ว";
+		close;
+	}
+	mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+	mes "มีปุ่มสี่ปุ่มในห้อง";
+	next;
+	select("กดปุ่ม.");
+	F_InstanceEvent("Restrained Specimen#rgsr_boss","OnFail");
+	end;
+}
+
+1@rgsr,143,168,0	script	Control Device#rgsr_white	4_ENERGY_YELLOW,{
+	if(!'boss_trigger){
+		mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+		mes "มีปุ่มสี่ปุ่มในห้อง";
+		close;
+	}
+	if('buttons == 2){
+		mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+		mes "มีปุ่มสี่ปุ่มในห้อง";
+		next;
+		if(select("ปุ่มสีแดง:ปุ่มสีน้ำเงิน:ปุ่มสีขาว:ปุ่มสีเหลือง") != 4){
+			F_InstanceEvent("Restrained Specimen#rgsr_boss","OnFail");
+		}
+		specialeffect 55,AREA,instance_npcname("Restrained Specimen#rgsr_boss");
+		mapannounce 'rgsr$,"การปรับควบคุมแรงโน้มถ่วง ... เสร็จเรียบร้อย ... เหลืออีกหนึ่งเฟส",bc_map,0x0D98BA;
+		
+		'buttons  = 3;
+		end;
+	} else if('buttons > 2){
+		mes "เปิดใช้งานอุปกรณ์นี้แล้ว";
+		close;
+	}
+	mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+	mes "มีปุ่มสี่ปุ่มในห้อง";
+	next;
+	select("กดปุ่ม.");
+	F_InstanceEvent("Restrained Specimen#rgsr_boss","OnFail");
+	end;
+}
+
+
+
+	
+1@rgsr,114,191,0	script	Control Device#rgsr_yellow	4_ENERGY_WHITE,{
+	if(!'boss_trigger){
+		mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+		mes "มีปุ่มสี่ปุ่มในห้อง";
+		close;
+	}
+	if('buttons == 3){
+		mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+		mes "มีปุ่มสี่ปุ่มในห้อง";
+		next;
+		if(select("ปุ่มสีแดง:ปุ่มสีน้ำเงิน:ปุ่มสีขาว:ปุ่มสีเหลือง") != 3){
+			F_InstanceEvent("Restrained Specimen#rgsr_boss","OnFail");
+		}
+		specialeffect 55,AREA,instance_npcname("Restrained Specimen#rgsr_boss");
+		mapannounce 'rgsr$,"การปรับการควบคุมแรงโน้มถ่วง ... เสร็จสมบูรณ์ ... ปลดพันธนาการแล้ว",bc_map,0x0D98BA;
+		sleep2 3000;
+		F_InstanceEvent("Restrained Specimen#rgsr_boss","OnSummonBoss");
+		'buttons  = 4;
+		end;
+	} else if('buttons > 3){
+		mes "เปิดใช้งานอุปกรณ์นี้แล้ว";
+		close;
+	}
+	mes "อุปกรณ์นี้ไม่ทราบวัตถุประสงค์";
+	mes "มีปุ่มสี่ปุ่มในห้อง";
+	next;
+	select("กดปุ่ม.");
+	F_InstanceEvent("Restrained Specimen#rgsr_boss","OnFail");
+	end;
+}
+
+1@rgsr,37,126,0	script	Researcher#rgsr_dum_1	4_F_SCIENCE,{
+	mes "[Rebellion Crew]";
+	mes "ทำไมฉันต้องเลี้ยงคนทรยศขนาดนี้";
+	close;
+}
+
+1@rgsr,35,136,7	script	Researcher#rgsr_dum_2	4_LGTSCIENCE,{
+	mes "[Rebellion Crew]";
+	mes "ฉันอยากกลับบ้าน ... ฉันแค่อยากกลับบ้าน ...";
+	close;
+}
+
+1@rgsr,38,139,3	script	Researcher#rgsr_dum_3	4_M_NFMAN,{
+	mes "[Rebellion Crew]";
+	mes "คุณมาที่นี่เพื่อช่วยเราหรือไม่?";
+	mes "ขอขอบคุณ! ขอขอบคุณ!";
+	close;
+}
+
+1@rgsr,31,186,3	script	Researcher#rgsr_dum_4	4_LGTSCIENCE,{
+	mes "[Rebellion Crew]";
+	mes "เกิดอะไรขึ้น?";
+	mes "อ้าาา ... ฉันแค่อยากกลับบ้าน ...";
+	close;
+}
+
+1@rgsr,24,186,5	script	Researcher#rgsr_dum_5	4_F_SCIENCE,{
+	mes "[Rebellion Crew]";
+	mes "ทำไมคุณถึงมาที่นี่เพื่อช่วยฉัน?";
+	mes "องครักษ์ขององค์กร ... ไม่ต้องรอ ...";
+	next;
+	mes "[Rebellion Crew]";
+	mes "ฉันนึกว่านายเป็นคนกักขังพวกเราไว้ ... !";
+	mes "ทำไมพวกเขาถึงทำเช่นนั้น?";
+	close;
+}
+
+1@rgsr,25,182,7	script	Researcher#rgsr_dum_6	4_M_HUMAN_01,{
+	mes "[Rebellion Crew]";
+	mes "ขี้โกงเหล่านี้เอารายงานการวิจัยของฉันและฉันก็หนีมาที่นี่";
+	mes "มันเป็นสเปรย์ไล่แมลงเพื่อป้องกันแมลงดูดเลือด!";
+	next;
+	mes "[Rebellion Crew]";
+	mes "นั่นเป็นงานวิจัยส่วนตัวของฉันฉันไม่รู้ว่าทำไมพวกเขาถึงเอามัน!";
+	mes "คุณไม่สามารถนำรายงานการวิจัยของคนอื่นไปทิ้งได้";
+	close;
+}
+
+1@rgsr,40,186,3	script	Rebellion Crew#rgsr_dum_1	4_M_ILYA,{
+	mes "[Erst]";
+	mes "ฉันเตรียมตัวมาแล้ว แต่มันง่ายกว่าที่คิด";
+	mes "ตอนนี้ฉันติดอยู่ที่นี่ ฮิฮิฮิ!";
+	close;
+}
+
+
+1@rgsr,33,185,3	script	Rebellion Crew#rgsr_dum_2	4_M_REBELLION2,{
+	mes "[Erst]";
+	mes "Researcherที่เหลือจะรวมตัวกันที่นี่เพื่อความปลอดภัย";
+	mes "กบฏจะปกป้องพวกเขาและช่วยให้พวกเขาหลบหนี";
+	close;
+}
+
+1@rgsr,33,185,3	script	Rebellion Crew#rgsr_dum_3	4_F_ANYA,{
+	mes "[Erst]";
+	mes "ฉันคิดว่าพวกมันมีแรงอยู่ข้างในน้อยกว่า แต่ฉันไม่คิดว่าพวกเขาจะติดตั้งก๊าซพิษ";
+	mes "คนส่วนใหญ่หนีไปแล้วเหลือ แต่ศัตรู";
+	close;
+}
+
+1@rgsr,235,143,5	script	Detained Researcher#rgsr_res_1	4_F_SCIENCE,{
+	explode(.@T$,'rescued$,":");
+	if(!atoi(.@t$[0])){
+		mes "[ Researcher ]";
+		mes "ของฉัน ... การค้นหาของฉัน ... วัสดุ ...";
+		mes "พวกเขาเอามันทั้งหมด!";
+		mes "พวกเขาเอาทุกอย่าง!";
+		next;
+		cutin "16go_01",0;
+		mes "[Gonie]";
+		mes "... ... ...";
+		next;
+		cutin "",255;
+		npctalk "ฉันจะอยู่! ขอขอบคุณ!";
+		mes "โอ้คุณมาเพื่อปกป้องฉันเหรอ?";
+		mes "ฉันจะไปกับคุณขอบคุณ!";
+		next;
+		mes "[ Researcher ]";
+		mes "คุณอยู่ที่นั่นเพื่อปกป้องฉันเหรอ?";
+		mes "ฉันจะไปกับคุณขอบคุณ!";
+		.@T$[0] = "1";
+		'rescued$ = implode(.@T$,":");
+		close2;
+		F_InstanceHide(strnpcinfo(0),1);
+		end;
+	}
+	end;
+}
+
+1@rgsr,237,108,3	script	Detained Researcher#rgsr_res_2	4_LGTSCIENCE,{
+	explode(.@T$,'rescued$,":");
+	if(!atoi(.@t$[1])){
+		mes "[ Researcher ]";
+		mes "ฉันคิดว่าพวกเขาไล่คนบ้าทั้งหมดออกไป ...";
+		mes "โดนตบหลังหัวแบบนี้";
+		mes "Tsk.";
+		next;
+		mes "[ Researcher ]";
+		mes "คุณมาที่นี่เพื่อช่วยเราหรือไม่?";
+		mes "พาฉันออกไปจากที่นี่!";
+		mes "เราหนีไม่ได้เพราะพวกมันวางแก๊สพิษไว้ข้างนอกประตู!";
+		next;
+		mes "[ Researcher ]";
+		mes "ใช่ฉันรู้เล็กน้อยเกี่ยวกับ Heart Hunters ฉันจะบอกคุณทุกอย่าง!";
+		next;
+		cutin "ep162_est02",2;
+		mes "[Erst]";
+		mes "อา? คุณมีข้อมูลเพิ่มเติมที่จะแบ่งปันหรือไม่?";
+		mes "คุณอยากออกไปข้างนอกและคุยเรื่องนี้กับฉันอย่างใจเย็นไหม?";
+		next;
+		cutin "ep162_est01",2;
+		mes "[Erst]";
+		mes "ฉันจะพาผู้ชายคนนี้ออกไปจากที่นี่และคุณดูห้องอื่น ๆ";
+		.@T$[1] = "1";
+		'rescued$ = implode(.@T$,":");
+		close2;
+		cutin "",255;
+		F_InstanceHide(strnpcinfo(0),1);
+		end;
+	}
+	end;
+}
+
+1@rgsr,237,71,3	script	Detained Researcher#rgsr_res_3	4_F_FRUIT,{
+	explode(.@T$,'rescued$,":");
+	if(!atoi(.@t$[2])){
+		mes "[ Researcher ]";
+		mes "โปรดช่วยฉันด้วย!";
+		mes "ฉันทำงานมามากและไม่ได้รับค่าจ้าง!";
+		next;
+		mes "[ Researcher ]";
+		mes "Schlein Schlein อยู่ที่ไหน?";
+		mes "เขาเป็นคนทรยศ!";
+		mes "ฉันได้เห็นมันด้วยตาของฉันเองเขาเพิ่งฆ่าผู้คุม ...";
+		next;
+		select("ใจเย็น ๆ.");
+		mes "[ Researcher ]";
+		mes "ตอนนี้ปลอดภัยแล้วหรือยัง?";
+		mes "ฉันดีใจที่ได้รับการว่าจ้างที่ Rekenber แต่จะเกิดอะไรขึ้นกับ บริษัท ขนาดใหญ่เช่นนี้ ...";
+		next;
+		mes "[ Researcher ]";
+		mes "พูดว่าอะไรนะ? กบฏกำลังจะมาช่วยเรา?";
+		mes "ฉันจะหนีไปกับคุณแทนไม่ได้เหรอ?";
+		next;
+		mes "[ Researcher ]";
+		mes "โอ้ ... คุณเป็นส่วนหนึ่งของทีมรีคอน?";
+		mes "ได้เลย ฉันจะรอหน่วยกู้ภัย";
+		mes "หลายคนหนีโดยทุบหน้าต่างวิ่งหนี ..";
+		next;
+		mes "[ Researcher ]";
+		mes "โอ้คุณรู้แล้ว";
+		mes "ตกลง. ตอนนี้ฉันจะเงียบและรอ";
+		mes "แม้ว่าเครื่องแบบของคุณจะเจ๋งมาก";
+		.@T$[2] = "1";
+		'rescued$ = implode(.@T$,":");
+		end;
+	}
+	mes "[ Researcher ]";
+	mes "ฉันรู้ว่า. ฉันรู้ว่า.";
+	mes "ถ้าฉันรอที่นี่พวกกบฏจะมาช่วยฉันไหม";
+	mes "แล้วฉันจะสบายดี";
+	next;
+	mes "[ Researcher ]";
+	mes "แต่อีกครั้งเครื่องแบบของคุณเจ๋งมาก";
+	close;
+}
+
+1@rgsr,241,51,0	script	Scattered Documents#rgsr	4_ENERGY_BLUE,{
+	if(checkquest(7863) == -1){
+		mes "นี่คือรายชื่อทีมรักษาความปลอดภัยขององค์กร";
+		mes "บางอันมีวงกลมล้อมรอบ ... บางอันก็ขีดฆ่า";
+		next;
+		cutin "ep171_as01",2;
+		mes "[Ashley]";
+		mes "คนที่วนอยู่น่าจะเป็นคนที่ตอบรับเข้าคัดเลือก ...";
+		mes "ทีมของฉันคือทีมที่มีเครื่องหมาย X อยู่ข้างๆ";
+		next;
+		mes "[Ashley]";
+		mes "มันเป็นสัญญาจ้าง ...";
+		mes "มีแผนคร่าวๆสำหรับวันจู่โจม";
+		mes "ไม่อยากจะเชื่อเลยว่ามันมาถึงจุดนี้ ...";
+		next;
+		mes "[Ashley]";
+		mes "นี่ตั้งใจยั่วฉัน";
+		mes "มันจะไม่ทำงานในครั้งนี้ ฉันจะติดตามเรื่องนี้จนจบ";
+		next;
+		mes "[Ashley]";
+		mes "ฉันควรนำกลับไปที่ Tess และวิเคราะห์";
+		setquest 7863;
+		close3;
+	}
+	mes "ฉันมีข้อมูลที่นี่แล้ว";
+	mes "ที่นี่ไม่มีอะไรให้ดูอีกแล้ว";
+	close;
+
+OnInstanceInit:
+	questinfo(QTYPE_CLICKME,QMARK_YELLOW,"checkquest (7863) == -1");
+	end;
+}
+
+1@rgsr,59,136,0	script	#rgsr_kitchen_out	WARPNPC,1,2,{
+	OnTouch:
+		warp 'rgsr$,66,136;
+		end;
+}
+
+1@rgsr,51,184,0	script	#rgsr_conf_in_1	WARPNPC,1,2,{
+OnTouch:
+	if('gas_left == 0){
+		warp 'rgsr$,46,184;
+	} else {
+		dispbottom "Voice Behind Door:ใครอยู่ข้างนอก? เอาแก๊สพิษประหลาดนั่นออก !!";
+	}
+	end;
+}
+
+1@rgsr,51,216,0	script	#rgsr_conf_in_2	WARPNPC,1,2,{
+OnTouch:
+	if('gas_left == 0){
+		warp 'rgsr$,46,216;
+	} else {
+		dispbottom "Voice Behind Door:ใครอยู่ข้างนอก? เอาแก๊สพิษประหลาดนั่นออก !!";
+	}
+	end;
+}
+
+1@rgsr,49,184,0	script	#rgsr_conf_out_1	WARPNPC,1,2,{
+OnTouch:
+	warp 'rgsr$,54,187;
+	end;
+}
+
+1@rgsr,49,216,0	script	#rgsr_conf_out_2	WARPNPC,1,2,{
+OnTouch:
+	warp 'rgsr$,54,216;
+	end;
+}
+
+1@rgsr,186,216,0	script	#rgsr_lab_in_1	WARPNPC,1,2,{
+OnTouch:
+	if('gas_right == 0){
+		warp 'rgsr$,191,216;
+	} else {
+		mes "ตรวจพบนิติบุคคลแปลกปลอม ปฏิเสธการเข้าใช้.";
+	}
+	end;
+}
+
+1@rgsr,188,216,0	script	#rgsr_lab_out_1	WARPNPC,1,2,{
+OnTouch:
+	warp 'rgsr$,183,216;
+	end;
+}
+
+1@rgsr,214,136,0	script	#rgsr_lab_in_2	WARPNPC,1,2,{
+OnTouch:
+	if('gas_right == 0){
+		warp 'rgsr$,219,136;
+	} else {
+		mes "ตรวจพบนิติบุคคลแปลกปลอม ปฏิเสธการเข้าใช้.";
+	}
+	end;	
+}
+
+1@rgsr,216,136,0	script	#rgsr_lab_out_2	WARPNPC,1,2,{
+OnTouch:
+	warp 'rgsr$,211,136;
+	end;
+}
+
+1@rgsr,214,108,0	script	#rgsr_lab_in_3	WARPNPC,1,2,{
+OnTouch:
+	if('gas_right == 0){
+		warp 'rgsr$,219,108;
+	} else {
+		mes "ตรวจพบนิติบุคคลแปลกปลอม ปฏิเสธการเข้าใช้.";
+	}
+	end;	
+}
+
+1@rgsr,216,108,0	script	#rgsr_lab_out_3	WARPNPC,1,2,{
+OnTouch:
+	warp 'rgsr$,211,108;
+	end;
+}
+
+1@rgsr,214,76,0	script	#rgsr_lab_in_4	WARPNPC,1,2,{
+OnTouch:
+	if('gas_right == 0){
+		warp 'rgsr$,219,76;
+	} else {
+		mes "ตรวจพบนิติบุคคลแปลกปลอม ปฏิเสธการเข้าใช้.";
+	}
+	end;	
+}
+
+1@rgsr,216,76,0	script	#rgsr_lab_out_4	WARPNPC,1,2,{
+OnTouch:
+	warp 'rgsr$,211,76;
+	end;
+}
+
+1@rgsr,214,44,0	script	#rgsr_lab_in_5	WARPNPC,1,2,{
+OnTouch:
+	if('rgsr < 4){
+		npctalk "Communication Controller:จำเป็นต้องมีการสนับสนุนสำหรับพื้นที่นี้",instance_npcname("Communication Controller#rgsr_lab_5");
+		sleep2 2000;
+		unittalk getcharid(3),strcharinfo(0) + " :เมื่อกี้คืออะไร...",bc_self;
+		end;
+	}
+	if('gas_right == 0){
+		warp 'rgsr$,219,44;
+	} else {
+		mes "ตรวจพบนิติบุคคลแปลกปลอม ปฏิเสธการเข้าใช้.";
+	}
+	end;	
+}
+
+1@rgsr,216,44,0	script	#rgsr_lab_out_5	WARPNPC,1,2,{
+OnTouch:
+	warp 'rgsr$,211,44;
+	end;
+}
+
+1@rgsr,215,48,0	script	Communication Controller#rgsr_lab_5	HIDDEN_NPC,{ end; }
+
+
+1@rgsr,1,1,0	script	#rgsr_mob_1	HIDDEN_WARP_NPC,{
+OnMobSpawn:
+	F_InstanceHide(strnpcinfo(0),4);
+	.@map$ = 'rgsr$;
+	setarray .@xy$,"135,138,86,89","114,117,86,89","114,117,103,106","135,138,103,106","154,157,75,78","154,157,92,95","149,152,112,115","100,103,112,115","99,102,92,95","74,77,66,69","76,79,93,96","51,54,96,100","30,33,112,116","49,52,130,133";
+	for(.@i = 0; .@i < getarraysize(.@xy$); .@i++){
+		explode(.@T$,.@xy$[.@i],",");
+		areamonster .@map$,atoi(.@T$[0]),atoi(.@T$[2]),atoi(.@T$[1]),atoi(.@T$[3]),"Special Guard",3622,3,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+		'guard_count += 3;
+	}
+	monster .@map$,56,67,"Special Guard",3622,1,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	monster .@map$,48,63,"Special Guard",3622,1,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	monster .@map$,42,60,"Special Guard",3622,1,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	monster .@map$,36,56,"Special Guard",3622,1,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	monster .@map$,28,52,"Special Guard",3622,1,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	monster .@map$,15,51,"Special Guard",3622,1,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	'guard_count += 6;
+	end;
+	
+OnMobKill:
+	'guard_count -= 1;
+	end;
+}
+
+1@rgsr,1,1,0	script	#rgsr_mob_2	HIDDEN_WARP_NPC,{
+OnMobSpawn:
+	F_InstanceHide(strnpcinfo(0),4);
+	.@map$ = 'rgsr$;
+	setarray .@xy$,"98,105,132,139","134,141,132,139","152,159,132,139","82,89,212,219","110,117,212,219";
+	for(.@i = 0; .@i < getarraysize(.@xy$); .@i++){
+		explode(.@T$,.@xy$[.@i],",");
+		areamonster .@map$,atoi(.@T$[0]),atoi(.@T$[2]),atoi(.@T$[1]),atoi(.@T$[3]),"Special Guard",3622,3,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	}
+	monster .@map$,117,136,"Special Guard",3622,3,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	end;
+	
+OnMobKill:
+	end;
+}
+
+1@rgsr,94,68,5	script	Heart Hunter#rgsr_mob_1	3622,3,3,{
+OnTouch:
+	F_InstanceHide(strnpcinfo(0),5);
+	.@map$ = 'rgsr$;
+	areamonster .@map$,96,68,99,71,"Special Guard",3622,4,instance_npcname("#rgsr_mob_1")+"::OnMobKill";
+	'guard_count += 4;
+	end;
+}
+
+1@rgsr,94,95,5	script	Heart Hunter#rgsr_mob_2	3622,3,3,{
+OnTouch:
+	F_InstanceHide(strnpcinfo(0),5);
+	.@map$ = 'rgsr$;
+	areamonster .@map$,96,92,99,96,"Special Guard",3622,4,instance_npcname("#rgsr_mob_1")+"::OnMobKill";
+	'guard_count += 4;
+	end;
+}
+
+1@rgsr,1,1,0	script	#rgsr_gas_left	HIDDEN_WARP_NPC,{
+OnMobSpawn:
+	F_InstanceHide(strnpcinfo(0),4);
+	.@map$ = 'rgsr$;
+	setarray .@xy$,"54,61,180,187","54,61,212,219";
+	for(.@i = 0; .@i < getarraysize(.@xy$); .@i++){
+		explode(.@T$,.@xy$[.@i],",");
+		areamonster .@map$,atoi(.@T$[0]),atoi(.@T$[2]),atoi(.@T$[1]),atoi(.@T$[3]),"Deadly Poisonous Gas",20352,5,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+		'gas_left += 5;
+	}
+	monster .@map$,86,199,"Deadly Poisonous Gas",20352,1,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	monster .@map$,86,167,"Deadly Poisonous Gas",20352,1,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+	'gas_left += 2;
+	end;
+	
+OnMobKill:
+	'gas_left -= 1;
+	if('gas_left == 0){
+		mapannounce 'rgsr$,"Erst:มันคือใคร? คุณคือAshley? คุณเป็นนักผจญภัยหรือไม่?",bc_map,0x0D98BA;
+		F_InstanceHide("Erst#rgsr_conf",4);
+		F_InstanceHide("Access Controller#rgsr_conf",4);
+		F_InstanceHide("Researcher#rgsr_dum_4",4);
+		F_InstanceHide("Researcher#rgsr_dum_5",4);
+		F_InstanceHide("Researcher#rgsr_dum_6",4);
+		F_InstanceHide("Rebellion Crew#rgsr_dum_1",4);
+		F_InstanceHide("Rebellion Crew#rgsr_dum_2",4);		
+		F_InstanceHide("Rebellion Crew#rgsr_dum_3",4);
+	}
+	end;
+}
+
+1@rgsr,1,1,0	script	#rgsr_gas_right	HIDDEN_WARP_NPC,{
+OnMobSpawn:
+	F_InstanceHide(strnpcinfo(0),4);
+	.@map$ = 'rgsr$;
+	setarray .@xy$,"154,161,212,219:3","175,182,212,219:5","164,171,212,219:3","164,171,196,203:3","164,171,172,179:3","164,171,132,193:3","184,191,124,131:3","200,207,132,139:5","184,191,104,111:3","200,207,104,111:5","184,191,92,99:3","200,207,72,79:5","184,191,64,71:3","184,191,40,47:3","200,207,40,47:5";
+	for(.@i = 0; .@i < getarraysize(.@xy$); .@i++){
+		explode(.@T$,.@xy$[.@i],":");
+		explode(.@TT$,.@T$[0],",");
+		.@amount = atoi(.@T$[1]);
+		areamonster .@map$,atoi(.@TT$[0]),atoi(.@TT$[2]),atoi(.@TT$[1]),atoi(.@TT$[3]),"Deadly Poisonous Gas",20352,.@amount,instance_npcname(strnpcinfo(0))+"::OnMobKill";
+		'gas_right += .@amount;
+	}
+	end;
+	
+OnMobKill:
+	'gas_right -= 1;
+	dispbottom "Variable:"+'gas_right;
+	if('gas_right == 0){
+		F_InstanceHide("Detained Researcher#rgsr_res_1",4);
+		F_InstanceHide("Detained Researcher#rgsr_res_2",4);
+		F_InstanceHide("Detained Researcher#rgsr_res_3",4);
+		F_InstanceHide("Ashley#rgsr_lab",4);
+	}
+	end;
+}
+
+1@rgsr,125,188,3	script	Restrained Specimen#rgsr_boss	20353,2,3,{
+	end;
+	
+OnTouch:
+	if(!'boss_trigger){
+		.@map$ = 'rgsr$;
+		'boss_trigger = 1;
+		specialeffect 133;
+		npctalk "อย่า ... อย่า ... เข้ามาใกล้ฉัน ... !! หัวฉันมันเจ็บ ...";
+		mapannounce .@map$,"อย่า ... อย่า ... เข้ามาใกล้ฉัน ... !! หัวฉันมันเจ็บ ...",bc_map,0x00FF00;
+	}
+	end;
+	
+OnFail:
+	.@map$ = 'rgsr$;
+	specialeffect 133;
+	npctalk "สุดยอด - !! นั่นแน่ ... ทำอะไรลงไป !!";
+	mapannounce .@map$,"สุดยอด - !! นั่นแน่ ... ทำอะไรลงไป !!",bc_map,0x00FF00;
+	end;
+	
+OnSummonBoss:
+	.@map$ = 'rgsr$;
+	F_InstanceHide("Control Device#rgsr_blue",5);
+	F_InstanceHide("Control Device#rgsr_red",5);
+	F_InstanceHide("Control Device#rgsr_white",5);
+	F_InstanceHide("Control Device#rgsr_yellow",5);
+	mapannounce .@map$,"อะฮ่าฮ่าฮ่า .. ฮ่าฮ่าฮ่า ... ข้าจะฆ่าพวกเจ้าให้หมด !!!!",bc_map,0x00FF00;
+	sleep 2000;
+	mapannounce .@map$,"Ashley:เกิดอะไรขึ้น? * คลิก * ล็อคคือ ... !!",bc_map;
+	sleep 2000;
+	mapannounce .@map$,"ฉันไม่ใช่คนบกพร่อง! ฉันไม่ใช่สัตว์ประหลาด!",bc_map,0x00FF00;
+	specialeffect 90;
+	monster .@map$,125,188,"Failed Specimen",20353,1,instance_npcname(strnpcinfo(0))+"::OnBossKill";
+	F_InstanceHide(strnpcinfo(0),1);
+	end;
+	
+OnBossKill:
+	'rgsr = 10;
+	F_InstanceHide("Ashley#171_rgsr_cen",5);
+	F_InstanceHide("Ashley#171_rgsr_cen_in",4);
+	end;
+}
+
+1@rgsr,195,205,0	script	Research Report#rgsr_00	4_ENERGY_BLUE,{
+	mes "เป็นข้อมูลเกี่ยวกับประสิทธิภาพใหม่และผลข้างเคียงของยาใหม่";
+	mes "อย่างไรก็ตามมีข้อมูลเกี่ยวกับส่วนผสมหลัก";
+	close;
+}
+
+1@rgsr,198,199,0	script	Research Report#rgsr_01	4_ENERGY_BLUE,{
+	mes "ภาพวาดบางส่วนถูกฉีกทิ้ง";
+	mes "ใครบางคนตั้งใจทำลายชิ้นส่วนที่เกี่ยวข้อง";
+	close;
+}
+
+1@rgsr,207,210,0	script	Research Report#rgsr_02	4_ENERGY_BLUE,{
+	mes "เอกสารบางส่วนได้รับความเสียหายอย่างมาก";
+	mes "ดูเหมือนจะเกี่ยวกับการพยายามสร้างอุปกรณ์โดยใช้การหักเหของแสง";
+	close;
+}
+	
+1@rgsr,226,226,0	script	Research Report#rgsr_03	4_ENERGY_BLUE,{
+	mes "ความลุ่มหลงและประมวลผลข้อมูลของ Lloyds";
+	mes "เหลือเพียงชื่อเรื่องเท่านั้นข้อความทั้งหมดจะถูกลบออก";
+	close;
+}
+
+1@rgsr,231,223,0	script	Research Report#rgsr_04	4_ENERGY_BLUE,{
+	mes "หนังสือเล่มเล็กขาดบางหน้า มีใครบางคนจงใจเลือกวัสดุ";
+	close;
+}
+
+1@rgsr,243,223,0	script	Research Report#rgsr_05	4_ENERGY_BLUE,{
+	mes "ข้อมูลการทดลองถูกลบออก มีร่องรอยชัดเจนว่ามีคนทำลายข้อมูล";
+	close;
+}

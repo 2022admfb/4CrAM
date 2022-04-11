@@ -1,0 +1,994 @@
+//===== rAthena Script =======================================
+//= Lighthalzen rewards NPCs
+//===== Description:=========================================
+//= Enchant and reward NPCs from Bio instance/dungeon item drop.
+//===== Changelogs:==========================================
+//= 1.0 Moved the NPCs from WolfchevLaboratory.txt. [Capuche]
+//============================================================
+
+// Weird Old Man (Rewards)
+//============================================================
+lighthalzen,342,291,4	script	Weird old man#Bio4Reward	4_M_EINOLD,{
+	if ((MaxWeight - Weight) < 2800 || !checkweight(1201, 1)) {
+		mes "^FF0000 ตรวจสอบสินค้าคงคลังของคุณ คุณมีไอเท็มมากเกินไปที่จะทำภารกิจ ^000000";
+		close;
+	}
+	mes "[ชายชราแปลก ๆ ]";
+	mes "ว้าวคนหนุ่มสาวสมัยนี้หยาบคายและไม่มีมารยาท";
+	next;
+	if (select("ไม่สนใจเขา", "คุยกับเขา") == 1) {
+		mes "[ชายชราแปลก ๆ ]";
+		mes "คุณชายหนุ่มเลวมาก!";
+		close;
+	}
+	mes "["+ strcharinfo(0) +"]";
+	mes "ครับคุณสบายดีไหม ??";
+	next;
+	mes "[ชายชราแปลก ๆ ]";
+	mes ".... ?? คุณไม่เหมือนคนหนุ่มสาวคนอื่น ๆ คุณมีมารยาทดี! รู้ไหมว่าเกิดอะไรขึ้นกับฉัน .. ?";
+	next;
+	switch(rand(1,2)) {
+	case 1:
+		mes "[ชายชราแปลก ๆ ]";
+		mes "ฉันกำลังเดินทางไปเยี่ยมลูกชายที่อาศัยอยู่ใน Rune-Midgarts มันไกลมากเลยนั่งเครื่องบินไปและ ..";
+		next;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "คนหนุ่มสาวเหล่านั้น ... เสียงดังมาก .... ฉันยืนอยู่ แต่ไม่มีใครเสนอที่นั่งให้ฉัน.. และพวกเขาก็แค่พูดเสียงดังซึ่งทำให้ทุกคนรำคาญ";
+		next;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "ฉันสามารถบรรยายได้ถ้าฉันอายุน้อยกว่า 10 ปี ..";
+		next;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "Pffff .. ไม่เคยชอบเวลาที่ผ่านไป ....";
+		next;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "แล้วคุณล่ะ ... จะทำยังไง ??";
+		next;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "ในสถานที่สาธารณะที่เปิดโล่งคุณควรอยู่เงียบ ๆ ไปยังจุดหมายปลายทางและเสนอที่นั่งให้กับผู้สูงอายุและผู้ทุพพลภาพ";
+		next;
+		break;
+	case 2:
+		mes "[ชายชราแปลก ๆ ]";
+		mes "ฉันกำลังเดินทางไปเยี่ยมลูกชายของฉันที่อาศัยอยู่ใน Rune-Midgarts มันไกลมากเลยนั่งเครื่องบินไปและ ..";
+		next;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "คนหนุ่มสาวเหล่านั้น ... เสียงดังมาก .... ฉันยืนอยู่ แต่ไม่มีใครเสนอที่นั่งให้ฉัน.. และพวกเขาก็แค่พูดเสียงดังซึ่งทำให้ทุกคนรำคาญ";
+		next;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "ฉันสามารถบรรยายได้ถ้าฉันอายุน้อยกว่า 10 ปี ..";
+		next;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "Pffff .. ไม่เคยชอบเวลาที่ผ่านไป ....";
+		next;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "แล้วคุณล่ะ ... จะทำยังไง ??";
+		next;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "ในสถานที่สาธารณะที่เปิดโล่งคุณควรอยู่เงียบ ๆ ไปยังจุดหมายปลายทางและเสนอที่นั่งให้กับผู้สูงอายุและผู้ทุพพลภาพ ขวา?";
+		next;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "ไม่ถูกต้อง?!";
+		next;
+		switch(rand(1,2)) {
+		case 1:
+			mes "[ชายชราแปลก ๆ ]";
+			mes "อ้าวแล้วรู้อะไรมั้ย ... ?";
+			next;
+			mes "[ชายชราแปลก ๆ ]";
+			mes "ครั้งหนึ่งฉันกำลังเดินอยู่ในเมืองและมีเด็กผู้ชายบางคนถุยน้ำลายบนถนนและกำลังรบกวนเด็กผู้หญิงที่เดินผ่านไป ... ตูตู!";
+			next;
+			mes "[ชายชราแปลก ๆ ]";
+			mes "หมาหมู่โลก.. จะเป็นยังไง ?? แม้กระทั่งวันเวลาที่พวกเขาทำมัน ..";
+			next;
+			switch(rand(1,2)) {
+			case 1:
+				mes "[ชายชราแปลก ๆ ]";
+				mes "อ้าวแล้วรู้อะไรมั้ย ... ?";
+				next;
+				break;
+			case 2:
+				mes "[ชายชราแปลก ๆ ]";
+				mes "อ้าวแล้วรู้อะไรมั้ย ... ?";
+				next;
+				mes "[ชายชราแปลก ๆ ]";
+				mes "ล่าสุดหนุ่ม ๆ อดใจไม่ไหว !!!!";
+				next;
+				mes "[ชายชราแปลก ๆ ]";
+				mes "บ่อยครั้งที่พวกเขาบอกว่าจะเลิก .. พวกเขาจะใช้ชีวิตอย่างไรกับความคิดแบบนั้น.. ตู.";
+				next;
+				mes "[ชายชราแปลก ๆ ]";
+				mes "หางานได้ไม่ยาก เป็นเรื่องยากมากที่จะได้รับการว่าจ้าง แต่แล้วพวกเขาก็ไม่สามารถยืนอยู่ที่นั่นได้หนึ่งสัปดาห์และออกจากที่ทำงาน";
+				next;
+				mes "[ชายชราแปลก ๆ ]";
+				mes "ใจร้อนไร้ความรับผิดชอบแค่ไหน !!";
+				next;
+				mes "[ชายชราแปลก ๆ ]";
+				mes "อ้าวแล้วรู้อะไรมั้ย ... ?";
+				next;
+				break;
+			}
+		case 2:
+			mes "[ชายชราแปลก ๆ ]";
+			mes "อ้าวแล้วรู้อะไรมั้ย ... ?";
+			next;
+			break;
+		}
+	}
+	mes "^E7A43D ชายชราพูดซ้ำแล้วซ้ำเล่า ^000000";
+	next;
+	mes "[ชายชราแปลก ๆ ]";
+	mes "หืม ...... คุณไม่เหมือนคนหนุ่มสาวทั่วไปคุณก็ดูค่อนข้างอดทนเช่นกัน ฉันชอบมัน!!!";
+	next;
+	mes "[ชายชราแปลก ๆ ]";
+	mes "ตอนนี้ฉันเป็นเพียงชายชราที่อ่อนแอ แต่เมื่อฉันยังเด็กฉันเป็นพ่อค้าที่มีชื่อเสียงในเมือง";
+	next;
+	mes "[ชายชราแปลก ๆ ]";
+	mes "ฉันหยุดกิจการไปพักหนึ่งแล้ว";
+	mes "แต่อดีตลูกค้าของฉันติดต่อฉันและถามฉัน";
+	next;
+	mes "[ชายชราแปลก ๆ ]";
+	mes "ถ้าฉันสามารถหาวัตถุที่ไม่รู้จักชื่อ 'Will of Warrior', 'Thirst for Blood' และ 'Chill of the Dead' ให้เขาได้";
+	next;
+	mes "[ชายชราแปลก ๆ ]";
+	mes "ฉันชอบความสุภาพของคุณซึ่งคนหนุ่มสาวส่วนใหญ่ไม่มีดังนั้นถ้าคุณได้ฉันมาฉันจะให้ของบางอย่างที่ฉันถือว่าเป็นสมบัติของฉัน";
+	next;
+	while(1) {
+		switch(select("เมื่อฉันรวบรวมพวกเขาฉันจะกลับมา", "แสดงชุดเกราะให้ฉันดู", "แสดงอาวุธให้ฉันดู")) {
+		case 1:
+			mes "[ชายชราแปลก ๆ ]";
+			mes "ตกลงชายหนุ่ม แล้วพบกันใหม่.";
+			close;
+		case 2:
+			mes "[ชายชราแปลก ๆ ]";
+			mes "ดังนั้นคุณสนใจชุดเกราะ";
+			next;
+			mes "[ชายชราแปลก ๆ ]";
+			mes "นี่คือชุดเกราะที่ฉันมี";
+			next;
+			for(.@i = 1; .@i < 8; .@i++) {
+				if (((.@i == 1 || .@i == 5) && (countitem(6469) >= 100) && (countitem(6470) >= 50) && (countitem(6471) >= 35)) || 
+				    ((.@i == 2 || .@i == 3) && (countitem(6469) >= 100) && (countitem(6470) >= 50) && (countitem(6471) >= 22)) ||
+				    ((.@i == 4 || .@i == 7) && (countitem(6469) >= 300) && (countitem(6470) >= 300) && (countitem(6471) >= 400)) ||
+				    ((.@i == 6) && (countitem(6469) >= 100) && (countitem(6470) >= 50) && (countitem(6471) >= 30))) {
+					.@armor$[.@i] = "^0000FF";
+				} else {
+					.@armor$[.@i] = "^FF0000";
+				}
+			}
+			while(1) {
+				switch(select(
+					"แสดงรายการอื่น ๆ",
+					""+.@armor$[1]+"โล่ยักษ์ ^000000",
+					""+.@armor$[2]+"หนังสือโบราณ Geffenia-Water ^000000",
+					""+.@armor$[3]+"พระคัมภีร์แห่งคำสัญญา (ฉบับที่ 2) ^000000",
+					""+.@armor$[4]+"แหลมกู้ ^000000",
+					""+.@armor$[5]+"กุญแจมือฆาตกร ^000000",
+					""+.@armor$[6]+"ชุดปฏิบัติการสีเขียว ^000000",
+					""+.@armor$[7]+"เครื่องประดับทองโบราณ ^000000"
+				)) {
+				case 1:
+					mes "[ชายชราแปลก ๆ ]";
+					mes "ได้ดู.";
+					next;
+					.@break = 1;
+					break;
+				case 2:
+					mes "<< โล่ยักษ์ [1] >>";
+					mes "ลดความเสียหาย 5% จากมอนสเตอร์ขนาดใหญ่หากรีไฟน์ Lv เท่ากับ 9 จะลดความเสียหายอีก 5%";
+					mes "Shield / Def 130 / น้ำหนัก 280 / Lv 100 ที่ต้องการ / Socket 1 / สำหรับคลาส Swordman ที่ 3";
+					callsub L_Reward, 2160, 100, 50, 35; //Giant_Shield
+					break;
+				case 3:
+					mes "<< หนังสือโบราณ Geffenia-Water [1] >>";
+					mes "INT + 1, MDEF + 2 หากจุด INT ดั้งเดิมคือ 120, MATK + 10, MHP + 800";
+					mes "เมื่อใช้ Lacryma Stick% การร่ายจาก Storm Gust, Frost Misty และ Jack Frost จะลดลงเท่ากับ 4 เท่าของ Refine Lv";
+					mes "Shield / Def 30 / น้ำหนัก 100 / Lv 100 ที่ต้องการ / Socket 1 / สำหรับ Warlock";
+					callsub L_Reward, 2161, 100, 50, 22; //Geffenia_Book_Water
+					break;
+				case 4:
+					mes "<< พระคัมภีร์แห่งคำสัญญา (ฉบับที่ 2) [1] >>";
+					mes "MDEF + 5 อนุญาตให้ใช้ 'พลังของโอดิน' (Lv 2) เพิ่มอีก 5% สำหรับสกิลฮีล";
+					mes "Shield / Def 20 / น้ำหนัก 50 / Lv 140 ที่ต้องการ / Socket 1 / สำหรับ Archbishop";
+					callsub L_Reward, 2162, 100, 50, 22; //Bible_Of_Promise2
+					break;
+				case 5:
+					mes "<< กอบกู้แหลม [0] >>";
+					mes "อนุญาตให้ใช้ 'Cicada Skin Shed' (Lv 1) เวลาเย็นลงสำหรับทักษะนี้คือ 30 วินาที เมื่อใส่มันการใช้ SP สำหรับการใช้สกิลใด ๆ จะเพิ่มขึ้นเป็นสองเท่าเมื่อถอดมันออก SP - 1200";
+					mes "เสื้อผ้า / Def 1 / น้ำหนัก 40 / Lv ที่ต้องการ 130 / Socket 0 / สำหรับ Archbishop";
+					callsub L_Reward, 2582, 300, 300, 400; //Salvage_Cape
+					break;
+				case 6:
+					mes "<< กุญแจมือฆาตกร [1] >>";
+					mes "MSP + 20, CRI + 3 เมื่อใส่ Krishna, ATK + 50, พลังโจมตีจาก 'Sonic Blow' เพิ่มขึ้น 50%, FLEE - 30 เมื่อใส่ Cakram CRI + 4 พลังโจมตีคริติคอลเพิ่มขึ้น 40%, MHP - 10 %.";
+					mes "อุปกรณ์เสริม / Def 3 / น้ำหนัก 40 / Lv 100 ที่ต้องการ / Socket 1 / สำหรับ Guillotine Cross";
+					callsub L_Reward, 2892, 100, 50, 35; //Assassin_Handcuffs
+					break;
+				case 7:
+					mes "<< ชุดปฏิบัติการสีเขียว [1] >>";
+					mes "DEX + 1, MSP + 30 การใช้ Scalpel จะทำให้ดร็อป 'Immortal Heart', 'Alcohol' โดยมีโอกาสหนึ่งเมื่อล่าสัตว์ประหลาดประเภท Human, Animal การปรับแต่ง Lv มีผลต่ออัตราการดรอป";
+					mes "เกราะ / Def 66 / น้ำหนัก 66 / Lv 100 ที่ต้องการ / Socket 1 / สำหรับ Generic";
+					callsub L_Reward, 15044, 100, 50, 30; //Green_Operation_Coat
+					break;
+				case 8:
+					mes "<< เครื่องประดับทองโบราณ [1] >>";
+					mes "ถ้าเลเวลพื้นฐานคือ 150 สถานะทั้งหมด +2 สำหรับ Swordman, Merchant, Thief Classes ATK + 8% สำหรับ Magician, Acolyte คลาส MATK + 8%, Heal Power + 7% สำหรับคลาส Archer DEX + 3, โจมตีระยะไกล พลัง + 10%";
+					mes "Helm / Def 7 / Location - Upper / Weight 40 / Required Lv 100 / Socket 1 / for 3rd Job Classes";
+					callsub L_Reward, 18570, 300, 300, 400; //Ancient_Gold_Deco
+					break;
+				}
+				if (.@break) {
+					.@break = 0;
+					break;
+				}
+			}
+			break;
+		case 3:
+			mes "[ชายชราแปลก ๆ ]";
+			mes "ดังนั้นคุณสนใจอาวุธ";
+			next;
+			mes "[ชายชราแปลก ๆ ]";
+			mes "นี่คืออาวุธที่ฉันมี";
+			next;
+			for(.@i = 1; .@i < 15; .@i++) {
+				if (((.@i == 1) && (countitem(6469) >= 50) && (countitem(6470) >= 100) && (countitem(6471) >= 10)) ||
+				((.@i == 2) && (countitem(6469) >= 50) && (countitem(6470) >= 100) && (countitem(6471) >= 85)) ||
+				((.@i == 3 || .@i == 4 || (.@i >= 8 && .@i < 11) || .@i >= 12) && (countitem(6469) >= 50) && (countitem(6470) >= 100) && (countitem(6471) >= 35)) ||
+				((.@i == 5 || .@i == 7 || .@i == 11) && (countitem(6469) >= 50) && (countitem(6470) >= 100) && (countitem(6471) >= 40)) ||
+				((.@i == 6) && (countitem(6469) >= 300) && (countitem(6470) >= 300) && (countitem(6471) >= 400))) {
+					.@weapon$[.@i] = "^0000FF";
+				} else {
+					.@weapon$[.@i] = "^FF0000";
+				}
+			}
+			while(1) {
+				switch(select(
+					"แสดงรายการอื่น ๆ",
+					""+.@weapon$[1]+"ตัวแทนคาทาร์ ^000000",
+					""+.@weapon$[2]+"กิโยตินคาทาร์ ^000000",
+					""+.@weapon$[3]+"Ygnus Stale ^000000",
+					""+.@weapon$[4]+"จบเสกเทรา ^000000",
+					""+.@weapon$[5]+"ปืนใหญ่หอก ^000000",
+					""+.@weapon$[6]+"หอกยักษ์ ^000000",
+					""+.@weapon$[7]+"หนังสือคาถา Chilly ^000000",
+					""+.@weapon$[8]+"ไฟกู้คืน ^000000",
+					""+.@weapon$[9]+"Aztoe เล็บ ^000000",
+					""+.@weapon$[10]+"Scarletto Nail ^000000",
+					""+.@weapon$[11]+"Bloody Cross ^000000",
+					""+.@weapon$[12]+"หนังสติ๊ก ^000000",
+					""+.@weapon$[13]+"CrossBow ใหญ่ ^000000",
+					""+.@weapon$[14]+"คันธนู ^000000"
+				)) {
+				case 1:
+					mes "[ชายชราแปลก ๆ ]";
+					mes "ได้ดู.";
+					next;
+					.@break = 1;
+					break;
+				case 2:
+					mes "<< ตัวแทนคาทาร์ [1] >>";
+					mes "ทุก 2 คะแนน LUK ดั้งเดิมจะได้รับเพิ่ม 1 คะแนน HIT";
+					mes "Katar / ATK 170 / น้ำหนัก 120 / อาวุธ Lv 3 / Lv ที่ต้องการ 100 / Socket 1 / สำหรับ Guillotine Cross";
+					callsub L_Reward, 1290, 50, 100, 10; //Agent_Katar
+					break;
+				case 3:
+					mes "<< กิโยตินคาทาร์ [1] >>";
+					mes "DEX + 2 FLEE - 30 สร้างความเสียหายเพิ่มขึ้น 50% ให้กับสัตว์ประหลาดที่เป็นมนุษย์ เพิ่มความเสียหายอีก 30% สำหรับสกิล Cross Impact";
+					mes "Katar / ATK 200 / น้ำหนัก 150 / อาวุธ Lv 4 / Lv ที่ต้องการ 140 / Socket 1 / สำหรับ Guillotine Cross";
+					callsub L_Reward, 1291, 50, 100, 85; //Guillotine_Katar
+					break;
+				case 4:
+					mes "<< Ygnus Stale [1] >>";
+					mes "เมื่อทำการโจมตีระยะใกล้ให้ร่ายสถานะ Burn ให้กับผู้เล่นและศัตรูด้วยโอกาสที่แน่นอน";
+					mes "ขวานสองมือ / ATK 250 / น้ำหนัก 190 / คุณสมบัติไฟ / อาวุธ Lv 4 / Lv 95 ที่ต้องการ / ซ็อกเก็ต 1 / สำหรับอาชีพนักดาบชั้นสูง / พ่อค้า";
+					callsub L_Reward, 1392, 50, 100, 35; //Ygnus_Stale
+					break;
+				case 5:
+					mes "<< จบ Sektura [1] >>";
+					mes "เมื่อทำการโจมตีระยะใกล้ให้ร่าย Freezing ไปยังผู้เล่นและศัตรูด้วยโอกาสที่แน่นอน";
+					mes "ขวานสองมือ / ATK 250 / น้ำหนัก 190 / คุณสมบัติน้ำ / อาวุธ Lv 4 / Lv 95 ที่ต้องการ / ซ็อกเก็ต 1 / สำหรับอาชีพนักดาบชั้นสูง / พ่อค้า";
+					callsub L_Reward, 1393, 50, 100, 35; //End_Sektura
+					break;
+				case 6:
+					mes "<< หอกปืนใหญ่ [1] >>";
+					mes "MSP - 100, เพิ่ม 10% ของความเสียหายที่ได้รับผลกระทบด้วย Cannon Spear, พลัง ATK เพิ่มเติมของ Cannon Spear เทียบเท่า 3 เท่าของ Refine Lv";
+					mes "หอกมือเดียว / ATK 180 / น้ำหนัก 160 / อาวุธ Lv 4 / Lv 100 ที่ต้องการ / Socket 1 / สำหรับ Royal Guard";
+					callsub L_Reward, 1435, 50, 100, 40; //Cannon_Spear
+					break;
+				case 7:
+					mes "<< หอกยักษ์ [0] >>";
+					mes "ASPD - 10 เมื่อถูกถอดออกตัวละครจะได้รับ SP - 600 มีเวลาหน่วงเวลาอีก 20 วินาทีก่อนที่จะใช้ Clashing Spiral กลับคืนมา ถ้า STR เดิมคือ 120, + ATK 300";
+					mes "หอกสองมือ / ATK 20 / น้ำหนัก 2000 / อาวุธ Lv 4 / Lv ที่ต้องการ 140 / Socket 0 / สำหรับ Rune Knight";
+					callsub L_Reward, 1490, 300, 300, 400; //Giant_Lance
+					break;
+				case 8:
+					mes "<< Chilly Spell Book [2] >>";
+					mes "MATK + 160, DEX + 1 เพิ่ม ATK% ของ Cold Bolt, Diamond Dust เทียบเท่า 3 เท่าของ Refine Lv และการใช้ SP จากทักษะเหล่านั้นเพิ่มขึ้นเทียบเท่ากับ Refine Lv 5 เท่า ทำลายไม่ได้";
+					mes "หนังสือ / ATK 100 / น้ำหนัก 100 / คุณสมบัติน้ำ / อาวุธ Lv 4 / Lv ที่ต้องการ 100 / Socket 2 / สำหรับ Sorcerer";
+					callsub L_Reward, 1584, 50, 100, 40; //Chilly_Spell_Book
+					break;
+				case 9:
+					mes "<< ไฟกู้คืน [1] >>";
+					mes "MATK + 160 ขึ้นอยู่กับระดับการปรับแต่งความสามารถในการรักษาและการใช้ SP สำหรับสกิลเพิ่มขึ้น ทำลายไม่ได้";
+					mes "ไม้เท้ามือเดียว / ATK 30 / น้ำหนัก 40 / สมบัติ Saint / อาวุธ Lv 4 / Lv 110 ที่ต้องการ / Socket 1 / สำหรับ Archbishop";
+					callsub L_Reward, 1659, 50, 100, 35; //Recovery_Light
+					break;
+				case 10:
+					mes "<< Aztoe Nail [0] >>";
+					mes "MATK + 80 สำหรับการโจมตีระยะประชิดทางกายภาพให้ร่าย Freezing ไปที่เป้าหมายด้วยโอกาสที่แน่นอน โอกาสได้รับผลจาก Refine Lv.";
+					mes "Dagger / ATK 160 / Weight 50 / Wind Property / Weapon Lv 4 / Required Lv 110 / Socket 0 / for High Swordman / Merchant / Thief Classes";
+					callsub L_Reward, 13069, 50, 100, 35; //Aztoe_Nail
+					break;
+				case 11:
+					mes "<< Scarletto Nail [0] >>";
+					mes "MATK + 80 สำหรับการโจมตีระยะประชิดกายภาพให้ร่ายคำสาปหินไปยังเป้าหมายโดยมีโอกาสหนึ่ง โอกาสได้รับผลจาก Refine Lv.";
+					mes "Dagger / ATK 160 / Weight 50 / Fire Property / Weapon Lv 4 / Required Lv 110 / Socket 0 / for High Swordman / Merchant / Thief Classes";
+					callsub L_Reward, 13070, 50, 100, 35; //Scarletto_Nail
+					break;
+				case 12:
+					mes "<< Bloody Cross [0] >>";
+					mes "สำหรับการโจมตีระยะประชิดทางกายภาพจะทำการส่งอัตโนมัติ 'Hell Inferno' (Lv 1) พร้อมโอกาสที่แน่นอน โอกาสได้รับผลจาก Refine Lv.";
+					mes "คทา / ATK 170 / น้ำหนัก 150 / คุณสมบัติแห่งความมืด / อาวุธ Lv 4 / Lv ที่ต้องการ 100 / Socket 0 / สำหรับคลาส Acolyte ระดับสูง";
+					callsub L_Reward, 16017, 50, 100, 40; //Bloody_Cross
+					break;
+				case 13:
+					mes "<< หนังสติ๊ก [2] >>";
+					mes "เพิ่ม ATK% ของ 'Triangle Shot' เทียบเท่ากับ Refine Lv 2 เท่าและการใช้ SP จากสกิลก็เพิ่มขึ้นด้วย";
+					mes "ธนู / ATK 150 / น้ำหนัก 110 / อาวุธ Lv 4 / Lv ที่ต้องการ 100 / Socket 2 / สำหรับ Shadow Chaser";
+					callsub L_Reward, 18109, 50, 100, 35; //Catapult
+					break;
+				case 14:
+					mes "<< Big CrossBow [2] >>";
+					mes "เพิ่ม ATK% ของ 'Arrow Storm' เทียบเท่ากับ Refine Lv. 5 เท่า นอกจากนี้การใช้ SP จากสกิลยังเพิ่มขึ้นหากคะแนน AGI ดั้งเดิมเท่ากับ 120 ASPD + 1";
+					mes "ธนู / ATK 160 / น้ำหนัก 90 / อาวุธ Lv 4 / Lv 110 ที่ต้องการ / Socket 2 / สำหรับ Ranger";
+					callsub L_Reward, 18110, 50, 100, 35; //Big_CrossBow
+					break;
+				case 15:
+					mes "<< ธนูไม้เลื้อย [2] >>";
+					mes "DEX + 1 สำหรับการโจมตีทางกายภาพจะร่าย 'Fiber Lock' โดยอัตโนมัติ (Lv 1) พร้อมโอกาสที่แน่นอน";
+					mes "ธนู / ATK 150 / น้ำหนัก 150 / อาวุธ Lv 3 / Lv ที่ต้องการ 120 / Socket 2 / สำหรับคลาส Archer ที่ 3";
+					callsub L_Reward, 18111, 50, 100, 35; //Creeper_Bow
+					break;
+				}
+				if (.@break) {
+					.@break = 0;
+					break;
+				}
+			}
+		}
+	}
+	close;
+
+L_Reward:
+	setarray .@amount[0], getarg(1), getarg(2), getarg(3);
+	next;
+	mes ""+ .@amount[0] +" เจตจำนงของนักรบ"+ .@amount[1] +" กระหายเลือด"+ .@amount[2] +" Chill of the Dead เป็นสิ่งจำเป็นสำหรับการแลกเปลี่ยน";
+	next;
+	if (countitem(6469) >= .@amount[0] && countitem(6470) >= .@amount[1] && countitem(6471) >= .@amount[2]) {
+		if (select("อย่าแลกเปลี่ยน", "แลกเปลี่ยน") == 1) {
+			mes "[ชายชราแปลก ๆ ]";
+			mes "ตกลง..";
+			close;
+		}
+		emotion ET_PROFUSELY_SWEAT;
+		progressbar "FF00FF", 2;
+		delitem 6469, .@amount[0]; //Will_Of_Warrior
+		delitem 6470, .@amount[1]; //Blood_Thirst
+		delitem 6471, .@amount[2]; //Goast_Chill
+		getitem getarg(0), 1;
+		mes "[ชายชราแปลก ๆ ]";
+		mes "ไปเลย เยี่ยมฉันบางครั้งและเราสามารถพูดคุย";
+		close;
+	}
+	return;
+}
+
+// Sorcerer (Rewards)
+//============================================================
+lhz_cube,233,24,4	script	Sorcerer#Bio4Reward	4_M_UMDANCEKID,{
+	if ((MaxWeight - Weight) < 1200 || !checkweight(1201, 1)) {
+		mes "^FF0000 ตรวจสอบสินค้าคงคลังของคุณ คุณมีไอเท็มมากเกินไปที่จะทำภารกิจ ^000000";
+		close;
+	}
+	disable_items;
+	mes "[พุดดิ้ง]";
+	mes "……. …";
+	next;
+	switch(select("อุมบาอุมบาฮัมบา", "คุณมาทำอะไรที่นี่?", "พบอุปกรณ์ใดบ้าง", "นี่ครับท่าน.")) {
+	case 1:
+		emotion ET_FRET;
+		mes "[พุดดิ้ง]";
+		mes "เฮ้ขอโทษนะ แต่ฉันไม่ได้มาจาก Umbala! คุณหยาบคายมาก";
+		close;
+	case 2:
+		mes "[พุดดิ้ง]";
+		mes "อย่างที่คุณเห็นฉันเป็นหมอผีฝึกหัดส่วนฉันชื่อพุดดิ้ง";
+		next;
+		select(".... ?");
+		emotion ET_FRET;
+		mes "[พุดดิ้ง]";
+		mes "... หน้านั่นอะไร? เริ่มรู้สึกขัดหู ..";
+		next;
+		emotion ET_OK;
+		mes "[พุดดิ้ง]";
+		mes "สองสามวันที่ผ่านมาในขณะที่ฉันกำลังรับการฝึกวินัยฉันรู้สึกแปลก ๆ แปลก ๆ ฉันก็เลยทำตามนั้นและมันก็พาฉันมาที่นี่";
+		next;
+		select("ฉันเห็น.");
+		mes "[พุดดิ้ง]";
+		mes "ตกลงให้ฉันดำเนินการต่อ ฉันรู้สึกรำคาญถ้าคุณรบกวนฉันในขณะที่ฉันกำลังพูด";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "และฉันก็เข้าไปที่ห้องปฏิบัติการที่นี่เพื่อตรวจสอบและโอ้! ฉันพบสัตว์ประหลาดเหล่านั้นที่เหมือนคนโง่เขลาจาก 'Geffen Dungeon' มันเต็มไปด้วยพวกเขา";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "จากมอนสเตอร์เหล่านั้นฉันสามารถหาของหายากเช่น '^F2766EWill of Warrior ^000000', '^952420Thirst for Blood ^000000' และ '^88C6F7Chill of the Dead ^000000' ซึ่งคุณไม่สามารถหาได้จากที่อื่น";
+		next;
+		emotion ET_QUESTION;
+		mes "[พุดดิ้ง]";
+		mes "และหลังจากค้นคว้าด้วยตัวเองหลายชั่วโมงในที่สุดฉันก็หาวิธีใช้ไอเท็มเหล่านั้นได้ คุณอยากรู้ไหม?";
+		next;
+		switch(select("อ๊ะ .... อโหสิกรรม?!", "แน่นอนฉันอยากรู้จริงๆ")) {
+		case 1:
+			emotion ET_HUK, playerattached();
+			emotion ET_FRET;
+			mes "[พุดดิ้ง]";
+			mes "พุทโธ่! คุณหลับไปหลังจากที่คุณถามอะไรฉัน? อย่างไรก็ตามฉันรู้สึกขี้เกียจที่จะอธิบายอีกครั้งดังนั้นฉันจะดำเนินการต่อ";
+			next;
+			break;
+		case 2:
+			emotion ET_SMILE;
+			mes "[พุดดิ้ง]";
+			mes "ดีฉันพอใจที่คุณฟังเรื่องราวของฉันอย่างระมัดระวัง จากนั้นฉันจะอธิบายต่อไป";
+			next;
+			break;
+		}
+		mes "[พุดดิ้ง]";
+		mes "'^F2766EWill of Warrior ^000000' และ '^952420Thirst for Blood ^000000' ..... เป็นวัสดุที่ดุดัน แต่อบอุ่น";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "ดังนั้น '^F2766EWill of Warrior ^000000' จึงสามารถอาศัยพลังพิเศษไปยังช่องที่ 4 ของอุปกรณ์ได้";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "และ '^952420Thirst for Blood ^000000' สามารถอาศัยพลังพิเศษไปยังช่องที่ 3 ได้";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "แต่ !!!";
+		mes "'^88C6F7Chill of the Dead ^000000' เป็นวัสดุประเภทเย็น";
+		mes "ซึ่งทำให้สามารถคืนพลังจาก '^F2766EWill of Warrior ^000000' หรือ '^952420Thirst for Blood ^000000' จึงทำให้อุปกรณ์ไม่หลงเสน่ห์อีกต่อไป";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "พูดว่าอะไรนะ? ฟังดูไม่น่าสนใจ? แต่มีปัญหา ...";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "เนื่องจากวัสดุเหล่านั้นสามารถหาได้จากมอนสเตอร์ในห้องทดลองเท่านั้นพลังพิเศษจึงสามารถอยู่ในอุปกรณ์บางอย่างที่หาได้จากห้องทดลอง";
+		next;
+		select("แล้วบทสรุปคืออะไร?");
+		emotion ET_QUESTION, playerattached();
+		emotion ET_FRET;
+		mes "[พุดดิ้ง]";
+		mes "เอ้ย .. บอกแล้วว่าอย่าตัดบทตอนที่คุยกันไม่ใช่เหรอ? ฉันจะตอบว่าเพราะมันสำคัญ";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "ถ้าคุณนำ 10 '^F2766EWill of Warrior ^000000' หรือ 10 '^952420Thirst for Blood ^000000' มาให้ฉันฉันจะเก็บพลังบางอย่างไว้กับอุปกรณ์บางอย่างที่คุณสามารถหาได้จากห้องทดลอง ..";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "และถ้าคุณไม่พอใจกับพลังที่ได้รับจงนำ 10 '^88C6F7Chill of the Dead ^000000' มาให้ฉันแล้วฉันจะถอดพลังนั้นออก";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "พูดว่าอะไรนะ? มีทั้งสองตัวเลือก ..... ค่อนข้างดีใช่มั้ย?";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "หากคุณได้รับ '^F2766EWill of Warrior ^000000' หรือ '^952420Thirst for Blood ^000000' และได้รับอุปกรณ์ที่สามารถรับพลังของพวกเขาได้ด้วยจงนำมาให้ฉัน ฉันจะรอ.";
+		close;
+	case 3:
+		mes "[พุดดิ้ง]";
+		mes "หืม .... อุปกรณ์ที่ค้นพบจนถึงตอนนี้คือ ....";
+		next;
+		mes "- ตรวจสอบ -";
+		mes "พุดดิ้งหยิบกระดาษออกมาจากกระเป๋า";
+		next;
+		mes "[พุดดิ้ง]";
+		mes "ให้ฉันดู.. อุปกรณ์ที่ค้นพบจนถึงตอนนี้คือ ....";
+		mes "7 ชุดเกราะ 14 อาวุธ";
+		next;
+		while(1) {
+			switch(select("โอเคฉันไม่ต้องรู้มากกว่านี้", "7 ชุดเกราะ", "14 อาวุธ")) {
+			case 1:
+				mes "[พุดดิ้ง]";
+				mes "หากคุณได้รับ '^F2766EWill of Warrior ^000000' หรือ '^952420Thirst for Blood ^000000' และได้รับอุปกรณ์ที่สามารถรับพลังของพวกเขาได้ด้วยจงนำมาให้ฉัน ฉันจะรอ.";
+				close;
+			case 2:
+				mes "<รายชื่อชุดเกราะ>";
+				mes "ยักษ์ชิลด์ [1]";
+				mes "หนังสือโบราณ Geffenia-Water [1]";
+				mes "พระคัมภีร์แห่งคำสัญญา (ฉบับที่ 2) [1]";
+				mes "แหลมกู้ซาก [0]";
+				mes "กุญแจมือฆาตกร [1]";
+				mes "ชุดปฏิบัติการสีเขียว [1]";
+				mes "เครื่องประดับทองโบราณ [1]";
+				next;
+				mes "[พุดดิ้ง]";
+				mes "จนถึงตอนนี้คือชุดเกราะที่ค้นพบ คุณต้องการดูสิ่งอื่น ๆ หรือไม่?";
+				next;
+				break;
+			case 3:
+				mes "<รายการอาวุธ>";
+				mes "ตัวแทนคาทาร์ [1]";
+				mes "กิโยตินคาทาร์ [1]";
+				mes "Ygnus Stale [1]";
+				mes "จบ Sektura [1]";
+				mes "หอกปืนใหญ่ [1]";
+				mes "หอกยักษ์ [0]";
+				mes "หนังสือ Chilly Spell [2]";
+				mes "ไฟฟื้นฟู [1]";
+				mes "Aztoe Nail [0]";
+				mes "Scarletto Nail [0]";
+				mes "บลัดดีครอส [0]";
+				mes "หนังสติ๊ก [2]";
+				mes "Big CrossBow [2]";
+				mes "ธนูไม้เลื้อย [2]";
+				next;
+				mes "[พุดดิ้ง]";
+				mes "จนถึงตอนนี้สิ่งเหล่านี้คืออาวุธที่ค้นพบ คุณต้องการดูสิ่งอื่น ๆ หรือไม่?";
+				next;
+				break;
+			}
+		}
+		close;
+	case 4:
+		emotion ET_SPARK;
+		mes "[พุดดิ้ง]";
+		mes "เอามาให้เหรอ?";
+		next;
+		break;
+	}
+	mes "[พุดดิ้ง]";
+	mes "ตกลง! คุณต้องการใช้พลังงานในอุปกรณ์ใด";
+	next;
+	setarray .@parts[0], EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_TOP;
+	for(.@i = 0; .@i < 7; .@i++) {
+		if (!getequipisequiped(.@parts[.@i])) {
+			switch(.@i) {
+				case 0:
+					.@equipped$[.@i] = "^999999Armor- [ไม่ได้ติดตั้ง] ^000000";
+					break;
+				case 1:
+					.@equipped$[.@i] = "^999999 มือซ้าย - [ไม่ได้ติดตั้ง] ^000000";
+					break;
+				case 2:
+					.@equipped$[.@i] = "^999999 ขวามือ - [ไม่ได้ติดตั้ง] ^000000";
+					break;
+				case 3:
+					.@equipped$[.@i] = "^999999Garment- [ไม่ได้ติดตั้ง] ^000000";
+					break;
+				case 4:
+					.@equipped$[.@i] = "^999999Accessory- [ไม่ได้ติดตั้ง] ^000000";
+					break;
+				case 5:
+					.@equipped$[.@i] = "^999999Accessory- [ไม่ได้ติดตั้ง] ^000000";
+					break;
+				case 6:
+					.@equipped$[.@i] = "^999999Helm- [ไม่ได้ติดตั้ง] ^000000";
+					break;
+			}
+		} else {
+			.@equipped$[.@i] = getequipname(.@parts[.@i]);
+		}
+	}
+	switch(select("ฉันเปลี่ยนใจ", .@equipped$[0], .@equipped$[1], .@equipped$[2], .@equipped$[3], .@equipped$[4], 
+	.@equipped$[5], .@equipped$[6])) {
+	case 1:
+		mes "[พุดดิ้ง]";
+		mes "ฉันรอคอยที่จะทำมัน แต่ก็อดไม่ได้";
+		close;
+	case 2:
+		if (!getequipisequiped(EQI_ARMOR)) {
+			mes "[พุดดิ้ง]";
+			mes "เฮ้ย.. เกราะอยู่ไหน?";
+			close;
+		}
+		.@part = EQI_ARMOR;
+		break;
+	case 3:
+		if (!getequipisequiped(EQI_HAND_L)) {
+			mes "[พุดดิ้ง]";
+			mes "ดี .. คุณไม่มีอะไรติดตั้งอยู่ทางซ้ายมือ";
+			close;
+		}
+		.@part = EQI_HAND_L;
+		break;
+	case 4:
+		if (!getequipisequiped(EQI_HAND_R)) {
+			mes "[พุดดิ้ง]";
+			mes "ดี .. คุณไม่มีอะไรติดตั้งอยู่ทางขวามือ";
+			close;
+		}
+		.@part = EQI_HAND_R;
+		break;
+	case 5:
+		if (!getequipisequiped(EQI_GARMENT)) {
+			mes "[พุดดิ้ง]";
+			mes "อืม .... เสื้อคลุมของคุณอยู่ไหน?";
+			close;
+		}
+		.@part = EQI_GARMENT;
+		break;
+	case 6:
+		if (!getequipisequiped(EQI_ACC_L)) {
+			mes "[พุดดิ้ง]";
+			mes "..... อุปกรณ์เสริมอยู่ไหน?";
+			close;
+		}
+		.@part = EQI_ACC_L;
+		break;
+	case 7:
+		if (!getequipisequiped(EQI_ACC_R)) {
+			mes "[พุดดิ้ง]";
+			mes "..... อุปกรณ์เสริมอยู่ไหน?";
+			close;
+		}
+		.@part = EQI_ACC_R;
+		break;
+	case 8:
+		if (!getequipisequiped(EQI_HEAD_TOP)) {
+			mes "[พุดดิ้ง]";
+			mes "เฮ้.. นายไม่สวมหมวกเหล็กเหรอ?";
+			close;
+		}
+		.@part = EQI_HEAD_TOP;
+		break;
+	}
+	.@refine_count = getequiprefinerycnt(.@part);
+	.@equip_item = getequipid(.@part);
+	setarray .@equip_card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+	.@lhz_max_num = 4000;
+	if (.@equip_item == 13069 || .@equip_item == 1291 || .@equip_item == 1392 || 
+	    .@equip_item == 1393 || .@equip_item == 1435 || .@equip_item == 1490 || 
+	    .@equip_item == 13069 || .@equip_item == 13070 || .@equip_item == 16017) {
+		.@type = 1;
+		if (.@equip_item == 1490)
+			.@lhz_max_num = 4200;
+	} else if (.@equip_item == 18109 || .@equip_item == 18110 || .@equip_item == 18111) {
+		.@type = 2;
+	} else if (.@equip_item == 1584 || .@equip_item == 1659) {
+		.@type = 3;
+	} else if (.@equip_item == 2160 || .@equip_item == 2161 || .@equip_item == 2162 ||
+	           .@equip_item == 2582 || .@equip_item == 2892 || .@equip_item == 15044 || 
+	           .@equip_item == 18570) {
+		.@type = 4;
+		if (.@equip_item == 2582 || .@equip_item == 18570)
+			.@lhz_max_num = 4200;
+	} else {
+		mes "[พุดดิ้ง]";
+		mes "อันดับแรก! ฉันต้องการตรวจสอบว่าอุปกรณ์นี้สามารถรับพลังงานได้หรือไม่";
+		next;
+		specialeffect2 EF_SPHERE;
+		progressbar "ffff00", 2;
+		specialeffect2 EF_SUI_EXPLOSION;
+		emotion ET_CRY;
+		mes "[พุดดิ้ง]";
+		mes "หืม .... อุปกรณ์นี้ไม่สามารถรับพลังของ '^F2766EWill of Warrior ^000000' หรือ '^952420Thirst for Blood ^000000'";
+		close;
+	}
+	emotion ET_DELIGHT;
+	mes "[พุดดิ้ง]";
+	mes "OHHH .. อุปกรณ์นี้สามารถรับพลังของ '^F2766EWill of Warrior ^000000' หรือ '^952420Thirst for Blood ^000000'";
+	next;
+	if (countitem(6469) >= 10)
+		.@menu_in$[1] = "อาศัยพลังของ '^F2766EWill of Warrior ^000000'";
+	else
+		.@menu_in$[1] = "ไม่เพียงพอ ^999999 'Will of Warrior' ^000000";
+
+	if (countitem(6470) >= 10)
+		.@menu_in$[2] = "อาศัยพลังของ '^952420Thirst for Blood ^000000'";
+	else
+		.@menu_in$[2] = "ยังไม่พอ ^999999 'กระหายเลือด' ^000000";
+
+	if (countitem(6471) >= 10)
+		.@menu_in$[3] = "กิน '^88C6F7Chill of the Dead ^000000'";
+	else
+		.@menu_in$[3] = "ยังไม่พอ ^999999'Chill of the Dead '^000000";
+	mes "[พุดดิ้ง]";
+	mes "ตกลง! คุณต้องการใช้พลังงานใดในอุปกรณ์ของคุณ?";
+	next;
+	switch(select("ฉันบอกว่าไม่! ฉันไม่ต้องการแบบนั้น !!", .@menu_in$[1], .@menu_in$[2], .@menu_in$[3])) {
+	case 1:
+		mes "[พุดดิ้ง]";
+		mes "โอ้โห .. รอคอยที่จะทำ แต่ทั้งหมดนี้ขึ้นอยู่กับคุณ ......";
+		close;
+	case 2:
+		if (countitem(6469) < 10) {
+			mes "[พุดดิ้ง]";
+			mes "ไม่เพียงพอ '^F2766EWill of Warrior ^000000' คุณต้องนำ 10 '^F2766EWill of Warrior ^000000'";
+			close;
+		}
+		else if (.@equip_card[3] > 0) {
+			mes "[พุดดิ้ง]";
+			mes "อุปกรณ์นี้มีพลังของ '^F2766EWill of Warrior ^000000' อยู่แล้ว";
+			close;
+		} else {
+			.@socket_type = 4;
+		}
+		break;
+	case 3:
+		if (countitem(6470) < 10) {
+			mes "[พุดดิ้ง]";
+			mes "ไม่เพียงพอ '^952420Thirst for Blood ^000000' คุณต้องนำ 10 '^952420Thirst for Blood ^000000'";
+			close;
+		}
+		else if (.@equip_card[2] > 0) {
+			mes "[พุดดิ้ง]";
+			mes "อุปกรณ์นี้มีพลังของ '^952420Thirst for Blood ^000000' อยู่แล้ว";
+			close;
+		} else {
+			.@socket_type = 3;
+		}
+		break;
+	case 4:
+		// Enchant Removal
+		if (countitem(6471) < 10) {
+			.@menu_clear$[1] = "^999999 ไม่เพียงพอ 'Chill of the Dead' ^000000";
+			.@menu_clear$[2] = "^999999 ไม่เพียงพอ 'Chill of the Dead' ^000000";
+			.@4thzptsodyd = 1;
+			.@3thzptsodyd = 1;
+		} else {
+			if (.@equip_card[3] > 0) {
+				.@menu_clear$[1] = "ลบพลังของ '^F2766EWill of Warrior ^000000'";
+			} else {
+				.@menu_clear$[1] = "^999999 ไม่มีอำนาจที่จะลบ ^000000";
+				.@4thzptsodyd = 1;
+			}
+			if (.@equip_card[2] > 0) {
+				.@menu_clear$[2] = "ลบพลังของ '^952420Thirst for Blood ^000000'";
+			} else {
+				.@menu_clear$[2] = "^999999 ไม่มีอำนาจที่จะลบ ^000000";
+				.@3thzptsodyd = 1;
+			}
+		}
+		mes "[พุดดิ้ง]";
+		mes "ได้เลยคุณต้องการลบพาวเวอร์ไหน";
+		next;
+		.@menu = select("ไม่ฉันไม่ต้องการลบใด ๆ", .@menu_clear$[1], .@menu_clear$[2]);
+		switch(.@menu){
+		case 1:
+			mes "[พุดดิ้ง]";
+			mes "จริงๆ? ตกลง. ฉันเข้าใจแล้ว..";
+			close;
+		case 2:
+		case 3:
+			if (countitem(6471) < 10) {
+				mes "[พุดดิ้ง]";
+				mes "ไม่เพียงพอ '^88C6F7Chill of the Dead ^000000' คุณต้องนำ 10 '^88C6F7Chill of the Dead ^000000'";
+				close;
+			}
+			if ( (.@menu==3 && .@3thzptsodyd == 1) || (.@menu==2 && .@4thzptsodyd == 1) ) {
+				mes "[พุดดิ้ง]";
+				mes "อุปกรณ์นี้ไม่ได้รับพลังพิเศษใด ๆ";
+				close;
+			}
+			specialeffect EF_BEGINSPELL2;
+			progressbar "ffff00", 2;
+			specialeffect2 EF_FROSTWEAPON;
+			delitem 6471, 10; //Goast_Chill
+
+			// anti-hack
+			if (callfunc("F_IsEquipIDHack", .@part, .@equip_item) || callfunc("F_IsEquipCardHack", .@part, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@refine_count))
+				close;
+
+			if (.@menu == 2)
+				.@equip_card[3] = 0;
+			else
+				.@equip_card[2] = 0;
+			delequip .@part;
+			getitem2 .@equip_item, 1, 1, .@refine_count, 0, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3];
+			mes "[พุดดิ้ง]";
+			if (.@menu == 3)
+				mes "พลังของ '^952420Thirst for Blood ^000000' ถูกลบออกไปอย่างสมบูรณ์แบบ";
+			else
+				mes "พลังของ '^F2766EWill of Warrior ^000000' ถูกลบออกอย่างสมบูรณ์แบบ";
+			close;
+		}
+	}
+	mes "[พุดดิ้ง]";
+	mes "ก่อนที่ฉันจะอยู่ในอำนาจฉันขอเตือนคุณ";
+	next;
+	mes "[พุดดิ้ง]";
+	mes "ในขณะที่ฉันอาศัยพลังของ '^F2766EWill of Warrior ^000000' หรือ '^952420Thirst for Blood ^000000' อุปกรณ์นั้นไม่สามารถรับได้และจะถูกทำลายลงด้วยเหตุนี้ ..";
+	next;
+	mes "[พุดดิ้ง]";
+	mes "^9D2628 หากอุปกรณ์ถูกทำลายคุณจะสูญเสียการ์ดที่คุณใส่เข้าไปและ Lv การปรับแต่งจะถูกลบออกไปด้วย ^000000";
+	next;
+	mes "[พุดดิ้ง]";
+	mes "ได้เลย. คุณต้องการที่จะใช้พลังงานในอุปกรณ์หรือไม่?";
+	next;
+	if (select("เดี๋ยวผมจะคิดใหม่", "แน่นอนว่าดำเนินการต่อไป") == 1) {
+		mes "[พุดดิ้ง]";
+		mes "ตกลง. ฉันหวังว่าจะได้เจอคุณอีกครั้ง.";
+		close;
+	}
+	mes "[พุดดิ้ง]";
+	mes "หวังว่าคุณจะตัดสินใจถูกต้อง ...";
+	next;
+	if (.@socket_type >= 3) {
+		switch(.@type){
+			case 1:	// Short Distance
+				.@r = rand(1, .@lhz_max_num);
+				if      (.@r < 401)  .@enchant = 4700; //Strength1
+				else if (.@r < 441)  .@enchant = 4701; //Strength2
+				else if (.@r < 445)  .@enchant = 4702; //Strength3
+				else if (.@r < 845)  .@enchant = 4730; //Agility1
+				else if (.@r < 885)  .@enchant = 4731; //Agility2
+				else if (.@r < 889)  .@enchant = 4732; //Agility3
+				else if (.@r < 1289) .@enchant = 4740; //Vitality1
+				else if (.@r < 1329) .@enchant = 4741; //Vitality2
+				else if (.@r < 1333) .@enchant = 4742; //Vitality3
+				else if (.@r < 1523) .@enchant = 4710; //Inteligence1
+				else if (.@r < 1542) .@enchant = 4711; //Inteligence2
+				else if (.@r < 1544) .@enchant = 4712; //Inteligence3
+				else if (.@r < 1844) .@enchant = 4720; //Dexterity1
+				else if (.@r < 1874) .@enchant = 4721; //Dexterity2
+				else if (.@r < 1877) .@enchant = 4722; //Dexterity3
+				else if (.@r < 2067) .@enchant = 4750; //Luck1
+				else if (.@r < 2086) .@enchant = 4751; //Luck2
+				else if (.@r < 2088) .@enchant = 4752; //Luck3
+				else if (.@r < 2491) .@enchant = 0;
+				else if (.@r < 2891) .@enchant = 4811; //Fighting_Spirit1
+				else if (.@r < 2931) .@enchant = 4810; //Fighting_Spirit2
+				else if (.@r < 2935) .@enchant = 4809; //Fighting_Spirit3
+				else if (.@r < 3125) .@enchant = 4815; //Spell1
+				else if (.@r < 3144) .@enchant = 4814; //Spell2
+				else if (.@r < 3146) .@enchant = 4813; //Spell3
+				else if (.@r < 3148) .@enchant = 4807; //Atk_Speed1
+				else if (.@r < 3348) .@enchant = 4818; //Sharp1
+				else if (.@r < 3368) .@enchant = 4817; //Sharp2
+				else if (.@r < 3370) .@enchant = 4816; //Sharp3
+				else if (.@r < 3560) .@enchant = 4832; //Expert_Archer1
+				else if (.@r < 3579) .@enchant = 4833; //Expert_Archer2
+				else if (.@r < 3581) .@enchant = 4834; //Expert_Archer3
+				else                 .@enchant = 0;
+				break;
+			case 2:	// Long Distance
+				.@r = rand(1, .@lhz_max_num);
+				if      (.@r < 191)  .@enchant = 4700; //Strength1
+				else if (.@r < 210)  .@enchant = 4701; //Strength2
+				else if (.@r < 212)  .@enchant = 4702; //Strength3
+				else if (.@r < 612)  .@enchant = 4730; //Agility1
+				else if (.@r < 652)  .@enchant = 4731; //Agility2
+				else if (.@r < 656)  .@enchant = 4732; //Agility3
+				else if (.@r < 846)  .@enchant = 4740; //Vitality1
+				else if (.@r < 865)  .@enchant = 4741; //Vitality2
+				else if (.@r < 867)  .@enchant = 4742; //Vitality3
+				else if (.@r < 1167) .@enchant = 4710; //Inteligence1
+				else if (.@r < 1197) .@enchant = 4711; //Inteligence2
+				else if (.@r < 1200) .@enchant = 4712; //Inteligence3
+				else if (.@r < 1600) .@enchant = 4720; //Dexterity1
+				else if (.@r < 1640) .@enchant = 4721; //Dexterity2
+				else if (.@r < 1644) .@enchant = 4722; //Dexterity3
+				else if (.@r < 1834) .@enchant = 4750; //Luck1
+				else if (.@r < 1853) .@enchant = 4751; //Luck2
+				else if (.@r < 1855) .@enchant = 4752; //Luck3
+				else if (.@r < 2258) .@enchant = 0;
+				else if (.@r < 2448) .@enchant = 4811; //Fighting_Spirit1
+				else if (.@r < 2467) .@enchant = 4810; //Fighting_Spirit2
+				else if (.@r < 2469) .@enchant = 4809; //Fighting_Spirit3
+				else if (.@r < 2669) .@enchant = 4815; //Spell1
+				else if (.@r < 2689) .@enchant = 4814; //Spell2
+				else if (.@r < 2691) .@enchant = 4813; //Spell3
+				else if (.@r < 2693) .@enchant = 4807; //Atk_Speed1
+				else if (.@r < 3093) .@enchant = 4818; //Sharp1
+				else if (.@r < 3133) .@enchant = 4817; //Sharp2
+				else if (.@r < 3137) .@enchant = 4816; //Sharp3
+				else if (.@r < 3537) .@enchant = 4832; //Expert_Archer1
+				else if (.@r < 3577) .@enchant = 4833; //Expert_Archer2
+				else if (.@r < 3581) .@enchant = 4834; //Expert_Archer3
+				else                 .@enchant = 0;
+				break;
+			case 3:
+				.@r = rand(1, .@lhz_max_num);
+				if      (.@r < 301)  .@enchant = 4700; //Strength1
+				else if (.@r < 331)  .@enchant = 4701; //Strength2
+				else if (.@r < 334)  .@enchant = 4702; //Strength3
+				else if (.@r < 534)  .@enchant = 4730; //Agility1
+				else if (.@r < 554)  .@enchant = 4731; //Agility2
+				else if (.@r < 556)  .@enchant = 4732; //Agility3
+				else if (.@r < 956)  .@enchant = 4740; //Vitality1
+				else if (.@r < 996)  .@enchant = 4741; //Vitality2
+				else if (.@r < 1000) .@enchant = 4742; //Vitality3
+				else if (.@r < 1400) .@enchant = 4710; //Inteligence1
+				else if (.@r < 1440) .@enchant = 4711; //Inteligence2
+				else if (.@r < 1444) .@enchant = 4712; //Inteligence3
+				else if (.@r < 1844) .@enchant = 4720; //Dexterity1
+				else if (.@r < 1884) .@enchant = 4721; //Dexterity2
+				else if (.@r < 1888) .@enchant = 4722; //Dexterity3
+				else if (.@r < 2078) .@enchant = 4750; //Luck1
+				else if (.@r < 2097) .@enchant = 4751; //Luck2
+				else if (.@r < 2099) .@enchant = 4752; //Luck3
+				else if (.@r < 2502) .@enchant = 0;
+				else if (.@r < 2692) .@enchant = 4811; //Fighting_Spirit1
+				else if (.@r < 2711) .@enchant = 4810; //Fighting_Spirit2
+				else if (.@r < 2713) .@enchant = 4809; //Fighting_Spirit3
+				else if (.@r < 3113) .@enchant = 4815; //Spell1
+				else if (.@r < 3153) .@enchant = 4814; //Spell2
+				else if (.@r < 3157) .@enchant = 4813; //Spell3
+				else if (.@r < 3159) .@enchant = 4807; //Atk_Speed1
+				else if (.@r < 3349) .@enchant = 4818; //Sharp1
+				else if (.@r < 3368) .@enchant = 4817; //Sharp2
+				else if (.@r < 3370) .@enchant = 4816; //Sharp3
+				else if (.@r < 3560) .@enchant = 4832; //Expert_Archer1
+				else if (.@r < 3579) .@enchant = 4833; //Expert_Archer2
+				else if (.@r < 3581) .@enchant = 4834; //Expert_Archer3
+				else                 .@enchant = 0;
+				break;
+			case 4:	// Armor
+				.@r = rand(1, .@lhz_max_num);
+				if      (.@r < 301)  .@enchant = 4700; //Strength1
+				else if (.@r < 331)  .@enchant = 4701; //Strength2
+				else if (.@r < 334)  .@enchant = 4702; //Strength3
+				else if (.@r < 634)  .@enchant = 4730; //Agility1
+				else if (.@r < 664)  .@enchant = 4731; //Agility2
+				else if (.@r < 667)  .@enchant = 4732; //Agility3
+				else if (.@r < 967)  .@enchant = 4740; //Vitality1
+				else if (.@r < 997)  .@enchant = 4741; //Vitality2
+				else if (.@r < 1000) .@enchant = 4742; //Vitality3
+				else if (.@r < 1300) .@enchant = 4710; //Inteligence1
+				else if (.@r < 1330) .@enchant = 4711; //Inteligence2
+				else if (.@r < 1333) .@enchant = 4712; //Inteligence3
+				else if (.@r < 1633) .@enchant = 4720; //Dexterity1
+				else if (.@r < 1663) .@enchant = 4721; //Dexterity2
+				else if (.@r < 1666) .@enchant = 4722; //Dexterity3
+				else if (.@r < 1966) .@enchant = 4750; //Luck1
+				else if (.@r < 1996) .@enchant = 4751; //Luck2
+				else if (.@r < 1999) .@enchant = 4752; //Luck3
+				else if (.@r < 2399) .@enchant = 0;
+				else if (.@r < 2549) .@enchant = 4786; //Mdef2
+				else if (.@r < 2599) .@enchant = 4787; //Mdef4
+				else if (.@r < 2609) .@enchant = 4788; //Mdef6
+				else if (.@r < 2614) .@enchant = 4789; //Mdef8
+				else if (.@r < 2616) .@enchant = 4790; //Mdef10
+				else if (.@r < 2766) .@enchant = 4791; //Def3
+				else if (.@r < 2866) .@enchant = 4792; //Def6
+				else if (.@r < 2876) .@enchant = 4793; //Def9
+				else if (.@r < 2878) .@enchant = 4794; //Def12
+				else if (.@r < 3278) .@enchant = 0;
+				else if (.@r < 3428) .@enchant = 4859; //Evasion1
+				else if (.@r < 3478) .@enchant = 4860; //Evasion3
+				else if (.@r < 3488) .@enchant = 4762; //Evasion6
+				else if (.@r < 3498) .@enchant = 4800; //SP50
+				else if (.@r < 3734) .@enchant = 4795; //HP100
+				else if (.@r < 3834) .@enchant = 4796; //HP200
+				else if (.@r < 3884) .@enchant = 4797; //HP300
+				else                 .@enchant = 0;
+			break;
+		}
+		specialeffect EF_BEGINSPELL3;
+		progressbar "ffff00", 2;
+		if (.@socket_type == 3)
+			delitem 6470, 10; //Blood_Thirst
+		else
+			delitem 6469, 10; //Will_Of_Warrior
+
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", .@part, .@equip_item) || callfunc("F_IsEquipCardHack", .@part, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@refine_count))
+			close;
+
+		.@equip_card[(.@socket_type-1)] = .@enchant;
+		delequip .@part;
+		
+		if (.@enchant == 0){
+			specialeffect2 EF_SUI_EXPLOSION;
+			emotion ET_OTL;
+			mes "[พุดดิ้ง]";
+			mes "... อืม .... อุปกรณ์ไม่สามารถรับพลังของ"+((.@socket_type==3)?"'^952420 กระหายเลือด ^000000'":"'^F2766EWill of Warrior ^000000'")+" และมันถูกทำลาย";
+			close;
+		} else {
+			specialeffect2 EF_FIREHIT;
+			getitem2 .@equip_item, 1, 1, .@refine_count, 0, .@equip_card[0], .@equip_card[1], .@equip_card[2], .@equip_card[3];
+			emotion ET_DELIGHT;
+			mes "[พุดดิ้ง]";
+			mes "โชคดีที่พลังของ"+((.@socket_type==3)?"'^952420 กระหายเลือด ^000000'":"'^F2766EWill of Warrior ^000000'")+" ได้รับการดูแลอย่างดีในอุปกรณ์ของคุณ ...";
+			close;
+		}
+	}
+	end;
+}
+

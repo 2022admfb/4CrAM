@@ -1,0 +1,91 @@
+-	script	SysSpin5	-1,{
+	end;
+
+OnInit:
+	setarray $@SSPIN_Rate5[0],	// Number , X , Rate
+		1,19529,95,
+		2,19528,91,
+		3,19526,89,
+		4,19527,86,
+		5,19524,83,
+		6,19532,81,
+		7,19538,79,
+		8,19539,76,
+		9,19540,73,
+		10,19541,70,
+		11,19543,65,
+		12,19544,60,
+		13,19546,55,
+		14,19550,50,
+		15,19565,45,
+		16,19568,40,
+		17,19584,35,
+		18,19586,30,
+		19,19596,25, 
+		20,32412,20,
+		21,19589,15,
+		22,19549,10,
+		23,19605,5,
+		24,19606,3;
+
+
+
+	setarray $@SSPIN_cutin5$[0],"C_Random_Box1","C_Random_Box2","C_Random_Box3","C_Random_Box4","C_Random_Box5","C_Random_Box6","C_Random_Box7","C_Random_Box8","C_Random_Box9","C_Random_Box10",
+	"C_Random_Box11","C_Random_Box12","C_Random_Box13","C_Random_Box14","C_Random_Box15","C_Random_Box16","C_Random_Box17","C_Random_Box18","C_Random_Box19","C_Random_Box20","C_Random_Box21","C_Random_Box22","C_Random_Box23","C_Random_Box24";
+
+	set $@SSPIN_cutin_max5,getarraysize($@SSPIN_cutin5$);
+	end;
+}
+
+function	script	SSPIN_Rate5	{
+	for (set .@i,getarraysize($@SSPIN_Rate5)-1; .@i >= 0; set .@i,.@i-3) {
+		if (getarg(0) == $@SSPIN_Rate5[.@i-2]) return $@SSPIN_Rate5[.@i-1];
+	}
+}
+
+
+function	script	SSPIN_GetCutin5	{
+	for (set .@i,getarraysize($@SSPIN_Rate5)-1; .@i >= 0; set .@i,.@i-3) {
+		if ($@SSPIN_Rate5[.@i] > getarg(0)) return ($@SSPIN_Rate5[.@i-2]-1);
+	}
+	return $@SSPIN_cutin_max5-1;
+}
+
+function	script	boxspin5	{
+	cutin "C_Random_Box25",-1;
+	mes "[ ^0000FFBox Spin^000000 ]";
+	mes "สวัสดี "+strcharinfo(0)+" ";
+	mes "มาลุ้นกันว่าวันนี้จะได้รับอะไร";
+	next;
+	mes "[ ^0000FFBox Spin^000000 ]";
+	mes "กำลังสุ่มไอเทม";
+	mes "กรุณารอสักครู่...";
+	set .@rate,rand(100);
+	set .@start,rand($@SSPIN_cutin_max5);
+	set .@end,callfunc("SSPIN_GetCutin5",.@rate);
+	for (set .@i,0; .@i < 50; set .@i,.@i+1) {
+		cutin $@SSPIN_cutin5$[.@start],4;
+		set .@start,(.@start == ($@SSPIN_cutin_max5-1)) ? 0 : (.@start+1);
+		sleep2 100;
+	}
+	while (.@start != .@end) {
+		cutin $@SSPIN_cutin5$[.@start],4;
+		set .@start,(.@start == ($@SSPIN_cutin_max5-1)) ? 0 : (.@start+1);
+		sleep2 600;
+	}
+	cutin $@SSPIN_cutin5$[.@start],4;
+	mes "================";
+		set .@xrate,callfunc("SSPIN_Rate5",(.@end+1));
+		mes "ยินดีด้วยคุณได้รับ "+getitemname(.@xrate)+"";
+		getitem .@xrate,1;
+		set #lastTimeSpin,gettimetick(2);
+		close2;
+		cutin "",255;
+		//next;
+		//mes "ไว้มาลุ้นใหม่นะ";
+		//mes ""+.@end+"";
+		//mes ""+.@rate+"";
+		//close2;
+		//cutin "",255;
+	}
+	

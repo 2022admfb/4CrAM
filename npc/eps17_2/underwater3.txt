@@ -1,0 +1,618 @@
+iz_d04_i,134,229,3	script	Mysterious Forgemaster#iiz	704,{
+disable_items;
+    if (checkweight(1201,1) == 0) {
+        mes "Deja un poco de cosas en tu storage y luego vuelve.";
+        close;
+    }
+    if (MaxWeight - Weight < 10000) {
+        mes "No puedo trabajar si tienes tantas cosas en tu inventario.";
+        close;
+    }
+	mes "[Mysterious Forgemaster]";
+	mes "Hello stranger, here im the master at crafting the good stuff.";
+	mes "If you are interested in any of my products just bring me some materials and i can help you get what you want in no time.";
+	menu "Illusion Electric Eel [2]", L_A, "Illusion Electric Guitar [2]", L_B, "Illusion Brionac [2]", L_C, "Illusion Katar of Frozen [2]", L_D, "Illusion Death Guidance [2]", L_E, "Illusion Zephyrus [2]", L_F, "Illusion Saint Robe [1]", L_G, "Illusion Ocean Armor [1]", L_H, "Illusion Chain Mail [1]", L_I, "Illusion Morrigane Helm [1]", L_J, "Illusion Morrigane Manteau [1]", L_K, "Illusion Morrigan Belt [1]", L_L, "Illusion Morrigane Pendant [1]", L_M;
+L_A:
+	next;
+	mes "[Mysterious Forgemaster]";
+	mes "For this you'll need:";
+	mes "+9 <ITEM>Electric Eel<INFO>1972</INFO></ITEM>";
+	mes "120x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes "150x <ITEM>Deep Sea Starfish<INFO>25895</INFO></ITEM>";
+	mes ".";
+	mes "Are you interested in it?";
+	menu "Create Illusion Electric Eel",-,"I'll Pass",L_OUT;
+	
+	if(countitem2(1972,1,9,0,0,0,0,0)<1 ||  countitem(25271)<120||  countitem(25895)<150) goto L_NI; 
+				delitem2 1972,1,1,9,0,0,0,0,0;
+				delitem 25271,120;
+				delitem 25895,150;
+				next;
+				mes "^FF0000[Mysterious Forgemaster]^000000";
+				mes "And... There you have it!";
+				next;
+				getitem 51932,1;
+close;
+
+L_B:
+	next;
+	mes "[Mysterious Forgemaster]";
+	mes "For this you'll need";
+	mes "+9 <ITEM>Electric Guitar<INFO>1913</INFO></ITEM>";
+	mes "120x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes "150x <ITEM>Deep Sea Starfish<INFO>25895</INFO></ITEM>";
+	mes ".";
+	mes "Are you interested in it??";
+	menu "Create Illusion Electric Guitar",-,"I'll Pass",L_OUT;
+	
+	if(countitem2(1913 ,1,9,0,0,0,0,0)<1 ||  countitem(25271)<120||  countitem(25895)<150) goto L_NI; 
+				delitem2 1913 ,1,1,9,0,0,0,0,0;
+				delitem 25271,120;
+				delitem 25895,150;
+				next;
+				mes "^FF0000[Mysterious Forgemaster]^000000";
+				mes "And... There you have it!";
+				next;
+				getitem 51931,1;
+close;
+
+L_C:
+	next;
+	mes "[Mysterious Forgemaster]";
+	mes "For this you'll need";
+	mes "+9 <ITEM>Brionac<INFO>1470</INFO></ITEM>";
+	mes "120x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes "150x <ITEM>Deep Sea Fishtail<INFO>25893</INFO></ITEM>";
+	mes ".";
+	mes "Are you interested in it??";
+	menu "Illusion Brionac [2]",-,"I'll Pass",L_OUT;
+	
+	if(countitem2(1470,1,9,0,0,0,0,0)<1 ||  countitem(25271)<120||  countitem(25893)<150) goto L_NI; 
+				delitem2 1470,1,1,9,0,0,0,0,0;
+				delitem 25271,120;
+				delitem 25893,150;
+				next;
+				mes "^FF0000[Mysterious Forgemaster]^000000";
+				mes "And... There you have it!";
+				next;
+				getitem 51935,1;
+close;
+
+L_D:
+	next;
+	mes "[Mysterious Forgemaster]";
+	mes "For this you'll need";
+	mes "+9 <ITEM>Katar of Frozen Icicle[3]<INFO>1275</INFO></ITEM>";
+	mes "120x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes "150x <ITEM>Deep Sea Crab<INFO>25896</INFO></ITEM>";
+	mes ".";
+	mes "Are you interested in it??";
+	menu "Create Illusion Katar of Frozen [2]",-,"I'll Pass",L_OUT;
+		
+	if(countitem2(1275,1,9,0,0,0,0,0)<1 ||  countitem(25271)<120||  countitem(25896)<150) goto L_NI; 
+				delitem2 1275,1,1,9,0,0,0,0,0;
+				delitem 25271,100;
+				delitem 25896,150;
+				next;
+				mes "^FF0000[Mysterious Forgemaster]^000000";
+				mes "And... There you have it!";
+				next;
+				getitem 51934,1;
+close;
+
+L_E:
+	next;
+	mes "[Mysterious Forgemaster]";
+	mes "For this you'll need";
+	mes "+9 <ITEM>Death Guidance [2]<INFO>1186</INFO></ITEM>";
+	mes "120x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes "150x <ITEM>Rotten Deep Sea Fish<INFO>25894</INFO></ITEM>";
+	mes ".";
+	mes "Are you interested in it??";
+	menu "Create Illusion Death Guidance",-,"I'll Pass",L_OUT;
+	
+	if(countitem2(1186,1,9,0,0,0,0,0)<1 ||  countitem(25271)<120||  countitem(25894)<150) goto L_NI; 
+				delitem2 1186,1,1,9,0,0,0,0,0;
+				delitem 25271,120;
+				delitem 25894,150;
+				next;
+				mes "^FF0000[Mysterious Forgemaster]^000000";
+				mes "And... There you have it!";
+				next;
+				getitem 51933,1;
+close;
+
+L_F:
+    next;
+    mes "[Mysterious Forgemaster]";
+    mes "For this you'll need";
+    mes "+9 <ITEM>Zephyrus [3]<INFO>1481</INFO></ITEM>";
+    mes "120x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+    mes "150x <ITEM>Beautiful Old Doll<INFO>25892</INFO></ITEM>";
+	mes ".";
+    mes "Are you interested in it??";
+    menu "Create Illusion Zephyrus",-,"I'll Pass",L_OUT;
+
+    if(countitem2(1481,1,9,0,0,0,0,0)<1 ||  countitem(25271)<120||  countitem(25892)<150) goto L_NI; 
+                delitem2 1481,1,1,9,0,0,0,0,0;
+                delitem 25271,120;
+                delitem 25892,150;
+                next;
+                mes "^FF0000[Mysterious Forgemaster]^000000";
+                mes "And... There you have it!";
+                next;
+                getitem 51936,1;
+close;
+
+L_G:
+    next;
+    mes "[Mysterious Forgemaster]";
+    mes "For this you'll need";
+    mes "+9 <ITEM>Saint Robe [1]<INFO>2326</INFO></ITEM>";
+    mes "100x <ITEM>Deep Sea Fishtail<INFO>25893</INFO></ITEM>";
+    mes "20x <ITEM>Abyssal Essence<INFO>25899</INFO></ITEM>";
+    mes "90x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes ".";
+    mes "Are you interested in it??";
+    menu "Create Illusion Saint Robe",-,"I'll Pass",L_OUT;
+
+    if(countitem2(2326,1,9,0,0,0,0,0)<1 ||  countitem(25893)<100 ||  countitem(25899)<20||  countitem(25271)<90) goto L_NI; 
+                delitem2 2326,1,1,9,0,0,0,0,0;
+                delitem 25893,100;
+                delitem 25899,20;
+                delitem 25271,90;
+                next;
+                mes "^FF0000[Mysterious Forgemaster]^000000";
+                mes "And... There you have it!";
+                next;
+                getitem 51925,1;
+close;
+
+L_H:
+    next;
+    mes "[Mysterious Forgemaster]";
+    mes "For this you'll need";
+    mes "+9 <ITEM>Saphien Armor [1]<INFO>2347</INFO></ITEM>";
+    mes "100x <ITEM>Deep Sea Crab<INFO>25896</INFO></ITEM>";
+    mes "20x <ITEM>Abyssal Essence<INFO>25899</INFO></ITEM>";
+    mes "90x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes ".";
+    mes "Are you interested in it??";
+    menu "Create Illusion Armor of Ocean",-,"I'll Pass",L_OUT;
+
+    if(countitem2(2347,1,9,0,0,0,0,0)<1 ||  countitem(25893)<100 ||  countitem(25899)<20||  countitem(25271)<90) goto L_NI; 
+                delitem2 2347,1,1,9,0,0,0,0,0;
+                delitem 25893,100;
+                delitem 25899,20;
+                delitem 25271,90;
+                next;
+                mes "^FF0000[Mysterious Forgemaster]^000000";
+                mes "And... There you have it!";
+                next;
+                getitem 51926,1;
+close;
+
+L_I:
+    next;
+    mes "[Mysterious Forgemaster]";
+    mes "For this you'll need";
+    mes "+9 <ITEM>Chain Mail [1]<INFO>2315</INFO></ITEM>";
+    mes "100x <ITEM>Deep Sea Crab<INFO>25895</INFO></ITEM>";
+    mes "20x <ITEM>Abyssal Essence<INFO>25899</INFO></ITEM>";
+    mes "90x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes ".";
+    mes "Are you interested in it??";
+    menu "Create Illusion Chain Mail",-,"I'll Pass",L_OUT;
+
+    if(countitem2(2315,1,9,0,0,0,0,0)<1 ||  countitem(25895)<100 ||  countitem(25899)<20||  countitem(25271)<90) goto L_NI; 
+                delitem2 2315,1,1,9,0,0,0,0,0;
+                delitem 25895,100;
+                delitem 25899,20;
+                delitem 25271,90;
+                next;
+                mes "^FF0000[Mysterious Forgemaster]^000000";
+                mes "And... There you have it!";
+                next;
+                getitem 51927,1;
+close;
+
+L_J:
+    next;
+    mes "[Mysterious Forgemaster]";
+    mes "For this you'll need";
+    mes "+9 <ITEM>Morrigane Helm <INFO>5127</INFO></ITEM>";
+    mes "100x <ITEM>Deep Sea Crab<INFO>25896</INFO></ITEM>";
+    mes "50x <ITEM>Abyssal Essence<INFO>25899</INFO></ITEM>";
+    mes "100x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes ".";
+    mes "Are you interested in it??";
+    menu "Create Illusion Morrigane Helm",-,"I'll Pass",L_OUT;
+
+    if(countitem2(5127,1,9,0,0,0,0,0)<1 ||  countitem(25896)<100 ||  countitem(25899)<50||  countitem(25271)<100) goto L_NI; 
+                delitem2 5127,1,1,9,0,0,0,0,0;
+                delitem 25896,100;
+                delitem 25899,50;
+                delitem 25271,100;
+                next;
+                mes "^FF0000[Mysterious Forgemaster]^000000";
+                mes "And... There you have it!";
+                next;
+                getitem 51924,1;
+close;
+
+L_K:
+    next;
+    mes "[Mysterious Forgemaster]";
+    mes "For this you'll need";
+    mes "+9 <ITEM>Morrigane Manteau <INFO>2519</INFO></ITEM>";
+    mes "100x <ITEM>Deep Sea Crab<INFO>25894</INFO></ITEM>";
+    mes "50x <ITEM>Abyssal Essence<INFO>25899</INFO></ITEM>";
+    mes "100x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes ".";
+    mes "Are you interested in it??";
+    menu "Create Illusion Morrigane Manteau",-,"I'll Pass",L_OUT;
+
+    if(countitem2(2519,1,9,0,0,0,0,0)<1 ||  countitem(25894)<100 ||  countitem(25899)<50||  countitem(25271)<100) goto L_NI; 
+                delitem2 2519,1,1,9,0,0,0,0,0;
+                delitem 25894,100;
+                delitem 25899,50;
+                delitem 25271,100;
+                next;
+                mes "^FF0000[Mysterious Forgemaster]^000000";
+                mes "And... There you have it!";
+                next;
+                getitem 51928,1;
+close;
+
+L_L:
+    next;
+    mes "[Mysterious Forgemaster]";
+    mes "For this you'll need";
+    mes "1x <ITEM>Morrigane Belt <INFO>2650</INFO></ITEM>";
+    mes "100x <ITEM>Deep Sea Fish Tail<INFO>25893</INFO></ITEM>";
+    mes "50x <ITEM>Abyssal Essence<INFO>25899</INFO></ITEM>";
+    mes "15x <ITEM>Deep Sea Kraken Leg<INFO>7324</INFO></ITEM>";
+    mes "100x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes ".";
+    mes "Are you interested in it??";
+    menu "Create Illusion Morrigane Belt",-,"I'll Pass",L_OUT;
+
+    if(countitem2(2650,1,0,0,0,0,0,0)<1 ||  countitem(25893)<100 ||  countitem(25899)<50 ||  countitem(7324)<15||  countitem(25271)<100) goto L_NI; 
+                delitem2 2650,1,1,0,0,0,0,0,0;
+                delitem 25893,100;
+                delitem 25899,50;
+                delitem 7324,15;
+                delitem 25271,100;
+                next;
+                mes "^FF0000[Mysterious Forgemaster]^000000";
+                mes "And... There you have it!";
+                next;
+                getitem 51929,1;
+close;
+
+L_M:
+    next;
+    mes "[Mysterious Forgemaster]";
+    mes "For this you'll need";
+    mes "1x <ITEM>Morrigane Pendant <INFO>2651</INFO></ITEM>";
+    mes "100x <ITEM>Deep Sea Fish Tail<INFO>25893</INFO></ITEM>";
+    mes "50x <ITEM>Abyssal Essence<INFO>25899</INFO></ITEM>";
+    mes "15x <ITEM>Deep Sea Kraken Leg<INFO>7324</INFO></ITEM>";
+    mes "100x <ITEM>Illusion Stone<INFO>25271</INFO></ITEM>";
+	mes ".";
+    mes "Are you interested in it??";
+    menu "Create Illusion Morrigane Pendant",-,"I'll Pass",L_OUT;
+
+    if(countitem2(2651,1,0,0,0,0,0,0)<1 ||  countitem(25892)<100 ||  countitem(25899)<50 ||  countitem(25897)<15||  countitem(25271)<100) goto L_NI; 
+                delitem2 2651,1,1,0,0,0,0,0,0;
+                delitem 25892,100;
+                delitem 25899,50;
+                delitem 25897,15;
+                delitem 25271,100;
+                next;
+                mes "^FF0000[Mysterious Forgemaster]^000000";
+                mes "And... There you have it!";
+                next;
+                getitem 51930,1;
+close;
+
+L_OUT:
+	next;
+	mes "[Mysterious Forgemaster]";
+	mes "See you later when you decide if you really want it ^^!";
+	close;
+L_NI:
+	next;
+	mes "[Mysterious Forgemaster]";
+	mes "Come back when you have all what is necessary!";
+close;
+}
+
+
+
+//==========================================================================
+//QUEST ILLUSION STONES
+//==========================================================================
+iz_d04_i,127,228,4	script	Sirood#uw1	47,{
+	if (BaseLevel < 140 || BaseLevel > 201) {
+		// Quest IDs: 104202-104207
+		// Quest cooldown IDs: 104232-104235
+		setarray .@names$[0],
+			"Deep Sea Sropho","Deep Sea Obeaune","Deep Sea Marse","Deep Sea Merman";
+		setarray .@exp[0],
+			3103000,3103000,3103000,3103000;
+		mes "You must be a fierce warrior to accept these missions.";
+		for(set .@quest,132000; .@quest<=132003; set .@quest,.@quest+1) {
+			set .@hunting, checkquest(.@quest,HUNTING);
+			if (.@hunting == 0 || .@hunting == 1) {
+				next;
+				mes ":: You cannot proceed in";
+				mes ":: ^0000FF"+.@names$[.@quest-132000]+" Hunting^000000.";
+				mes ":: The registration to the mission";
+				mes ":: is cancelled.";
+				erasequest .@quest;
+				close;
+			} else if (.@hunting == 2) {
+				next;
+				mes ":: You added information";
+				mes ":: about the mission";
+				mes ":: ^0000FF"+.@names$[.@quest-132000]+" Hunting^000000";
+				mes ":: on the mission board.";
+				mes ":: You've got a";
+				mes ":: salutary experience.";
+				erasequest .@quest;
+				getexp .@exp[.@quest-132000],0;
+				close;
+			}
+		}
+		close;
+	}
+	mes "[Sirood]";
+	mes "my soul will never stop fighting.";
+	next;
+	switch(select("^8B4513Illusion of Underwater F1^000000")) {
+	case 1:
+		mes "^8B4513Illusion of Underwater F1^000000.";
+		mes "Which monster will you hunt or have you finished hunting?";
+		next;
+		switch(select("^0000FFDeep Sea Sropho^000000:^0000FFDeep Sea Obeaune^000000:^0000FFDeep Sea Marse^000000:^0000FFDeep Sea Merman^000000")) {
+			case 1: callsub L_Quest,132000,"Deep Sea Sropho",0,"?????","There is a monster that only can be found on ^8B4513Illusion of Underwater F1^000000.";
+			case 2: callsub L_Quest,132001,"Deep Sea Obeaune",0,"?????","There is a monster that only can be found on ^8B4513Illusion of Underwater F1^000000.";
+			case 3: callsub L_Quest,132002,"Deep Sea Marse",0,"????","There is a monster that only can be found on ^8B4513Illusion of Underwater F1^000000.";
+			case 4: callsub L_Quest,132003,"Deep Sea Merman",0,"????","There is a monster that only can be found on ^8B4513Illusion of Underwater F1^000000.";			
+		}
+	}
+	end;
+
+//callsub L_Quest,<quest ID>,"<monster name>",<reward EXP>,"<description>"{,"s"};
+L_Quest:
+	set .@quest1, getarg(0);
+	set .@quest2, .@quest1+31;
+	set .@playtime, checkquest(.@quest2,PLAYTIME);
+	if (.@playtime == 0 || .@playtime == 1) {
+		mes "[Sirood]";
+		mes "You need to wait 23 hours before you can take this mission again.";
+		close;
+	}
+	set .@hunting, checkquest(.@quest1,HUNTING);
+	if (.@hunting == 0 || .@hunting == 1) {
+		mes "[Sirood]";
+		mes "Have you finished hunting "+getarg(1)+getarg(5,"")+" yet?";
+		close;
+	} else if (.@hunting == 2) {
+		mes "[Sirood]";
+		mes "You have completed the hunting.";
+		mes "Please accept this reward as a compensation.";
+		getitem 25271,2;
+		getexp 3103000,2172000;
+		erasequest .@quest1;
+		if (.@playtime > -1) erasequest .@quest2;
+		setquest .@quest2;
+
+		getexp getarg(2),.@jexp;
+		close;
+	}/* else if (.@hunting == 3) {
+//		recall_completequest .@quest1
+		erasequest .@quest1;
+		mes "[Sirood]";
+		mes "You have re-accepted the "+getarg(1)+" Hunting mission.";
+		close;
+	}*/ else {
+		mes "[Sirood]";
+		mes getarg(4);
+		next;
+		mes "[Sirood]";
+		mes "Hunt "+getarg(1)+" monsters there and post your success on this board.";
+		next;
+		if(select("I'll hunt them.:No thanks.") == 1) {
+			mes "[Soldier Shin]";
+			mes "When you have completed the mission, post it on this board and collect your Illusion Stone.";
+			if (.@playtime > -1) erasequest .@quest2;
+			setquest .@quest1;
+		}
+		close;
+	}
+}
+
+
+//==========================================================================
+//QUEST ILLUSION STONES
+//==========================================================================
+iz_d05_i,138,186,4	script	Izlude Explorer#uw2	97,{
+	if (BaseLevel < 170 || BaseLevel > 201) {
+		// Quest IDs: 104202-104207
+		// Quest cooldown IDs: 104232-104235
+		setarray .@names$[0],
+			"Deep Sea Sedora","Deep Sea Strouf","Deep Sea Phen","Deep Sea King Dramoh";
+		setarray .@exp[0],
+			0,0,0,0;
+		mes "You must be a fierce warrior to accept these missions.";
+		for(set .@quest,132004; .@quest<=132007; set .@quest,.@quest+1) {
+			set .@hunting, checkquest(.@quest,HUNTING);
+			if (.@hunting == 0 || .@hunting == 1) {
+				next;
+				mes ":: You cannot proceed in";
+				mes ":: ^0000FF"+.@names$[.@quest-132004]+" Hunting^000000.";
+				mes ":: The registration to the mission";
+				mes ":: is cancelled.";
+				erasequest .@quest;
+				close;
+			} else if (.@hunting == 2) {
+				next;
+				mes ":: You added information";
+				mes ":: about the mission";
+				mes ":: ^0000FF"+.@names$[.@quest-132004]+" Hunting^000000";
+				mes ":: on the mission board.";
+				mes ":: You've got a";
+				mes ":: salutary experience.";
+				erasequest .@quest;
+				getexp .@exp[.@quest-132004],0;
+				close;
+			}
+		}
+		close;
+	}
+	mes "[Sirood]";
+	mes "my soul will never stop fighting.";
+	next;
+	switch(select("^8B4513Illusion of Underwater F2^000000")) {
+	case 1:
+		mes "^8B4513Illusion of Underwater F2^000000.";
+		mes "Which monster will you hunt or have you finished hunting?";
+		next;
+		switch(select("^0000FFDeep Sea Sedora^000000:^0000FFDeep Sea Strouf^000000:^0000FFDeep Sea Phen^000000:^0000FFDeep Sea King Dramoh^000000")) {
+			case 1: callsub L_Quest,132004,"Deep Sea Sedora",0,"?????","There is a monster that only can be found on ^8B4513Illusion of Underwater F2^000000.";
+			case 2: callsub L_Quest,132005,"Deep Sea Strouf",0,"?????","There is a monster that only can be found on ^8B4513Illusion of Underwater F2^000000.";
+			case 3: callsub L_Quest,132006,"Deep Sea Phen",0,"????","There is a monster that only can be found on ^8B4513Illusion of Underwater F2^000000.";
+			case 4: callsub L_Quest,132007,"Deep Sea King Dramoh",0,"????","There is a monster that only can be found on ^8B4513Illusion of Underwater F2^000000.";			
+		}
+	}
+	end;
+
+//callsub L_Quest,<quest ID>,"<monster name>",<reward EXP>,"<description>"{,"s"};
+L_Quest:
+	set .@quest1, getarg(0);
+	set .@quest2, .@quest1+31;
+	set .@playtime, checkquest(.@quest2,PLAYTIME);
+	if (.@playtime == 0 || .@playtime == 1) {
+		mes "[Sirood]";
+		mes "You need to wait until 4:00 AM before you can take this mission again.";
+		close;
+	}
+	set .@hunting, checkquest(.@quest1,HUNTING);
+	if (.@hunting == 0 || .@hunting == 1) {
+		mes "[Sirood]";
+		mes "Have you finished hunting "+getarg(1)+getarg(5,"")+" yet?";
+		close;
+	} else if (.@hunting == 2) {
+		mes "[Sirood]";
+		mes "You have completed the hunting.";
+		mes "Please accept this reward as a compensation.";
+		getitem 25271,2;
+		getexp 12375300,4245774;
+		erasequest .@quest1;
+		if (.@playtime > -1) erasequest .@quest2;
+		setquest .@quest2;
+
+		getexp getarg(2),.@jexp;
+		close;
+	}/* else if (.@hunting == 3) {
+//		recall_completequest .@quest1
+		erasequest .@quest1;
+		mes "[Sirood]";
+		mes "You have re-accepted the "+getarg(1)+" Hunting mission.";
+		close;
+	}*/ else {
+		mes "[Sirood]";
+		mes getarg(4);
+		next;
+		mes "[Sirood]";
+		mes "Hunt "+getarg(1)+" monsters there and post your success on this board.";
+		next;
+		if(select("I'll hunt them.:No thanks.") == 1) {
+			mes "[Soldier Shin]";
+			mes "When you have completed the mission, post it on this board and collect your Illusion Stone.";
+			if (.@playtime > -1) erasequest .@quest2;
+			setquest .@quest1;
+		}
+		close;
+	}
+}
+
+//NPC para volver al primer piso y volver
+iz_d05_i,141,190,5	script	Guardia Izlude#uwt	417,{
+	mes "[Guardia Izlude]";
+	mes "Que deseas hacer?";
+	next;
+	.@menu = select("Ir al primer piso:Volver a Izlude:Nada por ahora");	
+	next;
+	switch(.@menu){
+		case 1:
+		mes "Vamos entonces, alli estara el Profesor Sirood.";
+		next;
+		warp "iz_d04_i",130,228;
+		close;
+		case 2:
+		mes "De vuelta a izlude entonces.";
+		next;
+		warp "izlude",131,54;
+		close;
+		case 3:
+		mes "Si necesitas algo ven a verme.";
+		close;
+		}
+}
+
+//NPC para acceder al segundo piso y volver
+iz_d04_i,129,232,5	script	Guardia Izlude#uwt1	417,{
+	mes "[Guardia Izlude]";
+	if( BaseLevel < 170 ){
+		mes "No puedes adentrarte mas en las profundidades hasta que seas minimo nivel ^0000FFNivel 170^000000.";
+		close;
+	}
+	mes "Que deseas hacer?";
+	next;
+	.@menu = select("Ir al segundo piso:Volver a Izlude:Nada por ahora");	
+	next;
+	switch(.@menu){
+		case 1:
+		mes "Vamos entonces, alli estaran los Exploradores!.";
+		next;
+		warp "iz_d05_i",141,186;
+		close;
+		case 2:
+		mes "De vuelta a izlude entonces.";
+		next;
+		warp "izlude",131,54;
+		close;
+		case 3:
+		mes "Si necesitas algo ven a verme.";
+		close;
+		}
+}
+
+
+
+//NPC para acceder al segundo piso y volver
+izlude,133,49,5	script	Izlude Explorer#uwt3	97,{
+	mes "[Izlude Explorer]";
+	if( BaseLevel < 140 ){
+		mes "Al parecer no eres lo suficientemente fuerte para acceder aqui, vuelve cuando seas sobre ^0000FFNivel 140^000000.";
+		close;
+	}
+	mes "Que deseas hacer?";
+	next;
+	.@menu = select("Acceder a Illusion Underwater:Nada por ahora");	
+	next;
+	switch(.@menu){
+		case 1:
+		mes "Vamos alli, estara el profesor Sirood y los exploradores.";
+		mes "Ven conmigo por aqui.";
+		next;
+		warp "iz_d04_i",131,227;
+		close;
+		case 2:
+		mes "Si te interesa conocer los misterios de las profundidades, ven a verme!.";
+		close;
+		}
+}

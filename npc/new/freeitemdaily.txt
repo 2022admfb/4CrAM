@@ -1,0 +1,56 @@
+moc_para01,38,22,4	script	รับไอเทมฟรีทุกวัน	10351,{
+
+set .@item,14887; //ไอเทม
+set .@quantity,1; //จำนวน
+if(gettime(5) != FREE_DATE) {
+mes "สวัสดีค่ะยินดีให้บริการค่ะ";
+mes "วันนี้คุณสามารถรับไอเทมได้ฟรี";
+mes "และจะสามารถรับได้อีกในวันถัดไปนะค่ะ^_^";
+set FREE_DATE,gettime(5);
+getitem .@item,.@quantity;
+close;
+} else {
+mes "คุณรับไอเทมไปแล้วจะสามารถรับ";
+mes "ได้อีกในวันถัดไปนะค่ะ";
+close;
+OnInit: 
+waitingroom "รับไอเทมฟรีทุกวัน",0; 
+end; 
+}
+}
+
+guildhall1,137,37,3	script	freeitem	10351,{
+
+set .@item,14887; //ไอเทม
+set .@quantity,1; //จำนวน
+if(gettime(5) != FREE_DATE_Guild) {
+mes "สวัสดีค่ะยินดีให้บริการค่ะ";
+mes "วันนี้คุณสามารถรับไอเทมได้ฟรี";
+mes "และจะสามารถรับได้อีกในวันถัดไปนะค่ะ^_^";
+set FREE_DATE_Guild,gettime(5);
+getitem .@item,.@quantity;
+close;
+} else {
+mes "คุณรับไอเทมไปแล้วจะสามารถรับ";
+mes "ได้อีกในวันถัดไปนะค่ะ";
+close;
+OnInit: 
+waitingroom "รับไอเทมฟรีทุกวัน",0; 
+end; 
+}
+}
+
+guildhall2,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#1	10351
+guildhall3,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#2	10351
+guildhall4,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#3	10351
+guildhall5,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#4	10351
+guildhall6,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#5	10351
+guildhall7,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#6	10351
+guildhall8,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#7	10351
+guildhall9,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#8	10351
+guildhall10,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#9	10351
+guildhall11,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#10	10351
+guildhall12,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#11	10351
+guildhall13,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#12	10351
+guildhall14,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#13	10351
+guildhall15,137,37,3	duplicate(freeitem)	รับไอเทมฟรีทุกวัน#14	10351

@@ -1,0 +1,122 @@
+ra_temin,23,314,4	script	Rachel Dungeon	654,{
+	mes "[BARMUND]";
+	mes "สวัสดี...";
+	mes "เจ้าต้องการไปดันเจี้ยน Rachel ใช่ไหม";
+	mes "อยากรู้ว่าเป็นที่ไหน ? ";
+	mes "ที่นั้นอันตราย ที่สุดเลยล่ะ";
+	next;
+	mes "อย่าถามให้เสียเวลา...";
+	mes "เจ้าสนใจ จะไปที่นั่น เลยรึเปล่า ?";
+	next;
+	if (Select ("สนใจ :ไม่สนใจ") ) ==1{
+    warp "ra_san01",140,135;
+    }
+	mes "แย่จัง !!" ;
+	mes "ไว้คราวหน้ากลับมาใหม่ล่ะ";
+	close2;
+	end;	
+	}
+
+ra_temple,114,170,4	duplicate(Rachel Dungeon)	วาร์ป Rachel	654
+
+geffen,129,47,4	script	Geffenia Dungeon	643,{
+	mes "[ผู้ดูแล Geffenia]";
+	mes "สวัสดี...";
+	mes "เจ้าต้องการไปดันเจี้ยน Geffenia ใช่ไหม";
+	mes "อยากรู้ว่าเป็นที่ไหน ? ";
+	mes "ที่นั้นอันตราย ที่สุดเลยล่ะ";
+	next;
+	mes "อย่าถามให้เสียเวลา...";
+	mes "เจ้าสนใจ จะไปที่นั่น เลยรึเปล่า ?";
+	next;
+	if (Select ("สนใจ :ไม่สนใจ") ) ==1{
+	
+    .@geffenia_warp = rand(1,4);
+	if (.@geffenia_warp == 1) warp "gefenia01",58,169;
+	else if (.@geffenia_warp == 2) warp "gefenia02",116,115;
+	else if (.@geffenia_warp == 3) warp "gefenia03",130,206;
+	else if (.@geffenia_warp == 4) warp "gefenia04",133,88;
+	// Unreachable, but original code is like this [Lemongrass]
+	else warp "geffen",116,115;
+	end;
+    }
+	mes "แย่จัง !!" ;
+	mes "ไว้คราวหน้ากลับมาใหม่ล่ะ";
+	close2;
+	end;	
+	}
+	
+ve_fild07,108,142,4	script	Nameless Dungeon	919,{
+    mes "[ผู้ดูแล Nameless]";
+	mes "สวัสดี...";
+	mes "เจ้าต้องการไปดันเจี้ยน Nameless ใช่ไหม";
+	mes "อยากรู้ว่าเป็นที่ไหน ? ";
+	mes "ที่นั้นอันตราย ที่สุดเลยล่ะ";
+	next;
+	mes "อย่าถามให้เสียเวลา...";
+	mes "เจ้าสนใจ จะไปที่นั่น เลยรึเปล่า ?";
+	next;
+	if (Select ("สนใจ :ไม่สนใจ") ) ==1{
+	
+    warp "nameless_n",257,215;
+	end;
+    }
+	mes "แย่จัง !!" ;
+	mes "ไว้คราวหน้ากลับมาใหม่ล่ะ";
+	close2;
+	end;	
+	}
+	
+
+odin_tem03,276,236,4	script	Odin Past	919,{
+	set.@namenpc$,"[ผู้ดูแล Odin Past]";
+	mes .@namenpc$;
+	mes "สวัสดี...";
+	mes "เจ้าต้องการไปดันเจี้ยน Odin Past ใช่ไหม";
+	mes "อยากรู้ว่าเป็นที่ไหน ? ";
+	mes "ที่นั้นอันตราย ที่สุดเลยล่ะ";
+	next;
+	if(Baselevel < 180){
+	mes .@namenpc$;
+	mes "แย่จัง !!" ;
+	mes "เลเวลตัวละคร คุณ ไม่ถึง 180 ";
+	close2;
+	end;	
+	}
+	mes .@namenpc$;
+	mes "อย่าถามให้เสียเวลา...";
+	mes "เจ้าสนใจ จะไปที่นั่น เลยรึเปล่า ?";
+	next;
+	if (Select ("สนใจ :ไม่สนใจ") ) ==1{
+	
+    warp "odin_past",283,229;
+	end;
+    }
+	mes .@namenpc$;
+	mes "แย่จัง !!" ;
+	mes "ไว้คราวหน้ากลับมาใหม่ล่ะ";
+	close2;
+	end;	
+}
+
+odin_past,289,233,2	script	Odin Temple	919,{
+	set.@namenpc$,"[ผู้ดูแล Odin Past]";
+	mes .@namenpc$;
+	mes "สวัสดี...";
+	mes "เจ้าต้องการกลับไปดันเจี้ยน Odin Temple3 ใช่ไหม";
+	next;
+	mes .@namenpc$;
+	mes "ตกลง ฉันจะพาคุณกลับไป";
+	mes "พร้อมแล้วใช่มั้ย ?";
+	next;
+	if (Select ("ตกลง :อยู่ที่นี้ต่อ") ) ==1{
+	
+    warp "odin_tem03",276,240;
+	end;
+    }
+	mes .@namenpc$;
+	mes "ระวังตัวด้วยล่ะ" ;
+	mes "หากต้องการกลับ Odin Temple ก็แวะมาได้ทุกเมื่อ";
+	close2;
+	end;	
+}

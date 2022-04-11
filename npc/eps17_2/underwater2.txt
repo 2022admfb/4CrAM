@@ -1,0 +1,47 @@
+//==================================================
+// iz_d05_i - Underwater f2
+//==================================================
+
+iz_d05_i,0,0	monster	Deep Sea Sedora	20806,25,5000,0,"iz_d05_i::OnMyMobDead"
+iz_d05_i,0,0	monster	Deep Sea Swordfish	20807,25,5000,0,"iz_d05_i::OnMyMobDead"
+iz_d05_i,0,0	monster	Deep Sea Strouf	20808,22,5000,0,"iz_d05_i::OnMyMobDead"
+iz_d05_i,0,0	monster	Deep Sea Phen	20809,22,5000,0,"iz_d05_i::OnMyMobDead"
+iz_d05_i,0,0	monster	Deep Sea King Dramoh	20810,10,5000,0,"iz_d05_i::OnMyMobDead"
+
+iz_d05_i,0,0,0	script	iz_d05_i	-1,{
+	end;
+OnMyMobDead:
+	if ($@izl_t05_mob_num < 400) {	// cantidad para spawn
+		$@izl_t05_mob_num++;
+		if ($@izl_t05_mob_num == 400) {
+			switch(rand(1,6)) {	// coorenadas random
+				case 1:  .@x = 132;  .@y = 108;  break;
+				case 2:  .@x = 201;   .@y = 207;  break;
+				case 3:  .@x = 63;  .@y = 105;   break;
+				case 4:  .@x = 142;  .@y = 106;  break;
+				case 5:  .@x = 217;  .@y = 32;  break;
+				case 6:  .@x = 42;  .@y = 181;  break;
+			}
+			setarray .@mob_list[0], 20843,20843;
+			monster "iz_d05_i",.@x,.@y,"--en--",.@mob_list[ rand(2) ],1, "iz_d05_i::OnMyMVPDead";
+			announce "La bruja de las profundidades se aproxima, ponte en guardia!",bc_map,0x00CCFF,FW_NORMAL,22;
+		}
+	}
+	end;
+OnMyMVPDead:
+	killmonster "iz_d05_i", "iz_d05_i::OnMyMVPDead";
+	sleep 600000;
+	$@izl_d05_p_delay = 0;
+	initnpctimer;
+	end;
+OnTimer60000:
+	$@izl_d05_p_delay++;
+	if ($@izl_d05_p_delay < 60) // delay de 100 minutos
+		initnpctimer;
+	else {
+		stopnpctimer;
+		$@izl_t05_mob_num = 0;
+		$@izl_d05_p_delay = 0;
+	}
+	end;
+}

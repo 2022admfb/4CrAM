@@ -1,0 +1,251 @@
+//================================================
+//        _____ _           _ _                   
+//       / ____| |         | (_)                  
+//      | |  __| | __ _  __| |_ _   _ ___         
+//      | | |_ | |/ _` |/ _` | | | | / __|        
+//      | |__| | | (_| | (_| | | |_| \__ \        
+//       \_____|_|\__,_|\__,_|_|\__,_|___/        
+//                                                  
+//===== rAthena Script ===========================
+//= Sistema Fake Player (NPC + Comando)  
+//===== Cr้ditos: ================================
+//= Gladius, Zell e Forshaken
+//===== Versใo do NPC: ===========================
+//= 1.0
+//================================================
+
+
+-	script	fakeplayer_atcommand	-1,{
+
+	OnInit:
+	bindatcmd("fakeplayer","fakeplayer_atcommand::OnAtcommand",99,99);
+	end;
+	
+OnAtcommand:
+
+set @np$,"^00B2EE[Fake Player]^000000";
+
+mes @np$;
+mes "คุณอยากทำอะไร";
+switch(select("^3CB371[1]^000000 สร้างตัวละคร :^3CB371[2]^000000 สร้างทันที :^ff0000[3]^000000 ยกเลิก")){
+
+case 1:
+	next;
+	mes @np$;
+	mes "ชื่อที่ต้องการสำหรับผู้เล่นคนนี้คืออะไร";
+	input .@Input$;
+	next;
+	mes @np$;
+	mes "คุณต้องการสร้างเครื่องเล่นของคุณบนแผนที่ใด";
+	input .@map$;
+	next;
+	mes @np$;
+	mes "ป้อนพิกัดแรกของคุณ: x.";
+	input .@1st;
+	next;
+	mes @np$;
+	mes "ป้อนพิกัดแรกของคุณ: y.";
+	input .@2nd;
+	next;
+	mes @np$;
+	mes "รหัสคลาสที่ต้องการ";
+	atcommand "@job";
+	message strcharinfo(0), "ตรวจสอบรายชื่องานในช่องแชทของคุณ!";
+	input .@job;
+	next;
+	mes @np$;
+	mes "ป้อนเพศของตัวละคร";
+	mes "0 สำหรับ ^FF0000Female ^000000 และ 1 สำหรับ ^0000FFMale ^000000";
+	input .@sex;
+	next;
+	mes @np$;
+	mes "ใส่ทรงผม 1-:";
+	input .@hairstyle;
+	next;
+	mes @np$;
+	mes "ใส่สีผม 1-:";
+	input .@haircolor;
+	next;
+	mes @np$;
+	mes "ใส่ ID อาวุธ 0-:";
+	input .@weapon;
+	next;
+	mes @np$;
+	mes "ป้อนรหัสโล่ 0-:";
+	input .@shield;
+	next;
+	mes @np$;
+	mes "ป้อนรหัสอุปกรณ์ส่วนหัว (สูง)";
+	input .@tophead;
+	next;
+	mes @np$;
+	mes "ใส่หัวอุปกรณ์ ID costume (กลาง)";
+	input .@midhead;
+	next;
+	mes @np$;
+	mes "ป้อน ID costume (ด้านล่าง)";
+	input .@lowhead;
+	next;
+	mes @np$;
+	mes "ใส่สีเสื้อผ้าของตัวละคร 1-:";
+	input .@dye;
+	next;
+	mes @np$;
+	mes "ยินดีด้วย! สร้าง Fake Player ["+.@Input$+"] ในแบบของคุณแล้ว";
+	.@monster_gid = fakeplayer( .@map$, .@1st, .@2nd, .@Input$, .@job, .@sex, .@hairstyle, @haircolor, .@weapon, .@shield, .@tophead, .@midhead, .lowhead, .@dye, 0,25007 );
+	close;
+
+case 2:
+	next;
+	mes @np$;
+	mes "พร้อมแล้ว! ฉันเรียกโปรแกรมปลอมของคุณมาเล่น.";
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "stefen", 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "stavejob", 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "olaha", 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "abana", 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "evill", 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "duduee", 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "Melude", 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "ไทยแลน1", 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "ขอบคุณเสมอ", 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "โนวัน", 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "อิอินะจ้า", 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "ขายของ", 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "พ่อค้า", 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 1,25008 );
+	.@monster_gid = fakeplayer( "izlude", 126, 142, "เดลมาสิ", 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	//new													//job // sex // hair // hair color // weapon // shield // head
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "stefen", 0, 1, 1, 0, 2, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "stavejob", 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "olaha", 0, 1, 1, 0, 2, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "abana", 0, 1, 1, 0, 3, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "evill", 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "duduee", 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Melude", 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "เกิดมาลุย", 0, 1, 1, 1, 4, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "อะไรก็ได้", 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "อิหยังวะ", 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "beha", 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Joker", 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "ariwa", 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "arebaba", 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "omg", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "ASP_za", 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Guok", 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Mos1", 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Mos2", 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 1,25010 );
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Mos3", 0, 1, 1, 2, 1, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Delux", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "System", 0, 1, 1, 0,0, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "ไม่มีอะไรจริง", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "เอาดิวะ", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "เทสเซิฟ", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "คลาส4", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "เทส", 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "เซิฟเจ๋ง", 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "มีอะไร", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "ข้องใจก็มา", 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "ทำไมวะ", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "OMGSS", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "ASDASD", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "WWWWWW", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "DDDDD", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "9696", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "77771", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "7115", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "SDSD", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "DDDW", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "AWASSS", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "SAWASDEE", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Mihi", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Heemee", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Teemee", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Diss", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Tance", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "มาจ้า", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "นู๋มีนา", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "นู๋มาเทส", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "โอ้วมาย", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "กอดจิ", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "เลิฟยูทูว", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "มิสสส", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "มิสเลิฟฟ", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Cisss", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25010 );
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "DissO", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 74, "Abadon", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "ยิงไส้แตก", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "แทงรัวๆ", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "นามิจัง", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "อุบ้ะ", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "อะไรหว้า", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "ก็มาดิ", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "Loveyoutoo", 0, 0, 5, 2, 0, 0, 0, 0, 0, 0, 1,25010 );
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "youmiss", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "Kissme", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "Aoop", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25010);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "Toonami", 0, 1, 4, 0, 0, 0, 0, 0, 0, 0, 1 ,25011);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "S5665", 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "D7777", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "C5050", 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "มาจ้าาา", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "ก็โอเคนะ", 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "เด่วเจอกุ", 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "ตบปากฉีด", 0, 1, 4, 1, 0, 0, 0, 0, 0, 0, 1 ,25011);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "จูบแล้วยิ้ม", 0, 0, 4, 1, 0, 0, 0, 0, 0, 0, 1 ,25011);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "ยิงแล้วถอย", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "แทงฟรีปะ", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25011);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "ปารัวๆ", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "เอิ่มV2", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "ต้อยV1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "Jessple", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "มิกุนะ", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "ไอ้ต้อย", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "น้องสาว", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "วัดพุทธ", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "สระเต่าเหล่า", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25008 );
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "Num1", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25008 );
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "อิกินอส", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25008 );
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "ไทยแลนต์อะไร", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "ไบโอโร่", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "หล่อเท่", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "int_land", 73, 50, "อะจ้าก", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "รักเทอไปทุกวัน", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "มาจีบสาว", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "SnowDog", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "Fellgood", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "SOOB", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "ABNORMOL", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "DDS", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "LOVETOO", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25007);
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "MIKU", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "Akinoss", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "Lovess", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25007 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "กุจะแจ้ง", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25008 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "-อ่าจ้า-", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25008 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "-เพลัย-", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "+ยิงพัง+", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25008 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "++ยิงฟรี+", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25008);
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "+.+.มีมา", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "+++หล่อเท่+++", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 126, 188, "4+4บ้าปะ", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 153, 162, "อาริกาโตะ", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 153, 162, "-โกไซต-", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 153, 162, "-ปืนพิฆาต-", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "izlude", 153, 162, "+อาสึนะ+", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 153, 162, "++คิริโตะ+", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1 ,25009);
+	.@monster_gid = fakeplayer( "izlude", 153, 162, "+.+.เกนชิน", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 153, 162, "+++ฮาจุโกะ+++", 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 153, 162, "ไซบะ", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 128, 98, "Yaiba", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 128, 98, "มินาโตะ", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 128, 98, "โกไซมัน", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 128, 98, "Original", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 128, 98, "babys", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+	.@monster_gid = fakeplayer( "izlude", 128, 98, "JubJubJub", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,25009 );
+    close;
+
+case 3:
+	close;	
+}		
+}
+
+

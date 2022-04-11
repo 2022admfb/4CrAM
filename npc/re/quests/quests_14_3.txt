@@ -1,0 +1,241 @@
+//===== rAthena Script =======================================
+//= Quest NPCs related to episode 14.3
+//===== Description:=========================================
+//= [Walkthrough Conversion]
+//- Others NPCs related to ep14.3
+//===== Changelogs:==========================================
+//= 1.0 First version. [Capuche]
+//= 1.1 Move the Dimensional Travel Quest npcs in another
+//		file. [Capuche]
+//============================================================
+
+moro_vol,91,105,1	script	Eclage Teleporter#143_1	PORTAL,{
+	mes "[Dophe]";
+	mes "เครื่องเคลื่อนย้ายมวลสารนี้เชื่อมต่อกับ Eclage";
+	mes "มันจะถูกทำลายเมื่อปฏิบัติการของเราสิ้นสุดลง แต่ตอนนี้มันเป็นสิ่งที่เราขาดไม่ได้";
+	next;
+	mes "ใช้เครื่องเคลื่อนย้ายมวลสารเพื่อย้ายไปที่ Eclage";
+	next;
+	if (select( "ย้ายไปที่ Eclage","ยกเลิก." ) == 2) {
+		mes "ห้ามใช้เครื่องเคลื่อนย้ายมวลสาร";
+		close;
+	}
+	mes "ย้ายไปที่ Eclage";
+	close2;
+	warp "ecl_in01",38,96;
+	end;
+}
+
+ecl_in01,38,98,1	script	Interdimensional Device#ecl	PORTAL,{
+	if (ep14_3_newerabs < 10) {
+		mes "[Eclage Guard]";
+		mes "เครื่องเคลื่อนย้ายมวลสารนี้เชื่อมต่อกับที่ซ่อนของ Demon God ที่เพิ่งค้นพบ";
+		mes "เฉพาะผู้ที่ได้รับอนุญาตให้เข้าไปในที่ซ่อนเท่านั้นที่สามารถใช้เครื่องเคลื่อนย้ายมวลสารนี้ได้";
+		close;
+	}
+	mes "เครื่องเคลื่อนย้ายมวลสารนี้เชื่อมต่อกับที่ซ่อนของ Demon God ที่เพิ่งค้นพบ";
+	mes "คุณต้องการใช้หรือไม่";
+	next;
+	if (select( "ย้ายไปที่ที่หลบภัยของ Demon God","เลิก." ) == 2) {
+		mes "ห้ามใช้เครื่องเคลื่อนย้ายมวลสาร";
+		close;
+	}
+	mes "ใช้เครื่องเคลื่อนย้ายมวลสารเพื่อย้ายไปยังที่ซ่อนของ Demon God";
+	close2;
+	warp "moro_vol",91,102;
+	end;
+}
+
+ecl_in01,40,96,3	script	Eclage Guard#143_6	4_M_FAIRYSOLDIER,{
+	mes "[Eclage Guard]";
+	mes "ฉันจะช่วยคุณได้อย่างไร?";
+	next;
+	switch( select( "teleporter นั่นคืออะไร?","ทำไมที่นี่คนเยอะจัง","ที่หลบภัยของปีศาจของพระเจ้า?","ลาก่อน." ) ) {
+	case 1:
+		mes "[Eclage Guard]";
+		mes "มันเชื่อมต่อกับที่ซ่อนของ Demon God ที่เพิ่งค้นพบ";
+		mes "ได้รับการออกแบบทางวิทยาศาสตร์เพื่อส่งผู้ใช้โดยตรงไปยัง Dimensional Crack ที่ซ่อนของเขา";
+		next;
+		mes "[Eclage Guard]";
+		mes "นักรบหลายคนออกจากที่ซ่อนแล้ว";
+		mes "ตราบใดที่มีโมร็อกโก Yggdrasil ก็ไม่ปลอดภัย ฉันจะเข้าร่วมการสำรวจ";
+		close;
+	case 2:
+		mes "[Eclage Guard]";
+		mes "ปรากฎว่า Demon God วิ่งจากโมรอคมาซ่อนตัวในมิติของเรา";
+		mes "เขาต้องถูกจัดการไม่ว่าจะถูกเนรเทศกลับสู่อาณาจักรหรือถูกทำลาย";
+		next;
+		mes "[Eclage Guard]";
+		mes "หากคุณต้องการเข้าร่วมการเดินทางเพื่อเอาชนะ Demon God ให้ใช้เครื่องเคลื่อนย้ายมวลสารนี้";
+		mes "มันจะส่งคุณไปที่ Expedition Camp โดยตรง";
+		close;
+	case 3:
+		mes "[Eclage Guard]";
+		mes "คุณรู้จักรอยแยกมิติใช่ไหม? เมื่อเร็ว ๆ นี้มีการเปิดเผยว่ารอยแตกประกอบด้วยทางเดินมิติ";
+		mes "ตอนนี้เราสามารถใช้ทางเดินเหล่านั้นเพื่อสำรวจภายใน Crack ได้แล้ว";
+		next;
+		mes "[Eclage Guard]";
+		mes "เดิมทีรอยแตกถูกสร้างขึ้นโดย Demon God เพื่อช่วยในการหลบหนีของเขา";
+		mes "ดังนั้นจึงคิดว่าการตรวจสอบรอยแตกสามารถค้นหาเขาได้";
+		next;
+		mes "[Eclage Guard]";
+		mes "และมันก็เป็น; ในที่สุดที่ซ่อนของเขาก็ถูกค้นพบ";
+		mes "ร่องรอยของเขาและทหารปีศาจของเขาส่วนใหญ่มองเห็นรอบ ๆ เนินยักษ์ที่อยู่ตรงกลาง";
+		next;
+		mes "[Eclage Guard]";
+		mes "หากคุณต้องการรายละเอียดเพิ่มเติมคุณควรไปที่ไซต์จริง";
+		mes "แค่ใช้เครื่องย้ายมวลสารตรงนั้น";
+		close;
+	case 4:
+		mes "[Eclage Guard]";
+		mes "ขอให้ Yggdrasil อวยพรคุณ";
+		close;
+	}
+}
+
+// Others
+ecl_in01,44,99,1	script	Combat Laphine#143_4	4_M_FAIRYSOLDIER2,{
+	mes "[ต่อสู้ Laphine]";
+	mes "ฉันประหม่า";
+	close;
+}
+
+ecl_in01,46,99,1	script	Combat Laphine#143_5	4_M_FAIRYSOLDIER2,{
+	mes "[ต่อสู้ Laphine]";
+	mes "ฉันหวังว่าฉันจะได้คืนในชิ้นเดียว";
+	close;
+}
+
+ecl_in01,48,99,1	script	Combat Laphine#143_6	4_M_FAIRYSOLDIER2,{
+	mes "[ต่อสู้ Laphine]";
+	mes "อืม ...";
+	close;
+}
+ecl_in01,44,97,1	script	Combat Laphine#143_7	4_F_FAIRYSOLDIER,{
+	mes "[ต่อสู้ Laphine]";
+	mes "จุ๊ ๆ .";
+	close;
+}
+
+ecl_in01,46,97,1	script	Combat Laphine#143_8	4_F_FAIRYSOLDIER,{
+	mes "[ต่อสู้ Laphine]";
+	mes "ได้เวลาส่องแสงแล้ว!";
+	close;
+}
+
+ecl_in01,48,97,1	script	Combat Laphine#143_9	4_F_FAIRYSOLDIER,{
+	mes "[ต่อสู้ Laphine]";
+	mes "ฉันคงหมดสติไปแล้วเมื่อตัดสินใจเข้าร่วมกองทัพ เฮ้อทำไม Door to Verities ถึงต้องสูงขนาดนี้ด้วย?";
+	close;
+}
+
+ecl_in01,46,102,3	script	Commander Laphine#143_1	4_M_FAIRYSOLDIER,5,5,{
+	mes "[ผู้บัญชาการ Laphine]";
+	mes "ความชั่วต้องง้างก้น";
+	mes "คุณเป็นผู้มาเยือนจากทวีปมิดการ์ดโดยไม่คาดคิด";
+	next;
+	mes "[ผู้บัญชาการ Laphine]";
+	mes "หากคุณเป็นสาเหตุของการลงโทษตัวเราเองหรือ Yggdrasil เราจะไม่ลังเลที่จะต่อสู้กับคุณ";
+	close;
+
+OnTouch_:
+	if (.talk == 0) {
+		.talk = 1;
+		npctalk "ผู้บัญชาการ:ทหารในที่สุดก็ถึงเวลาฝึกซ้อมของคุณ!";
+		sleep 2000;
+		npctalk "อ๊าก!","Combat Laphine#143_4";
+		npctalk "อ๊าก!","Combat Laphine#143_5";
+		npctalk "อ๊าก!","Combat Laphine#143_6";
+		npctalk "อา!","Combat Laphine#143_7";
+		npctalk "อ๊าก!","Combat Laphine#143_8";
+		npctalk "อ๊าก!","Combat Laphine#143_9";
+		sleep 2000;
+		npctalk "ผู้บัญชาการ:มีใครบางคนส่งเสียงครวญครางหรือไม่?";
+		sleep 3000;
+		npctalk "ผู้บัญชาการ:อย่าทำให้สหายของคุณผิดหวังที่ฐานทัพ Splendide ล่วงหน้า!";
+		sleep 3000;
+		npctalk "ผู้บัญชาการ:จดจ่อ! เรากำลังจะปิดฉาก Demon God!";
+		sleep 2000;
+		npctalk "เย้เย้.","Combat Laphine#143_7";
+		sleep 2000;
+		npctalk "...","Combat Laphine#143_4";
+		npctalk "อา...","Combat Laphine#143_5";
+		npctalk "...","Combat Laphine#143_6";
+		npctalk "...","Combat Laphine#143_8";
+		sleep 3000;
+		npctalk "ผู้บัญชาการ:อ่าทันใดนั้นฉันก็มองไม่เห็น ...";
+		.talk = 0;
+	}
+	end;
+}
+
+ecl_in01,37,90,3	script	Magic Scholar Lemony#14	4_F_FAIRY2,{
+	mes "[Lemony]";
+	mes "คุณได้อ่านนิตยสาร Door to Verities ฉบับล่าสุดหรือไม่";
+	mes "เครื่องเคลื่อนย้ายมวลสารตัวใหม่ของ Avant มีจุดเด่นอยู่จริงๆหรือไม่?";
+	next;
+	mes "[Armandi]";
+	mes "ใช่เพียงหลักการพื้นฐานและข้อมูลที่เกี่ยวข้องกับมนุษย์";
+	mes "ฉันไม่ค่อยเข้าใจมันทั้งหมด";
+	next;
+	mes "[Lemony]";
+	mes "ฉันสงสัยว่านี่หมายความว่าในที่สุด Avant ก็ตัดสินใจที่จะติดตามความสนใจของเขาในกิจกรรมการวิจัย";
+	next;
+	mes "[Lemony]";
+	mes "เฮ้มนุษย์";
+	mes "คุณกำลังแอบฟังเราอยู่หรือเปล่า? แม้ว่ามันจะไม่เหมือนกับว่าเรากำลังคุยกันเรื่องความลับ";
+	next;
+	mes "[Lemony]";
+	mes "โอ้ใช่. คุณไปที่นั่นด้วยเหรอ?";
+	mes "คุณรู้ไหมว่าที่ซ่อนของเทพปีศาจผู้สร้างรอยแตกมิติเวลาอวกาศบางส่วนเพิ่งถูกค้นพบ";
+	next;
+	mes "[Lemony]";
+	mes "หากคุณอยากรู้อยากเห็นให้ใช้เครื่องเคลื่อนย้ายมวลสารนั้นไปยังที่ซ่อนที่นั่น";
+	mes "จะมีให้ชมไม่น้อยเลยทีเดียว";
+	mes "โอ้คุณก็รู้คุณอาจจะทิ้งชีวิตของคุณไป *ขำ*";
+	next;
+	mes "[Armandi]";
+	mes "Lemony คุณจำเป็นต้องปรับปรุงบุคลิกภาพของคุณจริงๆ";
+	mes "Tsk,tsk.";
+	close;
+}
+
+ecl_in01,35,89,6	script	Magic Scholar Armandi#1	4_M_FAIRYKID6,{
+	mes "[Armandi]";
+	mes "ฉันหวังว่าอุปกรณ์ระหว่างมิติจะไม่สร้างความเสียหายให้กับโลกนี้";
+	mes "อย่างไรก็ตาม Avant ไม่เคยพลาดที่จะทำให้ฉันประหลาดใจ";
+	next;
+	mes "[Lemony]";
+	mes "อ๊ากฉันเกลียดผู้ชายคนนั้น";
+	next;
+	mes "[Armandi]";
+	mes "Avant อาจเป็นที่น่ารังเกียจ";
+	mes "แต่เขาเก่งที่สุดในสิ่งที่เขาทำ";
+	next;
+	mes "[Lemony]";
+	mes "นั่นฉันเห็นด้วย";
+	mes "มีเพียงเขาเท่านั้นที่สามารถดึงเครื่องเคลื่อนย้ายมวลสารชนิดนี้ออกไปได้";
+	mes "ทำไมเขาถึงช่วยนายกเทศมนตรีล่ะ?";
+	next;
+	mes "[Armandi]";
+	mes "เมื่อฉันถามเขาเขาพึมพำบางอย่างเกี่ยวกับการกลับใจ";
+	mes "ฉันเดาได้แค่ว่ามันมีส่วนเกี่ยวข้องกับการเกิดของนายกเทศมนตรี";
+	next;
+	mes "[Armandi]";
+	mes "ฉันอยากจะถามมากกว่านี้ แต่เขามองลงมาที่จมูกของเขาที่ฉัน";
+	mes "เฮ้อมันไม่ยุติธรรมเลยเช่นการกระตุกถือเป็นศาสตร์ที่ดีที่สุดในศาสตร์เวทมนต์";
+	next;
+	mes "[Lemony]";
+	mes "คุณสามารถเรียนอย่างหนักเพื่อเอาชนะเขาได้เสมอ";
+	close;
+}
+
+// Placeholder (unknown scripts)
+// ecl_in01,47,92,0	script	#ecl_buff_N	HIDDEN_WARP_NPC
+// ecl_in01,48,44,0	script	#ecl_buff_S	HIDDEN_WARP_NPC
+// ecl_in01,23,68,0	script	#ecl_buff_W	HIDDEN_WARP_NPC
+// ecl_in01,48,67,0	script	#ecl_orb_buff	HIDDEN_WARP_NPC
+// ecl_in01,71,67,0	script	#ecl_buff_E	HIDDEN_WARP_NPC
+// ecl_in01,47,27,0	script	#mgate03	HIDDEN_WARP_NPC
+
+

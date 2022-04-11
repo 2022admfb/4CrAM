@@ -1,0 +1,56 @@
+/*-	script	LOGIN	-1,{
+	OnInit:
+		.npc_name$ = strnpcinfo(3);
+		.time = 60*100000;
+		bindatcmd "check",.npc_name$+"::OnAtcommand";
+		end;
+	
+	OnAtcommand:
+		dispbottom "Accumulated "+#daily_minute_count;
+		end;
+		
+		
+	OnUpdate:
+	.time = (30*24*60*60*800);
+	deltimer .npc_name$+"::OnUpdate";
+		#Premium_minute_count=1;
+		switch ( #Premium_minute_count ) 
+		    {
+			default:
+				break;
+			case 1:
+			
+	    if (#isPremiumUse == 1)
+	    { 
+			#getpremium = 1;
+			
+	      if (#getpremium && #isPremiumUse == 1){
+			  
+		    if (activevip ==1){
+				activevip = 0;
+			}
+		    else{
+			sc_start SC_EXPNEW1,.time,10; 
+			sc_start SC_JEXPBOOST,.time,10;
+		    activevip = 1;
+			}
+		  }
+		  //dispbottom "¤Ø³ÃÑººÑ¾ä»áÅéÇ"+.time+"";
+		break;
+	    }
+		
+		
+	     //dispbottom "¢ÍÍÀÑÂ ¤Ø³äÁèÁÕÇÕäÍ¾Õ";
+	
+			}
+	
+	
+	OnPCLoginEvent:
+	addtimer ( 60 * 10 ), .npc_name$+"::OnUpdate";
+	if (#Premium_minute_count > 1){
+		#Premium_minute_count = 1;
+		}
+	
+	
+	end;
+}*/

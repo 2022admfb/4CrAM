@@ -1,0 +1,796 @@
+//WARPER
+ice_dun02,150,10,5	script	Purple Portal#IllusionFrozen	4_PURPLE_WARP,{
+	
+mes "คุณสัมผัสประตูลึกลับ";
+mes " ";
+mes "ทันใดนั้นคุณก็รู้สึกได้ถึงหมอกเย็น ๆ ที่เคลื่อนเข้าหาตัวคุณ";
+next;
+switch(select("เข้าไป","ยกเลิก")) {	
+	case 1:
+	goto yesTicket;
+	close;
+	 case 2:
+	goto noTicket;
+	close;
+
+noTicket:
+mes "หมอกเริ่มเย็นลงเรื่อย ๆ ";
+mes "วิ่งหลบไปดีกว่า!";
+close;
+
+yesTicket:
+
+/*if (countitem(7539) < 10){
+	mes "มันเหมือนกับว่าคุณมี Poring Coin ไม่พอที่จะโยน!";
+	close;
+   }*/
+   if(BaseLevel < 130){
+	mes "ต้องการ level 130 ขึ้นไป";
+	close;
+}
+mes "หมอกเย็นเข้ามาในตัว!";
+specialeffect 74;
+progressbar "ffff00", 1;
+sleep2 1000;
+//delitem 7539, 10;
+warp "ice_d03_i",150,23;
+close;
+	}
+
+}
+ice_d03_i,149,19,5	script	Purple Portalend#IllusionFrozen	4_PURPLE_WARP,{
+		mes "[portal]";
+		mes "คุณสัมผัสประตูลึกลับ";
+switch(select("เข้าไป","ยกเลิก")) {	
+		case 1:
+		goto exit;
+		close;
+		case 2:
+		close;
+		end;
+	
+		exit:
+		mes "เคลื่อนย้ายไปยัง ice dungeon";
+		specialeffect 74;
+		progressbar "ffff00", 1;
+		sleep2 1000;
+		warp "ice_dun02",152,10;
+		close;
+
+	}
+}
+
+
+//Blazing Fire
+ice_d03_i,126,126,3	script	Blazing Fire#IllusionFrozen1	802,{
+	mes "^3355FF[เปลวไฟในไฟนี้]";
+	mes "อุปสรรคประทุด้วยเวทมนตร์";
+	mes "พลังไม่มีทาง";
+	mes "คุณสามารถดับไฟนี้ได้";
+	mes "ด้วยวิธีธรรมดา";
+	mes "ลองใช้ Ice Cubix 25x หรือ 1x Ice Scale ดูสิ ^000000";
+	//if (ice_necklace_q > 4) {
+		if ($@awakenktullanux_summon < 4) {
+			if (countitem(7066) > 25) {
+				next;
+				select("ใช้  Ice Cubic.");
+				mes "^3355FFโยน Ice Cubic";
+				mes "ผงลงบนเปลวไฟ. มัน";
+				mes "ริบหรี่ก่อนดับ.^000000";
+				delitem 7066,25; //Ice Cubic
+				hideonnpc "Blazing Fire#IllusionFrozen1";
+				set $@awakenktullanux_summon,$@awakenktullanux_summon+1;
+				if ($@awakenktullanux_summon == 4) donpcevent "ice_boss#broadIllusionFrozen::OnStart";
+			}
+			else if (countitem(7562) > 0) {
+				next;
+				select("ใช้ Ice Scale.");
+				mes "^3355FFโยนเกล็ดน้ำแข็งเข้าไป";
+				mes "เปลวไฟมันประทุมาก่อน";
+				mes "ดับ.^000000";
+				delitem 7562,1; //Ice Scale
+				hideonnpc "Blazing Fire#IllusionFrozen1";
+				set $@awakenktullanux_summon,$@awakenktullanux_summon+1;
+				if ($@awakenktullanux_summon == 4) donpcevent "ice_boss#broadIllusionFrozen::OnStart";
+				close;
+			}
+		}
+	//}
+	close;
+}
+
+ice_d03_i,172,126,0	script	Blazing Fire#IllusionFrozen2	802,{
+	mes "^3355FF[เปลวไฟในไฟนี้]";
+	mes "อุปสรรคประทุด้วยเวทมนตร์";
+	mes "พลังไม่มีทาง";
+	mes "คุณสามารถดับไฟนี้ได้";
+	mes "ด้วยวิธีธรรมดา";
+	mes "ลองใช้ Ice Cubix 25x หรือ 1x Ice Scale ดูสิ ^000000";
+	//if (ice_necklace_q > 4) {
+		if ($@awakenktullanux_summon < 4) {
+			if (countitem(7066) > 25) {
+				next;
+				select("ใช้  Ice Cubic.");
+				mes "^3355FFคุณโรย Ice Cubic";
+				mes "ผงลงบนเปลวไฟมัน";
+				mes "ริบหรี่ก่อนดับ ^000000";
+				delitem 7066,25; //Ice Cubic
+				hideonnpc "Blazing Fire#IllusionFrozen2";
+				set $@awakenktullanux_summon,$@awakenktullanux_summon+1;
+				if ($@awakenktullanux_summon == 4) donpcevent "ice_boss#broadIllusionFrozen::OnStart";
+			}
+			else if (countitem(7562) > 0) {
+				next;
+				select("ใช้ Ice Scale.");
+				mes "^3355FF คุณโยนเกล็ดน้ำแข็งเข้าไป";
+				mes "เปลวไฟมันประทุมาก่อน";
+				mes "ดับ. ^000000";
+				delitem 7562,1; //Ice Scale
+				hideonnpc "Blazing Fire#IllusionFrozen2";
+				set $@awakenktullanux_summon,$@awakenktullanux_summon+1;
+				if ($@awakenktullanux_summon == 4) donpcevent "ice_boss#broadIllusionFrozen::OnStart";
+				close;
+			}
+		}
+	//}
+	close;
+}
+
+ice_d03_i,172,172,0	script	Blazing Fire#IllusionFrozen3	802,{
+	mes "^3355FF[เปลวไฟในไฟนี้]";
+	mes "อุปสรรคประทุด้วยเวทมนตร์";
+	mes "พลังไม่มีทาง";
+	mes "คุณสามารถดับไฟนี้ได้";
+	mes "ด้วยวิธีธรรมดา";
+	mes "ลองใช้ Ice Cubix 25x หรือ 1x Ice Scale ดูสิ ^000000";
+	//if (ice_necklace_q > 4) {
+		if ($@awakenktullanux_summon < 4) {
+			if (countitem(7066) > 25) {
+				next;
+				select("ใช้  Ice Cubic.");
+				mes "^3355FFคุณโรย Ice Cubic";
+				mes "ผงลงบนเปลวไฟมัน";
+				mes "ริบหรี่ก่อนดับ ^000000";
+				delitem 7066,25; //Ice Cubic
+				hideonnpc "Blazing Fire#IllusionFrozen2";
+				set $@awakenktullanux_summon,$@awakenktullanux_summon+1;
+				if ($@awakenktullanux_summon == 4) donpcevent "ice_boss#broadIllusionFrozen::OnStart";
+			}
+			else if (countitem(7562) > 0) {
+				next;
+				select("ใช้ Ice Scale.");
+				mes "^3355FF คุณโยนเกล็ดน้ำแข็งเข้าไป";
+				mes "เปลวไฟมันประทุมาก่อน";
+				mes "ดับ. ^000000";
+				delitem 7562,1; //Ice Scale
+				hideonnpc "Blazing Fire#IllusionFrozen2";
+				set $@awakenktullanux_summon,$@awakenktullanux_summon+1;
+				if ($@awakenktullanux_summon == 4) donpcevent "ice_boss#broadIllusionFrozen::OnStart";
+				close;
+			}
+		}
+	//}
+	close;
+}
+
+ice_d03_i,127,172,0	script	Blazing Fire#IllusionFrozen4	802,{
+	mes "^3355FF[เปลวไฟในไฟนี้]";
+	mes "อุปสรรคประทุด้วยเวทมนตร์";
+	mes "พลังไม่มีทาง";
+	mes "คุณสามารถดับไฟนี้ได้";
+	mes "ด้วยวิธีธรรมดา";
+	mes "ลองใช้ Ice Cubix 25x หรือ 1x Ice Scale ดูสิ ^000000";
+	//if (ice_necklace_q > 4) {
+		if ($@awakenktullanux_summon < 4) {
+			if (countitem(7066) > 25) {
+				next;
+				select("ใช้  Ice Cubic.");
+				mes "^3355FFคุณโรย Ice Cubic";
+				mes "ผงลงบนเปลวไฟมัน";
+				mes "ริบหรี่ก่อนดับ ^000000";
+				delitem 7066,25; //Ice Cubic
+				hideonnpc "Blazing Fire#IllusionFrozen2";
+				set $@awakenktullanux_summon,$@awakenktullanux_summon+1;
+				if ($@awakenktullanux_summon == 4) donpcevent "ice_boss#broadIllusionFrozen::OnStart";
+			}
+			else if (countitem(7562) > 0) {
+				next;
+				select("ใช้ Ice Scale.");
+				mes "^3355FF คุณโยนเกล็ดน้ำแข็งเข้าไป";
+				mes "เปลวไฟมันประทุมาก่อน";
+				mes "ดับ. ^000000";
+				delitem 7562,1; //Ice Scale
+				hideonnpc "Blazing Fire#IllusionFrozen2";
+				set $@awakenktullanux_summon,$@awakenktullanux_summon+1;
+				if ($@awakenktullanux_summon == 4) donpcevent "ice_boss#broadIllusionFrozen::OnStart";
+				close;
+			}
+		}
+	//}
+	close;
+}
+
+ice_d03_i,1,173,5	script	ice_boss#broadIllusionFrozen	-1,{
+OnStop:
+	stopnpctimer;
+	end;
+
+OnStart:
+	initnpctimer;
+	end;
+
+OnTimer2000:
+	mapannounce "ice_d03_i","ใครบางคนดับเปลวไฟของ thor ... Infidel!",bc_map,0xFF6633;
+	end;
+
+OnTimer8000:
+	mapannounce "ice_d03_i","ฉัน, Ktullanux, ต้องปกป้องและรักษาเปลวไฟ...",bc_map,0xFF6633;
+	end;
+
+OnTimer10000:
+	mapannounce "ice_d03_i","ในฐานะเจ้านายของถ้ำนี้ฉันขอสาบานว่าจะแก้แค้น!",bc_map,0xFF6633;
+	end;
+
+OnTimer13000:
+	mapannounce "ice_d03_i","มีเพียงมนุษย์เท่านั้นที่โง่เขลา ....",bc_map,0xFF6633;
+	end;
+
+OnTimer16000:
+	mapannounce "ice_d03_i","ความอยากรู้อยากเห็นของคุณจะทำให้คุณเสียประโยชน์.",bc_map,0xFF6633;
+	end;
+
+OnTimer19000:
+	mapannounce "ice_d03_i","เตรียมตัวให้พร้อมสำหรับดินแดนแห่งความเจ็บปวดที่เยือกแข็งซึ่งคุณคาดไม่ถึง!",bc_map,0xFF6633;
+	end;
+
+OnTimer21000:
+	stopnpctimer;
+	donpcevent "ice_boss#onIllusionFrozen::OnStart";
+	end;
+}
+
+ice_d03_i,1,174,3	script	ice_boss#onIllusionFrozen	-1,{
+OnStart:
+	monster "ice_d03_i",150,135,"Awaken Ktullanux",3796,1,"ice_boss#onIllusionFrozen::OnMyMobDead";
+	end;
+
+OnStartTimer:
+	Initnpctimer;
+	end;
+
+OnStopTimer:
+	stopnpctimer;
+	end;
+
+OnMyMobDead:
+	mapannounce "ice_d03_i","Oh, Odin! โปรดปกป้องสถานที่แห่งนี้จากไฟอันรุนแรง!",bc_map,0xFF6633;
+	mapannounce "ice_d03_i","Pzzzzz...Pzzzz...",bc_map,0x33FFFF;
+	donpcevent "ice_boss#onIllusionFrozen::OnStartTimer";
+	//donpcevent "#ice_secIllusionFrozen::OnStart";
+	end;
+
+OnTimer7200000:
+	stopnpctimer;
+	set $@awakenktullanux_summon,0;
+	hideoffnpc "Blazing Fire#IllusionFrozen1";
+	hideoffnpc "Blazing Fire#IllusionFrozen2";
+	hideoffnpc "Blazing Fire#IllusionFrozen3";
+	hideoffnpc "Blazing Fire#IllusionFrozen4";
+	end;
+}
+
+//Main Daily Quest
+ice_d03_i,148,41,3	script	Frozen Knight#IllusionFrozen	10035,{
+
+//OnNPCKillEvent:
+//if( test_reaper > 0 && killedrid == 3029 && strcharinfo(3) == instance_mapname("1@dth3")){
+//if( test_reaper > 0 && getmonsterinfo( killedrid, MOB_MVPEXP ) && strcharinfo(3) == instance_mapname("1@dth3")){
+//	poring_count = 1;
+//	if (poring_count == 1) {
+//		dispbottom "You already killed "+poring_count+" Porings!";
+//		getitem 50006, 10;
+//		test_reaper = 0;
+//	}
+//	end;
+//}
+	
+	mes "[^0000FFFrozen Knight^000000]";
+	mes "สวัสดี!";
+	mes "ฉันต้องการความช่วยเหลือเพื่อฟื้นฟูความสมดุลของสถานที่นี้";
+	next;
+	mes "[^0000FFFrozen Knight^000000]";
+	mes "ที่นี่ใหญ่มากต้องใช้เวลาถ้าทำคนเดียว";
+	mes "คุณจะช่วยฉันล่าสัตว์ประหลาดในนี้ได้ไหม";
+	next;
+	switch(select("Hunt Furious Gazeti!","Hunt Furious Ice Titan","Hunt Furious Snowier","Hunt Furious Icecle","ยกเลิก!")) {
+		case 1:
+			goto HuntFuriosGazeti;
+			close;
+		case 2:
+			goto HuntFuriosIceTitan;
+			close;
+		case 3:
+			goto HuntFuriosSnowier;
+			close;
+		case 4:
+			goto HuntFuriosIcecle;
+			close;
+		case 5:
+			//goto Cancel;
+			mes "[^0000FFFrozen Knight^000000]";
+			mes "กลัวเหรอ ?";
+			close;
+
+	HuntFuriosGazeti:
+	if(dailyfrozen_snowier == 1 || dailyfrozen_icetitan == 1 || dailyfrozen_icecle == 1){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "คุณต้องสำเร็จการล่า ก่อนที่จะเริ่มล่าใหม่!";
+		close;
+	}
+	if(dailyfrozen_gazeti == 1){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "ฆ่าไปแล้ว "+kill_gazeti_count+"x Furious Gazeti.";
+		mes "ฆ่า 20x Furious Gazeti แล้วกลับมาหาฉัน.";
+		end;
+	}
+	if(dailyfrozen_gazeti == 3 && gettimetick(2) < delay_dailyfrozen_gazeti){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "คุณทำเควสเสร็จแล้วโปรดกลับมาใหม่ในภายหลัง";
+		end;
+	}
+	if(dailyfrozen_gazeti == 2){
+		dailyfrozen_gazeti = 3;
+		delay_dailyfrozen_gazeti = gettimetick(2)+86400;
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "ทำได้แล้ว!";
+		mes "ได้รับ Illusion Stone.";
+		getitem 25271, 1;
+		completequest 95044;
+		next;
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "กลับมาพรุ่งนี้เพื่อรับเควสเพิ่มเติม!";
+		end;
+	}
+	dailyfrozen_gazeti = 1;
+	kill_gazeti_count = 0;
+	mes "[^0000FFFrozen Knight^000000]";
+	mes "ดี!";
+	mes "ฆ่ามอนเตอร์ 20x Furious Gazeti!";
+	next;
+	mes "กลับมาหาฉันเมื่อคุณทำสำเร็จเพื่อรับรางวัล!";
+	erasequest 95044;
+	setquest 95044;
+	close;
+
+	
+	HuntFuriosIceTitan:
+	if(dailyfrozen_gazeti == 1 || dailyfrozen_snowier == 1 || dailyfrozen_icecle == 1){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "คุณต้องล่าให้เสร็จก่อนที่จะเริ่มการล่าใหม่!";
+		close;
+	}
+	if(dailyfrozen_icetitan == 1){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "ฆ่าแล้ว "+kill_icetitan_count+"x Furious Ice Titan.";
+		mes "ฆ่า 20x Furious Ice Titan แล้วกลับมาหาฉัน.";
+		end;
+	}
+	if(dailyfrozen_icetitan == 3 && gettimetick(2) < delay_dailyfrozen_icetitan){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "คุณทำเควสเสร็จแล้วโปรดกลับมาใหม่ในภายหลัง";
+		end;
+	}
+	if(dailyfrozen_icetitan == 2){
+		dailyfrozen_icetitan = 3;
+		delay_dailyfrozen_icetitan = gettimetick(2)+86400;
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "ทำได้แล้ว!";
+		mes "ได้รับ Illusion Stone.";
+		getitem 25271, 1;
+		completequest 95045;
+		next;
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "กลับมาพรุ่งนี้เพื่อรับเควสเพิ่มเติม!";
+		end;
+	}
+	dailyfrozen_icetitan = 1;
+	kill_icetitan_count = 0;
+	mes "[^0000FFFrozen Knight^000000]";
+	mes "ดี!";
+	mes "ฆ่ามอนเตอร์ 20x Furious Ice Titan!";
+	next;
+	mes "กลับมาหาฉันเมื่อคุณทำสำเร็จเพื่อรับรางวัล!";
+	erasequest 95045;
+	setquest 95045;
+	close;
+
+	
+	HuntFuriosSnowier:
+	if(dailyfrozen_gazeti == 1 || dailyfrozen_icetitan == 1 || dailyfrozen_icecle == 1){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "คุณต้องล่าให้เสร็จก่อนที่จะเริ่มการล่าใหม่!";
+		close;
+	}
+	if(dailyfrozen_snowier == 1){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "ฆ่าแล้ว "+kill_snowier_count+"x Furious Snowier.";
+		mes "ฆ่า 20x Furious Snowier แล้วกลับมาหาฉัน..";
+		end;
+	}
+	if(dailyfrozen_snowier == 3 && gettimetick(2) < delay_dailyfrozen_snowier){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "คุณทำเควสเสร็จแล้วโปรดกลับมาใหม่ในภายหลัง";
+		end;
+	}
+	if(dailyfrozen_snowier == 2){
+		dailyfrozen_snowier = 3;
+		delay_dailyfrozen_snowier = gettimetick(2)+86400;
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "ทำได้แล้ว!";
+		mes "ได้รับ Illusion Stone.";
+		getitem 25271, 1;
+		completequest 95046;
+		next;
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "กลับมาพรุ่งนี้เพื่อรับเควสเพิ่มเติม!";
+		end;
+	}
+	dailyfrozen_snowier = 1;
+	kill_snowier_count = 0;
+	mes "[^0000FFFrozen Knight^000000]";
+	mes "ดี!";
+	mes "ฆ่ามอนเตอร์ 20x Furious Snowier!";
+	next;
+	mes "กลับมาหาฉันเมื่อคุณทำสำเร็จเพื่อรับรางวัล!";
+	erasequest 95046;
+	setquest 95046;
+	close;
+	
+	HuntFuriosIcecle:
+	if(dailyfrozen_gazeti == 1 || dailyfrozen_icetitan == 1 || dailyfrozen_snowier == 1){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "คุณต้องล่าให้เสร็จก่อนที่จะเริ่มการล่าใหม่!";
+		close;
+	}
+	if(dailyfrozen_icecle == 1){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "ฆ่าแล้ว "+kill_icecle_count+"x Furious Icecle.";
+		mes "ฆ่า 20x Furious Icecle แล้วกลับมาหาฉัน.";
+		end;
+	}
+	if(dailyfrozen_icecle == 3 && gettimetick(2) < delay_dailyfrozen_icecle){
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "คุณทำเควสเสร็จแล้วโปรดกลับมาใหม่ในภายหลัง";
+		end;
+	}
+	if(dailyfrozen_icecle == 2){
+		dailyfrozen_icecle = 3;
+		delay_dailyfrozen_icecle = gettimetick(2)+86400;
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "ทำได้แล้ว!";
+		mes "ได้รับ Illusion Stone.";
+		getitem 25271, 1;
+		completequest 95047;
+		next;
+		mes "[^0000FFFrozen Knight^000000]";
+		mes "กลับมาพรุ่งนี้เพื่อรับเควสเพิ่มเติม!";
+		end;
+	}
+	dailyfrozen_icecle = 1;
+	kill_icecle_count = 0;
+	mes "[^0000FFFrozen Knight^000000]";
+	mes "ดี!";
+	mes "ฆ่ามอนเตอร์ 20x Furious Icecle!";
+	next;
+	mes "กลับมาหาฉันเมื่อคุณทำสำเร็จเพื่อรับรางวัล!";
+	erasequest 95047;
+	setquest 95047;
+	close;
+	}
+			
+	end;
+}
+
+//Kill Daily Quest
+-	script	Furious Gazeti#IllusionFrozen	-1,{
+    OnKill:
+		if(dailyfrozen_gazeti == 2){
+			unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Gazeti. ต้องคุยกับ Frozen Knight.",bc_self;
+		}
+		if(dailyfrozen_gazeti == 1 && kill_gazeti_count > 19){
+				unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Gazeti. ต้องคุยกับ Frozen Knight.",bc_self;
+				dailyfrozen_gazeti = 2;
+				end;
+			}
+		if(dailyfrozen_gazeti == 1){
+			kill_gazeti_count = kill_gazeti_count+1;
+			if(kill_gazeti_count > 19){
+				unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Gazeti. ต้องคุยกับ Frozen Knight.",bc_self;
+				dailyfrozen_gazeti = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฆ่าแล้ว "+kill_gazeti_count+" Furious Gazeti",bc_self;
+			end;
+		}
+	end;
+}
+
+-	script	Furious Snowier#IllusionFrozen	-1,{
+    OnKill:
+		if(dailyfrozen_snowier == 2){
+			unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Snowier. ต้องคุยกับ Frozen Knight.",bc_self;
+		}
+		if(dailyfrozen_snowier == 1 && kill_snowier_count > 19){
+				unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Snowier. ต้องคุยกับ Frozen Knight.",bc_self;
+				dailyfrozen_snowier = 2;
+				end;
+			}
+		if(dailyfrozen_snowier == 1){
+			kill_snowier_count = kill_snowier_count+1;
+			if(kill_snowier_count > 19){
+				unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Snowier. ต้องคุยกับ Frozen Knight.",bc_self;
+				dailyfrozen_snowier = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฆ่าแล้ว "+kill_snowier_count+" Furious Snowier",bc_self;
+			end;
+		}
+	end;
+}
+
+-	script	Furious Ice Titan#IllusionFrozen	-1,{
+    OnKill:
+		if(dailyfrozen_icetitan == 2){
+			unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Ice Titan. ต้องคุยกับ Frozen Knight.",bc_self;
+		}
+		if(dailyfrozen_icetitan == 1 && kill_icetitan_count > 19){
+				unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Ice Titan. ต้องคุยกับ Frozen Knight.",bc_self;
+				dailyfrozen_icetitan = 2;
+				end;
+			}
+		if(dailyfrozen_icetitan == 1){
+			kill_icetitan_count = kill_icetitan_count+1;
+			if(kill_icetitan_count > 19){
+				unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Ice Titan. ต้องคุยกับ Frozen Knight.",bc_self;
+				dailyfrozen_icetitan = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฆ่าแล้ว "+kill_icetitan_count+" Furious Ice Titan",bc_self;
+			end;
+		}
+	end;
+}
+
+-	script	Furious Icecle#IllusionFrozen	-1,{
+    OnKill:
+		if(dailyfrozen_icecle == 2){
+			unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Icecle. ต้องคุยกับ Frozen Knight.",bc_self;
+		}
+		if(dailyfrozen_icecle == 1 && kill_icecle_count > 19){
+				unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Icecle. ต้องคุยกับ Frozen Knight.",bc_self;
+				dailyfrozen_icecle = 2;
+				end;
+			}
+		if(dailyfrozen_icecle == 1){
+			kill_icecle_count = kill_icecle_count+1;
+			if(kill_icecle_count > 19){
+				unittalk getcharid(3),"ฆ่ามอนเตอร์ 20x Furious Icecle. ต้องคุยกับ Frozen Knight.",bc_self;
+				dailyfrozen_icecle = 2;
+				end;
+			}
+			unittalk getcharid(3),"ฆ่าแล้ว "+kill_icecle_count+" Furious Icecle",bc_self;
+			end;
+		}
+	end;
+}
+
+//Equip Craft
+ice_d03_i,158,41,3	script	Ominous Abstraction#IllusionFrozen	10036,{
+	if (checkweight(1201,1) == 0) {
+		mes "ลดจำนวนสินค้าในคลังของคุณก่อนดำเนินการต่อ";
+		close;
+	}
+	if (MaxWeight - Weight < 1000) {
+		mes "คุณมีสินค้าในคลังมากเกินไป";
+		close;
+	}
+	
+	disable_items;
+	emotion ET_DELIGHT;
+	mes "[^0000FFOminous Abstraction^000000]";
+	mes "คุณต้องเข้มแข็งพอที่จะอยู่ที่นี่";
+	mes "ฉันสามารถสร้างไอเท็มที่มีประสิทธิภาพให้คุณได้โดยเสียค่าใช้จ่าย";
+	mes "แค่เลือกไอเทมอะไรก็ได้ที่คุณต้องการให้ฉัน Craft";
+	next;
+	
+	switch(select("โปรดอธิบาย:Illusion Combo Battle Glove:Illusion Huuma Fluttering Snow:Illusion Cap:Illusion Survivor's Manteau:Illusion Sacred Mission:ยกเลิก")) {
+	case 1:
+		break;
+	case 2:
+		mes "[^0000FFOminous Abstraction^000000]";
+		mes "ในการสร้าง Illusion Combo Battle Glove ฉันจะต้องใช้สิ่งนี้:";
+		mes " ";
+		mes "+9 ^FF0000"+getitemname(1822)+"^000000";
+		mes "100 ^FF0000"+getitemname(25271)+"^000000";
+		mes "100 ^FF0000"+getitemname(25299)+"^000000";
+		next;
+		mes "ได้เลย!";
+		mes "มาสร้างอาวุธให้คุณกันเถอะ";
+		mes "ไม่ต้องกังวลฉันไม่เคยล้มเหลวในการสร้างไอเท็มนี้";
+		next;
+		set .@equip_id, getequipid(EQI_HAND_R);
+		if (countitem(25299) < 100 || countitem(25271) < 100){
+			mes "คุณไม่ได้นำวัสดุติดตัวมามากพอ";
+			mes "กรุณากลับมาพร้อมกับไอเทมในภายหลังเพื่อที่ฉันจะได้สร้างอาวุธให้คุณ";
+			close;
+		}
+
+		if (.@equip_id != 1822) || (getequiprefinerycnt(EQI_HAND_R) < 9){
+			mes "คุณไม่ได้ยินสิ่งที่ฉันพูดก่อนหน้านี้หรือฉันยอมรับเพียง +9 จาก ^FF0000"+getitemname(1822)+"^000000";
+			close;
+		}
+
+		emotion ET_SMILE;
+		specialeffect2 EF_PHARMACY_OK;
+		delequip EQI_HAND_R;
+		delitem 25299, 100;
+		delitem 25271, 100;
+		getitem 1846, 1;
+		mes "ตกลง, นั่นคือสิ่งที่คุณมาที่นี่";
+		mes "ยอดเยี่ยม!";
+		close;
+
+	case 3:
+		mes "[^0000FFOminous Abstraction^000000]";
+		mes "ในการสร้าง Illusion Huuma Fluttering Snow ฉันจะต้องใช้สิ่งนี้: ";
+		mes " ";
+		mes "+9 ^FF0000"+getitemname(13314)+"^000000";
+		mes "100 ^FF0000"+getitemname(25271)+"^000000";
+		mes "20 ^FF0000"+getitemname(25300)+"^000000";
+		next;
+		mes "ได้เลย!";
+		mes "มาสร้างอาวุธให้คุณกันเถอะ";
+		mes "ไม่ต้องกังวลฉันไม่เคยล้มเหลวในการสร้างไอเท็มนี้";
+		next;
+		set .@equip_id, getequipid(EQI_HAND_R);
+		if (countitem(25300) < 100 || countitem(25271) < 100){
+			mes "คุณไม่ได้นำวัสดุติดตัวมามากพอ";
+			mes "กรุณากลับมาพร้อมกับไอเทมในภายหลังเพื่อที่ฉันจะได้สร้างอาวุธให้คุณ";
+			close;
+		}
+
+		if (.@equip_id != 13314) || (getequiprefinerycnt(EQI_HAND_R) < 9){
+			mes "คุณไม่ได้ยินสิ่งที่ฉันพูดก่อนหน้านี้หรือฉันยอมรับเพียง +9 จาก ^FF0000"+getitemname(13314)+"^000000";
+			close;
+		}
+
+		emotion ET_SMILE;
+		specialeffect2 EF_PHARMACY_OK;
+		delequip EQI_HAND_R;
+		delitem 25271, 100;
+		delitem 25300, 20;
+		getitem 13337, 1;
+		mes "ตกลง, นั่นคือสิ่งที่คุณมาที่นี่";
+		mes "ยอดเยี่ยม!";
+		close;
+
+	case 4:
+		mes "[^0000FFOminous Abstraction^000000]";
+		mes "ในการสร้าง Illusion Cap ฉันจะต้องใช้สิ่งนี้: ";
+		mes " ";
+		mes "+9 ^FF0000"+getitemname(2227)+"^000000";
+		mes "50 ^FF0000"+getitemname(25271)+"^000000";
+		mes "100 ^FF0000"+getitemname(25298)+"^000000";
+		next;
+		mes "ได้เลย!";
+		mes "มาสร้างอาวุธให้คุณกันเถอะ";
+		mes "ไม่ต้องกังวลฉันไม่เคยล้มเหลวในการสร้างไอเท็มนี้";
+		next;
+		set .@equip_id, getequipid(HEAD_TOP);
+		if (countitem(25298) < 100 || countitem(25271) < 50){
+			mes "คุณไม่ได้นำวัสดุติดตัวมามากพอ";
+			mes "กรุณากลับมาพร้อมกับไอเทมในภายหลังเพื่อที่ฉันจะได้สร้างอาวุธให้คุณ";
+			close;
+		}
+
+		if (.@equip_id != 2227) || (getequiprefinerycnt(EQI_HEAD_TOP) < 9){
+			mes "คุณไม่ได้ยินสิ่งที่ฉันพูดก่อนหน้านี้หรือฉันยอมรับเพียง +9 จาก ^FF0000"+getitemname(2227)+"^000000";
+			close;
+		}
+
+		emotion ET_SMILE;
+		specialeffect2 EF_PHARMACY_OK;
+		delequip EQI_HEAD_TOP;
+		delitem 25271, 50;
+		delitem 25298, 100;
+		getitem 19223, 1;
+		mes "ตกลง, นั่นคือสิ่งที่คุณมาที่นี่";
+		mes "ยอดเยี่ยม!";
+		close;
+
+	case 5:
+		mes "[^0000FFOminous Abstraction^000000]";
+		mes "ในการสร้าง Illusion Survivor's Manteau will need this: ";
+		mes " ";
+		mes "+9 ^FF0000"+getitemname(2509)+"^000000";
+		mes "100 ^FF0000"+getitemname(25271)+"^000000";
+		mes "200 ^FF0000"+getitemname(25297)+"^000000";
+		next;
+		mes "ได้เลย!";
+		mes "มาสร้างอาวุธให้คุณกันเถอะ";
+		mes "ไม่ต้องกังวลฉันไม่เคยล้มเหลวในการสร้างไอเท็มนี้";
+		next;
+		set .@equip_id, getequipid(EQI_GARMENT);
+		if (countitem(25297) < 200 || countitem(25271) < 100){
+			mes "คุณไม่ได้นำวัสดุติดตัวมามากพอ";
+			mes "กรุณากลับมาพร้อมกับไอเทมในภายหลังเพื่อที่ฉันจะได้สร้างอาวุธให้คุณ";
+			close;
+		}
+
+		if (.@equip_id != 2509) || (getequiprefinerycnt(EQI_GARMENT) < 9){
+			mes "คุณไม่ได้ยินสิ่งที่ฉันพูดก่อนหน้านี้หรือฉันยอมรับเพียง +9 จาก ^FF0000"+getitemname(2509)+"^000000";
+			close;
+		}
+
+		emotion ET_SMILE;
+		specialeffect2 EF_PHARMACY_OK;
+		delequip EQI_GARMENT;
+		delitem 25271, 100;
+		delitem 25297, 200;
+		getitem 20847, 1;
+		mes "ตกลง, นั่นคือสิ่งที่คุณมาที่นี่";
+		mes "ยอดเยี่ยม!";
+		close;
+
+	case 6:
+		mes "[^0000FFOminous Abstraction^000000]";
+		mes "ในการสร้าง Illusion Sacred Mission ฉันจะต้องใช้สิ่งนี้: ";
+		mes " ";
+		mes "+9 ^FF0000"+getitemname(2128)+"^000000";
+		mes "100 ^FF0000"+getitemname(25271)+"^000000";
+		mes "300 ^FF0000"+getitemname(25297)+"^000000";
+		next;
+		mes "ได้เลย!";
+		mes "Let's craft the equip for you";
+		mes "ไม่ต้องกังวลฉันไม่เคยล้มเหลวในการสร้างไอเท็มนี้";
+		next;
+		set .@equip_id, getequipid(EQI_HAND_L);
+		if (countitem(25297) < 300 || countitem(25271) < 100){
+			mes "คุณไม่ได้นำวัสดุติดตัวมามากพอ";
+			mes "Please come back later with the items so I can craft the equip for you";
+			close;
+		}
+
+		if (.@equip_id != 2128) || (getequiprefinerycnt(EQI_HAND_L) < 9){
+			mes "คุณไม่ได้ยินสิ่งที่ฉันพูดก่อนหน้านี้หรือฉันยอมรับเพียง +9 จาก ^FF0000"+getitemname(2128)+"^000000";
+			close;
+		}
+
+		emotion ET_SMILE;
+		specialeffect2 EF_PHARMACY_OK;
+		delequip EQI_HAND_L;
+		delitem 25271, 100;
+		delitem 25297, 300;
+		getitem 28922, 1;
+		mes "ตกลง, นั่นคือสิ่งที่คุณมาที่นี่";
+		mes "ยอดเยี่ยม!";
+		close;
+
+	case 7:
+		mes "[^0000FFOminous Abstraction^000000]";
+		mes "Bye bye";
+		close;
+			
+	}
+		mes "[^0000FFOminous Abstraction^000000]";
+		mes "ฉันสามารถสร้างอาวุธที่มีประสิทธิภาพหมวกรองเท้าและเสื้อผ้าสำหรับคุณ";
+		mes "คุณต้องนำวัสดุให้ฉันในการสร้าง";
+		mes "ในกรณีที่คุณสงสัยว่าฉันสามารถ สร้าง อะไรให้คุณได้เพียงตรวจสอบรายการไอเทมนี้";
+		next;
+		mes "<ITEM>" +getitemname(1846)+ "<INFO>" +1846+"</INFO></ITEM>";
+		mes "<ITEM>" +getitemname(13337)+ "<INFO>" +13337+"</INFO></ITEM>";
+		mes "<ITEM>" +getitemname(19223)+ "<INFO>" +19223+"</INFO></ITEM>";
+		mes "<ITEM>" +getitemname(20847)+ "<INFO>" +20847+"</INFO></ITEM>";
+		mes "<ITEM>" +getitemname(28922)+ "<INFO>" +28922+"</INFO></ITEM>";
+		close;	
+}

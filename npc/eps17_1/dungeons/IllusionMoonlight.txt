@@ -1,0 +1,1178 @@
+payon,164,229,5	script	Elder Sanryu#illusion_moonlight	1_F_ORIENT_04,{
+	if(BaseLevel < 100){
+		mes"[Sanryu]";
+		mes"อืมฉันมีความรู้สึกบางอย่างที่ไม่ดีกำลังจะเกิดขึ้น";
+		mes"ฉันขอให้คุณแข็งแกร่งขึ้น จากนั้นฉันจะสามารถบอกคุณเกี่ยวกับเรื่องนี้";
+		next;
+		mes"^0000FF คุณต้องมีเลเวล 100 ขึ้นไปจึงจะทำภารกิจนี้ได้";
+		close;
+	}
+	if(illusion_moonlight == 0){
+		mes"[Jagyeom]";
+		mes"เรื่องนี้อยู่ในมือเราแล้ว";
+		mes"เราปล่อยให้มันเป็นแบบนี้ต่อไปไม่ได้";
+		next;
+		mes"[Sanryu]";
+		mes"รอ ^0000FFMuyeon ^000000 ได้เลย";
+		mes"ความปลอดภัยของเธอสำคัญกว่าสิ่งอื่นใด";
+		next;
+		if(select("ขออนุญาต."))
+		mes"[Sanryu]";
+		mes"หืม? คุณเป็นนักผจญภัย";
+		mes"คุณบังเอิญได้ยินการสนทนาของเราหรือไม่?";
+		next;
+		mes"[Sanryu]";
+		mes"ฉันเข้าใจ";
+		mes"บางทีอาจเป็นความเชื่อที่คุณได้ยินเรา";
+		next;
+		mes"[Sanryu]";
+		mes"มีถ้ำอยู่ใกล้หมู่บ้าน Archer อยู่ด้านหลังของ Payon";
+		mes"มันเป็นถ้ำผีสิงดังนั้นเราจึงประกอบพิธีกรรมและการไล่ผีที่นั่นเป็นประจำ";
+		next;
+		mes"[Sanryu]";
+		mes"แต่วิญญาณจิ้งจอกเก้าหางนั้นโกรธแค้นมากกว่าที่เราคิด";
+		mes"ทุกครั้งที่มีคนพยายามทำพิธีกรรมกับลูกปัดสุนัขจิ้งจอกพวกเขาจะฝันร้าย";
+		npctalk "ราวกับว่าวิญญาณถูกต่อต้านโดยพวกมัน","Elder Jagyeom#illusion_moonlight",bc_self;
+		next;
+		mes"[Sanryu]";
+		mes"และคราวนี้เธอหมดสติและเข้าไปในถ้ำ";
+		mes"นั่นเป็นเหตุผลที่เรากังวลเกี่ยวกับเธอ";
+		next;
+		if(select("มันเกี่ยวกับMuyeon?"))
+		npctalk "บางทีเราควรส่งคนอื่น","พี่ Jagyeom#illusion_moonlight",bc_self;
+		mes"[Sanryu]";
+		mes"ครับ เธอเป็น Soul Linker ที่ทำพิธีกรรมเป็นประจำ";
+		mes"เราขอให้ทหารคนหนึ่งตามหาเธอ";
+		mes"ตอนนี้พวกเขาต้องอยู่ใกล้ถ้ำ";
+		next;
+		mes"[Jagyeom]";
+		mes"คุณช่วยไปตรวจสอบ ^0000FF Muyeon ^000000 ให้เราหน่อยได้ไหม";
+		next;
+		npctalk "ใช่. คุณสามารถ?","",bc_self;
+		if(select("ได้เลยฉันจะ:ขอโทษฉันกลัวผี") == 2){
+			mes"[Sanryu]";
+			mes"หือ? เราไม่ได้พูดอะไรเกี่ยวกับผี หรือว่าเรา?";
+			close;
+		}
+		mes"[Jagyeom]";
+		mes"ฉันหวังว่าทหารจะพบเธอก่อนที่เธอจะเข้าไปในหมู่บ้านที่ถูกทำลาย";
+		next;
+		mes"[Jagyeom]";
+		mes"โปรดไปที่ถ้ำและดูว่าMuyeonและทหารอยู่ข้างนอกแล้วหรือยัง";
+		mes"นักวิชาการหนุ่มติดตามทหาร แต่ดูเหมือนเธอจะไม่น่าเชื่อถือเลย";
+		next;
+		mes"[Jagyeom]";
+		mes"คุยกับนักวิชาการเขาอาจจะให้ข้อมูลเกี่ยวกับสถานการณ์แก่คุณ";
+		setquest 7776;
+		illusion_moonlight = 1;
+		end;
+    }
+	if(illusion_moonlight == 1){
+		mes"[Sanryu]";
+		mes"กรุณาไปที่ทางเข้าถ้ำใน Archer Village";
+		mes"ถามนักวิชาการหนุ่มที่นั่นเกี่ยวกับที่อยู่ของMuyeon";
+		close;
+	}
+	if(illusion_moonlight < 6){
+		mes"[Sanryu]";
+        mes"ฉันหวังว่าทุกอย่างจะเรียบร้อย";
+        mes"ฮะ? ฉันกำลังพูดถึงถ้ำอยู่ด้านหลัง";
+        mes"ฉันกังวลเกี่ยวกับสิ่งที่เกิดขึ้นที่นั่น";
+        close;	
+	}
+
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW,"!isbegin_quest(7776)  && BaseLevel >= 100" );
+	end;
+}
+payon,167,229,3	script	Elder Jagyeom#illusion_moonlight	4_M_HUOLDARMY,{
+	if(BaseLevel < 100){
+		mes"[Jagyeom]";
+		mes"ฉันหวังว่าทุกอย่างจะเรียบร้อย";
+		mes"เมื่อเห็นว่าคุณเป็นนักผจญภัยฉันคิดว่าคุณคุ้นเคยกับ ^0000FF ถ้ำเพย์น ^000000";
+		mes"ระวังมีบางอย่างที่ไม่ดีเกิดขึ้นภายใน";
+		next;
+		mes"^0000FF คุณต้องมีเลเวล 100 ขึ้นไปจึงจะทำภารกิจนี้ได้";
+		close;
+	}
+	if(illusion_moonlight == 0){
+		mes"[Jagyeom]";
+		mes"เรื่องนี้อยู่ในมือเราแล้ว";
+		mes"เราปล่อยให้มันเป็นแบบนี้ต่อไปไม่ได้";
+		next;
+		mes"[Sanryu]";
+		mes"รอ ^0000FFMuyeon ^000000 ได้เลย";
+		mes"ความปลอดภัยของเธอสำคัญกว่าสิ่งอื่นใด";
+		next;
+		if(select("ขออนุญาต."))
+		mes"[Sanryu]";
+		mes"หืม? คุณเป็นนักผจญภัย";
+		mes"คุณบังเอิญได้ยินการสนทนาของเราหรือไม่?";
+		next;
+		mes"[Sanryu]";
+		mes"ฉันเข้าใจ";
+		mes"บางทีอาจเป็นความเชื่อที่คุณได้ยินเรา";
+		next;
+		mes"[Sanryu]";
+		mes"มีถ้ำใกล้หมู่บ้าน Archer อยู่ด้านหลัง Payon";
+		mes"มันเป็นถ้ำผีสิงดังนั้นเราจึงประกอบพิธีกรรมและการไล่ผีที่นั่นเป็นประจำ";
+		next;
+		mes"[Sanryu]";
+		mes"แต่วิญญาณจิ้งจอกเก้าหางนั้นโกรธแค้นมากกว่าที่เราคิด";
+		mes"ทุกครั้งที่มีคนพยายามทำพิธีกรรมกับลูกปัดสุนัขจิ้งจอกพวกเขาจะฝันร้าย";
+		npctalk "ราวกับว่าวิญญาณถูกต่อต้านโดยพวกมัน","พี่ Jagyeom#illusion_moonlight",bc_self;
+		next;
+		mes"[Sanryu]";
+		mes"และคราวนี้เธอหมดสติและเข้าไปในถ้ำ";
+		mes"นั่นเป็นเหตุผลที่เรากังวลเกี่ยวกับเธอ";
+		next;
+		if(select("มันเกี่ยวกับMuyeon?"))
+		npctalk "บางทีเราควรส่งคนอื่น","พี่ Jagyeom#illusion_moonlight",bc_self;
+		mes"[Sanryu]";
+		mes"ครับ เธอเป็น Soul Linker ที่ทำพิธีกรรมเป็นประจำ";
+		mes"เราขอให้ทหารคนหนึ่งตามหาเธอ";
+		mes"ตอนนี้พวกเขาต้องอยู่ใกล้ถ้ำ";
+		next;
+		mes"[Jagyeom]";
+		mes"คุณช่วยไปตรวจสอบ ^0000FF Muyeon ^000000 ให้เราหน่อยได้ไหม";
+		next;
+		npctalk "ใช่. คุณสามารถ?","",bc_self;
+		if(select("ได้เลยฉันจะไป:ขอโทษฉันกลัวผี") == 2){
+			mes"[Sanryu]";
+			mes"หือ? เราไม่ได้พูดอะไรเกี่ยวกับผี หรือว่าเรา?";
+			close;
+		}
+		mes"[Jagyeom]";
+		mes"ฉันหวังว่าทหารจะพบเธอก่อนที่เธอจะเข้าไปในหมู่บ้านที่ถูกทำลาย";
+		next;
+		mes"[Jagyeom]";
+		mes"โปรดไปที่ถ้ำและดูว่าMuyeonและทหารอยู่ข้างนอกแล้วหรือยัง";
+		mes"นักวิชาการหนุ่มติดตามทหาร แต่ดูเหมือนเธอจะไม่น่าเชื่อถือเลย";
+		next;
+		mes"[Jagyeom]";
+		mes"คุยกับนักวิชาการเขาอาจจะให้ข้อมูลเกี่ยวกับสถานการณ์แก่คุณ";
+		setquest 7776;
+		illusion_moonlight = 1;
+		end;
+	}
+	if(illusion_moonlight == 1){
+		mes"[Jagyeom]";
+		mes"ฉันหวังว่าทหารจะพบเธอก่อนที่เธอจะเข้าไปในหมู่บ้านที่ถูกทำลาย";
+		next;
+		mes"[Jagyeom]";
+		mes"โปรดไปที่ถ้ำและดูว่าMuyeonและทหารอยู่ข้างนอกแล้วหรือยัง";
+		mes"นักวิชาการหนุ่มติดตามทหาร แต่ดูเหมือนเธอจะไม่น่าเชื่อถือเลย";
+		next;
+		mes"[Jagyeom]";
+		mes"คุยกับนักวิชาการเขาอาจจะให้ข้อมูลเกี่ยวกับสถานการณ์แก่คุณ";
+		close;
+	}
+	if(illusion_moonlight < 6){
+		mes"[Jagyeom]";
+		mes"อาจถึงเวลาที่พวกเราฝากของไว้ให้รุ่นน้อง";
+		mes"ไม่มีอะไรที่คนสมัยก่อนจะทำได้";
+		close;
+	}
+}
+pay_arche,48,137,4	script	Young Scholar#illusion_moonlight	4_F_03,{
+	if(illusion_moonlight == 0){ 
+        npctalk "ทำไมพวกเขาถึงยังไม่ออกมา ...","",bc_self; 
+        end; 
+    }
+	if(illusion_moonlight == 1){
+		npctalk "ทำไมพวกเขายังไม่ออกมา ...","",bc_self;
+		mes"[Young Scholar]";
+        mes"อาวันนี้ต้องเป็นวันโชคดีของฉัน!","นักผจญภัยปรากฏตัวเมื่อฉันต้องการ!";
+        next;
+        mes"[Young Scholar]";
+        mes"ขอโทษนะ","ฉันได้ยินมาว่านักผจญภัยทำหลายสิ่งหลายอย่างเพื่อคนอื่น เป็นเช่นนั้นจริงหรือ?";
+        next;
+        if(select("เป็น แต่ตอนนี้ฉันค่อนข้างยุ่ง:ปฏิเสธ"))
+        mes"[Young Scholar]";
+        mes"... โอ้ฉันเข้าใจ","คุณต้องยุ่ง","ฉันขอโทษที่รบกวนคุณ","แล้วอะไรทำให้คุณมาที่นี่?";
+        next;
+        if(select("คุณเคยเห็นคนชื่อMuyeonไหม?"))
+        mes"[Young Scholar]";
+        mes"Muyeon? คุณหมายถึง Muyeon the Soul Linker?","ในทางเทคนิคแล้วเธอยังเป็นเด็กฝึกงาน แต่นั่นไม่สำคัญ";
+        next;
+        mes"[Young Scholar]";
+        mes"ตอนนี้ฉันกำลังรอเธออยู่","เธอวิ่งเข้าไปในถ้ำราวกับว่าเธอถูกครอบงำด้วยอะไรบางอย่าง";
+        next;
+        mes"[Young Scholar]";
+        mes"จองฮี? ฉันหมายถึงทหารคนหนึ่งตามเธอเข้ามา แต่ทั้งสองคนก็ยังไม่ออกมา","ฉันกำลังชั่งใจว่าควรไปตามพวกเขาไหม";
+        next;
+        mes"[Young Scholar]";
+        mes"ฉันหวังว่าจะไม่มีอะไรเลวร้ายเกิดขึ้นกับสองคนนั้น";
+		classchange 4_M_PAY_SOLDIER,"Payon Soldier#archer_dummy",bc_self;
+		classchange 4_F_TAEKWON,"Muyeon#archer_dummy",bc_self;
+        sleep2 2000;
+        npctalk "มีแล้ว! พวกเขาดูดี!","Young Scholar#illusion_moonlight",bc_self;
+        sleep2 2000;
+        npctalk "ฮึไม่อยากฝึกอีกต่อไป!","Muyeon#archer_dummy",bc_self;
+        sleep2 2000;
+        npctalk "...","พลทหาร#archer_dummy",bc_self;
+        next;
+		mes"[Muyeon]";
+		mes"ชุงแฮคุณมาทำอะไรที่นี่?";
+        npctalk "ฉันเป็นห่วงคุณ ..","Young Scholar#moonlight",bc_self;
+        next;
+        mes"[Muyeon]";
+        mes"คุณเป็นห่วงฉัน แต่เท่านี้คุณยินดีที่จะติดตามฉันไหม?","ลืมมันไป ไม่ว่าฉันจะทุกข์แค่ไหนฉันก็ไม่ต้องการความช่วยเหลือจากคุณ!";
+        sleep2 2000;
+        npctalk "ตอนนี้เพียงพอแล้ว","Payon Soldier#archer_dummy",bc_self;
+        sleep2 2000;
+        npctalk "Th- นี่มันไม่ยุติธรรมเลย ...","Young Scholar#illusion_moonlight",bc_self;
+        next;
+        npctalk "Bye!","Muyeon#archer_dummy",bc_self;
+        mes"[Muyeon]";
+        mes"อาฉันจะไม่ทำแบบนี้อีกแล้ว บอกเลยว่าแก่!";
+        next;
+        npctalk "เฮ้อ. ฉันจะไปตามเธอ คุยกับผู้อาวุโสคุณจะ?","Payon",bc_self;
+        sleep2 1500;
+		classchange HIDDEN_WARP_NPC,"Soldier#archer_dummy",bc_self;
+		classchange HIDDEN_WARP_NPC,"Payon Soldier#archer_dummy Muyeon#archer_dummy",bc_self;
+        mes"[Young Scholar]";
+        mes"นั่นแน่ .... !","เธอจากไปโดยไม่บอกเราว่าเกิดอะไรขึ้น";
+        next;
+        mes"[Young Scholar]";
+        mes"อ๊ะจองฮี!","ยังไงก็ตามนักผจญภัยคุณไม่ได้มองหาMuyeonเหรอ?";
+        next;
+        if(select("ฉันเดาว่าฉันต้องออกไปแล้ว"))
+        mes"[Young Scholar]";
+        mes"Muyeonต้องไปที่ ^0000FFDetached Payon Palace แล้ว ^000000","ฉันจะไปที่นั่นคุณอยากมากับฉันไหม";
+        next;
+        if(select("ไปกับเขา:ไปแยกกัน") == 2){  
+            mes"[Young Scholar]";
+            mes"Muyeonต้องไป";
+            mes"^0000FFDetached Payon Palace แล้ว ^000000";
+            mes"ทำไมไม่ไปคุยกับเธอล่ะ";
+            mes"ฉันจะคุยกับผู้อาวุโส";
+            illusion_moonlight = 2;
+            completequest 7776;
+            setquest 7777;
+            end;
+        }
+		mes"[Young Scholar]";
+		mes"จากนั้นไปที่ ^0000FFPayon Palace กันเถอะ ^000000";
+        illusion_moonlight = 2;
+        completequest 7776;
+        setquest 7777;
+        close2;
+        warp"payon",105,320;
+        end;	
+	}
+	if(illusion_moonlight == 2){
+		mes"[Young Scholar]";
+		mes"Muyeonต้องไปที่";
+		mes"^0000FFDetached Payon Palace ^000000";
+		mes"ทำไมคุณไม่ไปคุยกับเธอ?";
+		mes"ฉันจะคุยกับผู้อาวุโส";
+		close;
+	}
+	if(illusion_moonlight < 6){
+		mes"[Young Scholar]";
+		mes"ตำนานกล่าวว่าจิ้งจอกเก้าหางได้รับการรู้แจ้งและกลายเป็นสิ่งมีชีวิตศักดิ์สิทธิ์และ Moonlight Flowers ได้สืบเชื้อสายมาจากเธอ ฉันคิดว่ามันเป็นเรื่องที่น่าสนใจ";
+		close;
+	}
+	if(illusion_moonlight >= 6){
+		mes"[Young Scholar]";
+		mes"ไปสำรวจหมู่บ้านที่พังทลายกันเถอะ!","คุณอยากมากับฉันไหม";
+		next;
+		if(select("ไปกับเขา:ไปแยกกัน") == 2){
+			mes"[Young Scholar]";
+			mes"ฉันจะโทรหาจองฮีและเราจะติดตามคุณเร็ว ๆ นี้";
+			close;
+		}
+		mes"[Young Scholar]";
+		mes"ไปกันเลย!";
+		close2;
+		warp"pay_dun03",145,43;
+		end;
+	}
+	
+	
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW,"! isbegin_quest (7777) && isbegin_quest (7776) == 1" );
+	end;
+}
+payon_in03,33,95,3	script	Muyeon#moonlight_in	4_F_TAEKWON,{
+	if(illusion_moonlight < 2){
+		mes"[Muyeon]";
+		mes"หากคุณกำลังมองหาครูเธออยู่อีกห้องหนึ่ง";
+		close;
+	}
+	if(illusion_moonlight == 2){
+		setpcblock PCBLOCK_ALL, true;
+		sleep2 2000;
+		npctalk "ไม่ว่าคุณจะพูดอะไรฉันจะไม่ทำอีกแล้ว","Muyeon#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "นี่เป็นครั้งที่สามที่ฉันฝันร้าย ฉันไม่สามารถรับมันได้อีกต่อไป!","Muyeon#moonlight_in",bc_self;
+		sleep2 2000;
+		unittalk getcharid(3),"ฝันร้ายอะไร?",bc_self;
+		npctalk "ฝันร้ายอะไร?","Young Scholar#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "ฝันร้ายเกี่ยวกับสุนัขจิ้งจอก? เก้าหางและดอกแสงจันทร์?","Muyeon#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "ฝันร้ายเหล่านั้นน่ากลัวเกินไป ฉันไม่อยากสัมผัสมันอีกต่อไป","Muyeon#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "แต่เราไม่เหลือใครที่จะทำพิธีกรรม","Jagyeom#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "ทุกคนยอมแพ้หลังจากลองครั้งแรก คุณทำมันสามครั้ง","Jagyeom#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "Jaegyom ฝันร้ายไม่ใช่สิ่งเดียวที่เกิดขึ้นกับฉันในครั้งนี้","Muyeon#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "มันแตกต่างจากสองครั้งที่ฉันทำพิธีกรรม","Muyeon#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "ต่างกันยังไง?","Young Scholar#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "...","Muyeon#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "รู้สึกราวกับว่าฝันร้ายกำลังเกิดขึ้นในความเป็นจริง","Muyeon#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "คุณหมายถึงอะไร? คุณแค่พยายามที่จะมอบความสงบสุขให้กับวิญญาณที่โกรธแค้นของจิ้งจอกเก้าหาง","Jagyeom#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "คุณเห็นอะไรในถ้ำ?","Jagyeom#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "ฉันอธิบายสิ่งที่เห็นไม่ได้ คุณต้องเห็นมันถึงจะเชื่อ","Muyeon#moonlight_in",bc_self;
+		sleep2 2000;
+		npctalk "เราต้องการใครสักคนที่แข็งแกร่งเพื่อเข้าไปที่นั่นเช่นนักผจญภัยที่นั่นควรไปในถ้ำ","Muyeon#moonlight_in",bc_self;
+		completequest 7777;
+		setquest 7778;
+		illusion_moonlight = 3;
+		setpcblock PCBLOCK_ALL, false;
+		end;
+	}
+	if(illusion_moonlight == 3){
+		mes"[Muyeon]";
+		mes"เอาล่ะฉันจะเล่าเรื่องให้คุณฟัง";
+		mes"ถ้ำ Payon เคยเป็นส่วนหนึ่งของหมู่บ้านที่ถูกฝังอยู่ใต้แผ่นดินถล่ม";
+		next;
+		mes"[Muyeon]";
+		mes"อย่างที่คุณสามารถเดาได้ว่ามีคนจำนวนมากถูกฝังอยู่กับมันและวิญญาณของพวกเขากำลังล่าสัตว์ในถ้ำ";
+		next;
+		mes"[Muyeon]";
+		mes"บางคนเป็นจิ้งจอกเก้าหาง ความโกรธของสุนัขจิ้งจอกเกินกว่าปกติ";
+		mes"นั่นเป็นเหตุผลที่เราทำพิธีกรรมเป็นประจำ";
+		next;
+		mes"[Muyeon]";
+		mes"แต่ตอนนี้ปัญหาคือ";
+		mes"วิญญาณจิ้งจอกเริ่มไม่พอใจมากขึ้นตามกาลเวลาและไม่มีใครรู้เหตุผลว่าทำไม";
+		mes"บางทีพิธีกรรมอาจเป็นสาเหตุที่ทำให้พวกเขาโกรธ แต่มันก็ไม่เป็นไปตามที่เราหวังไว้";
+		next;
+		mes"[Muyeon]";
+		mes"และทุกครั้งที่ฉันทำพิธีกรรมฉันฝันร้ายเกี่ยวกับวิญญาณที่ขุ่นเคืองและร้องโหยหวนจิ้งจอกเก้าหาง";
+		next;
+		mes"[Muyeon]";
+		mes"Soul Linkers สื่อสารกับวิญญาณเพื่อหาเลี้ยงชีพการฝันร้ายเป็นเรื่องปกติ";
+		next;
+		mes"[Muyeon]";
+		mes"ดังนั้นเมื่อฝันร้ายครั้งแรกของฉันเกิดขึ้นฉันคิดว่ามันอยู่ใต้เรือลำเดียวกันกับคนอื่น ๆ";
+		mes"แต่ตอนนี้ฉันรู้ถึงความแตกต่างแล้วมันก็ไม่มีผลอะไรกับสุขภาพของฉัน";
+		next;
+		mes"[Muyeon]";
+		mes"ไม่ว่ามันจะเป็นสาเหตุใดที่ทำให้วิญญาณของจิ้งจอกเก้าหางปั่นป่วน";
+		mes"มันทำให้ฉันหมดสติและส่งฉันไปที่หมู่บ้านที่ถูกทำลาย";
+		next;
+		mes"[Muyeon]";
+		mes"และฉันเห็นอะไรบางอย่าง";
+		mes"มันเป็นภาพของโลกอื่นที่แตกต่างจากของเรา";
+		mes"เราต้องปิดสถานที่นั้นลงไม่ให้ใครเข้าถึงได้";
+		next;
+		mes"[Muyeon]";
+		mes"ฉันรู้สึกไม่สบายใจที่สิ่งที่น่ากลัวกำลังจะเกิดขึ้น";
+		mes"หรือบางทีมันอาจจะเกิดขึ้นแล้ว ..";
+		next;
+		mes"[Muyeon]";
+		mes"ภาพที่คลุมเครือที่ฉันเห็นนั้นแยกไม่ออกจากนรก";
+		mes"ฉันเห็นมันหลังจากพิธีกรรมครั้งสุดท้ายที่ฉันทำ";
+		next;
+		mes"[Muyeon]";
+		mes"ฉันขอร้องคุณอย่าขอให้ฉันกลับไปทำแบบนั้นอีก";
+		mes"ฉันจิตใจไม่เข้มแข็งพอที่จะรับมือกับฝันร้ายแบบนี้";
+		next;
+		mes"[Muyeon]";
+		mes"น้อยกว่ามากเกี่ยวกับสิ่งที่เกิดขึ้นภายในถ้ำ";
+		next;
+		mes"[Muyeon]";
+		mes"ถ้าคุณต้องการไปคุณจะต้องไปคนเดียวและดูด้วยตัวคุณเอง";
+		mes"ฉันยังคงถือลูกปัดจิ้งจอกที่พยายามทำให้บริสุทธิ์ แจ้งให้เราทราบเมื่อคุณพร้อม";
+		completequest 7778;
+		setquest 7779;
+		illusion_moonlight = 4;
+		end;
+	}
+	if(illusion_moonlight == 4){
+		mes"[Muyeon]";
+		mes"คุณพร้อมไหม?";
+		next;
+		if(select("ใช่:ยังไม่มี") == 2){
+			mes"[Muyeon] แจ้ง";
+			mes"ให้เราทราบเมื่อคุณพร้อม";
+			close;
+		}
+		mes"[Muyeon]";
+		mes"เอาล่ะลูกปัดจิ้งจอกนี้ยังไม่ถูกกำจัดออกไปทั้งหมด","วางไว้ในมือของคุณ";
+		next;
+		mes"[Muyeon]";
+		mes"ผ่อนคลาย ... และจดจ่อกับมัน ... เปิดใจรับพลังของมัน";
+		close2;
+		setpcblock PCBLOCK_ALL, true;
+		npctalk "วิญญาณพเนจรฟังแล้วดูเถิด!","",bc_self;
+		specialeffect 513;
+		specialeffect2 334;
+		sleep2 1500;
+		specialeffect 368;
+		specialeffect 550;
+		sleep2 1500;
+		specialeffect 550;
+		npctalk "มองไปที่อีกด้านหนึ่งของแม่น้ำ Netherworld","",bc_self;
+		sleep2 250;
+		classchange 1180,"Nine Tail Spirit#01",bc_self;
+		specialeffect 368,AREA,"Nine Tail Spirit#01";
+		specialeffect 550,AREA,"Nine Tail Spirit#01";
+		sleep2 250;
+		classchange 1180,"Nine Tail Spirit#02",bc_self;
+		specialeffect 368,AREA,"Nine Tail Spirit#02";
+		specialeffect 550,AREA,"Nine Tail Spirit#02";
+		npctalk "Die!","วิญญาณเก้าหาง#02 วิญญาณ",bc_self;
+		sleep2 250;
+		classchange 1180,"เก้าหาง#03",bc_self;
+		specialeffect 368,AREA,"วิญญาณ";
+		specialeffect 550,AREA,"เก้าหาง#03 วิญญาณเก้าหาง#03";
+		sleep2 250;
+		classchange 1180,"วิญญาณเก้าหาง#04",bc_self;
+		specialeffect 368,AREA,"Nine Tail Spirit#04";
+		specialeffect 550,AREA,"Nine Tail Spirit#04";
+		sleep2 2000;
+		npctalk "มองอีกด้านหนึ่งของแม่น้ำ Netherworld","",bc_self;
+		npctalk "ตาย!","วิญญาณเก้าหาง#01",bc_self;
+		specialeffect 550,AREA,"วิญญาณ";
+		specialeffect 550,AREA,"เก้าหาง#03";
+		specialeffect 550,AREA,"วิญญาณ";
+		specialeffect 550,AREA,"เก้าหาง#03";
+		sleep2 2000;
+		npctalk "วิญญาณเก้าหาง#03 วิญญาณเก้าหาง#03 วิญญาณที่น่าสงสารปิดตาและปิดกั้นหูของคุณ","",bc_self;
+		npctalk "ตาย!","วิญญาณเก้าหาง#02",bc_self;
+		specialeffect 550,AREA,"วิญญาณ";
+		specialeffect 550,AREA,"เก้าหาง#03";
+		specialeffect 550,AREA,"วิญญาณ";
+		specialeffect 550,AREA,"เก้าหาง#03 วิญญาณเก้าหาง#03 วิญญาณเก้าหาง#03";
+		sleep2 2000;
+		npctalk "ออกจากอาณาจักรนี้","",bc_self;
+		npctalk "ตาย!","Nine Tail Spirit#03",bc_self;
+		specialeffect 550,AREA,"Nine Tail Spirit#03";
+		specialeffect 550,AREA,"Nine Tail Spirit#03";
+		specialeffect 550,AREA,"Nine Tail Spirit#03";
+		specialeffect 550,AREA,"Nine Tail Spirit#03";		
+		sleep2 2000;
+		npctalk "ปลดภาระของคุณ","",bc_self;
+		npctalk "ตาย!!","เก้าหางวิญญาณ#01",bc_self;
+		npctalk "ตาย!!","เก้าหางวิญญาณ#02",bc_self;
+		npctalk "ตาย !!","วิญญาณเก้าหาง#03",bc_self;
+		npctalk "ตาย !!","วิญญาณเก้าหาง#04",bc_self;
+		specialeffect 550,AREA,"วิญญาณ";
+		specialeffect 550,AREA,"เก้าหาง#03";
+		specialeffect 550,AREA,"วิญญาณ";
+		specialeffect 550,AREA,"เก้าหาง#03 วิญญาณเก้าหาง#03 วิญญาณเก้าหาง#03";		
+		sleep2 2000;
+		npctalk "บินไปอีกฝั่งของแม่น้ำ","",bc_self;
+		npctalk "DIEEEEE !!","Nine Tail Spirit#02",bc_self;
+		sleep2 250;
+		npctalk "DIEEE!","Nine Tail Spirit#01",bc_self;
+		sleep2 250;
+		npctalk "DIEEE!","วิญญาณเก้าหาง#03",bc_self;
+		sleep2 250;
+		npctalk "DIEEE!","Nine Tail Spirit#04",bc_self;
+		sleep2 1000;
+		specialeffect2 445;
+		sleep2 250;
+		illusion_moonlight = 5;
+		completequest 7779;
+		setquest 7780;
+		setpcblock PCBLOCK_ALL, false;
+		warp"pay_dun03",145,43;
+		end;
+	}
+	if(illusion_moonlight == 5){
+		mes"[Muyeon]";
+		mes"ตอนนี้คุณรู้แล้วว่าฉันผ่านอะไรมาบ้าง","หากคุณต้องการดูเพิ่มเติมเกี่ยวกับเรื่องนี้คุณจะต้องไปที่หมู่บ้านที่ถูกทำลาย";
+		next;
+		mes"[Muyeon]";
+		mes"หากคุณตัดสินใจที่จะทำมันจะทำให้คุณเป็นหนึ่งในพวกเรามีความสุขมาก อาจเป็นเพราะเขาเป็นคนโง่";
+		close;
+	}
+	if(illusion_moonlight < 9){
+		mes"[Muyeon]";
+		mes"หากคุณกำลังมองหาครูเธอก็อยู่อีกห้องหนึ่ง";
+		close;
+	}
+	if(illusion_moonlight == 9){
+		mes"[Muyeon]";
+		mes"ฉันเข้าใจ","ดังนั้นพวกเขาจึงเป็นจริง","คุณไม่รู้ว่าทำไมคุณ?";
+		next;
+		mes"[Muyeon]";
+		mes"อาจเป็นเพราะกำแพงระหว่างความจริงและความฝันพังทลายลง","มิฉะนั้นคุณจะเข้าไปและออกจากความฝันของคนอื่นได้อย่างไร?";
+		next;
+		mes"[Muyeon]";
+		mes"ฉันรู้ว่าพวกเขา ^0000FF ฝันด้วยดอกไม้แสงจันทร์ ^000000","ฉันไม่รู้ว่ามันกลายเป็นจริงได้อย่างไร สงสัยไม่มีใครรู้จริงๆ";
+		next;
+		mes"[Muyeon]";
+		mes"เท่าที่ฉันจำได้ไม่มีอะไรแบบนี้เกิดขึ้นมาก่อน หากเราต้องการหาสิ่งนี้เรา '";
+		next;
+		mes"[Muyeon]";
+		mes"ฉันจะให้ชุงแฮคิดออก","เอาล่ะไปพักผ่อนกันดีกว่า";
+		next;
+		mes"[Muyeon]";
+		mes"ตอนนี้ฉันรู้แล้วว่าฝันร้ายเหล่านั้นมีต้นกำเนิดมาจาก Moonlight Flowers จริงๆฉันรู้สึกดีขึ้น","ฉันสามารถนอนหลับได้ในที่สุด";
+		next;
+		mes"[Muyeon]";
+		mes"เราไม่ต้องการพิธีกรรมอีกต่อไปเมื่อเราจัดการกับฝันร้าย","นี่หมายความว่าฉันว่างหรือเปล่า? ฟรีในที่สุด!","ฉันไม่รู้จะขอบคุณยังไง","ฉันได้พบก้อนหินประหลาดนี้ในขณะที่ฉันอยู่ที่นั่น มันไม่มาก";
+		mes"แต่บางทีคุณอาจหาประโยชน์สำหรับสิ่งเหล่านั้น?","ขอบคุณนักผจญภัยมาก";
+		illusion_moonlight = 10;
+		completequest 7788;
+		getitem 25271,5; //= Illusion Stone
+		getexp 100000,100000;
+		end;
+	}
+	mes"[Muyeon] ขอให้";
+	mes"โชคดีในการสืบสวนปรากฏการณ์นี้กับชุงแฮ!","เมื่อฝันร้ายหายไปเราก็ไม่จำเป็นต้องทำพิธีกรรมอีกต่อไป!";
+	next;
+	mes"[Muyeon]";
+	mes"ฉันจะแน่ใจได้อย่างไรคุณถาม?","ฉันไม่แน่ใจ. เฮ้เฮ้","พวกเขาอาจไม่หายไปอย่างสมบูรณ์","ใครจะรู้?";
+	close;
+		
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW,"! isbegin_quest (7778) && isbegin_quest (7777) == 1" );
+	questinfo( QTYPE_QUEST, QMARK_YELLOW,"! isbegin_quest (7779) && isbegin_quest (7778) == 1" );
+	questinfo( QTYPE_QUEST, QMARK_YELLOW,"! isbegin_quest (7780) && isbegin_quest (7779) == 1" );
+	end;
+}
+payon_in03,30,96,5	script	Jagyeom#moonlight_in	4_M_HUOLDARMY,{
+	if(illusion_moonlight < 2){
+		mes"[Jagyeom]";
+		mes"โปรดปฏิบัติตามมารยาทที่เหมาะสมภายในพระราชวัง";
+		close;
+	}
+	if(illusion_moonlight == 2){
+		npctalk "Muyeon ... ถ้าทำไม่ได้ก็ไม่มีใครทำได้!","",bc_self;
+		end;
+	}
+	if(illusion_moonlight < 5){
+		npctalk "มาฟังกันเลย","",bc_self;
+		end;
+	}
+	if(illusion_moonlight == 5){
+		mes"[Jagyeom]";
+		mes"เราควรเข้าใจสถานการณ์ก่อน","จะดีมากถ้าคุณสามารถช่วยเราได้นักผจญภัย";
+		close;
+	}
+	if(illusion_moonlight < 10){
+		mes"[Jagyeom]";
+		mes"โปรดปฏิบัติตามมารยาทที่เหมาะสมในพระราชวัง";
+		close;
+	}
+	mes"[Jagyeom]";
+	mes"ดอกไม้แสงจันทร์กำลังสร้างอดีตในฝันร้ายขึ้นมาใหม่","ในทางหนึ่งพวกเขาก็ตกเป็นเหยื่อเช่นกัน";
+	next;
+	mes"[Jagyeom]";
+	mes"ฉันจะทำให้แน่ใจว่าไม่มีชาวบ้านเข้าใกล้กำแพงแห่งความจริงและความฝันที่พังทลาย";
+	close;
+}
+
+payon_in03,33,93,1	script	Young Scholar#moonlight_in	4_F_03,{
+	if(illusion_moonlight < 2){
+		mes"[Young Scholar]";
+		mes"Payon เป็นที่อยู่ของสัตว์ศักดิ์สิทธิ์มาตั้งแต่สมัยโบราณ","เมืองที่แยกตัวออกจากโลกโดยภูเขาวิธีคิดของผู้คนใน Payon นั้นแตกต่างจากภายนอก";
+		close;
+	}
+	if(illusion_moonlight == 2){
+		npctalk "Muyeonอารมณ์เสียจริงๆ เราควรถามเธอว่าเกิดอะไรขึ้น","",bc_self;
+		end;
+	}
+	if(illusion_moonlight < 5){
+		npctalk "เราควรถามMuyeonว่าเกิดอะไรขึ้น";
+		end;
+	}
+	if(illusion_moonlight == 5){
+		mes"[Young Scholar]";
+		mes"นี่แย่มาก","ฉันไม่สามารถเชื่อว่าMuyeonต้องจัดการกับมันด้วยตัวเธอเอง","สุนัขจิ้งจอกเหล่านั้นต้องโกรธกว่าที่ฉันคิด";
+		next;
+		mes"[Young Scholar]";
+		mes"เราต้องตรวจสอบเรื่องนี้เพิ่มเติม ฉันควรไปที่หมู่บ้านที่ถูกทำลาย";
+		close;
+	}
+	if(illusion_moonlight > 5){
+		mes"[Young Scholar]";
+		mes"ฉันจะอยู่ในหมู่บ้านที่ถูกทำลายและตรวจสอบปรากฏการณ์นี้","แต่ฉันต้องการการป้องกันบางอย่าง ฉันจะพาจองฮีไปด้วย";
+		next;
+		mes"[Young Scholar]";
+		mes"คงจะดีมากถ้าคุณมาร่วมงานกับเราอีกครั้ง เจอกันที่หมู่บ้านพัง";
+		close;
+	}
+}
+
+
+//= Dummy
+pay_arche,44,133,7	script	Payon Soldier#archer_dummy	HIDDEN_WARP_NPC,{ end; }
+pay_arche,46,135,5	script	Muyeon#archer_dummy	HIDDEN_WARP_NPC,{ end; }
+payon_in03,30,96,5	script	Nine Tail Spirit#01	HIDDEN_WARP_NPC,{ end; }
+payon_in03,35,96,3	script	Nine Tail Spirit#02	HIDDEN_WARP_NPC,{ end; }
+payon_in03,30,93,7	script	Nine Tail Spirit#03	HIDDEN_WARP_NPC,{ end; }
+payon_in03,35,93,1	script	Nine Tail Spirit#04	HIDDEN_WARP_NPC,{ end; }
+pay_dun03,143,45,4	script	Junghee#dun_dummy	HIDDEN_WARP_NPC,{ end; }
+pay_dun03,138,43,7	script	Young Scholar#dun_dummy	HIDDEN_WARP_NPC,{ end; }
+
+//= Warp
+pay_dun03,140,46,0	script	Shimmering Portal#illusion_moonlight	4_ENERGY_BLUE,{
+	if(illusion_moonlight < 5){
+		mes"- อากาศเต็มไปด้วยพลังงานแปลก ๆ -";
+		mes"มันทำให้ฉันรู้สึกวิตกกังวล";
+		close;
+	}
+	if(illusion_moonlight == 5){ 
+		mes"มีพอร์ทัลที่ส่องแสงในอากาศ";
+		next;
+		classchange 4_F_03,"Young Scholar#dun_dummy",bc_self;
+		classchange 4_M_PAY_SOLDIER,"Junghee#dun_dummy",bc_self;
+		npctalk "* หอบ* คุณมาแล้ว","Young Scholar#dun_dummy",bc_self;
+		mes"[Young Scholar]";
+		mes"ฉันตื่นตระหนกเมื่อจู่ๆคุณก็หายไป","คุณคิดว่านี่เป็นหนึ่งในฝันร้ายที่Muyeon";
+		next;
+		if(select("ฉันจะต้องคิดออก"))
+		npctalk "ฉัน? ถ้าฉันไม่ต้องการล่ะ?","Junghee#dun_dummy",bc_self;
+		mes"[Young Scholar]";
+		mes"ถ้าอย่างนั้นฉันจะแท็กไปด้วยไหม","คุณไม่ต้องกังวลเกี่ยวกับฉัน","จองฮีสามารถทำให้ฉันปลอดภัย";
+		next;
+		npctalk "D- อย่าแตะต้องอะไร!","Junghee#dun_dummy",bc_self;
+		mes"[Young Scholar]";
+		mes"แล้ว ... ฉันควรจะแตะต้องสิ่งนี้ไหม?";
+		illusion_moonlight = 6;
+		completequest 7780;
+		setquest 7781;
+		close2;
+		npctalk "อ๊ากกก -!","",bc_self;
+		specialeffect 885,AREA,"หนุ่มพิชญ์#dun_dummy";
+		sleep 500;
+		classchange HIDDEN_WARP_NPC,"หนุ่มพิชญ์#dun_dummy จ้องแฮ",bc_self;
+		sleep 2000;
+		npctalk "!","Junghee#dun_dummy",bc_self;
+		sleep 2000;
+		npctalk "นั่น klutz ประมาท!","Junghee#dun_dummy",bc_self;
+		specialeffect 885,AREA,"Junghee#dun_dummy";
+		sleep 500;
+		classchange HIDDEN_WARP_NPC,"Junghee#dun_dummy",bc_self;
+		end;
+	}
+	if(illusion_moonlight > 5){
+		mes"มีบางอย่างอยู่อีกด้านหนึ่งของพอร์ทัลที่ส่องแสง","ฉันควรทำอย่างไรดี?";
+		next;
+		if(select("เข้าสู่พอร์ทัล:หยุด") == 2){
+			mes"เลิกสอบสวน.";
+			close;
+		}
+		warp"pay_d03_i",140,44;
+		end;
+	}
+	
+OnInit:
+	questinfo( QTYPE_QUEST, QMARK_YELLOW,"! isbegin_quest (7781) && isbegin_quest (7780) == 1" );
+	end;
+}
+pay_d03_i,140,46,0	script	Shimmering Portal#illusion_moonlight_2	4_ENERGY_BLUE,{
+	mes"ฉันสามารถกลับไปที่หมู่บ้านที่ถูกทำลายได้","ฉันควรทำอย่างไรดี?";
+	next;
+	if(select("ออก:อย่าออก") == 2){
+		end;
+	}
+	warp"pay_dun03",140,44;
+	end;
+}
+
+//= Illusion Dungeon
+pay_d03_i,149,45,4	script	Scholar Chunghae#illusion_moonlight	4_F_03,{
+	if(illusion_moonlight == 6){
+		mes"[ ชุงแฮ]";
+		mes"ดูที่นี่สิ!","ดูเหมือนหมู่บ้านที่พังพินาศเมื่อสักครู่ที่ผ่านมา แต่ ... มันต่างออกไป!";
+		next;
+		mes"[Chunghae]";
+		mes"นอกจากนี้ยังมีบางอย่างเกี่ยวกับผู้คนและสุนัขจิ้งจอกที่นี่และฉันเห็นผู้วิเศษหน้าตาแปลกอยู่ท่ามกลางพวกเขา","จะเกิดอะไรขึ้นถ้าเขาต้องรับผิดชอบต่อเหตุการณ์นี้";
+		next;
+		mes"[Chunghae]";
+		mes"สุนัขจิ้งจอกชาวบ้านและวิญญาณที่โกรธแค้น ...","พวกเขาทำให้ฉันนึกถึงช่วงเวลาที่หมู่บ้านถูกฝังอยู่ใต้ดินถล่ม";
+		next;
+		mes"[ชุงแฮ]";
+		mes"เราจำเป็นต้องมองหาเบาะแสเพิ่มเติม","คุณจะช่วยคุณจะไม่?";
+		next;
+		mes"[Chunghae] แจ้ง";
+		mes"ให้เราทราบเมื่อคุณพร้อม";
+		illusion_moonlight = 7;
+		completequest 7781;
+		end;
+	}
+	if(illusion_moonlight == 7){
+		mes"[Chunghae]";
+		mes"ฉันได้คุยกับชาวบ้าน","และหลายคนบอกฉันเกี่ยวกับนักเวทย์แปลก ๆ";
+		next;
+		mes"[Chunghae]";
+		mes"พวกเขากล่าวว่าเขาร่ายคาถาอันทรงพลังในทุกที่ที่เขาไปและมันเป็นหนึ่งในคาถาของเขาที่สั่นสะเทือนพื้นและทำให้เกิดการถล่มที่รุนแรง เป็นผลให้ชาวบ้านและสุนัขจิ้งจอกล้มตายเป็นจำนวนมาก";
+		next;
+		mes"[ชุงแฮ]";
+		mes"ฉันเชื่อว่าผู้วิเศษต้องรับผิดชอบต่อฝันร้ายที่อาละวาดเหล่านี้","บางทีฝันร้ายอาจหยุดปรากฏได้หากเรากำจัดสาเหตุของมัน";
+		next;
+		mes"[Chunghae]";
+		mes"แน่นอนฉันคิดผิด","เขาอาจเป็นตัวละครอื่นในฝันร้ายก็ได้";
+		next;
+		mes"[Chunghae]";
+		mes"ฉันอยากรู้มากกว่าอะไรที่ทำลายกำแพงระหว่างความจริงและความฝัน","อาจจะเกิดขึ้นในสถานที่อื่นด้วย?";
+		next;
+		mes"[Chunghae]";
+		mes"อย่างไรก็ตามโปรดดูแล ^0000FFWizard of the Truth ^000000 ในสถานที่แห่งนี้","ถึงเวลาที่เราจะจัดการกับความเป็นจริงเสมือนนี้";
+		next;
+		mes"[Chunghae]";
+		mes"เขาค่อนข้างน่าเกรงขาม ฉันไม่แนะนำ ^0000FF สู้กับเขาคนเดียว ^000000";
+		next;
+		if(select("จะทำ:ไม่ขอบคุณ") == 2){
+			mes"[Chunghae]";
+			mes"เอ่อข้าจะต้องตรวจสอบอะไรอีก","แต่ฉันจะไม่แค้นคุณสำหรับเรื่องนี้ ฉันสัญญา.";
+			end;
+		}
+		mes"[Chunghae]";
+		mes"โชคดี","พ่อมดตัวนั้นดูแข็งแรงมาก","โปรดระวัง.";
+		setquest 7782;
+		illusion_moonlight = 8;
+		end;
+	}
+	if(illusion_moonlight == 8){
+		switch(checkquest(7782,HUNTING)){
+			case -1:
+				mes"- ไม่ทราบเกิดขึ้น -";
+				end;
+			case 0:
+			case 1:
+				mes"[ชุงแฮ]";
+				mes"นั่นคือ ^0000Fenlightened mage ^000000 ดูอันตราย","ได้โปรดหยุดเขา";
+				end;
+			case 2:
+				mes"[Chunghae]";
+				mes"คุณมีประสบการณ์เท่าที่ฉันเคยได้ยินมา","ตอนนี้เรามาดูกันว่าสิ่งนี้ส่งผลต่อสถานการณ์อย่างไร";
+				next;
+				mes"[Chunghae]";
+				mes"จำสิ่งที่Muyeonพูดได้ไหม?","เกี่ยวกับฝันร้ายของสุนัขจิ้งจอกเป็นจริงฉันหมายถึง";
+				next;
+				mes"[Chunghae]";
+				mes"ฉันคิดขณะมองไปรอบ ๆ","ฉันคิดว่าเป็นไปได้ว่าเราอยู่ในความฝันของ Moonlight Flower";
+				next;
+				mes"[Chunghae]";
+				mes"ฉันไม่รู้ว่ามันเชื่อมโยงกับความเป็นจริงได้อย่างไร","แต่ฉันมั่นใจในสิ่งหนึ่ง:";
+				next;
+				mes"[Chunghae]";
+				mes"วิญญาณของ Moonlight Flowers ยังคงมีชีวิตอยู่ในอดีต","ย้อนกลับไปเมื่อหมู่บ้านของพวกเขาถูกฝัง ..";
+				next;
+				mes"[Chunghae]";
+				mes"พวกเขาเสียชีวิตอย่างสยดสยองจนไม่สามารถเดินทางต่อไปยัง Netherworld ได้","และมีบางอย่างจุดชนวนความโกรธที่ถูกกักขังไว้";
+				next;
+				mes"[Chunghae] ที่";
+				mes"นี่มีความจริงที่เราไม่สามารถหาได้จากที่อื่น","ฉันเดาว่าฉันจะอยู่ที่นี่จนกว่าจะพบพวกเขาทั้งหมด";
+				next;
+				mes"[Chunghae]";
+				mes"โปรดส่งข่าวไปยัง Muyeon ในพระราชวัง Payon ที่แยกตัวออกมา","จองฮีและฉันจะสำรวจสถานที่นี้ต่อไป";
+				next;
+				mes"[Chunghae]";
+				mes"ฉันหวังว่าเราจะพบคำตอบสำหรับปรากฏการณ์นี้";
+				getitem 25271,1; //= Illusion Stone
+				erasequest 7782;
+				setquest 7783;
+				setquest 7788;
+				illusion_moonlight = 9;
+				end;
+		}
+	}
+	switch(checkquest(7783,PLAYTIME)){
+		case -1:
+			break;
+			
+		case 0:
+		case 1:
+			mes"[Chunghae]";
+			mes"ตอนนี้ฉันรู้แล้วว่านี่ไม่ใช่หมู่บ้านที่ถูกทำลาย","เราอยู่ในฝันร้ายของ Moonlight Flower จริงๆหรือ?";
+			next;
+			mes"[Chunghae]";
+			mes"นั่นคือสิ่งที่Muyeonพูด","ฝันร้ายของพวกเขากำลังเป็นจริง";
+			next;
+			mes"[ชุงแฮ]";
+			mes"สถานที่แห่งนี้ควรค่าแก่การศึกษาอย่างจริงจัง";
+			end;
+			
+		case 2:
+			erasequest 7783;
+			break;	
+	}
+	switch(checkquest(7782,HUNTING)){
+		case -1:
+			mes"[Chunghae]";
+			mes"ฉันได้คุยกับชาวบ้าน","และหลายคนบอกฉันเกี่ยวกับนักเวทย์แปลก ๆ";
+			next;
+			mes"[Chunghae]";
+			mes"พวกเขากล่าวว่าเขาร่ายคาถาอันทรงพลังในทุกที่ที่เขาไปและมันเป็นหนึ่งในคาถาของเขาที่สั่นสะเทือนพื้นและทำให้เกิดการถล่มที่รุนแรง เป็นผลให้ชาวบ้านและสุนัขจิ้งจอกล้มตายเป็นจำนวนมาก";
+			next;
+			mes"[ชุงแฮ]";
+			mes"ฉันเชื่อว่าผู้วิเศษต้องรับผิดชอบต่อฝันร้ายที่อาละวาดเหล่านี้","บางทีฝันร้ายอาจหยุดปรากฏได้หากเรากำจัดสาเหตุของมัน";
+			next;
+			mes"[Chunghae]";
+			mes"แน่นอนฉันคิดผิด","เขาอาจเป็นตัวละครอื่นในฝันร้ายก็ได้";
+			next;
+			mes"[ชุงแฮ]";
+			mes"ฉันอยากรู้มากกว่าสิ่งใดที่ทำลายกำแพงระหว่างความจริงและความฝัน","อาจจะเกิดขึ้นในสถานที่อื่นด้วย?";
+			next;
+			mes"[Chunghae]";
+			mes"อย่างไรก็ตามโปรดดูแล ^0000FFWizard of the Truth ^000000 ในสถานที่แห่งนี้","ถึงเวลาที่เราจะจัดการกับความเป็นจริงเสมือนนี้";
+			next;
+			mes"[Chunghae]";
+			mes"เขาค่อนข้างน่าเกรงขาม ฉันไม่แนะนำ ^0000FF สู้กับเขาคนเดียว ^000000";
+			next;
+			if(select("จะทำ:ไม่ขอบคุณ") == 2){
+				mes"[Chunghae]";
+				mes"เอ่อข้าจะต้องตรวจสอบอะไรอีก","แต่ฉันจะไม่แค้นคุณสำหรับเรื่องนี้ ฉันสัญญา.";
+				end;
+			}
+			mes"[Chunghae]";
+			mes"โชคดี","พ่อมดตัวนั้นดูแข็งแรงมาก","โปรดระวัง.";
+			setquest 7782;
+			end;
+		case 0:
+		case 1:
+			mes"[Chunghae]";
+			mes"นั่นคือ ^0000FFenlightened mage ^000000 ดูอันตราย","ได้โปรดหยุดเขา";
+			end;
+		case 2:
+			mes"[Chunghae]";
+			mes"คุณมีประสบการณ์เท่าที่ฉันเคยได้ยินมา","ตอนนี้เรามาดูกันว่าสิ่งนี้ส่งผลต่อสถานการณ์อย่างไร";
+			next;
+			mes"[Chunghae]";
+			mes"ฉันหวังว่าเราจะพบคำตอบสำหรับปรากฏการณ์นี้";
+			getitem 25271,1; //= Illusion Stone
+			erasequest 7782;
+			setquest 7783;
+			end;		
+	}		
+}
+pay_d03_i,152,45,4	script	Soldier Junghee#illusion_moonlight	4_M_PAY_SOLDIER,{
+	if(illusion_moonlight == 6){
+		mes"[จองฮี]";
+		mes"ฉันรู้ว่าการเข้ามาฉันควรอยู่ใกล้ชองแฮดีกว่า","ฉันถูก.";
+		next;
+		mes"[จองฮี]";
+		mes"ฉันรู้สึกได้ถึงความรู้สึกแย่ ๆ จากสุนัขจิ้งจอกและผีพวกนี้","แบบนี้ไม่ดีแน่";
+		close;
+	}
+	if(illusion_moonlight > 6){
+		if(checkquest(7784,HUNTING) == 2){
+			mes"[Junghee]";
+			mes"ไม่สำคัญว่าพวกเขาจะเป็นของจริงหรือไม่ พวกเขากำลังคุกคาม","งานดี.";
+			next;
+			mes"[Junghee] ชุงแฮ";
+			mes"เกือบจะตรวจสอบสถานที่นี้เสร็จแล้ว ฉันควรเตรียมพร้อมที่จะจากไป";
+			erasequest 7784;
+			setquest 7785;
+			getitem 25271,2; //= Illusion Stone
+			end;
+		}
+		if(checkquest(7786,HUNTING)  == 2){
+			mes"[Junghee]";
+			mes"ไม่สำคัญว่าพวกเขาจะเป็นของจริงหรือไม่","ผมเห็นใจทหาร";
+			next;
+			mes"[Junghee]";
+			mes"สิ่งที่เขาอยากทำก็คือปกป้องคนอื่นและเขาก็ตายโดยไม่ทำตามความปรารถนา","ขอบคุณที่ช่วยให้พวกเขาพักผ่อน";
+			erasequest 7786;
+			setquest 7787;
+			getitem 25271,2; //= Illusion Stone
+			end;
+		}
+		mes"[Junghee]";
+		mes"มีพอร์ทัลอีกแห่งที่ดูเหมือนกับที่เราผ่านมา","ฉันสัมผัสมันและส่งฉันกลับไปที่หมู่บ้านเดิมที่ถูกทำลาย";
+		next;
+		if(select("เกี่ยวกับ Nine Tails ที่โกรธแค้น:เกี่ยวกับ Soldier ที่โกรธแค้น") == 1){
+			switch(checkquest(7785,PLAYTIME)){
+				case -1:
+					break;
+				case 0:
+				case 1:
+					mes"[Junghee]";
+					mes"Chunghae บอกว่าเราอยู่ในฝันร้ายของ Moonlight Flower","พวกเขาอาจไม่ใช่ของจริง แต่ถ้าพวกเขาเป็นภัยคุกคามต่อสิ่งมีชีวิตพวกเขาจะต้องได้รับการดูแล";
+					next;
+					mes"[Junghee]";
+					mes"และนั่นไม่เกี่ยวข้องกับความเห็นอกเห็นใจที่ฉันรู้สึกต่อพวกเขา","ตอนนี้ถ้าคุณจะขอโทษฉัน Chunghae และฉันจะไปตรวจสอบที่อื่น";
+					end;
+				case 2:
+					erasequest 7785;
+					break;
+			}
+			switch(checkquest(7784,HUNTING)){
+				case -1:
+					mes"[Junghee]";
+					mes"Chunghae มีปัญหาในการสืบสวนสถานที่นี้เนื่องจากสุนัขจิ้งจอกโกรธ","ฉันจะขอบคุณถ้าคุณดูแลพวกเขาได้";
+					next;
+					if(select("ยอมรับ:ปฏิเสธ") == 2){
+						mes"[จองฮี]";
+						mes"จากนั้นชุงแฮจะไม่สามารถตรวจสอบสถานที่นี้ได้อย่างเต็มที่";
+						end;
+					}
+					mes"[Junghee]";
+					mes"ขอบคุณ","ฉันเข้าใจว่าทำไม ^0000FF พวกนั้นถึงโกรธ ^000000 แต่ก็ต้องทำ";
+					setquest 7784;
+					end;
+					
+				case 0:
+				case 1:
+					mes"[Junghee]";
+					mes"โปรดตามล่า ^0000FFAngry Nine Tails ^000000 รอบ ๆ สถานที่แห่งนี้","นั่นจะช่วยให้มั่นใจในความปลอดภัยของ Chunghae ในระหว่างการสอบสวนของเขา";
+					close;
+			}
+		} else {
+			switch(checkquest(7787,PLAYTIME)){
+				case -1:
+					break;
+				case 0:
+				case 1:
+					mes"[Junghee]";
+					mes"ถ้าเราอยู่ในฝันร้ายของ Moonlight Flower อย่างที่ชุงแฮคิด","จากนั้นทหารที่โกรธแค้นที่นั่นจะต้องเป็นผู้พิทักษ์หมู่บ้านนี้";
+					next;
+					mes"[Junghee]";
+					mes"ไม่สำคัญว่านี่จะเป็นเรื่องจริงหรือไม่ การเฝ้าดูบรรพบุรุษของฉันต้องทนทุกข์ทรมานเป็นเรื่องยาก","ฉันอาจจะเสียเวลาไปเปล่า ๆ แต่ฉันก็อยากจะช่วยให้พวกเขาได้พักผ่อน";
+					close;
+				case 2:
+					erasequest 7787;
+					break;
+			}
+			switch(checkquest(7786,HUNTING)){
+				case -1:
+					mes"[Junghee]";
+					mes"ทหารเหล่านี้พยายามปกป้องชาวบ้านของพวกเขาจนถึงวินาทีสุดท้าย","และได้ฝังศพไว้กับพวกเขา ไม่น่าแปลกใจที่พวกเขาโกรธมาก";
+					next;
+					mes"[Junghee]";
+					mes"คุณจะใจดีให้พวกเขาพักผ่อนให้ฉันได้ไหม?";
+					next;
+					if(select("ยอมรับ:ปฏิเสธ") == 2){
+						mes"[Junghee]";
+						mes"ฉันไม่อยากจัดการกับพวกเขาด้วยตัวเอง","แต่ฉันคิดว่าฉันจะต้องทำ";
+						end;
+					}
+					mes"[Junghee]";
+					mes"ขอบคุณ","ฉันจะปล่อย ^0000FFAngry Soldiers ^000000 ให้คุณ","โปรดส่งพวกเขาไปสวรรค์";
+					setquest 7786;
+					end;
+					
+				case 0:
+				case 1:
+					mes"[Junghee]";
+					mes"โปรดดูแล ^0000FFAngry Soldiers ^000000 ในสถานที่แห่งนี้","ฉันหมายถึง ... ส่งพวกเขาไปสวรรค์";
+					close;
+			}
+		}
+	}
+}
+
+pay_d03_i,160,45,4	script	Gemcutter#illusion_moonlight	4_TOWER_17,{
+	mes"[Gemcutter]";
+	mes"คุณมีธุระกับฉันไหม?";
+	next;
+	switch(select("คุณมาทำอะไรที่นี่:อัพเกรดอาวุธ:อัพเกรดชุดเกราะ")){
+		case 1:
+			mes"[Gemcutter]";
+			mes"ฉันมาที่หมู่บ้านที่ถูกทำลาย","เพื่อหาวัตถุดิบบางอย่าง สัมผัสแสงแปลก ๆ และตอนนี้ฉันอยู่ที่นี่";
+			next;
+			mes"[Gemcutter]";
+			mes"ฉันตัดสินใจที่จะอยู่เฉยๆสักพัก คิดว่าฉันจะปลอดภัยตราบเท่าที่ฉันอยู่ใกล้กับทหารคนนี้","ฉันมีเรื่องให้คุณ ฉันต้องการวัสดุบางอย่างที่หาได้ในสถานที่นี้เท่านั้น";
+			next;
+			mes"[Gemcutter]";
+			mes"หามันมาให้ฉันแล้วฉันจะปรับปรุงอุปกรณ์ของคุณเพื่อแลกกับมัน ขอแจ้งให้ทราบว่าฉันปรับปรุงได้เฉพาะบางประเภทเท่านั้น";
+			next;
+			mes"[Gemcutter]";
+			mes"หากคุณสนใจเราสามารถพูดคุยรายละเอียดการต่อรองราคาของเราได้";
+			close;
+			
+		case 2:
+			mes"[Gemcutter]";
+			mes"รายการอุปกรณ์ต่อไปนี้ที่ฉันสามารถจัดการได้";
+			for(.@i = 0; .@i < getarraysize(.weapon_upgrade$); .@i += 3){
+				mes"<ITEM>"+getitemname(atoi(.weapon_upgrade$[.@i]))+"<INFO>"+atoi(.weapon_upgrade$[.@i])+"</INFO> </ITEM>";
+			}
+			next;
+			mes"[Gemcutter]";
+			mes"ตรวจสอบให้แน่ใจว่า ^0000FF อุปกรณ์ของคุณได้รับการขัดเกลาอย่างน้อย + 7 ^000000 ก่อนนำมาให้ฉัน","นั่นเป็นข้อกำหนดขั้นต่ำสำหรับบริการอัปเกรดของฉันที่จะมีผลกระทบใด ๆ กับอุปกรณ์ของคุณ";
+			next;
+			mes"[Gemcutter]";
+			mes"ตรวจสอบให้แน่ใจว่าคุณ ^0000FF มาพร้อมกับไอเท็มที่คุณต้องการปรับปรุง ^000000","ไม่งั้นฉันประเมินสภาพของมันไม่ได้";
+			next;
+			mes"[Gemcutter]";
+			mes"อย่างที่คุณอาจเดาได้อุปกรณ์ของคุณจะเปลี่ยนเป็นสิ่งใหม่หลังจากนี้","กล่าวอีกนัยหนึ่ง ^0000FF มันจะสูญเสียระดับการกลั่นการ์ดและมนต์เสน่ห์ในปัจจุบัน ^000000";
+			next;
+			mes"[Gemcutter]";
+			mes"และฉันต้องการ ^0000FFIllusion Stones และวัสดุอื่น ๆ ^000000 เพื่ออัปเกรดอุปกรณ์ของคุณ","เลือกรายการที่คุณต้องการและฉันจะบอกคุณว่าฉันต้องการอะไร";
+			next;
+			for(.@i = 0; .@i < getarraysize(.weapon_upgrade$); .@i += 3){
+				.@menu$ += getitemname(atoi(.weapon_upgrade$[.@i])) +":";
+			}
+			.@s = (select(.@menu$) - 1) * 3;
+			mes"[Gemcutter]";
+			mes"สำหรับอุปกรณ์นั้นฉันต้องการวัสดุต่อไปนี้";
+			mes"^0000FF + 7" + getitemname(atoi(.weapon_upgrade$[.@s+1])) +"^000000";
+			getinventorylist(getcharid(0));
+			for(.@i = 0; .@i < @inventorylist_count; .@i++){
+				if(@inventorylist_id[.@i] !=  atoi(.weapon_upgrade$[.@s+1])){ 
+					continue;
+				}
+				if(@inventorylist_refine[.@i] >= 7){
+					.@index = .@i;
+					.@weapon_check = 1;
+					break;
+				} else {
+					continue;
+				}	
+			}
+			explode(.@data$, .weapon_upgrade$[.@s+2],",");
+			for(.@i = 0; .@i < getarraysize(.@data$); .@i += 2){
+				if(countitem(atoi(.@data$[.@i])) < atoi(.@data$[.@i+1])) .@missing += 1;
+				mes"^0000FF"+.@data$[.@i+1]+"" +getitemname(atoi(.@data$[.@i]))+"^000000";
+			}
+			mes"คุณต้องการดำเนินการต่อหรือไม่";
+			next;
+			if(select("ดำเนินการต่อ:ฉันจะนำวัสดุเหล่านั้น") == 2){
+				mes"[Gemcutter]";
+				mes"กลับมาเมื่อคุณพร้อม";
+				close;
+			}
+			if(.@weapon_check < 1 || .@missing > 0){
+				mes"[Gemcutter]";
+				mes"คุณมีวัสดุไม่ครบ";
+				end;
+			}
+			delitem2 @inventorylist_id[.@index],1,@inventorylist_identify[.@index],@inventorylist_refine[.@index],@inventorylist_attribute[.@index],@inventorylist_card1[.@index],@inventorylist_card2[.@index],@inventorylist_card3[.@index],@inventorylist_card4[.@index]; 
+			for(.@i = 0; .@i < getarraysize(.@data$); .@i += 2){
+				delitem atoi(.@data$[.@i]),atoi(.@data$[.@i+1]);
+			}
+			mes"[Gemcutter]";
+			mes"นี่คืออุปกรณ์อัพเกรดของคุณ";
+			getitem atoi(.weapon_upgrade$[.@s]),1;
+			end;
+			
+		case 3:
+			mes"[Gemcutter]";
+			mes"รายการอุปกรณ์ต่อไปนี้ที่ฉันสามารถจัดการได้";
+			for(.@i = 0; .@i < getarraysize(.armor_upgrade$); .@i += 3){
+				mes"<ITEM>"+getitemname(atoi(.armor_upgrade$[.@i]))+"<INFO>"+atoi(.armor_upgrade$[.@i])+"</INFO> </ITEM>";
+			}
+			next;
+			mes"[Gemcutter]";
+			mes"ตรวจสอบให้แน่ใจว่า ^0000FF อุปกรณ์ของคุณได้รับการขัดเกลาอย่างน้อย + 7 ^000000 ก่อนนำมาให้ฉัน","นั่นเป็นข้อกำหนดขั้นต่ำสำหรับบริการอัปเกรดของฉันที่จะมีผลกระทบใด ๆ กับอุปกรณ์ของคุณ";
+			next;
+			mes"[Gemcutter]";
+			mes"ตรวจสอบให้แน่ใจว่าคุณ ^0000FF มาพร้อมกับไอเท็มที่คุณต้องการปรับปรุง ^000000","ไม่งั้นฉันไม่สามารถประเมินสภาพของมันได้";
+			next;
+			mes"[Gemcutter]";
+			mes"อย่างที่คุณคาดเดาอุปกรณ์ของคุณจะเปลี่ยนเป็นสิ่งใหม่หลังจากนี้","กล่าวอีกนัยหนึ่ง ^0000FF มันจะสูญเสียระดับการกลั่นการ์ดและมนต์เสน่ห์ในปัจจุบัน ^000000";
+			next;
+			mes"[Gemcutter]";
+			mes"และฉันต้องการ ^0000FFIllusion Stones และวัสดุอื่น ๆ ^000000 เพื่ออัพเกรดอุปกรณ์ของคุณ","เลือกรายการที่คุณต้องการและฉันจะบอกคุณว่าฉันต้องการอะไร";
+			next;
+			for(.@i = 0; .@i < getarraysize(.armor_upgrade$); .@i += 3){
+				.@menu$ += getitemname(atoi(.armor_upgrade$[.@i])) +":";
+			}
+			.@s = (select(.@menu$) - 1) * 3;
+			mes"[Gemcutter]";
+			mes"สำหรับอุปกรณ์นั้นฉันต้องการวัสดุต่อไปนี้";
+			mes"^0000FF + 7" + getitemname(atoi(.armor_upgrade$[.@s+1])) +"^000000";
+			getinventorylist(getcharid(0));
+			for(.@i = 0; .@i < @inventorylist_count; .@i++){
+				if(@inventorylist_id[.@i] !=  atoi(.armor_upgrade$[.@s+1])){ 
+					continue;
+				}
+				if(@inventorylist_refine[.@i] >= 7){
+					.@index = .@i;
+					.@weapon_check = 1;
+					break;
+				} else {
+					continue;
+				}	
+			}
+			explode(.@data$, .armor_upgrade$[.@s+2],",");
+			for(.@i = 0; .@i < getarraysize(.@data$); .@i += 2){
+				if(countitem(atoi(.@data$[.@i])) < atoi(.@data$[.@i+1])) .@missing += 1;
+				mes"^0000FF"+.@data$[.@i+1]+"" +getitemname(atoi(.@data$[.@i]))+"^000000";
+			}
+			mes"คุณต้องการดำเนินการต่อหรือไม่";
+			next;
+			if(select("ดำเนินการต่อ:ฉันจะนำวัสดุเหล่านั้น") == 2){
+				mes"[Gemcutter]";
+				mes"กลับมาเมื่อคุณพร้อม";
+				close;
+			}
+			if(.@weapon_check < 1 || .@missing > 0){
+				mes"[Gemcutter]";
+				mes"คุณมีวัสดุไม่ครบ";
+				end;
+			}
+			delitem2 @inventorylist_id[.@index],1,@inventorylist_identify[.@index],@inventorylist_refine[.@index],@inventorylist_attribute[.@index],@inventorylist_card1[.@index],@inventorylist_card2[.@index],@inventorylist_card3[.@index],@inventorylist_card4[.@index]; 
+			for(.@i = 0; .@i < getarraysize(.@data$); .@i += 2){
+				delitem atoi(.@data$[.@i]),atoi(.@data$[.@i+1]);
+			}
+			mes"[Gemcutter]";
+			mes"นี่คืออุปกรณ์อัพเกรดของคุณ";
+			getitem atoi(.armor_upgrade$[.@s]),1;
+			end;
+	}
+	end;
+	
+OnInit:
+	setarray .weapon_upgrade$,
+	26109,1648,"25271,30,25256,100",
+	28725,1234,"25271,30,25256,100",
+	16063,1525,"25271,10,25256,20",
+	26007,1477,"25271,10,25256,100";
+	setarray .armor_upgrade$,
+	19209,2277,"25271,10,25257,100",
+	19210,2285,"25271,10,25258,100",
+	15195,15012,"25271,10,25256,100",
+	20838,2504,"25271,10,23228,100",
+	22133,2404,"25271,10,23228,100";
+	end;
+	
+}
+
+-	script	illusion_mob#moonlight	-1,{
+	OnInit:
+		monster"pay_d03_i",0,0,"Angry Nine Tail",3759,15,strnpcinfo(0)+"::OnSummonMVP";
+		monster"pay_d03_i",55,75,"Wizard of Truth",3764,1,strnpcinfo(0)+"::OnWizardDeath";
+		monster"pay_d03_i",0,0,"Fury Hero",3765,5,strnpcinfo(0)+"::OnSummonWizard";
+		$illusion_wizardSpawned = false;
+		end;
+		
+	OnSummonMVP:
+		monster"pay_d03_i",0,0,"Angry Nine Tail",3759,1,strnpcinfo(0)+"::OnSummonMVP";
+		$illusion_mvp += 1;
+		if($illusion_mvp == 500){
+			mapannounce"pay_d03_i","Angry Moonlight Flower :ใครกล้ารังแกเราอีกล่ะพวกมันเดือดร้อนมาก.",bc_map;
+			getmapxy(.@map$,.@x,.@y,BL_PC);
+			monster"pay_d03_i",.@x,.@y,"Angry Moonlight Flower",3758,1;
+			$illusion_mvp = 0;
+		}
+		end;
+		
+	OnSummonWizard:
+		monster"pay_d03_i",0,0,"Fury Hero",3765,1,strnpcinfo(0)+"::OnSummonWizard";
+		$illusion_wizardoftruth += 1;
+		if($illusion_wizardoftruth == 5){
+			if($illusion_wizardSpawned == true){
+				mapannounce"pay_d03_i","Wizard of Truth :ใครกล้าต่อกรกับฉัน?",bc_map;
+				monster"pay_d03_i",55,75,"Wizard of Truth",3764,1,strnpcinfo(0)+"::OnWizardDeath";
+			}
+		}
+		end;
+		
+	OnWizardDeath:
+		$illusion_wizardSpawned = true;
+		$illusion_wizardoftruth = 0;
+		//monster"pay_d03_i",55,75,"Wizard of Truth",3764,1,strnpcinfo(0)+"::OnWizardDeath";
+		end;
+}
+

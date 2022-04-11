@@ -1,0 +1,378 @@
+//===== rAthena Script ======================================= 
+//= Hunter Skills Quests
+//===== By:================================================== 
+//= Lupus, Reddozen, Kisuka
+//===== Current Version:===================================== 
+//= 1.4
+//===== Compatible With:===================================== 
+//= rAthena Project
+//===== Description:========================================= 
+//= [Official Conversion]
+//= Quests for skills:Phantasmic Arrow
+//===== Additional Comments:================================= 
+//= 1.0 for fully working skills only [Lupus]
+//= 1.1 Added more new skill quests for more classes [Lupus]
+//=     Somehow eA engine doesn't let you keep learn't skill V_V'
+//= 1.2 Added to correct locations, correct NPC's, fixed
+//=     some of the items required and made them into real
+//=     quests. [Reddozen] 
+//= 1.3 Fixed bugs and minor typos. Optimized [Lupus]
+//= 1.3a fixed an item ID typo, thx 2Spiritual Kid
+//= 1.3b Splitted into different files [DracoRPG]
+//= 1.3c Fixed some typos [IVBela]
+//= 1.3d Changed NPC Name to the official [Lupus]
+//= 1.4 Moved Arpesto from tu_archer and added his script. [Kisuka]
+//============================================================
+
+pay_arche,109,169,3	script	Arpesto	712,{
+	if (BaseJob == Job_Hunter) {
+		if (qskill_hunter == 100) {
+			if (getskilllv("HT_PHANTASMIC")) {
+				mes "[Arpesto]";
+				mes "ฉันขอโทษถ้าฉันทำ";
+				mes "ฉากใหญ่เมื่อคุณกินหญ้า";
+				mes "ฉันโจมตีโดยบังเอิญ มันเป็นเพียงการฝึกอบรม";
+				mes "อย่างขยันขันแข็งและน้ำตาลในเลือดต่ำอย่างไม่น่าเชื่อและความเหนื่อยล้า ...";
+				next;
+				mes "[Reidin Corse]";
+				mes "ห๊ะ! ยอมรับมัน,";
+				mes "คนแก่! คุณเป็น";
+				mes "แค่กลัว! ฉันบน";
+				mes "ในทางกลับกัน ...";
+				emotion ET_KIK, getnpcid(0, "Reidin Corse#tu");
+				next;
+				mes "[Arpesto]";
+				mes "คุณน้อย";
+				mes "นกแสก!";
+				mes "ไม่รู้เป็นอะไร";
+				mes "ที่คุณกำลังพูดถึง!";
+				close;
+			} else {
+				mes "[Arpesto]";
+				mes "ฉันจำคุณได้";
+				mes "จากที่ไหนสักแห่ง";
+				mes "ฉันคิด. Reidin คุณ";
+				mes "จำผู้ชายคนนี้ได้ไหม";
+				next;
+				mes "[Reidin Corse]";
+				mes "โอ้มาเราเห็น";
+				mes "นักธนูหลายร้อยคนและ";
+				mes "Hunters and Snipers และ ...";
+				mes "ฉันจำพวกเขาไม่ได้ทั้งหมด";
+				mes "แต่ฉันเดาว่าผู้ชายคนนี้ขึ้น";
+				mes "เพื่อกลิ่น เชื่อฉันเรื่องนี้!";
+				next;
+				mes "[Arpesto]";
+				mes "เอาล่ะได้เลย";
+				mes "ถ้าเรดินคิดว่าคุณ";
+				mes "คู่ควรแล้วคุณอาจจะ";
+				mes "คือ. ในกรณีนี้ฉันต้องการ";
+				mes "เสนอให้สอนเคล็ดลับของฉัน";
+				mes "ทักษะ '' Phantasmic Arrow ''";
+				next;
+				mes "[Reidin Corse]";
+				mes "เดี๋ยวก่อนรอ ผู้ชายคนนี้";
+				mes "ต้องการการทบทวนเท่านั้น";
+				mes "ใช่ฉันค่อนข้างแน่ใจว่าคุณ";
+				mes "มาที่นี่เพื่อเรียนรู้สิ่งนี้";
+				mes "ทักษะมาก่อน ใช่ฉัน";
+				mes "มีความรู้สึกเกี่ยวกับเรื่องนี้";
+				next;
+				mes "[Arpesto]";
+				mes "ประณาม. เพียงทบทวน?";
+				mes "นั่นหมายความว่าคุณจะได้เรียนรู้";
+				mes "นี้ไม่เสียค่าใช้จ่าย ได้เลย ...";
+				mes "คุณควรจะสามารถใช้ไฟล์";
+				mes "ตอนนี้สกิล Phantasmic Arrow";
+				mes "เดินทางอย่างปลอดภัยตอนนี้ได้ยินไหม?";
+				skill "HT_PHANTASMIC",1,SKILL_PERM;
+				close;
+			}
+		}
+		else if (qskill_hunter == 1) {
+			if (countitem(724) > 4 && countitem(7115) > 4 && countitem(537) > 29) {
+				mes "[Arpesto]";
+				mes "หืม? กลับมาแล้วเหรอ";
+				mes "โอ้คุณนำมา";
+				mes "ทุกอย่าง? อาคุณทำ";
+				mes "ดี! ตอนนี้ฉันจะเปิดเผย";
+				mes "ทักษะลับสุดยอดของฉัน ...";
+				mes "แบบฟอร์ม Arpesto ครั้งที่ 1!";
+				next;
+				mes "[Reidin Corse]";
+				mes "รอ! รอ...";
+				mes "คุณไม่ได้เรียกมัน";
+				mes "แบบฟอร์มที่ 3 ของ Arpesto";
+				mes "หรือบางอย่างในตอนแรก?";
+				emotion ET_SWEAT, getnpcid(0, "Reidin Corse#tu");
+				next;
+				mes "[Arpesto]";
+				mes "เอ่อใช่ Arpesto";
+				mes "แบบที่ 3 ถูกต้อง";
+				mes "มันก็มีแค่นั้น";
+				mes "หลายคนนั่น ... ";
+				mes "อย่างไรก็ตามให้ฉันสอนคุณ";
+				mes "ทักษะ '' ลูกศรฉุกเฉิน ''";
+				next;
+				mes "[Reidin Corse]";
+				mes "โอ้รอ!";
+				mes "'' ลูกศรฉุกเฉิน?! ''";
+				mes "นั่นคือชื่อเก่าคุณ";
+				mes "ให้ทักษะนั้นใช่ไหม?";
+				mes "คุณไม่เปลี่ยนหรือ?";
+				emotion ET_HUK;
+				next;
+				emotion ET_HUK;
+				mes "[Arpesto]";
+				mes "อะไรวะ";
+				mes "คุณกำลังพูด -";
+				next;
+				mes "[Arpesto]";
+				mes "โอ้คุณพูดถูก";
+				mes "เราตกลงชื่อนั้น";
+				mes "มันวิเศษเกินไป อะไร";
+				mes "เราเรียกมันว่าตอนนี้หรือเปล่า? อืม ...";
+				mes "'' ลูกศรหลอน? ''";
+				emotion ET_THINK;
+				next;
+				mes "[Arpesto]";
+				mes "...";
+				mes "......";
+				emotion ET_CRY;
+				next;
+				mes "[Reidin Corse]";
+				mes "อืม ....";
+				mes "อืมม ........";
+				next;
+				mes "[Reidin Corse]";
+				mes "ใช่นั่นคือ!";
+				mes "'' ^3131FFPhantasmic Arrow ^000000 '' เสียง";
+				mes "เจ๋งกว่านั้นมาก";
+				mes "ชื่ออื่นที่คุณคิดขึ้นมา!";
+				emotion ET_AHA, getnpcid(0, "Reidin Corse#tu");
+				next;
+				mes "[Arpesto]";
+				mes "คุณสามารถใช้งานได้สะดวก";
+				mes "บางครั้งเรดิน ตอนนี้";
+				mes "กลับไปที่เรื่องที่อยู่ในมือ";
+				mes "ฉันจะสอนคุณที่ยอดเยี่ยมของฉัน";
+				mes "สกิล Phantasmic Arrow ตอนนี้ ...";
+				mes "เตรียมใจและกายให้พร้อม!";
+				next;
+				mes "[Arpesto]";
+				mes "ฟาน -!";
+				mes "ทะ -!";
+				mes "สสสสสสส -!";
+				mes "ไมค์ -!";
+				next;
+				mes "[Arpesto]";
+				mes "อร๊ายยยยยยย ~!";
+				specialeffect EF_FLASHER;
+				specialeffect2 EF_FLASHER;
+				next;
+				mes "[Arpesto]";
+				mes "^333333 * กางเกงขายาว * ^000000";
+				mes "ได้เลยฉันใช้แบบพิเศษ";
+				mes "เทคนิคที่จะสอนคุณ";
+				mes "ทักษะ - เข้าสู่สมองของคุณโดยตรง คุณควรจะสามารถใช้งานได้";
+				mes "ตอนนี้. ทำไมไม่ลองดูล่ะ?";
+				next;
+				mes "^3355FF * Swwwwwww! *";
+				mes "* ปัง! * ^000000";
+				specialeffect EF_HIT2;
+				emotion ET_HUK;
+				emotion ET_HUK, playerattached();
+				next;
+				mes "[Arpesto]";
+				mes "^333333 * กางเกงขายาว *";
+				mes "* ไอไอ *";
+				mes "* ยาแก้ไอ * ^000000";
+				next;
+				mes "[Arpesto]";
+				mes "ทำไม MEEEEE?!";
+				emotion ET_HUK, getnpcid(0, "Reidin Corse#tu");
+				next;
+				mes "^3355FF * กระหน่ำ * ^000000";
+				next;
+				mes "[Reidin Corse]";
+				mes "Ar-Arpesto ไม่!";
+				mes "...........................";
+				mes "โอ้. เข้ามา! ลูกศร";
+				mes "แค่มองคุณ! คุณจะ";
+				mes "ได้เลย. เลิกเป็นทารก.";
+				next;
+				mes "[Reidin Corse]";
+				mes "เอ๊ะไม่ต้องห่วง";
+				mes "Arpesto เขาเป็นเพียง";
+				mes "ชายชราที่บ้าคลั่ง ฉันจะเอา";
+				mes "ดูแลเขาดังนั้นแค่สร้าง";
+				mes "แน่ใจว่าคุณใช้ประโยชน์ได้ดี";
+				mes "ของทักษะใหม่นั้น ดูแล ~";
+				delitem 724,5; //Cardinal_Jewel_
+				delitem 7115,5; //Harpy's_Feather
+				delitem 537,30; //Pet_Food
+				set qskill_hunter,100;
+				skill "HT_PHANTASMIC",1,SKILL_PERM;
+				close;
+			} else {
+				mes "[Arpesto]";
+				mes "รีบนำ";
+				mes "^3131FF5 ทับทิมต้องสาป ^000000,";
+				mes "^3131FF30 อาหารสัตว์เลี้ยง ^000000 และ";
+				mes "^3131FF5 ขน Harpy ^000000";
+				mes "จากนั้นฉันจะสอนคุณได้";
+				mes "ทักษะลูกศรฉุกเฉิน";
+				close;
+			}
+		}
+		else {
+			if (getskilllv("HT_PHANTASMIC")) {
+				mes "[Arpesto]";
+				mes "อ่าสวยมาก";
+				mes "อืมอย่างที่คุณสาธิต";
+				mes "ก่อนหน้านี้เทคนิคการสอนของฉัน";
+				mes "สมบูรณ์แบบ แต่คราวหน้าใช้";
+				mes "ทักษะเกี่ยวกับศัตรูที่สมควรได้รับ";
+				mes "ที่จะถูกทุบตีเอาล่ะ? ดี.";
+				set qskill_hunter,100;
+				close;
+			}
+			if (BaseJob == Job_Hunter && JobLevel < 40) {
+				mes "[Arpesto]";
+				mes "นายส่งคุณมา";
+				mes "ถึงฉัน? อืม ... คุณยัง";
+				mes "สีเขียวสวยจากรูปลักษณ์";
+				mes "ของมัน ใช่ฉันคิดว่ายังไม่สามารถสอนอะไรได้บ้าง";
+				next;
+				mes "[Arpesto]";
+				mes "ฝึกอีกนิดแล้วรับ";
+				mes "ประสบการณ์เพิ่มเติมใน";
+				mes "งานของคุณ. เมื่อคุณกลายเป็น";
+				mes "เชี่ยวชาญในการล่าสัตว์มากขึ้นคุณจะ";
+				mes "สามารถเข้าใจสิ่งที่ฉันเป็น";
+				mes "การสอน Hunters and Snipers";
+				close;
+			} else {
+				mes "[Arpesto]";
+				mes "นายส่งนายมาหรือยัง?";
+				mes "คุณมีไฟล์";
+				mes "กระตือรือร้นอีแร้งเหมือนตาของก";
+				mes "ฮันเตอร์ที่แท้จริง คุณควรจะ";
+				mes "สามารถเรียนรู้ความลับของฉันได้";
+				mes "สกิล Arpesto Form ที่ 3 ...";
+				next;
+				mes "[Arpesto]";
+				mes "มันเป็นทักษะที่มีประโยชน์";
+				mes "ฉันพัฒนาในขณะที่ต่อสู้";
+				mes "Medusas และหมด";
+				mes "ของลูกศร เรียกง่ายๆว่า";
+				mes "'' ^3131FF ลูกศรฉุกเฉิน ^000000 '' คุณจะ";
+				mes "สนใจเรียนรู้ไหม";
+				next;
+				switch(select("ได้โปรด!:อืมม ...")) {
+				case 1:
+					mes "[Arpesto]";
+					mes "เยี่ยมมาก แน่นอน,";
+					mes "คุณไม่สามารถต้านทานข้อเสนอนี้ได้";
+					mes "หากคุณรู้จักทักษะนี้";
+					mes "มูลค่า. อย่างไรก็ตามฉันต้องการ";
+					mes "ขอค่าเล่าเรียนเล็กน้อยตอบแทนที่ฉันสอนเรื่องนี้ให้คุณ";
+					next;
+					mes "[Arpesto]";
+					mes "แม้ว่าฉันจะรู้สึกผิดที่";
+					mes "ขอเงินจาก";
+					mes "เพื่อนฮันเตอร์สร้าง";
+					mes "ทักษะนี้ต้องการมาก";
+					mes "เสียสละและเป็นไปไม่ได้";
+					mes "นองเลือดในส่วนของฉัน ...";
+					next;
+					mes "[Reidin Corse]";
+					mes "เฮ้! คุณโกหก!";
+					mes "ฉันอยู่ที่นั่นเมื่อคุณ";
+					mes "สร้างขึ้นโดยไม่ได้ตั้งใจ";
+					mes "ทักษะเมื่อคุณเบื่อ";
+					mes "และแค่ยุ่ง ๆ";
+					mes "ด้วยธนู!";
+					emotion ET_KIK, getnpcid(0, "Reidin Corse#tu");
+					next;
+					emotion ET_HUK;
+					mes "[Arpesto]";
+					mes "^333333 * อะแฮ่ม * ^000000 ได้โปรดเรดิน";
+					mes "อย่าให้ความบันเทิงโดยไม่มีมูลความจริง";
+					mes "ข่าวลือ. มันเป็นเพียงหลังจาก";
+					mes "การต่อสู้กับ Eddga นับไม่ถ้วน";
+					mes "ที่ฉันสามารถคิดค้นและ";
+					mes "ลูกศรฉุกเฉินที่สมบูรณ์แบบ";
+					next;
+					mes "[Reidin Corse]";
+					mes "^333333 * Tsk tsk * ^000000 หือ.";
+					mes "ฉันคิดว่าคุณพูด";
+					mes "คุณพัฒนามันในขณะที่";
+					mes "คุณกำลังต่อสู้กับเมดูซัส";
+					next;
+					mes "[Arpesto]";
+					mes "เอ - อย่างไรก็ตามโปรดนำ";
+					mes "ฉันมีรายการต่อไปนี้";
+					mes "เป็นค่าเล่าเรียนเพื่อแลกกับ";
+					mes "ฉันสอนทักษะนี้ให้คุณ";
+					next;
+					mes "[Arpesto]";
+					mes "ช่วยเเนะนำหน่อย";
+					mes "^3131FF5 ทับทิมต้องสาป ^000000,";
+					mes "^3131FF30 อาหารสัตว์เลี้ยง ^000000 และ";
+					mes "^3131FF5 ขน Harpy ^000000";
+					mes "จากนั้นฉันสามารถสอน";
+					mes "คุณมีทักษะนี้";
+					next;
+					mes "[Reidin Corse]";
+					mes "30 อาหารสัตว์เลี้ยง?";
+					mes "ห่าทำอะไร";
+					mes "คุณต้องการทั้งหมดเพื่อ?";
+					next;
+					mes "[Arpesto]";
+					mes "ผม...";
+					mes "ฉันกำลังจะไป";
+					mes "ใช้เลี้ยง";
+					mes "เหยี่ยวสัตว์เลี้ยงของฉัน";
+					next;
+					mes "[Reidin Corse]";
+					mes "...";
+					mes "......";
+					mes ".........";
+					mes "...... Riiiight.";
+					emotion ET_THINK, getnpcid(0, "Reidin Corse#tu");
+					set qskill_hunter,1;
+					close;
+				case 2:
+					mes "[Arpesto]";
+					mes "ตกลงมันเป็นของคุณ";
+					mes "การตัดสินใจ. อย่างไรก็ตามฉัน";
+					mes "แน่ใจว่าคุณอาจมี";
+					mes "ความต้องการทักษะของฉันอย่างมาก";
+					mes "ไม่ช้าก็เร็วจึงกลับมา";
+					mes "สำหรับฉันถ้าคุณเปลี่ยนใจ";
+					close;
+				}
+			}
+		}
+	} else {
+		mes "[Arpesto]";
+		mes "ท้องฟ้ายังคงดูปลอดโปร่ง แต่เมื่อเร็ว ๆ นี้ลมที่พัดผ่านแผ่นดินดูเหมือนจะพัดพาอากาศแห่งความโชคร้ายติดตัวไปด้วย";
+		next;
+		emotion ET_HNG, getnpcid(0, "Reidin Corse#tu");
+		mes "[Reidin Corse]";
+		mes "ดังนั้น...";
+		mes "อันตรายกำลังจะมา?";
+		mes "หึ! ทำใจให้สบาย ~";
+		mes "ฉันเข้าใจแล้ว!";
+		next;
+		emotion ET_PROFUSELY_SWEAT;
+		mes "[Arpesto]";
+		mes "โฮโฮ ...";
+		mes "มีพลัง แต่";
+		mes "อวดดี. เด็กสมัยนี้ ...";
+		close;
+	}
+}
+
+

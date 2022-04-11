@@ -1,0 +1,1054 @@
+//===== rAthena Script ======================================= 
+//= Genetic Job Quest
+//===== By: ================================================== 
+//= Muad_Dib, Aeomin
+//===== Current Version: ===================================== 
+//= 1.4
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= [Official Conversion]
+//= Job change Quest from Alchemist / Creator -> Genetic.
+//===== Additional Comments: ================================= 
+//= 1.0 First Version. [Masao]
+//= 1.1 Fixed Scatter Stuff NPCs [JayPee].
+//= 1.2 Updated dialogue. Credits to Muad_Dib. [Joseph]
+//= 1.3 Updated script, optimized. [Euphy]
+//= 1.3a Moved warps to separate file. [Euphy]
+//= 1.4 Added VIP features. [Euphy]
+//============================================================
+
+alde_alche,35,186,5	script	Alchemist Union Member	805,{
+	mes "[สมาชิกสหภาพนักเล่นแร่แปรธาตุ]";
+	if (BaseLevel > 98 && JobLevel > 49){
+		if (BaseJob == Job_Alchemist) {
+			if (SkillPoint != 0) {
+				mes "- คุณยังมีคะแนนทักษะที่ไม่ได้ใช้กลับมาเมื่อคุณใช้มันหมดแล้ว -";
+				close;
+			}
+			if (job_gen == 0) {
+				mes "สหภาพนักเล่นแร่แปรธาตุของเรารวบรวมนักเล่นแร่แปรธาตุรุ่นเยาว์จำนวนมากพร้อมกับการส่งเสริมและการสืบสวนต่างๆ";
+				next;
+				mes "[Alchemist Union Member]";
+				mes "พวกมันกระจายไปทั่วทุกมุมของ Midgard และมีบทบาทในหลายสาขาเช่นวิทยาศาสตร์หรือวิธีการผลิตไอเท็มพิเศษ";
+				next;
+				mes "[Alchemist Union Member]";
+				mes "เราเรียกสมาชิกของสหภาพใหม่ของเรา ^ 3131FF'Geneticists '^ 000000";
+				next;
+				mes "[Alchemist Union Member]";
+				mes "นักพันธุศาสตร์คือคนที่มีศักยภาพสูงสุดในโลกแห่งการเล่นแร่แปรธาตุพวกเขาเป็นคนที่เป็นหัวหอกในการเล่นแร่แปรธาตุตลอดทั้ง Midgard";
+				next;
+				mes "[Alchemist Union Member]";
+				mes "ดูเหมือนว่าคุณจะเป็นผู้เชี่ยวชาญในด้านนี้แล้วจะพบกับนักพันธุศาสตร์คนอื่น ๆ ได้อย่างไร";
+				next;
+				mes "[Alchemist Union Member]";
+				mes "ไม่นานมานี้มีนักพันธุศาสตร์คนหนึ่งประกาศชีวิตใหม่ที่น่าตื่นเต้นในการศึกษาวิจัย";
+				mes "คุณมีความรู้มากคุณคิดว่าคุณจะเข้าใจงานของเธอหรือไม่";
+				next;
+				mes "[Alchemist Union Member]";
+				mes "การศึกษาของเธออาจช่วยให้คุณได้รับความรู้ที่จะช่วยให้คุณเป็นนักพันธุศาสตร์ได้!";
+				next;
+				mes "[Alchemist Union Member]";
+				mes "เสียงนั้นเป็นอย่างไรคุณอยากพบนักพันธุศาสตร์หรือไม่";
+				next;
+				switch(select("แน่นอนฉันต้องการพบ Geneticist:ฉันไม่ต้องการพบ Geneticist")) {
+				case 1:
+					if (VIP_SCRIPT) {
+						callfunc "VIP_Third_Class";
+						set job_gen,1;
+						setquest 2215;
+						next;
+					}
+					mes "[Alchemist Union Member]";
+					mes "ฉลาดเลือก!";
+					mes "นักพันธุศาสตร์ที่น่าอับอาย 'Devries'.";
+					next;
+					mes "[Alchemist Union Member]";
+					mes "คุณสามารถพบเธอได้ใน Alchemy Lab ทางตะวันตกของ Lighthalzen นอกจากนี้ยังมีนักพันธุศาสตร์อีกคนหนึ่งที่เรียนวิชาอาวุธอยู่ที่นั่นคุณอาจต้องการไปเยี่ยมเธอด้วยเช่นกัน";
+					set job_gen,1;
+					setquest 2215;
+					close;
+				case 2:
+					mes "[Alchemist Union Member]";
+					mes "คุณไม่สนใจการศึกษาเรื่องชีวิตเหรอ";
+					close;
+				}
+			}
+			mes "นักพันธุศาสตร์ที่น่าอับอายกำลังศึกษาอยู่ที่ Alchemy Lab ทางตะวันตกของ Lighthalzen";
+			mes "ถ้าคุณสนใจก็ไปพบเธอเถอะ";
+			close;
+		}
+	}
+	mes "สหภาพนักเล่นแร่แปรธาตุของเรารวบรวมนักเล่นแร่แปรธาตุรุ่นเยาว์จำนวนมากพร้อมกับการส่งเสริมและการสืบสวนต่างๆ";
+	next;
+	mes "[Alchemist Union Member]";
+	mes "พวกมันกระจายไปทั่วทุกมุมของ Midgard และมีบทบาทในหลายสาขาเช่นวิทยาศาสตร์หรือวิธีการผลิตไอเท็มพิเศษ";
+	next;
+	mes "[Alchemist Union Member]";
+	mes "เราเรียกสมาชิกของสหภาพใหม่ของเรา ^ 3131FF'Geneticists '^ 000000";
+	next;
+	mes "[Alchemist Union Member]";
+	mes "นักพันธุศาสตร์คือคนที่มีศักยภาพสูงสุดในโลกแห่งการเล่นแร่แปรธาตุพวกเขาเป็นคนที่เป็นหัวหอกในการเล่นแร่แปรธาตุตลอดทั้งมิดการ์ด";
+	close;
+}
+
+job3_gen01,25,58,3	script	Devries#gen	865,{
+	if (SkillPoint != 0) {
+		mes "- คุณยังมีคะแนนทักษะที่ไม่ได้ใช้อยู่บ้าง -";
+		close;
+	}
+	if (job_gen == 1) {
+		mes "[Devries]";
+		mes "โอ้! ตัวอย่างพืชที่เปื้อนเลือด C กำลังเหี่ยวเฉาอีกแล้ว";
+		mes "ฉันควรเปลี่ยนส่วนผสมของสารบำรุงการเจริญเติบโตหรือไม่";
+		mes "ได้โปรดเป็นกำลังใจให้เร็ว ๆ นี้!";
+		next;
+		mes "[Devries]";
+		mes "โอ้คนแปลกหน้า?";
+		mes "รูปลักษณ์ของคุณบอกฉันว่าคุณกำลังเล่นแร่แปรธาตุอยู่เหมือนกันใช่ไหม";
+		next;
+		mes "[Devries]";
+		mes "หลายคนบอกว่าปัจจุบันนักเล่นแร่แปรธาตุมีจำนวนเพิ่มมากขึ้นแม้ว่าจะไม่มีใครเรียนสาขานี้อย่างถูกต้อง!";
+		next;
+		mes "[Devries]";
+		mes "พวกเขากังวลมากเกินไปที่จะพูดว่า '' ดูความเสียหายจากระเบิดของฉันสิ! '' หรือ '' โฮมุนคูลัสของฉันสวยกว่าไหม ''";
+		next;
+		mes "[Devries]";
+	mes "สมาคมนักเล่นแร่แปรธาตุบอกว่าพวกเขาจะสนับสนุนนักวิจัย แต่จริงๆแล้วสิ่งที่คุณได้รับจากการศึกษามีเพียงแค่ 'สปอร์ที่สามารถเลี้ยงได้ง่าย'!";
+		next;
+		mes "[Devries]";
+		mes "ขอบคุณที่มีสปอร์อยู่ทุกที่ในห้องทดลองของฉันมีสปอร์อยู่ทุกที่!";
+		next;
+		select("ทำไมพูดแบบนั้น");
+		mes "[Devries]";
+		mes "เพราะฉันมาจาก Rune-Midgarts!";
+		mes "คุณเคยไป Rune-Midgarts ไหมทุกคนใน Rune-Midgarts พูดแบบนี้";
+		next;
+		switch(select("เป็นไปไม่ได้!: ฉันมาจาก Rune-Midgarts ด้วย.")) {
+		case 1:
+			mes "[Devries]";
+			mes "เป็นไปไม่ได้?";
+			mes "คุณมาจากหมู่บ้านรูน - มิดการ์ทใช่ไหม";
+			mes "หมู่บ้านของฉันใหญ่มากทุกคนที่นั่นพูดแบบนี้";
+			break;
+		case 2:
+			emotion ET_THROB;
+			mes "[Devries]";
+			mes "จริงเหรอนั่นเป็นเหตุผลที่ฉันรู้สึกถึงบรรยากาศที่คุ้นเคยรอบ ๆ ตัวคุณ";
+			mes "ได้พบคนบ้านเกิดใน Schwarzwald ฉันยินดีที่ได้พบคุณ!";
+			break;
+		}
+		next;
+		mes "- กระหน่ำ !! -";
+		next;
+		emotion ET_ANGER;
+		mes "[Devries]";
+		mes "อื้อหือ! ผู้หญิงคนนั้นเริ่มอีกแล้ว!";
+		next;
+		select("What's that sound?");
+		mes "[Devries]";
+		mes "นั่นคือเสียงของการทดลองของเพื่อนร่วมห้องของฉัน Demi Calberine .. ";
+		mes "เดมี่เป็นช่างยิงกระสุนดังนั้นเธอจึงมีเสียงดังแบบนั้นเสมอ";
+		next;
+		emotion ET_CRY;
+		mes "[Devries]";
+		mes "ดูนั่นสิ!";
+		mes "สปอร์และพืชของฉันหมดแล้ว!";
+		mes "ฉันไม่สามารถทำงานของฉันด้วยเสียงที่ดังมันทำให้ฉันเครียดมาก !!";
+		next;
+		mes "- Munch Crunch -";
+		next;
+		mes "[Devries]";
+		mes "เมื่อฉันรู้สึกไม่ดีฉันก็ลองชิมคุกกี้แฮนด์เมดของมิสเตอร์ออร์ลีนทีละน้อย";
+		next;
+		mes "[Devries]";
+		mes "มันเป็นคุกกี้คุณภาพสูงที่ฉันได้มาจาก Prontera เมื่อฉันกัดไปหนึ่งคำดูเหมือนว่าฉันกำลังลอยไปที่แอสการ์ด";
+		mes "ความนุ่มนวลของคุกกี้แสนหวานกลบเสียงปะทะจาก Demi Calberine";
+		next;
+		mes "[Devries]";
+		mes "อยากลองไหม";
+		mes "อากินหมดแล้ว";
+		next;
+		mes "[Devries]";
+		mes "แต่ไม่เป็นไร! ที่ชั้น 2 ของห้องฉันมีกล่องพวกนั้นอยู่!";
+		mes "ฉันหยุดซื้อเป็นจำนวนมากไม่ได้เลยโฮโฮโฮ";
+		next;
+		mes "- Zooooooooooooooooing -";
+		specialeffect EF_ENDURE;
+		next;
+		specialeffect EF_REPAIRWEAPON,AREA,"#from1to2gen";
+		mes "- (Screeching Sounds)!!! -";
+		mes "- (Screeching)!!! -";
+		next;
+		specialeffect EF_CRASHEARTH,AREA,"#from1to2gen";
+		mes "- Bump! Bump! Bump! -";
+		next;
+		mes "[Devries]";
+		mes "..................";
+		next;
+		mes "[Devries]";
+		mes "Yoooooooooooow";
+		mes "Yipeeeeeeeeee!!!";
+		next;
+		mes "[Devries]";
+		mes "Demiiiiiiiiiiiiiiiiiiiiiiii!!!";
+		mes "Demiiiiiiiiiiiiiiiiiiiii!!!";
+		next;
+		mes "- ตอนนี้ดูเหมือนว่าฉัน -";
+		mes "- ต้องใจเย็น ๆ Devries. -";
+		set job_gen,2;
+		close;
+	} else if (job_gen == 2) {
+		mes "[Devries]";
+		mes "Yipeeeeeeeeee!!!";
+		mes "Demiiiiii!!!";
+		mes "Demiiiiiiiii!!!";
+		next;
+		mes "- หืม. -";
+		mes "- อะไรจะทำให้เธอสงบ? -";
+		close;
+	} else if (job_gen == 3) {
+		mes "[Devries]";
+		mes "Yipeeeeeeeeee!!!";
+		mes "Demiiiiii!!!";
+		mes "Demiiiiiiiii!!!";
+		next;
+		select("Hand Devries a cookie.");
+		mes "- Devries รีบฉก -";
+		mes "- เก็บคุกกี้และวัตถุดิบ -";
+		mes "- มันอยู่ในปากของเธอทั้งหมด -";
+		next;
+		mes "- Crunch Crunch Crunch -";
+		mes "- Crunch Crunch Crunch -";
+		mes "- Crunch Crunch Crunch -";
+		next;
+		mes "[Devries]";
+		mes "อ๊ะรสเนยหวานอยู่ที่ปลายลิ้นของฉัน";
+		mes "นี่ทำให้ฉันสบายใจจริงๆ";
+		next;
+		emotion ET_HNG;
+		mes "[Devries]";
+		mes "วันนี้เดมี่ก็เรียนหนักเหมือนกัน";
+		mes "หุหุหุเธอเป็นคนขยันจริงๆ";
+		next;
+		mes "- คุกกี้นั้นทำให้อารมณ์ของเธอเปลี่ยนไปอย่างรวดเร็ว -";
+		emotion ET_BEST, playerattached();
+		next;
+		mes "[Devries]";
+		mes "คุณมาที่นี่ด้วยความรักในการเล่นแร่แปรธาตุ?";
+		next;
+		mes "[Devries]";
+		mes "เดี๋ยวก่อนเรายังไม่ได้แนะนำตัว";
+		mes "My name is Devries.";
+		mes "ฉันสนใจมากที่จะสร้างสิ่งมีชีวิตที่มีการเติบโตแบบใหม่ ๆ ";
+		next;
+		mes "[Devries]";
+		mes "คุณชื่ออะไรนักเล่นแร่แปรธาตุหนุ่ม";
+		next;
+		select("I'm "+strcharinfo(0)+".");
+		mes "[Devries]";
+		mes "Oh, "+strcharinfo(0)+"!";
+		mes "เป็นชื่อที่แปลกมากยินดีที่ได้พบคุณ";
+		next;
+		mes "[Devries]";
+		mes "แต่จำชื่อไม่ได้";
+		mes "งั้นฉันจะเรียกเธอว่า <Popo> ดีมั้ย?";
+		next;
+		select("I uhh...");
+		mes "[Devries]";
+		mes "เยี่ยมมาก ... ";
+		mes "โปโปคุณเคยได้ยินเกี่ยวกับงานวิจัยของฉันไหม";
+		mes "คุณมาที่นี่เพราะแบบนั้นฉันใช่ไหม";
+		next;
+		switch(select("No.:Yes.")) {
+		case 1:
+			mes "[Devries]";
+			mes "ก็หมดหน้าแล้ว";
+			mes "ไม่ต้องอาย";
+			break;
+		case 2:
+			mes "[Devries]";
+			mes "ถูกต้องแล้วหล่ะ";
+			mes "ก็อย่างที่คิดมีบางอย่างที่ทำให้คนในบ้านเกิดได้รับกันและกัน";
+			break;
+		}
+		next;
+		mes "[Devries]";
+		mes "เมื่อคุณเห็นฉันในสภาพที่เป็นไข้คุณจำสิ่งที่ฉันพูดก่อนหน้านี้และนั่นทำให้ฉันสงบลง";
+		next;
+		mes "[Devries]";
+		mes "ฉันชอบวิธีที่คุณจัดการตัวเองและจดจำรายละเอียดเล็ก ๆ น้อย ๆ ";
+		mes "คุณมีพรสวรรค์ในการเป็นนักพันธุศาสตร์";
+		next;
+		mes "[Devries]";
+		mes "^ FF0000 หากคุณเป็นนักพันธุศาสตร์คุณจะไม่สามารถเรียนหลักสูตรการศึกษาของนักเล่นแร่แปรธาตุหรือชีวเคมีที่คุณไม่เคยศึกษามาก่อน ^ 000000";
+		mes "ถ้านั่นเหมาะกับคุณแล้วลองมาดูกันเลยดีไหม?";
+		next;
+		switch(select("ฉันจะพยายามต่อไป: ฉันอยากเป็นนักพันธุศาสตร์!")) {
+		case 1:
+			mes "[Devries]";
+			mes "ได้เลย";
+			mes "ถึงแม้ว่าความรู้ของคุณจะไม่มากเท่านักพันธุศาสตร์ แต่ความรู้พื้นฐานก็สำคัญเช่นกัน";
+			mes "โปโปกลับมาหาฉันเมื่อคุณเรียนจบแล้ว";
+			set job_gen,4;
+			close;
+		case 2:
+			mes "[Devries]";
+			mes "ดี!";
+			mes "มาทำ!";
+			set job_gen,5;
+			close;
+		}
+	} else if (job_gen == 4) {
+		mes "[Devries]";
+		mes "โปโป!";
+		mes "พร้อมจะยิงหรือยัง";
+		next;
+		switch(select("No.:Yes!")) {
+		case 1:
+			mes "[Devries]";
+			mes "คุณต้องทำให้ดีที่สุด! ไม่มีวิธีง่ายๆในการหาความรู้!";
+			close;
+		case 2:
+			mes "[Devries]";
+			mes "ดีมาก!";
+			mes "มาทำ!";
+			set job_gen,5;
+			close;
+		}
+	} else if (job_gen == 5) {
+		mes "[Devries]";
+		mes "คุณคิดอย่างไรกับพืช Popo";
+		mes "คุณชอบต้นไม้ไหมคุณสนใจพืชชนิดไหน";
+		next;
+		mes "- Boom, Boom, Boom -";
+		next;
+		emotion ET_SWEAT;
+		mes "[Devries]";
+		mes "อ๊ะช่วยบอกทีว่า Demi Calberine ยังไม่เริ่มอีกเหรอ";
+		mes "ขอให้ความคาดหวังของฉันผิดไป ... ได้โปรด ... เดมี่ได้โปรด ... ";
+		next;
+		mes "[Devries]";
+		mes "ฉันไม่หยุดพูดที่ไหน";
+		mes "โอ้ใช่แล้วพืชมีความสำคัญมากในการเล่นแร่แปรธาตุ";
+		next;
+		mes "[Devries]";
+		mes "การเล่นแร่แปรธาตุสามารถทำให้นักเล่นแร่แปรธาตุและนักภูมิศาสตร์เติบโตได้อย่างรวดเร็วดังนั้นพวกเขาจึงสามารถช่วยในการต่อสู้ได้เช่นเดียวกับนักเล่นแร่แปรธาตุเหล่านั้น ... ";
+		next;
+		mes "- Boom!! Boom!! Boom!! Boom!! -";
+		next;
+		emotion ET_THINK;
+		mes "[Devries]";
+		mes ".......................";
+		next;
+		emotion ET_THINK;
+		mes "[Devries]";
+		mes "เทคนิคพืชค่อนข้างง่ายต่อการ ... ";
+		next;
+		mes "- Boom!!!!!! -";
+		next;
+		emotion ET_THINK;
+		mes "[Devries]";
+		mes "Crossbreed...";
+		next;
+		mes "- ป๊าบ !!!!!! -";
+		mes "- กี๊ยยยยยยย !!!! -";
+		mes "- บึ้มมม !!!! -";
+		mes "- ตูม !! ตูม !! บูม !! -";
+		next;
+		emotion ET_THINK;
+		mes "[Devries]";
+		mes ".......................";
+		next;
+		emotion ET_THINK;
+		mes "[Devries]";
+		mes "Popo.";
+		next;
+		emotion ET_THINK;
+		mes "[Devries]";
+		mes "ฉันจะให้คุณทดสอบเพื่อเป็นนักพันธุศาสตร์";
+		next;
+		mes "[Devries]";
+		mes "ตัวแบบคือs <The Perfect Soundproof System>!";
+		mes "ช่วยคิดวิธีช่วยฉันจากเสียงรบกวนของ Demi Calberine โดยใช้ต้นไม้และอุปกรณ์ทดลองที่อยู่ที่ชั้น 1 ของห้องแล็บ";
+		next;
+		mes "[Devries]";
+		mes "เอาล่ะเริ่มกันเลยดีกว่า!";
+		set job_gen,6;
+		close;
+	} else if (job_gen == 6) {
+		mes "[Devries]";
+		mes "ตัวแบบคือ  <The Perfect Soundproof System>!";
+		mes "ช่วยคิดวิธีช่วยฉันจากเสียงรบกวนของ Demi Calbereine โดยใช้พืชและอุปกรณ์ทดลองที่อยู่ที่ชั้น 1 ของห้องแล็บ";
+		next;
+		mes "[Devries]";
+		mes "มีคำแนะนำบางอย่างในตู้ที่คุณอาจใช้";
+		mes "เอาล่ะเริ่มกันเลยดีกว่า!";
+		close;
+	} else if (job_gen > 6 && job_gen < 60) {
+		mes "[Devries]";
+		mes "มีปัญหาหรือเปล่า";
+		next;
+		switch(select("ไม่มีอะไร: การทดสอบล้มเหลว.")) {
+		case 1:
+			mes "[Devries]";
+			mes "เริ่มเลยดีกว่าไม่งั้นกูจะกรี๊ด !!!";
+			close;
+		case 2:
+			mes "[Devries]";
+			mes "เริ่มตั้งแต่ตอนนั้นเลยได้ไหม";
+			mes "ทำไมคุณถึงถามฉันแบบนี้";
+			set job_gen,7;
+			if (checkquest(2209) == 1) erasequest 2209;
+			if (checkquest(2210) == 1) erasequest 2210;
+			if (checkquest(2211) == 1) erasequest 2211;
+			if (checkquest(2212) == 1) erasequest 2212;
+			if (checkquest(2213) == 1) erasequest 2213;
+			if (checkquest(2214) == 1) erasequest 2214;
+			close;
+		}
+	} else if (job_gen == 60 || job_gen == 61) {
+		mes "- Zing Zing Zigi Zigi -";
+		next;
+		mes "- Zing Zing Zigi Zigi -";
+		next;
+		mes "[Devries]";
+		mes "เดมี่คัลเบอรีนทำบ้าอะไร";
+		mes "เสียงดังจริงๆ";
+		next;
+		mes "[Devries]";
+		mes "เรียนเสร็จแล้วโปโป?";
+		mes "เอาเมล็ดพันธุ์เหล่านั้นมาให้ฉัน";
+		next;
+		if (countitem(6273) == 0 && countitem(6272) == 0) {
+			mes "[Devries]";
+			mes "เกิดอะไรขึ้น";
+			mes "คุณพูดได้ยังไงว่าการศึกษาเสร็จสิ้นโดยไม่มีผลลัพธ์";
+			mes "เริ่มใหม่อีกครั้ง";
+			set job_gen,7;
+		} else {
+			mes "[Devries]";
+			mes "เอาล่ะฉันจะดูเมล็ดที่ Popo ทำ";
+			mes "ผลเป็นอย่างไร";
+			next;
+			mes "[Devries]";
+			mes "เมื่อคุณใส่เมล็ดพันธุ์ใน Super Cultivator และปรับอุณหภูมิ ... ";
+			next;
+			mes "[Devries]";
+			mes "Damn!";
+			next;
+			if (job_gen == 60) {
+				specialeffect EF_FLASHER,AREA,"Super Cultivator#gen";
+				specialeffect EF_PHARMACY_OK,AREA,"Super Cultivator#gen";
+				mes "[Devries]";
+				mes "โปโปดูนั่นสิ!";
+				mes "นั่นเป็นพืชลึกลับจริงๆ!";
+				next;
+				mes "[Devries]";
+				mes "ด้านในของผู้ฝึกฝนเต็มไปด้วยหนามที่เต็มไปด้วยหนาม!";
+				mes "มันเหมือนกับว่าลำต้นกำลังสร้างกำแพงและเติบโตอย่างแข็งแรงและมันก็พันกัน!";
+				next;
+				mes "[Devries]";
+				mes "นี่ไงโปโป!";
+				mes "คุณสมบัติของพืชชนิดนี้สามารถนำไปใช้ประโยชน์ได้หลายอย่าง!";
+				next;
+				mes "[Devries]";
+				mes "นี่มันเยี่ยมจริงๆโปโป";
+				mes "ฉันรู้ว่าคุณมีความรู้ แต่ความสามารถของคุณมีมากกว่านั้น!";
+				next;
+				mes "[Devries]";
+				mes "ฉันจะบอกผลของ Alchemist Union";
+				mes "ฉันจะส่งจดหมายแนะนำไปบอกว่าความสามารถของคุณยอดเยี่ยมมากและคุณน่าจะเป็นสมาชิกที่ยอดเยี่ยม";
+				next;
+				mes "[Devries]";
+				mes "การได้รับคำตอบจากสหภาพต้องใช้เวลาพอสมควรรอสักครู่ได้ไหม";
+				mes "ทำไมไม่ขึ้นเดมิคัลเบอรีน";
+				next;
+				mes "[Devries]";
+				mes "เธอเป็นเพื่อนนักพันธุศาสตร์เชี่ยวชาญเรื่องปืนใหญ่ขนาดเล็ก";
+				mes "ไปดูผลการทดลองของเธอสิ";
+				mes "คุณช่วยบอกข้อความนี้กับเธอได้ไหมบอกให้เธอทำการทดลองอย่างเงียบ ๆ ";
+				delitem 6273,1; //Altered_Seed
+				set job_gen,62;
+				changequest 2215,2216;
+			} else {
+				specialeffect EF_SPELLBREAKER,AREA,"Super Cultivator#gen";
+				specialeffect EF_PHARMACY_FAIL,AREA,"Super Cultivator#gen";
+				mes "[Devries]";
+				mes "อ๊ะ! คุณล้มเหลวโปโป";
+				mes "มันไม่โตเลยมันเหี่ยวไปแล้ว";
+				mes "เริ่มต้นใหม่!";
+				delitem 6272,1; //Experiment_Seed
+				set job_gen,7;
+			}
+		}
+		if (checkquest(2209) == 1) erasequest 2209;
+		if (checkquest(2210) == 1) erasequest 2210;
+		if (checkquest(2211) == 1) erasequest 2211;
+		if (checkquest(2212) == 1) erasequest 2212;
+		if (checkquest(2213) == 1) erasequest 2213;
+		if (checkquest(2214) == 1) erasequest 2214;
+		close;
+	} else if (job_gen > 61 && job_gen < 76) {
+		if (checkquest(2223,HUNTING) == 2) {
+			mes "[Devries]";
+			mes "โอ้รอก่อนนะ";
+			mes "ดูเหมือนว่าจดหมายจะมาถึงแล้ว";
+			set job_gen,76;
+			completequest 2223;
+			close;
+		}
+		mes "[Devries]";
+		mes "คุณสามารถดูสถานที่ทำงานของ Demi Calberine ในขณะที่เราได้รับคำตอบจาก Union";
+		close;
+	} else if (job_gen == 76) {
+		mes "[Devries]";
+		mes "โปโป!";
+		mes "ฉันมีข่าวดีมาบอก!";
+		next;
+		if (checkweight(1201,2) == 0 || MaxWeight - Weight < 2000) {
+			mes "- เดี๋ยวก่อน !! -";
+			mes "- ตอนนี้คุณกำลังแบก -";
+			mes "- มีของกับคุณมากเกินไป -";
+			mes "- โปรดลองอีกครั้ง -";
+			mes "- หลังจากที่คุณลดน้ำหนักลงบ้าง -";
+			close;
+		}
+		mes "[Devries]";
+		if (BaseJob != Job_Alchemist || BaseLevel < 99 || JobLevel < 50) {
+			mes "โอ้ดูเหมือนว่าคุณจะไม่พร้อมที่จะฟัง";
+			close;
+		}
+		if (checkcart()){
+			mes "ก่อนอื่นให้ถอดรถเข็นที่หนักและสกปรกนั่นไม่เหมาะกับคุณในช่วงเวลาแห่งความสุขนี้";
+			close;
+		}
+		if (SkillPoint != 0) {
+			mes "แต่ดูเหมือนคุณมีความปรารถนาอย่างแรงกล้าสำหรับการศึกษาก่อนหน้านี้";
+			close;
+		}
+		mes "มีจดหมายมาจากสมาคมนักเล่นแร่แปรธาตุ";
+		mes "ฉันจะอ่านให้ฟังโปโป!";
+		next;
+		mes "<Dearest Miss Devries,>";
+		mes "<เราตระหนักดีถึงกิจกรรมที่ยอดเยี่ยมที่คุณได้แสดงเมื่อเร็ว ๆ นี้.>";
+		next;
+		mes "<Miss. Devries>";
+		mes "ผู้ชายคนนี้มาจากบ้านเกิดของฉันด้วย";
+		next;
+		mes "<ฉันได้ยินข่าวดีว่าผลการวิจัยของคุณกำลังก้าวไปสู่ขั้นตอนการนำไปใช้ในเชิงพาณิชย์..>";
+		mes "<ฉันแน่ใจว่ามันจะเป็นแรงบันดาลใจที่ดีสำหรับนักเล่นแร่แปรธาตุคนอื่น ๆ.>";
+		next;
+		mes "<ลองคิดดูสิคุณแนบกระดาษมาหรือเปล่า?>";
+		mes "<เป็นพืชชนิดใหม่ที่ทำให้พืชเติบโตเร็วมากค้นพบโดยนักเล่นแร่แปรธาตุชื่อ" + strcharinfo (0) + ">";
+		next;
+		mes "<ตัวฉันเองและนักเล่นแร่แปรธาตุคนอื่น ๆ จากสหภาพนักเล่นแร่แปรธาตุกำลังให้ความสนใจอย่างมากในเรื่องนี้>";
+		next;
+		mes "<เรากำลังรอเอกสารการศึกษาและผลลัพธ์จำนวนมากขึ้นโดยเฉพาะจาก Geneticists คนอื่น ๆ ที่เคยได้ยินข่าวนี้>";
+		next;
+		mes "<Miss. Devries>";
+		mes "<ฉันคิดว่า" + strcharinfo (0) + "มีความสามารถและพรสวรรค์เพียงพอที่จะเป็น Geneticist>";
+		next;
+		mes "<โปรดบอก" + strcharinfo (0) + "โดยเร็วที่สุดว่าเราคาดว่าจะมีกิจกรรมที่โดดเด่นในฐานะ Geneticist นับจากนี้>";
+		next;
+		mes "<The Alchemist Union ภูมิใจในตัว Miss Devries, Miss Demi Calberine และ" + strcharinfo (0) + "ซึ่งเป็นคนที่มีพรสวรรค์ที่ยอดเยี่ยม>";
+		mes "<เราหวังว่าคุณจะให้ผลที่ดีในอนาคตเช่นกัน>";
+		next;
+		mes "[Devries]";
+		if (ismounting()) {
+			mes "คุณเป็นสัตว์ขี่ม้า";
+			mes "คุณจึงไม่สามารถเปลี่ยนงานได้";
+			mes "กรุณาถอดอุปกรณ์ขี่ม้าของคุณออกแล้วลองอีกครั้ง!";
+			close;
+		}
+		mes "ยินดีด้วยโปโป!";
+		mes "คุณเป็นนักพันธุศาสตร์ต่อจากนี้ไป !!";
+		jobchange roclass(eaclass()|EAJL_THIRD);
+		set job_gen,77;
+		getitem 5752,1; //Midas_Whisper
+		getitem 2795,1; //Green_Apple_Ring
+		next;
+		mes "[Devries]";
+		mes "เช่นเดียวกับคำจากสหภาพฉันยังรอคอยกิจกรรมดีๆของคุณอยู่";
+		mes "มาพยายามด้วยกันเถอะเพื่อเป็นนักพันธุศาสตร์ที่ดีที่สุด!";
+		close;
+	} else if (job_gen == 77) {
+		mes "[Devries]";
+		mes "Popo คุณอยากเข้าชมรม Love Orleans ของฉันไหมเป็นคลับสำหรับคนที่รักคุกกี้แน่นอนเราไม่คิดจะทำอะไรแปลก ๆ กับ Charles Orleans";
+		close;
+	}
+	mes "[Devries]";
+	mes "ฉันสวยสำหรับเธอหรือเปล่าทำไมนายจ้องฉันแบบนั้น";
+	close;
+}
+
+job3_gen01,83,72,3	script	Delivery Box#generic	111,{
+	mes "- มีกล่องใหญ่ -";
+	if (job_gen == 2) {
+		next;
+		switch(select("Open the box.:Check the address.:Do nothing.")) {
+		case 1:
+			mes "- มีถุงคุ้กกี้หลายใบที่บรรจุในกล่องอย่างระมัดระวัง -";
+			next;
+			switch(select("นำถุงคุกกี้ออก: ไม่ต้องทำอะไรเลย.")) {
+			case 1:
+				mes "- คุณเอาถุงคุกกี้ออกจากกล่อง -";
+				set job_gen,3;
+				close;
+			case 2:
+				mes "คุณไม่ทำอะไรเลย";
+				close;
+			}
+		case 2:
+			mes "[From: Rune-Midgarts Kingdom, Prontera, Charles Orleans]";
+			mes "[Recipient: Schwarzwald Republic, Lighthalzen, Devries]";
+			close;
+		case 3:
+			mes "คุณไม่ได้ทำอะไรเลย";
+			close;
+		}
+	}
+	close;
+}
+
+job3_gen01,12,56,3	script	Plant Guide#generic	111,{
+	mes "<The Easiest Alchemy in the World>";
+	mes "เขียนโดย Bob Ross";
+	next;
+	switch(select("Animals:Plants:Minerals:Etc")) {
+	case 1:
+		mes "... การใช้สัตว์ในการเล่นแร่แปรธาตุใคร ๆ ก็สามารถฝึกได้";
+		mes "คุณสามารถวางสัตว์ที่คุณต้องการใช้ลงบนถาดสีขาวจินตนาการถึงเป้าหมายที่คุณต้องการทำจากนั้นฝึกฝนการเล่นแร่แปรธาตุ";
+		mes "ง่ายมาก";
+		next;
+		mes "... สัตว์ที่ใช้ในการเล่นแร่แปรธาตุอาจตกอยู่ในอันตรายที่จะสูญพันธุ์เพราะถูกจับโดยนักเล่นแร่แปรธาตุที่ไร้ความคิด";
+		mes "ฉันจะไม่พูดถึงพวกเขา";
+		close;
+	case 2:
+		mes "... คู่มือการเล่นแร่แปรธาตุโดยใช้พืชนั้นง่ายต่อการปฏิบัติแม้สำหรับเด็กตัวเล็ก ๆ ";
+		mes "คุณสามารถวางต้นไม้บนโต๊ะแล้วทุบหรือตัดมันเชื่อมต่อโดยใช้เครื่องมือง่ายๆแล้วเล่นแร่แปรธาตุ";
+		mes "นั่นเป็นวิธีที่ไม่ธรรมดาจริงๆ";
+		next;
+		mes "... ต้นไม้ที่มักใช้ในการเล่นแร่แปรธาตุคือหญ้า Bigibigi และต้น Muka ที่มีหนามแหลมคม แต่ข้างในบอบบางและ Bogi Creeper ที่มีความเร็วในการเติบโตเร็วมาก แต่เป็นปรสิตกับสิ่งมีชีวิต";
+		if (job_gen == 6)
+			set job_gen,7;
+		close;
+	case 3:
+		mes "... การใช้แร่ธาตุในการเล่นแร่แปรธาตุเป็นวิธีที่มือใหม่หาได้ง่ายมาก";
+		mes "คุณสามารถใส่แร่ธาตุที่คุณต้องการลงในกล่องที่สร้างขึ้นอย่างสวยงามและร้องเพลงอะไรก็ได้ที่คุณคิดได้สองครั้งจากนั้นฝึกฝนการเล่นแร่แปรธาตุ";
+		mes "นั่นเป็นวิธีที่ง่ายจริงๆ";
+		next;
+		mes "... แร่ธาตุที่มักใช้ในการเล่นแร่แปรธาตุคือ 'พระโขนง' ซึ่งมีราคาไม่มาก";
+		close;
+	case 4:
+		mes "... การเล่นแร่แปรธาตุเป็นสิ่งที่ง่ายที่สุดในโลก";
+		mes "นักเขียนคนนี้แสดงการสาธิตการเล่นแร่แปรธาตุสีน้ำเงินโคบอลต์ต่อหน้านักเรียนทุกสัปดาห์และมักจะได้รับการปรบมืออย่างมากจากพวกเขา";
+		mes "ฉันแน่ใจว่าคุณจะเข้าสู่โลกแห่งการเล่นแร่แปรธาตุทันทีที่คุณอ่านหนังสือเล่มนี้";
+		close;
+	}
+}
+
+// QuestID,PlantName,Description{,Part?}
+function	script	Genetic_Job_Plant	{
+	if (job_gen == 7) {
+		if (isbegin_quest(getarg(0)) == 0) {
+			mes "- "+getarg(2)+" -";
+			next;
+			switch(select("ใช้เป็นวัสดุ:ห้ามใช้.")) {
+			case 1:
+				if (getarg(3,0)) set .@str$,"some of the ";
+				mes "- You've acquired "+.@str$+getarg(1)+". -";
+				setquest getarg(0);
+				close;
+			case 2:
+				mes "- พืชชนิดนี้ดูไม่เหมาะเป็นตัวอย่างการทดลอง -";
+				close;
+			}
+		}
+		mes "- You've already acquired "+getarg(1)+". -";
+		close;
+	} else if (job_gen == 6) {
+		mes "ข้อมูลเกี่ยวกับพืชชนิดนี้สามารถพบได้ในคู่มือพืชในตู้";
+		close;
+	}
+	mes "- "+getarg(2)+" -";
+	close;
+}
+
+job3_gen01,36,55,3	script	Bigibigi Grass#gen	844,{
+	callfunc "Genetic_Job_Plant",2209,"Bigibigi Grass","ขนาดค่อนข้างใหญ่กว่าหญ้าปกติจึงเรียกว่า Bigibigi Grass.";
+	end;
+}
+job3_gen01,36,45,3	script	Muka Tree#gen	844,{
+	callfunc "Genetic_Job_Plant",2210,"Muka Tree","นี่คือ Muka Tree ที่ปกป้องภายในอันบอบบางด้วยหนามอันแหลมคม.",1;
+	end;
+}
+job3_gen01,42,55,3	script	Bogi Vine#gen	844,{
+	callfunc "Genetic_Job_Plant",2211,"Bogi Vine","นี่คือ Bogi Vine ที่มีความเร็วในการเติบโตเร็วมาก.",1;
+	end;
+}
+job3_gen01,30,58,3	script	Aolatura#gen	844,{
+	callfunc "Genetic_Job_Plant",2212,"Aolatura","ซึ่งเป็นที่ทราบกันดีว่าบานแล้วนับพันดอกเพราะบานเพียงครั้งเดียวต่อชีวิต.";
+	end;
+}
+job3_gen01,30,63,3	script	Congra#gen	844,{
+	callfunc "Genetic_Job_Plant",2213,"Congra","มันเป็นพืชที่มีลำต้นใหญ่และแข็งมีใบขนาดมหึมา.";
+	end;
+}
+job3_gen01,32,38,3	script	Sticky Grass#gen	844,{
+	callfunc "Genetic_Job_Plant",2214,"Sticky Grass","ฉันอาจไม่รู้จักชื่อ แต่มันเหนียวและสามารถยึดติดกับอะไรก็ได้";
+	end;
+}
+
+job3_gen01,7,50,3	script	Testing Table#gen	844,{
+	if (job_gen == 7) {
+		mes "- นี่คือตารางการทดสอบที่มีอุปกรณ์มากมายฉันคิดว่าฉันสามารถศึกษาชุดค่าผสมที่นี่กับพืชได้ -";
+		next;
+		if(select("ทำการทดลอง: ห้ามทำการทดลอง.") == 2) {
+			mes "- ยังไม่ถึงเวลาเริ่มการทดลอง -";
+			close;
+		}
+		if ((checkquest(2209) == -1 || checkquest(2209) == 0) &&
+		    (checkquest(2210) == -1 || checkquest(2210) == 0) &&
+		    (checkquest(2211) == -1 || checkquest(2211) == 0) &&
+		    (checkquest(2212) == -1 || checkquest(2212) == 0) &&
+		    (checkquest(2213) == -1 || checkquest(2213) == 0) &&
+		    (checkquest(2214) == -1 || checkquest(2214) == 0)) {
+			mes "["+strcharinfo(0)+"]";
+			mes "อืมฉันต้องรวบรวมวัสดุปลูกก่อน";
+			close;
+		}
+		mes "ฉันจะทำอย่างไรกับวัสดุจากพืชเหล่านี้";
+		next;
+		select("Break.:Smash into little pieces.:Crush.");
+		while (1) {
+			mes "ตอนนี้ฉันจะทำอะไร";
+			next;
+			if (rand(2))
+				select("Burn into Ashes.:Dip into distilled water.:Steam.");
+			else
+				select("ใส่ลงในขวดทดสอบและเขย่า: Freeze.:Heat.");
+			if (!rand(7)) break;
+		}
+		mes "ตอนนี้ฉันจะทำอะไร";
+		next;
+		select("ฉีดลงในเมล็ดพันธุ์ทดสอบ.");
+		mes "ฉันควรเลือกเมล็ดพันธุ์ชนิดใด";
+		next;
+		select("Testing Seed - Type A:Testing Seed - Type B:Testing Seed - Type C:Testing Seed - Type D");
+		mes "ฉันใส่วัตถุดิบที่เตรียมไว้ลงในเมล็ดทดสอบที่เลือกแล้ว";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "ดีตอนนี้ฉันสามารถให้ Miss Devries ดูเมล็ดพันธุ์นี้ได้!";
+		if ((checkquest(2209) == -1 || checkquest(2209) == 0) &&
+		    (checkquest(2210) == -1 || checkquest(2210) == 0) &&
+		    (checkquest(2211) == -1 || checkquest(2211) == 0)){
+			set job_gen,61;
+			getitem 6272,1; //Experiment_Seed
+			close;
+		}
+		if (checkquest(2209) == 1) set job_gen,job_gen+10;
+		if (checkquest(2210) == 1) set job_gen,job_gen+10;
+		if (checkquest(2211) == 1) set job_gen,job_gen+10;
+		set .@score, job_gen + JobLevel - 20;
+		if (rand(1,100) < .@score) {
+			set job_gen,60;
+			getitem 6273,1; //Altered_Seed
+			close;
+		} else {
+			set job_gen,61;
+			getitem 6272,1; //Experiment_Seed
+			close;
+		}
+	} else if (job_gen > 7 && job_gen < 60) {
+		mes "- ดูเหมือนว่าการทดสอบจะล้มเหลวฉันควรเริ่มต้นใหม่ดีกว่า -";
+		set job_gen,7;
+		if (countitem(6273)) delitem 6273,1; //Altered_Seed
+		if (countitem(6272)) delitem 6272,1; //Experiment_Seed
+		if (checkquest(2209) == 1) erasequest 2209;
+		if (checkquest(2210) == 1) erasequest 2210;
+		if (checkquest(2211) == 1) erasequest 2211;
+		if (checkquest(2212) == 1) erasequest 2212;
+		if (checkquest(2213) == 1) erasequest 2213;
+		if (checkquest(2214) == 1) erasequest 2214;
+		close;
+	} else if (job_gen == 60 || job_gen == 61) {
+		mes "- ดูเหมือนว่าฉันต้องให้ Miss Devries ดูเมล็ดพันธุ์นี้! -";
+		end;
+	}
+	mes "- นี่คือตารางการทดสอบที่มีอุปกรณ์มากมายฉันคิดว่าฉันสามารถศึกษาชุดค่าผสมที่นี่กับพืชได้ -";
+	close;
+}
+
+job3_gen01,21,67,3	script	Super Cultivator#gen	844,{
+	end;
+}
+
+job3_gen01,91,48,3	script	Demi Calberine#gen	982,{
+	mes "[Demi Calberine]";
+	if (job_gen < 62) {
+		mes "หืม ~ สายฟ้านั่นไปไหน";
+		close;
+	} else if (job_gen == 62) {
+		mes "โอ้รถเข็นสีฟ้า ~";
+		mes "โหลดภาพเหมือนปืนใหญ่ ~";
+		mes "กับที่รักที่น่ารักของฉัน ~";
+		mes "อยากยิงปืนใหญ่ foereva ~~";
+		next;
+		mes "[Demi Calberine]";
+		mes "เอ้อ ~ กลอนอยู่ไหน";
+		mes "ทำไมสกรูมันไม่พอเหรอฉันเพิ่งสั่งซื้อตัวใหม่มาไม่นาน";
+		next;
+		select("Hello~?");
+		mes "[Demi Calberine]";
+		mes "โอ้มาย ~?";
+		mes "คุณ ... คุณเป็นใคร?";
+		next;
+		mes "[Demi Calberine]";
+		mes "โอ้พระเจ้า!";
+		mes "เฮ้! โปรดช่วยฉันด้วย!";
+		next;
+		mes "[Demi Calberine]";
+		mes "วันนี้ฉันต้องสั่งปืนใหญ่จิ๋วให้เสร็จ แต่หาชิ้นส่วนไม่เจอ!";
+		next;
+		mes "[Demi Calberine]";
+		mes "ฮึ ~ ฉันคิดว่าพวกเขาหลุดมาแถว ๆ นี้";
+		mes "ฉันต้องการแค่ 10! ฉันต้องรวบรวมส่วนอื่น ๆ เข้าด้วยกันก่อน ... ได้โปรดช่วยฉันด้วย?!";
+		changequest 2216,2217;
+		set job_gen,63;
+		close;
+	} else if (job_gen > 62 && job_gen < 74) {
+		mes "อ๊ะโอ๊ะโอ๊ะไม่ ~~~";
+		mes "คุณหาชิ้นส่วนเจอหรือยังไม่ยังไม่ได้สัญญาได้โปรดรีบมา!";
+		close;
+	} else if (job_gen == 74) {
+		mes "ด้วยรถเข็นคันนี้อำนาจการยิงจะไม่ดีงั้นลองใส่แบบนี้ ... ";
+		next;
+		select("I've got the parts.");
+		mes "[Demi Calberine]";
+		mes "โอ้เอ้ย!";
+		mes "แกทำให้ฉันตาย !!";
+		mes "โอ้นี่คือสกรูและน็อตที่หายไปหรือเปล่า";
+		mes "คุณพบสิ่งเหล่านี้ที่ไหน";
+		next;
+		select("You asked me to find them!");
+		mes "[Demi Calberine]";
+		mes "โอ้จริงเหรอ";
+		mes "ฉันเหรอ Hohohohoho.";
+		mes "ฉันไม่รู้ด้วยซ้ำว่าจิตใจของฉันอยู่ที่ไหน";
+		next;
+		mes "[Demi Calberine]";
+		mes "กรุณารอสักครู่";
+		mes "ฉันจะรีบจัดการพวกนี้ให้เสร็จ";
+		next;
+		mes "- Snap Snap Snap -";
+		next;
+		mes "[Demi Calberine]";
+		mes "โอเคฉันต่อปืนใหญ่เข้ากับรถเข็นแล้ว ... ตอนนี้เราจะทดสอบประสิทธิภาพกันไหม";
+		next;
+		mes "- Sizlle... -";
+		next;
+		mes "- Pop! Pop! Pop! Pop! -";
+		next;
+		mes "[Demi Calberine]";
+		mes "เยี่ยม! สำเร็จ!";
+		mes "ต๊ายคุณช่วยฉันมาเยอะแล้วนะ";
+		mes "ขอบคุณมากครับ";
+		next;
+		mes "[Demi Calberine]";
+		mes "โอ้อะไรทำให้คุณมาที่นี่?";
+		mes "มาที่นี่เพื่อสั่งของ";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "ฉันเป็นนักพันธุศาสตร์";
+		mes "ฉันได้ยินมาว่าคุณมีความรู้เรื่องปืนใหญ่พกพาขนาดเล็กและสิ่งของต่างๆ";
+		next;
+		mes "[Demi Calberine]";
+		mes "ใช่ฉันจัดการกับปืนใหญ่หลายชนิด";
+		mes "ปัจจุบันมีผู้ที่ต้องการสร้างรถเข็นขึ้นมาใหม่ดังนั้นฉันจึงได้ติดตั้งฟังก์ชันเพิ่มเติมหลายอย่างเช่นปืนใหญ่ขนาดเล็กลงในรถเข็นของพวกเขา";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "การปรับปรุงรถเข็น?";
+		next;
+		mes "[Demi Calberine]";
+		mes "ใช่คุณไม่อยากแข่งตอนลงเนินหรือเปล่า";
+		mes "หรือคุณไม่เคยคิดเลยว่าการลากรถเข็นเก่า ๆ ธรรมดา ๆ นั้นมันน่าเบื่อขนาดนั้น";
+		next;
+		mes "[Demi Calberine]";
+		mes "รถเข็นไม่ใช่แค่เกวียนสำหรับเก็บของอีกต่อไป";
+		mes "คุณสามารถแขวนปืนใหญ่บนรถเข็นเพื่อช่วยเพิ่มพลังโจมตีของคุณได้";;
+		next;
+		mes "[Demi Calberine]";
+		mes "Miss Devries ดูเหมือนจะเรียนการทดลองแบบเด็ก ๆ อยู่ชั้นล่าง";
+		mes "ฉันไม่เข้าใจว่าทำไมงานวิจัยเหล่านั้นถึงได้รับความนิยมอย่างมาก";
+		emotion ET_HNG;
+		next;
+		mes "[Demi Calberine]";
+		mes "ดูปืนใหญ่จิ๋วนี้สิ";
+		mes "นี่คือปืนใหญ่ที่เล็กและเบาที่สุดในโลก";
+		mes "นี่คือสิ่งที่ฉันทำ แต่มันไม่น่ารักขนาดนี้เหรอ Yipee ~";
+		emotion ET_COOL;
+		next;
+		select("ฉันสามารถสร้างโมเดลรถเข็นของฉันใหม่ได้หรือไม่?");
+		mes "[Demi Calberine]";
+		mes "น่าเสียดายที่การดัดแปลงรถเข็นใช้ได้เฉพาะกับ Geneticists";
+		mes "มันเป็นกฎของสมาคมนักเล่นแร่แปรธาตุฉันก็เลยช่วยไม่ได้";
+		next;
+		mes "[Demi Calberine]";
+		mes "แต่อย่าผิดหวัง";
+		mes "คุณก็เป็น Geneticist ได้เหมือนกัน!";
+		mes "โฮโฮโฮ.";
+		next;
+		mes "[Demi Calberine]";
+		mes "คุณควรฝึกทักษะรถเข็นทุกครั้งที่มีเวลาจนกว่าคุณจะเป็น Geneticist";
+		mes "จนกว่ากล้ามเนื้อของคุณจะจัดการกับรถเข็นของคุณอย่างกลมกลืนและรถเข็นของคุณก็เคลื่อนที่ได้อย่างสวยงาม";
+		next;
+		mes "[Demi Calberine]";
+		mes "ถ้าคุณต้องการ ^ FF0000 ฉันจะแสดงจุดฝึกที่ดีให้คุณ ^ 000000";
+		mes "^ FF0000Devries ไม่ค่อยชอบเท่าไหร่ ^ 000000 แต่มันเป็นสถานที่ที่ดีที่สุดฮ่า ๆ ";
+		next;
+		mes "[Demi Calberine]";
+		mes "แล้วคุณจะเหวี่ยงรถเข็นไปรอบ ๆ เป็นอย่างไรบ้าง";
+		mes "เมื่อคุณแกว่งรถเข็นอย่างน้อย ^ FF0000100 ^ 000000 ครั้งคุณสามารถกำจัดความเครียดได้และรถเข็นจะถูกขัดเงามากพอ";
+		next;
+		mes "[Demi Calberine]";
+		mes "มาหาฉันทุกครั้งที่คุณต้องการฝึก";
+		mes "ฉันจะช่วยคุณทุกครั้งที่คุณต้องการให้รถเข็นของคุณออกแบบใหม่";
+		next;
+		mes "[Demi Calberine]";
+		mes "Well, I need to get to work for the next order.";
+		mes "Come and find me whenever you need training.";
+		mes "I'll help you out whenever you need your cart remodeled.";
+		next;
+		mes "- สั่น -";
+		next;
+		mes "- นี่ไงชั้นหายไปไหนเนี่ย -";
+		set job_gen,75;
+		changequest 2217,2223;
+		close2;
+		warp "job3_gen01",23,32;
+		end;
+	} else if (job_gen == 75) {
+		if (checkquest(2223,HUNTING) == 2) {
+			mes "ดูเหมือนว่า Miss Devries จะรู้ว่าฉันใส่ปากกาสปอร์ของเธอไว้ให้เธอ";
+			mes "มันตลกดีนะที่คุณมองหน้าเธอหลังจากที่คุณฆ่าสปอร์พวกนั้นหมดแล้ว";
+			close;
+		}
+		mes "เฮ้อยังซ้อมไม่เสร็จเหรอ";
+		mes "ใส่สปอร์ปากกาไหม";
+		next;
+		switch(select("Yes.:No.")) {
+		case 1:
+			mes "[Demi Calberine]";
+			mes "ขอให้สนุกกับการแกว่งรถเข็นของคุณไปรอบ ๆ ~";
+			close2;
+			warp "job3_gen01",23,32;
+			end;
+		case 2:
+			mes "[Demi Calberine]";
+			mes "น่าเสียดายจัง! อยากเห็นหน้ามิสเดฟริสโกรธจัง";
+			close;
+		}
+	} else if (job_gen > 75) {
+		mes "ดูเหมือนว่า Miss Devries จะรู้ว่าฉันใส่ปากกาสปอร์ของเธอไว้ให้เธอ";
+		mes "มันตลกดีนะที่คุณมองหน้าเธอหลังจากที่คุณฆ่าสปอร์พวกนั้นหมดแล้ว";
+		close;
+	}
+}
+
+-	script	Scattered Stuff#gen	-1,{
+	if (job_gen > 62 && job_gen < 74) {
+		mes "- มีของกระจัดกระจายมากมายบนพื้นห้องแล็บตกอยู่ในความสับสนวุ่นวาย -";
+		next;
+		mes "- คุณพบเศษโลหะเล็กน้อย -";
+		set job_gen, job_gen+1;
+		specialeffect EF_BASH;
+		disablenpc strnpcinfo(0);
+		initnpctimer;
+		close;
+	} else if (job_gen == 74) {
+		mes "- ฉันคิดว่าฉันรวบรวมชิ้นส่วนทั้งหมดแล้ว -";
+		close;
+	}
+	end;
+OnTimer7000:
+	enablenpc strnpcinfo(0);
+	stopnpctimer;
+	end;
+}
+job3_gen01,84,45,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen1	111
+job3_gen01,77,41,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen2	111
+job3_gen01,78,57,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen3	111
+job3_gen01,89,59,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen4	111
+job3_gen01,90,51,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen5	111
+job3_gen01,83,27,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen6	111
+job3_gen01,74,45,3	duplicate(Scattered Stuff#gen)	Scattered Stuff#gen7	111
+
+job3_gen01,18,39,3	script	Warning#gen	837,{
+	mes "= Warning =";
+	mes "ถ้าคุณรังแกสปอร์ของฉันฉันจะกรี๊ด !!!";
+	if (job_gen < 75) close;
+	next;
+	switch(select("ออกจากปากกา: อยู่นิ่ง ๆ .")) {
+	case 1:
+		mes "- ฉันควรจะออกไปก่อนที่จะโดน Miss Devries จับได้ -";
+		close2;
+		warp "job3_gen01",21,38;
+		end;
+	case 2:
+		mes "- ฉันตัดสินใจที่จะอยู่นิ่ง ๆ -";
+		close;
+	}
+}
+
+job3_gen01,80,12,1	script	Stacked Magazines#gen	111,{
+	mes "- 'ปังรายเดือน!' นิตยสารกองพะเนินเทินทึก - ";
+	close;
+}
+
+job3_gen01,83,20,1	script	Bed#gen	111,{
+	mes "- ชุดผ้าห่มลายตารางหมากรุกซึ่งดูเหมือนว่ามันถูกเลือกมาอย่างดีเกินไปสำหรับเตียงสกปรกนี้ -";
+	close;
+}
+
+job3_gen01,85,25,1	script	Opened Book#gen	111,{
+	mes "<คุณอยากมีห้องสวย ๆ ของฉันไหมคุณมี zeny เพียงพอหรือไม่มีที่ว่างเพียงพอหรือไม่วิ่งไปที่ห้างสรรพสินค้า Lighthalzen ทันทีเพื่อรับกระดาษติดผนังระดับไฮเอนด์และอุปกรณ์ตกแต่งภายใน! >";
+	next;
+	mes "< เทียนสุดหรูที่จะทำให้ห้องของคุณสว่างขึ้นกระจกสีทองบานใหญ่ที่ผู้หญิงทุกคนเป็นเจ้าของคุณจะพลาดไม่ได้เลย!>";
+	close;
+}
+
+job3_gen01,81,81,0	script	#dbroom	139,2,2,{
+OnTouch_:
+	mes "- มันเป็นห้องที่ดูเหมือนโกดังต้องขอบคุณพัสดุมากมายที่กองอยู่ในห้อง -";
+	close;
+}
+
+job3_gen01,24,32,0	script	The gaze of Devries	139,2,2,{
+OnTouch:
+	if (checkquest(2223,HUNTING) == 2) {
+		mapannounce "job3_gen01","Devries: Whoa? Was there a lost kitty in the spore pen?",bc_map,"0x99CC00"; //FW_NORMAL 12 0 0
+		emotion ET_HUK, playerattached();
+		warp "job3_gen01",21,38;
+	}
+	end;
+}
+
+job3_gen01,26,34	monster	Poison Spore	1428,1,7000
+job3_gen01,23,33	monster	Poison Spore	1428,1,7000
+job3_gen01,21,30	monster	Poison Spore	1428,1,7000
+job3_gen01,26,34	monster	Poison Spore	1428,1,7000
+job3_gen01,23,33	monster	Poison Spore	1428,1,7000
+job3_gen01,21,30	monster	Poison Spore	1428,1,7000
+job3_gen01,26,34	monster	Poison Spore	1428,1,7000
+job3_gen01,23,33	monster	Poison Spore	1428,1,7000
+job3_gen01,21,30	monster	Poison Spore	1428,1,7000
+job3_gen01,26,34	monster	Poison Spore	1428,1,7000
+job3_gen01,23,33	monster	Poison Spore	1428,1,7000
+job3_gen01,21,30	monster	Poison Spore	1428,1,7000
+job3_gen01,26,34	monster	Poison Spore	1428,1,7000
+job3_gen01,23,33	monster	Poison Spore	1428,1,7000
+job3_gen01,21,30	monster	Poison Spore	1428,1,7000
+job3_gen01,26,34	monster	Poison Spore	1428,1,7000
+job3_gen01,23,33	monster	Poison Spore	1428,1,7000
+job3_gen01,21,30	monster	Poison Spore	1428,1,7000

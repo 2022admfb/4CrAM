@@ -1,0 +1,553 @@
+//===== rAthena Script ======================================= 
+//= Ninja Job Quest
+//===== By: ================================================== 
+//= Legionaire, Kisuka
+//===== Current Version: ===================================== 
+//= 1.7
+//===== Compatible With: ===================================== 
+//= rAthena Project
+//===== Description: ========================================= 
+//= Ninja Job Change Quest
+//===== Additional Comments: ================================= 
+//= 1.1 Optimized, updated, checked [Lupus]
+//= 1.2 Added Akagi [Playtester]
+//= 1.3 Updated dialogs to official ones and optimized [SinSloth]
+//= 1.4 Fixed a minor bug [SinSloth]
+//= 1.5 Updated to match AEGIS script and Added Quest Log commands. [Kisuka]
+//= 1.6 Fixed AEGIS amatsu warp typo. [Kisuka]
+//= 1.7 Kagerou/Oboro support (Class -> BaseClass) [Euphy]
+//============================================================ 
+
+alberta,30,65,3	script	Akagi	730,{
+	if (Class == Job_Novice) {
+		if (JobLevel == 10) {
+			mes "[Akagi]";
+			mes "Hmmm...";
+			mes "You must have come,";
+			mes "sensing that someone";
+			mes "is waiting for you here.";
+			mes "Tell me, do you seek";
+			mes "the path of patience?";
+			next;
+			if(select("No:Yes") == 1) {
+				mes "[Akagi]";
+				mes "I see.";
+				mes "To each his own,";
+				mes "I suppose. Take";
+				mes "care of yourself.";
+				close;
+			}
+			mes "[Akagi]";
+			mes "Very well.";
+			mes "Then, let me";
+			mes "set you on that";
+			mes "path right away...";
+			close2;
+			switch(rand(3)) {
+				case 1:
+					warp "amatsu",170,229;
+					end;
+				case 2:
+					warp "amatsu",216,188;
+					end;
+				default:
+					warp "amatsu",178,176;
+					end;
+			}
+		} else {
+			mes "[Akagi]";
+			mes "Hm? I cannot be";
+			mes "of any service to";
+			mes "you until you grow";
+			mes "a little stronger...";
+			close;
+		}
+	} else {
+		mes "[Akagi]";
+		mes "Hmm...";
+		mes "You and I...";
+		mes "We are fairly equal in";
+		mes "terms of combat ability.";
+		mes "Perhaps we can spar";
+		mes "together sometime.";
+		close;
+	}
+}
+
+que_ng,30,65,3	script	Kuuga Gai#nq	730,{
+	if (Upper == 2) {
+		mes "[Kuuga Gai]";
+		mes "ความประหลาดของธรรมชาติ!";
+		//mes "I... I've never";
+		//mes "seen a baby as";
+		//mes "powerful as you!";
+		//mes "G-get away, you";
+		//mes "freak of nature!";
+		close;
+	}
+	if (Class == Job_Novice) {
+		if (JobLevel < 10) {
+			mes "[Kuuga Gai]";
+			mes "หืมมาถึงแล้ว";
+			mes "เรียนรู้ วิธี การเป็นนินจา";
+			mes "ทักษะพื้นฐาน ของคุณ ไม่ถึงกำหนด";
+			mes "กลับมาใหม่เถอะ";
+			//mes "หลังจากที่คุณคุ้นเคยมากขึ้น";
+			//mes "กับสัตว์ประหลาดต่อสู้";
+			close;
+		}
+		if (NINJ_Q == 0) {
+			mes "[ "+strcharinfo(0)+" ]";
+			mes "ขอโทษนะ";
+			mes "สวัสดี คุณดูเหมือนนินจา";
+			next;
+			mes "[Kuuga Gai]";
+			mes "...............................";
+			mes "คุณทำอย่างนั้นได้อย่างไร";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "ทำอะไรฉันไม่ได้ทำ";
+			//mes "do anything, I don't think...";
+			next;
+			mes "[Kuuga Gai]";
+			mes "คุณมองเห็นฉันได้อย่างไร";
+			mes "น่าเหลือเชื่อ ต้องมีคนส่งคุณมา";
+			//mes "be invisible to the naked eye.";
+			//mes "Ah, now I get it. Wildcat Joe";
+			//mes "must have sent you to kill me! I won't fall for your tricks! Die!";
+			next;
+			mes "["+strcharinfo(0)+"]";
+			mes "ฉันมาที่นี่เพื่อหวัง";
+			mes "จะเปลี่ยนเป็น นินจา";
+			//mes "W-wait! I-I don't even";
+			//mes "know who Wildcat Joe is!";
+			//mes "Calm down, there's no";
+			//mes "need to get violent!";
+			next;
+			//mes "[Kuuga Gai]";
+			//mes "What...?";
+			//mes "How did you dodge";
+			//mes "all of my attacks?";
+			//mes "You've got some talent,";
+			//mes "I'll give you that.";
+			//next;
+			//mes "["+strcharinfo(0)+"]";
+			//mes "...............................";
+			//mes "I came here hoping";
+			//mes "to change my job";
+			//mes "to a Ninja.";
+			//next;
+			//mes "[Kuuga Gai]";
+			//mes "...Oh. Is that all?";
+			//mes "Hmm, you've got great";
+			//mes "potential, but I can't help";
+			//mes "you now. I've got too many";
+			//mes "enemies, and I can't let my";
+			//mes "guard down for even a second.";
+			//next;
+			//mes "[Kuuga Gai]";
+			//mes "That Wildcat Joe is";
+			//mes "completely ruthless...!";
+			//mes "He could strike at any time!";
+			//mes "He'll do anything to achieve";
+			//mes "victory over his enemies!";
+			//next;
+			mes "[Kuuga Gai]";
+			mes "ทำในสิ่งที่ฉันขอแล้วฉันจะสอน";
+			mes "คุณมีทักษะบางอย่าง ของฉันถ้าคุณ";
+			mes "อยากเป็นนินจาจริงๆ";
+			next;
+			if(select("ยอมรับ.:ไม่ล่ะขอบคุณ.") == 2) {
+				mes "[Kuuga Gai]";
+				mes "อืมมม.";
+				//mes "Still, I don't see";
+				//mes "why we can't help";
+				//mes "each other in this";
+				//mes "little predicament...";
+				close;
+			}
+			mes "[Kuuga Gai]";
+			mes "เยี่ยมมากตอนนี้ฉันต้องการ";
+			mes "ถาม Wildcat Joe ว่าเขาต้องการ";
+			mes "ตกลงพักรบชั่วคราว";
+			mes "ฉันรู้ว่าเราทั้งคู่";
+			mes "อาวุธหมดแล้ว เราเลย";
+			mes "ควรเตรียมตัวให้ดีก่อน";
+			next;
+			mes "[Kuuga Gai]";
+			mes "โปรดรับจดหมายฉบับนี้";
+			mes "และส่งให้ Wildcat";
+			mes "Joe อยู่ใน Einbroch";
+			next;
+			mes "[Kuuga Gai]";
+			mes "แจ้งให้เราทราบคำตอบของเขา";
+			//mes "always did have a thing";
+			//mes "for hiding in high places.";
+			//mes "Anyway, after you give him";
+			//mes "the letter, come back and";
+			//mes "let me know his answer.";
+			warp "einbroch",184,190;
+			set NINJ_Q,1;
+			setquest 6015;
+			close;
+		}
+		else if (NINJ_Q == 1) {
+			mes "[Kuuga Gai]";
+			mes "แม้ว่างานนี้";
+			mes "ไม่ได้เร่งด่วนขนาดนั้น";
+			mes "ได้โปรดรีบไป";
+			close;
+		}
+		else if (NINJ_Q == 2) {
+			mes "[Kuuga Gai]";
+			mes "จดหมายถึง Wildcat Joe?";
+			mes "ฉันยังต้องรู้จักเขา";
+			mes "ตอบรับข้อเสนอของฉัน";
+			mes "พักรบยังไง ก็ตามดู";
+			close;
+		}
+		else if (NINJ_Q == 3) {
+			mes "[Kuuga Gai]";
+			mes "อ๊ะกลับมาแล้ว";
+			mes "แล้ว Wildcat Joe ก็ส่งไป";
+			mes "คุณกลับมาที่นี่กับเขา";
+			mes "ตอบรับดีเยี่ยม";
+			mes "ให้ฉันอ่านหน่อย";
+			next;
+			mes "[Kuuga Gai]";
+			mes "อะไรนะ ... ?! เขาทำได้ยังไง";
+			mes "ปฏิเสธข้อเสนอของฉัน";
+			next;
+			mes "[Kuuga Gai]";
+			mes "ฟังนะเธอต้องช่วย";
+			mes "ฉันออกไปอีกครั้งฉันต้องการให้คุณ";
+			mes "รวบรวมวัสดุเพื่อที่";
+			mes "ฉันสามารถสร้าง Kunai ของตัวเอง เพื่อสู้กับ Wildcat Joe";
+			mes "และเปลี่ยนงานให้คุณ เป็นนินจา";
+			next;
+			mes "[Kuuga Gai]";
+			mes "ทั้งหมดที่ ต้องการ";
+			//mes "to bring me is";
+			mes "^3355FF5 Cyfars^000000 และ";
+			mes "^3355FF1 Phracon^000000.";
+			mes "ได้โปรด";
+			mes "เร็วที่สุด!";
+			//next;
+			//mes "["+strcharinfo(0)+"]";
+			//mes "Huh? That's funny,";
+			//mes "Wildcat Joe actually";
+			//mes "asked me to gather";
+			//mes "those same materials.";
+			//next;
+			//mes "[Kuuga Gai]";
+			//mes "Curses! Then that means...";
+			//mes "You actually helped Joe";
+			//mes "in crafting his Kunai! No!";
+			//mes "I should have thought about";
+			//mes "that earlier! Well, it's too";
+			//mes "late now. Just h-hurry it up!";
+			set NINJ_Q,4;
+			changequest 6017,6018;
+			getitem 7053,5; // Cyfar
+			getitem 1010,1; // Phracon
+			close;
+		}
+		else if (NINJ_Q == 4) {
+			if (countitem(7053) < 5 || countitem(1010) < 1) {
+				mes "[Kuuga Gai]";
+				mes "รีบ ๆ นำมาให้ฉัน";
+				mes "^3355FF5 Cyfars^000000 และ";
+				mes "^3355FF1 Phracon^000000";
+				//mes "so that I can craft";
+				//mes "my own Kunai to use";
+				//mes "against Wildcat Joe!";
+				close;
+			}
+			if (SkillPoint != 0) {
+				mes "[Kuuga Gai]";
+				mes "ใช้ แต้ม ทักษะ ให้หมดก่อนน";
+				//mes "You still have some";
+				//mes "leftover Skill Points.";
+				//mes "You'd better spend all";
+				//mes "of them before you";
+				//mes "change jobs, right?";
+				close;
+			}
+			mes "[Kuuga Gai]";
+			mes "อ๊ะกลับมาแล้วด้วย";
+			mes "ทุกสิ่งที่ฉันต้องการ";
+			mes "คุณมาเร็วกว่ากำหนด";
+			next;
+			mes "[Kuuga Gai]";
+			mes "ตามสัญญา คุณจะได้เป็น นินจา ที่สมบูรณ์แบบ";
+			mes "ว่องไวเหมือนสายลมและ";
+			mes "เงียบเหมือนเงาที่ตกลงมา";
+			//mes "I'm in charge of the search";
+			//mes "party to find Sir Kazma.";
+			//next;
+			//mes "[Kuuga Gai]";
+			//mes "Sir Kazma is the chief";
+			//mes "of my village, but he's";
+			//mes "run away. This has resulted";
+			//mes "in an internal conflict within";
+			//mes "the Ninja Corps. Things are";
+			//mes "pretty unstable right now...";
+			//next;
+			//mes "[Kuuga Gai]";
+			//mes "I initially didn't want to";
+			//mes "accept you as a Ninja because";
+			//mes "of this complicated situation.";
+			//mes "However, you've proven that";
+			//mes "you're truly worthy of joining";
+			//mes "the Ninja ranks.";
+			//next;
+			//mes "[Kuuga Gai]";
+			//mes "According to his letter, even";
+			//mes "Joe thinks highly of you. Just";
+			//mes "remember that, as a Ninja, your";
+			//mes "mission is your highest priority. But don't let mission objectives";
+			//mes "supercede your conscience.";
+			//next;
+			//mes "[Kuuga Gai]";
+			//mes "''Secrecy above all else.''";
+			//mes "To keep our secrets in the";
+			//mes "shadows, you can only buy";
+			//mes "or sell Ninja weapons with";
+			//mes "authorized dealers. Please";
+			//mes "keep that in mind.";
+			//next;
+			//mes "[Kuuga Gai]";
+			//mes "As of today, you are";
+			//mes "now a proud member of the";
+			//mes "Touga Ninja Corps. Be as";
+			//mes "agile as the wind, and as";
+			//mes "quiet as the falling shadows.";
+			callfunc "Job_Change",Job_Ninja;
+			set NINJ_Q,5;
+			delitem 7053,5; // Cyfar
+			delitem 1010,1; // Phracon
+			getitem 13010,1;	// Asura
+			completequest 6018;
+			close;
+		}
+		else {
+			mes "[Kuuga Gai]";
+			mes "เป็นอย่าง ไร บ้าง?";
+			mes "พยายามฝึกหนัก";
+			mes "คุณจะได้รับ ความเคารพ จาก นินจา";
+			//mes "without a trace. If you";
+			//mes "can do that, you'll get";
+			//mes "the respect of any Ninja~";
+			close;
+		}
+	} else {
+		if (BaseClass == Job_Ninja) {
+			mes "[Kuuga Gai]";
+			mes "เป็นอย่าง ไร บ้าง?";
+			mes "พยายามฝึกหนัก";
+			mes "คุณจะได้รับ ความเคารพ จาก นินจา";
+			close;
+		} else {
+			mes "[Kuuga Gai]";
+			mes "เป็นไงบ้าง";
+			mes "ตามหาฉันที่ซ่อนอยู่";
+			mes "ในเงามืด?!";
+			close;
+		}
+	}
+}
+
+einbroch,184,194,3	script	Suspicious Man#nq	881,{
+	if (NINJ_Q == 1) {
+		mes "[Suspicious Man]";
+		mes "ฉันเดินทางไปหลายที่";
+		mes "ประเทศต่างๆ แต่ฉันไม่เคย";
+		mes "อยู่บนตึกสูง";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "โอ้คุณมาจากไหน";
+		mes "อามัตสึฉันกำลังมองหา";
+		//mes "สำหรับคนชื่อ";
+		mes "Wildcat Joe";
+		next;
+		mes "[Suspicious Man]";
+		mes "... ไม่. ไม่จริง";
+		//mes "จาก Izlude และฉันเท่านั้น";
+		mes "ที่นี่ใน Einbroch";
+		//mes "แร่บอกมาทำไม";
+		mes "คุณกำลังมองหา Wildcat Joe ตัวนี้อยู่หรือเปล่า";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "ฉันต้องไปส่ง";
+		mes "จดหมายฉบับนี้ ถึงเขาและ";
+		mes "ได้รับคำตอบ จากเขา";
+		mes "ฉันจะกลายเป็นนินจาได้";
+		next;
+		mes "[Suspicious Man]";
+		mes "จริงเหรอตอนนี้ฉันคิดว่า";
+		mes "เกี่ยวกับเรื่อง นี้ ฉันคิดว่า ฉัน";
+		mes "วิ่งเข้าไปหาเขาสักครั้ง หรือ สองครั้ง";
+		mes "ในเมืองนี้ จะชอบเรียกว่า '' Red Leopard Joe, ''";
+		mes "แทน '' Wildcat Joe. ''";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "ฉันอยากช่วยคุณจริงๆ";
+		mes "ช่วยตามหาเขา แต่ก่อนอื่นฉันต้องการ";
+		mes "เพื่อค้นหาแร่ธาตุ";
+		//mes "ฉันกำลังมองหาถ้าคุณไม่ทำ";
+		//mes "ใจช่วยไหม";
+		mes "ถ้าอย่างนั้นฉันจะช่วยคุณหาโจ";
+		next;
+		if(select("ไม่ต้องกังวลฉันจะไปหาเขาคนเดียว.:แน่นอนฉันจะช่วยคุณ..") == 1) {
+			mes "[Suspicious Man]";
+			mes "แน่ใจนะว่า ... ?";
+			mes "ไปหาเขา ... ";
+			close;
+		}
+		mes "[Suspicious Man]";
+		mes "เยี่ยมมากดีใจด้วย";
+		mes "ได้โปรด";
+		mes "ช่วยฉันหา";
+		mes "^3355FF5 Cyfars^000000 และ";
+		mes "^3355FF1 Phracon^000000.";
+		set NINJ_Q,2;
+		getitem 1010,1;	// Phracon
+		getitem 7053,5;	// Cyfar
+		changequest 6015,6016;
+		close;
+	}
+	else if (NINJ_Q == 2) {
+		if (countitem(7053) < 5 || countitem(1010) < 1) {
+			mes "[Suspicious Man]";
+			mes "ช่วยฉันหา";
+			mes "^3355FF5 Cyfars^000000 และ";
+			mes "^3355FF1 Phracon^000000.";
+			mes "แล้ว ฉันจะช่วยคุณหา";
+			mes "Red Leopard Joe.";
+			close;
+		}
+		mes "[Suspicious Man]";
+		mes "ตอนนี้ถึงตาฉันแล้ว";
+		mes "ช่วยคุณตอนนี้ที่นี่";
+		mes "ให้ฉันดูจดหมายนั้น";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "?????!!";
+		next;
+		mes "[Suspicious Man]";
+		mes "ทำไม คุณไม่เอาจดหมายของ Kuuga Gai มาให้ฉันอ่านหน่อยเหรอ";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		//mes "Are you...";
+		mes "คุณคือ Wildcat Joe?";
+		next;
+		mes "[Suspicious Man]";
+		mes "...ใช่, เรียกว่า Red Leopard Joe";
+		mes "Kuuga Gai ส่งคุณมาให้ฉันใช่มั้ย?";
+		next;
+		mes "[Red Leopard Joe]";
+		mes "ถ้าคุณอยากเป็นนินจา";
+		mes "คุณควรระวังเสมอ";
+		next;
+		mes "[Red Leopard Joe]";
+		mes "ตอนนี้ ให้ฉันอ่าน";
+		mes "จดหมายนี้ลองดู ... ";
+		mes "หืม.. นึกว่า Kuuga Gai";
+		mes "อยากจะท้าทายฉัน";
+		mes "อีกครั้ง แต่เขาต้องการจริงๆ";
+		mes "พักรบชั่วคราว ห๊ะ!";
+		next;
+		//mes "["+strcharinfo(0)+"]";
+		//mes "I see...";
+		//mes "...........";
+		//next;
+		//mes "[Red Leopard Joe]";
+		//mes "For now, let me read";
+		//mes "this letter. Let's see...";
+		//mes "Hm. I thought that Kuuga Gai";
+		//mes "would want to challenge me";
+		//mes "again, but he actually wants";
+		//mes "a temporary truce? Hah!";
+		//next;
+		mes "[Red Leopard Joe]";
+		//mes "Thanks to your help,";
+		//mes "I now have the minerals";
+		mes "ฉันต้องสร้าง Kunai!";
+		mes "ฮ่าๆ ฉันจะไม่ตกลง เมื่อฉันได้เปรียบ !";
+		next;
+		//mes "[Red Leopard Joe]";
+		//mes "Anyway, let me write my";
+		//mes "response to him. I'll also";
+		//mes "give you my recommendation...";
+		//mes "I think you'll make a very fine";
+		//mes "Ninja, even if I did trick you";
+		//mes "just earlier. Heh heh heh!";
+		//next;
+		//mes "["+strcharinfo(0)+"]";
+		//mes "......";
+		//mes ".........";
+		//mes "............";
+		//next;
+		mes "[Red Leopard Joe]";
+		mes "ฉันจะเขียนจดหมายให้คุณ";
+		//mes "Please bring this";
+		mes "ไปส่งให้ Kuuga Gai.";
+		//mes "It'll take a while to";
+		mes "ฉันจะพาคุณกลับ Amatsu";
+		//mes "me send you there directly...";
+		delitem 1010,1;	// Phracon
+		delitem 7053,5;	// Cyfar
+		set NINJ_Q,3;
+		changequest 6016,6017;
+		close2;
+		warp "amatsu",147,136;
+		end;
+	}
+	else if (NINJ_Q == 3) {
+		mes "[Red Leopard Joe]";
+		//mes "Eh? I'm not sure what";
+		//mes "happened, but it seems";
+		//mes "that you haven't delivered";
+		//mes "my response to Kuuga Gai yet.";
+		//mes "Shall I directly send you";
+		mes "ฉันจะส่งคุณไป Amatsu ?";
+		next;
+		if(select("ไม่ ขอบคุณ.:ใช่ ได้โปรด.") == 1) {
+			mes "[Red Leopard Joe]";
+			mes "อืม ...";
+			//mes "just trying to save";
+			//mes "you some time.";
+			close;
+		}
+		mes "[Red Leopard Joe]";
+		mes "โอเค ตามนั้น";
+		//mes "Goodbye for now.";
+		close2;
+		warp "amatsu",147,136;
+		end;
+	}
+	else if (NINJ_Q == 4) {
+		mes "[Red Leopard Joe]";
+		mes "Kuuga Gai ขอให้คุณ";
+		mes "รวบรวมวัสดุ";
+		mes "ด้วยเหรออืมฉันคิดว่า เพื่อการต่อสู้";
+		close;
+	}
+	else if (NINJ_Q == 5 && BaseClass == Job_Ninja) {
+		mes "[Red Leopard Joe]";
+		mes "โอ้ คุณเป็น นินจา ~";
+		mes "ฉันหวังว่า คุณจะไปต่อ";
+		mes "ฝึกฝน ตัวเองให้ เชี่ยวชาญ";
+		mes "ทักษะนินจา ทั้งหมดที่";
+		mes "จำได้ ";
+		mes "เพื่อให้เข้ากับเงามืด";
+		close;
+	}
+	else {
+		mes "[Tourist]";
+		mes "ฉันเดินทางไปหลายที่";
+		mes "ประเทศต่างๆ แต่ฉันไม่เคย";
+		mes "อยู่บนตึกสูง";
+		close;
+	}
+}

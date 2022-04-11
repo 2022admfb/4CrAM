@@ -1,0 +1,78 @@
+//===== rAthena Script =======================================
+//= Duckdig Spin
+//===== By: ==================================================
+//= Ex0ample#3828
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= npc reward claim
+//============================================================
+
+auction_03,13,50,5	script	Fackbook Share#reward_claim	10146,{
+
+	mes "[" +.npcname$ + "]";
+	mes "สวัสดี, " + strcharinfo(0);
+	mes "ฉันจะช่วยคุณในการรับรางวัล'Share'ของคุณ.";
+	next;
+	menu " > รับไอเท็ม Share", L_GetItem, " > ประวัติ", L_History;
+
+L_GetItem:
+	mes "[" +.npcname$ + "]";
+	.@limit = 20;
+	.@query$ = "SELECT  `id`,`nameid`,`amount` FROM `rewards_spin` WHERE `status` = 1 AND `account_id` = " +  getcharid(3) +" ORDER BY id ASC LIMIT " +.@limit;
+	query_sql(.@query$, .@id, .@nameid, .@amount);
+	.@id_size = getarraysize(.@id);
+	if (.@id_size <= 0)
+	{
+		mes "^FF0000 ไม่พบบันทึก.^000000";
+	} else {
+		// Claim your reward
+		while (.@id_size > 0)
+		{
+			mes "ล่าสุด " +.@id_size + " Reward(s).";
+			// LOAD
+			.@menu$ = "";
+			for (.@i = 0;.@i <.@id_size;.@i++) {
+				.@menu$ = .@menu$ + (.@i+1) + ") "+ getitemname(.@nameid[.@i]) + " x " + .@amount[.@i] +":";
+			}
+			
+			next;
+			
+			.@reward = select(.@menu$) - 1;
+			.@update = query_sql("UPDATE `rewards_spin` SET `status` = 2, `claim_date` = NOW() WHERE `id` = "+ .@id[.@reward] +" LIMIT 1");
+			.@id_size--;
+			
+			getitem .@nameid[.@reward], .@amount[.@reward];
+			deletearray.@id[.@reward], 1;
+			deletearray.@nameid[.@reward], 1;
+			deletearray.@amount[.@reward], 1;
+		}
+	}
+	end;
+L_History:
+	mes "[" +.npcname$ + "]";
+	.@id_size = getarraysize(.@id);
+	.@limit = 20;
+	.@query$ = "SELECT  `id`,`nameid`,`amount` FROM `rewards_spin` WHERE `status` = 2 AND `account_id` = " +  getcharid(3) +" ORDER BY id ASC LIMIT " +.@limit;
+	query_sql(.@query$, .@id, .@nameid, .@amount);
+	.@id_size = getarraysize(.@id);
+
+	if (.@id_size <= 0)
+	{
+		mes "^FF0000ไม่พบบันทึก.^000000";
+	} else {
+		mes "ล่าสุด " +.@id_size + " Reward(s).";
+		.@log$ = "";
+		for (.@i = 0;.@i <.@id_size;.@i++) {
+			.@log$ =.@log$ + (.@i+1) + ") "+ getitemname(.@nameid[.@i]) + " x " + .@amount[.@i] +"\n";
+		}
+		mes .@log$;
+	}
+	end;
+OnInit:
+	.npcname$ = strnpcinfo(1);
+	end;
+
+}

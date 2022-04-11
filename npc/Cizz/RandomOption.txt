@@ -1,0 +1,216 @@
+//===== rAthena Script =======================================
+//= Random Option NPC dealer
+//===== By: ==================================================
+//= Keitenai
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Deals with a player to apply random item option
+//= for the price of zeny/cashpoint
+//============================================================
+
+auction_03,31,52,4	script	Keitenai	10349,{
+	goto NPC;
+end;
+
+OnInit:
+//==============================
+//	CURRENCY SETTING
+//	1 = Zeny
+//	0 = Cashpoints
+//==============================
+set .Currency,1;		// Currency to buy random option
+set .Price,10000000;	// Prize of random option
+
+//==============================
+//	RANDOM OPTION SETTING
+//==============================
+	set .OverWrite,1;	// Allows overwriting the already existing option enchantment ( 0 to disable )
+	set .FailRate,10;	// Sets fail chance
+	set .MaxOpt,502;	// Maximum item option a player can enchant ( reference: https://github.com/rathena/rathena/blob/master/db/const.txt#L1645-L1836 )192
+	set .MinOpt,501;		// Minimum item option a player can enchant1
+	set .MinValue,1;	// Minimum option effect value
+	set .MaxValue,15;	// Maximum option effect value
+	set .MaxIndex,4;	// Maximum option slots ( default is 0 to 4 )
+	set .Wait,10;		// Progress bar delay in seconds
+
+	// Random option that will not be applied
+	setarray .ignore[0],
+		86,		// RDMOPT_BODY_ATTR_ALL
+		173,	// RDMOPT_HP_DRAIN
+		174,	// RDMOPT_SP_DRAIN
+		190,	// RDMOPT_MDAMAGE_SIZE_SMALL_USER
+		191,	// RDMOPT_MDAMAGE_SIZE_MIDIUM_USER
+		192,	// RDMOPT_MDAMAGE_SIZE_LARGE_USER
+		//201,	//OPTION_EXP_BUFFER
+		193;	// RDMOPT_ATTR_TOLERACE_ALL
+waitingroom "Ticket Costume",0;		
+end;
+
+NPC:
+disable_items;
+	mes "[ Keitenai ]";
+	mes "สวัสดี !";
+	mes "ฉันมาจากดินแดน";
+	mes "ห่างไกลเพื่อแนะนำ";
+	mes "อุปกรณ์มหัศจรรย์ ^FF0000Random^000000";
+	mes "Option Enchantment.";
+	next;
+	mes "[ Keitenai ]";
+	mes "ฉันสามารถสร้างอุปกรณ์ของคุณได้";
+	mes "มีพลังมากขึ้น";
+	mes "กว่าสภาพปัจจุบัน ... ";
+	next;
+	mes "[ Keitenai ]";
+	if(.Currency){
+		mes "สำหรับการใช้งาน จำเป็นต้องจ่าย";
+		mes "^0000FF"+.Price+" Zeny";
+		mes "^0000FFCostume I Ticket 1 ชิ้น";
+	} else {
+		mes "สำหรับการใช้งาน จำเป็นต้องจ่าย";
+		mes "^0000FFCostume I Ticket 1 ชิ้น";
+		mes "^0000FF"+.Price+" Cashpoints";
+	}
+	mes "ฉันจะ ^FF0000Random^000000";
+	mes "Option Enchantment";
+	mes "ใน อุปกรณ์ ของคุณ. (^_^)";
+	mes "^FF0000จำกัด^000000 สูงสุด 4 ช่อง ต่ออุปกรณ์ 1 ชิ้น";
+	next;
+	mes "[ Keitenai ]";
+	mes "มีโอกาสเสริมออฟชั่น [^9c01feExp + "+.MinValue+"% - "+.MaxValue+"%^000000]";
+	mes "มีโอกาสเสริมออฟชั่น [^9c01feDrop + "+.MinValue+"% - "+.MaxValue+"%^000000]";
+	next;
+	mes "[ Keitenai ]";
+	mes "ลืมบอกไปว่า";
+	mes "มี โอกาส^FF0000 "+.FailRate+"%^000000";
+	mes "ว่ากระบวนการนี้อาจ ^FF0000FAIL^000000";
+	mes "และสูญเสียอุปกรณ์ของคุณไปพร้อมกัน";
+	mes "รวมไปถึง card..."," ";
+	next;
+	mes "[ Keitenai ]";
+	mes "คุณยังต้อง ทำต่อ ?";
+	mes "ความเสี่ยงของการร่ายมนต์ด้วย";
+	mes "^FF0000"+.FailRate+"%^000000 มีโอกาสที่จะ ^FF0000Fail^000000";
+	mes "และสูญเสียอุปกรณ์ของคุณไปพร้อมกัน";
+	next;
+	if(select("ยกเลิก...:^0000FFฉันต้องการ Enchant Option^000000")==1) goto OnCancel;
+	mes "[ Keitenai ]";
+	mes "มหัศจรรย์!";
+	mes "ขั้นตอนนี้จะใช้เวลา";
+	mes "ประมาณ^0000FF"+.Wait+"^000000 วินาที...";
+	mes "กรุณา รอ สักครู่";
+	mes "ฉันกำลัง Enchant อุปกรณ์ ของคุณ!";
+	close2;
+
+	//setarray .@eq[1], EQI_HEAD_TOP,EQI_ARMOR,EQI_HAND_L,EQI_HAND_R,EQI_GARMENT,EQI_SHOES,EQI_ACC_L,EQI_ACC_R,EQI_HEAD_MID,EQI_HEAD_LOW,EQI_COSTUME_HEAD_TOP ,EQI_COSTUME_HEAD_MID ,EQI_COSTUME_HEAD_LOW ,EQI_COSTUME_GARMENT ;
+	setarray .@eq[1], EQI_COSTUME_HEAD_TOP ,EQI_COSTUME_HEAD_MID ,EQI_COSTUME_HEAD_LOW ,EQI_COSTUME_GARMENT ;
+	for(set .@i,1; .@i<getarraysize(.@eq); set .@i,.@i+1){
+		if(getequipisequiped(.@eq[.@i])){
+			set .@menu$,.@menu$+F_getpositionname(.@eq[.@i])+" ~ [ " + getequipname(.@eq[.@i]) + " ]";
+			set .@equipped,1;
+		} set .@menu$,.@menu$+":";
+	} set .@part,.@eq[select(.@menu$)];
+
+	set .@val,rand(.MinValue,.MaxValue);
+
+IgnoreCheck:
+	set .@opt,rand(.MinOpt,.MaxOpt);
+	for(set .@f,1; .@f<getarraysize(.ignore); set .@f,.@f+1)
+		if(.@opt==.ignore[.@f])
+			goto IgnoreCheck;
+
+	set .@indx,rand(.MaxIndex);
+	if(!.OverWrite){
+		if(getequiprandomoption(.@part,4,ROA_ID,getcharid(0))) set .@x4,4;
+		if(getequiprandomoption(.@part,3,ROA_ID,getcharid(0))) set .@x3,3;
+		if(getequiprandomoption(.@part,2,ROA_ID,getcharid(0))) set .@x2,2;
+		if(getequiprandomoption(.@part,1,ROA_ID,getcharid(0))) set .@x1,1;
+		if(getequiprandomoption(.@part,0,ROA_ID,getcharid(0))) set .@x0,0;
+
+		if(.@indx == 0 && .@x0)
+			if(.@indx==.MaxIndex) goto OnMax;
+			else set .@indx,1;
+		if(.@indx == 1 && .@x1)
+			if(.@indx==.MaxIndex) goto OnMax;
+			else set .@indx,2;
+		if(.@indx == 2 && .@x2)
+			if(.@indx==.MaxIndex) goto OnMax;
+			else set .@indx,3;
+		if(.@indx == 3 && .@x3)
+			if(.@indx==.MaxIndex) goto OnMax;
+			else set .@indx,4;
+		if(.@indx == 4 && .@x4)
+			if(.@indx==.MaxIndex) goto OnMax;
+	}
+	if(.@indx == 4 && (!getequiprandomoption(.@part,3,ROA_ID,getcharid(0)))) set .@indx,3;
+	if(.@indx == 3 && (!getequiprandomoption(.@part,2,ROA_ID,getcharid(0)))) set .@indx,2;
+	if(.@indx == 2 && (!getequiprandomoption(.@part,1,ROA_ID,getcharid(0)))) set .@indx,1;
+	if(.@indx == 1 && (!getequiprandomoption(.@part,0,ROA_ID,getcharid(0)))) set .@indx,0;
+
+	progressbar "ffff00",.Wait;
+	.itemid = getequipid(.@part);
+	.itemname$ = getitemname(.itemid);
+	if(.Currency){
+		if(Zeny < .Price)
+			goto PriceFail;
+		else if(Countitem(40057)){
+			set Zeny,Zeny-.Price;
+			delitem 40057,1;
+			}else{
+				goto PriceFail;
+			}
+			
+	} else {
+		if(#CASHPOINTS < .Price)
+			goto PriceFail;
+		else
+			set #CASHPOINTS,#CASHPOINTS-.Price;
+	}
+
+	// Failed...
+	if(.FailRate > 100) set .FailRate,100;
+	if(rand(100) <= .FailRate) goto OnFailure;
+
+	// Success!!
+	//setrandomoption(.@part,.@indx,.@opt,.@val,.@indx,getcharid(0));
+	specialeffect2 EF_PHARMACY_Success;
+	setrandomoption(.@part,.@indx,.@opt,.@val,.@indx,getcharid(0));
+	announce""+strcharinfo(0)+ " ขณะที่กำลัง [ Enchant Costume ] "+.itemname$+" ประสบความสำเร็จ",bc_all,0xff00dd;
+end;
+
+OnMax:
+	mes "[ Keitenai ]";
+	mes "ขอ อภัย อุปกรณ์ของคุณ";
+	mes "ไม่สามารถ เสริมมนต์ ได้อีก";
+close;
+
+OnFailure:
+specialeffect2 EF_PHARMACY_FAIL;
+	mes "[ Keitenai ]"," ";
+	mes "ฉันขอโทษจริงๆ ... ", "";
+	mes "^FF0000กระบวนการ ล้มเหลว ...";
+	mes "ไอเทมของคุณถูกทำลายแล้ว ^000000";
+	announce""+strcharinfo(0)+ " ขณะที่กำลัง [ Enchant Costume ] "+.itemname$+" ถูกทำลาย",bc_all,0xFF0000;	
+	delequip .@part;
+close;
+
+PriceFail:
+	mes "[ Keitenai ]";
+	mes "นี่คืออะไร";
+	mes "ล้อเล่นเหรอ?";
+	mes "ขอโทษนะ แต่ฉันไม่ทำงาน";
+	mes "ฟรี ๆ !";
+	mes "คุณกลับมาได้";
+	mes "ถ้า มีค่าใช้จ่ายเพียงพอ";
+	mes "ค่า บริการของฉัน";
+close;
+
+OnCancel:
+	mes "[ Keitenai ]";
+	mes "แจ้งให้เราทราบ ";
+	mes "หาก คุณ เปลี่ยนใจ";
+close;
+}
+izlude,152,129,2	duplicate(Keitenai)	Keitenai#1	10349

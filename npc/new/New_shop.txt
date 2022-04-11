@@ -1,0 +1,1169 @@
+
+izlude,118,160,4	script	Cash item Guide	4_m_human_02,{
+    if(strcharinfo(3) != "auction_03")
+	{
+	mes "[Guide Cash Shop]";
+	mes "สวัสดี...";
+	mes "ข้ามาคอยแนะนำสถานที่สุดพิเศษ";
+	mes "อยากรู้ว่าเป็นที่ไหน ? ";
+	mes "ที่นั้นมี NPC สำหรับ Cash item มากมาย";
+	next;
+	mes "[Guide Cash Shop]";
+	mes "อย่าถามให้เสียเวลา...";
+	mes "เจ้าสนใจ จะไปที่นั่น เลยรึเปล่า ?";
+	next;
+	if (Select ("สนใจ :ไม่สนใจ") ) ==1{
+	getmapxy (#Map$,#X,#Y,BL_PC);
+	close2;
+    warp"auction_03", 22, 41;
+    }
+	mes "[Guide Cash Shop]";
+	mes "แย่จัง !!" ;
+	mes "ไว้คราวหน้ากลับมาใหม่ล่ะ";
+	close2;
+	end;	
+	}
+	else{
+	mes "[Guide Cash Shop]";
+	mes "อ่าวว...";
+	mes "เจ้าเบื่อที่นี่แล้วหรอ";
+	mes "เอาล่ะ ข้าจะพาเจ้ากลับ ";
+	mes "พร้อมแล้ว ใช่ ไหม ?";
+	next;
+	mes "[Guide Cash Shop]";
+	mes "ถ้ามีเวลาก็แวะมาหาข้าอีกล่ะ";
+	mes "เจ้าแน่ใจที่จะกลับ ?";
+	next;
+	if (Select ("ตกลง :ฉันจะอยู่ที่นี่ต่อ") ) ==1{
+		if($Map$ ==""){
+			warp "izlude",113,158;
+		}
+	warp #Map$,#X,#Y;
+    }
+	mes "[Guide Cash Shop]";
+	mes "ถ้าต้องการจะกลับ ก็มาหาข้าล่ะ !!" ;
+	mes "หึหึ";
+	close2;
+	end;	
+	}
+}
+
+izlude,120,152,4	script	AB	756,{
+		mes "[ Help ]";
+		mes "แจก บัพ AB ฟรีจ้า";
+		next;
+		menu "รับบัพ",AB_1,"ยกเลิก",Cancles_2;
+		
+AB_1:
+		specialeffect2 EF_INCAGILITY;
+		sc_start SC_INCREASEAGI,1400000,5;
+		specialeffect2 EF_BLESSING;
+		sc_start SC_BLESSING,1400000,5;
+close2;
+end;
+
+Cancles_2:
+close;
+end;
+
+OnInit:
+	waitingroom "AB Free",0;
+	end;
+}
+moc_para01,26,19,2	duplicate(AB)	FreeBuff#1	756
+	
+	izlude,123,150,4	script	เมอริด้า	612 ,{
+	mes "Network Shop";
+	mes "ยินดีต้อนรับสู่ร้านค้าของเรา";
+	mes "ต้องการที่จะซื้ออะไร";
+	next;
+    switch (select("ไอเท็มทั่วไป :ไอเท็มพิเศษ :ไอเท็มกิจกรรม :ยกเลิก")){
+	case 1 :
+	close2;
+	callshop "Network Shop",1;
+	end;
+	
+	case 2 :
+	close2;
+	callshop "Network Item",0;
+	end;
+	
+	case 3 :
+	close2;
+	callshop "Network Event",0;
+	end;
+	
+	case 4 :
+	mes "Network Shop";
+	mes "หากต้องการสินค้า";
+	mes "สามารถแวะมาได้ทุกเมื่อ";
+	close;
+	end;
+	
+	}
+}
+	
+auction_03,29,66,4	script	Valkyrie	4_f_valkyrie,{
+    mes "[Valkyrie]";
+	mes "หากเจ้ามี ^0000FF 3rd Test Pass ^000000";
+	mes "เจ้าจะสามารถ";
+	mes "เปลี่ยนอาชีพ คลาส 3 ได้ทันที";
+	mes "^FF0000เพิ่มเติม ^000000Star Emperor , Soul Reaper , Rebel , Oboro , Kagerou ก็สามารถ เปลี่ยนได้ที่นี้";
+	//cutin "3rd_ab_valkyrie.bmp",2;
+	next;
+	mes "[Valkyrie]";
+	mes "แต่เจ้าต้องเป็นอาชีพ";
+	mes "High Class";
+	mes "Level ^FF000099^000000 JOB ^FF000050 ^000000ขึ้นไป";
+	mes "^000000จะสามารถเปลี่ยนอาชีพได้";
+	mes "พร้อมแล้วใช่มั้ย !  ??";
+	next;
+	if (SkillPoint) {
+			mes "[Valkyrie]";
+			mes "คุณไม่สามารถเปลี่ยนเป็นอาชีพ โดยไม่ใช้คะแนนทักษะทั้งหมดของคุณก่อน โปรดกลับมาหลังจากใช้คะแนนทักษะของคุณอย่างชาญฉลาด.";
+			close;
+		}
+	else{
+	
+	switch (Select ("เปลี่ยนอาชีพ คลาส 3 ด้วย ^0000FF3rd Test Pass^000000 :ฉันไม่พร้อม") ) {
+	case 1:
+	
+	  if (baselevel ==99)&& (joblevel >= 50)&& (joblevel <= 69){
+	       if (countitem(6583)) {
+	        if (Class == 7)//kngiht
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4054;
+			getitem 5746,1;
+			}
+			if (Class == 8)//high priest
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4057;
+			getitem 5747,1;
+			}
+			if (Class == 9)//high Wi
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4055;
+			getitem 5753,1;
+			}
+			if (Class == 10)//white smith
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4058;
+			getitem 23277,1;
+			getitem 5749,1;
+			}
+			if (Class == 11)//Sniper
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4056;
+			getitem 5748,1;
+            getitem 6124,1;
+			}
+			if (Class == 12)//Assassin cross
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4059;
+			getitem 5755,1;
+			}
+			if (Class == 14)//paladin
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4066;
+			getitem 5757,1;
+			}
+			if (Class == 15)//champion
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4070;
+			getitem 5754,1;
+			}
+			if (Class == 16)//professor
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4067;
+			getitem 5756,1;
+			}
+			if (Class == 17)//stlker
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4072;
+			getitem 5750,1; 		//	Shadow Handicraft [1]
+			getitem 6121,1;			//	Makeover Brush
+			getitem 6122,1;
+			}
+			if (Class == 18)//creator
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4071;
+			getitem 5752,1;
+			}
+			if (Class == 19)//clown
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4068;
+			getitem 5751,1;
+			}
+			if (Class == 20)//gypsy
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4069;
+			getitem 5758,1;
+			}
+			if (Class == 4047)//star gladiator
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส สำเร็จ";
+			delitem 6583,1;
+			jobchange 4239;
+			}
+			if (Class == 4049)//Soul link
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส สำเร็จ";
+			delitem 6583,1;
+			jobchange 4240;
+			}
+			if (Class == 25)//ninja
+			{
+				dispbottom "^FF0000เปลี่ยนคลาส สำเร็จ";
+				delitem 6583,1;
+				if(SEX == 1){
+				jobchange 4211;
+				}
+				else{
+					jobchange 4212;
+				}
+			}
+			if(Class == 24)//rebel
+			{
+				dispbottom "^FF0000เปลี่ยนคลาส สำเร็จ";
+				delitem 6583,1;
+				jobchange 4215;
+			}
+			else{
+				mes "[Valkyrie]";
+				mes "ปัจจุบัน ไม่มี อาชีพ ลองรับ สำหรับคุณ";
+				close2;
+				cutin "",255;
+				break;
+			}
+		
+		   mes "[Valkyrie]";
+		   mes "เปลี่ยนอาชีพสำเร็จ";
+		   
+	       close2;
+		   cutin "",255;
+	       break;
+		   }
+
+		   mes "[Valkyrie]";
+	       mes "ข้าไม่สามารถ เปลี่ยนอาชีพให้ท่านได้";
+		   mes "ท่านไม่มี ^FF00003rd Test Pass ";
+		   mes "ท่านสามารถซื้อได้ใน Cash Shop";
+		   
+	       close2;
+		   cutin "",255;
+	       break;
+
+	   }
+	   
+	   if (baselevel ==99)&& (joblevel == 70){
+	       if (countitem(6583)) {
+	        if (Class == 4008)//lordkngiht
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4060;
+			getitem 5746,1;
+			}
+			if (Class == 4009)//high priest
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4063;
+			getitem 5747,1;
+			}
+			if (Class == 4010)//high Wi
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4061;
+			getitem 5753,1;
+			}
+			if (Class == 4011)//white smith
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4064;
+			getitem 23277,1;
+			getitem 5749,1;
+			}
+			if (Class == 4012)//Sniper
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4062;
+			getitem 5748,1;
+            getitem 6124,1;
+			}
+			if (Class == 4013)//Assassin cross
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4065;
+			getitem 5755,1;
+			}
+			if (Class == 4015)//paladin
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4073;
+			getitem 5757,1;
+			}
+			if (Class == 4016)//champion
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4077;
+			getitem 5754,1;
+			}
+			if (Class == 4017)//professor
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4074;
+			getitem 5756,1;
+			}
+			if (Class == 4018)//stlker
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4079;
+			getitem 5750,1; 		//	Shadow Handicraft [1]
+			getitem 6121,1;			//	Makeover Brush
+			getitem 6122,1;
+			}
+			if (Class == 4019)//creator
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4078;
+			getitem 5752,1;
+			}
+			if (Class == 4020)//clown
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4075;
+			getitem 5751,1;
+			}
+			if (Class == 4021)//gypsy
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4076;
+			getitem 5758,1;
+			}
+			if (Class == 4047)//star gladiator
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4239;
+			}
+			if (Class == 4049)//Soul link
+			{
+			dispbottom "^FF0000เปลี่ยนคลาส3สำเร็จ";
+			delitem 6583,1;
+			jobchange 4240;
+			}
+			if (Class == 25)//ninja
+			{
+				dispbottom "^FF0000เปลี่ยนคลาส สำเร็จ";
+				delitem 6583,1;
+				if(SEX == 1){
+				jobchange 4211;
+				}
+				else{
+					jobchange 4212;
+				}
+			}
+			if(Class == 24)
+			{
+				dispbottom "^FF0000เปลี่ยนคลาส สำเร็จ";
+				delitem 6583,1;
+				jobchange 4215;
+			}
+			else{
+				mes "[Valkyrie]";
+				mes "ปัจจุบัน ไม่มี อาชีพ ลองรับ สำหรับคุณ";
+				close2;
+				cutin "",255;
+				break;
+			}
+		   mes "[Valkyrie]";
+		   mes "เปลี่ยนอาชีพสำเร็จ";
+		   
+	       close2;
+		   cutin "",255;
+	       break;
+		   }
+		   
+		   
+		   mes "[Valkyrie]";
+	       mes "ข้าไม่สามารถ เปลี่ยนอาชีพให้ท่านได้";
+		   mes "ท่านไม่มี ^FF00003rd Test Pass ";
+		   mes "ท่านสามารถซื้อได้ใน Cash Shop";
+		   
+	       close2;
+		   cutin "",255;
+	       break;
+		   
+		   
+		   
+	   }
+	   
+	   
+	   
+	   if (baselevel >=100){
+	   mes "[Valkyrie]";
+	   mes "ขออภัย";
+	   mes "^FF0000ปัจจุบัน ท่าน คือ Class 3";
+	   mes "ไม่มีอะไร ต้องสอน อีกแล้วล่ะ !";
+	   close;
+	   cutin "",255;
+	   }
+	   mes "[Valkyrie]";
+	   mes "หึหึ";
+	   mes "^FF0000LV และ JOB ของท่านไม่ถึงที่กำหนด";
+	   mes "ไปฝึกฝนให้มากกว่านี้.... !";
+	   close2;
+	   cutin "",255;
+	   break;
+	   end;
+	   
+	case 2:
+	mes "[Valkyrie]"; 
+	mes "ถ้าเจ้าคิดว่าตัวเองพร้อมแล้ว";
+	mes "ก็กลับมาได้ทุกเมื่อ นะ นักผจศภัย";
+	
+	close2;
+	cutin "",255;
+	end;
+	}
+}
+	
+}
+
+auction_03,25,77,4	script	Bastas	826,{
+    mes "[Blacksmith]";
+	mes "ฉันได้ครอบครองผลงานทั้งหมดของ...";
+	mes "Mighty Hammer";
+	mes "และฉันยุ่งมากแน่ๆ ในอนาคต ";
+	close2;
+	refineui();
+	end;	
+	}
+
+auction_03,28,77,4	script	Mighty Hammer	826,{
+    mes "[Mighty Hammer]";
+	mes "ถ้าจะอัพเกรดไปหา Basta .";
+	mes "ข้าเลิกทำแล้ว";
+	
+	close;
+	end;	
+	}	
+	
+/*auction_03,32,72,4	script	Shadow Refine	726,{
+    .@zeny_cost = 200000; // Zeny cost is 200,000 according to official script [Secret]
+	disable_items;
+	mes "[Shadow Blacksmith]";
+	mes "Do you want to refine a shadow item? Pick yer poison!";
+	next;
+	setarray .@indices[1], EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON, EQI_SHADOW_SHIELD, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_R, EQI_SHADOW_ACC_L;
+	.@indlen = getarraysize(.@indices) - 1;
+	for(.@i = 1; .@i <= .@indlen; .@i++)
+		.@menu$ = .@menu$ + (getequipisequiped(.@indices[.@i]) ? getequipname(.@indices[.@i]) : F_getpositionname(.@indices[.@i]) +"-[Not equipped]") +":";
+	.@menu$ = .@menu$ + "Refine info";
+	.@choice = select(.@menu$);
+	if (.@choice == .@indlen + 1) { // Refine info
+		mes "[Shadow Blacksmith]";
+		mes "When a shadow item is refined, it gains extra bonuses very much like normal items.";
+		next;
+		mes "[Shadow Blacksmith]";
+		mes "Weapon: ATK, MATK + 1 increase for each +1 refine success.";
+		mes "Etc: HP + 10 increase for each +1 refine success.";
+		next;
+		mes "[Shadow Blacksmith]";
+		mes "All types of Oridecon and Elunium can be used to refine shadow items. Each attempt will also cost 20,000 zeny.";
+		next;
+		mes "[Shadow Blacksmith]";
+		mes "HD ores can be used for gear that is at least refine level +7 and will prevent breaking as long as you stay talking to me.";
+		close;
+	}
+
+	.@part = .@indices[.@choice];
+
+	if (!getequipisequiped(.@part)) {
+		mes "[Shadow Blacksmith]";
+		mes "There's nothing here!";
+		close;
+	}
+	.@equip_id = getequipid(.@part);
+	setarray .@card[0], getequipcardid(.@part,0), getequipcardid(.@part,1), getequipcardid(.@part,2), getequipcardid(.@part,3);
+
+	while(1) {
+		.@equip_refine = getequiprefinerycnt(.@part);
+		mes "[Shadow Blacksmith]";
+		mes "I require " + callfunc("F_InsertComma", .@zeny_cost) + " zeny as a fee for EACH refine attempt.";
+		mes "Choose your Ore and start refining.";
+		next;
+
+		.@material[0] = getequiprefinecost(.@part, REFINE_COST_NORMAL, REFINE_MATERIAL_ID);
+		.@material[1] = getequiprefinecost(.@part, REFINE_COST_ENRICHED, REFINE_MATERIAL_ID);
+		.@material[2] = getequiprefinecost(.@part, REFINE_COST_HD, REFINE_MATERIAL_ID);
+
+		if (countitem(.@material[0]))
+			.@mate$[0] = getitemname(.@material[0]);
+		else
+			.@mate$[0] = "^8C8C8C"+ getitemname(.@material[0]) +"^000000";
+		if (countitem(.@material[1]))
+			.@mate$[1] = getitemname(.@material[1]);
+		else
+			.@mate$[1] = "^8C8C8C"+ getitemname(.@material[1]) +"^000000";
+		if (.@equip_refine > 6 && countitem(.@material[2]))
+			.@mate$[2] = getitemname(.@material[2]);
+		else
+			.@mate$[2] = "^8C8C8C"+ getitemname(.@material[2]) +"^000000";
+
+		switch( select( .@mate$[0], .@mate$[1], .@mate$[2], "Cancel" ) ) {
+		case 1:// NORMAL
+			.@choose = .@material[0];
+			.@refine_type = REFINE_COST_NORMAL;
+			break;
+		case 2:// ENRICHED
+			.@choose = .@material[1];
+			.@refine_type = REFINE_COST_ENRICHED;
+			break;
+		case 3:// HD
+			if (.@equip_refine < 7) {
+				mes "[Shadow Blacksmith]";
+				mes "You've cancelled refining.";
+				close;
+			}
+			.@hoihoi = 1;
+			.@choose = .@material[2];
+			.@refine_type = REFINE_COST_HD;
+			break;
+		case 4:
+			mes "[Shadow Blacksmith]";
+			mes "You've cancelled refining.";
+			close;
+		}
+		if (!countitem(.@choose)) {
+			mes "[Shadow Blacksmith]";
+			mes "You do not have enough "+ getitemname(.@choose) +".";
+			close;
+		}
+		if (Zeny < .@zeny_cost) {
+			mes "[Shadow Blacksmith]";
+			mes "You do not have enough zeny.";
+			close;
+		}
+		if (.@equip_refine > 9) {
+			mes "[Shadow Blacksmith]";
+			mes "Shadow Equipment can be refined to the maximum of 10...";
+			close;
+		}
+		if (!getequipisenableref(.@part)) {
+			mes "[Shadow Blacksmith]";
+			mes "This item cannot be refined.";
+			close;
+		}
+		if (getequippercentrefinery(.@part, .@refine_type) < 100) {
+			mes "[Shadow Blacksmith]";
+			mes "The safety refine level for Shadow Equipment is +4.";
+			if (!.@hoihoi)
+				mes "Shadow equipment may be destroyed in subsequent refinements. Want to get started?";
+			else
+				mes "The next refinement, if it fails, will degrade the refinement. Do you want to refine?";
+			next;
+			if (select("Proceed","Cancel") == 2) {
+				mes "[Shadow Blacksmith]";
+				mes "Heh, I knew it!";
+				close;
+			}
+		}
+		mes "[Shadow Blacksmith]";
+		mes "Well then.. here goes nothing!";
+		next;
+		delitem .@choose,1;
+		Zeny -= .@zeny_cost;
+
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+			close;
+
+		if (getequippercentrefinery(.@part, .@refine_type) > rand(100)) {
+			successrefitem .@part;
+			mes "[Shadow Blacksmith]";
+			mes "It worked! It worked!";
+			next;
+		} else {
+			if (.@hoihoi)
+				downrefitem .@part;
+			else
+				failedrefitem .@part;
+			mes "[Shadow Blacksmith]";
+			mes "Oh Odin No!";
+			close;
+		}
+	}
+}
+
+//moc_paraup,45,185,5	duplicate(ShadowBlacksmith)	Shadow Blacksmith#eden1	4_F_JOB_BLACKSMITH // Commented out until it's added to the map index
+prt_in,61,54,3	duplicate(Shadow Refine)	Shadow Refine#itemmall	4_F_JOB_BLACKSMITH*/
+	
+auction_03,35,70,4	script	Mergician	64,{
+    if (checkweight(1301,1) == 0) {
+		mes "- รอสักครู่!! -";
+		mes "- คุณกําลังแบกรายการมากเกินไป -";
+		mes "- หรือน้ําหนักมากเกินไปในการดําเนินการ. -";
+		mes "- กลับมาหลังจาก -";
+		mes "- จัดสินค้าคงคลังของคุณ. -";
+		close;
+	}
+	mes "[Mergician]";
+	mes "คุณเชื่อในปาฏิหาริย์ของพระเจ้าผสาน? ถ้าเป็นเช่นนั้นทําซ้ําสะกดของฉัน!!!";
+	mes "Merge Merge, Merrrrge!!!!!";
+	next;
+	switch(select("มหัศจรรย์ของการผสานคืออะไร?:ผสานทันที!!!!:ละทิ้ง...")) {
+	case 1:
+		mes "[Mergician]";
+		mes "มีคำสั่งที่ปกครองโลกและทำให้โลกนี้ดำเนินไปด้วยดี";
+		next;
+		mes "[Mergician]";
+		mes "แต่มีปัจจัยที่ไม่ดีที่ทำให้กฎนี้เป็นอันตรายโดยสิ้นเชิง !!";
+		next;
+		mes "[Mergician]";
+		mes "สิ่งที่แยกออกจากกันแม้ว่าจะประกอบด้วยวัสดุเดียวกันก็ตาม !!";
+		next;
+		mes "[Mergician]";
+		mes "คุณไม่เคยเจอเหตุการณ์เลวร้ายแบบนี้มาก่อนหรือ?";
+		mes "ความจริงที่ว่าฉันมี ^3131FFเป็นยาเดียวกัน แต่ปรากฏมากกว่าสองครั้งในคลังของคุณ !! ^000000ไม่พอใจ !!!";
+		next;
+		mes "[Mergician]";
+		mes "เชื่อในความเมตตากรุณานั่นคือความจริง";
+		mes "ถ้าอย่างนั้นฉันจะช่วยให้คุณมีความสุขและอิ่มเอมใจ";
+		close;
+	case 2:
+		mes "[Mergician]";
+		mes "นี่คือพิธีกรรมศักดิ์สิทธิ์ทั้งหมดเพื่ออธิษฐานต่อมหาเทพผสาน! และฉันกำลังขอยืมพลังสักพัก !!";
+		next;
+		mes "[Mergician]";
+		mes "และถ้าคุณอยากได้รับพรจาก Merge จงถ่อมตัวและตะโกนออกมาดัง ๆ ! Merge Merge, Merrrrge !!!";
+		next;
+		switch(select("ผสานทันที!:ไม่ล่ะไว้คราวหลัง.")) {
+		case 1:
+			mergeitem;
+			mes "[Mergician]";
+			mes "ผสานเพียงแค่ได้ยินความปรารถนาของคุณและให้มันเป็นจริง!";
+			mes "เปิดคลังของคุณเพื่อตรวจสอบปาฏิหาริย์!";
+			close;
+		case 2:
+			mes "[Mergician]";
+			mes "แกขย่ม !!! มึงมันพังทั้งจังหวะ! ทำไมกูไหลแล้วตามกูไม่ได้วะ! ไอ้โง่!";
+			close;
+		}
+	case 3:
+		close;
+	}
+}
+	
+auction_03,24,74,4	script	Broke	898,{
+    mes "[Broke]";
+	mes "ข้าเลิกทำงานแล้ว .";
+	mes "หลังจากนี้พวกงานอัพเกรดต้องไปหา";
+	mes "Basta";
+	
+	close;
+	end;	
+	}	
+	
+/*auction_03,15,78,5	script	Saint Gravity	4_m_human_02,{
+    mes "[Saint Gravity]";
+	mes "สวัสดี...";
+	mes "ที่นี่ดูเป็นอย่างไรบ้าง";
+	mes "เชิญท่านสำรวจรอบๆ ได้ตามสบาย ";
+	
+	close2;
+	end;	
+	}*/	
+auction_03,15,78,5	duplicate(Ripped Cabus#GymPass)	Saint Gravity	899
+
+auction_03,15,66,5	script	Piercing Expert	97,{
+   mes"[Piercing Expert]";
+   mes"ขณะนี้ระบบ ยังไม่เปิดให้บริการ";  
+   mes"โปรดรอติดตามข่าวสาร"; 
+   close;
+   end;   
+}
+	
+auction_03,19,74,5	script	เปลี่ยนทรงผม	91,{
+    mes "^FF0000[ช่างเปลี่ยนสีผม]";
+	mes "สวัสดี...";
+	mes "ฉันมาที่นี่ เพื่อ เปลี่ยนเทรน";
+	mes "โดยการแนะนำของฉัน ";
+	mes "ทรงผมใหม่พิเศษ ";
+	mes "คุณจำเป็นต้องมี ^FF0000 Hair Style Coupon ";
+	next; 
+	mes "^FF0000[ช่างเปลี่ยนสีผม]";
+	mes "จะเริ่ม ดูเลยไหม";
+	mes "ฉันมีอยู่ 2 ทรงผมพิเศษ ให้คุณเลือก";
+	cutin "kafra_03",2;
+	next;
+    if (sex==1){
+	mes "^FF0000[ช่างเปลี่ยนสีผม]";
+	mes "นี่คือ ทรงผมผู้ชาย ที่ 1";
+	cutin "hair_m_26",3;
+	next;
+	cutin "hair_m_27",3;
+	mes "^FF0000[ช่างเปลี่ยนสีผม]";
+	mes "นี่คือ ทรงผมผู้ชาย ที่ 2";
+	next;
+	cutin "",255;
+	}
+	if (sex==0){
+	mes "^FF0000[ช่างเปลี่ยนสีผม]";
+	mes "นี่คือ ทรงผมผู้หญิง ที่ 1";
+	cutin "hair_f_25",3;
+	next;
+	cutin "hair_f_27",3;
+	mes "^FF0000[ช่างเปลี่ยนสีผม]";
+	mes "นี่คือ ทรงผมผู้หญิง ที่ 2";
+	next;
+	cutin "",255;
+	}
+	switch (select("เปลี่ยนทรงผมหรือสีผม:ข้าชอบทรงเดิมอยู่แล้ว")){
+		case 1:
+		  mes "^FF0000[ช่างเปลี่ยนสีผม]";
+		  mes "เจ้าคิดดีแล้วใช่ไหม ?";
+		  mes "ทรงผม 2 แบบ ใหม่ เจ้าต้องการ ทรงไหน ล่ะ ?";
+		  mes "^777777เปลี่ยน สีผม มีถึง 99 สีผมเชียวล่ะ";
+		  next;
+		  switch (select("เปลี่ยนสีผม:เลือกทรงผมที่1:เลือกทรงผมที่2:ยกเลิก")){
+		 case 1:
+		   .@sethair =1;
+		   if (countitem(7622)&&(.@sethair==1)) {
+		   set @rand,rand(1,99);  
+		   mes "^FF0000[ช่างเปลี่ยนสีผม]";
+		   mes "ยินดีด้วย";
+		   mes "^777777[ ระบบ จะทำการสุ่ม สี อัติโนมัติ ]";
+		   mes "เปลี่ยนสีผมเรียบร้อยท่านได้ทรงผมที่  "+ @rand +" ";
+		   delitem 7622,1;
+		   setlook 6,@rand;
+		   close;
+		   end;
+		   }
+		   
+		   case 2:
+		   
+		   if (countitem(7622)) {
+		   .@hair_M = 26;
+           .@hair_F = 25;
+            if (sex==0)	{	   
+		   mes "^FF0000[ช่างเปลี่ยนสีผม]";
+		   mes "เปลี่ยนทรงผมที่1เสร็จแล้ว";
+		   close2;
+		   setlook LOOK_HAIR,.@hair_F;
+		   delitem 7622,1;
+		   end;
+			}
+		   if (sex==1){
+		   mes "^FF0000[ช่างเปลี่ยนสีผม]";
+		   mes "เปลี่ยนทรงผมที่1เสร็จแล้ว";
+		   close2;
+		   setlook LOOK_HAIR,.@hair_M;
+		   delitem 7622,1;	
+			}
+		     }
+		     mes "^FF0000[ช่างเปลี่ยนสีผม]";
+		     mes "ขออภัยคุณไม่มี คูปอง";
+		     close2;
+			 end;
+		 case 3:
+		   if (countitem(7622)&&(.@sethair ==0)){
+		    .@sethair =3;
+		   }
+		   if (countitem(7622)&&(.@sethair ==3)) {
+		   mes "^FF0000[ช่างเปลี่ยนสีผม]";
+		   mes "เปลี่ยนทรงผมที่2เสร็จแล้ว";
+		   close2;
+		   setlook LOOK_HAIR,27;
+		   delitem 7622,1;
+		   end;
+		      }
+		      mes "^FF0000[ช่างเปลี่ยนสีผม]";
+		      mes "ขออภัยคุณไม่มี คูปอง";
+		      close2;
+		   case 4:
+		   mes "^FF0000[ช่างเปลี่ยนสีผม]";
+		   mes "ไว้เจอกันใหม่";
+		   mes "มีโอกาสข้าจะนำเทรนใหม่ๆ เข้ามา";
+		   close2;
+		   end;
+		  }
+		  
+		
+		case 2:
+		mes "[ช่างเปลี่ยนสีผม]";
+		mes "ไว้เจอกันใหม่";
+		close2;
+		end;
+	    }
+	close2;
+	end;	
+	}	
+	
+auction_03,19,77,5	script	เปลี่ยนสีชุด	97,{
+	if(#dyefree < 1){
+	mes "[ช่างเปลี่ยนสีชุด]";
+	mes "บัตรเปลี่ยนสีชุด ฟรี";
+	mes "GM ทำการแจก เรียบร้อยแล้ว";
+	getitem 6046,1;
+	#dyefree = 1;
+	next;
+	}
+    mes "[ช่างเปลี่ยนสีชุด]";
+	//mes "ที่นี้ สามารถ สุ่ม สีชุด ทั้งหมด 699 แบบ ";
+	mes "คุณต้องการเปลี่ยน สี ชุด ใช่มั้ย ?";
+	mes "^FF0000สิ่งสำคัญ  ^6666CCClothing Dye Coupon";
+	mes "[ ใช้สำหรับเปลี่ยนสี พิเศษ ]";
+	mes "^FF0000สิ่งสำคัญ ^6666CCClothing Dye Coupon II";
+	mes "[ ใช้สำหรับเปลี่ยนชุด ดั้งเดิม ]";
+	mes "หวังว่า ... เจ้าจะเตรียมมานะ ?";
+	next;
+	switch (select("ข้าขอดูหน่อย:ไม่ล่ะ")){
+	case 1: 
+	if (sex==0){
+	mes "[ช่างเปลี่ยนสีชุด]";
+	mes "นี่เป็นชุดสำหรับคุณผู้หญิง";
+	cutin "dress_f_acolyte.bmp",3;
+	next;
+	cutin "dress_f_archer.bmp",3;
+	next;
+	/*cutin "dress_f_ex.bmp",3;
+	next;*/
+	cutin "dress_f_masician.bmp",3;
+	next;
+	cutin "dress_f_merchant.bmp",3;
+	next;
+	cutin "dress_f_swordman.bmp",3;
+	next;
+	cutin "dress_f_thief.bmp",3;
+	next;
+	/*cutin "dress_f_tk.bmp",3;
+	next;*/
+	cutin "",255;
+	}
+	if (sex==1){
+	mes "[ช่างเปลี่ยนสีชุด]";
+	mes "นี่เป็นชุดสำหรับคุณผู้ชาย";
+	cutin "dress_m_acolyte.bmp",3;
+	next;
+	cutin "dress_m_archer.bmp",3;
+	next;
+	/*cutin "dress_m_ex.bmp",3;
+	next;*/
+	cutin "dress_m_masician.bmp",3;
+	next;
+	cutin "dress_m_merchant.bmp",3;
+	next;
+	cutin "dress_m_swordman.bmp",3;
+	next;
+	cutin "dress_m_thief.bmp",3;
+	next;
+	/*cutin "dress_m_tk.bmp",3;
+	next;*/
+	cutin "",255;
+	}
+	mes "[ช่างเปลี่ยนสีชุด]";
+	mes "เป็นอย่างไร บ้าง ?";
+	mes "หวังว่า จะเลือก ได้แล้วนะ หึหึ !!";
+	next;
+//if (getlook(LOOK_BODY2) == 2) || (Class == 4239)||(Class == 4240){
+if (getlook(LOOK_BODY2) == 2){
+		mes "[ช่างเปลี่ยนสีชุด]";
+	    mes "ไม่มีชุดที่รองรับ สำหรับคุณ";
+		close;
+		end;
+	}
+
+	switch (select("[ เปลี่ยนชุดดั้งเดิม ]:[ สุ่มสีชุด ]:[ ยกเลิก ]")){
+		.@Choose = 1;
+	case 1:
+	if (countitem(6047)){
+	mes "[ช่างเปลี่ยนสีชุด]";
+	mes "เปลี่ยนสีชุดสำเร็จแล้ว";
+	setlook LOOK_CLOTHES_COLOR,0;
+	delitem 6047,1;
+    close;
+    end;	
+	}
+	mes "[ช่างเปลี่ยนสีชุด]";
+	mes "ขออภัยคุณไม่มี Clothing Dye Coupon II";
+	mes "ไว้พบกันใหม่";
+	close;
+    end;
+	case 2:
+	if (countitem(6046)&&.@Choose==1){
+	.@Choose=0;
+	mes "[ช่างเปลี่ยนสีชุด]";
+	mes "เปลี่ยนสีชุดสำเร็จแล้ว";
+	if(Class == 4064){
+		set @rand,rand(1,3);
+		setlook LOOK_CLOTHES_COLOR,@rand;
+		delitem 6046,1;
+		close;
+		end;
+	}
+	else if (Class == 4252 || Class == 4253 || Class == 4254 || Class == 4255 || Class == 4256 || Class == 4257 || Class == 4258 || Class == 4259 || Class == 4260 || Class == 4261 || Class == 4262 || Class == 4263 || Class == 4264 ){
+		set @rand,rand(1,7);
+		setlook LOOK_CLOTHES_COLOR,@rand;
+		delitem 6046,1;
+		close;
+		end;
+	}
+	set @rand,rand(1,699);
+	setlook LOOK_CLOTHES_COLOR,@rand;
+	delitem 6046,1;
+    close;
+    end;
+	}
+	mes "[ช่างเปลี่ยนสีชุด]";
+	mes "ขออภัยคุณไม่มี Clothing Dye Coupon ";
+	mes "ไว้พบกันใหม่";
+	close;
+    end;
+	case 3:
+	mes "[ช่างเปลี่ยนสีชุด]";
+	mes "ยืนดีต้อนรับเสมอ";
+    mes "แวะมาได้ทุกเมื่อนะค่ะ";
+    close;
+    end;	
+	}
+	mes "[ช่างเปลี่ยนสีชุด]";
+	mes "ยืนดีต้อนรับเสมอ";
+    mes "แวะมาได้ทุกเมื่อนะค่ะ";
+    close;
+    end;	
+	}
+	mes "[ช่างเปลี่ยนสีชุด]";
+	mes "ยืนดีต้อนรับเสมอ";
+    mes "แวะมาได้ทุกเมื่อนะค่ะ";
+    close;
+    end;	
+	
+	OnInit:
+	waitingroom "เปลี่ยนสีฟรี 1 ครั้ง",0;
+	end;
+}
+//function costume
+function	script	r_costume	{
+	    
+		/*setarray .textlocation[0],
+		 256, //= Upper Headgear
+	     512, //= Middle Headgear
+	     001, //= Lower Headgear
+	     016, //= Armor
+	     002, //= Weapon
+	     032, //= Shield
+	     004, //= Garment
+	     064, //= Footgear
+	     008, //= Accessory Right
+	     128, //= Accessory Left
+	    1024, //= Costume Top Headgear
+	    2048, //= Costume Mid Headgear
+	    4096, //= Costume Low Headgear
+	    8192, //= Costume Garment/Robe
+	   32768,//= Ammo
+	   65536, //= Shadow Armor
+	  131072, //= Shadow Weapon
+	  262144, //= Shadow Shield
+	  524288, //= Shadow Shoes
+	 1048576, //= Shadow Accessory Right (Earring)
+	 2097152, //= Shadow Accessory Left (Pendant)*/
+	 setarray .itemlist[0],
+		19608,		// C_Chick_Hat
+		19654,		// C_J_Captain_Hat
+		19712,		// C_Little_Angel_Doll
+		19721,		// C_Darkness_Helm
+		19823,		// C_White_Cat_Hood
+		19876,		// C_Rabbit_Ear_Hat
+		20036,		// C_Sword_Master_Crown
+		20145,		// C_Robo_Eye
+		20146,		// C_Angel_Spirit
+		20147,		// C_Bell_Pigeon
+		20746,		// C_Rudra_Wing
+	    20765;      // C_Whitewing
+	 
+	
+	set .random,rand(100);
+	// 1 per
+	if (.random <= 3){
+		//red wing
+		set .ran1per,rand(100);
+		if(.ran1per >= 50){
+			getitem2 .itemlist[10],1,0,0,0,0,0,0,0;//<item id>,<amount>,<identify>,<refine>,<attribute>,<card1>,<card2>,<card3>,<card4>
+		announce "["+strcharinfo(0)+"] ได้รับ [Garment] จากการสุ่มมะละกอ.",0;   
+		//announce "["+strcharinfo(0)+"] ได้รับ ["+getitemname(.itemlist[10])+"] จากการสุ่มมะละกอ.",0;
+		//announce "["+strcharinfo(0)+"] ได้รับ ["+getiteminfo(.itemlist[10],5)+"] จากการสุ่มมะละกอ.",0;
+		end;
+		}
+		//White wing
+		if(.ran1per <= 49){
+			getitem2 .itemlist[11],1,0,0,0,0,0,0,0;//<item id>,<amount>,<identify>,<refine>,<attribute>,<card1>,<card2>,<card3>,<card4>
+		announce "["+strcharinfo(0)+"] ได้รับ [Garment] จากการสุ่มมะละกอ.",0;   
+		
+		end;
+		}
+	    
+	}
+	//2-5per
+	if (.random <= 5 && .random > 3){
+		getitem2 .itemlist[10],1,0,0,0,0,0,0,0;//<item id>,<amount>,<identify>,<refine>,<attribute>,<card1>,<card2>,<card3>,<card4>
+		end;
+	}
+	// 5-10 per
+	if (.random <= 10 && .random > 5){
+		getitem2 .itemlist[10],1,0,0,0,0,0,0,0;//<item id>,<amount>,<identify>,<refine>,<attribute>,<card1>,<card2>,<card3>,<card4>
+		end;
+	}
+}
+
+izlude,151,199,4	script	Alecy	960,{
+
+	callfunc "F_InnMaid","[Employee Alecy]","Nenkaras","izlude",149,196;
+	warp "izlude",149,196; end;
+}
+
+auction_03,12,60,6	script	RewardLevel	10099,{
+set .@name$,"[ ผู้ดูแลรางวัล ]";
+if($levelmax == 3){
+	mes .@name$;
+	mes "ผู้ได้รับรางวัล ครบแล้วจ้า";
+	close;
+	end;
+}
+mes .@name$;
+mes "สามารถ รับ รางวัลกิจกรรม Level ได้ที่นี่";
+next;
+if(getgroupid()>=99){
+menu "รีเซ็ต",GmSetting,"รับรางวัล",R_reward,"ยกเลิก",R_cancle;
+}
+else{
+menu "รับรางวัล",R_reward,"ยกเลิก",R_cancle;	
+}
+GmSetting :
+mes .@name$;
+mes "รีเซ็ตเรียบร้อย";
+close2;
+$levelmax =0;
+end;
+
+R_cancle:
+end;
+
+R_reward:
+if(BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4008 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4009 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4010 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4011 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4012 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4013 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4014 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4015 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4016 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4017 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4018 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4020 || BaseLevel >= 99 && $levelmax < 3 && #getlevelrank <= 0 && Class == 4021)
+{
+	mes .@name$;
+	mes "ยินดีด้วย คุณได้รับรางวัลดังนี้";
+	mes "1x Box LevelRank";
+	mes "Cash 5,000 Point";
+	dispbottom "[ System ] ได้รับรางวัล 1x Box Level Rank";
+	dispbottom "[ System ] ได้รับรางวัล Cash 5,000 Point ";
+	$levelmax += 1;
+	#getlevelrank = 1;
+	#CASHPOINTS += 5000;
+	getitem 40002,1;
+	end;
+}
+else{
+	mes .@name$;
+	mes "คุณเลเวล ไม่ถึง กำหนด หรือ มีผู้อื่น รับรางวัลไปครบแล้ว";
+	end;
+	
+}
+OnInit:
+	waitingroom "Reward Level",0;
+	end;
+}
+izlude,134,167,4	script	ItemFree#11	10085 ,{
+mes "[ItemFree]";
+if(#itemfreez < 1){
+mes "VIP ฟรี 30 วัน";
+mes "ทำการแจกเรียบร้อยแล้ว";
+getitem 32395,1;
+//rentitem 40000,604800;
+#itemfreez = 1;
+close;
+end;
+}else{
+	mes "คุณรับ รางวัล ไปแล้ว";
+	close;
+	end;
+}
+
+OnInit:
+	waitingroom "FreeItem",0;
+	end;
+}
+
+/*izlude,122,161,4	script	ItemFree#12	10085 ,{
+mes "[ItemFree]";
+if(#dyefree < 1){
+mes "บัตรเปลี่ยนสีชุด ฟรี";
+mes "GM ทำการแจก เรียบร้อยแล้ว";
+getitem 32395,1;
+//rentitem 40000,604800;
+#dyefree = 1;
+close;
+end;
+}else{
+	mes "คุณรับ รางวัล ไปแล้ว";
+	close;
+	end;
+}
+
+OnInit:
+	waitingroom "FreeItem",0;
+	end;
+}*/
+
+	
+//copy	
+prontera,142,124,4	duplicate(Cash item Guide)	Cash item Guides#0	4_m_human_02
+morocc,164,39,4	duplicate(Cash item Guide)	Cash item Guides#1	4_m_human_02
+auction_03,22,44,4	duplicate(Cash item Guide)	Cash item Guides#2	4_m_human_02
+geffen,115,72,5	duplicate(Cash item Guide)	Cash item Guides#3	4_m_human_02
+morocc,143,101,4	duplicate(เมอริด้า)	เมอริด้า#0	612
+geffen,112,64,4	duplicate(เมอริด้า)	เมอริด้า#1	612
+prontera,146,98,4	duplicate(เมอริด้า)	เมอริด้า#2	612
+morocc,164,121,4	duplicate(Alecy)	Alecy#0	960
+prontera,146,106,4	duplicate(Alecy)	Alecy#1	960
+//auction_03,22,44,4	duplicate(CashitemGuide)	ผู้นำทางกลับ	826
+izlude,155,134,2	duplicate(Bastas)	ช่างตีเหล็ก	826

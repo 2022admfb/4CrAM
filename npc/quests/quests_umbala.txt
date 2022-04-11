@@ -1,0 +1,1327 @@
+//===== rAthena Script ======================================= 
+//= Quest NPCs related to Umbala
+//===== By:================================================== 
+//= sabernet09 & rAthena Team
+//===== Current Version:===================================== 
+//= 2.2a
+//===== Compatible With:===================================== 
+//= rAthena Project; 7.15 +
+//===== Description:========================================= 
+//= [Official Conversion]
+//= Umbalian Language Quest, Umbala Skeletal Gate Quest,
+//= Umbala Event, Create Essence/Dismantle Stone
+//	Phase 1. Learning the Language
+//	  (Elder) First discussion
+//	  (Elder) Asking about learning the language
+//	  (Elder) Final step (understanding NPC speech)
+//	------------------------------------------
+//	Phase 2. Create Essence/Dismantle Stone
+//	 (Shaman) Get permission to speak with her from the chief
+//	  (Elder) Ask about conditions needed to be fulfilled to get permission
+//	  (Elder) Get permission
+//	 (Shaman) Use the shaman to create essences and dismantle elemental stones.
+//= Umbala Domestic Dispute?
+//= - This quest is only avaliable if you have not done language quest.
+//= - Variables in use:um_wind, MISC_QUEST (Bit 32768)
+//===== Additional Comments:================================= 
+//= fixed by x[tsk], Lupus, PoW
+//= Quest completion is now registered
+//= 1.1 fixed Poporing Egg ID -> Poring Egg, fixed condition
+//= 1.2-1.6 fixed some Umbalian Language quests [Lupus]
+//= 1.7 Moved Umbala Event, Create Essence/Dismantle Stone, and Skeletal Gate from npc/cities/umbala.txt [Evera]
+//= 1.7a Removed all custom quests to custom folder [Lupus]
+//= 1.8 Added official chance of failure to Create Essence/Dismantle Stone [Lupus]
+//= 1.9 Added functionality to allow players to dismantle more
+//=     than a stone at once, up to 10. [SinSloth]
+//= 2.0 Updated hack check and added a weight check to dismantling. [SinSloth]
+//= 2.1 Rescripted to Aegis 10.3 standards. Added strange quest. [L0ne_W0lf]
+//= 2.2 Readded the ability to dismantle multiple stones at once. [L0ne_W0lf]
+//= 2.2a Fixed weight check from previous update. [L0ne_w0lf]
+//============================================================ 
+
+// Umbalian Language Quest::um_trans
+//============================================================
+um_in,39,122,5	script	Utan Chief	784,{
+	if (event_umbala == 0) {
+		mes "[Karkatan]";
+		mes "หึหึเป็นคนรูน - มิดการ์ต";
+		mes "ฉันเดาว่านี่เป็นครั้งแรกของคุณ";
+		mes "ไปเยี่ยมหมู่บ้านของฉันไม่ใช่เหรอ?";
+		next;
+		mes "[Karkatan]";
+		mes "ทุกคนจาก Rune-Midgarts";
+		mes "ที่ฉันเคยพบก็มีเหมือนกัน";
+		mes "นิพจน์เดียวกันกับ";
+		mes "เผชิญอย่างที่คุณทำตอนนี้";
+		mes "เมื่อพวกเขามาที่นี่ครั้งแรก";
+		next;
+		mes "[Karkatan]";
+		mes "อาจเป็นเพราะพวกเขาไม่สามารถ";
+		mes "สื่อสารกับเราเนื่องจาก";
+		mes "อุปสรรคทางภาษาดังนั้น";
+		mes "พวกเขาไม่รู้ว่าจะเกิดอะไรขึ้น";
+		mes "บน. ใช่ฉันเข้าใจ...";
+		mes "อย่างไรก็ตามยินดีต้อนรับสู่หมู่บ้านของฉัน";
+		next;
+		mes "[Karkatan]";
+		mes "ฉันชื่อ Karkatan และฉัน";
+		mes "เป็นหัวหน้าเผ่าอูถาน";
+		mes "คุณต้องสงสัยว่า";
+		mes "ฉันพูดภาษาของคุณได้";
+		next;
+		mes "[Karkatan]";
+		mes "มันสอนฉันนานมาแล้ว";
+		mes "โดยนักผจญภัยจากคุณ";
+		mes "ที่ดิน. มันเป็นเวลานาน,";
+		mes "และฉันไม่รู้ว่ามีอะไรบ้าง";
+		mes "กลายเป็นของเขา ...";
+		next;
+		mes "[Karkatan]";
+		mes "อย่างไรก็ตามฉันได้เรียนรู้หลายสิ่งหลายอย่าง";
+		mes "เกี่ยวกับวัฒนธรรมรูน - มิดการ์ต";
+		mes "และภาษา";
+		next;
+		mes "[Karkatan]";
+		mes "บางครั้งฉันก็สอน Utan";
+		mes "ภาษา แต่ฉันไม่ให้";
+		mes "ทุกคนมีสิทธิพิเศษ";
+		mes "ถ้าคนนอกไร้ยางอาย";
+		mes "เรียนรู้ภาษา Utan พวกเขา";
+		mes "อาจนำอันตรายมาสู่เผ่าของฉัน";
+		next;
+		mes "[Karkatan]";
+		mes "ก่อนที่คุณจะสามารถเรียนรู้ Utan";
+		mes "ภาษาก่อนอื่นให้พยายามเรียนรู้";
+		mes "วัฒนธรรม Utan ด้วยการสำรวจ";
+		mes "หมู่บ้าน.";
+		next;
+		mes "[Karkatan]";
+		mes "แม้ว่าคุณจะไม่สามารถ";
+		mes "สื่อสารกับผู้คนของฉัน";
+		mes "ตอนนี้พยายามทำความเข้าใจ";
+		mes "วิถีชีวิตของเราผ่านทางคุณ";
+		mes "ข้อสังเกต.";
+		next;
+		mes "[Karkatan]";
+		mes "ใส่ใจกับการแต่งกาย";
+		mes "รูปลักษณ์และวิถีชีวิตของ";
+		mes "คนในท้องถิ่น. เมื่อคุณคิดว่า";
+		mes "คุณเข้าใจเกี่ยวกับ Utan มากพอ";
+		mes "วัฒนธรรมกลับมาหาฉันและแสดงสิ่งที่คุณได้เรียนรู้";
+		set event_umbala,1;
+		close;
+	}
+	else if (event_umbala == 1) {
+		mes "[Karkatan]";
+		mes "โอ้คุณอีกแล้ว ดังนั้น...";
+		mes "คุณได้เรียนรู้เกี่ยวกับ Utan";
+		mes "วัฒนธรรม? ฉันอยากได้ยินของคุณ";
+		mes "ความคิดเห็นรวมทั้งความประทับใจของคุณ";
+		next;
+		mes "[Karkatan]";
+		mes "ยังมีชาวบ้านบางส่วน";
+		mes "ที่ไร้เดียงสาเกี่ยวกับ Rune-Midgartsians";
+		mes "โดยปกติแล้วพวกเขากลัวการเผชิญหน้า";
+		mes "กับคนของคุณและจะ";
+		mes "ซ่อนตัว";
+		next;
+		mes "[Karkatan]";
+		mes "ดังนั้น...";
+		mes "มีอะไรให้ช่วยไหม";
+		mes "ฉันถือว่าคุณมีไม่มาก";
+		mes "ปัญหาในการมองหาไฟล์";
+		mes "หมู่บ้าน แต่ดูเหมือนว่าคุณมีบางอย่างจะถามฉัน";
+		next;
+		switch(select("ฉันต้องการเรียนรู้ภาษายูทัน:อุมบาบาห์อุมบาบาห์?:ไม่มีอะไร")) {
+		case 1:
+			if (isequipped(2278) || isequipped(2297) || isequipped(2288) || isequipped(2292) || isequipped(5005) || isequipped(2281) || isequipped(5043)) {
+				mes "[Karkatan]";
+				mes "อืม ... นั่นเป็นหน้ากากที่ยอดเยี่ยม";
+				mes "คุณกำลังสวมใส่ เราชอบ";
+				mes "สวมหน้ากากป้องกัน";
+				mes "แสดงสีหน้าของเรา";
+				next;
+				mes "[Karkatan]";
+				mes "นั่นเป็นเหตุผลที่เราสวมหน้ากากทั้งหมด";
+				mes "เวลา. เราเชื่อว่าการมีปฏิสัมพันธ์";
+				mes "และการปฏิบัติต่อผู้อื่น";
+				mes "ไม่ควรขึ้นอยู่กับว่าเรามองอย่างไร";
+				next;
+				mes "[Karkatan]";
+				mes "ได้เลย. ฉันแน่ใจว่าคุณเป็น";
+				mes "มีคุณสมบัติในการเรียนรู้ Utan";
+				mes "ภาษา. ฉันจะสอนวิธี";
+				mes "พูดและอ่านใน Utan from";
+				mes "ตอนนี้";
+				next;
+				mes "[Karkatan]";
+				mes "อย่างไรก็ตามฉันต้องการให้คุณได้รับบางอย่าง";
+				mes "สิ่งของให้พร้อมเพื่อที่เราจะได้ดำเนินการต่อไป";
+				mes "กับบทเรียน อันดับแรกเราต้อง";
+				mes "กระดาษสองชนิดที่แตกต่างกัน";
+				mes "^3377FF10 Oil Paper^000000 และ";
+				mes "^3377FF5 กระดาษเนียน^000000";
+				next;
+				mes "[Karkatan]";
+				mes "นอกจากนี้เรายังต้องการบางสิ่งบางอย่างเพื่อ";
+				mes "เขียนด้วย. มาใช้กันเถอะ";
+				mes "^3377FF1 Squid Ink^000000 และ";
+				mes "^3377FF1 ขนนก^000000";
+				mes "โปรดนำสิ่งเหล่านั้นมาให้ฉันและฉันจะ";
+				mes "สอนคุณเมื่อคุณพร้อม";
+				set event_umbala,2;
+				close;
+			}
+			else {
+				mes "[Karkatan]";
+				mes "ดูเหมือนคุณจะไม่เข้าใจ";
+				mes "วัฒนธรรมของเรา คุณไม่สามารถ";
+				mes "เรียนรู้ภาษาอื่นถ้าคุณ";
+				mes "ไม่เข้าใจวัฒนธรรม";
+				next;
+				mes "[Karkatan]";
+				mes "เมื่อคุณเปิดใช้นิพจน์นั้น";
+				mes "ใบหน้าของคุณ Utans จะเป็นอย่างไร";
+				mes "กลัว ... ตั้งแต่เราทำ";
+				mes "ไม่แสดงใบหน้าของเราให้คนอื่นเห็น";
+				mes "เราเป็นจริงมาก";
+				mes "เสี่ยงต่อการแสดงออกทางสีหน้า";
+				next;
+				mes "[Karkatan]";
+				mes "ไปสำรวจหมู่บ้านเล็กน้อย";
+				mes "อีกต่อไป. คุณสามารถกลับมา";
+				mes "ทุกเวลาเมื่อคุณคิดว่าคุณพร้อม";
+				next;
+				mes "[Karkatan]";
+				mes "ไม่ว่าในกรณีใดคุณคิดอย่างไร";
+				mes "เกี่ยวกับหน้ากากของฉัน? มันเป็นกระแส";
+				mes "แนวโน้มในหมู่พวกเรา Utans ... อย่านะ";
+				mes "คิดว่ามันยอดเยี่ยม?";
+				close;
+			}
+		case 2:
+			mes "[Karkatan]";
+			mes "ฮ่าฮ่า ~ เมื่อคุณกำลังเลียนแบบ";
+			mes "คุณจะไม่ส่งเสียงใด ๆ";
+			mes "ความรู้สึก. ภาษาเป็นระบบซึ่งกันและกัน";
+			mes "เพื่อการสื่อสารความคิดและความรู้สึก";
+			next;
+			mes "[Karkatan]";
+			mes "ฉันเสียใจที่ต้องบอกว่ามันดูเหมือนอย่างนั้น";
+			mes "ทุกวันนี้ทุกคนไม่มี";
+			mes "มีความอ่อนไหวต่อวัฒนธรรมอื่น ๆ อีกต่อไป";
+			mes "ด้วยความเคารพ.";
+			next;
+			mes "[Karkatan]";
+			mes "ฉันเห็นคนดูหมิ่นหรือ";
+			mes "เยาะเย้ยคนอื่นที่ไม่ทำ";
+			mes "เข้าใจพวกเขา มันเป็นอย่างนั้นจริงๆ";
+			mes "เศร้าที่ความดื้อรั้นเช่นนี้ยังคงมีอยู่ ...";
+			next;
+			mes "[Karkatan]";
+			mes "หากคุณสนใจใน Utan";
+			mes "ภาษาพยายามที่จะเข้าใจของเรา";
+			mes "วัฒนธรรมดีขึ้นและกลับมา";
+			mes "เมื่อคุณพร้อม ฉันจะ";
+			mes "สอนความหมายของเสียงที่คุณใช้";
+			close;
+		case 3:
+			mes "[Karkatan]";
+			mes "บางครั้งมันก็ดีที่จะหลงทาง";
+			mes "โดยไม่มีวัตถุประสงค์ แต่มัน";
+			mes "ดีกว่าที่จะตั้งเป้าหมาย";
+			mes "การเดินทางถ้าคุณต้องการ";
+			mes "เรียนรู้บางสิ่งบางอย่างจาก";
+			mes "ประสบการณ์.";
+			close;
+		}
+	}
+	else if (event_umbala == 2) {
+		if ((countitem(7151) > 9) && (countitem(7111) > 4) && (countitem(1024) > 0) && (countitem(916) > 0)) {
+			mes "[Karkatan]";
+			mes "โอเคฉันเดาว่าเราไปได้ดี";
+			mes "มาเริ่มบทเรียนกันเลย";
+			mes "ฉันหวังว่าคุณจะสื่อสารได้ดีขึ้น";
+			mes "กับ Utans เมื่อเราทำเสร็จแล้ว";
+			next;
+			mes "[Karkatan]";
+			mes "..............";
+			next;
+			mes "[Karkatan]";
+			mes "..............";
+			mes ".....................";
+			next;
+			mes "[Karkatan]";
+			mes "..............";
+			mes ".....................";
+			mes "............................";
+			next;
+			mes "[Karkatan]";
+			mes "เอาล่ะแค่นั้นแหละ แค่ลืม";
+			mes "เกี่ยวกับความรู้สึกของคุณเกี่ยวกับ Utans";
+			mes "ก่อนที่คุณจะเรียนรู้ภาษา";
+			mes "ตอนนี้ไปลองคุยกับ Utans";
+			mes "การสนทนาเป็นวิธีการที่สำคัญมากในการทำความเข้าใจผู้อื่น";
+			delitem 7151,10; //Oil_Paper
+			delitem 7111,5; //Smooth_Paper
+			delitem 1024,1; //Chinese_Ink
+			delitem 916,1; //Feather_Of_Birds
+			set event_umbala,3;
+			next;
+			mes "[Karkatan]";
+			mes "เอาล่ะถ้าคุณมีธุระอะไร";
+			mes "ในหมู่บ้านของเราในภายหลังอย่าลังเลที่จะ";
+			mes "ที่จะคุยกับฉัน ฉันจะพยายามช่วย";
+			mes "คุณให้มากที่สุดเท่าที่ฉันจะทำได้";
+			close;
+		}
+		else {
+			mes "[Karkatan]";
+			mes "ฉันเดาว่าคุณยังไม่พร้อม ...";
+			mes "คุณลืมรายการอะไรบ้าง";
+			mes "ความต้องการ? ฉันจะแจ้งให้คุณทราบ";
+			mes "อีกครั้งโปรดนำมาให้";
+			mes "เพื่อที่เราจะได้เริ่มบทเรียน";
+			next;
+			mes "[Karkatan]";
+			mes "^3377FF10 กระดาษน้ำมัน^000000,";
+			mes "^3377FF5 กระดาษเนียน^000000";
+			mes "^3377FF1 หมึกปลาหมึก^000000,";
+			mes "^3377FF1 ขนนก^000000";
+			mes "เมื่อคุณนำสิ่งเหล่านี้มาทั้งหมด";
+			mes "ฉันจะสอนภาษาของเราให้คุณ";
+			close;
+		}
+	}
+	else if (event_umbala >= 3) {
+		if (event_umbala == 4) {
+			mes "[Karkatan]";
+			mes "Puchuchartan ต้องส่งคุณไปที่";
+			mes "ผม. ฉันต้องการตรวจสอบหรือไม่";
+			mes "คุณมีคุณสมบัติที่จะร้องขอ";
+			mes "ความช่วยเหลือของเธอ ... เราไม่ต้องการ";
+			mes "เพื่อช่วยเหลือคนชั่ว";
+			next;
+			mes "[Karkatan]";
+			mes "อืม ....";
+			mes "มันจะดีถ้ามีหน้ากาก";
+			mes "ที่ถูกสร้างขึ้นใน Rune-Midgarts ...";
+			next;
+			mes "[Karkatan]";
+			mes "ขอให้ได้^3377FF1 นายยิ้ม^000000.";
+			mes "สำหรับ Utans ได้รับหน้ากากเป็น";
+			mes "ปัจจุบันถือเป็นไฟล์";
+			mes "เกียรติยศ. อาจจะเป็น Puchuchartan";
+			mes "ต้องการให้คุณแสดงความเคารพโดยการทำเช่นนั้น";
+			set event_umbala,5;
+			close;
+		}
+		else if (event_umbala == 5) {
+			if (countitem(2278) > 0) {
+				mes "[Karkatan]";
+				mes "โอ้คุณนำมา!ใช่ฉัน";
+				mes "หวังเสมอว่าฉันจะมี";
+				mes "หน้ากากนี้!นี่คือไฟล์";
+				mes "เกียรติยศ!ขอบคุณนักผจญภัย";
+				mes "จาก Rune-Midgarts";
+				next;
+				mes "[Karkatan]";
+				mes "ฉันจะบอกภุชชาธารว่าฉัน";
+				mes "ยืนยันคุณสมบัติของคุณ";
+				mes "ไปพูดกับเธอ แม้ว่าฉัน";
+				mes "ฉันไม่แน่ใจว่าเธอสามารถให้ความช่วยเหลืออะไรได้บ้าง";
+				mes "คุณฉันหวังว่าเราจะสามารถคืนความโปรดปรานนี้ได้";
+				delitem 2278,1; //Mr_Smile
+				set event_umbala,6;
+				close;
+			}
+			else {
+				mes "[Karkatan]";
+				mes "ฉันบอกคุณหรือเปล่าว่าคุณต้องการ";
+				mes "^3377FF1 นายยิ้ม^000000?";
+				mes "โปรดนำสิ่งนั้นมาเป็นหลักฐาน";
+				mes "ถึงความปรารถนาดีของคุณเช่นกัน";
+				mes "เป็นความรู้สึกเป็นเกียรติของคุณ";
+				close;
+			}
+		}
+		else {
+			mes "[Karkatan]";
+			mes "เป็นอย่างไรบ้าง?";
+			mes "ฉันหวังว่าฉันจะแนะนำคุณไปรอบ ๆ";
+			mes "หมู่บ้าน แต่ฉันละเลยไม่ได้";
+			mes "หน้าที่ของฉันในฐานะหัวหน้าเผ่า";
+			next;
+			mes "[Karkatan]";
+			mes "การเป็นผู้นำเผ่าไม่ใช่เรื่องง่าย";
+			mes "ตามที่ปรากฏ คุณจะเข้าใจ";
+			mes "ถ้าคุณอยู่ในตำแหน่งเดียวกัน";
+			mes "กับฉัน. อย่างไรก็ตามฉันหวังว่าคุณจะมีความสุขกับเวลาในหมู่บ้านของเรา";
+			close;
+		}
+	}
+}
+
+// Create Essence/Dismantle Stone Quest::um_npc
+//============================================================
+um_in,44,71,2	script	Utan Shaman	782,{
+	if (checkweight(908,600) == 0) {
+		mes "^3355FF รอสักครู่!";
+		mes "ตอนนี้คุณกำลังแบก";
+		mes "หลายสิ่งหลายอย่างกับคุณ";
+		mes "กรุณากลับมาใหม่";
+		mes "ใช้บริการ Kafra";
+		mes "เพื่อจัดเก็บบางรายการของคุณ^000000";
+		close;
+	}
+	switch(event_umbala) {
+	default:
+		mes "[??????????]";
+		mes "อุมบาห์อุมบาห์อุมบาห์อุมบาห์อุมบาห์อุมบาห์อุมบาห์";
+		mes "อุมบาห์มูกาลาอุมบาห์ ..";
+		mes "อุมบาบาฮุมบาห์อุมบาบาห์";
+		mes "อุมบาบาอุมบาอุมบาอุมบาห์อุมบาห์";
+		mes "ฮัมอุมบาห์อุมบาห์";
+		close2;
+		warp "umbala",217,186;
+		end;
+	case 3:
+		mes "[Puchuchartan]";
+		mes "ฉันไม่ได้คาดหวังอย่างนั้น";
+		mes "ของคุณมากขึ้น Rune-Midgartsians";
+		mes "จะพบหมู่บ้านของฉัน ฉัน";
+		mes "เกรงว่าพระแม่ธรณีอาจ";
+		mes "เกิดทุกข์เพราะ";
+		mes "ของสิ่งนี้ ...";
+		next;
+		mes "[Puchuchartan]";
+		mes "คุณ Rune-Midgartsians เป็นอย่างมาก";
+		mes "เผ่าชั่วร้าย ... มักจะประสบความสำเร็จ";
+		mes "เป้าหมายของคุณไม่ว่าจะเป็นวิธีการ";
+		mes "เหม็นหรือยุติธรรมไม่ลังเลที่จะ";
+		mes "ทำลายทรัพย์สินของผู้อื่นที่จะได้รับ";
+		mes "คุณต้องการอะไร.";
+		next;
+		mes "[Puchuchartan]";
+		mes "ฉันกังวลว่าจะดำเนินต่อไปอย่างไร";
+		mes "ติดต่อกับโลกภายนอก";
+		mes "จะส่งผลต่ออนาคตของเรา ...";
+		next;
+		mes "[Puchuchartan]";
+		mes "ไม่มีใครจาก Rune-Midgarts มี";
+		mes "เยี่ยมฉันโดยไม่มีจุดประสงค์บางอย่าง";
+		mes "และฉันไม่คิดว่าคุณ";
+		mes "เป็นข้อยกเว้น";
+		next;
+		mes "[Puchuchartan]";
+		mes "ฉันใช้พลังของฉันเพื่อ";
+		mes "รับใช้เผ่าของฉันและอย่าทำ";
+		mes "ให้ความช่วยเหลือกับคนแปลกหน้า ถ้าคุณ";
+		mes "ต้องการความช่วยเหลือจากฉันจริงๆไปขอ";
+		mes "การอนุญาตของหัวหน้า";
+		next;
+		mes "[Puchuchartan]";
+		mes "นอกจากนี้ฉันไม่เห็นด้วย";
+		mes "คนนอกพูดคุยกับชนเผ่า";
+		mes "มากกว่าที่พวกเขาต้อง ...";
+		mes "เราต้องการมีชีวิตที่สงบสุขดังนั้นอย่ารบกวนเรา";
+		set event_umbala,4;
+		close;
+	case 4:
+	case 5:
+		mes "[Puchuchartan]";
+		mes "ฉันบอกคุณแล้วว่าจะได้รับไฟล์";
+		mes "การอนุมัติของหัวหน้า นอกจากนี้ยังมี";
+		mes "เรื่องของธุรกิจของตัวเองที่ต้องดูแล";
+		next;
+		mes "[Puchuchartan]";
+		mes "ฉันรู้ว่าเธอผ่านไปแล้ว";
+		mes "ความยากลำบากมากมายที่จะมาที่นี่";
+		mes "แต่คุณต้องออกไปตอนนี้";
+		close;
+	case 6:
+		mes "[Puchuchartan]";
+		mes "ฉันเคยได้ยินจากหัวหน้าเขาว่า";
+		mes "ได้ให้ความเห็นชอบแก่คุณ ...";
+		mes "แม้ว่าฉันจะไม่ชอบสิ่งนี้ฉัน";
+		mes "จะรักษาสัญญาของฉัน แต่มัน";
+		mes "โทรของคุณถ้าคุณต้องการความช่วยเหลือจากฉันจริงๆหรือไม่";
+		next;
+		mes "[Puchuchartan]";
+		mes "พลังของฉันทำให้ฉันสร้างความหยาบได้";
+		mes "หินที่น่าหลงใหลและแบ่งก";
+		mes "หินวิเศษบริสุทธิ์กลายเป็นหินหยาบ";
+		mes "คน ดังนั้นฉันอาจสามารถช่วยได้";
+		mes "คุณด้วยวิธีนี้";
+		next;
+		mes "[Puchuchartan]";
+		mes "มาพูดกับฉันเมื่อ";
+		mes "คุณคิดว่าพลังของฉันอาจจะเป็น";
+		mes "ของการบริการให้กับคุณ";
+		set event_umbala,7;
+		close;
+	case 7:
+		mes "[พุทสุจิทาน]";
+		mes "ฉันไม่รู้ว่าความสามารถของฉัน";
+		mes "จะเป็นประโยชน์กับคุณ แต่ฉันจะ";
+		mes "ช่วยคุณต่อไป";
+		next;
+		mes "[พุทสุจิทาน]";
+		mes "ฉันสามารถสร้างแก่นแท้ขององค์ประกอบจากวัตถุธรรมชาติ";
+		mes "หรือรื้อหินธาตุเป็นองค์ประกอบขององค์ประกอบ";
+		mes "อยากทำแบบไหน";
+	}
+	next;
+	mes "[Puchuchartan]";
+	mes "รูน - มิดการ์ตที่ขอ";
+	mes "ความช่วยเหลือของฉัน ... แม้ว่าฉันจะไม่แน่ใจ";
+	mes "ถ้าคุณต้องการพลังของฉันจริงๆฉัน";
+	mes "จะพยายามให้ความช่วยเหลือของฉัน";
+	next;
+	if (checkweight(1101,10) == 0) {
+		mes "[Puchuchartan]";
+		mes "รอ--!";
+		mes "บางสิ่งที่อยู่ในความครอบครองของคุณ";
+		mes "กำลังรบกวนความสงบของฉัน";
+		mes "ใจ. สิ่งนี้จะไม่ทำ ...";
+		next;
+		mes "[Puchuchartan]";
+		mes "ไปทิ้งข้าวของของคุณ";
+		mes "ที่อื่นและนำไฟล์";
+		mes "รายการที่คุณต้องการตอนนี้";
+		next;
+		mes "[Puchuchartan]";
+		mes "หากคุณปฏิเสธที่จะทำเช่นนั้น";
+		mes "ฉันไม่สามารถทำอะไรคุณได้";
+		mes "เตรียมตัวให้พร้อมแล้ว";
+		mes "กลับมา.";
+		close;
+	}
+	mes "[Puchuchartan]";
+	mes "ตอนนี้คุณต้องการทำอะไร?";
+	mes "พลังของฉันทำให้ฉันสร้างความหยาบได้";
+	mes "หินที่น่าหลงใหลและแบ่งก";
+	mes "หินวิเศษบริสุทธิ์กลายเป็นหินหยาบ";
+	next;
+	switch (select("สร้างหินเสน่ห์ที่หยาบกร้าน:แบ่งหินที่มีเสน่ห์บริสุทธิ์:ออก")) {
+	case 1:
+		mes "[Puchuchartan]";
+		mes "คุณต้องการสร้างหยาบ";
+		mes "หินมนต์เสน่ห์? ที่";
+		mes "คุณต้องการสร้างสถานที่ให้บริการหรือไม่?";
+		mes "ดินน้ำไฟลม ...";
+		mes "...เลือกหนี่งอย่าง.";
+		next;
+		switch (select("ดิน:น้ำ:ไฟ:ลม")) {
+		case 1:
+			set .@consume,947; //Horn
+			set .@amount,15; 
+			set .@success,993; //Yellow_Live
+			break;
+		case 2:
+			set .@consume,946; //Snail's_Shell
+			set .@amount,20; 
+			set .@success,991; //Crystal_Blue
+			break;
+		case 3:
+			set .@consume,904; //Scorpion's_Tail
+			set .@amount,20; 
+			set .@success,990; //Boody_Red
+			break;
+		case 4:
+			set .@consume,1013; //Colorful_Shell
+			set .@amount,25; 
+			set .@success,992; //Wind_Of_Verdure
+			break;
+		}
+		if (countitem(.@consume) >= .@amount) {
+			mes "[Puchuchartan]";
+			mes "ฉันจะพยายามขยายสิ่งที่ซ่อนอยู่";
+			mes "พลังของวัตถุธรรมชาติใน";
+			mes "เพื่อสร้างเสน่ห์ที่หยาบกร้าน";
+			mes "หิน. เลือกหนึ่งหมายเลขจาก";
+			mes "1ถึง 9. หากคุณต้องการยกเลิก";
+			mes "คำขอนี้ให้ป้อน 0";
+			next;
+			while(1) {
+				input .@input,0,10;
+				if (.@input == 0) {
+					mes "[Puchuchartan]";
+					mes "ฉันเห็น. เป็นสายของคุณ";
+					mes "กลับมาเมื่อคุณต้องการฉัน";
+					close;
+				}
+				else if (.@input > 9) {
+					mes "[Puchuchartan]";
+					mes "อย่าลืมเลือกหมายเลข";
+					mes "ตั้งแต่ 1 ถึง 9";
+					next;
+				}
+				else {
+					break;
+				}
+			}
+			mes "[Puchuchartan]";
+			switch(.@success) {
+			case 990:
+				mes "ฉันใส่หางเหล่านี้ลงในไฟล์"; break;
+			case 991:
+				mes "ฉันใส่เปลือกเหล่านี้ลงในไฟล์"; break;
+			case 992:
+				mes "ฉันใส่เปลือกเหล่านี้ลงในไฟล์"; break;
+			case 993:
+				mes "ฉันใส่เขาเหล่านี้ลงในไฟล์"; break;
+			}
+			mes "หม้อต้มและหล่อก";
+			mes "คาถาศักดิ์สิทธิ์ จำไว้";
+			mes "หมายเลขที่คุณป้อน";
+			next;
+			mes "[Puchuchartan]";
+			mes "อัมบาออมบาซาตุมบ้า!อืมบ้า!Ti!";
+			mes "อุมพูตานอึลคุบา!อืมบ้า!ฮา!";
+			mes "Julu Humba Rulala!อืมบ้า!ลา!";
+			mes "ดาตูฮาโอมบาบาลากะ!อืมบ้า!ศรี!";
+			mes "สุนุตาบะอบุลัมบา!อืมบ้า!ศรี!";
+			next;
+			if (rand(1,10) == 1) {
+				mes "[Puchuchartan]";
+				mes "ฉันเดาว่าพลังของฉันไม่เพียงพอ";
+				mes "พลังธรรมชาติที่ฉันรวบรวมมาด้วย";
+				mes "คาถาของฉันสูญเสียโฟกัสและกระจัดกระจาย ...";
+				delitem .@consume,.@amount;
+				getitem 910,1; //Garlet
+				next;
+				mes "[Puchuchartan]";
+				mes "ดูเหมือนวิญญาณของธรรมชาติ";
+				mes "ไม่สอดคล้องกันในขณะนี้";
+				mes "อย่างไรก็ตามหากคุณกลับมาในภายหลัง";
+				mes "ฉันจะพยายามช่วยคุณ แน่นอน,";
+				mes "จะยังคงมีความเป็นไปได้เหมือนกันที่ฉันอาจจะล้มเหลว";
+				close;
+			}
+			else {
+				mes "[Puchuchartan]";
+				mes "นี่คือหินที่คุณหลงเสน่ห์";
+				mes "อยากได้. ฉันสร้างสิ่งนี้ขึ้นมา";
+				mes "ด้วยความพยายามอย่างมากดังนั้นจงทำ";
+				mes "ใช้ประโยชน์ได้ดี";
+				delitem .@consume,.@amount;
+				getitem .@success,1;
+				close;
+			}
+		}
+		else {
+			mes "[Puchuchartan]";
+			switch (.@success) {
+			case 990:
+				mes "ไฟไหม้ทรัพย์สิน ...";
+				mes "ฉันจะต้องการความเป็นธรรมชาติ";
+				mes "วัตถุที่เต็มไปด้วย";
+				mes "วิญญาณแห่งไฟ";
+				next;
+				mes "[Puchuchartan]";
+				mes "แมงป่องที่ทน";
+				mes "ความร้อนระอุของทะเลทราย";
+				mes "เต็มไปด้วยพลังงานไฟ";
+				mes "ฉันต้องการ^3377FF20 Scorpion Tails^000000";
+				break;
+			case 991:
+				mes "แหล่งน้ำ ...";
+				mes "ฉันจะต้องการความเป็นธรรมชาติ";
+				mes "วัตถุที่เต็มไปด้วย";
+				mes "จิตวิญญาณแห่งน้ำ";
+				next;
+				mes "[Puchuchartan]";
+				mes "Ambernite ... จิตวิญญาณของ";
+				mes "มีน้ำอยู่ภายใน";
+				mes "เกราะป้องกัน ...";
+				mes "ฉันต้องการ^3377FF20 หอยทาก^000000";
+				break;
+			case 992:
+				mes "คุณสมบัติของลม ...";
+				mes "ฉันจะต้องการความเป็นธรรมชาติ";
+				mes "วัตถุที่เต็มไปด้วย";
+				mes "วิญญาณแห่งสายลม";
+				next;
+				mes "[Puchuchartan]";
+				mes "Stainer ... ด้วง";
+				mes "ที่บินผ่านท้องฟ้า";
+				mes "มีวิญญาณของลม";
+				mes "ฉันต้องการ^3377FF25 Rainbow Shells^000000";
+				break;
+			case 993:
+				mes "สมบัติของโลก ... ฉันต้องการธรรมชาติ";
+				mes "วัตถุที่เต็มไปด้วย";
+				mes "จิตวิญญาณของโลก";
+				next;
+				mes "[Puchuchartan]";
+				mes "ฮอร์น ... ที่อาศัยอยู่ในป่า";
+				mes "เต็มไปด้วยวิญญาณของ";
+				mes "ดินและไม้ ... แตร ...";
+				mes "ฉันต้องการ^3377FF15 Horn^000000 จาก Horns";
+				break;
+			}
+			mes "[Puchuchartan]";
+			mes "นั่นคือทั้งหมดที่ฉันต้องการ ...";
+			mes "กลับมาเมื่อ";
+			mes "คุณพร้อมแล้ว.";
+			mes "ฉันจะอยู่ที่นี่.";
+			close;
+		}
+	case 2:
+		mes "[Puchuchartan]";
+		mes "คุณต้องการที่จะแบ่งบริสุทธิ์";
+		mes "หินเสกให้กลายเป็นหินหยาบ?";
+		mes "คุณต้องการทรัพย์สินใด";
+		mes "หาร? ดินน้ำไฟลม ...";
+		mes "เลือกหนี่งอย่าง.";
+		next;
+		switch(select("ดิน:น้ำ:ไฟ:ลม")) {
+		case 1:
+			set .@divide,997; //Great_Nature
+			break;
+		case 2:
+			set .@divide,995; //Mistic_Frozen
+			break;
+		case 3:
+			set .@divide,994; //Flame_Heart
+			break;
+		case 4:
+			set .@divide,996; //Rough_Wind
+			break;
+		}
+		mes "[Puchuchartan]";
+		mes "โปรดป้อนไฟล์";
+		mes "จำนวนที่หลงเสน่ห์";
+		mes "หินที่คุณต้องการ";
+		mes "แบ่ง. ฉันทำได้แค่";
+		mes "หารครั้งละไม่เกิน 10 ครั้ง";
+		next;
+		input .@input,0,11;
+		if ((.@input > 0) && (.@input < 11)) {
+			if (countitem(.@divide) >= .@input) {
+				if (checkweight(908,(.@input * 30)) == 0) {
+					mes "[Puchuchartan]";
+					mes "คุณกำลังแบกเกินไป";
+					mes "หลายรายการในขณะนี้";
+					mes "ใส่ของบางอย่าง";
+					mes "ใน Kafra Storage แล้ว";
+					mes "กลับมาหาฉันโอเค?";
+					close;
+				}
+				mes "[Puchuchartan]";
+				mes "ฉันจะพยายามเปลี่ยนกลับ";
+				mes "หินที่น่าหลงใหลให้กับพวกเขา";
+				mes "รูปแบบหยาบ ป้อนตัวเลข";
+				mes "จาก 1 ถึง 9 หรือป้อน 0 ถ้า";
+				mes "คุณตัดสินใจยกเลิก";
+				next;
+				while(1) {
+					input .@input2,0,10;
+					if (.@input2 == 0) {
+						mes "[Puchuchartan]";
+						mes "คุณต้องการยกเลิก?";
+						mes "ถ้าคุณเปลี่ยนไฟล์";
+						mes "อย่าลังเลที่จะมา";
+						mes "ขอให้ฉันช่วยได้ตลอดเวลา";
+						close;
+					}
+					else if (.@input2 > 9) {
+						mes "[Puchuchartan]";
+						mes "หืม? คุณต้องป้อน";
+						mes "ตัวเลขตั้งแต่ 1 ถึง 9";
+						next;
+					}
+					else {
+						break;
+					}
+				}
+				mes "[Puchuchartan]";
+				mes "ตอนนี้ฉันจะสวดมนต์";
+				mes "คำศักดิ์สิทธิ์ จำไว้";
+				mes "หมายเลขที่คุณป้อน!";
+				next;
+				mes "[Puchuchartan]";
+				mes "อุมบะอุมบะกะล่อน!อืมบ้า!ทะ!";
+				mes "Lukura อูคูเลเล่อืม!อืมบ้า!กา!";
+				mes "อบุลกะตะบูลกัน!อืมบ้า!ลา!";
+				mes "โอมบาลูดูแซนกุนู!อืมบ้า!กู่!";
+				mes "คุมตั้มลั้ลลากุล!อืมบ้า!ฮา!";
+				next;
+				mes "[Puchuchartan]";
+				mes "นี่คือหินเสน่ห์ที่หยาบกร้าน";
+				mes "คุณต้องการที่จะมี ฉันสร้างสิ่งนี้ขึ้นมา";
+				mes "ด้วยความพยายามอย่างมากดังนั้นจงทำให้ดี";
+				mes "การใช้งานของพวกเขา";
+				while(1) {
+					if (.@sha_man == .@input) {
+						break;
+					}
+					else {
+						set .@shaman_max,.@shaman_max + rand(6,10);
+						set .@sha_man,.@sha_man + 1;
+					}
+				}
+				switch(.@divide) {
+				case 994:
+					getitem 990,.@shaman_max; //Boody_Red
+					break;
+				case 995:
+					getitem 991,.@shaman_max; //Crystal_Blue
+					break;
+				case 996:
+					getitem 992,.@shaman_max; //Wind_Of_Verdure
+					break;
+				case 997:
+					getitem 993,.@shaman_max; //Yellow_Live
+				}
+				delitem .@divide,.@input;
+				close;
+			}
+			else {
+				mes "[Puchuchartan]";
+				mes "ดังนั้นคุณต้องการที่จะหยาบ";
+				switch(.@divide) {
+				case 994:
+					mes "หินไฟ? จากนั้นฉันจะต้อง";
+					mes "คุณต้องนำ"+input_want+" หินไฟบริสุทธิ์";
+					break;
+				case 995:
+					mes "หินน้ำ? ถ้าอย่างนั้นฉันต้องการ";
+					mes "คุณต้องนำ"+input_want+" หินน้ำบริสุทธิ์";
+					break;
+				case 996:
+					mes "หินลม? จากนั้นฉันจะต้อง";
+					mes "คุณต้องนำ"+input_want+" หินลมบริสุทธิ์";
+					break;
+				case 997:
+					mes "หินดิน? ถ้าอย่างนั้นฉันต้องการ";
+					mes "คุณต้องนำ"+.@input+" หินดินบริสุทธิ์";
+					break;
+				}
+				mes "^3377FF"+.@input+" "+getitemname(.@divide)+"^000000";
+				next;
+				mes "[Puchuchartan]";
+				mes "นั่นคือทั้งหมดที่ฉันต้องการ ...";
+				mes "กลับมาเมื่อ";
+				mes "คุณพร้อมแล้ว.";
+				mes "ฉันจะอยู่ที่นี่.";
+				close;
+			}
+		}
+		else {
+			mes "[Puchuchartan]";
+			mes "หืม? คุณต้องป้อน";
+			mes "ตัวเลขตั้งแต่ 1 ถึง 10";
+			close;
+		}
+	case 3:
+		mes "[Puchuchartan]";
+		mes "ฉันเห็น. เป็นสายของคุณ";
+		mes "กลับมาเมื่อคุณต้องการฉัน";
+		close;
+	}
+}
+
+umbala,221,193,1	script	#Skulldoor	111,{
+	if (event_umbala >= 7) {
+		warp "um_in",32,71;
+		end;
+	}
+	else {
+		mes "^3355FFA กะโหลกศีรษะมนุษย์รบกวน";
+		mes "แขวนอยู่ข้างประตู ประตูอยู่";
+		mes "ล็อคแน่นคุณจึงไม่สามารถเข้าได้";
+		mes "เมื่อคุณมองผ่านรูกุญแจ";
+		mes "คุณสามารถเห็นใครบางคนกำลังเคลื่อนไหวอยู่ภายในห้อง^000000";
+		next;
+		if (select("ตรวจสอบกะโหลกศีรษะ:หยุด") == 1) {
+			mes "^3355FF คุณเห็นว่าเบ้าตา";
+			mes "ของกะโหลกศีรษะว่างเปล่า";
+			mes "แปลกแค่ไหน ...";
+			mes "ดูเหมือนว่า Gemstones";
+			mes "จะพอดีกับภายในของ";
+			mes "พวกเขา^000000";
+			next;
+			mes "^3355FF คุณเห็นเบ้าตาซ้ายของ";
+			mes "กะโหลก. คุณต้องการทำอะไร^000000";
+			next;
+			switch(select("ปล่อยให้มันเป็นไป:ใส่พลอยสีน้ำเงิน:ใส่พลอยสีเหลือง:ใส่พลอยสีแดง")) {
+			case 1:
+				mes "^3355FF คุณปล่อยเบ้าตาไว้เหมือนเดิม^000000";
+				next;
+				break;
+			case 2:
+				set .@insert,717;
+				break;
+			case 3:
+				set .@insert,715;
+				break;
+			case 4:
+				set .@insert,716;
+				break;
+			}
+			if (.@insert) {
+				if (countitem(.@insert) > 0) {
+					mes "^3355FF คุณใส่ไฟล์"+getitemname(.@insert)+"";
+					mes "เข้าไปในเบ้าตา^000000";
+					next;
+					mes "^3355FF อัญมณีกลิ้งกลับออกมา";
+					mes "ปากกะโหลก^000000";
+					set .@skulldoor,.@skulldoor+1;
+					switch (.@insert) {
+					case 715:set .@skull,2; break;
+					case 716:set .@skull,3; break;
+					case 717:set .@skull,1; break;
+					}
+					delitem .@insert,1;
+					getitem .@insert,1;
+					next;
+				}
+				else {
+					mes "^3355FF คุณลืมพกพา"+getitemname(.@insert)+"";
+					mes "กับคุณ. คุณไม่สามารถทำในสิ่งที่คุณ";
+					mes "ได้ตั้งใจ^000000";
+					next;
+				}
+			}
+			mes "^3355FF คุณเห็นเบ้าตาขวาของ";
+			mes "กะโหลกศีรษะ คุณต้องการทำอะไร^000000";
+			next;
+			switch(select("ปล่อยให้มันเป็นไป:ใส่พลอยสีน้ำเงิน:ใส่พลอยสีเหลือง:ใส่พลอยสีแดง")) {
+			case 1:
+				mes "^3355FF คุณปล่อยเบ้าตาไว้เหมือนเดิม^000000";
+				next;
+				break;
+			case 2:
+				set .@insert2,717;
+				break;
+			case 3:
+				set .@insert2,715;
+				break;
+			case 4:
+				set .@insert2,716;
+				break;
+			}
+			if (.@insert2) {
+				if (countitem(.@insert2) > 0) {
+					mes "^3355FF คุณใส่ไฟล์"+getitemname(.@insert2)+"";
+					mes "เข้าไปในเบ้าตา^000000";
+					next;
+					mes "^3355FF อัญมณีกลิ้งกลับออกมา";
+					mes "ปากกะโหลก^000000";
+					if (.@insert2 == .@insert) {
+						set .@skulldoor,.@skulldoor+1;
+					}
+					else {
+						set .@skulldoor,.@skulldoor+2;
+					}
+					delitem .@insert2,1;
+					getitem .@insert2,1;
+					next;
+				}
+				else {
+					mes "^3355FF คุณลืมพกพา"+getitemname(.@insert2)+"";
+					mes "กับคุณ. คุณไม่สามารถทำในสิ่งที่คุณ";
+					mes "ได้ตั้งใจ^000000";
+					next;
+				}
+			}
+			mes "^3355FF ..............................^000000";
+			next;
+			mes "^3355FF ..............................";
+			mes "..............................^000000";
+			next;
+			mes "^3355FF ..............................";
+			mes "..............................";
+			mes "..............................^000000";
+			next;
+			switch(.@skulldoor) {
+			case 3:
+				if (rand(1,4) != 1) {
+					set .@skullopen,1;
+				}
+				break;
+			case 2:
+				if (rand(1,2) == 2) {
+					set .@skullopen,1;
+				}
+				break;
+			case 1:
+				if (rand(1,4) == 1) {
+					set .@skullopen,1;
+				}
+				break;
+			default:
+				break;
+			}
+			if (.@skullopen == 0) {
+				mes "^3355FF ไม่มีอะไรเกิดขึ้น";
+				mes "คุณมีความรู้สึกว่า";
+				mes "กะโหลกกำลังยิ้มให้คุณ แต่...";
+				mes "มันอาจจะเป็นเพียงแค่แสงหลอก^000000";
+				close;
+			}
+			else {
+				mes "^3355FFS ทันใดนั้นเสียงคลิกก็ดังขึ้น";
+				mes "จากเบ้าตาของกะโหลกศีรษะและ";
+				mes "ประตูเปิดออก ก่อนที่คุณจะรู้";
+				mes "คุณเดินเข้าไปข้างในราวกับได้รับคำแนะนำ";
+				mes "ด้วยพลังที่มองไม่เห็น ...^000000";
+				close2;
+				warp "um_in",32,71;
+				end;
+			}
+		}
+		mes "^3355FF คุณตัดสินใจเดินผ่านประตู";
+		mes "ดูเหมือนว่าอาจจะเปิดยากเกินไป^000000";
+		close;
+	}
+}
+
+// Umbala Domestic Dispute Quest::um_npc_ryu
+//============================================================ 
+um_in,139,48,5	script	Phrenetan	783,{
+	if (event_umbala >= 3) {
+		mes "[Phrenetan]";
+		mes "ฉันป่วยและเบื่อหน่าย";
+		mes "สามีของฉัน!!ก็เหมือนเขานั่นแหละ";
+		mes "จีบสาวทุกคน";
+		mes "ในหมู่บ้าน!";
+		next;
+		mes "[Phrenetan]";
+		mes "ถ้าฉันเห็นเขาเจ้าชู้ด้วย";
+		mes "ผู้หญิงอีกแล้ว ... ฉันสาบาน ...";
+		mes "ฉันจะแสดงให้เขาเห็นนรก !!";
+		close;
+	}
+	if (BaseJob == Job_Novice && Upper != 2) {
+		mes "[Phrenetan]";
+		mes "อุมบะ ~ อุมบาอุมบาห์!";
+		mes "อุมบาห์วูมูมัม!";
+		mes "Umbah woomum Umbabah!";
+		close;
+	}
+	if (um_wind <= 3 && (MISC_QUEST & 32768) == 0) {
+		if (um_wind == 0) set um_wind,1;
+		emotion ET_FRET;
+		mes "[Phrenetan]";
+		mes "Umbaumbah wooga wooga";
+		mes "อุมบัมบับบะฮ์บาบาบาห์!";
+		mes "อืมบ้า!";
+		next;
+		emotion ET_O;
+		mes "[Phrenetan]";
+		mes "อุมบาห์อุมบาอุมบาอุมบาห์";
+		mes "อัมบาบาบาวูกาวู!";
+		mes "อูก้าวูก้าอุมบาห์อุมบาอุม!";
+		next;
+		emotion ET_GO;
+		close;
+	}
+	else if (um_wind == 6 || (MISC_QUEST & 32768)) {
+		emotion ET_FRET;
+		mes "[Phrenetan]";
+		mes "อุบาบาห์!อุมบัมบะห์ .....";
+		mes "Umbaum Umbaum Wooga วูกา!";
+		mes "วู๊กกะอุ๋มอุ๋มบั๊บบบบบบบบบบบบบบบบ !!!!!";
+		next;
+		emotion ET_SWEAT;
+		close;
+	}
+	end;
+}
+
+um_in,144,45,5	script	Umpokoriohtan	789,{
+	if (event_umbala >= 3) {
+		if(rand(1,3) == 2) {
+			mes "[Umpokoriohtan]";
+			mes "เฮ้แมวเย็น";
+			mes "ไม่รังเกียจเมีย ...";
+			mes "เท่าที่ฉันรักเธอ";
+			mes "ฉันรู้ว่าภาระหน้าที่ของฉันคุณขุด?";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "ถ้าผู้ชายมีมากมายเขา";
+			mes "ได้แบ่งปันกับคนเหล่านั้น";
+			mes "ที่ไม่มีอะไรจะให้";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "ถ้ามือผู้ชายดี";
+			mes "ที่ฮีลลินเขาต้องใช้";
+			mes "มือเหล่านั้นเพื่อช่วยให้ผู้คนมีชีวิต";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "ถ้าผู้ชายริมฝีปากดี";
+			mes "singin 'เขาต้องโกง";
+			mes "เพลงที่เราชอบฟังมาก";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "แต่ถ้าความรักที่แสนหวานเป็นสีทอง";
+			mes "แล้วที่รัก ... ฉันได้สัมผัส Midas";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "โอ ... !";
+			mes "...........";
+			mes "หลังของฉัน--!";
+			mes "เดือดปุด ๆ ที่รักตาของคุณจะมาถึงในอีกไม่กี่นาที ~";
+			emotion ET_ROCK, getnpcid(0, "Phrenetan");
+			emotion ET_SWEAT;
+			close;
+		}
+		else {
+			mes "[Umpokoriohtan]";
+			mes "ผู้ชาย ... บางครั้งภรรยาของฉันก็ทำได้";
+			mes "เป็นคนหยาบเกินไปบางที";
+			mes "แม้จะเป็นอันตราย แต่ที่เจ๋ง ...";
+			mes "มันหมายความว่าเธอมีไฟ";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "แต่สักวันเธอจะต้อง";
+			mes "เรียนรู้ว่าฉันมีความสุขที่จะแบ่งปัน";
+			mes "หัวใจของฉันกับผู้หญิง";
+			mes "ผู้ที่ต้องการวิตามินในปริมาณมาก";
+			mes "รักคุณขุด? มันเป็นภาระหน้าที่ของฉัน";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "Wainatan, Bertztan, Chabimatan ...";
+			mes "สาวสวยเหล่านั้นรอคอย";
+			mes "ยาวเกินไป ไม่ต้องกังวล";
+			mes "พ่อใหญ่กำลังมาเร็ว ๆ นี้";
+			next;
+			mes "[Umpokoriohtan]";
+			mes "โอ๊ย ~!ฟีเน็ต!";
+			mes "ที่รักทำไมคุณต้องหยาบ?";
+			mes "ตีเบา ๆ หน่อยยยยยยยยยยยย ??";
+			mes "ฉันไม่ได้ตั้งใจจะทำร้ายคุณ ~";
+			emotion ET_HUK, getnpcid(0, "Phrenetan");
+			emotion ET_KEK;
+			close;
+		}
+	}
+	emotion ET_SMILE;
+	mes "[Umpokoriohtan]";
+	mes "อุมบัมบะห์ ...........";
+	mes "อุมบาวูก้าวูกาวู!";
+	mes "อุมบาห์อุมบาบาอุมบาวูกากา";
+	next;
+	emotion ET_FRET;
+	close;
+
+OnInit:
+	disablenpc "Umpokoriohtan";
+	end;
+}
+
+um_in,101,73,3	script	Wainatan	783,{
+	if (event_umbala >= 3) {
+		mes "[Wainatan]";
+		mes "ฉันป่วยและเบื่อผู้ชายคนนี้";
+		mes "ที่มักจะปรากฏตัวในเวลากลางคืนและโรคจิตออกไปจากฉัน ...";
+		next;
+		mes "[Wainatan]";
+		mes "'ตัวดำเนินการที่ราบรื่นที่ได้รับ";
+		mes "งานเสร็จแล้ว? ' โอ้พระเจ้า...!";
+		mes "ฉันเกลียดเขาด้วยความหลงใหล!";
+		mes "ฉันหวังว่า Umpokoriohtan จะ";
+		mes "เพียงแค่ปล่อยให้ตาย";
+		close;
+	}
+	if (um_wind == 1) {
+		if (gettime(DT_HOUR) > 18) {
+			set um_wind,2;
+			emotion ET_FRET;
+			mes "[Wainatan]";
+			mes "อุมบัมบะห์อุมกากากา";
+			mes "Umbaumbawoogawoo gababah.";
+			mes "Umbahumbabah gawoo";
+			next;
+			emotion ET_O;
+			mes "[Wainatan]";
+			mes "Wooga wooga woogagagah";
+			mes "วอกากากาห์โวกากากาห์";
+			mes "Gawoo gawoo gah.";
+			close;
+		}
+		else {
+			mes "[Wainatan]";
+			mes "อุบาบาห์!Umbaumbah wooga";
+			mes "Woogawooga Ummawooga อืมม.";
+			mes "อุบัตบาบับบับบับบับ.";
+			close;
+		}
+	}
+	else {
+		mes "[Wainatan]";
+		mes "อุมบัมบะห์อุบัมบาอุมบาห์อุมบาห์";
+		mes "Wooga wooga woogawooga wooga";
+		mes "อุมูมูมั่มอุ๋มอุ๋มอุ๋มอุ๋ม.";
+		close;
+	}
+}
+
+um_in,94,123,5	script	Bertztan	783,{
+	if (event_umbala >= 3) {
+		mes "[Bertztan]";
+		mes "... * เฮ้อ * นั่นสิ";
+		mes "อืมโป - อะไรก็ได้!ฉันบอกเขา";
+		mes "ฉันไม่ชอบเขา แต่เขา";
+		mes "แค่ไม่ฟัง!";
+		mes "ฉันหวังว่า ... ฉันหวังว่าเขาจะ";
+		mes "หายไปเฉยๆ!";
+		close;
+	}
+	if (um_wind == 2) {
+		if (gettime(DT_HOUR) > 18) {
+			set um_wind,3;
+			emotion ET_FRET;
+			mes "[Bertztan]";
+			mes "อุมบัมบะห์อุมกากากา";
+			mes "Umbaumbawoogawoo gababah.";
+			mes "อุมบาฮุมบาบากาวู";
+			next;
+			emotion ET_O;
+			mes "[Bertztan]";
+			mes "อูก้าสะดือจุ่น!";
+			mes "Umbar woogagaga โว้ย!แอ่ว!แอ่ว!";
+			mes "วู้วววววววววววววววววววว";
+			close;
+		}
+		else {
+			mes "[Bertztan]";
+			mes "Umbar woogaumbarumbah อืม!";
+			mes "อืม ~ wooga wooga umbarum";
+			mes "อืมบา ... wooum.";
+			close;
+		}
+	}
+	else {
+		mes "[Bertztan]";
+		mes "Umbar wooga Ummar Ummah อืม!";
+		mes "อืม ~ woogawooga อุมบาร์อืม";
+		mes "อืมบา ... wooum.";
+		close;
+	}
+}
+
+umbala,145,217,3	script	Chabimatan	783,{
+	if (event_umbala >= 3) {
+		mes "[Chabimatan]";
+		mes "... * เฮ้อ * ดูเหมือนอุมโปโคริโอทัน";
+		mes "จะแต่งงาน ฉันไม่มี";
+		mes "คิดว่าทำไมเขาถึงยังจีบ";
+		mes "กับผู้หญิงคนอื่น ๆ บางทีเขา";
+		mes "ไม่เป็นผู้ใหญ่มากหรือเขา";
+		mes "ขาดความรับผิดชอบ ...";
+		next;
+		mes "[Chabimatan]";
+		mes "ไม่ว่าเขาจะเป็นอะไร";
+		mes "เขาไม่แน่นอน";
+		mes "โรแมนติก. ปิ๊กอัพเหล่านั้น";
+		mes "เส้นของเขาทำได้";
+		mes "งานบางอย่างอาจจะ";
+		mes "แม้บางคนจะทำความสะอาด";
+		close;
+	}
+	if (um_wind == 3) {
+		if (gettime(DT_HOUR) > 18) {
+			set um_wind,4;
+			emotion ET_FRET;
+			mes "[Chabimatan]";
+			mes "Umbabah Umbarbar woogawooga อืม";
+			mes "อุมบาบาอุมบาร์บาวูกาวูกาอุมบาห์";
+			mes "อืมมม!วูก้า!";
+			next;
+			emotion ET_O;
+			mes "[Chabimatan]";
+			mes "อัมบาบา ~~~~~~~";
+			mes "Woogawooga สะดือสะดือวู้!";
+			mes "วูกาอุมบาร์ woogawoogagah";
+			enablenpc "Umpokoriohtan";
+			enablenpc "#!@#$%";
+			close;
+		}
+		else {
+			mes "[Chabimatan]";
+			mes "อัมบาบา ~~~~~~~";
+			mes "Woogawooga สะดือสะดือ woo";
+			mes "แอ่ว!นุ๊กกก ~";
+			mes "อูกาอูกาอูกาอูกาอูกา";
+			mes "wooga woogagah";
+			close;
+		}
+	}
+	else {
+		mes "[Chabimatan]";
+		mes "อัมบาบา ~~~~~~~";
+		mes "Woogawooga สะดือสะดือ";
+		mes "วู้วววววววววววววววว";
+		mes "อูกาอูกาอูกาอูกาอูกา";
+		mes "wooga woogagah";
+		close;
+	}
+}
+
+um_in,141,46,0	script	#!@#$%	-1,8,8,{
+OnInit:
+	disablenpc "#!@#$%";
+	end;
+
+OnTouch_:
+	if (um_wind == 4) {
+		set um_wind,5;
+		mes "^3355FF เมื่อคุณเข้าไปในบ้าน";
+		mes "คุณเป็นพยาน";
+		mes "Phrenetan ตีผู้ชาย";
+		mes "อย่างไร้ความปราณี^000000";
+		next;
+		emotion ET_FRET;
+		mes "[Phrenetan]";
+		mes "อุมบัมบัมบาอัมบาห์!";
+		mes "อุมบัมบาฮุมบาห์ !!";
+		mes "อุมบัมบาฮุมบาห์ !!!!!!";
+		next;
+		mes "^3355FF คุณถูกไล่ออกจากบ้าน";
+		mes "โดย Phrenetan^000000";
+		next;
+		enablenpc "#unpc";
+		disablenpc "#!@#$%";
+		warp "umbala",94,181;
+	}
+	end;
+}
+
+umbala,94,181,0	script	#unpc	-1,1,1,{
+OnInit:
+	disablenpc "#unpc";
+	end;
+
+OnTouch_:
+	if (um_wind == 5) {
+		mes "^3355FF อย่างที่คุณรู้ว่าเกิดอะไรขึ้น";
+		mes "หลังจากถูกเตะออกจาก";
+		mes "บ้านคุณเห็นใบไม้บน";
+		mes "พื้นใกล้กับที่คุณยืนอยู่^000000";
+		next;
+		if (select("รับไป:ทิ้งไว้") == 1) {
+			close2;
+			set um_wind,0;
+			set MISC_QUEST,MISC_QUEST | 32768;
+			getitem 610,1; //Leaf_Of_Yggdrasil
+			disablenpc "#unpc";
+			end;
+		}
+		set um_wind,0;
+		set MISC_QUEST,MISC_QUEST | 32768;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ฉันไม่ควรใช้";
+		mes "สิ่งที่อาจเป็นของคนอื่น";
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes "ใช่ฉันเป็นคนดี";
+		close2;
+		disablenpc "#unpc";
+	}
+	end;
+}
+
